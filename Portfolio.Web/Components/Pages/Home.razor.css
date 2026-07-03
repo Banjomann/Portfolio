@@ -1,0 +1,202 @@
+.landing-page {
+    display: grid;
+    gap: clamp(3rem, 7vw, 5.5rem);
+}
+
+.landing-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(18rem, 0.72fr);
+    gap: clamp(2rem, 6vw, 4.5rem);
+    align-items: center;
+    min-height: calc(100vh - 11rem);
+}
+
+.hero-copy {
+    display: grid;
+    gap: 1.1rem;
+}
+
+.hero-copy h1 {
+    max-width: 9ch;
+}
+
+.hero-lede {
+    max-width: 48rem;
+    color: var(--color-text);
+    font-size: clamp(1.08rem, 2vw, 1.3rem);
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.4rem;
+}
+
+.hero-action {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.hero-action:hover {
+    border-color: var(--color-secondary);
+    background: var(--color-secondary-soft);
+    color: var(--color-text);
+    box-shadow: inset 0 -3px 0 var(--color-secondary);
+}
+
+.hero-visual {
+    min-width: 0;
+}
+
+.work-board {
+    display: grid;
+    gap: 0.75rem;
+    padding: clamp(1rem, 3vw, 1.4rem);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-md);
+    background: var(--color-card);
+    box-shadow: var(--shadow-soft);
+}
+
+.board-label {
+    margin: 0 0 0.2rem;
+    color: var(--color-accent-strong);
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.work-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1rem;
+    align-items: center;
+    min-height: 3.5rem;
+    padding: 0.85rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-panel);
+}
+
+.work-row strong {
+    color: var(--color-text);
+}
+
+.work-row span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.75rem;
+    padding: 0 0.55rem;
+    border: 1px solid var(--color-secondary);
+    border-radius: var(--radius-sm);
+    background: var(--color-secondary-soft);
+    color: var(--color-text);
+    font-size: 0.76rem;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.landing-section {
+    display: grid;
+    gap: clamp(1.3rem, 3vw, 2rem);
+}
+
+.section-heading {
+    max-width: 48rem;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.25rem;
+    min-height: 21rem;
+    padding: clamp(1.1rem, 3vw, 1.45rem);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-card);
+    box-shadow: var(--shadow-soft);
+}
+
+.project-type {
+    margin-bottom: 0.65rem;
+    color: var(--color-accent-strong);
+    font-size: 0.8rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.capability-band {
+    padding-bottom: clamp(1rem, 4vw, 2.5rem);
+}
+
+.capability-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.capability-list article {
+    padding: 1.25rem;
+    border-left: 4px solid var(--color-secondary);
+    background: color-mix(in srgb, var(--color-panel) 54%, transparent);
+}
+
+.capability-list h3 {
+    font-size: 1.08rem;
+}
+
+@media (max-width: 920px) {
+    .landing-hero,
+    .project-grid,
+    .capability-list {
+        grid-template-columns: 1fr;
+    }
+
+    .landing-hero {
+        min-height: auto;
+    }
+
+    .project-card {
+        min-height: auto;
+    }
+}
+
+@media (max-width: 640px) {
+    .landing-page {
+        gap: 2.6rem;
+    }
+
+    .landing-hero {
+        gap: 1.5rem;
+    }
+
+    .hero-copy {
+        gap: 0.9rem;
+    }
+
+    .work-board {
+        gap: 0.55rem;
+        padding: 0.75rem;
+    }
+
+    .work-row {
+        min-height: 3rem;
+        padding: 0.7rem;
+    }
+}
