@@ -1,7 +1,121 @@
-﻿@page "/"
+@page "/"
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Ben McNees | Software Portfolio</PageTitle>
 
-<h1>Hello, world!</h1>
+<div class="landing-page">
+    <section class="landing-hero" aria-labelledby="portfolio-heading">
+        <div class="hero-copy">
+            <p class="eyebrow">Software portfolio</p>
+            <h1 id="portfolio-heading">Ben McNees</h1>
+            <p class="hero-lede">
+                I build practical software across .NET, web applications, game systems, and automation tools,
+                with an emphasis on maintainable architecture and polished user-facing workflows.
+            </p>
 
-Welcome to your new app.
+            <div class="hero-actions" aria-label="Primary sections">
+                <a class="hero-action primary" href="#featured-work">Featured work</a>
+                <a class="hero-action" href="#capabilities">Capabilities</a>
+            </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Portfolio focus areas">
+            <div class="signal-board">
+                <div class="signal-row">
+                    <span>01</span>
+                    <strong>Application architecture</strong>
+                </div>
+                <div class="signal-row">
+                    <span>02</span>
+                    <strong>Blazor and .NET systems</strong>
+                </div>
+                <div class="signal-row">
+                    <span>03</span>
+                    <strong>Minecraft mod engineering</strong>
+                </div>
+                <div class="signal-row">
+                    <span>04</span>
+                    <strong>Workflow automation</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="featured-work" class="landing-section" aria-labelledby="featured-heading">
+        <div class="section-heading">
+            <p class="eyebrow">Featured work</p>
+            <h2 id="featured-heading">Projects with real implementation depth.</h2>
+        </div>
+
+        <div class="project-grid">
+            <article class="project-card">
+                <div>
+                    <p class="project-type">Minecraft mod</p>
+                    <h3>Vivid</h3>
+                    <p>
+                        NeoForge mod work for Minecraft 1.21.1, focused on content systems, asset pipelines,
+                        world generation, and gameplay mechanics.
+                    </p>
+                </div>
+                <div class="cluster">
+                    <span class="tag">Java</span>
+                    <span class="tag">NeoForge</span>
+                    <span class="tag">Game systems</span>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <div>
+                    <p class="project-type">Shared platform</p>
+                    <h3>Banjo</h3>
+                    <p>
+                        Shared .NET domain and business foundation for applications that need clear entity,
+                        identity, membership, and lifecycle boundaries.
+                    </p>
+                </div>
+                <div class="cluster">
+                    <span class="tag">.NET</span>
+                    <span class="tag">Architecture</span>
+                    <span class="tag">Domain modeling</span>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <div>
+                    <p class="project-type">Desktop utility</p>
+                    <h3>PhotoDumper</h3>
+                    <p>
+                        Recovery-oriented desktop tooling direction for organizing and downloading archived
+                        PhotoBucket media without relying on a discontinued public API.
+                    </p>
+                </div>
+                <div class="cluster">
+                    <span class="tag">WPF</span>
+                    <span class="tag">Recovery tools</span>
+                    <span class="tag">File workflows</span>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section id="capabilities" class="landing-section capability-band" aria-labelledby="capabilities-heading">
+        <div class="section-heading">
+            <p class="eyebrow">Capabilities</p>
+            <h2 id="capabilities-heading">What this portfolio is meant to show.</h2>
+        </div>
+
+        <div class="capability-list">
+            <article>
+                <h3>Full-stack delivery</h3>
+                <p>Readable backend contracts, responsive frontends, and the service wiring between them.</p>
+            </article>
+            <article>
+                <h3>Product judgment</h3>
+                <p>Feature choices that serve the workflow instead of adding complexity for its own sake.</p>
+            </article>
+            <article>
+                <h3>Technical range</h3>
+                <p>Business apps, desktop tools, Minecraft mods, automation scripts, and experimentation space.</p>
+            </article>
+        </div>
+    </section>
+</div>
