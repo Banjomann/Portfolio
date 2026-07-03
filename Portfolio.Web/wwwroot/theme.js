@@ -2,34 +2,73 @@
     const storageKey = 'portfolio-theme';
     const root = document.documentElement;
 
+    function preferredTheme() {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    function storedTheme() {
+        return localStorage.getItem(storageKey);
+    }
+
+    function currentTheme() {
+        return root.dataset.theme || storedTheme() || preferredTheme();
+    }
+
     function setTheme(theme) {
         root.dataset.theme = theme;
         localStorage.setItem(storageKey, theme);
+        syncThemeToggles();
     }
 
-    function syncToggle(toggle) {
-        const isDark = root.dataset.theme === 'dark';
-        toggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+    function applyCurrentTheme() {
+        root.dataset.theme = currentTheme();
     }
 
-    function wireThemeToggle() {
-        const toggle = document.getElementById('theme-toggle');
+    function syncThemeToggles() {
+        applyCurrentTheme();
+
+        const isDark = currentTheme() === 'dark';
+
+        document.querySelectorAll('[data-theme-toggle]').forEach(function (toggle) {
+            toggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+        });
+    }
+
+    function observePageChanges() {
+        let queued = false;
+
+        const observer = new MutationObserver(function () {
+            if (queued) {
+                return;
+            }
+
+            queued = true;
+            requestAnimationFrame(function () {
+                queued = false;
+                syncThemeToggles();
+            });
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
+    }
+
+    document.addEventListener('click', function (event) {
+        const toggle = event.target.closest('[data-theme-toggle]');
 
         if (!toggle) {
             return;
         }
 
-        syncToggle(toggle);
-        toggle.addEventListener('click', function (event) {
-            event.stopPropagation();
-            setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark');
-            syncToggle(toggle);
-        });
-    }
+        event.preventDefault();
+        event.stopPropagation();
+        applyCurrentTheme();
+        setTheme(currentTheme() === 'dark' ? 'light' : 'dark');
+    });
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', wireThemeToggle);
-    } else {
-        wireThemeToggle();
-    }
+    document.addEventListener('DOMContentLoaded', function () {
+        syncThemeToggles();
+        observePageChanges();
+    });
+    document.addEventListener('enhancedload', syncThemeToggles);
+    syncThemeToggles();
 }());
