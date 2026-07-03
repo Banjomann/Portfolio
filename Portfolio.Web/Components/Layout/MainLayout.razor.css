@@ -1,8 +1,8 @@
 .page {
     min-height: 100vh;
     background:
-        linear-gradient(90deg, rgba(216, 154, 34, 0.12) 0 1px, transparent 1px 100%),
-        linear-gradient(180deg, rgba(31, 111, 154, 0.08) 0 1px, transparent 1px 100%),
+        linear-gradient(90deg, rgba(124, 90, 199, 0.1) 0 1px, transparent 1px 100%),
+        linear-gradient(180deg, rgba(31, 111, 154, 0.07) 0 1px, transparent 1px 100%),
         transparent;
     background-size: 42px 42px;
     color: var(--color-text);
@@ -13,7 +13,7 @@
     top: 0;
     z-index: 20;
     border-bottom: 1px solid var(--color-border);
-    background: rgba(252, 252, 250, 0.94);
+    background: rgba(251, 249, 255, 0.94);
     backdrop-filter: blur(14px);
 }
 
