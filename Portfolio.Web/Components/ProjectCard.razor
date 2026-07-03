@@ -1,0 +1,21 @@
+@using Portfolio.Web.Models
+
+<article class="project-card">
+    <div>
+        <p class="project-type">@Project.Type</p>
+        <h3>@Project.Name</h3>
+        <p>@Project.Description</p>
+    </div>
+
+    <div class="cluster" aria-label="@($"{Project.Name} technologies")">
+        @foreach (var tag in Project.Tags)
+        {
+            <span class="tag">@tag</span>
+        }
+    </div>
+</article>
+
+@code {
+    [Parameter, EditorRequired]
+    public ProjectShowcaseItem Project { get; set; } = null!;
+}
