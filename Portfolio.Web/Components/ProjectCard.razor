@@ -13,6 +13,13 @@
             <span class="tag">@tag</span>
         }
     </div>
+
+    @if (!string.IsNullOrWhiteSpace(Project.RepositoryUrl))
+    {
+        <a class="project-link" href="@Project.RepositoryUrl" target="_blank" rel="noopener noreferrer">
+            Repository
+        </a>
+    }
 </article>
 
 @code {

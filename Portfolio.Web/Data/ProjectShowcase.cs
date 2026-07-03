@@ -19,7 +19,8 @@ public static class ProjectShowcase
                 "Minecraft 1.21.1 NeoForge implementation",
                 "Custom content and asset pipeline work",
                 "Gameplay systems built around life-powered progression"
-            ]),
+            ],
+            RepositoryUrl: "https://github.com/Banjomann/Vivid"),
         new(
             Slug: "banjo",
             Name: "Banjo",
@@ -33,7 +34,8 @@ public static class ProjectShowcase
                 "Internal data, business logic, and utility libraries",
                 "Reusable foundation for application backends",
                 "Domain structure intended to support TimeKeeper"
-            ]),
+            ],
+            RepositoryUrl: "https://github.com/Banjomann/Banjo"),
         new(
             Slug: "timekeeper",
             Name: "TimeKeeper",
@@ -47,6 +49,7 @@ public static class ProjectShowcase
                 "Singular backend with Blazor and MAUI desktop front ends",
                 "Time tracking and scheduling workflows",
                 "Work-in-progress application architecture"
-            ])
+            ],
+            RepositoryUrl: "https://github.com/Banjomann/TimeKeeper")
     ];
 }
