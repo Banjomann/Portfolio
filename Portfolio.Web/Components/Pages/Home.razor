@@ -1,4 +1,5 @@
 @page "/"
+@using Portfolio.Web.Data
 
 <PageTitle>Ben McNees | Software Portfolio</PageTitle>
 
@@ -44,54 +45,10 @@
         </div>
 
         <div class="project-grid">
-            <article class="project-card">
-                <div>
-                    <p class="project-type">Minecraft mod</p>
-                    <h3>Vivid</h3>
-                    <p>
-                        NeoForge mod work for Minecraft 1.21.1, focused on content systems, asset pipelines,
-                        world generation, and gameplay mechanics.
-                    </p>
-                </div>
-                <div class="cluster">
-                    <span class="tag">Java</span>
-                    <span class="tag">NeoForge</span>
-                    <span class="tag">Game systems</span>
-                </div>
-            </article>
-
-            <article class="project-card">
-                <div>
-                    <p class="project-type">Shared platform</p>
-                    <h3>Banjo</h3>
-                    <p>
-                        Shared .NET domain and business foundation for applications that need clear entity,
-                        identity, membership, and lifecycle boundaries.
-                    </p>
-                </div>
-                <div class="cluster">
-                    <span class="tag">.NET</span>
-                    <span class="tag">Architecture</span>
-                    <span class="tag">Domain modeling</span>
-                </div>
-            </article>
-
-            <article class="project-card">
-                <div>
-                    <p class="project-type">Time keeping app</p>
-                    <h3>TimeKeeper</h3>
-                    <p>
-                        Work-in-progress time tracking and scheduling application, with web and desktop
-                        front ends backed by shared business foundation planned around Banjo.
-                    </p>
-                </div>
-                <div class="cluster">
-                    <span class="tag">.NET</span>
-                    <span class="tag">Web</span>
-                    <span class="tag">Desktop</span>
-                    <span class="tag">Scheduling</span>
-                </div>
-            </article>
+            @foreach (var project in ProjectShowcase.Featured)
+            {
+                <ProjectCard Project="project" />
+            }
         </div>
     </section>
 
