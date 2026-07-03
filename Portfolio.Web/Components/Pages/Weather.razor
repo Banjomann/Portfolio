@@ -12,7 +12,14 @@
 
 @if (forecasts == null)
 {
-    <p><em>Loading...</em></p>
+    @if (loadError is null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <p role="alert">@loadError</p>
+    }
 }
 else
 {
@@ -41,9 +48,19 @@ else
 
 @code {
     private WeatherForecast[]? forecasts;
+    private string? loadError;
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await WeatherApi.GetWeatherAsync();
+        try
+        {
+            using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(3));
+
+            forecasts = await WeatherApi.GetWeatherAsync(cancellationToken: timeout.Token);
+        }
+        catch (Exception exception) when (exception is HttpRequestException or OperationCanceledException)
+        {
+            loadError = "Weather data is unavailable while the API service is offline.";
+        }
     }
 }
