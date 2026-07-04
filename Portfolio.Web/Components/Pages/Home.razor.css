@@ -120,27 +120,6 @@
     gap: 1rem;
 }
 
-.project-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 1.25rem;
-    min-height: 21rem;
-    padding: clamp(1.1rem, 3vw, 1.45rem);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    background: var(--color-card);
-    box-shadow: var(--shadow-soft);
-}
-
-.project-type {
-    margin-bottom: 0.65rem;
-    color: var(--color-accent-strong);
-    font-size: 0.8rem;
-    font-weight: 900;
-    text-transform: uppercase;
-}
-
 .capability-band {
     padding-bottom: clamp(1rem, 4vw, 2.5rem);
 }
@@ -169,10 +148,6 @@
     }
 
     .landing-hero {
-        min-height: auto;
-    }
-
-    .project-card {
         min-height: auto;
     }
 }
