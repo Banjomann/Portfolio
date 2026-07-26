@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import reactLogo from './assets/react.svg'
 
 const columns = [
@@ -10,6 +10,20 @@ const columns = [
 ]
 
 function App() {
+  const [profile, setProfile] = useState({
+    name: 'Ada Lovelace',
+    email: 'ada@example.com',
+    seats: 3,
+    startDate: '2026-08-01',
+    role: 'Developer',
+  })
+  const [interests, setInterests] = useState(['Data'])
+  const [contactMethod, setContactMethod] = useState('Email')
+  const [notificationsEnabled, setNotificationsEnabled] = useState(true)
+  const [confidence, setConfidence] = useState(72)
+  const [activeTab, setActiveTab] = useState('summary')
+  const [notice, setNotice] = useState('')
+  const dialogRef = useRef(null)
   const [countries, setCountries] = useState([])
   const [customers, setCustomers] = useState([])
   const [search, setSearch] = useState('')
@@ -23,6 +37,19 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const pageSize = 10
+  const emailIsValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(profile.email)
+
+  function updateProfile(field, value) {
+    setProfile((current) => ({ ...current, [field]: value }))
+  }
+
+  function toggleInterest(interest) {
+    setInterests((current) =>
+      current.includes(interest)
+        ? current.filter((item) => item !== interest)
+        : [...current, interest],
+    )
+  }
 
   useEffect(() => {
     const controller = new AbortController()
@@ -123,6 +150,258 @@ function App() {
           <span>React</span>
         </div>
       </header>
+
+      <section className="controls-section" aria-labelledby="controls-heading">
+        <div className="section-heading">
+          <div>
+            <span className="eyebrow">Controlled components</span>
+            <h2 id="controls-heading">Control gallery</h2>
+          </div>
+          <p>
+            Every value below is held in React state and immediately reflected
+            in the live summary.
+          </p>
+        </div>
+
+        <div className="control-layout">
+          <form
+            className="control-card form-card"
+            onSubmit={(event) => {
+              event.preventDefault()
+              setNotice('Example profile validated successfully.')
+            }}
+          >
+            <h3>Profile inputs</h3>
+            <div className="field-grid">
+              <label>
+                <span>Name</span>
+                <input
+                  value={profile.name}
+                  onChange={(event) => updateProfile('name', event.target.value)}
+                />
+              </label>
+              <label>
+                <span>Email</span>
+                <input
+                  type="email"
+                  value={profile.email}
+                  aria-invalid={!emailIsValid}
+                  aria-describedby="email-help"
+                  onChange={(event) =>
+                    updateProfile('email', event.target.value)
+                  }
+                />
+                <small
+                  id="email-help"
+                  className={emailIsValid ? 'field-help' : 'field-error'}
+                >
+                  {emailIsValid
+                    ? 'Used for example notifications.'
+                    : 'Enter a valid email address.'}
+                </small>
+              </label>
+              <label>
+                <span>Seats</span>
+                <input
+                  type="number"
+                  min="1"
+                  max="20"
+                  value={profile.seats}
+                  onChange={(event) =>
+                    updateProfile('seats', Number(event.target.value))
+                  }
+                />
+              </label>
+              <label>
+                <span>Start date</span>
+                <input
+                  type="date"
+                  value={profile.startDate}
+                  onChange={(event) =>
+                    updateProfile('startDate', event.target.value)
+                  }
+                />
+              </label>
+              <label className="field-span">
+                <span>Role</span>
+                <select
+                  value={profile.role}
+                  onChange={(event) => updateProfile('role', event.target.value)}
+                >
+                  <option>Developer</option>
+                  <option>Designer</option>
+                  <option>Analyst</option>
+                  <option>Manager</option>
+                </select>
+              </label>
+            </div>
+
+            <fieldset>
+              <legend>Interests</legend>
+              <div className="choice-row">
+                {['Data', 'Design', 'Automation'].map((interest) => (
+                  <label className="choice" key={interest}>
+                    <input
+                      type="checkbox"
+                      checked={interests.includes(interest)}
+                      onChange={() => toggleInterest(interest)}
+                    />
+                    <span>{interest}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Preferred contact</legend>
+              <div className="choice-row">
+                {['Email', 'Phone', 'Chat'].map((method) => (
+                  <label className="choice" key={method}>
+                    <input
+                      type="radio"
+                      name="contact-method"
+                      value={method}
+                      checked={contactMethod === method}
+                      onChange={() => setContactMethod(method)}
+                    />
+                    <span>{method}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+
+            <div className="form-actions">
+              <button
+                type="submit"
+                className="primary-button"
+                disabled={!emailIsValid || !profile.name.trim()}
+              >
+                Validate profile
+              </button>
+              <button
+                type="button"
+                className="secondary-button"
+                onClick={() => dialogRef.current?.showModal()}
+              >
+                Open dialog
+              </button>
+              <button type="button" className="secondary-button" disabled>
+                Disabled
+              </button>
+            </div>
+          </form>
+
+          <div className="control-stack">
+            <section className="control-card">
+              <h3>Preferences and progress</h3>
+              <label className="switch-row">
+                <span>
+                  <strong>Notifications</strong>
+                  <small>Enable status updates</small>
+                </span>
+                <input
+                  className="switch"
+                  type="checkbox"
+                  role="switch"
+                  checked={notificationsEnabled}
+                  onChange={(event) =>
+                    setNotificationsEnabled(event.target.checked)
+                  }
+                />
+              </label>
+              <label className="range-field">
+                <span>
+                  Confidence <strong>{confidence}%</strong>
+                </span>
+                <input
+                  type="range"
+                  min="0"
+                  max="100"
+                  value={confidence}
+                  onChange={(event) => setConfidence(event.target.value)}
+                />
+              </label>
+              <progress
+                value={confidence}
+                max="100"
+                aria-label={`Confidence ${confidence}%`}
+              />
+            </section>
+
+            <section className="control-card">
+              <div className="tabs" role="tablist" aria-label="Profile views">
+                {['summary', 'settings'].map((tab) => (
+                  <button
+                    key={tab}
+                    type="button"
+                    role="tab"
+                    aria-selected={activeTab === tab}
+                    onClick={() => setActiveTab(tab)}
+                  >
+                    {tab[0].toUpperCase() + tab.slice(1)}
+                  </button>
+                ))}
+              </div>
+              <div className="tab-panel" role="tabpanel">
+                {activeTab === 'summary' ? (
+                  <>
+                    <h3>{profile.name || 'Unnamed profile'}</h3>
+                    <dl className="summary-list">
+                      <div>
+                        <dt>Role</dt>
+                        <dd>{profile.role}</dd>
+                      </div>
+                      <div>
+                        <dt>Seats</dt>
+                        <dd>{profile.seats}</dd>
+                      </div>
+                      <div>
+                        <dt>Contact</dt>
+                        <dd>{contactMethod}</dd>
+                      </div>
+                      <div>
+                        <dt>Interests</dt>
+                        <dd>{interests.join(', ') || 'None'}</dd>
+                      </div>
+                    </dl>
+                  </>
+                ) : (
+                  <>
+                    <h3>Current settings</h3>
+                    <p>
+                      Notifications are{' '}
+                      <strong>
+                        {notificationsEnabled ? 'enabled' : 'disabled'}
+                      </strong>
+                      . The selected start date is {profile.startDate}.
+                    </p>
+                  </>
+                )}
+              </div>
+              <details>
+                <summary>Implementation note</summary>
+                <p>
+                  Native controls preserve keyboard behavior while React binds
+                  each value and derives this summary.
+                </p>
+              </details>
+            </section>
+          </div>
+        </div>
+
+        {notice && (
+          <div className="notification" role="status">
+            <span>{notice}</span>
+            <button
+              type="button"
+              aria-label="Dismiss notification"
+              onClick={() => setNotice('')}
+            >
+              ×
+            </button>
+          </div>
+        )}
+      </section>
 
       <section className="grid-card" aria-labelledby="customers-heading">
         <div className="grid-heading">
@@ -247,6 +526,18 @@ function App() {
           </div>
         </footer>
       </section>
+
+      <dialog ref={dialogRef}>
+        <form method="dialog">
+          <span className="eyebrow">Native dialog</span>
+          <h2>React-controlled launch</h2>
+          <p>
+            This modal uses the browser dialog element for focus management and
+            keyboard dismissal.
+          </p>
+          <button className="primary-button">Close dialog</button>
+        </form>
+      </dialog>
     </main>
   )
 }
