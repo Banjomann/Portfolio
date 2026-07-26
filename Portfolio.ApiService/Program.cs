@@ -1,7 +1,12 @@
+using Portfolio.ApiService.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add service defaults & Aspire client integrations.
 builder.AddServiceDefaults();
+builder.AddSqlServerDbContext<NorthwindDbContext>("northwind");
+builder.Services.AddScoped<NorthwindDatabaseInitializer>();
+builder.Logging.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Warning);
 
 // Add services to the container.
 builder.Services.AddProblemDetails();
@@ -10,6 +15,13 @@ builder.Services.AddProblemDetails();
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
+
+await using (var scope = app.Services.CreateAsyncScope())
+{
+    await scope.ServiceProvider
+        .GetRequiredService<NorthwindDatabaseInitializer>()
+        .InitializeAsync();
+}
 
 // Configure the HTTP request pipeline.
 app.UseExceptionHandler();
