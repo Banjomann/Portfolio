@@ -40,7 +40,7 @@ app.UseOutputCache();
 
 app.MapStaticAssets();
 
-app.MapGet("/api/northwind/{**path}", async (
+app.MapMethods("/api/northwind/{**path}", ["GET", "POST", "PUT"], async (
     string? path,
     HttpContext context,
     IHttpClientFactory httpClientFactory,
@@ -48,9 +48,40 @@ app.MapGet("/api/northwind/{**path}", async (
 {
     var client = httpClientFactory.CreateClient("apiservice");
     var target = $"api/northwind/{path}{context.Request.QueryString}";
+    const string sandboxCookie = "northwind-sandbox-session";
+    var sandboxSession = context.Request.Cookies[sandboxCookie];
 
-    using var response = await client.GetAsync(
-        target,
+    if (!Guid.TryParse(sandboxSession, out _))
+    {
+        sandboxSession = Guid.NewGuid().ToString();
+        context.Response.Cookies.Append(
+            sandboxCookie,
+            sandboxSession,
+            new CookieOptions
+            {
+                HttpOnly = true,
+                IsEssential = true,
+                SameSite = SameSiteMode.Strict,
+                Secure = context.Request.IsHttps,
+            });
+    }
+
+    using var request = new HttpRequestMessage(HttpMethod.Parse(context.Request.Method), target);
+    request.Headers.Add("X-Northwind-Sandbox-Session", sandboxSession);
+
+    if (context.Request.ContentLength > 0)
+    {
+        request.Content = new StreamContent(context.Request.Body);
+
+        if (context.Request.ContentType is not null)
+        {
+            request.Content.Headers.ContentType =
+                System.Net.Http.Headers.MediaTypeHeaderValue.Parse(context.Request.ContentType);
+        }
+    }
+
+    using var response = await client.SendAsync(
+        request,
         HttpCompletionOption.ResponseHeadersRead,
         cancellationToken);
 

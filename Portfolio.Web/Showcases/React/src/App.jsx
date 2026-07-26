@@ -34,6 +34,12 @@ function App() {
   const [totalCount, setTotalCount] = useState(0)
   const [totalPages, setTotalPages] = useState(0)
   const [selectedId, setSelectedId] = useState(null)
+  const [customerDetail, setCustomerDetail] = useState(null)
+  const [customerDraft, setCustomerDraft] = useState(null)
+  const [sandboxEnabled, setSandboxEnabled] = useState(false)
+  const [sandboxNotice, setSandboxNotice] = useState('')
+  const [detailLoading, setDetailLoading] = useState(false)
+  const [revision, setRevision] = useState(0)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const pageSize = 10
@@ -88,7 +94,10 @@ function App() {
       setError('')
 
       try {
-        const response = await fetch(`/api/northwind/customers?${query}`, {
+        const customerPath = sandboxEnabled
+          ? '/api/northwind/sandbox/customers'
+          : '/api/northwind/customers'
+        const response = await fetch(`${customerPath}?${query}`, {
           signal: controller.signal,
         })
 
@@ -117,7 +126,41 @@ function App() {
       clearTimeout(delay)
       controller.abort()
     }
-  }, [query])
+  }, [query, revision, sandboxEnabled])
+
+  useEffect(() => {
+    if (!selectedId) {
+      setCustomerDetail(null)
+      setCustomerDraft(null)
+      return
+    }
+
+    const controller = new AbortController()
+    const customerPath = sandboxEnabled
+      ? `/api/northwind/sandbox/customers/${selectedId}`
+      : `/api/northwind/customers/${selectedId}`
+
+    setDetailLoading(true)
+    fetch(customerPath, { signal: controller.signal })
+      .then((response) => {
+        if (!response.ok) throw new Error('Customer details could not be loaded.')
+        return response.json()
+      })
+      .then((detail) => {
+        setCustomerDetail(detail)
+        setCustomerDraft(detail)
+      })
+      .catch((requestError) => {
+        if (requestError.name !== 'AbortError') {
+          setSandboxNotice(requestError.message)
+        }
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setDetailLoading(false)
+      })
+
+    return () => controller.abort()
+  }, [revision, sandboxEnabled, selectedId])
 
   function changeSort(nextSort) {
     if (sort === nextSort) {
@@ -132,6 +175,48 @@ function App() {
   function sortLabel(column) {
     if (sort !== column) return 'Not sorted'
     return direction === 'asc' ? 'Sorted ascending' : 'Sorted descending'
+  }
+
+  function updateCustomerDraft(field, value) {
+    setCustomerDraft((current) => ({ ...current, [field]: value }))
+  }
+
+  async function saveSandboxCustomer(event) {
+    event.preventDefault()
+    setSandboxNotice('')
+
+    const response = await fetch(
+      `/api/northwind/sandbox/customers/${selectedId}`,
+      {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(customerDraft),
+      },
+    )
+
+    if (!response.ok) {
+      setSandboxNotice('The sandbox customer could not be saved.')
+      return
+    }
+
+    setSandboxNotice('Saved to this session’s temporary database.')
+    setRevision((current) => current + 1)
+  }
+
+  async function resetSandbox() {
+    setSandboxNotice('')
+    const response = await fetch('/api/northwind/sandbox/reset', {
+      method: 'POST',
+    })
+
+    if (!response.ok) {
+      setSandboxNotice('The sandbox could not be reset.')
+      return
+    }
+
+    setSelectedId(null)
+    setSandboxNotice('Sandbox reset to vanilla Northwind data.')
+    setRevision((current) => current + 1)
   }
 
   return (
@@ -409,11 +494,46 @@ function App() {
             <span className="eyebrow">API-backed state</span>
             <h2 id="data-heading">Northwind data binding</h2>
           </div>
-          <p>
-            Server-driven filtering, sorting, paging, and selection against the
-            Northwind API.
-          </p>
+          <div className="sandbox-toolbar">
+            <p>
+              Server-driven filtering, sorting, paging, and selection against
+              the Northwind API.
+            </p>
+            <label className="sandbox-toggle">
+              <input
+                type="checkbox"
+                role="switch"
+                checked={sandboxEnabled}
+                onChange={(event) => {
+                  setSandboxEnabled(event.target.checked)
+                  setSelectedId(null)
+                  setPage(1)
+                  setSandboxNotice('')
+                }}
+              />
+              <span>Editing sandbox</span>
+            </label>
+            {sandboxEnabled && (
+              <button
+                type="button"
+                className="secondary-button"
+                onClick={resetSandbox}
+              >
+                Reset sandbox
+              </button>
+            )}
+          </div>
         </div>
+
+        {sandboxEnabled && (
+          <div className="sandbox-banner">
+            <strong>Temporary editing enabled.</strong>
+            <span>
+              Changes are isolated to this browser session and never reach the
+              canonical Northwind database.
+            </span>
+          </div>
+        )}
 
         <section className="grid-card" aria-labelledby="customers-heading">
           <div className="grid-heading">
@@ -537,6 +657,109 @@ function App() {
               </button>
             </div>
           </footer>
+        </section>
+
+        <section className="detail-card" aria-labelledby="detail-heading">
+          <div className="detail-heading">
+            <div>
+              <span className="eyebrow">
+                {sandboxEnabled ? 'Session database' : 'Read-only binding'}
+              </span>
+              <h3 id="detail-heading">Customer details</h3>
+            </div>
+            {selectedId && <code>{selectedId}</code>}
+          </div>
+
+          {!selectedId && (
+            <div className="status">
+              Select a customer row to bind the detail controls.
+            </div>
+          )}
+          {detailLoading && <div className="status">Loading customer…</div>}
+
+          {!detailLoading && customerDraft && sandboxEnabled && (
+            <form className="detail-form" onSubmit={saveSandboxCustomer}>
+              {[
+                ['companyName', 'Company'],
+                ['contactName', 'Contact'],
+                ['contactTitle', 'Title'],
+                ['address', 'Address'],
+                ['city', 'City'],
+                ['region', 'Region'],
+                ['postalCode', 'Postal code'],
+                ['country', 'Country'],
+                ['phone', 'Phone'],
+                ['fax', 'Fax'],
+              ].map(([field, label]) => (
+                <label key={field}>
+                  <span>{label}</span>
+                  <input
+                    required={field === 'companyName'}
+                    value={customerDraft[field] ?? ''}
+                    onChange={(event) =>
+                      updateCustomerDraft(field, event.target.value)
+                    }
+                  />
+                </label>
+              ))}
+              <div className="detail-metrics">
+                <span>{customerDraft.orderCount} orders</span>
+                <span>
+                  ${Number(customerDraft.totalSales).toLocaleString()}
+                </span>
+              </div>
+              <button type="submit" className="primary-button">
+                Save temporary changes
+              </button>
+            </form>
+          )}
+
+          {!detailLoading && customerDetail && !sandboxEnabled && (
+            <dl className="customer-detail">
+              {[
+                ['Company', customerDetail.companyName],
+                ['Contact', customerDetail.contactName],
+                ['Title', customerDetail.contactTitle],
+                ['Address', customerDetail.address],
+                [
+                  'Location',
+                  [
+                    customerDetail.city,
+                    customerDetail.region,
+                    customerDetail.postalCode,
+                    customerDetail.country,
+                  ]
+                    .filter(Boolean)
+                    .join(', '),
+                ],
+                ['Phone', customerDetail.phone],
+                ['Fax', customerDetail.fax],
+                ['Orders', customerDetail.orderCount],
+                [
+                  'Total sales',
+                  `$${Number(customerDetail.totalSales).toLocaleString()}`,
+                ],
+              ].map(([label, value]) => (
+                <div key={label}>
+                  <dt>{label}</dt>
+                  <dd>{value || '—'}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
+
+          {sandboxNotice && (
+            <div className="notification detail-notice" role="status">
+              <span>{sandboxNotice}</span>
+              <button
+                type="button"
+                aria-label="Dismiss sandbox notification"
+                onClick={() => setSandboxNotice('')}
+              >
+                ×
+              </button>
+            </div>
+          )}
         </section>
       </section>
 

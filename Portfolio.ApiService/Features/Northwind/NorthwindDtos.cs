@@ -32,6 +32,18 @@ public sealed record CustomerDetail(
     decimal TotalSales,
     DateTime? LastOrderDate);
 
+public sealed record SandboxCustomerUpdate(
+    string CompanyName,
+    string? ContactName,
+    string? ContactTitle,
+    string? Address,
+    string? City,
+    string? Region,
+    string? PostalCode,
+    string? Country,
+    string? Phone,
+    string? Fax);
+
 public sealed record CustomerOrder(
     int OrderId,
     DateTime? OrderDate,

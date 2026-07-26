@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
 builder.AddSqlServerDbContext<NorthwindDbContext>("northwind");
 builder.Services.AddScoped<NorthwindDatabaseInitializer>();
+builder.Services.AddSingleton<NorthwindSandboxStore>();
 builder.Logging.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Warning);
 
 // Add services to the container.
@@ -51,6 +52,7 @@ app.MapGet("/weatherforecast", () =>
 .WithName("GetWeatherForecast");
 
 app.MapNorthwindEndpoints();
+app.MapNorthwindSandboxEndpoints();
 
 app.MapDefaultEndpoints();
 
