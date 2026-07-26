@@ -16,6 +16,7 @@ public static class NorthwindSandboxEndpointExtensions
 
         group.MapGet("/customers", GetCustomers);
         group.MapGet("/customers/{customerId}", GetCustomer);
+        group.MapGet("/status", GetStatus);
         group.MapPut("/customers/{customerId}", UpdateCustomer);
         group.MapPost("/reset", Reset);
 
@@ -209,6 +210,7 @@ public static class NorthwindSandboxEndpointExtensions
             customer.Phone = Clean(update.Phone);
             customer.Fax = Clean(update.Fax);
             await database.SaveChangesAsync(cancellationToken);
+            session.HasChanges = true;
 
             return TypedResults.NoContent();
         }
@@ -216,6 +218,26 @@ public static class NorthwindSandboxEndpointExtensions
         {
             session.Gate.Release();
         }
+    }
+
+    private static async Task<IResult> GetStatus(
+        HttpContext httpContext,
+        NorthwindDbContext canonicalDatabase,
+        NorthwindSandboxStore store,
+        CancellationToken cancellationToken)
+    {
+        if (!TryGetSessionId(httpContext, out var sessionId))
+        {
+            return TypedResults.BadRequest();
+        }
+
+        var session = await store.GetAsync(
+            sessionId,
+            canonicalDatabase,
+            cancellationToken);
+
+        return TypedResults.Ok(
+            new SandboxStatus(session.HasChanges, session.ExpiresAt));
     }
 
     private static async Task<IResult> Reset(

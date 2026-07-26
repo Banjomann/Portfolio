@@ -44,6 +44,10 @@ public sealed record SandboxCustomerUpdate(
     string? Phone,
     string? Fax);
 
+public sealed record SandboxStatus(
+    bool HasChanges,
+    DateTimeOffset ExpiresAt);
+
 public sealed record CustomerOrder(
     int OrderId,
     DateTime? OrderDate,

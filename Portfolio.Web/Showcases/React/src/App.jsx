@@ -9,6 +9,19 @@ const columns = [
   ['customerId', 'ID'],
 ]
 
+const editableCustomerFields = [
+  ['companyName', 'Company'],
+  ['contactName', 'Contact'],
+  ['contactTitle', 'Title'],
+  ['address', 'Address'],
+  ['city', 'City'],
+  ['region', 'Region'],
+  ['postalCode', 'Postal code'],
+  ['country', 'Country'],
+  ['phone', 'Phone'],
+  ['fax', 'Fax'],
+]
+
 function App() {
   const [profile, setProfile] = useState({
     name: 'Ada Lovelace',
@@ -40,6 +53,8 @@ function App() {
   const [selectedOrderId, setSelectedOrderId] = useState(null)
   const [orderDetail, setOrderDetail] = useState(null)
   const [sandboxEnabled, setSandboxEnabled] = useState(false)
+  const [sandboxHasChanges, setSandboxHasChanges] = useState(false)
+  const [sandboxExpiresAt, setSandboxExpiresAt] = useState(null)
   const [sandboxNotice, setSandboxNotice] = useState('')
   const [detailLoading, setDetailLoading] = useState(false)
   const [ordersLoading, setOrdersLoading] = useState(false)
@@ -49,6 +64,18 @@ function App() {
   const [error, setError] = useState('')
   const pageSize = 10
   const emailIsValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(profile.email)
+  const draftIsDirty = useMemo(
+    () =>
+      Boolean(
+        customerDetail &&
+          customerDraft &&
+          editableCustomerFields.some(
+            ([field]) =>
+              (customerDetail[field] ?? '') !== (customerDraft[field] ?? ''),
+          ),
+      ),
+    [customerDetail, customerDraft],
+  )
 
   function updateProfile(field, value) {
     setProfile((current) => ({ ...current, [field]: value }))
@@ -231,6 +258,39 @@ function App() {
     return () => controller.abort()
   }, [selectedOrderId])
 
+  useEffect(() => {
+    if (!sandboxEnabled) return
+
+    const controller = new AbortController()
+    fetch('/api/northwind/sandbox/status', { signal: controller.signal })
+      .then((response) => {
+        if (!response.ok) throw new Error('Sandbox status could not be loaded.')
+        return response.json()
+      })
+      .then((status) => {
+        setSandboxHasChanges(status.hasChanges)
+        setSandboxExpiresAt(status.expiresAt)
+      })
+      .catch((requestError) => {
+        if (requestError.name !== 'AbortError') {
+          setSandboxNotice(requestError.message)
+        }
+      })
+
+    return () => controller.abort()
+  }, [revision, sandboxEnabled])
+
+  useEffect(() => {
+    function warnBeforeUnload(event) {
+      if (!draftIsDirty) return
+      event.preventDefault()
+      event.returnValue = ''
+    }
+
+    window.addEventListener('beforeunload', warnBeforeUnload)
+    return () => window.removeEventListener('beforeunload', warnBeforeUnload)
+  }, [draftIsDirty])
+
   function changeSort(nextSort) {
     if (sort === nextSort) {
       setDirection((current) => (current === 'asc' ? 'desc' : 'asc'))
@@ -269,6 +329,7 @@ function App() {
     }
 
     setSandboxNotice('Saved to this session’s temporary database.')
+    setSandboxHasChanges(true)
     setRevision((current) => current + 1)
   }
 
@@ -284,6 +345,8 @@ function App() {
     }
 
     setSelectedId(null)
+    setSandboxHasChanges(false)
+    setSandboxExpiresAt(null)
     setSandboxNotice('Sandbox reset to vanilla Northwind data.')
     setRevision((current) => current + 1)
   }
@@ -574,6 +637,12 @@ function App() {
                 role="switch"
                 checked={sandboxEnabled}
                 onChange={(event) => {
+                  if (!event.target.checked && draftIsDirty) {
+                    setSandboxNotice(
+                      'Save or discard the unsaved customer fields before leaving sandbox mode.',
+                    )
+                    return
+                  }
                   setSandboxEnabled(event.target.checked)
                   setSelectedId(null)
                   setPage(1)
@@ -596,11 +665,23 @@ function App() {
 
         {sandboxEnabled && (
           <div className="sandbox-banner">
-            <strong>Temporary editing enabled.</strong>
-            <span>
-              Changes are isolated to this browser session and never reach the
-              canonical Northwind database.
-            </span>
+            <div>
+              <strong>Temporary editing enabled.</strong>
+              <span>
+                Changes are isolated to this browser session and never reach
+                the canonical Northwind database.
+              </span>
+            </div>
+            <div className="sandbox-status">
+              <span className={sandboxHasChanges ? 'changed' : ''}>
+                {sandboxHasChanges ? 'Changes made' : 'Vanilla copy'}
+              </span>
+              {sandboxExpiresAt && (
+                <small>
+                  Expires after 30 minutes without sandbox activity
+                </small>
+              )}
+            </div>
           </div>
         )}
 
@@ -748,18 +829,7 @@ function App() {
 
           {!detailLoading && customerDraft && sandboxEnabled && (
             <form className="detail-form" onSubmit={saveSandboxCustomer}>
-              {[
-                ['companyName', 'Company'],
-                ['contactName', 'Contact'],
-                ['contactTitle', 'Title'],
-                ['address', 'Address'],
-                ['city', 'City'],
-                ['region', 'Region'],
-                ['postalCode', 'Postal code'],
-                ['country', 'Country'],
-                ['phone', 'Phone'],
-                ['fax', 'Fax'],
-              ].map(([field, label]) => (
+              {editableCustomerFields.map(([field, label]) => (
                 <label key={field}>
                   <span>{label}</span>
                   <input
@@ -776,10 +846,30 @@ function App() {
                 <span>
                   ${Number(customerDraft.totalSales).toLocaleString()}
                 </span>
+                {draftIsDirty && (
+                  <span className="unsaved-indicator">Unsaved fields</span>
+                )}
               </div>
-              <button type="submit" className="primary-button">
-                Save temporary changes
-              </button>
+              <div className="detail-actions">
+                <button
+                  type="submit"
+                  className="primary-button"
+                  disabled={!draftIsDirty}
+                >
+                  Save temporary changes
+                </button>
+                <button
+                  type="button"
+                  className="secondary-button"
+                  disabled={!draftIsDirty}
+                  onClick={() => {
+                    setCustomerDraft(customerDetail)
+                    setSandboxNotice('Unsaved field changes discarded.')
+                  }}
+                >
+                  Discard fields
+                </button>
+              </div>
             </form>
           )}
 

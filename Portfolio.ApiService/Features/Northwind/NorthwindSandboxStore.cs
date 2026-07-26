@@ -7,7 +7,16 @@ namespace Portfolio.ApiService.Features.Northwind;
 
 public sealed class NorthwindSandboxStore : IAsyncDisposable
 {
+    private static readonly TimeSpan SessionLifetime = TimeSpan.FromMinutes(30);
+    private static readonly TimeSpan CleanupInterval = TimeSpan.FromMinutes(2);
     private readonly ConcurrentDictionary<string, Lazy<Task<SandboxSession>>> sessions = [];
+    private readonly CancellationTokenSource cleanupCancellation = new();
+    private readonly Task cleanupTask;
+
+    public NorthwindSandboxStore()
+    {
+        cleanupTask = CleanupExpiredSessionsAsync(cleanupCancellation.Token);
+    }
 
     public async Task<SandboxSession> GetAsync(
         string sessionId,
@@ -20,7 +29,9 @@ public sealed class NorthwindSandboxStore : IAsyncDisposable
 
         try
         {
-            return await session.Value;
+            var value = await session.Value;
+            value.Touch(SessionLifetime);
+            return value;
         }
         catch
         {
@@ -40,10 +51,22 @@ public sealed class NorthwindSandboxStore : IAsyncDisposable
 
     public async ValueTask DisposeAsync()
     {
+        await cleanupCancellation.CancelAsync();
+
+        try
+        {
+            await cleanupTask;
+        }
+        catch (OperationCanceledException)
+        {
+        }
+
         foreach (var session in sessions.Values.Where(session => session.IsValueCreated))
         {
             await (await session.Value).DisposeAsync();
         }
+
+        cleanupCancellation.Dispose();
     }
 
     private static async Task<SandboxSession> CreateSessionAsync(
@@ -79,6 +102,32 @@ public sealed class NorthwindSandboxStore : IAsyncDisposable
 
         return session;
     }
+
+    private async Task CleanupExpiredSessionsAsync(CancellationToken cancellationToken)
+    {
+        using var timer = new PeriodicTimer(CleanupInterval);
+
+        while (await timer.WaitForNextTickAsync(cancellationToken))
+        {
+            var now = DateTimeOffset.UtcNow;
+
+            foreach (var candidate in sessions)
+            {
+                if (!candidate.Value.IsValueCreated)
+                {
+                    continue;
+                }
+
+                var session = await candidate.Value.Value;
+
+                if (session.ExpiresAt <= now &&
+                    sessions.TryRemove(candidate.Key, out _))
+                {
+                    await session.DisposeAsync();
+                }
+            }
+        }
+    }
 }
 
 public sealed class SandboxSession(SqliteConnection connection) : IAsyncDisposable
@@ -89,8 +138,15 @@ public sealed class SandboxSession(SqliteConnection connection) : IAsyncDisposab
             .Options;
 
     public SemaphoreSlim Gate { get; } = new(1, 1);
+    public bool HasChanges { get; set; }
+    public DateTimeOffset ExpiresAt { get; private set; }
 
     public SandboxDbContext CreateContext() => new(options);
+
+    public void Touch(TimeSpan lifetime)
+    {
+        ExpiresAt = DateTimeOffset.UtcNow.Add(lifetime);
+    }
 
     public async ValueTask DisposeAsync()
     {
