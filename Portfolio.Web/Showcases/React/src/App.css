@@ -75,6 +75,11 @@
   gap: 18px;
 }
 
+.control-layout > *,
+.field-grid > * {
+  min-width: 0;
+}
+
 .control-stack {
   display: grid;
   gap: 18px;
@@ -519,6 +524,12 @@ td code {
 .pagination button:disabled {
   cursor: not-allowed;
   opacity: 0.45;
+}
+
+@media (max-width: 1100px) {
+  .control-layout {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 760px) {
