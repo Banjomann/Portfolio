@@ -10260,8 +10260,8 @@ function App() {
 						className: "eyebrow",
 						children: "Frontend Lab"
 					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", { children: "Northwind customer explorer" }),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "A server-driven data grid built with React state, effects, and accessible native controls." })
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", { children: "React showcase" }),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "Interactive UI patterns and data binding implemented with React state, effects, and accessible native controls." })
 				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					className: "framework-badge",
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
@@ -10484,131 +10484,144 @@ function App() {
 				]
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
-				className: "grid-card",
-				"aria-labelledby": "customers-heading",
-				children: [
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "grid-heading",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
-							id: "customers-heading",
-							children: "Customers"
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [totalCount, " Northwind records"] })] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "filters",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Search" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
-								type: "search",
-								value: search,
-								placeholder: "Company or contact",
-								onChange: (event) => {
-									setSearch(event.target.value);
-									setPage(1);
-								}
-							})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Country" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("select", {
-								value: country,
-								onChange: (event) => {
-									setCountry(event.target.value);
-									setPage(1);
-								},
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
-									value: "",
-									children: "All countries"
-								}), countries.map((item) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
-									value: item,
-									children: item
-								}, item))]
-							})] })]
-						})]
-					}),
-					error && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-						className: "status error",
-						children: error
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "table-wrap",
-						"aria-busy": loading,
-						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("table", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("tr", { children: columns.map(([key, label]) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", {
-								scope: "col",
-								children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-									type: "button",
-									className: sort === key ? "active-sort" : "",
-									"aria-label": `${label}: ${sortLabel(key)}`,
-									onClick: () => changeSort(key),
-									children: [label, /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-										"aria-hidden": "true",
-										children: sort === key ? direction === "asc" ? "↑" : "↓" : "↕"
-									})]
-								})
-							}, key)) }) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("tbody", { children: !loading && customers.map((customer) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("tr", {
-								className: selectedId === customer.customerId ? "selected" : "",
-								tabIndex: "0",
-								"aria-selected": selectedId === customer.customerId,
-								onClick: () => setSelectedId(customer.customerId),
-								onKeyDown: (event) => {
-									if (event.key === "Enter" || event.key === " ") {
-										event.preventDefault();
-										setSelectedId(customer.customerId);
+				className: "data-section",
+				"aria-labelledby": "data-heading",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "section-heading",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+						className: "eyebrow",
+						children: "API-backed state"
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+						id: "data-heading",
+						children: "Northwind data binding"
+					})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "Server-driven filtering, sorting, paging, and selection against the Northwind API." })]
+				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
+					className: "grid-card",
+					"aria-labelledby": "customers-heading",
+					children: [
+						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "grid-heading",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+								id: "customers-heading",
+								children: "Customer explorer"
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [totalCount, " Northwind records"] })] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "filters",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Search" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
+									type: "search",
+									value: search,
+									placeholder: "Company or contact",
+									onChange: (event) => {
+										setSearch(event.target.value);
+										setPage(1);
 									}
-								},
-								children: [
-									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", {
-										"data-label": "Company",
-										children: customer.companyName
-									}),
-									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", {
-										"data-label": "Contact",
-										children: customer.contactName || "—"
-									}),
-									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", {
-										"data-label": "City",
-										children: customer.city || "—"
-									}),
-									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", {
-										"data-label": "Country",
-										children: customer.country || "—"
-									}),
-									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", {
-										"data-label": "ID",
-										children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("code", { children: customer.customerId })
-									})
-								]
-							}, customer.customerId)) })] }),
-							loading && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-								className: "status",
-								children: "Loading customers…"
-							}),
-							!loading && !error && customers.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-								className: "status",
-								children: "No customers match these filters."
-							})
-						]
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("footer", {
-						className: "grid-footer",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: selectedId ? `Selected: ${selectedId}` : "Select a customer row" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "pagination",
+								})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Country" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("select", {
+									value: country,
+									onChange: (event) => {
+										setCountry(event.target.value);
+										setPage(1);
+									},
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
+										value: "",
+										children: "All countries"
+									}), countries.map((item) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
+										value: item,
+										children: item
+									}, item))]
+								})] })]
+							})]
+						}),
+						error && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+							className: "status error",
+							children: error
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "table-wrap",
+							"aria-busy": loading,
 							children: [
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-									type: "button",
-									disabled: loading || page <= 1,
-									onClick: () => setPage((current) => current - 1),
-									children: "Previous"
+								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("table", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("tr", { children: columns.map(([key, label]) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", {
+									scope: "col",
+									children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
+										type: "button",
+										className: sort === key ? "active-sort" : "",
+										"aria-label": `${label}: ${sortLabel(key)}`,
+										onClick: () => changeSort(key),
+										children: [label, /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											"aria-hidden": "true",
+											children: sort === key ? direction === "asc" ? "↑" : "↓" : "↕"
+										})]
+									})
+								}, key)) }) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("tbody", { children: !loading && customers.map((customer) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("tr", {
+									className: selectedId === customer.customerId ? "selected" : "",
+									tabIndex: "0",
+									"aria-selected": selectedId === customer.customerId,
+									onClick: () => setSelectedId(customer.customerId),
+									onKeyDown: (event) => {
+										if (event.key === "Enter" || event.key === " ") {
+											event.preventDefault();
+											setSelectedId(customer.customerId);
+										}
+									},
+									children: [
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", {
+											"data-label": "Company",
+											children: customer.companyName
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", {
+											"data-label": "Contact",
+											children: customer.contactName || "—"
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", {
+											"data-label": "City",
+											children: customer.city || "—"
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", {
+											"data-label": "Country",
+											children: customer.country || "—"
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", {
+											"data-label": "ID",
+											children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("code", { children: customer.customerId })
+										})
+									]
+								}, customer.customerId)) })] }),
+								loading && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									className: "status",
+									children: "Loading customers…"
 								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
-									"Page ",
-									page,
-									" of ",
-									Math.max(totalPages, 1)
-								] }),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-									type: "button",
-									disabled: loading || page >= totalPages,
-									onClick: () => setPage((current) => current + 1),
-									children: "Next"
+								!loading && !error && customers.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									className: "status",
+									children: "No customers match these filters."
 								})
 							]
-						})]
-					})
-				]
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("footer", {
+							className: "grid-footer",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: selectedId ? `Selected: ${selectedId}` : "Select a customer row" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "pagination",
+								children: [
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+										type: "button",
+										disabled: loading || page <= 1,
+										onClick: () => setPage((current) => current - 1),
+										children: "Previous"
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+										"Page ",
+										page,
+										" of ",
+										Math.max(totalPages, 1)
+									] }),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+										type: "button",
+										disabled: loading || page >= totalPages,
+										onClick: () => setPage((current) => current + 1),
+										children: "Next"
+									})
+								]
+							})]
+						})
+					]
+				})]
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dialog", {
 				ref: dialogRef,
@@ -10633,7 +10646,7 @@ function App() {
 }
 //#endregion
 //#region src/App.css?inline
-var App_default = ".showcase {\n  padding: 48px;\n  text-align: left;\n}\n\n.showcase-header {\n  display: flex;\n  justify-content: space-between;\n  gap: 32px;\n  align-items: flex-start;\n  margin-bottom: 32px;\n}\n\n.showcase-header h1 {\n  margin: 6px 0 10px;\n}\n\n.showcase-header p {\n  max-width: 680px;\n}\n\n.eyebrow {\n  color: var(--accent);\n  font-size: 13px;\n  font-weight: 700;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n}\n\n.framework-badge {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n  padding: 10px 14px;\n  color: var(--text-h);\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 999px;\n  font-weight: 650;\n}\n\n.framework-badge img {\n  width: 24px;\n  height: 24px;\n}\n\n.controls-section {\n  margin-bottom: 32px;\n}\n\n.section-heading {\n  display: flex;\n  align-items: end;\n  justify-content: space-between;\n  gap: 32px;\n  margin-bottom: 18px;\n}\n\n.section-heading h2 {\n  margin: 4px 0 0;\n}\n\n.section-heading p {\n  max-width: 560px;\n  font-size: 15px;\n}\n\n.control-layout {\n  display: grid;\n  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);\n  gap: 18px;\n}\n\n.control-stack {\n  display: grid;\n  gap: 18px;\n}\n\n.control-card {\n  padding: 22px;\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n}\n\n.control-card h3 {\n  margin: 0 0 18px;\n  color: var(--text-h);\n  font-size: 18px;\n}\n\n.field-grid {\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  gap: 14px;\n}\n\n.field-span {\n  grid-column: 1 / -1;\n}\n\n.form-card input:not([type='checkbox']):not([type='radio']),\n.form-card select {\n  width: 100%;\n  box-sizing: border-box;\n}\n\n.field-help,\n.field-error {\n  font-size: 12px;\n  font-weight: 450;\n}\n\n.field-help {\n  color: var(--text);\n}\n\n.field-error {\n  color: #b42318;\n}\n\ninput[aria-invalid='true'] {\n  border-color: #d92d20;\n}\n\nfieldset {\n  padding: 0;\n  margin: 20px 0 0;\n  border: 0;\n}\n\nlegend {\n  margin-bottom: 8px;\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 650;\n}\n\n.choice-row,\n.form-actions {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n\n.choice {\n  display: flex;\n  grid-template-columns: none;\n  align-items: center;\n  gap: 7px;\n  padding: 7px 10px;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n}\n\n.choice input {\n  accent-color: var(--accent);\n}\n\n.form-actions {\n  margin-top: 22px;\n}\n\n.primary-button,\n.secondary-button {\n  min-height: 40px;\n  padding: 8px 13px;\n  border-radius: 7px;\n  cursor: pointer;\n  font-weight: 700;\n}\n\n.primary-button {\n  color: white;\n  background: var(--accent);\n  border: 1px solid var(--accent);\n}\n\n.secondary-button {\n  color: var(--text-h);\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n}\n\n.primary-button:disabled,\n.secondary-button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n\n.switch-row {\n  display: flex;\n  grid-template-columns: none;\n  align-items: center;\n  justify-content: space-between;\n  gap: 20px;\n}\n\n.switch-row > span {\n  display: grid;\n}\n\n.switch-row small {\n  color: var(--text);\n  font-weight: 450;\n}\n\n.switch {\n  width: 44px;\n  height: 24px;\n  accent-color: var(--accent);\n}\n\n.range-field {\n  margin-top: 22px;\n}\n\n.range-field > span {\n  display: flex;\n  justify-content: space-between;\n}\n\n.range-field input {\n  width: 100%;\n  accent-color: var(--accent);\n}\n\nprogress {\n  width: 100%;\n  height: 8px;\n  margin-top: 12px;\n  accent-color: var(--accent);\n}\n\n.tabs {\n  display: flex;\n  gap: 4px;\n  padding-bottom: 12px;\n  border-bottom: 1px solid var(--border);\n}\n\n.tabs button {\n  padding: 7px 10px;\n  color: var(--text);\n  background: transparent;\n  border: 0;\n  border-radius: 6px;\n  cursor: pointer;\n  font-weight: 700;\n}\n\n.tabs button[aria-selected='true'] {\n  color: var(--accent);\n  background: var(--accent-bg);\n}\n\n.tab-panel {\n  min-height: 155px;\n  padding-top: 18px;\n}\n\n.summary-list {\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  gap: 10px;\n  margin: 0;\n}\n\n.summary-list div {\n  padding: 10px;\n  background: var(--code-bg);\n  border-radius: 7px;\n}\n\n.summary-list dt {\n  font-size: 12px;\n}\n\n.summary-list dd {\n  margin: 2px 0 0;\n  color: var(--text-h);\n  font-weight: 700;\n}\n\ndetails {\n  padding-top: 12px;\n  border-top: 1px solid var(--border);\n  font-size: 14px;\n}\n\nsummary {\n  color: var(--text-h);\n  cursor: pointer;\n  font-weight: 700;\n}\n\ndetails p {\n  padding-top: 10px;\n}\n\n.notification {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 20px;\n  margin-top: 14px;\n  padding: 12px 16px;\n  color: var(--text-h);\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n}\n\n.notification button {\n  color: var(--text-h);\n  background: transparent;\n  border: 0;\n  cursor: pointer;\n  font-size: 22px;\n}\n\ndialog {\n  max-width: 430px;\n  padding: 26px;\n  color: var(--text);\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n}\n\ndialog::backdrop {\n  background: rgb(8 6 13 / 68%);\n  backdrop-filter: blur(3px);\n}\n\ndialog h2 {\n  margin: 8px 0 10px;\n}\n\ndialog .primary-button {\n  margin-top: 22px;\n}\n\n.grid-card {\n  overflow: hidden;\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  box-shadow: var(--shadow);\n}\n\n.grid-heading,\n.grid-footer {\n  display: flex;\n  justify-content: space-between;\n  align-items: end;\n  gap: 24px;\n  padding: 22px 24px;\n}\n\n.grid-heading {\n  border-bottom: 1px solid var(--border);\n}\n\n.grid-heading h2 {\n  margin-bottom: 4px;\n}\n\n.grid-heading p,\n.grid-footer {\n  font-size: 14px;\n}\n\n.filters {\n  display: flex;\n  gap: 12px;\n}\n\nlabel {\n  display: grid;\n  gap: 5px;\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 650;\n}\n\ninput,\nselect,\nbutton {\n  font: inherit;\n}\n\ninput:not([type='checkbox']):not([type='radio']):not([type='range']),\nselect {\n  min-height: 42px;\n  padding: 8px 11px;\n  color: var(--text-h);\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n}\n\ninput:not([type='checkbox']):not([type='radio']):not([type='range']) {\n  min-width: 220px;\n}\n\ninput:focus,\nselect:focus,\nbutton:focus-visible,\ntr:focus-visible {\n  outline: 2px solid var(--accent);\n  outline-offset: 2px;\n}\n\n.table-wrap {\n  min-height: 486px;\n  overflow-x: auto;\n}\n\ntable {\n  width: 100%;\n  border-collapse: collapse;\n  color: var(--text);\n  font-size: 15px;\n}\n\nth {\n  background: var(--code-bg);\n  border-bottom: 1px solid var(--border);\n}\n\nth button {\n  display: flex;\n  width: 100%;\n  justify-content: space-between;\n  gap: 8px;\n  padding: 13px 16px;\n  color: var(--text);\n  background: transparent;\n  border: 0;\n  cursor: pointer;\n  font-weight: 700;\n  text-align: left;\n}\n\nth button.active-sort {\n  color: var(--accent);\n}\n\ntd {\n  padding: 13px 16px;\n  border-bottom: 1px solid var(--border);\n}\n\ntbody tr {\n  cursor: pointer;\n  transition: background 120ms ease;\n}\n\ntbody tr:hover,\ntbody tr.selected {\n  background: var(--accent-bg);\n}\n\ntbody tr.selected {\n  box-shadow: inset 3px 0 var(--accent);\n}\n\ntd:first-child {\n  color: var(--text-h);\n  font-weight: 650;\n}\n\ntd code {\n  padding: 3px 6px;\n}\n\n.status {\n  padding: 48px 24px;\n  text-align: center;\n}\n\n.status.error {\n  padding: 12px 24px;\n  color: #b42318;\n  background: #fef3f2;\n  border-bottom: 1px solid #fecdca;\n}\n\n.grid-footer {\n  align-items: center;\n  border-top: 1px solid var(--border);\n}\n\n.pagination {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n}\n\n.pagination button {\n  padding: 7px 11px;\n  color: var(--text-h);\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 6px;\n  cursor: pointer;\n}\n\n.pagination button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n\n@media (max-width: 760px) {\n  .showcase {\n    padding: 24px 16px;\n  }\n\n  .showcase-header,\n  .section-heading,\n  .grid-heading,\n  .grid-footer {\n    align-items: stretch;\n    flex-direction: column;\n  }\n\n  .control-layout,\n  .field-grid {\n    grid-template-columns: 1fr;\n  }\n\n  .field-span {\n    grid-column: auto;\n  }\n\n  .framework-badge {\n    align-self: flex-start;\n  }\n\n  .filters {\n    flex-direction: column;\n  }\n\n  input {\n    min-width: 0;\n    width: 100%;\n  }\n\n  .table-wrap {\n    min-height: 420px;\n  }\n\n  .pagination {\n    justify-content: space-between;\n  }\n}\n";
+var App_default = ".showcase {\n  padding: 48px;\n  text-align: left;\n}\n\n.showcase-header {\n  display: flex;\n  justify-content: space-between;\n  gap: 32px;\n  align-items: flex-start;\n  margin-bottom: 32px;\n}\n\n.showcase-header h1 {\n  margin: 6px 0 10px;\n}\n\n.showcase-header p {\n  max-width: 680px;\n}\n\n.eyebrow {\n  color: var(--accent);\n  font-size: 13px;\n  font-weight: 700;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n}\n\n.framework-badge {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n  padding: 10px 14px;\n  color: var(--text-h);\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 999px;\n  font-weight: 650;\n}\n\n.framework-badge img {\n  width: 24px;\n  height: 24px;\n}\n\n.controls-section {\n  margin-bottom: 32px;\n}\n\n.data-section {\n  margin-top: 40px;\n}\n\n.section-heading {\n  display: flex;\n  align-items: end;\n  justify-content: space-between;\n  gap: 32px;\n  margin-bottom: 18px;\n}\n\n.section-heading h2 {\n  margin: 4px 0 0;\n}\n\n.section-heading p {\n  max-width: 560px;\n  font-size: 15px;\n}\n\n.control-layout {\n  display: grid;\n  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);\n  gap: 18px;\n}\n\n.control-stack {\n  display: grid;\n  gap: 18px;\n}\n\n.control-card {\n  padding: 22px;\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n}\n\n.control-card h3 {\n  margin: 0 0 18px;\n  color: var(--text-h);\n  font-size: 18px;\n}\n\n.field-grid {\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  gap: 14px;\n}\n\n.field-span {\n  grid-column: 1 / -1;\n}\n\n.form-card input:not([type='checkbox']):not([type='radio']),\n.form-card select {\n  width: 100%;\n  box-sizing: border-box;\n}\n\n.field-help,\n.field-error {\n  font-size: 12px;\n  font-weight: 450;\n}\n\n.field-help {\n  color: var(--text);\n}\n\n.field-error {\n  color: #b42318;\n}\n\ninput[aria-invalid='true'] {\n  border-color: #d92d20;\n}\n\nfieldset {\n  padding: 0;\n  margin: 20px 0 0;\n  border: 0;\n}\n\nlegend {\n  margin-bottom: 8px;\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 650;\n}\n\n.choice-row,\n.form-actions {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n\n.choice {\n  display: flex;\n  grid-template-columns: none;\n  align-items: center;\n  gap: 7px;\n  padding: 7px 10px;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n}\n\n.choice input {\n  accent-color: var(--accent);\n}\n\n.form-actions {\n  margin-top: 22px;\n}\n\n.primary-button,\n.secondary-button {\n  min-height: 40px;\n  padding: 8px 13px;\n  border-radius: 7px;\n  cursor: pointer;\n  font-weight: 700;\n}\n\n.primary-button {\n  color: white;\n  background: var(--accent);\n  border: 1px solid var(--accent);\n}\n\n.secondary-button {\n  color: var(--text-h);\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n}\n\n.primary-button:disabled,\n.secondary-button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n\n.switch-row {\n  display: flex;\n  grid-template-columns: none;\n  align-items: center;\n  justify-content: space-between;\n  gap: 20px;\n}\n\n.switch-row > span {\n  display: grid;\n}\n\n.switch-row small {\n  color: var(--text);\n  font-weight: 450;\n}\n\n.switch {\n  width: 44px;\n  height: 24px;\n  accent-color: var(--accent);\n}\n\n.range-field {\n  margin-top: 22px;\n}\n\n.range-field > span {\n  display: flex;\n  justify-content: space-between;\n}\n\n.range-field input {\n  width: 100%;\n  accent-color: var(--accent);\n}\n\nprogress {\n  width: 100%;\n  height: 8px;\n  margin-top: 12px;\n  accent-color: var(--accent);\n}\n\n.tabs {\n  display: flex;\n  gap: 4px;\n  padding-bottom: 12px;\n  border-bottom: 1px solid var(--border);\n}\n\n.tabs button {\n  padding: 7px 10px;\n  color: var(--text);\n  background: transparent;\n  border: 0;\n  border-radius: 6px;\n  cursor: pointer;\n  font-weight: 700;\n}\n\n.tabs button[aria-selected='true'] {\n  color: var(--accent);\n  background: var(--accent-bg);\n}\n\n.tab-panel {\n  min-height: 155px;\n  padding-top: 18px;\n}\n\n.summary-list {\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  gap: 10px;\n  margin: 0;\n}\n\n.summary-list div {\n  padding: 10px;\n  background: var(--code-bg);\n  border-radius: 7px;\n}\n\n.summary-list dt {\n  font-size: 12px;\n}\n\n.summary-list dd {\n  margin: 2px 0 0;\n  color: var(--text-h);\n  font-weight: 700;\n}\n\ndetails {\n  padding-top: 12px;\n  border-top: 1px solid var(--border);\n  font-size: 14px;\n}\n\nsummary {\n  color: var(--text-h);\n  cursor: pointer;\n  font-weight: 700;\n}\n\ndetails p {\n  padding-top: 10px;\n}\n\n.notification {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 20px;\n  margin-top: 14px;\n  padding: 12px 16px;\n  color: var(--text-h);\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n}\n\n.notification button {\n  color: var(--text-h);\n  background: transparent;\n  border: 0;\n  cursor: pointer;\n  font-size: 22px;\n}\n\ndialog {\n  max-width: 430px;\n  padding: 26px;\n  color: var(--text);\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n}\n\ndialog::backdrop {\n  background: rgb(8 6 13 / 68%);\n  backdrop-filter: blur(3px);\n}\n\ndialog h2 {\n  margin: 8px 0 10px;\n}\n\ndialog .primary-button {\n  margin-top: 22px;\n}\n\n.grid-card {\n  overflow: hidden;\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  box-shadow: var(--shadow);\n}\n\n.grid-heading,\n.grid-footer {\n  display: flex;\n  justify-content: space-between;\n  align-items: end;\n  gap: 24px;\n  padding: 22px 24px;\n}\n\n.grid-heading {\n  border-bottom: 1px solid var(--border);\n}\n\n.grid-heading h3 {\n  margin: 0 0 4px;\n  color: var(--text-h);\n  font-size: 22px;\n}\n\n.grid-heading p,\n.grid-footer {\n  font-size: 14px;\n}\n\n.filters {\n  display: flex;\n  gap: 12px;\n}\n\nlabel {\n  display: grid;\n  gap: 5px;\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 650;\n}\n\ninput,\nselect,\nbutton {\n  font: inherit;\n}\n\ninput:not([type='checkbox']):not([type='radio']):not([type='range']),\nselect {\n  min-height: 42px;\n  padding: 8px 11px;\n  color: var(--text-h);\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n}\n\ninput:not([type='checkbox']):not([type='radio']):not([type='range']) {\n  min-width: 220px;\n}\n\ninput:focus,\nselect:focus,\nbutton:focus-visible,\ntr:focus-visible {\n  outline: 2px solid var(--accent);\n  outline-offset: 2px;\n}\n\n.table-wrap {\n  min-height: 486px;\n  overflow-x: auto;\n}\n\ntable {\n  width: 100%;\n  border-collapse: collapse;\n  color: var(--text);\n  font-size: 15px;\n}\n\nth {\n  background: var(--code-bg);\n  border-bottom: 1px solid var(--border);\n}\n\nth button {\n  display: flex;\n  width: 100%;\n  justify-content: space-between;\n  gap: 8px;\n  padding: 13px 16px;\n  color: var(--text);\n  background: transparent;\n  border: 0;\n  cursor: pointer;\n  font-weight: 700;\n  text-align: left;\n}\n\nth button.active-sort {\n  color: var(--accent);\n}\n\ntd {\n  padding: 13px 16px;\n  border-bottom: 1px solid var(--border);\n}\n\ntbody tr {\n  cursor: pointer;\n  transition: background 120ms ease;\n}\n\ntbody tr:hover,\ntbody tr.selected {\n  background: var(--accent-bg);\n}\n\ntbody tr.selected {\n  box-shadow: inset 3px 0 var(--accent);\n}\n\ntd:first-child {\n  color: var(--text-h);\n  font-weight: 650;\n}\n\ntd code {\n  padding: 3px 6px;\n}\n\n.status {\n  padding: 48px 24px;\n  text-align: center;\n}\n\n.status.error {\n  padding: 12px 24px;\n  color: #b42318;\n  background: #fef3f2;\n  border-bottom: 1px solid #fecdca;\n}\n\n.grid-footer {\n  align-items: center;\n  border-top: 1px solid var(--border);\n}\n\n.pagination {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n}\n\n.pagination button {\n  padding: 7px 11px;\n  color: var(--text-h);\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 6px;\n  cursor: pointer;\n}\n\n.pagination button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n\n@media (max-width: 760px) {\n  .showcase {\n    padding: 24px 16px;\n  }\n\n  .showcase-header,\n  .section-heading,\n  .grid-heading,\n  .grid-footer {\n    align-items: stretch;\n    flex-direction: column;\n  }\n\n  .control-layout,\n  .field-grid {\n    grid-template-columns: 1fr;\n  }\n\n  .field-span {\n    grid-column: auto;\n  }\n\n  .framework-badge {\n    align-self: flex-start;\n  }\n\n  .filters {\n    flex-direction: column;\n  }\n\n  input {\n    min-width: 0;\n    width: 100%;\n  }\n\n  .table-wrap {\n    min-height: 420px;\n  }\n\n  .pagination {\n    justify-content: space-between;\n  }\n}\n";
 //#endregion
 //#region src/index.css?inline
 var src_default = ":host {\n  --text: #6b6375;\n  --text-h: #08060d;\n  --bg: #fff;\n  --border: #e5e4e7;\n  --code-bg: #f4f3ec;\n  --accent: #aa3bff;\n  --accent-bg: rgba(170, 59, 255, 0.1);\n  --accent-border: rgba(170, 59, 255, 0.5);\n  --social-bg: rgba(244, 243, 236, 0.5);\n  --shadow:\n    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;\n\n  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;\n  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;\n  --mono: ui-monospace, Consolas, monospace;\n\n  font: 18px/145% var(--sans);\n  letter-spacing: 0.18px;\n  color-scheme: light dark;\n  color: var(--text);\n  background: var(--bg);\n  font-synthesis: none;\n  text-rendering: optimizeLegibility;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n\n  @media (max-width: 1024px) {\n    font-size: 16px;\n  }\n}\n\n@media (prefers-color-scheme: dark) {\n  :host {\n    --text: #9ca3af;\n    --text-h: #f3f4f6;\n    --bg: #16171d;\n    --border: #2e303a;\n    --code-bg: #1f2028;\n    --accent: #c084fc;\n    --accent-bg: rgba(192, 132, 252, 0.15);\n    --accent-border: rgba(192, 132, 252, 0.5);\n    --social-bg: rgba(47, 48, 58, 0.5);\n    --shadow:\n      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;\n  }\n\n  #social .button-icon {\n    filter: invert(1) brightness(2);\n  }\n}\n\n:host {\n  margin: 0;\n}\n\n#root {\n  width: 1126px;\n  max-width: 100%;\n  margin: 0 auto;\n  border-inline: 1px solid var(--border);\n  min-height: 100svh;\n  display: flex;\n  flex-direction: column;\n  box-sizing: border-box;\n}\n\nh1,\nh2 {\n  font-family: var(--heading);\n  font-weight: 500;\n  color: var(--text-h);\n}\n\nh1 {\n  font-size: 48px;\n  letter-spacing: -1.68px;\n  margin: 32px 0;\n  @media (max-width: 1024px) {\n    font-size: 36px;\n    margin: 20px 0;\n  }\n}\nh2 {\n  font-size: 24px;\n  line-height: 118%;\n  letter-spacing: -0.24px;\n  margin: 0 0 8px;\n  @media (max-width: 1024px) {\n    font-size: 20px;\n  }\n}\np {\n  margin: 0;\n}\n\ncode,\n.counter {\n  font-family: var(--mono);\n  display: inline-flex;\n  border-radius: 4px;\n  color: var(--text-h);\n}\n\ncode {\n  font-size: 15px;\n  line-height: 135%;\n  padding: 4px 8px;\n  background: var(--code-bg);\n}\n";

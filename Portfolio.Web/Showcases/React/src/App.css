@@ -48,6 +48,10 @@
   margin-bottom: 32px;
 }
 
+.data-section {
+  margin-top: 40px;
+}
+
 .section-heading {
   display: flex;
   align-items: end;
@@ -365,8 +369,10 @@ dialog .primary-button {
   border-bottom: 1px solid var(--border);
 }
 
-.grid-heading h2 {
-  margin-bottom: 4px;
+.grid-heading h3 {
+  margin: 0 0 4px;
+  color: var(--text-h);
+  font-size: 22px;
 }
 
 .grid-heading p,

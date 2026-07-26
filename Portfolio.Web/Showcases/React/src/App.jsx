@@ -139,10 +139,10 @@ function App() {
       <header className="showcase-header">
         <div>
           <span className="eyebrow">Frontend Lab</span>
-          <h1>Northwind customer explorer</h1>
+          <h1>React showcase</h1>
           <p>
-            A server-driven data grid built with React state, effects, and
-            accessible native controls.
+            Interactive UI patterns and data binding implemented with React
+            state, effects, and accessible native controls.
           </p>
         </div>
         <div className="framework-badge">
@@ -403,49 +403,61 @@ function App() {
         )}
       </section>
 
-      <section className="grid-card" aria-labelledby="customers-heading">
-        <div className="grid-heading">
+      <section className="data-section" aria-labelledby="data-heading">
+        <div className="section-heading">
           <div>
-            <h2 id="customers-heading">Customers</h2>
-            <p>{totalCount} Northwind records</p>
+            <span className="eyebrow">API-backed state</span>
+            <h2 id="data-heading">Northwind data binding</h2>
           </div>
-          <div className="filters">
-            <label>
-              <span>Search</span>
-              <input
-                type="search"
-                value={search}
-                placeholder="Company or contact"
-                onChange={(event) => {
-                  setSearch(event.target.value)
-                  setPage(1)
-                }}
-              />
-            </label>
-            <label>
-              <span>Country</span>
-              <select
-                value={country}
-                onChange={(event) => {
-                  setCountry(event.target.value)
-                  setPage(1)
-                }}
-              >
-                <option value="">All countries</option>
-                {countries.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
+          <p>
+            Server-driven filtering, sorting, paging, and selection against the
+            Northwind API.
+          </p>
         </div>
 
-        {error && <div className="status error">{error}</div>}
+        <section className="grid-card" aria-labelledby="customers-heading">
+          <div className="grid-heading">
+            <div>
+              <h3 id="customers-heading">Customer explorer</h3>
+              <p>{totalCount} Northwind records</p>
+            </div>
+            <div className="filters">
+              <label>
+                <span>Search</span>
+                <input
+                  type="search"
+                  value={search}
+                  placeholder="Company or contact"
+                  onChange={(event) => {
+                    setSearch(event.target.value)
+                    setPage(1)
+                  }}
+                />
+              </label>
+              <label>
+                <span>Country</span>
+                <select
+                  value={country}
+                  onChange={(event) => {
+                    setCountry(event.target.value)
+                    setPage(1)
+                  }}
+                >
+                  <option value="">All countries</option>
+                  {countries.map((item) => (
+                    <option key={item} value={item}>
+                      {item}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </div>
+          </div>
 
-        <div className="table-wrap" aria-busy={loading}>
-          <table>
+          {error && <div className="status error">{error}</div>}
+
+          <div className="table-wrap" aria-busy={loading}>
+            <table>
             <thead>
               <tr>
                 {columns.map(([key, label]) => (
@@ -493,38 +505,39 @@ function App() {
                   </tr>
                 ))}
             </tbody>
-          </table>
+            </table>
 
-          {loading && <div className="status">Loading customers…</div>}
-          {!loading && !error && customers.length === 0 && (
-            <div className="status">No customers match these filters.</div>
-          )}
-        </div>
-
-        <footer className="grid-footer">
-          <span>
-            {selectedId ? `Selected: ${selectedId}` : 'Select a customer row'}
-          </span>
-          <div className="pagination">
-            <button
-              type="button"
-              disabled={loading || page <= 1}
-              onClick={() => setPage((current) => current - 1)}
-            >
-              Previous
-            </button>
-            <span>
-              Page {page} of {Math.max(totalPages, 1)}
-            </span>
-            <button
-              type="button"
-              disabled={loading || page >= totalPages}
-              onClick={() => setPage((current) => current + 1)}
-            >
-              Next
-            </button>
+            {loading && <div className="status">Loading customers…</div>}
+            {!loading && !error && customers.length === 0 && (
+              <div className="status">No customers match these filters.</div>
+            )}
           </div>
-        </footer>
+
+          <footer className="grid-footer">
+            <span>
+              {selectedId ? `Selected: ${selectedId}` : 'Select a customer row'}
+            </span>
+            <div className="pagination">
+              <button
+                type="button"
+                disabled={loading || page <= 1}
+                onClick={() => setPage((current) => current - 1)}
+              >
+                Previous
+              </button>
+              <span>
+                Page {page} of {Math.max(totalPages, 1)}
+              </span>
+              <button
+                type="button"
+                disabled={loading || page >= totalPages}
+                onClick={() => setPage((current) => current + 1)}
+              >
+                Next
+              </button>
+            </div>
+          </footer>
+        </section>
       </section>
 
       <dialog ref={dialogRef}>
