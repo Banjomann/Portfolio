@@ -1,0 +1,59 @@
+@page "/frontend-lab"
+
+<PageTitle>Frontend Lab | Ben McNees</PageTitle>
+
+<div class="frontend-lab">
+    <header class="lab-header" aria-labelledby="frontend-lab-heading">
+        <p class="eyebrow">Frontend lab</p>
+        <h1 id="frontend-lab-heading">One experience, three frameworks.</h1>
+        <p class="lab-intro">
+            Explore the same interface and functionality implemented independently in React, Angular, and Vue.
+            Each version uses its framework's native component patterns while preserving an exact user experience.
+        </p>
+    </header>
+
+    <section class="framework-grid" aria-label="Framework implementations">
+        <article class="framework-card framework-card-active">
+            <div class="framework-card-copy">
+                <div class="framework-heading">
+                    <span class="framework-mark" aria-hidden="true">R</span>
+                    <div>
+                        <p class="framework-status">Available now</p>
+                        <h2>React</h2>
+                    </div>
+                </div>
+                <p>Component composition, state management, and interaction implemented with React.</p>
+            </div>
+            <a class="framework-link" href="frontend-lab/react">
+                Open React lab
+                <span aria-hidden="true">→</span>
+            </a>
+        </article>
+
+        <article class="framework-card framework-card-upcoming">
+            <div class="framework-card-copy">
+                <div class="framework-heading">
+                    <span class="framework-mark" aria-hidden="true">A</span>
+                    <div>
+                        <p class="framework-status">Coming soon</p>
+                        <h2>Angular</h2>
+                    </div>
+                </div>
+                <p>The matching experience built with Angular components, services, and templates.</p>
+            </div>
+        </article>
+
+        <article class="framework-card framework-card-upcoming">
+            <div class="framework-card-copy">
+                <div class="framework-heading">
+                    <span class="framework-mark" aria-hidden="true">V</span>
+                    <div>
+                        <p class="framework-status">Coming soon</p>
+                        <h2>Vue</h2>
+                    </div>
+                </div>
+                <p>The matching experience built with Vue components and its Composition API.</p>
+            </div>
+        </article>
+    </section>
+</div>
