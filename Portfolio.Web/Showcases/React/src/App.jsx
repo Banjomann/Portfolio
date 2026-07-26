@@ -352,7 +352,7 @@ function App() {
   }
 
   return (
-    <main className="showcase">
+    <div className="showcase">
       <header className="showcase-header">
         <div>
           <span className="eyebrow">Frontend Lab</span>
@@ -368,7 +368,16 @@ function App() {
         </div>
       </header>
 
-      <section className="controls-section" aria-labelledby="controls-heading">
+      <nav className="showcase-nav" aria-label="React showcase sections">
+        <a href="#react-controls">Control gallery</a>
+        <a href="#react-northwind">Northwind data binding</a>
+      </nav>
+
+      <section
+        id="react-controls"
+        className="controls-section"
+        aria-labelledby="controls-heading"
+      >
         <div className="section-heading">
           <div>
             <span className="eyebrow">Controlled components</span>
@@ -550,16 +559,39 @@ function App() {
                 {['summary', 'settings'].map((tab) => (
                   <button
                     key={tab}
+                    id={`profile-${tab}-tab`}
                     type="button"
                     role="tab"
                     aria-selected={activeTab === tab}
+                    aria-controls={`profile-${tab}-panel`}
                     onClick={() => setActiveTab(tab)}
+                    onKeyDown={(event) => {
+                      if (
+                        event.key !== 'ArrowLeft' &&
+                        event.key !== 'ArrowRight'
+                      ) {
+                        return
+                      }
+
+                      event.preventDefault()
+                      const nextTab = tab === 'summary' ? 'settings' : 'summary'
+                      setActiveTab(nextTab)
+                      event.currentTarget.parentElement
+                        .querySelector(`#profile-${nextTab}-tab`)
+                        ?.focus()
+                    }}
                   >
                     {tab[0].toUpperCase() + tab.slice(1)}
                   </button>
                 ))}
               </div>
-              <div className="tab-panel" role="tabpanel">
+              <div
+                id={`profile-${activeTab}-panel`}
+                className="tab-panel"
+                role="tabpanel"
+                aria-labelledby={`profile-${activeTab}-tab`}
+                tabIndex="0"
+              >
                 {activeTab === 'summary' ? (
                   <>
                     <h3>{profile.name || 'Unnamed profile'}</h3>
@@ -607,7 +639,7 @@ function App() {
         </div>
 
         {notice && (
-          <div className="notification" role="status">
+          <div className="notification" role="status" aria-live="polite">
             <span>{notice}</span>
             <button
               type="button"
@@ -620,7 +652,11 @@ function App() {
         )}
       </section>
 
-      <section className="data-section" aria-labelledby="data-heading">
+      <section
+        id="react-northwind"
+        className="data-section"
+        aria-labelledby="data-heading"
+      >
         <div className="section-heading">
           <div>
             <span className="eyebrow">API-backed state</span>
@@ -724,14 +760,28 @@ function App() {
             </div>
           </div>
 
-          {error && <div className="status error">{error}</div>}
+          {error && (
+            <div className="status error" role="alert">
+              {error}
+            </div>
+          )}
 
           <div className="table-wrap" aria-busy={loading}>
-            <table>
-            <thead>
-              <tr>
-                {columns.map(([key, label]) => (
-                  <th key={key} scope="col">
+            <table aria-label="Northwind customers">
+              <thead>
+                <tr>
+                  {columns.map(([key, label]) => (
+                  <th
+                    key={key}
+                    scope="col"
+                    aria-sort={
+                      sort === key
+                        ? direction === 'asc'
+                          ? 'ascending'
+                          : 'descending'
+                        : 'none'
+                    }
+                  >
                     <button
                       type="button"
                       className={sort === key ? 'active-sort' : ''}
@@ -755,17 +805,17 @@ function App() {
                     className={
                       selectedId === customer.customerId ? 'selected' : ''
                     }
-                    tabIndex="0"
-                    aria-selected={selectedId === customer.customerId}
-                    onClick={() => setSelectedId(customer.customerId)}
-                    onKeyDown={(event) => {
-                      if (event.key === 'Enter' || event.key === ' ') {
-                        event.preventDefault()
-                        setSelectedId(customer.customerId)
-                      }
-                    }}
                   >
-                    <td data-label="Company">{customer.companyName}</td>
+                    <td data-label="Company">
+                      <button
+                        type="button"
+                        className="row-select"
+                        aria-pressed={selectedId === customer.customerId}
+                        onClick={() => setSelectedId(customer.customerId)}
+                      >
+                        {customer.companyName}
+                      </button>
+                    </td>
                     <td data-label="Contact">{customer.contactName || '—'}</td>
                     <td data-label="City">{customer.city || '—'}</td>
                     <td data-label="Country">{customer.country || '—'}</td>
@@ -777,7 +827,11 @@ function App() {
             </tbody>
             </table>
 
-            {loading && <div className="status">Loading customers…</div>}
+            {loading && (
+              <div className="status" role="status" aria-live="polite">
+                Loading customers…
+              </div>
+            )}
             {!loading && !error && customers.length === 0 && (
               <div className="status">No customers match these filters.</div>
             )}
@@ -825,7 +879,11 @@ function App() {
               Select a customer row to bind the detail controls.
             </div>
           )}
-          {detailLoading && <div className="status">Loading customer…</div>}
+          {detailLoading && (
+            <div className="status" role="status" aria-live="polite">
+              Loading customer…
+            </div>
+          )}
 
           {!detailLoading && customerDraft && sandboxEnabled && (
             <form className="detail-form" onSubmit={saveSandboxCustomer}>
@@ -908,7 +966,11 @@ function App() {
           )}
 
           {sandboxNotice && (
-            <div className="notification detail-notice" role="status">
+            <div
+              className="notification detail-notice"
+              role="status"
+              aria-live="polite"
+            >
               <span>{sandboxNotice}</span>
               <button
                 type="button"
@@ -940,7 +1002,11 @@ function App() {
             <div className="orders-layout">
               <div className="order-list" aria-busy={ordersLoading}>
                 <h4>Customer orders</h4>
-                {ordersLoading && <div className="status">Loading orders…</div>}
+                {ordersLoading && (
+                  <div className="status" role="status" aria-live="polite">
+                    Loading orders…
+                  </div>
+                )}
                 {!ordersLoading && orders.length === 0 && (
                   <div className="status">This customer has no orders.</div>
                 )}
@@ -977,7 +1043,11 @@ function App() {
 
               <div className="order-detail" aria-busy={orderLoading}>
                 <h4>Order detail</h4>
-                {orderLoading && <div className="status">Loading order…</div>}
+                {orderLoading && (
+                  <div className="status" role="status" aria-live="polite">
+                    Loading order…
+                  </div>
+                )}
                 {!orderLoading && orderDetail && (
                   <>
                     <dl className="order-summary">
@@ -1063,7 +1133,7 @@ function App() {
           <button className="primary-button">Close dialog</button>
         </form>
       </dialog>
-    </main>
+    </div>
   )
 }
 

@@ -19,6 +19,33 @@
   max-width: 680px;
 }
 
+.showcase-nav {
+  display: flex;
+  gap: 8px;
+  margin: -12px 0 32px;
+}
+
+.showcase-nav a {
+  padding: 7px 11px;
+  color: var(--text-h);
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.showcase-nav a:hover {
+  color: var(--accent);
+  border-color: var(--accent-border);
+}
+
+.controls-section,
+.data-section {
+  scroll-margin-top: 90px;
+}
+
 .eyebrow {
   color: var(--accent);
   font-size: 13px;
@@ -540,7 +567,6 @@ td {
 }
 
 tbody tr {
-  cursor: pointer;
   transition: background 120ms ease;
 }
 
@@ -556,6 +582,20 @@ tbody tr.selected {
 td:first-child {
   color: var(--text-h);
   font-weight: 650;
+}
+
+.row-select {
+  padding: 0;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-weight: inherit;
+  text-align: left;
+}
+
+.row-select:hover {
+  color: var(--accent);
 }
 
 td code {
@@ -851,6 +891,32 @@ td code {
   margin: 0 24px 24px;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .framework-badge,
+  .grid-card,
+  .detail-card,
+  .orders-card,
+  .control-card {
+    border: 1px solid CanvasText;
+  }
+
+  tbody tr.selected,
+  .order-list > button.selected {
+    outline: 2px solid Highlight;
+  }
+}
+
 @media (max-width: 1100px) {
   .control-layout {
     grid-template-columns: 1fr;
@@ -865,6 +931,15 @@ td code {
     justify-content: flex-start;
     max-width: none;
   }
+
+  .orders-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .order-list {
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
 }
 
 @media (max-width: 760px) {
@@ -878,6 +953,10 @@ td code {
   .grid-footer {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .showcase-nav {
+    overflow-x: auto;
   }
 
   .control-layout,
@@ -900,15 +979,6 @@ td code {
 
   .sandbox-status {
     justify-items: start;
-  }
-
-  .orders-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .order-list {
-    border-right: 0;
-    border-bottom: 1px solid var(--border);
   }
 
   .order-summary {
