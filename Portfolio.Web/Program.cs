@@ -18,6 +18,11 @@ builder.Services.AddHttpClient<WeatherApiClient>(client =>
         client.BaseAddress = new("https+http://apiservice");
     });
 
+builder.Services.AddHttpClient("apiservice", client =>
+{
+    client.BaseAddress = new("https+http://apiservice");
+});
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
@@ -34,6 +39,30 @@ app.UseAntiforgery();
 app.UseOutputCache();
 
 app.MapStaticAssets();
+
+app.MapGet("/api/northwind/{**path}", async (
+    string? path,
+    HttpContext context,
+    IHttpClientFactory httpClientFactory,
+    CancellationToken cancellationToken) =>
+{
+    var client = httpClientFactory.CreateClient("apiservice");
+    var target = $"api/northwind/{path}{context.Request.QueryString}";
+
+    using var response = await client.GetAsync(
+        target,
+        HttpCompletionOption.ResponseHeadersRead,
+        cancellationToken);
+
+    context.Response.StatusCode = (int)response.StatusCode;
+
+    if (response.Content.Headers.ContentType is not null)
+    {
+        context.Response.ContentType = response.Content.Headers.ContentType.ToString();
+    }
+
+    await response.Content.CopyToAsync(context.Response.Body, cancellationToken);
+});
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();

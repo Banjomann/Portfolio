@@ -1,4 +1,5 @@
 using Portfolio.ApiService.Data;
+using Portfolio.ApiService.Features.Northwind;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,6 +49,8 @@ app.MapGet("/weatherforecast", () =>
     return forecast;
 })
 .WithName("GetWeatherForecast");
+
+app.MapNorthwindEndpoints();
 
 app.MapDefaultEndpoints();
 
