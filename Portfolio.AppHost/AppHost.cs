@@ -13,4 +13,9 @@ builder.AddProject<Projects.Portfolio_Web>("webfrontend")
     .WithReference(apiService)
     .WaitFor(apiService);
 
+builder.AddViteApp("reactfrontend", "../Portfolio.React")
+    .WithExternalHttpEndpoints()
+    .WithReference(apiService)
+    .WaitFor(apiService);
+
 builder.Build().Run();
