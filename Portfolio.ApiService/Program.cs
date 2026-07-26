@@ -18,8 +18,9 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-await using (var scope = app.Services.CreateAsyncScope())
+if (!app.Environment.IsEnvironment("Testing"))
 {
+    await using var scope = app.Services.CreateAsyncScope();
     await scope.ServiceProvider
         .GetRequiredService<NorthwindDatabaseInitializer>()
         .InitializeAsync();
@@ -62,3 +63,5 @@ record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }
+
+public partial class Program;
