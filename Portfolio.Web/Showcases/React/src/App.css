@@ -567,6 +567,7 @@ td {
 }
 
 tbody tr {
+  cursor: pointer;
   transition: background 120ms ease;
 }
 

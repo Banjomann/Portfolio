@@ -105,7 +105,7 @@ describe('React showcase', () => {
     await screen.findByRole('button', { name: 'Alfreds Futterkiste' })
     await user.click(screen.getByRole('switch', { name: 'Editing sandbox' }))
     await user.click(
-      await screen.findByRole('button', { name: 'Alfreds Futterkiste' }),
+      await screen.findByRole('row', { name: /Alfreds Futterkiste/ }),
     )
 
     const company = await screen.findByRole('textbox', { name: 'Company' })

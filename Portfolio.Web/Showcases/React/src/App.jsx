@@ -805,13 +805,24 @@ function App() {
                     className={
                       selectedId === customer.customerId ? 'selected' : ''
                     }
+                    onClick={() => setSelectedId(customer.customerId)}
                   >
                     <td data-label="Company">
                       <button
                         type="button"
                         className="row-select"
                         aria-pressed={selectedId === customer.customerId}
-                        onClick={() => setSelectedId(customer.customerId)}
+                        onClick={(event) => {
+                          event.stopPropagation()
+                          setSelectedId(customer.customerId)
+                        }}
+                        onKeyDown={(event) => {
+                          if (event.key === 'Enter' || event.key === ' ') {
+                            event.preventDefault()
+                            event.stopPropagation()
+                            setSelectedId(customer.customerId)
+                          }
+                        }}
                       >
                         {customer.companyName}
                       </button>
