@@ -1,12 +1,16 @@
-# Aspire App
+# Portfolio
 
-## This is a web app used to showcase a series of small projects that I have created.
+This Aspire application presents my software projects through a Blazor frontend
+and a .NET Web API.
 
-* The app is built using the Aspire template, with a WebAPI backend and a Blazor web frontend.
-* In due time, updates will include:
-- A React.js frontend page.
-- An Angular.js frontend page.
-- A Vue.js frontend page.
-- A game(s) page using Unity and/or Godot.
-- Potential machine learning/AI projects.
+The portfolio includes a Frontend Lab for equivalent native implementations in:
+
+- React
+- Angular
+- Vue
+
+Future additions may include Unity or Godot games and machine-learning projects.
+
+The cross-framework layout and behavior contract is documented in
+[`docs/frontend-showcase-specification.md`](docs/frontend-showcase-specification.md).
 

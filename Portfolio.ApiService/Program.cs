@@ -1,7 +1,14 @@
+using Portfolio.ApiService.Data;
+using Portfolio.ApiService.Features.Northwind;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add service defaults & Aspire client integrations.
 builder.AddServiceDefaults();
+builder.AddSqlServerDbContext<NorthwindDbContext>("northwind");
+builder.Services.AddScoped<NorthwindDatabaseInitializer>();
+builder.Services.AddSingleton<NorthwindSandboxStore>();
+builder.Logging.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Warning);
 
 // Add services to the container.
 builder.Services.AddProblemDetails();
@@ -10,6 +17,14 @@ builder.Services.AddProblemDetails();
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
+
+if (!app.Environment.IsEnvironment("Testing"))
+{
+    await using var scope = app.Services.CreateAsyncScope();
+    await scope.ServiceProvider
+        .GetRequiredService<NorthwindDatabaseInitializer>()
+        .InitializeAsync();
+}
 
 // Configure the HTTP request pipeline.
 app.UseExceptionHandler();
@@ -37,6 +52,9 @@ app.MapGet("/weatherforecast", () =>
 })
 .WithName("GetWeatherForecast");
 
+app.MapNorthwindEndpoints();
+app.MapNorthwindSandboxEndpoints();
+
 app.MapDefaultEndpoints();
 
 app.Run();
@@ -45,3 +63,5 @@ record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }
+
+public partial class Program;

@@ -2,8 +2,14 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 var cache = builder.AddRedis("cache");
 
+var northwind = builder.AddSqlServer("sql")
+    .WithDataVolume()
+    .AddDatabase("northwind");
+
 var apiService = builder.AddProject<Projects.Portfolio_ApiService>("apiservice")
-    .WithHttpHealthCheck("/health");
+    .WithHttpHealthCheck("/health")
+    .WithReference(northwind)
+    .WaitFor(northwind);
 
 builder.AddProject<Projects.Portfolio_Web>("webfrontend")
     .WithExternalHttpEndpoints()
