@@ -36,9 +36,14 @@ function App() {
   const [selectedId, setSelectedId] = useState(null)
   const [customerDetail, setCustomerDetail] = useState(null)
   const [customerDraft, setCustomerDraft] = useState(null)
+  const [orders, setOrders] = useState([])
+  const [selectedOrderId, setSelectedOrderId] = useState(null)
+  const [orderDetail, setOrderDetail] = useState(null)
   const [sandboxEnabled, setSandboxEnabled] = useState(false)
   const [sandboxNotice, setSandboxNotice] = useState('')
   const [detailLoading, setDetailLoading] = useState(false)
+  const [ordersLoading, setOrdersLoading] = useState(false)
+  const [orderLoading, setOrderLoading] = useState(false)
   const [revision, setRevision] = useState(0)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -161,6 +166,70 @@ function App() {
 
     return () => controller.abort()
   }, [revision, sandboxEnabled, selectedId])
+
+  useEffect(() => {
+    if (!selectedId) {
+      setOrders([])
+      setSelectedOrderId(null)
+      return
+    }
+
+    const controller = new AbortController()
+    setOrdersLoading(true)
+    fetch(`/api/northwind/customers/${selectedId}/orders`, {
+      signal: controller.signal,
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error('Customer orders could not be loaded.')
+        return response.json()
+      })
+      .then((items) => {
+        setOrders(items)
+        setSelectedOrderId((current) =>
+          items.some((order) => order.orderId === current)
+            ? current
+            : (items[0]?.orderId ?? null),
+        )
+      })
+      .catch((requestError) => {
+        if (requestError.name !== 'AbortError') {
+          setSandboxNotice(requestError.message)
+        }
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setOrdersLoading(false)
+      })
+
+    return () => controller.abort()
+  }, [selectedId])
+
+  useEffect(() => {
+    if (!selectedOrderId) {
+      setOrderDetail(null)
+      return
+    }
+
+    const controller = new AbortController()
+    setOrderLoading(true)
+    fetch(`/api/northwind/orders/${selectedOrderId}`, {
+      signal: controller.signal,
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error('Order details could not be loaded.')
+        return response.json()
+      })
+      .then(setOrderDetail)
+      .catch((requestError) => {
+        if (requestError.name !== 'AbortError') {
+          setSandboxNotice(requestError.message)
+        }
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setOrderLoading(false)
+      })
+
+    return () => controller.abort()
+  }, [selectedOrderId])
 
   function changeSort(nextSort) {
     if (sort === nextSort) {
@@ -758,6 +827,136 @@ function App() {
               >
                 ×
               </button>
+            </div>
+          )}
+        </section>
+
+        <section className="orders-card" aria-labelledby="orders-heading">
+          <div className="detail-heading">
+            <div>
+              <span className="eyebrow">Selection chain</span>
+              <h3 id="orders-heading">Orders and line items</h3>
+            </div>
+            {selectedOrderId && <code>Order {selectedOrderId}</code>}
+          </div>
+
+          {!selectedId && (
+            <div className="status">
+              Select a customer to load their orders.
+            </div>
+          )}
+
+          {selectedId && (
+            <div className="orders-layout">
+              <div className="order-list" aria-busy={ordersLoading}>
+                <h4>Customer orders</h4>
+                {ordersLoading && <div className="status">Loading orders…</div>}
+                {!ordersLoading && orders.length === 0 && (
+                  <div className="status">This customer has no orders.</div>
+                )}
+                {!ordersLoading &&
+                  orders.map((order) => (
+                    <button
+                      type="button"
+                      key={order.orderId}
+                      className={
+                        selectedOrderId === order.orderId ? 'selected' : ''
+                      }
+                      aria-pressed={selectedOrderId === order.orderId}
+                      onClick={() => setSelectedOrderId(order.orderId)}
+                    >
+                      <span>
+                        <strong>Order {order.orderId}</strong>
+                        <small>
+                          {order.orderDate
+                            ? new Date(order.orderDate).toLocaleDateString()
+                            : 'No order date'}
+                        </small>
+                      </span>
+                      <span>
+                        <strong>
+                          ${Number(order.total).toLocaleString()}
+                        </strong>
+                        <small className={`order-status ${order.status.toLowerCase()}`}>
+                          {order.status}
+                        </small>
+                      </span>
+                    </button>
+                  ))}
+              </div>
+
+              <div className="order-detail" aria-busy={orderLoading}>
+                <h4>Order detail</h4>
+                {orderLoading && <div className="status">Loading order…</div>}
+                {!orderLoading && orderDetail && (
+                  <>
+                    <dl className="order-summary">
+                      <div>
+                        <dt>Employee</dt>
+                        <dd>{orderDetail.employeeName || '—'}</dd>
+                      </div>
+                      <div>
+                        <dt>Shipper</dt>
+                        <dd>{orderDetail.shipperName || '—'}</dd>
+                      </div>
+                      <div>
+                        <dt>Status</dt>
+                        <dd>{orderDetail.status}</dd>
+                      </div>
+                      <div>
+                        <dt>Destination</dt>
+                        <dd>
+                          {[
+                            orderDetail.shippingAddress.city,
+                            orderDetail.shippingAddress.country,
+                          ]
+                            .filter(Boolean)
+                            .join(', ') || '—'}
+                        </dd>
+                      </div>
+                    </dl>
+                    <div className="line-items-wrap">
+                      <table className="line-items">
+                        <caption>Order line items</caption>
+                        <thead>
+                          <tr>
+                            <th scope="col">Product</th>
+                            <th scope="col">Qty.</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Total</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {orderDetail.items.map((item) => (
+                            <tr key={item.productId}>
+                              <td>{item.productName}</td>
+                              <td>{item.quantity}</td>
+                              <td>${Number(item.unitPrice).toLocaleString()}</td>
+                              <td>
+                                ${Number(item.extendedPrice).toLocaleString()}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                    <dl className="order-totals">
+                      <div>
+                        <dt>Subtotal</dt>
+                        <dd>${Number(orderDetail.subtotal).toLocaleString()}</dd>
+                      </div>
+                      <div>
+                        <dt>Freight</dt>
+                        <dd>${Number(orderDetail.freight).toLocaleString()}</dd>
+                      </div>
+                      <div>
+                        <dt>Total</dt>
+                        <dd>${Number(orderDetail.total).toLocaleString()}</dd>
+                      </div>
+                    </dl>
+                  </>
+                )}
+              </div>
             </div>
           )}
         </section>
