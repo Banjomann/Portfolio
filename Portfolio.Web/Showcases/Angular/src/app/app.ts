@@ -54,23 +54,23 @@ interface OrderDetail {
   subtotal: number;
   total: number;
   shippingAddress: { city: string | null; country: string | null };
-  items: Array<{
+  items: {
     productId: number;
     productName: string;
     unitPrice: number;
     quantity: number;
     extendedPrice: number;
-  }>;
+  }[];
 }
 
-const customerColumns: ReadonlyArray<readonly [SortColumn, string]> = [
+const customerColumns: readonly (readonly [SortColumn, string])[] = [
   ['companyName', 'Company'],
   ['contactName', 'Contact'],
   ['city', 'City'],
   ['country', 'Country'],
   ['customerId', 'ID'],
 ];
-const editableFields: ReadonlyArray<readonly [keyof CustomerDetail, string]> = [
+const editableFields: readonly (readonly [keyof CustomerDetail, string])[] = [
   ['companyName', 'Company'],
   ['contactName', 'Contact'],
   ['contactTitle', 'Title'],
@@ -84,7 +84,7 @@ const editableFields: ReadonlyArray<readonly [keyof CustomerDetail, string]> = [
 ];
 
 @Component({
-  selector: 'portfolio-angular-showcase',
+  selector: 'app-angular-showcase',
   imports: [ReactiveFormsModule],
   templateUrl: './app.html',
   styleUrl: './app.css',

@@ -35135,7 +35135,7 @@ var App = class _App {
   static \u0275fac = function App_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _App)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _App, selectors: [["portfolio-angular-showcase"]], viewQuery: function App_Query(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _App, selectors: [["app-angular-showcase"]], viewQuery: function App_Query(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275viewQuerySignal(ctx.dialog, _c0, 5);
     }
@@ -35474,7 +35474,7 @@ var App = class _App {
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(App, [{
     type: Component,
-    args: [{ selector: "portfolio-angular-showcase", imports: [ReactiveFormsModule], encapsulation: ViewEncapsulation.ShadowDom, changeDetection: ChangeDetectionStrategy.OnPush, template: `<div class="showcase">
+    args: [{ selector: "app-angular-showcase", imports: [ReactiveFormsModule], encapsulation: ViewEncapsulation.ShadowDom, changeDetection: ChangeDetectionStrategy.OnPush, template: `<div class="showcase">
   <header class="showcase-header">
     <div>
       <span class="eyebrow">Frontend Lab</span>
