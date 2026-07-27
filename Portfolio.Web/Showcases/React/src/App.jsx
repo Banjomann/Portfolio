@@ -662,64 +662,73 @@ function App() {
             <span className="eyebrow">API-backed state</span>
             <h2 id="data-heading">Northwind data binding</h2>
           </div>
-          <div className="sandbox-toolbar">
-            <p>
-              Server-driven filtering, sorting, paging, and selection against
-              the Northwind API.
-            </p>
-            <label className="sandbox-toggle">
-              <input
-                type="checkbox"
-                role="switch"
-                checked={sandboxEnabled}
-                onChange={(event) => {
-                  if (!event.target.checked && draftIsDirty) {
-                    setSandboxNotice(
-                      'Save or discard the unsaved customer fields before leaving sandbox mode.',
-                    )
-                    return
-                  }
-                  setSandboxEnabled(event.target.checked)
-                  setSelectedId(null)
-                  setPage(1)
-                  setSandboxNotice('')
-                }}
-              />
-              <span>Editing sandbox</span>
-            </label>
-            {sandboxEnabled && (
-              <button
-                type="button"
-                className="secondary-button"
-                onClick={resetSandbox}
-              >
-                Reset sandbox
-              </button>
-            )}
-          </div>
+          <p>
+            Server-driven filtering, sorting, paging, and selection against
+            the Northwind API.
+          </p>
         </div>
 
-        {sandboxEnabled && (
-          <div className="sandbox-banner">
-            <div>
-              <strong>Temporary editing enabled.</strong>
-              <span>
-                Changes are isolated to this browser session and never reach
-                the canonical Northwind database.
-              </span>
-            </div>
-            <div className="sandbox-status">
-              <span className={sandboxHasChanges ? 'changed' : ''}>
-                {sandboxHasChanges ? 'Changes made' : 'Vanilla copy'}
-              </span>
-              {sandboxExpiresAt && (
-                <small>
-                  Expires after 30 minutes without sandbox activity
-                </small>
-              )}
-            </div>
+        <aside className="sandbox-panel" aria-labelledby="sandbox-heading">
+          <div>
+            <span className="eyebrow">Session-isolated editing</span>
+            <h3 id="sandbox-heading">Editing Sandbox</h3>
+            <p>
+              Changes use an in-memory browser-session copy. Canonical Northwind
+              customers and every order remain read-only.
+            </p>
           </div>
-        )}
+          <label className="switch-row">
+            <span>
+              <strong>{sandboxEnabled ? 'Enabled' : 'Disabled'}</strong>
+              <small>
+                {sandboxHasChanges ? 'Changes made' : 'Vanilla copy'}
+              </small>
+            </span>
+            <input
+              className="switch"
+              type="checkbox"
+              role="switch"
+              aria-label="Editing sandbox"
+              checked={sandboxEnabled}
+              onChange={(event) => {
+                if (!event.target.checked && draftIsDirty) {
+                  setSandboxNotice(
+                    'Save or discard the unsaved customer fields before leaving sandbox mode.',
+                  )
+                  return
+                }
+                setSandboxEnabled(event.target.checked)
+                setSelectedId(null)
+                setPage(1)
+                setSandboxNotice('')
+              }}
+            />
+          </label>
+          {sandboxEnabled && (
+            <button
+              type="button"
+              className="secondary-button"
+              onClick={resetSandbox}
+            >
+              Reset sandbox
+            </button>
+          )}
+          {sandboxEnabled && sandboxExpiresAt && (
+            <small>Session copy expires after 30 minutes without sandbox activity.</small>
+          )}
+          {sandboxNotice && (
+            <div className="notification" role="status" aria-live="polite">
+              <span>{sandboxNotice}</span>
+              <button
+                type="button"
+                aria-label="Dismiss sandbox notification"
+                onClick={() => setSandboxNotice('')}
+              >
+                ×
+              </button>
+            </div>
+          )}
+        </aside>
 
         <section className="grid-card" aria-labelledby="customers-heading">
           <div className="grid-heading">
@@ -967,22 +976,6 @@ function App() {
             </dl>
           )}
 
-          {sandboxNotice && (
-            <div
-              className="notification detail-notice"
-              role="status"
-              aria-live="polite"
-            >
-              <span>{sandboxNotice}</span>
-              <button
-                type="button"
-                aria-label="Dismiss sandbox notification"
-                onClick={() => setSandboxNotice('')}
-              >
-                ×
-              </button>
-            </div>
-          )}
         </section>
 
         <section className="orders-card" aria-labelledby="orders-heading">

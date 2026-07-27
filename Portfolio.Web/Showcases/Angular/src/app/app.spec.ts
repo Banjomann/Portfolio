@@ -222,7 +222,7 @@ describe('App', () => {
     await new Promise((resolve) => setTimeout(resolve, 300));
     fixture.detectChanges();
     const root = fixture.nativeElement.shadowRoot as ShadowRoot;
-    (root.querySelector('.sandbox-toggle input') as HTMLInputElement).click();
+    (root.querySelector('.sandbox-panel input[role="switch"]') as HTMLInputElement).click();
     await new Promise((resolve) => setTimeout(resolve, 300));
     fixture.detectChanges();
     (root.querySelector('tbody tr') as HTMLTableRowElement).click();
@@ -238,7 +238,7 @@ describe('App', () => {
       '/api/northwind/sandbox/customers/ALFKI',
       expect.objectContaining({ method: 'PUT' }),
     );
-    (root.querySelector('.sandbox-toolbar .secondary-button') as HTMLButtonElement).click();
+    (root.querySelector('.sandbox-panel .secondary-button') as HTMLButtonElement).click();
     await fixture.whenStable();
     expect(fetch).toHaveBeenCalledWith(
       '/api/northwind/sandbox/reset',

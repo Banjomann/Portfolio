@@ -745,6 +745,7 @@ onBeforeUnmount(() => {
           <input
             type="checkbox"
             role="switch"
+            aria-label="Editing sandbox"
             :checked="sandboxEnabled"
             @change="setSandboxEnabled($event.target.checked, $event.target)"
           />
@@ -1832,8 +1833,10 @@ button:focus-visible {
   background: var(--bg);
   color: var(--text);
   color-scheme: light dark;
-  font: 18px/145% system-ui, 'Segoe UI', Roboto, sans-serif;
+  border-radius: 14px;
+  font: 16px/160% Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   letter-spacing: 0.18px;
+  overflow: hidden;
 }
 
 .showcase {
@@ -1857,10 +1860,10 @@ button:focus-visible {
 
 .showcase-header h1 {
   color: var(--text-h);
-  font-size: 48px;
+  font-size: 32px;
   font-weight: 500;
   letter-spacing: -1.68px;
-  line-height: 118%;
+  line-height: 160%;
   margin: 6px 0 10px;
 }
 
@@ -1948,7 +1951,7 @@ button:focus-visible {
   font-size: 24px;
   font-weight: 500;
   letter-spacing: -0.24px;
-  line-height: 118%;
+  line-height: 160%;
   margin: 4px 0 0;
 }
 
@@ -1990,6 +1993,7 @@ button:focus-visible {
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 12px;
+  box-shadow: var(--shadow);
   color: var(--text);
   padding: 22px;
 }
@@ -2002,6 +2006,11 @@ button:focus-visible {
 .data-card h3,
 .sandbox-panel h3 {
   color: var(--text-h);
+}
+
+label {
+  font-size: 13px;
+  line-height: 160%;
 }
 
 .data-card {
@@ -2116,8 +2125,28 @@ select {
 }
 
 .sandbox-panel {
-  background: var(--accent-bg);
-  border-color: var(--accent-border);
+  align-items: center;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  display: grid;
+  gap: 16px;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  margin: 0 0 18px;
+  padding: 22px;
+}
+
+.sandbox-panel h3,
+.sandbox-panel p {
+  margin: 4px 0 0;
+}
+
+.sandbox-panel .notice,
+.sandbox-panel .request-error,
+.sandbox-panel > small {
+  grid-column: 1 / -1;
+  margin: 0;
 }
 
 .order-card[aria-pressed='true'],
@@ -2169,6 +2198,17 @@ a:focus-visible {
   .control-layout,
   .order-workspace {
     grid-template-columns: 1fr;
+  }
+
+  .sandbox-panel {
+    align-items: start;
+    grid-template-columns: 1fr;
+  }
+
+  .sandbox-panel .notice,
+  .sandbox-panel .request-error,
+  .sandbox-panel > small {
+    grid-column: auto;
   }
 }
 

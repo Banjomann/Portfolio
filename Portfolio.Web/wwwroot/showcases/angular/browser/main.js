@@ -33888,7 +33888,7 @@ function App_Conditional_43_Template(rf, ctx) {
 function App_For_69_Template(rf, ctx) {
   if (rf & 1) {
     const _r1 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "label", 23)(1, "input", 78);
+    \u0275\u0275elementStart(0, "label", 23)(1, "input", 76);
     \u0275\u0275listener("change", function App_For_69_Template_input_change_1_listener() {
       const interest_r2 = \u0275\u0275restoreView(_r1).$implicit;
       const ctx_r2 = \u0275\u0275nextContext();
@@ -33911,7 +33911,7 @@ function App_For_69_Template(rf, ctx) {
 function App_For_75_Template(rf, ctx) {
   if (rf & 1) {
     const _r4 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "label", 23)(1, "input", 79);
+    \u0275\u0275elementStart(0, "label", 23)(1, "input", 77);
     \u0275\u0275listener("change", function App_For_75_Template_input_change_1_listener() {
       const method_r5 = \u0275\u0275restoreView(_r4).$implicit;
       const ctx_r2 = \u0275\u0275nextContext();
@@ -33934,7 +33934,7 @@ function App_For_75_Template(rf, ctx) {
 function App_For_104_Template(rf, ctx) {
   if (rf & 1) {
     const _r6 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "button", 80);
+    \u0275\u0275elementStart(0, "button", 78);
     \u0275\u0275listener("click", function App_For_104_Template_button_click_0_listener() {
       const tab_r7 = \u0275\u0275restoreView(_r6).$implicit;
       const ctx_r2 = \u0275\u0275nextContext();
@@ -33961,7 +33961,7 @@ function App_Conditional_105_Template(rf, ctx) {
     \u0275\u0275elementStart(0, "div", 37)(1, "h3");
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "dl", 81)(4, "div")(5, "dt");
+    \u0275\u0275elementStart(3, "dl", 79)(4, "div")(5, "dt");
     \u0275\u0275text(6, "Role");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(7, "dd");
@@ -34027,7 +34027,7 @@ function App_Conditional_112_Template(rf, ctx) {
     \u0275\u0275elementStart(0, "div", 39)(1, "span");
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "button", 82);
+    \u0275\u0275elementStart(3, "button", 80);
     \u0275\u0275listener("click", function App_Conditional_112_Template_button_click_3_listener() {
       \u0275\u0275restoreView(_r8);
       const ctx_r2 = \u0275\u0275nextContext();
@@ -34042,11 +34042,11 @@ function App_Conditional_112_Template(rf, ctx) {
     \u0275\u0275textInterpolate(ctx_r2.notice());
   }
 }
-function App_Conditional_127_Template(rf, ctx) {
+function App_Conditional_137_Template(rf, ctx) {
   if (rf & 1) {
     const _r9 = \u0275\u0275getCurrentView();
     \u0275\u0275elementStart(0, "button", 26);
-    \u0275\u0275listener("click", function App_Conditional_127_Template_button_click_0_listener() {
+    \u0275\u0275listener("click", function App_Conditional_137_Template_button_click_0_listener() {
       \u0275\u0275restoreView(_r9);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.resetSandbox());
@@ -34055,53 +34055,50 @@ function App_Conditional_127_Template(rf, ctx) {
     \u0275\u0275elementEnd();
   }
 }
-function App_Conditional_128_Conditional_9_Template(rf, ctx) {
+function App_Conditional_138_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "small");
-    \u0275\u0275text(1, "Expires after 30 minutes without sandbox activity");
+    \u0275\u0275text(1, "Session copy expires after 30 minutes without sandbox activity.");
     \u0275\u0275elementEnd();
   }
 }
-function App_Conditional_128_Template(rf, ctx) {
+function App_Conditional_139_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 46)(1, "div")(2, "strong");
-    \u0275\u0275text(3, "Temporary editing enabled.");
+    const _r10 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "div", 39)(1, "span");
+    \u0275\u0275text(2);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(4, "span");
-    \u0275\u0275text(5, "Changes are isolated to this browser session and never reach the canonical Northwind database.");
-    \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(6, "div", 83)(7, "span");
-    \u0275\u0275text(8);
-    \u0275\u0275elementEnd();
-    \u0275\u0275conditionalCreate(9, App_Conditional_128_Conditional_9_Template, 2, 0, "small");
+    \u0275\u0275elementStart(3, "button", 81);
+    \u0275\u0275listener("click", function App_Conditional_139_Template_button_click_3_listener() {
+      \u0275\u0275restoreView(_r10);
+      const ctx_r2 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r2.sandboxNotice.set(""));
+    });
+    \u0275\u0275text(4, " \xD7 ");
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
     const ctx_r2 = \u0275\u0275nextContext();
-    \u0275\u0275advance(7);
-    \u0275\u0275classProp("changed", ctx_r2.sandboxHasChanges());
-    \u0275\u0275advance();
-    \u0275\u0275textInterpolate1(" ", ctx_r2.sandboxHasChanges() ? "Changes made" : "Vanilla copy", " ");
-    \u0275\u0275advance();
-    \u0275\u0275conditional(ctx_r2.sandboxExpiresAt() ? 9 : -1);
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate(ctx_r2.sandboxNotice());
   }
 }
-function App_For_148_Template(rf, ctx) {
+function App_For_159_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "option", 54);
+    \u0275\u0275elementStart(0, "option", 53);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const item_r10 = ctx.$implicit;
-    \u0275\u0275property("value", item_r10);
+    const item_r11 = ctx.$implicit;
+    \u0275\u0275property("value", item_r11);
     \u0275\u0275advance();
-    \u0275\u0275textInterpolate(item_r10);
+    \u0275\u0275textInterpolate(item_r11);
   }
 }
-function App_Conditional_149_Template(rf, ctx) {
+function App_Conditional_160_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 55);
+    \u0275\u0275elementStart(0, "div", 54);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
@@ -34111,14 +34108,14 @@ function App_Conditional_149_Template(rf, ctx) {
     \u0275\u0275textInterpolate(ctx_r2.customerError());
   }
 }
-function App_For_155_Template(rf, ctx) {
+function App_For_166_Template(rf, ctx) {
   if (rf & 1) {
-    const _r11 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "th", 58)(1, "button", 84);
-    \u0275\u0275listener("click", function App_For_155_Template_button_click_1_listener() {
-      const column_r12 = \u0275\u0275restoreView(_r11).$implicit;
+    const _r12 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "th", 57)(1, "button", 82);
+    \u0275\u0275listener("click", function App_For_166_Template_button_click_1_listener() {
+      const column_r13 = \u0275\u0275restoreView(_r12).$implicit;
       const ctx_r2 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r2.changeSort(column_r12[0]));
+      return \u0275\u0275resetView(ctx_r2.changeSort(column_r13[0]));
     });
     \u0275\u0275text(2);
     \u0275\u0275elementStart(3, "span", 5);
@@ -34126,93 +34123,93 @@ function App_For_155_Template(rf, ctx) {
     \u0275\u0275elementEnd()()();
   }
   if (rf & 2) {
-    const column_r12 = ctx.$implicit;
+    const column_r13 = ctx.$implicit;
     const ctx_r2 = \u0275\u0275nextContext();
-    \u0275\u0275attribute("aria-sort", ctx_r2.sort() === column_r12[0] ? ctx_r2.direction() === "asc" ? "ascending" : "descending" : "none");
+    \u0275\u0275attribute("aria-sort", ctx_r2.sort() === column_r13[0] ? ctx_r2.direction() === "asc" ? "ascending" : "descending" : "none");
     \u0275\u0275advance();
-    \u0275\u0275classProp("active-sort", ctx_r2.sort() === column_r12[0]);
-    \u0275\u0275attribute("aria-label", column_r12[1] + ": " + ctx_r2.sortLabel(column_r12[0]));
+    \u0275\u0275classProp("active-sort", ctx_r2.sort() === column_r13[0]);
+    \u0275\u0275attribute("aria-label", column_r13[1] + ": " + ctx_r2.sortLabel(column_r13[0]));
     \u0275\u0275advance();
-    \u0275\u0275textInterpolate1(" ", column_r12[1], " ");
+    \u0275\u0275textInterpolate1(" ", column_r13[1], " ");
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate1(" ", ctx_r2.sort() === column_r12[0] ? ctx_r2.direction() === "asc" ? "\u2191" : "\u2193" : "\u2195", " ");
+    \u0275\u0275textInterpolate1(" ", ctx_r2.sort() === column_r13[0] ? ctx_r2.direction() === "asc" ? "\u2191" : "\u2193" : "\u2195", " ");
   }
 }
-function App_Conditional_157_For_1_Template(rf, ctx) {
+function App_Conditional_168_For_1_Template(rf, ctx) {
   if (rf & 1) {
-    const _r13 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "tr", 86);
-    \u0275\u0275listener("click", function App_Conditional_157_For_1_Template_tr_click_0_listener() {
-      const customer_r14 = \u0275\u0275restoreView(_r13).$implicit;
+    const _r14 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "tr", 84);
+    \u0275\u0275listener("click", function App_Conditional_168_For_1_Template_tr_click_0_listener() {
+      const customer_r15 = \u0275\u0275restoreView(_r14).$implicit;
       const ctx_r2 = \u0275\u0275nextContext(2);
-      return \u0275\u0275resetView(ctx_r2.selectedId.set(customer_r14.customerId));
-    })("keydown.enter", function App_Conditional_157_For_1_Template_tr_keydown_enter_0_listener() {
-      const customer_r14 = \u0275\u0275restoreView(_r13).$implicit;
+      return \u0275\u0275resetView(ctx_r2.selectedId.set(customer_r15.customerId));
+    })("keydown.enter", function App_Conditional_168_For_1_Template_tr_keydown_enter_0_listener() {
+      const customer_r15 = \u0275\u0275restoreView(_r14).$implicit;
       const ctx_r2 = \u0275\u0275nextContext(2);
-      return \u0275\u0275resetView(ctx_r2.selectedId.set(customer_r14.customerId));
-    })("keydown.space", function App_Conditional_157_For_1_Template_tr_keydown_space_0_listener($event) {
-      const customer_r14 = \u0275\u0275restoreView(_r13).$implicit;
+      return \u0275\u0275resetView(ctx_r2.selectedId.set(customer_r15.customerId));
+    })("keydown.space", function App_Conditional_168_For_1_Template_tr_keydown_space_0_listener($event) {
+      const customer_r15 = \u0275\u0275restoreView(_r14).$implicit;
       const ctx_r2 = \u0275\u0275nextContext(2);
       $event.preventDefault();
-      return \u0275\u0275resetView(ctx_r2.selectedId.set(customer_r14.customerId));
+      return \u0275\u0275resetView(ctx_r2.selectedId.set(customer_r15.customerId));
     });
-    \u0275\u0275elementStart(1, "td", 87);
+    \u0275\u0275elementStart(1, "td", 85);
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "td", 88);
+    \u0275\u0275elementStart(3, "td", 86);
     \u0275\u0275text(4);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(5, "td", 89);
+    \u0275\u0275elementStart(5, "td", 87);
     \u0275\u0275text(6);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(7, "td", 90);
+    \u0275\u0275elementStart(7, "td", 88);
     \u0275\u0275text(8);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(9, "td", 91)(10, "code");
+    \u0275\u0275elementStart(9, "td", 89)(10, "code");
     \u0275\u0275text(11);
     \u0275\u0275elementEnd()()();
   }
   if (rf & 2) {
-    const customer_r14 = ctx.$implicit;
+    const customer_r15 = ctx.$implicit;
     const ctx_r2 = \u0275\u0275nextContext(2);
-    \u0275\u0275classProp("selected", ctx_r2.selectedId() === customer_r14.customerId);
-    \u0275\u0275attribute("aria-selected", ctx_r2.selectedId() === customer_r14.customerId);
+    \u0275\u0275classProp("selected", ctx_r2.selectedId() === customer_r15.customerId);
+    \u0275\u0275attribute("aria-selected", ctx_r2.selectedId() === customer_r15.customerId);
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate1(" ", customer_r14.companyName, " ");
+    \u0275\u0275textInterpolate1(" ", customer_r15.companyName, " ");
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(customer_r14.contactName || "\u2014");
+    \u0275\u0275textInterpolate(customer_r15.contactName || "\u2014");
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(customer_r14.city || "\u2014");
+    \u0275\u0275textInterpolate(customer_r15.city || "\u2014");
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(customer_r14.country || "\u2014");
+    \u0275\u0275textInterpolate(customer_r15.country || "\u2014");
     \u0275\u0275advance(3);
-    \u0275\u0275textInterpolate(customer_r14.customerId);
+    \u0275\u0275textInterpolate(customer_r15.customerId);
   }
 }
-function App_Conditional_157_Template(rf, ctx) {
+function App_Conditional_168_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275repeaterCreate(0, App_Conditional_157_For_1_Template, 12, 8, "tr", 85, _forTrack1);
+    \u0275\u0275repeaterCreate(0, App_Conditional_168_For_1_Template, 12, 8, "tr", 83, _forTrack1);
   }
   if (rf & 2) {
     const ctx_r2 = \u0275\u0275nextContext();
     \u0275\u0275repeater(ctx_r2.customers());
   }
 }
-function App_Conditional_158_Template(rf, ctx) {
+function App_Conditional_169_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 59);
+    \u0275\u0275elementStart(0, "div", 58);
     \u0275\u0275text(1, "Loading customers\u2026");
     \u0275\u0275elementEnd();
   }
 }
-function App_Conditional_159_Template(rf, ctx) {
+function App_Conditional_170_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 60);
+    \u0275\u0275elementStart(0, "div", 59);
     \u0275\u0275text(1, "No customers match these filters.");
     \u0275\u0275elementEnd();
   }
 }
-function App_Conditional_177_Template(rf, ctx) {
+function App_Conditional_188_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "code");
     \u0275\u0275text(1);
@@ -34224,23 +34221,23 @@ function App_Conditional_177_Template(rf, ctx) {
     \u0275\u0275textInterpolate(ctx_r2.selectedId());
   }
 }
-function App_Conditional_178_Template(rf, ctx) {
+function App_Conditional_189_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 67);
+    \u0275\u0275elementStart(0, "div", 66);
     \u0275\u0275text(1, "Select a customer row to bind the detail controls.");
     \u0275\u0275elementEnd();
   }
 }
-function App_Conditional_179_Template(rf, ctx) {
+function App_Conditional_190_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 68);
+    \u0275\u0275elementStart(0, "div", 67);
     \u0275\u0275text(1, "Loading customer\u2026");
     \u0275\u0275elementEnd();
   }
 }
-function App_Conditional_180_Template(rf, ctx) {
+function App_Conditional_191_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 69);
+    \u0275\u0275elementStart(0, "div", 68);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
@@ -34250,61 +34247,61 @@ function App_Conditional_180_Template(rf, ctx) {
     \u0275\u0275textInterpolate(ctx_r2.detailError());
   }
 }
-function App_Conditional_181_For_2_Template(rf, ctx) {
+function App_Conditional_192_For_2_Template(rf, ctx) {
   if (rf & 1) {
-    const _r16 = \u0275\u0275getCurrentView();
+    const _r17 = \u0275\u0275getCurrentView();
     \u0275\u0275elementStart(0, "label")(1, "span");
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "input", 97);
-    \u0275\u0275listener("input", function App_Conditional_181_For_2_Template_input_input_3_listener($event) {
-      const field_r17 = \u0275\u0275restoreView(_r16).$implicit;
+    \u0275\u0275elementStart(3, "input", 95);
+    \u0275\u0275listener("input", function App_Conditional_192_For_2_Template_input_input_3_listener($event) {
+      const field_r18 = \u0275\u0275restoreView(_r17).$implicit;
       const ctx_r2 = \u0275\u0275nextContext(2);
-      return \u0275\u0275resetView(ctx_r2.updateCustomerDraft(field_r17[0], $event.target.value));
+      return \u0275\u0275resetView(ctx_r2.updateCustomerDraft(field_r18[0], $event.target.value));
     });
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
-    const field_r17 = ctx.$implicit;
-    const draft_r18 = \u0275\u0275nextContext();
+    const field_r18 = ctx.$implicit;
+    const draft_r19 = \u0275\u0275nextContext();
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(field_r17[1]);
+    \u0275\u0275textInterpolate(field_r18[1]);
     \u0275\u0275advance();
-    \u0275\u0275property("required", field_r17[0] === "companyName")("value", draft_r18[field_r17[0]] ?? "");
+    \u0275\u0275property("required", field_r18[0] === "companyName")("value", draft_r19[field_r18[0]] ?? "");
   }
 }
-function App_Conditional_181_Conditional_8_Template(rf, ctx) {
+function App_Conditional_192_Conditional_8_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "span", 94);
+    \u0275\u0275elementStart(0, "span", 92);
     \u0275\u0275text(1, "Unsaved fields");
     \u0275\u0275elementEnd();
   }
 }
-function App_Conditional_181_Template(rf, ctx) {
+function App_Conditional_192_Template(rf, ctx) {
   if (rf & 1) {
-    const _r15 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "form", 92);
-    \u0275\u0275listener("submit", function App_Conditional_181_Template_form_submit_0_listener($event) {
-      \u0275\u0275restoreView(_r15);
+    const _r16 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "form", 90);
+    \u0275\u0275listener("submit", function App_Conditional_192_Template_form_submit_0_listener($event) {
+      \u0275\u0275restoreView(_r16);
       const ctx_r2 = \u0275\u0275nextContext();
       $event.preventDefault();
       return \u0275\u0275resetView(ctx_r2.saveSandboxCustomer());
     });
-    \u0275\u0275repeaterCreate(1, App_Conditional_181_For_2_Template, 4, 3, "label", null, _forTrack0);
-    \u0275\u0275elementStart(3, "div", 93)(4, "span");
+    \u0275\u0275repeaterCreate(1, App_Conditional_192_For_2_Template, 4, 3, "label", null, _forTrack0);
+    \u0275\u0275elementStart(3, "div", 91)(4, "span");
     \u0275\u0275text(5);
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(6, "span");
     \u0275\u0275text(7);
     \u0275\u0275elementEnd();
-    \u0275\u0275conditionalCreate(8, App_Conditional_181_Conditional_8_Template, 2, 0, "span", 94);
+    \u0275\u0275conditionalCreate(8, App_Conditional_192_Conditional_8_Template, 2, 0, "span", 92);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(9, "div", 95)(10, "button", 25);
+    \u0275\u0275elementStart(9, "div", 93)(10, "button", 25);
     \u0275\u0275text(11, " Save temporary changes ");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(12, "button", 96);
-    \u0275\u0275listener("click", function App_Conditional_181_Template_button_click_12_listener() {
-      \u0275\u0275restoreView(_r15);
+    \u0275\u0275elementStart(12, "button", 94);
+    \u0275\u0275listener("click", function App_Conditional_192_Template_button_click_12_listener() {
+      \u0275\u0275restoreView(_r16);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.discardCustomerDraft());
     });
@@ -34312,25 +34309,25 @@ function App_Conditional_181_Template(rf, ctx) {
     \u0275\u0275elementEnd()()();
   }
   if (rf & 2) {
-    const draft_r18 = ctx;
+    const draft_r19 = ctx;
     const ctx_r2 = \u0275\u0275nextContext();
     \u0275\u0275advance();
     \u0275\u0275repeater(ctx_r2.editableFields);
     \u0275\u0275advance(4);
-    \u0275\u0275textInterpolate1("", draft_r18.orderCount, " orders");
+    \u0275\u0275textInterpolate1("", draft_r19.orderCount, " orders");
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(ctx_r2.formatSales(draft_r18.totalSales));
+    \u0275\u0275textInterpolate(ctx_r2.formatSales(draft_r19.totalSales));
     \u0275\u0275advance();
     \u0275\u0275conditional(ctx_r2.draftIsDirty() ? 8 : -1);
     \u0275\u0275advance(2);
-    \u0275\u0275property("disabled", !ctx_r2.draftIsDirty() || !draft_r18.companyName.trim());
+    \u0275\u0275property("disabled", !ctx_r2.draftIsDirty() || !draft_r19.companyName.trim());
     \u0275\u0275advance(2);
     \u0275\u0275property("disabled", !ctx_r2.draftIsDirty());
   }
 }
-function App_Conditional_182_Template(rf, ctx) {
+function App_Conditional_193_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "dl", 71)(1, "div")(2, "dt");
+    \u0275\u0275elementStart(0, "dl", 70)(1, "div")(2, "dt");
     \u0275\u0275text(3, "Company");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(4, "dd");
@@ -34386,50 +34383,29 @@ function App_Conditional_182_Template(rf, ctx) {
     \u0275\u0275elementEnd()()();
   }
   if (rf & 2) {
-    const detail_r19 = ctx;
+    const detail_r20 = ctx;
     const ctx_r2 = \u0275\u0275nextContext();
     \u0275\u0275advance(5);
-    \u0275\u0275textInterpolate(detail_r19.companyName || "\u2014");
+    \u0275\u0275textInterpolate(detail_r20.companyName || "\u2014");
     \u0275\u0275advance(5);
-    \u0275\u0275textInterpolate(detail_r19.contactName || "\u2014");
+    \u0275\u0275textInterpolate(detail_r20.contactName || "\u2014");
     \u0275\u0275advance(5);
-    \u0275\u0275textInterpolate(detail_r19.contactTitle || "\u2014");
+    \u0275\u0275textInterpolate(detail_r20.contactTitle || "\u2014");
     \u0275\u0275advance(5);
-    \u0275\u0275textInterpolate(detail_r19.address || "\u2014");
+    \u0275\u0275textInterpolate(detail_r20.address || "\u2014");
     \u0275\u0275advance(5);
-    \u0275\u0275textInterpolate(ctx_r2.customerLocation(detail_r19) || "\u2014");
+    \u0275\u0275textInterpolate(ctx_r2.customerLocation(detail_r20) || "\u2014");
     \u0275\u0275advance(5);
-    \u0275\u0275textInterpolate(detail_r19.phone || "\u2014");
+    \u0275\u0275textInterpolate(detail_r20.phone || "\u2014");
     \u0275\u0275advance(5);
-    \u0275\u0275textInterpolate(detail_r19.fax || "\u2014");
+    \u0275\u0275textInterpolate(detail_r20.fax || "\u2014");
     \u0275\u0275advance(5);
-    \u0275\u0275textInterpolate(detail_r19.orderCount);
+    \u0275\u0275textInterpolate(detail_r20.orderCount);
     \u0275\u0275advance(5);
-    \u0275\u0275textInterpolate(ctx_r2.formatSales(detail_r19.totalSales));
+    \u0275\u0275textInterpolate(ctx_r2.formatSales(detail_r20.totalSales));
   }
 }
-function App_Conditional_183_Template(rf, ctx) {
-  if (rf & 1) {
-    const _r20 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 72)(1, "span");
-    \u0275\u0275text(2);
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "button", 98);
-    \u0275\u0275listener("click", function App_Conditional_183_Template_button_click_3_listener() {
-      \u0275\u0275restoreView(_r20);
-      const ctx_r2 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r2.sandboxNotice.set(""));
-    });
-    \u0275\u0275text(4, " \xD7 ");
-    \u0275\u0275elementEnd()();
-  }
-  if (rf & 2) {
-    const ctx_r2 = \u0275\u0275nextContext();
-    \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(ctx_r2.sandboxNotice());
-  }
-}
-function App_Conditional_191_Template(rf, ctx) {
+function App_Conditional_201_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "code");
     \u0275\u0275text(1);
@@ -34441,32 +34417,32 @@ function App_Conditional_191_Template(rf, ctx) {
     \u0275\u0275textInterpolate1("Order ", ctx_r2.selectedOrderId());
   }
 }
-function App_Conditional_192_Template(rf, ctx) {
+function App_Conditional_202_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 67);
+    \u0275\u0275elementStart(0, "div", 66);
     \u0275\u0275text(1, "Select a customer to load their orders.");
     \u0275\u0275elementEnd();
   }
 }
-function App_Conditional_193_Conditional_4_Template(rf, ctx) {
+function App_Conditional_203_Conditional_4_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 68);
+    \u0275\u0275elementStart(0, "div", 67);
     \u0275\u0275text(1, "Loading orders\u2026");
     \u0275\u0275elementEnd();
   }
 }
-function App_Conditional_193_Conditional_5_Template(rf, ctx) {
+function App_Conditional_203_Conditional_5_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 67);
+    \u0275\u0275elementStart(0, "div", 66);
     \u0275\u0275text(1, "This customer has no orders.");
     \u0275\u0275elementEnd();
   }
 }
-function App_Conditional_193_Conditional_6_For_1_Template(rf, ctx) {
+function App_Conditional_203_Conditional_6_For_1_Template(rf, ctx) {
   if (rf & 1) {
     const _r21 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "button", 84);
-    \u0275\u0275listener("click", function App_Conditional_193_Conditional_6_For_1_Template_button_click_0_listener() {
+    \u0275\u0275elementStart(0, "button", 82);
+    \u0275\u0275listener("click", function App_Conditional_203_Conditional_6_For_1_Template_button_click_0_listener() {
       const order_r22 = \u0275\u0275restoreView(_r21).$implicit;
       const ctx_r2 = \u0275\u0275nextContext(3);
       return \u0275\u0275resetView(ctx_r2.selectedOrderId.set(order_r22.orderId));
@@ -34499,25 +34475,25 @@ function App_Conditional_193_Conditional_6_For_1_Template(rf, ctx) {
     \u0275\u0275textInterpolate(order_r22.status);
   }
 }
-function App_Conditional_193_Conditional_6_Template(rf, ctx) {
+function App_Conditional_203_Conditional_6_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275repeaterCreate(0, App_Conditional_193_Conditional_6_For_1_Template, 11, 7, "button", 101, _forTrack2);
+    \u0275\u0275repeaterCreate(0, App_Conditional_203_Conditional_6_For_1_Template, 11, 7, "button", 98, _forTrack2);
   }
   if (rf & 2) {
     const ctx_r2 = \u0275\u0275nextContext(2);
     \u0275\u0275repeater(ctx_r2.orders());
   }
 }
-function App_Conditional_193_Conditional_10_Template(rf, ctx) {
+function App_Conditional_203_Conditional_10_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 68);
+    \u0275\u0275elementStart(0, "div", 67);
     \u0275\u0275text(1, "Loading order\u2026");
     \u0275\u0275elementEnd();
   }
 }
-function App_Conditional_193_Conditional_11_Template(rf, ctx) {
+function App_Conditional_203_Conditional_11_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 69);
+    \u0275\u0275elementStart(0, "div", 68);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
@@ -34527,7 +34503,7 @@ function App_Conditional_193_Conditional_11_Template(rf, ctx) {
     \u0275\u0275textInterpolate(ctx_r2.orderError());
   }
 }
-function App_Conditional_193_Conditional_12_For_37_Template(rf, ctx) {
+function App_Conditional_203_Conditional_12_For_37_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "tr")(1, "td");
     \u0275\u0275text(2);
@@ -34555,9 +34531,9 @@ function App_Conditional_193_Conditional_12_For_37_Template(rf, ctx) {
     \u0275\u0275textInterpolate(ctx_r2.formatSales(item_r23.extendedPrice));
   }
 }
-function App_Conditional_193_Conditional_12_Template(rf, ctx) {
+function App_Conditional_203_Conditional_12_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "dl", 102)(1, "div")(2, "dt");
+    \u0275\u0275elementStart(0, "dl", 99)(1, "div")(2, "dt");
     \u0275\u0275text(3, "Employee");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(4, "dd");
@@ -34581,25 +34557,25 @@ function App_Conditional_193_Conditional_12_Template(rf, ctx) {
     \u0275\u0275elementStart(19, "dd");
     \u0275\u0275text(20);
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(21, "div", 103)(22, "table", 104)(23, "caption");
+    \u0275\u0275elementStart(21, "div", 100)(22, "table", 101)(23, "caption");
     \u0275\u0275text(24, " Order line items ");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(25, "thead")(26, "tr")(27, "th", 58);
+    \u0275\u0275elementStart(25, "thead")(26, "tr")(27, "th", 57);
     \u0275\u0275text(28, "Product");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(29, "th", 58);
+    \u0275\u0275elementStart(29, "th", 57);
     \u0275\u0275text(30, "Qty.");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(31, "th", 58);
+    \u0275\u0275elementStart(31, "th", 57);
     \u0275\u0275text(32, "Price");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(33, "th", 58);
+    \u0275\u0275elementStart(33, "th", 57);
     \u0275\u0275text(34, "Total");
     \u0275\u0275elementEnd()()();
     \u0275\u0275elementStart(35, "tbody");
-    \u0275\u0275repeaterCreate(36, App_Conditional_193_Conditional_12_For_37_Template, 9, 4, "tr", null, _forTrack3);
+    \u0275\u0275repeaterCreate(36, App_Conditional_203_Conditional_12_For_37_Template, 9, 4, "tr", null, _forTrack3);
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(38, "dl", 105)(39, "div")(40, "dt");
+    \u0275\u0275elementStart(38, "dl", 102)(39, "div")(40, "dt");
     \u0275\u0275text(41, "Subtotal");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(42, "dd");
@@ -34639,17 +34615,17 @@ function App_Conditional_193_Conditional_12_Template(rf, ctx) {
     \u0275\u0275textInterpolate(ctx_r2.formatSales(detail_r24.total));
   }
 }
-function App_Conditional_193_Template(rf, ctx) {
+function App_Conditional_203_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 75)(1, "div", 99)(2, "h4");
+    \u0275\u0275elementStart(0, "div", 73)(1, "div", 96)(2, "h4");
     \u0275\u0275text(3, "Customer orders");
     \u0275\u0275elementEnd();
-    \u0275\u0275conditionalCreate(4, App_Conditional_193_Conditional_4_Template, 2, 0, "div", 68)(5, App_Conditional_193_Conditional_5_Template, 2, 0, "div", 67)(6, App_Conditional_193_Conditional_6_Template, 2, 0);
+    \u0275\u0275conditionalCreate(4, App_Conditional_203_Conditional_4_Template, 2, 0, "div", 67)(5, App_Conditional_203_Conditional_5_Template, 2, 0, "div", 66)(6, App_Conditional_203_Conditional_6_Template, 2, 0);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(7, "div", 100)(8, "h4");
+    \u0275\u0275elementStart(7, "div", 97)(8, "h4");
     \u0275\u0275text(9, "Order detail");
     \u0275\u0275elementEnd();
-    \u0275\u0275conditionalCreate(10, App_Conditional_193_Conditional_10_Template, 2, 0, "div", 68)(11, App_Conditional_193_Conditional_11_Template, 2, 1, "div", 69)(12, App_Conditional_193_Conditional_12_Template, 54, 7);
+    \u0275\u0275conditionalCreate(10, App_Conditional_203_Conditional_10_Template, 2, 0, "div", 67)(11, App_Conditional_203_Conditional_11_Template, 2, 1, "div", 68)(12, App_Conditional_203_Conditional_12_Template, 54, 7);
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
@@ -35150,7 +35126,7 @@ var App = class _App {
         return ctx.warnBeforeUnload($event);
       }, \u0275\u0275resolveWindow);
     }
-  }, decls: 205, vars: 38, consts: [["profileDialog", ""], [1, "showcase"], [1, "showcase-header"], [1, "eyebrow"], ["aria-label", "Built with Angular", 1, "framework-badge"], ["aria-hidden", "true"], ["aria-label", "Angular showcase sections", 1, "showcase-nav"], ["href", "#angular-controls"], ["href", "#angular-northwind"], ["id", "angular-controls", "aria-labelledby", "controls-heading", 1, "controls-section"], [1, "section-heading"], ["id", "controls-heading"], [1, "control-layout"], [1, "control-card", "form-card", 3, "ngSubmit", "formGroup"], [1, "field-grid"], ["formControlName", "name"], ["type", "email", "formControlName", "email", "aria-describedby", "email-help"], ["id", "email-help"], ["type", "number", "min", "1", "max", "20", "formControlName", "seats"], ["type", "date", "formControlName", "startDate"], [1, "field-span"], ["formControlName", "role"], [1, "choice-row"], [1, "choice"], [1, "form-actions"], ["type", "submit", 1, "primary-button", 3, "disabled"], ["type", "button", 1, "secondary-button", 3, "click"], ["type", "button", "disabled", "", 1, "secondary-button"], [1, "control-stack"], [1, "control-card"], [1, "switch-row"], ["type", "checkbox", "role", "switch", 1, "switch", 3, "change", "checked"], [1, "range-field"], ["type", "range", "min", "0", "max", "100", 3, "input", "value"], ["max", "100", 3, "value"], ["role", "tablist", "aria-label", "Profile views", 1, "tabs"], ["type", "button", "role", "tab", 3, "id"], ["id", "profile-summary-panel", "role", "tabpanel", "aria-labelledby", "profile-summary-tab", "tabindex", "0", 1, "tab-panel"], ["id", "profile-settings-panel", "role", "tabpanel", "aria-labelledby", "profile-settings-tab", "tabindex", "0", 1, "tab-panel"], ["role", "status", "aria-live", "polite", 1, "notification"], ["id", "angular-northwind", "aria-labelledby", "data-heading", 1, "data-section"], ["id", "data-heading"], [1, "sandbox-toolbar"], [1, "sandbox-toggle"], ["type", "checkbox", "role", "switch", 3, "change", "checked"], ["type", "button", 1, "secondary-button"], [1, "sandbox-banner"], ["aria-labelledby", "customers-heading", 1, "grid-card"], [1, "grid-heading"], ["id", "customers-heading"], [1, "filters"], ["type", "search", "placeholder", "Company or contact", 3, "input", "value"], [3, "change", "value"], ["value", ""], [3, "value"], ["role", "alert", 1, "status", "error"], [1, "table-wrap"], ["aria-label", "Northwind customers"], ["scope", "col"], ["role", "status", "aria-live", "polite", 1, "status"], [1, "status"], [1, "grid-footer"], [1, "pagination"], ["type", "button", 3, "click", "disabled"], ["aria-labelledby", "detail-heading", 1, "detail-card"], [1, "detail-heading"], ["id", "detail-heading"], [1, "detail-status"], ["role", "status", "aria-live", "polite", 1, "detail-status"], ["role", "alert", 1, "detail-status", "error"], [1, "detail-form"], [1, "customer-detail"], ["role", "status", "aria-live", "polite", 1, "notification", "detail-notice"], ["aria-labelledby", "orders-heading", 1, "orders-card"], ["id", "orders-heading"], [1, "orders-layout"], ["method", "dialog"], [1, "primary-button"], ["type", "checkbox", 3, "change", "checked"], ["type", "radio", "name", "contact-method", 3, "change", "value", "checked"], ["type", "button", "role", "tab", 3, "click", "keydown", "id"], [1, "summary-list"], ["type", "button", "aria-label", "Dismiss notification", 3, "click"], [1, "sandbox-status"], ["type", "button", 3, "click"], ["tabindex", "0", 3, "selected"], ["tabindex", "0", 3, "click", "keydown.enter", "keydown.space"], ["data-label", "Company"], ["data-label", "Contact"], ["data-label", "City"], ["data-label", "Country"], ["data-label", "ID"], [1, "detail-form", 3, "submit"], [1, "detail-metrics"], [1, "unsaved-indicator"], [1, "detail-actions"], ["type", "button", 1, "secondary-button", 3, "click", "disabled"], [3, "input", "required", "value"], ["type", "button", "aria-label", "Dismiss sandbox notification", 3, "click"], [1, "order-list"], [1, "order-detail"], ["type", "button", 3, "selected"], [1, "order-summary"], [1, "line-items-wrap"], [1, "line-items"], [1, "order-totals"]], template: function App_Template(rf, ctx) {
+  }, decls: 215, vars: 40, consts: [["profileDialog", ""], [1, "showcase"], [1, "showcase-header"], [1, "eyebrow"], ["aria-label", "Built with Angular", 1, "framework-badge"], ["aria-hidden", "true"], ["aria-label", "Angular showcase sections", 1, "showcase-nav"], ["href", "#angular-controls"], ["href", "#angular-northwind"], ["id", "angular-controls", "aria-labelledby", "controls-heading", 1, "controls-section"], [1, "section-heading"], ["id", "controls-heading"], [1, "control-layout"], [1, "control-card", "form-card", 3, "ngSubmit", "formGroup"], [1, "field-grid"], ["formControlName", "name"], ["type", "email", "formControlName", "email", "aria-describedby", "email-help"], ["id", "email-help"], ["type", "number", "min", "1", "max", "20", "formControlName", "seats"], ["type", "date", "formControlName", "startDate"], [1, "field-span"], ["formControlName", "role"], [1, "choice-row"], [1, "choice"], [1, "form-actions"], ["type", "submit", 1, "primary-button", 3, "disabled"], ["type", "button", 1, "secondary-button", 3, "click"], ["type", "button", "disabled", "", 1, "secondary-button"], [1, "control-stack"], [1, "control-card"], [1, "switch-row"], ["type", "checkbox", "role", "switch", 1, "switch", 3, "change", "checked"], [1, "range-field"], ["type", "range", "min", "0", "max", "100", 3, "input", "value"], ["max", "100", 3, "value"], ["role", "tablist", "aria-label", "Profile views", 1, "tabs"], ["type", "button", "role", "tab", 3, "id"], ["id", "profile-summary-panel", "role", "tabpanel", "aria-labelledby", "profile-summary-tab", "tabindex", "0", 1, "tab-panel"], ["id", "profile-settings-panel", "role", "tabpanel", "aria-labelledby", "profile-settings-tab", "tabindex", "0", 1, "tab-panel"], ["role", "status", "aria-live", "polite", 1, "notification"], ["id", "angular-northwind", "aria-labelledby", "data-heading", 1, "data-section"], ["id", "data-heading"], ["aria-labelledby", "sandbox-heading", 1, "sandbox-panel"], ["id", "sandbox-heading"], ["type", "checkbox", "role", "switch", "aria-label", "Editing sandbox", 1, "switch", 3, "change", "checked"], ["type", "button", 1, "secondary-button"], ["aria-labelledby", "customers-heading", 1, "grid-card"], [1, "grid-heading"], ["id", "customers-heading"], [1, "filters"], ["type", "search", "placeholder", "Company or contact", 3, "input", "value"], [3, "change", "value"], ["value", ""], [3, "value"], ["role", "alert", 1, "status", "error"], [1, "table-wrap"], ["aria-label", "Northwind customers"], ["scope", "col"], ["role", "status", "aria-live", "polite", 1, "status"], [1, "status"], [1, "grid-footer"], [1, "pagination"], ["type", "button", 3, "click", "disabled"], ["aria-labelledby", "detail-heading", 1, "detail-card"], [1, "detail-heading"], ["id", "detail-heading"], [1, "detail-status"], ["role", "status", "aria-live", "polite", 1, "detail-status"], ["role", "alert", 1, "detail-status", "error"], [1, "detail-form"], [1, "customer-detail"], ["aria-labelledby", "orders-heading", 1, "orders-card"], ["id", "orders-heading"], [1, "orders-layout"], ["method", "dialog"], [1, "primary-button"], ["type", "checkbox", 3, "change", "checked"], ["type", "radio", "name", "contact-method", 3, "change", "value", "checked"], ["type", "button", "role", "tab", 3, "click", "keydown", "id"], [1, "summary-list"], ["type", "button", "aria-label", "Dismiss notification", 3, "click"], ["type", "button", "aria-label", "Dismiss sandbox notification", 3, "click"], ["type", "button", 3, "click"], ["tabindex", "0", 3, "selected"], ["tabindex", "0", 3, "click", "keydown.enter", "keydown.space"], ["data-label", "Company"], ["data-label", "Contact"], ["data-label", "City"], ["data-label", "Country"], ["data-label", "ID"], [1, "detail-form", 3, "submit"], [1, "detail-metrics"], [1, "unsaved-indicator"], [1, "detail-actions"], ["type", "button", 1, "secondary-button", 3, "click", "disabled"], [3, "input", "required", "value"], [1, "order-list"], [1, "order-detail"], ["type", "button", 3, "selected"], [1, "order-summary"], [1, "line-items-wrap"], [1, "line-items"], [1, "order-totals"]], template: function App_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "div", 1)(1, "header", 2)(2, "div")(3, "span", 3);
       \u0275\u0275text(4, "Frontend Lab");
@@ -35294,109 +35270,121 @@ var App = class _App {
       \u0275\u0275elementStart(118, "h2", 41);
       \u0275\u0275text(119, "Northwind data binding");
       \u0275\u0275elementEnd()();
-      \u0275\u0275elementStart(120, "div", 42)(121, "p");
-      \u0275\u0275text(122, "Server-driven filtering, sorting, paging, and selection against the Northwind API.");
-      \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(123, "label", 43)(124, "input", 44);
-      \u0275\u0275listener("change", function App_Template_input_change_124_listener($event) {
-        return ctx.toggleSandbox($event.target.checked);
-      });
-      \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(125, "span");
-      \u0275\u0275text(126, "Editing sandbox");
+      \u0275\u0275elementStart(120, "p");
+      \u0275\u0275text(121, "Server-driven filtering, sorting, paging, and selection against the Northwind API.");
       \u0275\u0275elementEnd()();
-      \u0275\u0275conditionalCreate(127, App_Conditional_127_Template, 2, 0, "button", 45);
-      \u0275\u0275elementEnd()();
-      \u0275\u0275conditionalCreate(128, App_Conditional_128_Template, 10, 4, "div", 46);
-      \u0275\u0275elementStart(129, "section", 47)(130, "div", 48)(131, "div")(132, "h3", 49);
-      \u0275\u0275text(133, "Customer explorer");
+      \u0275\u0275elementStart(122, "aside", 42)(123, "div")(124, "span", 3);
+      \u0275\u0275text(125, "Session-isolated editing");
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(134, "p");
+      \u0275\u0275elementStart(126, "h3", 43);
+      \u0275\u0275text(127, "Editing Sandbox");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(128, "p");
+      \u0275\u0275text(129, " Changes use an in-memory browser-session copy. Canonical Northwind customers and every order remain read-only. ");
+      \u0275\u0275elementEnd()();
+      \u0275\u0275elementStart(130, "label", 30)(131, "span")(132, "strong");
+      \u0275\u0275text(133);
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(134, "small");
       \u0275\u0275text(135);
       \u0275\u0275elementEnd()();
-      \u0275\u0275elementStart(136, "div", 50)(137, "label")(138, "span");
-      \u0275\u0275text(139, "Search");
+      \u0275\u0275elementStart(136, "input", 44);
+      \u0275\u0275listener("change", function App_Template_input_change_136_listener($event) {
+        return ctx.toggleSandbox($event.target.checked);
+      });
+      \u0275\u0275elementEnd()();
+      \u0275\u0275conditionalCreate(137, App_Conditional_137_Template, 2, 0, "button", 45);
+      \u0275\u0275conditionalCreate(138, App_Conditional_138_Template, 2, 0, "small");
+      \u0275\u0275conditionalCreate(139, App_Conditional_139_Template, 5, 1, "div", 39);
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(140, "input", 51);
-      \u0275\u0275listener("input", function App_Template_input_input_140_listener($event) {
+      \u0275\u0275elementStart(140, "section", 46)(141, "div", 47)(142, "div")(143, "h3", 48);
+      \u0275\u0275text(144, "Customer explorer");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(145, "p");
+      \u0275\u0275text(146);
+      \u0275\u0275elementEnd()();
+      \u0275\u0275elementStart(147, "div", 49)(148, "label")(149, "span");
+      \u0275\u0275text(150, "Search");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(151, "input", 50);
+      \u0275\u0275listener("input", function App_Template_input_input_151_listener($event) {
         return ctx.updateSearch($event.target.value);
       });
       \u0275\u0275elementEnd()();
-      \u0275\u0275elementStart(141, "label")(142, "span");
-      \u0275\u0275text(143, "Country");
+      \u0275\u0275elementStart(152, "label")(153, "span");
+      \u0275\u0275text(154, "Country");
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(144, "select", 52);
-      \u0275\u0275listener("change", function App_Template_select_change_144_listener($event) {
+      \u0275\u0275elementStart(155, "select", 51);
+      \u0275\u0275listener("change", function App_Template_select_change_155_listener($event) {
         return ctx.updateCountry($event.target.value);
       });
-      \u0275\u0275elementStart(145, "option", 53);
-      \u0275\u0275text(146, "All countries");
+      \u0275\u0275elementStart(156, "option", 52);
+      \u0275\u0275text(157, "All countries");
       \u0275\u0275elementEnd();
-      \u0275\u0275repeaterCreate(147, App_For_148_Template, 2, 2, "option", 54, \u0275\u0275repeaterTrackByIdentity);
+      \u0275\u0275repeaterCreate(158, App_For_159_Template, 2, 2, "option", 53, \u0275\u0275repeaterTrackByIdentity);
       \u0275\u0275elementEnd()()()();
-      \u0275\u0275conditionalCreate(149, App_Conditional_149_Template, 2, 1, "div", 55);
-      \u0275\u0275elementStart(150, "div", 56)(151, "table", 57)(152, "thead")(153, "tr");
-      \u0275\u0275repeaterCreate(154, App_For_155_Template, 5, 6, "th", 58, _forTrack0);
+      \u0275\u0275conditionalCreate(160, App_Conditional_160_Template, 2, 1, "div", 54);
+      \u0275\u0275elementStart(161, "div", 55)(162, "table", 56)(163, "thead")(164, "tr");
+      \u0275\u0275repeaterCreate(165, App_For_166_Template, 5, 6, "th", 57, _forTrack0);
       \u0275\u0275elementEnd()();
-      \u0275\u0275elementStart(156, "tbody");
-      \u0275\u0275conditionalCreate(157, App_Conditional_157_Template, 2, 0);
+      \u0275\u0275elementStart(167, "tbody");
+      \u0275\u0275conditionalCreate(168, App_Conditional_168_Template, 2, 0);
       \u0275\u0275elementEnd()();
-      \u0275\u0275conditionalCreate(158, App_Conditional_158_Template, 2, 0, "div", 59)(159, App_Conditional_159_Template, 2, 0, "div", 60);
+      \u0275\u0275conditionalCreate(169, App_Conditional_169_Template, 2, 0, "div", 58)(170, App_Conditional_170_Template, 2, 0, "div", 59);
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(160, "footer", 61)(161, "span");
-      \u0275\u0275text(162);
+      \u0275\u0275elementStart(171, "footer", 60)(172, "span");
+      \u0275\u0275text(173);
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(163, "div", 62)(164, "button", 63);
-      \u0275\u0275listener("click", function App_Template_button_click_164_listener() {
+      \u0275\u0275elementStart(174, "div", 61)(175, "button", 62);
+      \u0275\u0275listener("click", function App_Template_button_click_175_listener() {
         return ctx.page.update((current) => current - 1);
       });
-      \u0275\u0275text(165, " Previous ");
+      \u0275\u0275text(176, " Previous ");
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(166, "span");
-      \u0275\u0275text(167);
+      \u0275\u0275elementStart(177, "span");
+      \u0275\u0275text(178);
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(168, "button", 63);
-      \u0275\u0275listener("click", function App_Template_button_click_168_listener() {
+      \u0275\u0275elementStart(179, "button", 62);
+      \u0275\u0275listener("click", function App_Template_button_click_179_listener() {
         return ctx.page.update((current) => current + 1);
       });
-      \u0275\u0275text(169, " Next ");
+      \u0275\u0275text(180, " Next ");
       \u0275\u0275elementEnd()()()();
-      \u0275\u0275elementStart(170, "section", 64)(171, "div", 65)(172, "div")(173, "span", 3);
-      \u0275\u0275text(174);
+      \u0275\u0275elementStart(181, "section", 63)(182, "div", 64)(183, "div")(184, "span", 3);
+      \u0275\u0275text(185);
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(175, "h3", 66);
-      \u0275\u0275text(176, "Customer details");
+      \u0275\u0275elementStart(186, "h3", 65);
+      \u0275\u0275text(187, "Customer details");
       \u0275\u0275elementEnd()();
-      \u0275\u0275conditionalCreate(177, App_Conditional_177_Template, 2, 1, "code");
+      \u0275\u0275conditionalCreate(188, App_Conditional_188_Template, 2, 1, "code");
       \u0275\u0275elementEnd();
-      \u0275\u0275conditionalCreate(178, App_Conditional_178_Template, 2, 0, "div", 67)(179, App_Conditional_179_Template, 2, 0, "div", 68)(180, App_Conditional_180_Template, 2, 1, "div", 69)(181, App_Conditional_181_Template, 14, 5, "form", 70)(182, App_Conditional_182_Template, 46, 9, "dl", 71);
-      \u0275\u0275conditionalCreate(183, App_Conditional_183_Template, 5, 1, "div", 72);
+      \u0275\u0275conditionalCreate(189, App_Conditional_189_Template, 2, 0, "div", 66)(190, App_Conditional_190_Template, 2, 0, "div", 67)(191, App_Conditional_191_Template, 2, 1, "div", 68)(192, App_Conditional_192_Template, 14, 5, "form", 69)(193, App_Conditional_193_Template, 46, 9, "dl", 70);
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(184, "section", 73)(185, "div", 65)(186, "div")(187, "span", 3);
-      \u0275\u0275text(188, "Selection chain");
+      \u0275\u0275elementStart(194, "section", 71)(195, "div", 64)(196, "div")(197, "span", 3);
+      \u0275\u0275text(198, "Selection chain");
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(189, "h3", 74);
-      \u0275\u0275text(190, "Orders and line items");
+      \u0275\u0275elementStart(199, "h3", 72);
+      \u0275\u0275text(200, "Orders and line items");
       \u0275\u0275elementEnd()();
-      \u0275\u0275conditionalCreate(191, App_Conditional_191_Template, 2, 1, "code");
+      \u0275\u0275conditionalCreate(201, App_Conditional_201_Template, 2, 1, "code");
       \u0275\u0275elementEnd();
-      \u0275\u0275conditionalCreate(192, App_Conditional_192_Template, 2, 0, "div", 67)(193, App_Conditional_193_Template, 13, 4, "div", 75);
+      \u0275\u0275conditionalCreate(202, App_Conditional_202_Template, 2, 0, "div", 66)(203, App_Conditional_203_Template, 13, 4, "div", 73);
       \u0275\u0275elementEnd()();
-      \u0275\u0275elementStart(194, "dialog", null, 0)(196, "form", 76)(197, "span", 3);
-      \u0275\u0275text(198, "Native dialog");
+      \u0275\u0275elementStart(204, "dialog", null, 0)(206, "form", 74)(207, "span", 3);
+      \u0275\u0275text(208, "Native dialog");
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(199, "h2");
-      \u0275\u0275text(200, "Angular-controlled launch");
+      \u0275\u0275elementStart(209, "h2");
+      \u0275\u0275text(210, "Angular-controlled launch");
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(201, "p");
-      \u0275\u0275text(202, "This modal uses the browser dialog element for focus management and keyboard dismissal.");
+      \u0275\u0275elementStart(211, "p");
+      \u0275\u0275text(212, "This modal uses the browser dialog element for focus management and keyboard dismissal.");
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(203, "button", 77);
-      \u0275\u0275text(204, "Close dialog");
+      \u0275\u0275elementStart(213, "button", 75);
+      \u0275\u0275text(214, "Close dialog");
       \u0275\u0275elementEnd()()()();
     }
     if (rf & 2) {
-      let tmp_35_0;
+      let tmp_38_0;
       \u0275\u0275advance(29);
       \u0275\u0275property("formGroup", ctx.profile);
       \u0275\u0275advance(11);
@@ -35406,9 +35394,9 @@ var App = class _App {
       \u0275\u0275advance();
       \u0275\u0275conditional(ctx.profile.controls.email.valid ? 42 : 43);
       \u0275\u0275advance(26);
-      \u0275\u0275repeater(\u0275\u0275pureFunction0(35, _c1));
+      \u0275\u0275repeater(\u0275\u0275pureFunction0(37, _c1));
       \u0275\u0275advance(6);
-      \u0275\u0275repeater(\u0275\u0275pureFunction0(36, _c2));
+      \u0275\u0275repeater(\u0275\u0275pureFunction0(38, _c2));
       \u0275\u0275advance(3);
       \u0275\u0275property("disabled", ctx.profile.invalid);
       \u0275\u0275advance(16);
@@ -35421,17 +35409,23 @@ var App = class _App {
       \u0275\u0275property("value", ctx.confidence());
       \u0275\u0275attribute("aria-label", "Confidence " + ctx.confidence() + "%");
       \u0275\u0275advance(3);
-      \u0275\u0275repeater(\u0275\u0275pureFunction0(37, _c3));
+      \u0275\u0275repeater(\u0275\u0275pureFunction0(39, _c3));
       \u0275\u0275advance(2);
       \u0275\u0275conditional(ctx.activeTab() === "summary" ? 105 : 106);
       \u0275\u0275advance(7);
       \u0275\u0275conditional(ctx.notice() ? 112 : -1);
-      \u0275\u0275advance(12);
-      \u0275\u0275property("checked", ctx.sandboxEnabled());
-      \u0275\u0275advance(3);
-      \u0275\u0275conditional(ctx.sandboxEnabled() ? 127 : -1);
+      \u0275\u0275advance(21);
+      \u0275\u0275textInterpolate(ctx.sandboxEnabled() ? "Enabled" : "Disabled");
+      \u0275\u0275advance(2);
+      \u0275\u0275textInterpolate(ctx.sandboxHasChanges() ? "Changes made" : "Vanilla copy");
       \u0275\u0275advance();
-      \u0275\u0275conditional(ctx.sandboxEnabled() ? 128 : -1);
+      \u0275\u0275property("checked", ctx.sandboxEnabled());
+      \u0275\u0275advance();
+      \u0275\u0275conditional(ctx.sandboxEnabled() ? 137 : -1);
+      \u0275\u0275advance();
+      \u0275\u0275conditional(ctx.sandboxEnabled() && ctx.sandboxExpiresAt() ? 138 : -1);
+      \u0275\u0275advance();
+      \u0275\u0275conditional(ctx.sandboxNotice() ? 139 : -1);
       \u0275\u0275advance(7);
       \u0275\u0275textInterpolate1("", ctx.totalCount(), " Northwind records");
       \u0275\u0275advance(5);
@@ -35441,15 +35435,15 @@ var App = class _App {
       \u0275\u0275advance(3);
       \u0275\u0275repeater(ctx.countries());
       \u0275\u0275advance(2);
-      \u0275\u0275conditional(ctx.customerError() ? 149 : -1);
+      \u0275\u0275conditional(ctx.customerError() ? 160 : -1);
       \u0275\u0275advance();
       \u0275\u0275attribute("aria-busy", ctx.loading());
       \u0275\u0275advance(4);
       \u0275\u0275repeater(ctx.columns);
       \u0275\u0275advance(3);
-      \u0275\u0275conditional(!ctx.loading() ? 157 : -1);
+      \u0275\u0275conditional(!ctx.loading() ? 168 : -1);
       \u0275\u0275advance();
-      \u0275\u0275conditional(ctx.loading() ? 158 : !ctx.customerError() && ctx.customers().length === 0 ? 159 : -1);
+      \u0275\u0275conditional(ctx.loading() ? 169 : !ctx.customerError() && ctx.customers().length === 0 ? 170 : -1);
       \u0275\u0275advance(4);
       \u0275\u0275textInterpolate(ctx.selectedId() ? "Selected: " + ctx.selectedId() : "Select a customer row");
       \u0275\u0275advance(2);
@@ -35461,17 +35455,15 @@ var App = class _App {
       \u0275\u0275advance(6);
       \u0275\u0275textInterpolate(ctx.sandboxEnabled() ? "Session database" : "Read-only binding");
       \u0275\u0275advance(3);
-      \u0275\u0275conditional(ctx.selectedId() ? 177 : -1);
+      \u0275\u0275conditional(ctx.selectedId() ? 188 : -1);
       \u0275\u0275advance();
-      \u0275\u0275conditional(!ctx.selectedId() ? 178 : ctx.detailLoading() ? 179 : ctx.detailError() ? 180 : (tmp_35_0 = ctx.sandboxEnabled() && ctx.customerDraft()) ? 181 : (tmp_35_0 = ctx.customerDetail()) ? 182 : -1, tmp_35_0);
-      \u0275\u0275advance(5);
-      \u0275\u0275conditional(ctx.sandboxNotice() ? 183 : -1);
-      \u0275\u0275advance(8);
-      \u0275\u0275conditional(ctx.selectedOrderId() ? 191 : -1);
+      \u0275\u0275conditional(!ctx.selectedId() ? 189 : ctx.detailLoading() ? 190 : ctx.detailError() ? 191 : (tmp_38_0 = ctx.sandboxEnabled() && ctx.customerDraft()) ? 192 : (tmp_38_0 = ctx.customerDetail()) ? 193 : -1, tmp_38_0);
+      \u0275\u0275advance(12);
+      \u0275\u0275conditional(ctx.selectedOrderId() ? 201 : -1);
       \u0275\u0275advance();
-      \u0275\u0275conditional(!ctx.selectedId() ? 192 : 193);
+      \u0275\u0275conditional(!ctx.selectedId() ? 202 : 203);
     }
-  }, dependencies: [ReactiveFormsModule, \u0275NgNoValidate, NgSelectOption, \u0275NgSelectMultipleOption, DefaultValueAccessor, NumberValueAccessor, SelectControlValueAccessor, NgControlStatus, NgControlStatusGroup, MinValidator, MaxValidator, FormGroupDirective, FormControlName], styles: ["/* src/app/app.css */\n:host {\n  --text: #6b6375;\n  --text-h: #08060d;\n  --bg: #fff;\n  --border: #e5e4e7;\n  --code-bg: #f4f3ec;\n  --accent: #aa3bff;\n  --accent-bg: rgb(170 59 255 / 10%);\n  --accent-border: rgb(170 59 255 / 50%);\n  --shadow: rgb(0 0 0 / 10%) 0 10px 15px -3px, rgb(0 0 0 / 5%) 0 4px 6px -2px;\n  background: var(--bg);\n  color: var(--text);\n  color-scheme: light dark;\n  display: block;\n  font-family: inherit;\n}\n@media (prefers-color-scheme: dark) {\n  :host {\n    --text: #9ca3af;\n    --text-h: #f3f4f6;\n    --bg: #16171d;\n    --border: #2e303a;\n    --code-bg: #1f2028;\n    --accent: #c084fc;\n    --accent-bg: rgb(192 132 252 / 15%);\n    --accent-border: rgb(192 132 252 / 50%);\n    --shadow: rgb(0 0 0 / 40%) 0 10px 15px -3px, rgb(0 0 0 / 25%) 0 4px 6px -2px;\n  }\n}\n* {\n  box-sizing: border-box;\n}\n.showcase {\n  padding: 48px;\n  text-align: left;\n}\n.showcase-header {\n  align-items: flex-start;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 32px;\n}\n.showcase-header h1 {\n  margin: 6px 0 10px;\n}\n.showcase-header p {\n  max-width: 680px;\n}\n.showcase-nav {\n  display: flex;\n  gap: 8px;\n  margin: -12px 0 32px;\n}\n.showcase-nav a {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 999px;\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 700;\n  padding: 7px 11px;\n  text-decoration: none;\n}\n.showcase-nav a:hover {\n  border-color: var(--accent-border);\n  color: var(--accent);\n}\n.controls-section,\n.data-section {\n  scroll-margin-top: 90px;\n}\n.eyebrow {\n  color: var(--accent);\n  font-size: 13px;\n  font-weight: 700;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n}\n.framework-badge {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 999px;\n  color: var(--text-h);\n  display: flex;\n  font-weight: 650;\n  gap: 10px;\n  padding: 10px 14px;\n}\n.framework-badge > span {\n  align-items: center;\n  background: var(--accent);\n  border-radius: 50%;\n  color: white;\n  display: inline-flex;\n  height: 24px;\n  justify-content: center;\n  width: 24px;\n}\n.controls-section {\n  margin-bottom: 32px;\n}\n.data-section {\n  margin-top: 40px;\n}\n.section-heading {\n  align-items: end;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 18px;\n}\n.section-heading h2 {\n  margin: 4px 0 0;\n}\n.section-heading p {\n  font-size: 15px;\n  max-width: 560px;\n}\n.sandbox-toolbar {\n  align-items: end;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n  justify-content: flex-end;\n  max-width: 580px;\n}\n.sandbox-toolbar p {\n  flex-basis: 100%;\n}\n.sandbox-toggle {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: flex;\n  gap: 8px;\n  min-height: 40px;\n  padding: 7px 11px;\n}\n.sandbox-toggle input {\n  accent-color: var(--accent);\n}\n.sandbox-banner {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 8px;\n  justify-content: space-between;\n  margin-bottom: 14px;\n  padding: 12px 16px;\n}\n.sandbox-banner > div:first-child,\n.sandbox-status {\n  display: grid;\n}\n.sandbox-status {\n  flex: 0 0 auto;\n  justify-items: end;\n}\n.sandbox-status > span {\n  background: var(--code-bg);\n  border-radius: 999px;\n  font-size: 12px;\n  font-weight: 700;\n  padding: 3px 8px;\n}\n.sandbox-status > span.changed {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.sandbox-status small {\n  font-size: 11px;\n  margin-top: 3px;\n}\n.control-layout {\n  display: grid;\n  gap: 18px;\n  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);\n}\n.control-layout > *,\n.field-grid > * {\n  min-width: 0;\n}\n.control-stack {\n  display: grid;\n  gap: 18px;\n}\n.control-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  padding: 22px;\n}\n.control-card h3 {\n  color: var(--text-h);\n  font-size: 18px;\n  margin: 0 0 18px;\n}\n.field-grid {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.field-span {\n  grid-column: 1 / -1;\n}\nlabel {\n  color: var(--text-h);\n  display: grid;\n  font-size: 13px;\n  font-weight: 650;\n  gap: 5px;\n}\ninput,\nselect,\nbutton {\n  font: inherit;\n}\ninput:not([type=checkbox]):not([type=radio]):not([type=range]),\nselect {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  min-height: 42px;\n  padding: 8px 11px;\n}\n.form-card input:not([type=checkbox]):not([type=radio]),\n.form-card select {\n  width: 100%;\n}\n.field-help,\n.field-error {\n  font-size: 12px;\n  font-weight: 450;\n}\n.field-help {\n  color: var(--text);\n}\n.field-error {\n  color: #b42318;\n}\ninput[aria-invalid=true] {\n  border-color: #d92d20;\n}\nfieldset {\n  border: 0;\n  margin: 20px 0 0;\n  padding: 0;\n}\nlegend {\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 650;\n  margin-bottom: 8px;\n}\n.choice-row,\n.form-actions {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n.choice {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: flex;\n  gap: 7px;\n  padding: 7px 10px;\n}\n.choice input,\n.range-field input {\n  accent-color: var(--accent);\n}\n.form-actions {\n  margin-top: 22px;\n}\n.primary-button,\n.secondary-button {\n  border-radius: 7px;\n  cursor: pointer;\n  font-weight: 700;\n  min-height: 40px;\n  padding: 8px 13px;\n}\n.primary-button {\n  background: var(--accent);\n  border: 1px solid var(--accent);\n  color: white;\n}\n.secondary-button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  color: var(--text-h);\n}\n.primary-button:disabled,\n.secondary-button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n.switch-row {\n  align-items: center;\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n}\n.switch-row > span {\n  display: grid;\n}\n.switch-row small {\n  color: var(--text);\n  font-weight: 450;\n}\n.switch {\n  accent-color: var(--accent);\n  height: 24px;\n  width: 44px;\n}\n.range-field {\n  margin-top: 22px;\n}\n.range-field > span {\n  display: flex;\n  justify-content: space-between;\n}\n.range-field input,\nprogress {\n  width: 100%;\n}\nprogress {\n  accent-color: var(--accent);\n  height: 8px;\n  margin-top: 12px;\n}\n.tabs {\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 4px;\n  padding-bottom: 12px;\n}\n.tabs button {\n  background: transparent;\n  border: 0;\n  border-radius: 6px;\n  color: var(--text);\n  cursor: pointer;\n  font-weight: 700;\n  padding: 7px 10px;\n}\n.tabs button[aria-selected=true] {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.tab-panel {\n  min-height: 155px;\n  padding-top: 18px;\n}\n.summary-list {\n  display: grid;\n  gap: 10px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n}\n.summary-list div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.summary-list dt {\n  font-size: 12px;\n}\n.summary-list dd {\n  color: var(--text-h);\n  font-weight: 700;\n  margin: 2px 0 0;\n}\ndetails {\n  border-top: 1px solid var(--border);\n  font-size: 14px;\n  padding-top: 12px;\n}\nsummary {\n  color: var(--text-h);\n  cursor: pointer;\n  font-weight: 700;\n}\ndetails p {\n  padding-top: 10px;\n}\n.notification {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n  margin-top: 14px;\n  padding: 12px 16px;\n}\n.notification button {\n  background: transparent;\n  border: 0;\n  color: var(--text-h);\n  cursor: pointer;\n  font-size: 22px;\n}\ndialog {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n  color: var(--text);\n  max-width: 430px;\n  padding: 26px;\n}\ndialog::backdrop {\n  -webkit-backdrop-filter: blur(3px);\n  backdrop-filter: blur(3px);\n  background: rgb(8 6 13 / 68%);\n}\ndialog h2 {\n  margin: 8px 0 10px;\n}\ndialog .primary-button {\n  margin-top: 22px;\n}\ninput:focus,\nselect:focus,\nbutton:focus-visible {\n  outline: 2px solid var(--accent);\n  outline-offset: 2px;\n}\n.grid-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  box-shadow: var(--shadow);\n  overflow: hidden;\n}\n.grid-heading,\n.grid-footer {\n  align-items: end;\n  display: flex;\n  gap: 24px;\n  justify-content: space-between;\n  padding: 22px 24px;\n}\n.grid-heading {\n  border-bottom: 1px solid var(--border);\n}\n.grid-heading h3 {\n  color: var(--text-h);\n  font-size: 22px;\n  margin: 0 0 4px;\n}\n.grid-heading p,\n.grid-footer {\n  font-size: 14px;\n}\n.filters {\n  display: flex;\n  gap: 12px;\n}\n.table-wrap {\n  min-height: 486px;\n  overflow-x: auto;\n  position: relative;\n}\ntable {\n  border-collapse: collapse;\n  width: 100%;\n}\nth,\ntd {\n  border-bottom: 1px solid var(--border);\n  padding: 13px 16px;\n  text-align: left;\n  white-space: nowrap;\n}\nth {\n  background: var(--code-bg);\n  color: var(--text-h);\n  font-size: 12px;\n}\nth button {\n  align-items: center;\n  background: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-flex;\n  font-weight: 700;\n  gap: 7px;\n  padding: 0;\n}\nth button.active-sort {\n  color: var(--accent);\n}\ntbody tr {\n  cursor: pointer;\n}\ntbody tr:hover,\ntbody tr.selected {\n  background: var(--accent-bg);\n}\ncode {\n  background: var(--code-bg);\n  border-radius: 4px;\n  padding: 2px 5px;\n}\n.status {\n  inset: 50% auto auto 50%;\n  position: absolute;\n  transform: translate(-50%, -50%);\n}\n.status.error {\n  background: #fef3f2;\n  border: 1px solid #fecdca;\n  border-radius: 8px;\n  color: #b42318;\n  margin: 14px 24px;\n  padding: 12px 16px;\n  position: static;\n  transform: none;\n}\n.pagination {\n  align-items: center;\n  display: flex;\n  gap: 10px;\n}\n.pagination button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  cursor: pointer;\n  min-height: 36px;\n  padding: 6px 10px;\n}\n.pagination button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n.detail-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  margin-top: 18px;\n  overflow: hidden;\n}\n.orders-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  margin-top: 18px;\n  overflow: hidden;\n}\n.orders-layout {\n  display: grid;\n  grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);\n}\n.order-list,\n.order-detail {\n  min-width: 0;\n  padding: 20px;\n}\n.order-list {\n  border-right: 1px solid var(--border);\n}\n.order-list h4,\n.order-detail h4 {\n  color: var(--text-h);\n  font-size: 15px;\n  margin: 0 0 14px;\n}\n.order-list > button {\n  align-items: center;\n  background: transparent;\n  border: 1px solid transparent;\n  border-radius: 8px;\n  color: var(--text);\n  cursor: pointer;\n  display: flex;\n  gap: 12px;\n  justify-content: space-between;\n  padding: 11px 12px;\n  text-align: left;\n  width: 100%;\n}\n.order-list > button:hover,\n.order-list > button.selected {\n  background: var(--accent-bg);\n  border-color: var(--accent-border);\n}\n.order-list > button > span {\n  display: grid;\n  gap: 2px;\n}\n.order-list > button > span:last-child {\n  justify-items: end;\n}\n.order-list strong {\n  color: var(--text-h);\n}\n.order-list small {\n  font-size: 12px;\n}\n.order-summary,\n.order-totals {\n  display: grid;\n  gap: 10px;\n  margin: 0;\n}\n.order-summary {\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.order-summary div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.order-summary dt,\n.order-totals dt {\n  font-size: 12px;\n}\n.order-summary dd,\n.order-totals dd {\n  color: var(--text-h);\n  font-weight: 650;\n  margin: 2px 0 0;\n}\n.line-items-wrap {\n  border: 1px solid var(--border);\n  border-radius: 8px;\n  margin-top: 16px;\n  overflow-x: auto;\n}\n.line-items {\n  font-size: 13px;\n}\n.line-items caption {\n  clip: rect(0 0 0 0);\n  height: 1px;\n  overflow: hidden;\n  position: absolute;\n  width: 1px;\n}\n.line-items th,\n.line-items td {\n  padding: 9px 10px;\n}\n.line-items th:not(:first-child),\n.line-items td:not(:first-child) {\n  text-align: right;\n}\n.order-totals {\n  justify-content: end;\n  margin-top: 14px;\n  text-align: right;\n}\n.order-totals div {\n  display: grid;\n  gap: 12px;\n  grid-template-columns: 80px 110px;\n}\n.order-totals div:last-child {\n  border-top: 1px solid var(--border);\n  padding-top: 7px;\n}\n.detail-heading {\n  align-items: center;\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n  padding: 20px 24px;\n}\n.detail-heading h3 {\n  color: var(--text-h);\n  font-size: 22px;\n  margin: 3px 0 0;\n}\n.detail-status {\n  padding: 24px;\n}\n.detail-status.error {\n  color: #b42318;\n}\n.customer-detail {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n  padding: 24px;\n}\n.detail-form {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  padding: 24px;\n}\n.detail-form > * {\n  min-width: 0;\n}\n.detail-form input {\n  width: 100%;\n}\n.detail-actions,\n.detail-metrics {\n  grid-column: 1 / -1;\n}\n.detail-actions,\n.detail-metrics {\n  align-items: center;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n.detail-metrics {\n  color: var(--text-h);\n  font-weight: 700;\n  gap: 18px;\n}\n.unsaved-indicator {\n  background: #fffaeb;\n  border-radius: 999px;\n  color: #dc6803;\n  font-size: 12px;\n  padding: 3px 8px;\n}\n.detail-notice {\n  margin: 0 24px 24px;\n}\n.customer-detail > * {\n  min-width: 0;\n}\n.customer-detail div {\n  background: var(--code-bg);\n  border-radius: 8px;\n  padding: 12px;\n}\n.customer-detail dt {\n  font-size: 12px;\n}\n.customer-detail dd {\n  color: var(--text-h);\n  font-weight: 650;\n  margin: 3px 0 0;\n}\n@media (prefers-reduced-motion: reduce) {\n  *,\n  *::before,\n  *::after {\n    animation-duration: 0.01ms !important;\n    animation-iteration-count: 1 !important;\n    scroll-behavior: auto !important;\n    transition-duration: 0.01ms !important;\n  }\n}\n@media (forced-colors: active) {\n  .framework-badge,\n  .control-card,\n  .grid-card,\n  .detail-card,\n  .orders-card {\n    border: 1px solid CanvasText;\n  }\n}\n@media (max-width: 1100px) {\n  .control-layout {\n    grid-template-columns: 1fr;\n  }\n  .data-section .section-heading {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .sandbox-toolbar {\n    justify-content: flex-start;\n    max-width: none;\n  }\n  .orders-layout {\n    grid-template-columns: 1fr;\n  }\n  .order-list {\n    border-bottom: 1px solid var(--border);\n    border-right: 0;\n  }\n}\n@media (max-width: 760px) {\n  .showcase {\n    padding: 24px 16px;\n  }\n  .showcase-header,\n  .section-heading,\n  .grid-heading,\n  .grid-footer {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .showcase-nav {\n    overflow-x: auto;\n  }\n  .control-layout,\n  .field-grid,\n  .summary-list,\n  .customer-detail,\n  .detail-form {\n    grid-template-columns: 1fr;\n  }\n  .field-span {\n    grid-column: auto;\n  }\n  .filters {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .detail-actions,\n  .detail-metrics {\n    grid-column: auto;\n  }\n  .sandbox-banner {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .sandbox-status {\n    justify-items: start;\n  }\n}\n"], encapsulation: 3, changeDetection: 0 });
+  }, dependencies: [ReactiveFormsModule, \u0275NgNoValidate, NgSelectOption, \u0275NgSelectMultipleOption, DefaultValueAccessor, NumberValueAccessor, SelectControlValueAccessor, NgControlStatus, NgControlStatusGroup, MinValidator, MaxValidator, FormGroupDirective, FormControlName], styles: ["/* src/app/app.css */\n:host {\n  --text: #6b6375;\n  --text-h: #08060d;\n  --bg: #fff;\n  --border: #e5e4e7;\n  --code-bg: #f4f3ec;\n  --accent: #aa3bff;\n  --accent-bg: rgb(170 59 255 / 10%);\n  --accent-border: rgb(170 59 255 / 50%);\n  --shadow: rgb(0 0 0 / 10%) 0 10px 15px -3px, rgb(0 0 0 / 5%) 0 4px 6px -2px;\n  background: var(--bg);\n  border-radius: 14px;\n  color: var(--text);\n  color-scheme: light dark;\n  display: block;\n  font-family: inherit;\n  overflow: hidden;\n}\n@media (prefers-color-scheme: dark) {\n  :host {\n    --text: #9ca3af;\n    --text-h: #f3f4f6;\n    --bg: #16171d;\n    --border: #2e303a;\n    --code-bg: #1f2028;\n    --accent: #c084fc;\n    --accent-bg: rgb(192 132 252 / 15%);\n    --accent-border: rgb(192 132 252 / 50%);\n    --shadow: rgb(0 0 0 / 40%) 0 10px 15px -3px, rgb(0 0 0 / 25%) 0 4px 6px -2px;\n  }\n}\n* {\n  box-sizing: border-box;\n}\n.showcase {\n  padding: 48px;\n  text-align: left;\n}\n.showcase-header {\n  align-items: flex-start;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 32px;\n}\n.showcase-header h1 {\n  margin: 6px 0 10px;\n}\n.showcase-header p {\n  max-width: 680px;\n}\n.showcase-nav {\n  display: flex;\n  gap: 8px;\n  margin: -12px 0 32px;\n}\n.showcase-nav a {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 999px;\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 700;\n  padding: 7px 11px;\n  text-decoration: none;\n}\n.showcase-nav a:hover {\n  border-color: var(--accent-border);\n  color: var(--accent);\n}\n.controls-section,\n.data-section {\n  scroll-margin-top: 90px;\n}\n.eyebrow {\n  color: var(--accent);\n  font-size: 13px;\n  font-weight: 700;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n}\n.framework-badge {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 999px;\n  color: var(--text-h);\n  display: flex;\n  font-weight: 650;\n  gap: 10px;\n  padding: 10px 14px;\n}\n.framework-badge > span {\n  align-items: center;\n  background: var(--accent);\n  border-radius: 50%;\n  color: white;\n  display: inline-flex;\n  height: 24px;\n  justify-content: center;\n  width: 24px;\n}\n.controls-section {\n  margin-bottom: 32px;\n}\n.data-section {\n  margin-top: 40px;\n}\n.section-heading {\n  align-items: end;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 18px;\n}\n.section-heading h2 {\n  margin: 4px 0 0;\n}\n.section-heading p {\n  font-size: 15px;\n  max-width: 560px;\n}\n.sandbox-toolbar {\n  align-items: end;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n  justify-content: flex-end;\n  max-width: 580px;\n}\n.sandbox-toolbar p {\n  flex-basis: 100%;\n}\n.sandbox-toggle {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: flex;\n  gap: 8px;\n  min-height: 40px;\n  padding: 7px 11px;\n}\n.sandbox-toggle input {\n  accent-color: var(--accent);\n}\n.sandbox-banner {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 8px;\n  justify-content: space-between;\n  margin-bottom: 14px;\n  padding: 12px 16px;\n}\n.sandbox-banner > div:first-child,\n.sandbox-status {\n  display: grid;\n}\n.sandbox-status {\n  flex: 0 0 auto;\n  justify-items: end;\n}\n.sandbox-status > span {\n  background: var(--code-bg);\n  border-radius: 999px;\n  font-size: 12px;\n  font-weight: 700;\n  padding: 3px 8px;\n}\n.sandbox-status > span.changed {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.sandbox-status small {\n  font-size: 11px;\n  margin-top: 3px;\n}\n.control-layout {\n  display: grid;\n  gap: 18px;\n  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);\n}\n.control-layout > *,\n.field-grid > * {\n  min-width: 0;\n}\n.control-stack {\n  display: grid;\n  gap: 18px;\n}\n.control-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  padding: 22px;\n}\n.control-card h3 {\n  color: var(--text-h);\n  font-size: 18px;\n  margin: 0 0 18px;\n}\n.field-grid {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.field-span {\n  grid-column: 1 / -1;\n}\nlabel {\n  color: var(--text-h);\n  display: grid;\n  font-size: 13px;\n  font-weight: 650;\n  gap: 5px;\n}\ninput,\nselect,\nbutton {\n  font: inherit;\n}\ninput:not([type=checkbox]):not([type=radio]):not([type=range]),\nselect {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  min-height: 42px;\n  padding: 8px 11px;\n}\n.form-card input:not([type=checkbox]):not([type=radio]),\n.form-card select {\n  width: 100%;\n}\n.field-help,\n.field-error {\n  font-size: 12px;\n  font-weight: 450;\n}\n.field-help {\n  color: var(--text);\n}\n.field-error {\n  color: #b42318;\n}\ninput[aria-invalid=true] {\n  border-color: #d92d20;\n}\nfieldset {\n  border: 0;\n  margin: 20px 0 0;\n  padding: 0;\n}\nlegend {\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 650;\n  margin-bottom: 8px;\n}\n.choice-row,\n.form-actions {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n.choice {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: flex;\n  gap: 7px;\n  padding: 7px 10px;\n}\n.choice input,\n.range-field input {\n  accent-color: var(--accent);\n}\n.form-actions {\n  margin-top: 22px;\n}\n.primary-button,\n.secondary-button {\n  border-radius: 7px;\n  cursor: pointer;\n  font-weight: 700;\n  min-height: 40px;\n  padding: 8px 13px;\n}\n.primary-button {\n  background: var(--accent);\n  border: 1px solid var(--accent);\n  color: white;\n}\n.secondary-button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  color: var(--text-h);\n}\n.primary-button:disabled,\n.secondary-button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n.switch-row {\n  align-items: center;\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n}\n.switch-row > span {\n  display: grid;\n}\n.switch-row small {\n  color: var(--text);\n  font-weight: 450;\n}\n.switch {\n  accent-color: var(--accent);\n  height: 24px;\n  width: 44px;\n}\n.range-field {\n  margin-top: 22px;\n}\n.range-field > span {\n  display: flex;\n  justify-content: space-between;\n}\n.range-field input,\nprogress {\n  width: 100%;\n}\nprogress {\n  accent-color: var(--accent);\n  height: 8px;\n  margin-top: 12px;\n}\n.tabs {\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 4px;\n  padding-bottom: 12px;\n}\n.tabs button {\n  background: transparent;\n  border: 0;\n  border-radius: 6px;\n  color: var(--text);\n  cursor: pointer;\n  font-weight: 700;\n  padding: 7px 10px;\n}\n.tabs button[aria-selected=true] {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.tab-panel {\n  min-height: 155px;\n  padding-top: 18px;\n}\n.summary-list {\n  display: grid;\n  gap: 10px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n}\n.summary-list div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.summary-list dt {\n  font-size: 12px;\n}\n.summary-list dd {\n  color: var(--text-h);\n  font-weight: 700;\n  margin: 2px 0 0;\n}\ndetails {\n  border-top: 1px solid var(--border);\n  font-size: 14px;\n  padding-top: 12px;\n}\nsummary {\n  color: var(--text-h);\n  cursor: pointer;\n  font-weight: 700;\n}\ndetails p {\n  padding-top: 10px;\n}\n.notification {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n  margin-top: 14px;\n  padding: 12px 16px;\n}\n.notification button {\n  background: transparent;\n  border: 0;\n  color: var(--text-h);\n  cursor: pointer;\n  font-size: 22px;\n}\ndialog {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n  color: var(--text);\n  max-width: 430px;\n  padding: 26px;\n}\ndialog::backdrop {\n  -webkit-backdrop-filter: blur(3px);\n  backdrop-filter: blur(3px);\n  background: rgb(8 6 13 / 68%);\n}\ndialog h2 {\n  margin: 8px 0 10px;\n}\ndialog .primary-button {\n  margin-top: 22px;\n}\ninput:focus,\nselect:focus,\nbutton:focus-visible {\n  outline: 2px solid var(--accent);\n  outline-offset: 2px;\n}\n.grid-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  box-shadow: var(--shadow);\n  overflow: hidden;\n}\n.grid-heading,\n.grid-footer {\n  align-items: end;\n  display: flex;\n  gap: 24px;\n  justify-content: space-between;\n  padding: 22px 24px;\n}\n.grid-heading {\n  border-bottom: 1px solid var(--border);\n}\n.grid-heading h3 {\n  color: var(--text-h);\n  font-size: 22px;\n  margin: 0 0 4px;\n}\n.grid-heading p,\n.grid-footer {\n  font-size: 14px;\n}\n.filters {\n  display: flex;\n  gap: 12px;\n}\n.table-wrap {\n  min-height: 486px;\n  overflow-x: auto;\n  position: relative;\n}\ntable {\n  border-collapse: collapse;\n  width: 100%;\n}\nth,\ntd {\n  border-bottom: 1px solid var(--border);\n  padding: 13px 16px;\n  text-align: left;\n  white-space: nowrap;\n}\nth {\n  background: var(--code-bg);\n  color: var(--text-h);\n  font-size: 12px;\n}\nth button {\n  align-items: center;\n  background: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-flex;\n  font-weight: 700;\n  gap: 7px;\n  padding: 0;\n}\nth button.active-sort {\n  color: var(--accent);\n}\ntbody tr {\n  cursor: pointer;\n}\ntbody tr:hover,\ntbody tr.selected {\n  background: var(--accent-bg);\n}\ncode {\n  background: var(--code-bg);\n  border-radius: 4px;\n  padding: 2px 5px;\n}\n.status {\n  inset: 50% auto auto 50%;\n  position: absolute;\n  transform: translate(-50%, -50%);\n}\n.status.error {\n  background: #fef3f2;\n  border: 1px solid #fecdca;\n  border-radius: 8px;\n  color: #b42318;\n  margin: 14px 24px;\n  padding: 12px 16px;\n  position: static;\n  transform: none;\n}\n.pagination {\n  align-items: center;\n  display: flex;\n  gap: 10px;\n}\n.pagination button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  cursor: pointer;\n  min-height: 36px;\n  padding: 6px 10px;\n}\n.pagination button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n.detail-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  margin-top: 18px;\n  overflow: hidden;\n}\n.orders-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  margin-top: 18px;\n  overflow: hidden;\n}\n.orders-layout {\n  display: grid;\n  grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);\n}\n.order-list,\n.order-detail {\n  min-width: 0;\n  padding: 20px;\n}\n.order-list {\n  border-right: 1px solid var(--border);\n}\n.order-list h4,\n.order-detail h4 {\n  color: var(--text-h);\n  font-size: 15px;\n  margin: 0 0 14px;\n}\n.order-list > button {\n  align-items: center;\n  background: transparent;\n  border: 1px solid transparent;\n  border-radius: 8px;\n  color: var(--text);\n  cursor: pointer;\n  display: flex;\n  gap: 12px;\n  justify-content: space-between;\n  padding: 11px 12px;\n  text-align: left;\n  width: 100%;\n}\n.order-list > button:hover,\n.order-list > button.selected {\n  background: var(--accent-bg);\n  border-color: var(--accent-border);\n}\n.order-list > button > span {\n  display: grid;\n  gap: 2px;\n}\n.order-list > button > span:last-child {\n  justify-items: end;\n}\n.order-list strong {\n  color: var(--text-h);\n}\n.order-list small {\n  font-size: 12px;\n}\n.order-summary,\n.order-totals {\n  display: grid;\n  gap: 10px;\n  margin: 0;\n}\n.order-summary {\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.order-summary div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.order-summary dt,\n.order-totals dt {\n  font-size: 12px;\n}\n.order-summary dd,\n.order-totals dd {\n  color: var(--text-h);\n  font-weight: 650;\n  margin: 2px 0 0;\n}\n.line-items-wrap {\n  border: 1px solid var(--border);\n  border-radius: 8px;\n  margin-top: 16px;\n  overflow-x: auto;\n}\n.line-items {\n  font-size: 13px;\n}\n.line-items caption {\n  clip: rect(0 0 0 0);\n  height: 1px;\n  overflow: hidden;\n  position: absolute;\n  width: 1px;\n}\n.line-items th,\n.line-items td {\n  padding: 9px 10px;\n}\n.line-items th:not(:first-child),\n.line-items td:not(:first-child) {\n  text-align: right;\n}\n.order-totals {\n  justify-content: end;\n  margin-top: 14px;\n  text-align: right;\n}\n.order-totals div {\n  display: grid;\n  gap: 12px;\n  grid-template-columns: 80px 110px;\n}\n.order-totals div:last-child {\n  border-top: 1px solid var(--border);\n  padding-top: 7px;\n}\n.detail-heading {\n  align-items: center;\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n  padding: 20px 24px;\n}\n.detail-heading h3 {\n  color: var(--text-h);\n  font-size: 22px;\n  margin: 3px 0 0;\n}\n.detail-status {\n  padding: 24px;\n}\n.detail-status.error {\n  color: #b42318;\n}\n.customer-detail {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n  padding: 24px;\n}\n.detail-form {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  padding: 24px;\n}\n.detail-form > * {\n  min-width: 0;\n}\n.detail-form input {\n  width: 100%;\n}\n.detail-actions,\n.detail-metrics {\n  grid-column: 1 / -1;\n}\n.detail-actions,\n.detail-metrics {\n  align-items: center;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n.detail-metrics {\n  color: var(--text-h);\n  font-weight: 700;\n  gap: 18px;\n}\n.unsaved-indicator {\n  background: #fffaeb;\n  border-radius: 999px;\n  color: #dc6803;\n  font-size: 12px;\n  padding: 3px 8px;\n}\n.detail-notice {\n  margin: 0 24px 24px;\n}\n.customer-detail > * {\n  min-width: 0;\n}\n.customer-detail div {\n  background: var(--code-bg);\n  border-radius: 8px;\n  padding: 12px;\n}\n.customer-detail dt {\n  font-size: 12px;\n}\n.customer-detail dd {\n  color: var(--text-h);\n  font-weight: 650;\n  margin: 3px 0 0;\n}\n.control-card,\n.grid-card,\n.detail-card,\n.orders-card,\n.sandbox-panel {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n}\n.sandbox-panel {\n  align-items: center;\n  display: grid;\n  gap: 16px;\n  grid-template-columns: minmax(0, 1fr) auto auto;\n  margin-bottom: 18px;\n  padding: 22px;\n}\n.sandbox-panel h3,\n.sandbox-panel p {\n  margin: 4px 0 0;\n}\n.sandbox-panel .notification,\n.sandbox-panel > small {\n  grid-column: 1 / -1;\n  margin: 0;\n}\n@media (prefers-reduced-motion: reduce) {\n  *,\n  *::before,\n  *::after {\n    animation-duration: 0.01ms !important;\n    animation-iteration-count: 1 !important;\n    scroll-behavior: auto !important;\n    transition-duration: 0.01ms !important;\n  }\n}\n@media (forced-colors: active) {\n  .framework-badge,\n  .control-card,\n  .grid-card,\n  .detail-card,\n  .orders-card {\n    border: 1px solid CanvasText;\n  }\n}\n@media (max-width: 1100px) {\n  .control-layout {\n    grid-template-columns: 1fr;\n  }\n  .data-section .section-heading {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .sandbox-toolbar {\n    justify-content: flex-start;\n    max-width: none;\n  }\n  .orders-layout {\n    grid-template-columns: 1fr;\n  }\n  .sandbox-panel {\n    align-items: start;\n    grid-template-columns: 1fr;\n  }\n  .sandbox-panel .notification,\n  .sandbox-panel > small {\n    grid-column: auto;\n  }\n  .order-list {\n    border-bottom: 1px solid var(--border);\n    border-right: 0;\n  }\n}\n@media (max-width: 760px) {\n  .showcase {\n    padding: 24px 16px;\n  }\n  .showcase-header,\n  .section-heading,\n  .grid-heading,\n  .grid-footer {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .showcase-nav {\n    overflow-x: auto;\n  }\n  .control-layout,\n  .field-grid,\n  .summary-list,\n  .customer-detail,\n  .detail-form {\n    grid-template-columns: 1fr;\n  }\n  .field-span {\n    grid-column: auto;\n  }\n  .filters {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .detail-actions,\n  .detail-metrics {\n    grid-column: auto;\n  }\n  .sandbox-banner {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .sandbox-status {\n    justify-items: start;\n  }\n}\n"], encapsulation: 3, changeDetection: 0 });
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(App, [{
@@ -35715,49 +35707,58 @@ var App = class _App {
   </section>\r
 \r
   <section id="angular-northwind" class="data-section" aria-labelledby="data-heading">\r
-    <div class="section-heading">\r
-      <div>\r
-        <span class="eyebrow">API-backed state</span>\r
-        <h2 id="data-heading">Northwind data binding</h2>\r
-      </div>\r
-      <div class="sandbox-toolbar">\r
-        <p>Server-driven filtering, sorting, paging, and selection against the Northwind API.</p>\r
-        <label class="sandbox-toggle">\r
-          <input\r
-            type="checkbox"\r
-            role="switch"\r
-            [checked]="sandboxEnabled()"\r
-            (change)="toggleSandbox($any($event.target).checked)"\r
-          />\r
-          <span>Editing sandbox</span>\r
-        </label>\r
-        @if (sandboxEnabled()) {\r
-          <button type="button" class="secondary-button" (click)="resetSandbox()">\r
-            Reset sandbox\r
-          </button>\r
-        }\r
-      </div>\r
-    </div>\r
-\r
-    @if (sandboxEnabled()) {\r
-      <div class="sandbox-banner">\r
-        <div>\r
-          <strong>Temporary editing enabled.</strong>\r
-          <span\r
-            >Changes are isolated to this browser session and never reach the canonical Northwind\r
-            database.</span\r
-          >\r
-        </div>\r
-        <div class="sandbox-status">\r
-          <span [class.changed]="sandboxHasChanges()">\r
-            {{ sandboxHasChanges() ? 'Changes made' : 'Vanilla copy' }}\r
-          </span>\r
-          @if (sandboxExpiresAt()) {\r
-            <small>Expires after 30 minutes without sandbox activity</small>\r
-          }\r
-        </div>\r
-      </div>\r
-    }\r
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">API-backed state</span>
+        <h2 id="data-heading">Northwind data binding</h2>
+      </div>
+      <p>Server-driven filtering, sorting, paging, and selection against the Northwind API.</p>
+    </div>
+
+    <aside class="sandbox-panel" aria-labelledby="sandbox-heading">
+      <div>
+        <span class="eyebrow">Session-isolated editing</span>
+        <h3 id="sandbox-heading">Editing Sandbox</h3>
+        <p>
+          Changes use an in-memory browser-session copy. Canonical Northwind customers and every
+          order remain read-only.
+        </p>
+      </div>
+      <label class="switch-row">
+        <span>
+          <strong>{{ sandboxEnabled() ? 'Enabled' : 'Disabled' }}</strong>
+          <small>{{ sandboxHasChanges() ? 'Changes made' : 'Vanilla copy' }}</small>
+        </span>
+        <input
+          class="switch"
+          type="checkbox"
+          role="switch"
+          aria-label="Editing sandbox"
+          [checked]="sandboxEnabled()"
+          (change)="toggleSandbox($any($event.target).checked)"
+        />
+      </label>
+      @if (sandboxEnabled()) {
+        <button type="button" class="secondary-button" (click)="resetSandbox()">
+          Reset sandbox
+        </button>
+      }
+      @if (sandboxEnabled() && sandboxExpiresAt()) {
+        <small>Session copy expires after 30 minutes without sandbox activity.</small>
+      }
+      @if (sandboxNotice()) {
+        <div class="notification" role="status" aria-live="polite">
+          <span>{{ sandboxNotice() }}</span>
+          <button
+            type="button"
+            aria-label="Dismiss sandbox notification"
+            (click)="sandboxNotice.set('')"
+          >
+            \xD7
+          </button>
+        </div>
+      }
+    </aside>
 \r
     <section class="grid-card" aria-labelledby="customers-heading">\r
       <div class="grid-heading">\r
@@ -35972,18 +35973,6 @@ var App = class _App {
           </div>\r
         </dl>\r
       }\r
-      @if (sandboxNotice()) {\r
-        <div class="notification detail-notice" role="status" aria-live="polite">\r
-          <span>{{ sandboxNotice() }}</span>\r
-          <button\r
-            type="button"\r
-            aria-label="Dismiss sandbox notification"\r
-            (click)="sandboxNotice.set('')"\r
-          >\r
-            \xD7\r
-          </button>\r
-        </div>\r
-      }\r
     </section>\r
 \r
     <section class="orders-card" aria-labelledby="orders-heading">\r
@@ -36106,7 +36095,7 @@ var App = class _App {
     </form>\r
   </dialog>\r
 </div>\r
-`, styles: ["/* src/app/app.css */\n:host {\n  --text: #6b6375;\n  --text-h: #08060d;\n  --bg: #fff;\n  --border: #e5e4e7;\n  --code-bg: #f4f3ec;\n  --accent: #aa3bff;\n  --accent-bg: rgb(170 59 255 / 10%);\n  --accent-border: rgb(170 59 255 / 50%);\n  --shadow: rgb(0 0 0 / 10%) 0 10px 15px -3px, rgb(0 0 0 / 5%) 0 4px 6px -2px;\n  background: var(--bg);\n  color: var(--text);\n  color-scheme: light dark;\n  display: block;\n  font-family: inherit;\n}\n@media (prefers-color-scheme: dark) {\n  :host {\n    --text: #9ca3af;\n    --text-h: #f3f4f6;\n    --bg: #16171d;\n    --border: #2e303a;\n    --code-bg: #1f2028;\n    --accent: #c084fc;\n    --accent-bg: rgb(192 132 252 / 15%);\n    --accent-border: rgb(192 132 252 / 50%);\n    --shadow: rgb(0 0 0 / 40%) 0 10px 15px -3px, rgb(0 0 0 / 25%) 0 4px 6px -2px;\n  }\n}\n* {\n  box-sizing: border-box;\n}\n.showcase {\n  padding: 48px;\n  text-align: left;\n}\n.showcase-header {\n  align-items: flex-start;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 32px;\n}\n.showcase-header h1 {\n  margin: 6px 0 10px;\n}\n.showcase-header p {\n  max-width: 680px;\n}\n.showcase-nav {\n  display: flex;\n  gap: 8px;\n  margin: -12px 0 32px;\n}\n.showcase-nav a {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 999px;\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 700;\n  padding: 7px 11px;\n  text-decoration: none;\n}\n.showcase-nav a:hover {\n  border-color: var(--accent-border);\n  color: var(--accent);\n}\n.controls-section,\n.data-section {\n  scroll-margin-top: 90px;\n}\n.eyebrow {\n  color: var(--accent);\n  font-size: 13px;\n  font-weight: 700;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n}\n.framework-badge {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 999px;\n  color: var(--text-h);\n  display: flex;\n  font-weight: 650;\n  gap: 10px;\n  padding: 10px 14px;\n}\n.framework-badge > span {\n  align-items: center;\n  background: var(--accent);\n  border-radius: 50%;\n  color: white;\n  display: inline-flex;\n  height: 24px;\n  justify-content: center;\n  width: 24px;\n}\n.controls-section {\n  margin-bottom: 32px;\n}\n.data-section {\n  margin-top: 40px;\n}\n.section-heading {\n  align-items: end;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 18px;\n}\n.section-heading h2 {\n  margin: 4px 0 0;\n}\n.section-heading p {\n  font-size: 15px;\n  max-width: 560px;\n}\n.sandbox-toolbar {\n  align-items: end;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n  justify-content: flex-end;\n  max-width: 580px;\n}\n.sandbox-toolbar p {\n  flex-basis: 100%;\n}\n.sandbox-toggle {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: flex;\n  gap: 8px;\n  min-height: 40px;\n  padding: 7px 11px;\n}\n.sandbox-toggle input {\n  accent-color: var(--accent);\n}\n.sandbox-banner {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 8px;\n  justify-content: space-between;\n  margin-bottom: 14px;\n  padding: 12px 16px;\n}\n.sandbox-banner > div:first-child,\n.sandbox-status {\n  display: grid;\n}\n.sandbox-status {\n  flex: 0 0 auto;\n  justify-items: end;\n}\n.sandbox-status > span {\n  background: var(--code-bg);\n  border-radius: 999px;\n  font-size: 12px;\n  font-weight: 700;\n  padding: 3px 8px;\n}\n.sandbox-status > span.changed {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.sandbox-status small {\n  font-size: 11px;\n  margin-top: 3px;\n}\n.control-layout {\n  display: grid;\n  gap: 18px;\n  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);\n}\n.control-layout > *,\n.field-grid > * {\n  min-width: 0;\n}\n.control-stack {\n  display: grid;\n  gap: 18px;\n}\n.control-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  padding: 22px;\n}\n.control-card h3 {\n  color: var(--text-h);\n  font-size: 18px;\n  margin: 0 0 18px;\n}\n.field-grid {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.field-span {\n  grid-column: 1 / -1;\n}\nlabel {\n  color: var(--text-h);\n  display: grid;\n  font-size: 13px;\n  font-weight: 650;\n  gap: 5px;\n}\ninput,\nselect,\nbutton {\n  font: inherit;\n}\ninput:not([type=checkbox]):not([type=radio]):not([type=range]),\nselect {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  min-height: 42px;\n  padding: 8px 11px;\n}\n.form-card input:not([type=checkbox]):not([type=radio]),\n.form-card select {\n  width: 100%;\n}\n.field-help,\n.field-error {\n  font-size: 12px;\n  font-weight: 450;\n}\n.field-help {\n  color: var(--text);\n}\n.field-error {\n  color: #b42318;\n}\ninput[aria-invalid=true] {\n  border-color: #d92d20;\n}\nfieldset {\n  border: 0;\n  margin: 20px 0 0;\n  padding: 0;\n}\nlegend {\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 650;\n  margin-bottom: 8px;\n}\n.choice-row,\n.form-actions {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n.choice {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: flex;\n  gap: 7px;\n  padding: 7px 10px;\n}\n.choice input,\n.range-field input {\n  accent-color: var(--accent);\n}\n.form-actions {\n  margin-top: 22px;\n}\n.primary-button,\n.secondary-button {\n  border-radius: 7px;\n  cursor: pointer;\n  font-weight: 700;\n  min-height: 40px;\n  padding: 8px 13px;\n}\n.primary-button {\n  background: var(--accent);\n  border: 1px solid var(--accent);\n  color: white;\n}\n.secondary-button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  color: var(--text-h);\n}\n.primary-button:disabled,\n.secondary-button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n.switch-row {\n  align-items: center;\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n}\n.switch-row > span {\n  display: grid;\n}\n.switch-row small {\n  color: var(--text);\n  font-weight: 450;\n}\n.switch {\n  accent-color: var(--accent);\n  height: 24px;\n  width: 44px;\n}\n.range-field {\n  margin-top: 22px;\n}\n.range-field > span {\n  display: flex;\n  justify-content: space-between;\n}\n.range-field input,\nprogress {\n  width: 100%;\n}\nprogress {\n  accent-color: var(--accent);\n  height: 8px;\n  margin-top: 12px;\n}\n.tabs {\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 4px;\n  padding-bottom: 12px;\n}\n.tabs button {\n  background: transparent;\n  border: 0;\n  border-radius: 6px;\n  color: var(--text);\n  cursor: pointer;\n  font-weight: 700;\n  padding: 7px 10px;\n}\n.tabs button[aria-selected=true] {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.tab-panel {\n  min-height: 155px;\n  padding-top: 18px;\n}\n.summary-list {\n  display: grid;\n  gap: 10px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n}\n.summary-list div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.summary-list dt {\n  font-size: 12px;\n}\n.summary-list dd {\n  color: var(--text-h);\n  font-weight: 700;\n  margin: 2px 0 0;\n}\ndetails {\n  border-top: 1px solid var(--border);\n  font-size: 14px;\n  padding-top: 12px;\n}\nsummary {\n  color: var(--text-h);\n  cursor: pointer;\n  font-weight: 700;\n}\ndetails p {\n  padding-top: 10px;\n}\n.notification {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n  margin-top: 14px;\n  padding: 12px 16px;\n}\n.notification button {\n  background: transparent;\n  border: 0;\n  color: var(--text-h);\n  cursor: pointer;\n  font-size: 22px;\n}\ndialog {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n  color: var(--text);\n  max-width: 430px;\n  padding: 26px;\n}\ndialog::backdrop {\n  -webkit-backdrop-filter: blur(3px);\n  backdrop-filter: blur(3px);\n  background: rgb(8 6 13 / 68%);\n}\ndialog h2 {\n  margin: 8px 0 10px;\n}\ndialog .primary-button {\n  margin-top: 22px;\n}\ninput:focus,\nselect:focus,\nbutton:focus-visible {\n  outline: 2px solid var(--accent);\n  outline-offset: 2px;\n}\n.grid-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  box-shadow: var(--shadow);\n  overflow: hidden;\n}\n.grid-heading,\n.grid-footer {\n  align-items: end;\n  display: flex;\n  gap: 24px;\n  justify-content: space-between;\n  padding: 22px 24px;\n}\n.grid-heading {\n  border-bottom: 1px solid var(--border);\n}\n.grid-heading h3 {\n  color: var(--text-h);\n  font-size: 22px;\n  margin: 0 0 4px;\n}\n.grid-heading p,\n.grid-footer {\n  font-size: 14px;\n}\n.filters {\n  display: flex;\n  gap: 12px;\n}\n.table-wrap {\n  min-height: 486px;\n  overflow-x: auto;\n  position: relative;\n}\ntable {\n  border-collapse: collapse;\n  width: 100%;\n}\nth,\ntd {\n  border-bottom: 1px solid var(--border);\n  padding: 13px 16px;\n  text-align: left;\n  white-space: nowrap;\n}\nth {\n  background: var(--code-bg);\n  color: var(--text-h);\n  font-size: 12px;\n}\nth button {\n  align-items: center;\n  background: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-flex;\n  font-weight: 700;\n  gap: 7px;\n  padding: 0;\n}\nth button.active-sort {\n  color: var(--accent);\n}\ntbody tr {\n  cursor: pointer;\n}\ntbody tr:hover,\ntbody tr.selected {\n  background: var(--accent-bg);\n}\ncode {\n  background: var(--code-bg);\n  border-radius: 4px;\n  padding: 2px 5px;\n}\n.status {\n  inset: 50% auto auto 50%;\n  position: absolute;\n  transform: translate(-50%, -50%);\n}\n.status.error {\n  background: #fef3f2;\n  border: 1px solid #fecdca;\n  border-radius: 8px;\n  color: #b42318;\n  margin: 14px 24px;\n  padding: 12px 16px;\n  position: static;\n  transform: none;\n}\n.pagination {\n  align-items: center;\n  display: flex;\n  gap: 10px;\n}\n.pagination button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  cursor: pointer;\n  min-height: 36px;\n  padding: 6px 10px;\n}\n.pagination button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n.detail-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  margin-top: 18px;\n  overflow: hidden;\n}\n.orders-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  margin-top: 18px;\n  overflow: hidden;\n}\n.orders-layout {\n  display: grid;\n  grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);\n}\n.order-list,\n.order-detail {\n  min-width: 0;\n  padding: 20px;\n}\n.order-list {\n  border-right: 1px solid var(--border);\n}\n.order-list h4,\n.order-detail h4 {\n  color: var(--text-h);\n  font-size: 15px;\n  margin: 0 0 14px;\n}\n.order-list > button {\n  align-items: center;\n  background: transparent;\n  border: 1px solid transparent;\n  border-radius: 8px;\n  color: var(--text);\n  cursor: pointer;\n  display: flex;\n  gap: 12px;\n  justify-content: space-between;\n  padding: 11px 12px;\n  text-align: left;\n  width: 100%;\n}\n.order-list > button:hover,\n.order-list > button.selected {\n  background: var(--accent-bg);\n  border-color: var(--accent-border);\n}\n.order-list > button > span {\n  display: grid;\n  gap: 2px;\n}\n.order-list > button > span:last-child {\n  justify-items: end;\n}\n.order-list strong {\n  color: var(--text-h);\n}\n.order-list small {\n  font-size: 12px;\n}\n.order-summary,\n.order-totals {\n  display: grid;\n  gap: 10px;\n  margin: 0;\n}\n.order-summary {\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.order-summary div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.order-summary dt,\n.order-totals dt {\n  font-size: 12px;\n}\n.order-summary dd,\n.order-totals dd {\n  color: var(--text-h);\n  font-weight: 650;\n  margin: 2px 0 0;\n}\n.line-items-wrap {\n  border: 1px solid var(--border);\n  border-radius: 8px;\n  margin-top: 16px;\n  overflow-x: auto;\n}\n.line-items {\n  font-size: 13px;\n}\n.line-items caption {\n  clip: rect(0 0 0 0);\n  height: 1px;\n  overflow: hidden;\n  position: absolute;\n  width: 1px;\n}\n.line-items th,\n.line-items td {\n  padding: 9px 10px;\n}\n.line-items th:not(:first-child),\n.line-items td:not(:first-child) {\n  text-align: right;\n}\n.order-totals {\n  justify-content: end;\n  margin-top: 14px;\n  text-align: right;\n}\n.order-totals div {\n  display: grid;\n  gap: 12px;\n  grid-template-columns: 80px 110px;\n}\n.order-totals div:last-child {\n  border-top: 1px solid var(--border);\n  padding-top: 7px;\n}\n.detail-heading {\n  align-items: center;\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n  padding: 20px 24px;\n}\n.detail-heading h3 {\n  color: var(--text-h);\n  font-size: 22px;\n  margin: 3px 0 0;\n}\n.detail-status {\n  padding: 24px;\n}\n.detail-status.error {\n  color: #b42318;\n}\n.customer-detail {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n  padding: 24px;\n}\n.detail-form {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  padding: 24px;\n}\n.detail-form > * {\n  min-width: 0;\n}\n.detail-form input {\n  width: 100%;\n}\n.detail-actions,\n.detail-metrics {\n  grid-column: 1 / -1;\n}\n.detail-actions,\n.detail-metrics {\n  align-items: center;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n.detail-metrics {\n  color: var(--text-h);\n  font-weight: 700;\n  gap: 18px;\n}\n.unsaved-indicator {\n  background: #fffaeb;\n  border-radius: 999px;\n  color: #dc6803;\n  font-size: 12px;\n  padding: 3px 8px;\n}\n.detail-notice {\n  margin: 0 24px 24px;\n}\n.customer-detail > * {\n  min-width: 0;\n}\n.customer-detail div {\n  background: var(--code-bg);\n  border-radius: 8px;\n  padding: 12px;\n}\n.customer-detail dt {\n  font-size: 12px;\n}\n.customer-detail dd {\n  color: var(--text-h);\n  font-weight: 650;\n  margin: 3px 0 0;\n}\n@media (prefers-reduced-motion: reduce) {\n  *,\n  *::before,\n  *::after {\n    animation-duration: 0.01ms !important;\n    animation-iteration-count: 1 !important;\n    scroll-behavior: auto !important;\n    transition-duration: 0.01ms !important;\n  }\n}\n@media (forced-colors: active) {\n  .framework-badge,\n  .control-card,\n  .grid-card,\n  .detail-card,\n  .orders-card {\n    border: 1px solid CanvasText;\n  }\n}\n@media (max-width: 1100px) {\n  .control-layout {\n    grid-template-columns: 1fr;\n  }\n  .data-section .section-heading {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .sandbox-toolbar {\n    justify-content: flex-start;\n    max-width: none;\n  }\n  .orders-layout {\n    grid-template-columns: 1fr;\n  }\n  .order-list {\n    border-bottom: 1px solid var(--border);\n    border-right: 0;\n  }\n}\n@media (max-width: 760px) {\n  .showcase {\n    padding: 24px 16px;\n  }\n  .showcase-header,\n  .section-heading,\n  .grid-heading,\n  .grid-footer {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .showcase-nav {\n    overflow-x: auto;\n  }\n  .control-layout,\n  .field-grid,\n  .summary-list,\n  .customer-detail,\n  .detail-form {\n    grid-template-columns: 1fr;\n  }\n  .field-span {\n    grid-column: auto;\n  }\n  .filters {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .detail-actions,\n  .detail-metrics {\n    grid-column: auto;\n  }\n  .sandbox-banner {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .sandbox-status {\n    justify-items: start;\n  }\n}\n"] }]
+`, styles: ["/* src/app/app.css */\n:host {\n  --text: #6b6375;\n  --text-h: #08060d;\n  --bg: #fff;\n  --border: #e5e4e7;\n  --code-bg: #f4f3ec;\n  --accent: #aa3bff;\n  --accent-bg: rgb(170 59 255 / 10%);\n  --accent-border: rgb(170 59 255 / 50%);\n  --shadow: rgb(0 0 0 / 10%) 0 10px 15px -3px, rgb(0 0 0 / 5%) 0 4px 6px -2px;\n  background: var(--bg);\n  border-radius: 14px;\n  color: var(--text);\n  color-scheme: light dark;\n  display: block;\n  font-family: inherit;\n  overflow: hidden;\n}\n@media (prefers-color-scheme: dark) {\n  :host {\n    --text: #9ca3af;\n    --text-h: #f3f4f6;\n    --bg: #16171d;\n    --border: #2e303a;\n    --code-bg: #1f2028;\n    --accent: #c084fc;\n    --accent-bg: rgb(192 132 252 / 15%);\n    --accent-border: rgb(192 132 252 / 50%);\n    --shadow: rgb(0 0 0 / 40%) 0 10px 15px -3px, rgb(0 0 0 / 25%) 0 4px 6px -2px;\n  }\n}\n* {\n  box-sizing: border-box;\n}\n.showcase {\n  padding: 48px;\n  text-align: left;\n}\n.showcase-header {\n  align-items: flex-start;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 32px;\n}\n.showcase-header h1 {\n  margin: 6px 0 10px;\n}\n.showcase-header p {\n  max-width: 680px;\n}\n.showcase-nav {\n  display: flex;\n  gap: 8px;\n  margin: -12px 0 32px;\n}\n.showcase-nav a {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 999px;\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 700;\n  padding: 7px 11px;\n  text-decoration: none;\n}\n.showcase-nav a:hover {\n  border-color: var(--accent-border);\n  color: var(--accent);\n}\n.controls-section,\n.data-section {\n  scroll-margin-top: 90px;\n}\n.eyebrow {\n  color: var(--accent);\n  font-size: 13px;\n  font-weight: 700;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n}\n.framework-badge {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 999px;\n  color: var(--text-h);\n  display: flex;\n  font-weight: 650;\n  gap: 10px;\n  padding: 10px 14px;\n}\n.framework-badge > span {\n  align-items: center;\n  background: var(--accent);\n  border-radius: 50%;\n  color: white;\n  display: inline-flex;\n  height: 24px;\n  justify-content: center;\n  width: 24px;\n}\n.controls-section {\n  margin-bottom: 32px;\n}\n.data-section {\n  margin-top: 40px;\n}\n.section-heading {\n  align-items: end;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 18px;\n}\n.section-heading h2 {\n  margin: 4px 0 0;\n}\n.section-heading p {\n  font-size: 15px;\n  max-width: 560px;\n}\n.sandbox-toolbar {\n  align-items: end;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n  justify-content: flex-end;\n  max-width: 580px;\n}\n.sandbox-toolbar p {\n  flex-basis: 100%;\n}\n.sandbox-toggle {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: flex;\n  gap: 8px;\n  min-height: 40px;\n  padding: 7px 11px;\n}\n.sandbox-toggle input {\n  accent-color: var(--accent);\n}\n.sandbox-banner {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 8px;\n  justify-content: space-between;\n  margin-bottom: 14px;\n  padding: 12px 16px;\n}\n.sandbox-banner > div:first-child,\n.sandbox-status {\n  display: grid;\n}\n.sandbox-status {\n  flex: 0 0 auto;\n  justify-items: end;\n}\n.sandbox-status > span {\n  background: var(--code-bg);\n  border-radius: 999px;\n  font-size: 12px;\n  font-weight: 700;\n  padding: 3px 8px;\n}\n.sandbox-status > span.changed {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.sandbox-status small {\n  font-size: 11px;\n  margin-top: 3px;\n}\n.control-layout {\n  display: grid;\n  gap: 18px;\n  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);\n}\n.control-layout > *,\n.field-grid > * {\n  min-width: 0;\n}\n.control-stack {\n  display: grid;\n  gap: 18px;\n}\n.control-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  padding: 22px;\n}\n.control-card h3 {\n  color: var(--text-h);\n  font-size: 18px;\n  margin: 0 0 18px;\n}\n.field-grid {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.field-span {\n  grid-column: 1 / -1;\n}\nlabel {\n  color: var(--text-h);\n  display: grid;\n  font-size: 13px;\n  font-weight: 650;\n  gap: 5px;\n}\ninput,\nselect,\nbutton {\n  font: inherit;\n}\ninput:not([type=checkbox]):not([type=radio]):not([type=range]),\nselect {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  min-height: 42px;\n  padding: 8px 11px;\n}\n.form-card input:not([type=checkbox]):not([type=radio]),\n.form-card select {\n  width: 100%;\n}\n.field-help,\n.field-error {\n  font-size: 12px;\n  font-weight: 450;\n}\n.field-help {\n  color: var(--text);\n}\n.field-error {\n  color: #b42318;\n}\ninput[aria-invalid=true] {\n  border-color: #d92d20;\n}\nfieldset {\n  border: 0;\n  margin: 20px 0 0;\n  padding: 0;\n}\nlegend {\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 650;\n  margin-bottom: 8px;\n}\n.choice-row,\n.form-actions {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n.choice {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: flex;\n  gap: 7px;\n  padding: 7px 10px;\n}\n.choice input,\n.range-field input {\n  accent-color: var(--accent);\n}\n.form-actions {\n  margin-top: 22px;\n}\n.primary-button,\n.secondary-button {\n  border-radius: 7px;\n  cursor: pointer;\n  font-weight: 700;\n  min-height: 40px;\n  padding: 8px 13px;\n}\n.primary-button {\n  background: var(--accent);\n  border: 1px solid var(--accent);\n  color: white;\n}\n.secondary-button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  color: var(--text-h);\n}\n.primary-button:disabled,\n.secondary-button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n.switch-row {\n  align-items: center;\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n}\n.switch-row > span {\n  display: grid;\n}\n.switch-row small {\n  color: var(--text);\n  font-weight: 450;\n}\n.switch {\n  accent-color: var(--accent);\n  height: 24px;\n  width: 44px;\n}\n.range-field {\n  margin-top: 22px;\n}\n.range-field > span {\n  display: flex;\n  justify-content: space-between;\n}\n.range-field input,\nprogress {\n  width: 100%;\n}\nprogress {\n  accent-color: var(--accent);\n  height: 8px;\n  margin-top: 12px;\n}\n.tabs {\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 4px;\n  padding-bottom: 12px;\n}\n.tabs button {\n  background: transparent;\n  border: 0;\n  border-radius: 6px;\n  color: var(--text);\n  cursor: pointer;\n  font-weight: 700;\n  padding: 7px 10px;\n}\n.tabs button[aria-selected=true] {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.tab-panel {\n  min-height: 155px;\n  padding-top: 18px;\n}\n.summary-list {\n  display: grid;\n  gap: 10px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n}\n.summary-list div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.summary-list dt {\n  font-size: 12px;\n}\n.summary-list dd {\n  color: var(--text-h);\n  font-weight: 700;\n  margin: 2px 0 0;\n}\ndetails {\n  border-top: 1px solid var(--border);\n  font-size: 14px;\n  padding-top: 12px;\n}\nsummary {\n  color: var(--text-h);\n  cursor: pointer;\n  font-weight: 700;\n}\ndetails p {\n  padding-top: 10px;\n}\n.notification {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n  margin-top: 14px;\n  padding: 12px 16px;\n}\n.notification button {\n  background: transparent;\n  border: 0;\n  color: var(--text-h);\n  cursor: pointer;\n  font-size: 22px;\n}\ndialog {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n  color: var(--text);\n  max-width: 430px;\n  padding: 26px;\n}\ndialog::backdrop {\n  -webkit-backdrop-filter: blur(3px);\n  backdrop-filter: blur(3px);\n  background: rgb(8 6 13 / 68%);\n}\ndialog h2 {\n  margin: 8px 0 10px;\n}\ndialog .primary-button {\n  margin-top: 22px;\n}\ninput:focus,\nselect:focus,\nbutton:focus-visible {\n  outline: 2px solid var(--accent);\n  outline-offset: 2px;\n}\n.grid-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  box-shadow: var(--shadow);\n  overflow: hidden;\n}\n.grid-heading,\n.grid-footer {\n  align-items: end;\n  display: flex;\n  gap: 24px;\n  justify-content: space-between;\n  padding: 22px 24px;\n}\n.grid-heading {\n  border-bottom: 1px solid var(--border);\n}\n.grid-heading h3 {\n  color: var(--text-h);\n  font-size: 22px;\n  margin: 0 0 4px;\n}\n.grid-heading p,\n.grid-footer {\n  font-size: 14px;\n}\n.filters {\n  display: flex;\n  gap: 12px;\n}\n.table-wrap {\n  min-height: 486px;\n  overflow-x: auto;\n  position: relative;\n}\ntable {\n  border-collapse: collapse;\n  width: 100%;\n}\nth,\ntd {\n  border-bottom: 1px solid var(--border);\n  padding: 13px 16px;\n  text-align: left;\n  white-space: nowrap;\n}\nth {\n  background: var(--code-bg);\n  color: var(--text-h);\n  font-size: 12px;\n}\nth button {\n  align-items: center;\n  background: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-flex;\n  font-weight: 700;\n  gap: 7px;\n  padding: 0;\n}\nth button.active-sort {\n  color: var(--accent);\n}\ntbody tr {\n  cursor: pointer;\n}\ntbody tr:hover,\ntbody tr.selected {\n  background: var(--accent-bg);\n}\ncode {\n  background: var(--code-bg);\n  border-radius: 4px;\n  padding: 2px 5px;\n}\n.status {\n  inset: 50% auto auto 50%;\n  position: absolute;\n  transform: translate(-50%, -50%);\n}\n.status.error {\n  background: #fef3f2;\n  border: 1px solid #fecdca;\n  border-radius: 8px;\n  color: #b42318;\n  margin: 14px 24px;\n  padding: 12px 16px;\n  position: static;\n  transform: none;\n}\n.pagination {\n  align-items: center;\n  display: flex;\n  gap: 10px;\n}\n.pagination button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  cursor: pointer;\n  min-height: 36px;\n  padding: 6px 10px;\n}\n.pagination button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n.detail-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  margin-top: 18px;\n  overflow: hidden;\n}\n.orders-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  margin-top: 18px;\n  overflow: hidden;\n}\n.orders-layout {\n  display: grid;\n  grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);\n}\n.order-list,\n.order-detail {\n  min-width: 0;\n  padding: 20px;\n}\n.order-list {\n  border-right: 1px solid var(--border);\n}\n.order-list h4,\n.order-detail h4 {\n  color: var(--text-h);\n  font-size: 15px;\n  margin: 0 0 14px;\n}\n.order-list > button {\n  align-items: center;\n  background: transparent;\n  border: 1px solid transparent;\n  border-radius: 8px;\n  color: var(--text);\n  cursor: pointer;\n  display: flex;\n  gap: 12px;\n  justify-content: space-between;\n  padding: 11px 12px;\n  text-align: left;\n  width: 100%;\n}\n.order-list > button:hover,\n.order-list > button.selected {\n  background: var(--accent-bg);\n  border-color: var(--accent-border);\n}\n.order-list > button > span {\n  display: grid;\n  gap: 2px;\n}\n.order-list > button > span:last-child {\n  justify-items: end;\n}\n.order-list strong {\n  color: var(--text-h);\n}\n.order-list small {\n  font-size: 12px;\n}\n.order-summary,\n.order-totals {\n  display: grid;\n  gap: 10px;\n  margin: 0;\n}\n.order-summary {\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.order-summary div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.order-summary dt,\n.order-totals dt {\n  font-size: 12px;\n}\n.order-summary dd,\n.order-totals dd {\n  color: var(--text-h);\n  font-weight: 650;\n  margin: 2px 0 0;\n}\n.line-items-wrap {\n  border: 1px solid var(--border);\n  border-radius: 8px;\n  margin-top: 16px;\n  overflow-x: auto;\n}\n.line-items {\n  font-size: 13px;\n}\n.line-items caption {\n  clip: rect(0 0 0 0);\n  height: 1px;\n  overflow: hidden;\n  position: absolute;\n  width: 1px;\n}\n.line-items th,\n.line-items td {\n  padding: 9px 10px;\n}\n.line-items th:not(:first-child),\n.line-items td:not(:first-child) {\n  text-align: right;\n}\n.order-totals {\n  justify-content: end;\n  margin-top: 14px;\n  text-align: right;\n}\n.order-totals div {\n  display: grid;\n  gap: 12px;\n  grid-template-columns: 80px 110px;\n}\n.order-totals div:last-child {\n  border-top: 1px solid var(--border);\n  padding-top: 7px;\n}\n.detail-heading {\n  align-items: center;\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n  padding: 20px 24px;\n}\n.detail-heading h3 {\n  color: var(--text-h);\n  font-size: 22px;\n  margin: 3px 0 0;\n}\n.detail-status {\n  padding: 24px;\n}\n.detail-status.error {\n  color: #b42318;\n}\n.customer-detail {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n  padding: 24px;\n}\n.detail-form {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  padding: 24px;\n}\n.detail-form > * {\n  min-width: 0;\n}\n.detail-form input {\n  width: 100%;\n}\n.detail-actions,\n.detail-metrics {\n  grid-column: 1 / -1;\n}\n.detail-actions,\n.detail-metrics {\n  align-items: center;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n.detail-metrics {\n  color: var(--text-h);\n  font-weight: 700;\n  gap: 18px;\n}\n.unsaved-indicator {\n  background: #fffaeb;\n  border-radius: 999px;\n  color: #dc6803;\n  font-size: 12px;\n  padding: 3px 8px;\n}\n.detail-notice {\n  margin: 0 24px 24px;\n}\n.customer-detail > * {\n  min-width: 0;\n}\n.customer-detail div {\n  background: var(--code-bg);\n  border-radius: 8px;\n  padding: 12px;\n}\n.customer-detail dt {\n  font-size: 12px;\n}\n.customer-detail dd {\n  color: var(--text-h);\n  font-weight: 650;\n  margin: 3px 0 0;\n}\n.control-card,\n.grid-card,\n.detail-card,\n.orders-card,\n.sandbox-panel {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n}\n.sandbox-panel {\n  align-items: center;\n  display: grid;\n  gap: 16px;\n  grid-template-columns: minmax(0, 1fr) auto auto;\n  margin-bottom: 18px;\n  padding: 22px;\n}\n.sandbox-panel h3,\n.sandbox-panel p {\n  margin: 4px 0 0;\n}\n.sandbox-panel .notification,\n.sandbox-panel > small {\n  grid-column: 1 / -1;\n  margin: 0;\n}\n@media (prefers-reduced-motion: reduce) {\n  *,\n  *::before,\n  *::after {\n    animation-duration: 0.01ms !important;\n    animation-iteration-count: 1 !important;\n    scroll-behavior: auto !important;\n    transition-duration: 0.01ms !important;\n  }\n}\n@media (forced-colors: active) {\n  .framework-badge,\n  .control-card,\n  .grid-card,\n  .detail-card,\n  .orders-card {\n    border: 1px solid CanvasText;\n  }\n}\n@media (max-width: 1100px) {\n  .control-layout {\n    grid-template-columns: 1fr;\n  }\n  .data-section .section-heading {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .sandbox-toolbar {\n    justify-content: flex-start;\n    max-width: none;\n  }\n  .orders-layout {\n    grid-template-columns: 1fr;\n  }\n  .sandbox-panel {\n    align-items: start;\n    grid-template-columns: 1fr;\n  }\n  .sandbox-panel .notification,\n  .sandbox-panel > small {\n    grid-column: auto;\n  }\n  .order-list {\n    border-bottom: 1px solid var(--border);\n    border-right: 0;\n  }\n}\n@media (max-width: 760px) {\n  .showcase {\n    padding: 24px 16px;\n  }\n  .showcase-header,\n  .section-heading,\n  .grid-heading,\n  .grid-footer {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .showcase-nav {\n    overflow-x: auto;\n  }\n  .control-layout,\n  .field-grid,\n  .summary-list,\n  .customer-detail,\n  .detail-form {\n    grid-template-columns: 1fr;\n  }\n  .field-span {\n    grid-column: auto;\n  }\n  .filters {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .detail-actions,\n  .detail-metrics {\n    grid-column: auto;\n  }\n  .sandbox-banner {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .sandbox-status {\n    justify-items: start;\n  }\n}\n"] }]
   }], () => [], { dialog: [{ type: ViewChild, args: ["profileDialog", { isSignal: true }] }], warnBeforeUnload: [{
     type: HostListener,
     args: ["window:beforeunload", ["$event"]]

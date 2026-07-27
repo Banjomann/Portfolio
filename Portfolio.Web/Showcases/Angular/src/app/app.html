@@ -242,44 +242,53 @@
         <span class="eyebrow">API-backed state</span>
         <h2 id="data-heading">Northwind data binding</h2>
       </div>
-      <div class="sandbox-toolbar">
-        <p>Server-driven filtering, sorting, paging, and selection against the Northwind API.</p>
-        <label class="sandbox-toggle">
-          <input
-            type="checkbox"
-            role="switch"
-            [checked]="sandboxEnabled()"
-            (change)="toggleSandbox($any($event.target).checked)"
-          />
-          <span>Editing sandbox</span>
-        </label>
-        @if (sandboxEnabled()) {
-          <button type="button" class="secondary-button" (click)="resetSandbox()">
-            Reset sandbox
-          </button>
-        }
-      </div>
+      <p>Server-driven filtering, sorting, paging, and selection against the Northwind API.</p>
     </div>
 
-    @if (sandboxEnabled()) {
-      <div class="sandbox-banner">
-        <div>
-          <strong>Temporary editing enabled.</strong>
-          <span
-            >Changes are isolated to this browser session and never reach the canonical Northwind
-            database.</span
-          >
-        </div>
-        <div class="sandbox-status">
-          <span [class.changed]="sandboxHasChanges()">
-            {{ sandboxHasChanges() ? 'Changes made' : 'Vanilla copy' }}
-          </span>
-          @if (sandboxExpiresAt()) {
-            <small>Expires after 30 minutes without sandbox activity</small>
-          }
-        </div>
+    <aside class="sandbox-panel" aria-labelledby="sandbox-heading">
+      <div>
+        <span class="eyebrow">Session-isolated editing</span>
+        <h3 id="sandbox-heading">Editing Sandbox</h3>
+        <p>
+          Changes use an in-memory browser-session copy. Canonical Northwind customers and every
+          order remain read-only.
+        </p>
       </div>
-    }
+      <label class="switch-row">
+        <span>
+          <strong>{{ sandboxEnabled() ? 'Enabled' : 'Disabled' }}</strong>
+          <small>{{ sandboxHasChanges() ? 'Changes made' : 'Vanilla copy' }}</small>
+        </span>
+        <input
+          class="switch"
+          type="checkbox"
+          role="switch"
+          aria-label="Editing sandbox"
+          [checked]="sandboxEnabled()"
+          (change)="toggleSandbox($any($event.target).checked)"
+        />
+      </label>
+      @if (sandboxEnabled()) {
+        <button type="button" class="secondary-button" (click)="resetSandbox()">
+          Reset sandbox
+        </button>
+      }
+      @if (sandboxEnabled() && sandboxExpiresAt()) {
+        <small>Session copy expires after 30 minutes without sandbox activity.</small>
+      }
+      @if (sandboxNotice()) {
+        <div class="notification" role="status" aria-live="polite">
+          <span>{{ sandboxNotice() }}</span>
+          <button
+            type="button"
+            aria-label="Dismiss sandbox notification"
+            (click)="sandboxNotice.set('')"
+          >
+            ×
+          </button>
+        </div>
+      }
+    </aside>
 
     <section class="grid-card" aria-labelledby="customers-heading">
       <div class="grid-heading">
@@ -493,18 +502,6 @@
             <dd>{{ formatSales(detail.totalSales) }}</dd>
           </div>
         </dl>
-      }
-      @if (sandboxNotice()) {
-        <div class="notification detail-notice" role="status" aria-live="polite">
-          <span>{{ sandboxNotice() }}</span>
-          <button
-            type="button"
-            aria-label="Dismiss sandbox notification"
-            (click)="sandboxNotice.set('')"
-          >
-            ×
-          </button>
-        </div>
       }
     </section>
 
