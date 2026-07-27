@@ -4811,7 +4811,7 @@ function normalizeContainer(container) {
 }
 //#endregion
 //#region src/App.ce.vue?vue&type=style&index=0&inline&lang.css
-var App_ce_vue_vue_type_style_index_0_inline_lang_default = "\n:host {\r\n  color: #193330;\r\n  display: block;\r\n  font-family:\r\n    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\",\r\n    sans-serif;\n}\n* {\r\n  box-sizing: border-box;\n}\n.showcase-shell {\r\n  display: grid;\r\n  gap: 1.5rem;\n}\n.showcase-header,\r\nsection {\r\n  background: #f5fbf8;\r\n  border: 1px solid #c9ddd5;\r\n  border-radius: 1rem;\r\n  padding: clamp(1.25rem, 4vw, 2.5rem);\n}\n.section-intro {\r\n  color: #4c625e;\n}\n.notice {\r\n  align-items: center;\r\n  background: #dff6e9;\r\n  border: 1px solid #58a27e;\r\n  border-radius: 0.75rem;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  margin: 1rem 0;\r\n  padding: 0.75rem 1rem;\n}\n.gallery-grid,\r\n.gallery-stack {\r\n  display: grid;\r\n  gap: 1rem;\r\n  min-width: 0;\n}\n.gallery-grid {\r\n  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);\r\n  margin-top: 1.5rem;\n}\n.gallery-card {\r\n  background: rgb(255 255 255 / 72%);\r\n  border: 1px solid #c9ddd5;\r\n  border-radius: 0.8rem;\r\n  display: grid;\r\n  gap: 1rem;\r\n  min-width: 0;\r\n  padding: 1.25rem;\n}\n.card-heading h3,\r\n.card-heading p {\r\n  margin-bottom: 0;\n}\n.card-kicker {\r\n  color: #287a5b;\r\n  font-size: 0.7rem;\r\n  font-weight: 800;\r\n  letter-spacing: 0.1em;\r\n  text-transform: uppercase;\n}\nlabel {\r\n  display: grid;\r\n  font-weight: 700;\r\n  gap: 0.4rem;\n}\ninput,\r\nselect {\r\n  background: white;\r\n  border: 1px solid #84a69a;\r\n  border-radius: 0.45rem;\r\n  color: #193330;\r\n  font: inherit;\r\n  min-width: 0;\r\n  padding: 0.65rem 0.75rem;\n}\ninput:focus-visible,\r\nselect:focus-visible,\r\nsummary:focus-visible {\r\n  outline: 3px solid #41b883;\r\n  outline-offset: 2px;\n}\n.field-pair {\r\n  display: grid;\r\n  gap: 0.75rem;\r\n  grid-template-columns: 1fr 1fr;\n}\nfieldset {\r\n  border: 0;\r\n  margin: 0;\r\n  padding: 0;\n}\nlegend {\r\n  font-weight: 700;\r\n  margin-bottom: 0.5rem;\n}\n.choice-row,\r\n.button-row,\r\n[role=\"tablist\"] {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  gap: 0.65rem;\n}\n.choice-row label {\r\n  align-items: center;\r\n  display: flex;\r\n  font-weight: 500;\n}\n.field-error {\r\n  color: #a32424;\r\n  font-size: 0.85rem;\r\n  margin: -0.75rem 0 0;\n}\n.switch-row {\r\n  align-items: center;\r\n  display: flex;\r\n  justify-content: space-between;\n}\n.switch-row span {\r\n  display: grid;\n}\n.switch-row small {\r\n  font-weight: 400;\n}\n.switch-row input {\r\n  height: 1.4rem;\r\n  width: 2.6rem;\n}\ninput[type=\"range\"],\r\nprogress {\r\n  accent-color: #287a5b;\r\n  width: 100%;\n}\n.primary-button {\r\n  background: #287a5b;\r\n  color: white;\n}\n.secondary-button {\r\n  background: white;\n}\nbutton:disabled {\r\n  cursor: not-allowed;\r\n  opacity: 0.5;\n}\n.icon-button {\r\n  border: 0;\r\n  font-size: 1.25rem;\r\n  padding: 0.2rem 0.5rem;\n}\n[role=\"tab\"][aria-selected=\"true\"] {\r\n  background: #287a5b;\r\n  color: white;\n}\ndl {\r\n  display: grid;\r\n  gap: 0.6rem;\r\n  margin: 0;\n}\ndl div {\r\n  display: flex;\r\n  gap: 1rem;\r\n  justify-content: space-between;\n}\ndt {\r\n  font-weight: 700;\n}\ndd {\r\n  margin: 0;\r\n  overflow-wrap: anywhere;\r\n  text-align: right;\n}\ndetails {\r\n  border-top: 1px solid #c9ddd5;\r\n  padding-top: 1rem;\n}\nsummary {\r\n  cursor: pointer;\r\n  font-weight: 700;\n}\ndialog {\r\n  background: #f5fbf8;\r\n  border: 1px solid #72a790;\r\n  border-radius: 1rem;\r\n  color: #193330;\r\n  max-width: min(30rem, calc(100vw - 2rem));\r\n  padding: 0;\n}\ndialog::backdrop {\r\n  background: rgb(7 28 24 / 72%);\n}\n.dialog-content {\r\n  padding: 1.5rem;\n}\n.data-card {\r\n  background: rgb(255 255 255 / 72%);\r\n  border: 1px solid #c9ddd5;\r\n  border-radius: 0.8rem;\r\n  margin-top: 1.5rem;\r\n  min-width: 0;\r\n  padding: 1.25rem;\n}\n.data-heading,\r\n.pagination {\r\n  align-items: center;\r\n  display: flex;\r\n  gap: 1rem;\r\n  justify-content: space-between;\n}\n.data-heading h3,\r\n.data-heading p {\r\n  margin-bottom: 0;\n}\n.filter-grid {\r\n  display: grid;\r\n  gap: 1rem;\r\n  grid-template-columns: minmax(0, 2fr) minmax(12rem, 1fr);\r\n  margin: 1.25rem 0;\n}\n.loading-state,\r\n.empty-state,\r\n.request-error {\r\n  border: 1px dashed #84a69a;\r\n  border-radius: 0.6rem;\r\n  margin: 1rem 0;\r\n  padding: 1rem;\n}\n.request-error {\r\n  background: #fff0f0;\r\n  border-color: #c76b6b;\r\n  color: #7e1f1f;\n}\n.table-scroll {\r\n  max-width: 100%;\r\n  overflow-x: auto;\n}\ntable {\r\n  border-collapse: collapse;\r\n  min-width: 48rem;\r\n  width: 100%;\n}\nth,\r\ntd {\r\n  border-bottom: 1px solid #c9ddd5;\r\n  padding: 0.75rem;\r\n  text-align: left;\n}\nth {\r\n  background: #eaf7f1;\n}\ntbody tr {\r\n  cursor: pointer;\n}\ntbody tr:hover,\r\ntbody tr.selected {\r\n  background: #dff6e9;\n}\n.sort-button {\n  border: 0;\r\n  border-radius: 0.25rem;\r\n  padding: 0.2rem;\r\n  text-align: left;\n}\n.sort-button {\r\n  align-items: center;\r\n  display: inline-flex;\r\n  gap: 0.35rem;\n}\n.pagination {\r\n  margin-top: 1rem;\n}\n.selection-status {\r\n  color: #4c625e;\r\n  margin: 1rem 0 0;\n}\n.visually-hidden {\r\n  clip: rect(0 0 0 0);\r\n  clip-path: inset(50%);\r\n  height: 1px;\r\n  overflow: hidden;\r\n  position: absolute;\r\n  white-space: nowrap;\r\n  width: 1px;\n}\n.customer-detail-layout {\r\n  display: grid;\r\n  gap: 1.25rem;\r\n  margin-top: 1.25rem;\n}\n.sandbox-panel {\r\n  align-items: center;\r\n  background: #eaf7f1;\r\n  border: 1px solid #72a790;\r\n  border-radius: 0.8rem;\r\n  display: grid;\r\n  gap: 1rem;\r\n  grid-template-columns: minmax(0, 1fr) auto auto;\r\n  margin-top: 1.25rem;\r\n  padding: 1.25rem;\n}\n.sandbox-panel h3,\r\n.sandbox-panel p {\r\n  margin-bottom: 0.35rem;\n}\n.sandbox-panel .notice,\r\n.sandbox-panel .request-error,\r\n.sandbox-panel > small {\r\n  grid-column: 1 / -1;\r\n  margin: 0;\n}\n.customer-edit-form {\r\n  display: grid;\r\n  gap: 1rem;\r\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.customer-edit-form .button-row,\r\n.customer-edit-form .dirty-status,\r\n.customer-edit-form .field-error {\r\n  grid-column: 1 / -1;\n}\n.dirty-status {\r\n  color: #4c625e;\r\n  font-weight: 700;\r\n  margin: 0;\n}\n.metric-grid,\r\n.detail-grid {\r\n  display: grid;\r\n  gap: 0.75rem;\n}\n.metric-grid {\r\n  grid-template-columns: repeat(3, minmax(0, 1fr));\n}\n.metric-grid div {\r\n  background: #eaf7f1;\r\n  border-radius: 0.6rem;\r\n  display: grid;\r\n  gap: 0.3rem;\r\n  justify-content: initial;\r\n  padding: 1rem;\n}\n.metric-grid dd {\r\n  color: #146247;\r\n  font-size: 1.25rem;\r\n  font-weight: 800;\r\n  text-align: left;\n}\n.detail-grid {\r\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.detail-grid div {\r\n  border-bottom: 1px solid #c9ddd5;\r\n  padding: 0.6rem 0;\n}\n.order-workspace {\r\n  display: grid;\r\n  gap: 1rem;\r\n  grid-template-columns: minmax(14rem, 0.7fr) minmax(0, 1.8fr);\r\n  margin-top: 1.25rem;\r\n  min-width: 0;\n}\n.order-list {\r\n  display: grid;\r\n  gap: 0.65rem;\r\n  max-height: 38rem;\r\n  overflow-y: auto;\n}\n.order-card {\r\n  align-items: center;\r\n  border-radius: 0.6rem;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  padding: 0.85rem;\r\n  text-align: left;\n}\n.order-card span {\r\n  display: grid;\r\n  gap: 0.25rem;\n}\n.order-card span:last-child {\r\n  text-align: right;\n}\n.order-card small {\r\n  font-weight: 400;\n}\n.order-card[aria-pressed=\"true\"] {\r\n  background: #287a5b;\r\n  color: white;\n}\n.order-detail {\r\n  min-width: 0;\n}\n.order-summary {\r\n  display: grid;\r\n  gap: 1rem;\r\n  grid-template-columns: minmax(10rem, 0.7fr) minmax(0, 1fr);\r\n  margin-bottom: 1rem;\n}\n.order-summary h4 {\r\n  font-size: 1.5rem;\r\n  margin: 0 0 0.35rem;\n}\n.order-totals {\r\n  margin-left: auto;\r\n  margin-top: 1rem;\r\n  max-width: 20rem;\n}\n.order-totals .grand-total {\r\n  border-top: 2px solid #72a790;\r\n  font-size: 1.1rem;\r\n  margin-top: 0.4rem;\r\n  padding-top: 0.6rem;\n}\n.showcase-header {\r\n  background:\r\n    radial-gradient(circle at top right, rgb(65 184 131 / 28%), transparent 42%),\r\n    #eaf7f1;\n}\n.eyebrow,\r\n.section-number {\r\n  color: #287a5b;\r\n  font-size: 0.75rem;\r\n  font-weight: 800;\r\n  letter-spacing: 0.12em;\r\n  margin: 0 0 0.5rem;\r\n  text-transform: uppercase;\n}\nh1,\r\nh2,\r\np {\r\n  margin-top: 0;\n}\nh1 {\r\n  font-size: clamp(2rem, 6vw, 4rem);\r\n  line-height: 1;\r\n  margin-bottom: 1rem;\n}\nnav {\r\n  display: flex;\r\n  gap: 0.75rem;\r\n  overflow-x: auto;\n}\nbutton {\r\n  background: transparent;\r\n  border: 1px solid #72a790;\r\n  border-radius: 999px;\r\n  color: inherit;\r\n  cursor: pointer;\r\n  font: inherit;\r\n  font-weight: 700;\r\n  padding: 0.65rem 1rem;\r\n  white-space: nowrap;\n}\nbutton:hover,\r\nbutton:focus-visible,\r\nbutton[aria-current=\"page\"] {\r\n  background: #287a5b;\r\n  color: white;\n}\nbutton:focus-visible {\r\n  outline: 3px solid #41b883;\r\n  outline-offset: 3px;\n}\n@media (prefers-color-scheme: dark) {\n:host {\r\n    color: #e6f4ee;\n}\n.showcase-header,\r\n  section {\r\n    background: #102c28;\r\n    border-color: #35645a;\n}\n.showcase-header {\r\n    background:\r\n      radial-gradient(circle at top right, rgb(65 184 131 / 24%), transparent 42%),\r\n      #143832;\n}\n.eyebrow,\r\n  .section-number,\r\n  .card-kicker {\r\n    color: #75d5aa;\n}\n.section-intro {\r\n    color: #b8cec5;\n}\n.gallery-card,\r\n  .data-card,\r\n  dialog {\r\n    background: #173a34;\r\n    border-color: #467569;\r\n    color: #e6f4ee;\n}\ninput,\r\n  select,\r\n  .secondary-button {\r\n    background: #0d2925;\r\n    border-color: #56877a;\r\n    color: #e6f4ee;\n}\n.notice {\r\n    background: #164c3c;\n}\nth {\r\n    background: #16453c;\n}\ntbody tr:hover,\r\n  tbody tr.selected {\r\n    background: #1e5447;\n}\n.selection-status {\r\n    color: #b8cec5;\n}\n.request-error {\r\n    background: #4a2020;\r\n    color: #ffd8d8;\n}\n.metric-grid div {\r\n    background: #16453c;\n}\n.sandbox-panel {\r\n    background: #16453c;\r\n    border-color: #467569;\n}\n.dirty-status {\r\n    color: #b8cec5;\n}\n.metric-grid dd {\r\n    color: #75d5aa;\n}\n}\n@media (max-width: 1100px) {\n.gallery-grid,\r\n  .order-workspace {\r\n    grid-template-columns: 1fr;\n}\n.order-list {\r\n    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));\r\n    max-height: none;\n}\n.sandbox-panel {\r\n    align-items: start;\r\n    grid-template-columns: 1fr;\n}\n.sandbox-panel .notice,\r\n  .sandbox-panel .request-error,\r\n  .sandbox-panel > small {\r\n    grid-column: auto;\n}\n}\n@media (max-width: 760px) {\n.field-pair,\r\n  .filter-grid,\r\n  .metric-grid,\r\n  .detail-grid,\r\n  .customer-edit-form {\r\n    grid-template-columns: 1fr;\n}\n.data-heading,\r\n  .pagination,\r\n  .order-summary {\r\n    align-items: flex-start;\r\n    flex-direction: column;\n}\n.order-summary {\r\n    display: flex;\n}\n}\n@media (prefers-reduced-motion: reduce) {\n*,\r\n  *::before,\r\n  *::after {\r\n    scroll-behavior: auto !important;\r\n    transition-duration: 0.01ms !important;\n}\n}\n@media (forced-colors: active) {\nbutton,\r\n  input,\r\n  select,\r\n  .gallery-card,\r\n  .notice {\r\n    border: 1px solid CanvasText;\n}\n}\n\n/* Shared Frontend Lab visual contract. Keep these tokens and structural rules\n   aligned with the React and Angular implementations. */\n:host {\n  --text: #6b6375;\n  --text-h: #08060d;\n  --bg: #fff;\n  --border: #e5e4e7;\n  --code-bg: #f4f3ec;\n  --accent: #aa3bff;\n  --accent-bg: rgb(170 59 255 / 10%);\n  --accent-border: rgb(170 59 255 / 50%);\n  --shadow: rgb(0 0 0 / 10%) 0 10px 15px -3px, rgb(0 0 0 / 5%) 0 4px 6px -2px;\n  background: var(--bg);\n  color: var(--text);\n  color-scheme: light dark;\n  border-radius: 14px;\n  font: 16px/160% Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;\n  letter-spacing: 0.18px;\n  overflow: hidden;\n}\n.showcase {\n  background: transparent;\n  display: block;\n  padding: 48px;\n  text-align: left;\n}\n.showcase-header {\n  align-items: flex-start;\n  background: transparent;\n  border: 0;\n  border-radius: 0;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 32px;\n  padding: 0;\n}\n.showcase-header h1 {\n  color: var(--text-h);\n  font-size: 32px;\n  font-weight: 500;\n  letter-spacing: -1.68px;\n  line-height: 160%;\n  margin: 6px 0 10px;\n}\n.showcase-header p {\n  font-size: 17px;\n  max-width: 680px;\n}\n.framework-badge {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 999px;\n  color: var(--text-h);\n  display: flex;\n  flex: 0 0 auto;\n  font-weight: 650;\n  gap: 10px;\n  padding: 10px 14px;\n}\n.framework-badge > span {\n  align-items: center;\n  background: var(--accent);\n  border-radius: 50%;\n  color: white;\n  display: inline-flex;\n  height: 24px;\n  justify-content: center;\n  width: 24px;\n}\n.showcase-nav {\n  display: flex;\n  gap: 10px;\n  margin: 0 0 28px;\n  overflow-x: auto;\n  padding: 0 0 4px;\n}\n.showcase-nav a {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 999px;\n  color: var(--text-h);\n  flex: 0 0 auto;\n  font-size: 13px;\n  font-weight: 700;\n  padding: 7px 11px;\n  text-decoration: none;\n}\n.showcase-nav a:hover {\n  border-color: var(--accent-border);\n  color: var(--accent);\n}\n.controls-section,\n.data-section {\n  background: transparent;\n  border: 0;\n  border-radius: 0;\n  padding: 32px 0 16px;\n}\n.controls-section {\n  border-top: 1px solid var(--border);\n}\n.data-section {\n  border-top: 1px solid var(--border);\n  margin-top: 42px;\n}\n.section-heading {\n  align-items: end;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 18px;\n}\n.section-heading h2 {\n  color: var(--text-h);\n  font-size: 24px;\n  font-weight: 500;\n  letter-spacing: -0.24px;\n  line-height: 160%;\n  margin: 4px 0 0;\n}\n.section-heading p {\n  font-size: 15px;\n  max-width: 560px;\n}\n.eyebrow,\n.card-kicker {\n  color: var(--accent);\n  font-size: 12px;\n  font-weight: 800;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n}\n.control-layout {\n  display: grid;\n  gap: 18px;\n  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);\n}\n.control-layout > *,\n.control-stack,\n.data-card,\n.order-workspace > * {\n  min-width: 0;\n}\n.control-stack {\n  display: grid;\n  gap: 18px;\n}\n.control-card,\n.data-card,\n.sandbox-panel {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n  color: var(--text);\n  padding: 22px;\n}\n.control-card {\n  display: block;\n}\n.control-card h3,\n.data-card h3,\n.sandbox-panel h3 {\n  color: var(--text-h);\n}\nlabel {\n  font-size: 13px;\n  line-height: 160%;\n}\n.data-card {\n  margin-top: 18px;\n}\n.gallery-card,\n.gallery-stack,\n.gallery-grid {\n  min-width: 0;\n}\n.filter-grid {\n  grid-template-columns: minmax(220px, 1fr) minmax(180px, 0.55fr);\n}\n.table-scroll {\n  border: 1px solid var(--border);\n  border-radius: 8px;\n  overflow-x: auto;\n}\ntable {\n  min-width: 720px;\n  width: 100%;\n}\nth {\n  background: var(--code-bg);\n}\ntbody tr.selected {\n  background: var(--accent-bg);\n  box-shadow: inset 3px 0 0 var(--accent);\n}\n.order-workspace {\n  grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);\n}\nbutton,\ninput,\nselect {\n  font: inherit;\n}\n.primary-button,\n.secondary-button {\n  border-radius: 7px;\n  cursor: pointer;\n  font-weight: 700;\n  min-height: 40px;\n  padding: 8px 13px;\n}\n.primary-button,\n.primary-button:hover,\n.primary-button:focus-visible {\n  background: var(--accent);\n  border: 1px solid var(--accent);\n  color: white;\n}\n.secondary-button,\n.secondary-button:hover,\n.secondary-button:focus-visible {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  color: var(--text-h);\n}\n.tabs {\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 4px;\n  padding-bottom: 12px;\n}\n.tabs button {\n  background: transparent;\n  border: 0;\n  border-radius: 6px;\n  color: var(--text);\n  padding: 7px 10px;\n}\n.tabs button[aria-selected='true'],\n.tabs button[aria-selected='true']:hover,\n.tabs button[aria-selected='true']:focus-visible {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.tab-panel {\n  min-height: 155px;\n  padding-top: 18px;\n}\n.summary-list {\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.summary-list div,\n.metric-grid div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.metric-grid dd {\n  color: var(--accent);\n}\n.sandbox-panel {\n  align-items: center;\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n  display: grid;\n  gap: 16px;\n  grid-template-columns: minmax(0, 1fr) auto auto;\n  margin: 0 0 18px;\n  padding: 22px;\n}\n.sandbox-panel h3,\n.sandbox-panel p {\n  margin: 4px 0 0;\n}\n.sandbox-panel .notice,\n.sandbox-panel .request-error,\n.sandbox-panel > small {\n  grid-column: 1 / -1;\n  margin: 0;\n}\n.order-card[aria-pressed='true'],\n.order-card[aria-pressed='true']:hover,\n.order-card[aria-pressed='true']:focus-visible {\n  background: var(--accent-bg);\n  border-color: var(--accent-border);\n  color: var(--text-h);\n}\ninput:not([type='checkbox']):not([type='radio']):not([type='range']),\nselect {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  color: var(--text-h);\n}\ninput[type='checkbox'],\ninput[type='radio'],\ninput[type='range'],\nprogress {\n  accent-color: var(--accent);\n}\nbutton:focus-visible,\ninput:focus-visible,\nselect:focus-visible,\nsummary:focus-visible,\na:focus-visible {\n  outline: 3px solid var(--accent-border);\n  outline-offset: 2px;\n}\n@media (prefers-color-scheme: dark) {\n:host {\n    --text: #9ca3af;\n    --text-h: #f3f4f6;\n    --bg: #16171d;\n    --border: #2e303a;\n    --code-bg: #1f2028;\n    --accent: #c084fc;\n    --accent-bg: rgb(192 132 252 / 15%);\n    --accent-border: rgb(192 132 252 / 50%);\n    --shadow: rgb(0 0 0 / 40%) 0 10px 15px -3px, rgb(0 0 0 / 25%) 0 4px 6px -2px;\n}\n}\n@media (max-width: 1100px) {\n.control-layout,\n  .order-workspace {\n    grid-template-columns: 1fr;\n}\n.sandbox-panel {\n    align-items: start;\n    grid-template-columns: 1fr;\n}\n.sandbox-panel .notice,\n  .sandbox-panel .request-error,\n  .sandbox-panel > small {\n    grid-column: auto;\n}\n}\n@media (max-width: 760px) {\n.showcase {\n    padding: 24px 16px 40px;\n}\n.showcase-header,\n  .section-heading {\n    align-items: stretch;\n    flex-direction: column;\n    gap: 14px;\n}\n.framework-badge {\n    align-self: flex-start;\n}\n.field-pair,\n  .filter-grid,\n  .customer-detail-layout,\n  .metric-grid {\n    grid-template-columns: 1fr;\n}\n}\n";
+var App_ce_vue_vue_type_style_index_0_inline_lang_default = "/* Shared visual contract bundled into each framework's Shadow DOM. */\n:host {\n  --lab-font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;\n  --lab-title-size: 32px;\n  --lab-section-size: 24px;\n  --lab-card-title-size: 18px;\n\n  color: var(--text);\n  font: 16px/1.6 var(--lab-font);\n  font-synthesis: none;\n  letter-spacing: 0.18px;\n  text-rendering: optimizeLegibility;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n* {\n  box-sizing: border-box;\n}\nbutton,\ninput,\nselect,\ntextarea {\n  font: inherit;\n}\n.showcase-header h1,\n.section-heading h2,\n.control-card h3,\n.grid-card h3,\n.data-card h3,\n.detail-card h3,\n.orders-card h3,\n.sandbox-panel h3,\ndialog h2 {\n  color: var(--text-h);\n  font-family: var(--lab-font);\n  font-style: normal;\n}\n.showcase-header h1 {\n  font-size: var(--lab-title-size);\n  font-weight: 500;\n  letter-spacing: -1.68px;\n  line-height: 1.6;\n  margin: 6px 0 10px;\n}\n.section-heading h2 {\n  font-size: var(--lab-section-size);\n  font-weight: 500;\n  letter-spacing: -0.24px;\n  line-height: 1.6;\n  margin: 4px 0 0;\n}\n.control-card h3,\n.grid-card h3,\n.data-card h3,\n.detail-card h3,\n.orders-card h3,\n.sandbox-panel h3 {\n  font-size: var(--lab-card-title-size);\n  font-weight: 650;\n  line-height: 1.4;\n}\n.control-card,\n.grid-card,\n.data-card,\n.detail-card,\n.orders-card,\n.sandbox-panel {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n  color: var(--text);\n}\nfieldset {\n  border: 0;\n  margin: 0;\n  min-width: 0;\n  padding: 0;\n}\nlegend,\nlabel {\n  color: var(--text-h);\n  font-size: 13px;\n  line-height: 1.6;\n}\n.choice-row {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 8px;\n}\n.choice-row .choice,\n.choice-row > label {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: inline-flex;\n  gap: 7px;\n  min-height: 40px;\n  padding: 7px 11px;\n}\n.choice-row .choice:has(input:checked),\n.choice-row > label:has(input:checked) {\n  background: var(--accent-bg);\n  border-color: var(--accent-border);\n}\ninput[type=\"checkbox\"],\ninput[type=\"radio\"],\ninput[type=\"range\"],\nprogress {\n  accent-color: var(--accent);\n}\n@media (max-width: 760px) {\n:host {\n    --lab-title-size: 32px;\n    --lab-section-size: 20px;\n}\n}\n:host {\r\n  color: #193330;\r\n  display: block;\r\n  font-family:\r\n    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\",\r\n    sans-serif;\n}\n* {\r\n  box-sizing: border-box;\n}\n.showcase-shell {\r\n  display: grid;\r\n  gap: 1.5rem;\n}\n.showcase-header,\r\nsection {\r\n  background: #f5fbf8;\r\n  border: 1px solid #c9ddd5;\r\n  border-radius: 1rem;\r\n  padding: clamp(1.25rem, 4vw, 2.5rem);\n}\n.section-intro {\r\n  color: #4c625e;\n}\n.notice {\r\n  align-items: center;\r\n  background: #dff6e9;\r\n  border: 1px solid #58a27e;\r\n  border-radius: 0.75rem;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  margin: 1rem 0;\r\n  padding: 0.75rem 1rem;\n}\n.gallery-grid,\r\n.gallery-stack {\r\n  display: grid;\r\n  gap: 1rem;\r\n  min-width: 0;\n}\n.gallery-grid {\r\n  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);\r\n  margin-top: 1.5rem;\n}\n.gallery-card {\r\n  background: rgb(255 255 255 / 72%);\r\n  border: 1px solid #c9ddd5;\r\n  border-radius: 0.8rem;\r\n  display: grid;\r\n  gap: 1rem;\r\n  min-width: 0;\r\n  padding: 1.25rem;\n}\n.card-heading h3,\r\n.card-heading p {\r\n  margin-bottom: 0;\n}\n.card-kicker {\r\n  color: #287a5b;\r\n  font-size: 0.7rem;\r\n  font-weight: 800;\r\n  letter-spacing: 0.1em;\r\n  text-transform: uppercase;\n}\nlabel {\r\n  display: grid;\r\n  font-weight: 700;\r\n  gap: 0.4rem;\n}\ninput,\r\nselect {\r\n  background: white;\r\n  border: 1px solid #84a69a;\r\n  border-radius: 0.45rem;\r\n  color: #193330;\r\n  font: inherit;\r\n  min-width: 0;\r\n  padding: 0.65rem 0.75rem;\n}\ninput:focus-visible,\r\nselect:focus-visible,\r\nsummary:focus-visible {\r\n  outline: 3px solid #41b883;\r\n  outline-offset: 2px;\n}\n.field-pair {\r\n  display: grid;\r\n  gap: 0.75rem;\r\n  grid-template-columns: 1fr 1fr;\n}\nfieldset {\r\n  border: 0;\r\n  margin: 0;\r\n  padding: 0;\n}\nlegend {\r\n  font-weight: 700;\r\n  margin-bottom: 0.5rem;\n}\n.choice-row,\r\n.button-row,\r\n[role=\"tablist\"] {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  gap: 0.65rem;\n}\n.choice-row label {\r\n  align-items: center;\r\n  display: flex;\r\n  font-weight: 500;\n}\n.field-error {\r\n  color: #a32424;\r\n  font-size: 0.85rem;\r\n  margin: -0.75rem 0 0;\n}\n.switch-row {\r\n  align-items: center;\r\n  display: flex;\r\n  justify-content: space-between;\n}\n.switch-row span {\r\n  display: grid;\n}\n.switch-row small {\r\n  font-weight: 400;\n}\n.switch-row input {\r\n  height: 1.4rem;\r\n  width: 2.6rem;\n}\ninput[type=\"range\"],\r\nprogress {\r\n  accent-color: #287a5b;\r\n  width: 100%;\n}\n.primary-button {\r\n  background: #287a5b;\r\n  color: white;\n}\n.secondary-button {\r\n  background: white;\n}\nbutton:disabled {\r\n  cursor: not-allowed;\r\n  opacity: 0.5;\n}\n.icon-button {\r\n  border: 0;\r\n  font-size: 1.25rem;\r\n  padding: 0.2rem 0.5rem;\n}\n[role=\"tab\"][aria-selected=\"true\"] {\r\n  background: #287a5b;\r\n  color: white;\n}\ndl {\r\n  display: grid;\r\n  gap: 0.6rem;\r\n  margin: 0;\n}\ndl div {\r\n  display: flex;\r\n  gap: 1rem;\r\n  justify-content: space-between;\n}\ndt {\r\n  font-weight: 700;\n}\ndd {\r\n  margin: 0;\r\n  overflow-wrap: anywhere;\r\n  text-align: right;\n}\ndetails {\r\n  border-top: 1px solid #c9ddd5;\r\n  padding-top: 1rem;\n}\nsummary {\r\n  cursor: pointer;\r\n  font-weight: 700;\n}\ndialog {\r\n  background: #f5fbf8;\r\n  border: 1px solid #72a790;\r\n  border-radius: 1rem;\r\n  color: #193330;\r\n  max-width: min(30rem, calc(100vw - 2rem));\r\n  padding: 0;\n}\ndialog::backdrop {\r\n  background: rgb(7 28 24 / 72%);\n}\n.dialog-content {\r\n  padding: 1.5rem;\n}\n.data-card {\r\n  background: rgb(255 255 255 / 72%);\r\n  border: 1px solid #c9ddd5;\r\n  border-radius: 0.8rem;\r\n  margin-top: 1.5rem;\r\n  min-width: 0;\r\n  padding: 1.25rem;\n}\n.data-heading,\r\n.pagination {\r\n  align-items: center;\r\n  display: flex;\r\n  gap: 1rem;\r\n  justify-content: space-between;\n}\n.data-heading h3,\r\n.data-heading p {\r\n  margin-bottom: 0;\n}\n.filter-grid {\r\n  display: grid;\r\n  gap: 1rem;\r\n  grid-template-columns: minmax(0, 2fr) minmax(12rem, 1fr);\r\n  margin: 1.25rem 0;\n}\n.loading-state,\r\n.empty-state,\r\n.request-error {\r\n  border: 1px dashed #84a69a;\r\n  border-radius: 0.6rem;\r\n  margin: 1rem 0;\r\n  padding: 1rem;\n}\n.request-error {\r\n  background: #fff0f0;\r\n  border-color: #c76b6b;\r\n  color: #7e1f1f;\n}\n.table-scroll {\r\n  max-width: 100%;\r\n  overflow-x: auto;\n}\ntable {\r\n  border-collapse: collapse;\r\n  min-width: 48rem;\r\n  width: 100%;\n}\nth,\r\ntd {\r\n  border-bottom: 1px solid #c9ddd5;\r\n  padding: 0.75rem;\r\n  text-align: left;\n}\nth {\r\n  background: #eaf7f1;\n}\ntbody tr {\r\n  cursor: pointer;\n}\ntbody tr:hover,\r\ntbody tr.selected {\r\n  background: #dff6e9;\n}\n.sort-button {\n  border: 0;\r\n  border-radius: 0.25rem;\r\n  padding: 0.2rem;\r\n  text-align: left;\n}\n.sort-button {\r\n  align-items: center;\r\n  display: inline-flex;\r\n  gap: 0.35rem;\n}\n.pagination {\r\n  margin-top: 1rem;\n}\n.selection-status {\r\n  color: #4c625e;\r\n  margin: 1rem 0 0;\n}\n.visually-hidden {\r\n  clip: rect(0 0 0 0);\r\n  clip-path: inset(50%);\r\n  height: 1px;\r\n  overflow: hidden;\r\n  position: absolute;\r\n  white-space: nowrap;\r\n  width: 1px;\n}\n.customer-detail-layout {\r\n  display: grid;\r\n  gap: 1.25rem;\r\n  margin-top: 1.25rem;\n}\n.sandbox-panel {\r\n  align-items: center;\r\n  background: #eaf7f1;\r\n  border: 1px solid #72a790;\r\n  border-radius: 0.8rem;\r\n  display: grid;\r\n  gap: 1rem;\r\n  grid-template-columns: minmax(0, 1fr) auto auto;\r\n  margin-top: 1.25rem;\r\n  padding: 1.25rem;\n}\n.sandbox-panel h3,\r\n.sandbox-panel p {\r\n  margin-bottom: 0.35rem;\n}\n.sandbox-panel .notice,\r\n.sandbox-panel .request-error,\r\n.sandbox-panel > small {\r\n  grid-column: 1 / -1;\r\n  margin: 0;\n}\n.customer-edit-form {\r\n  display: grid;\r\n  gap: 1rem;\r\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.customer-edit-form .button-row,\r\n.customer-edit-form .dirty-status,\r\n.customer-edit-form .field-error {\r\n  grid-column: 1 / -1;\n}\n.dirty-status {\r\n  color: #4c625e;\r\n  font-weight: 700;\r\n  margin: 0;\n}\n.metric-grid,\r\n.detail-grid {\r\n  display: grid;\r\n  gap: 0.75rem;\n}\n.metric-grid {\r\n  grid-template-columns: repeat(3, minmax(0, 1fr));\n}\n.metric-grid div {\r\n  background: #eaf7f1;\r\n  border-radius: 0.6rem;\r\n  display: grid;\r\n  gap: 0.3rem;\r\n  justify-content: initial;\r\n  padding: 1rem;\n}\n.metric-grid dd {\r\n  color: #146247;\r\n  font-size: 1.25rem;\r\n  font-weight: 800;\r\n  text-align: left;\n}\n.detail-grid {\r\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.detail-grid div {\r\n  border-bottom: 1px solid #c9ddd5;\r\n  padding: 0.6rem 0;\n}\n.order-workspace {\r\n  display: grid;\r\n  gap: 1rem;\r\n  grid-template-columns: minmax(14rem, 0.7fr) minmax(0, 1.8fr);\r\n  margin-top: 1.25rem;\r\n  min-width: 0;\n}\n.order-list {\r\n  display: grid;\r\n  gap: 0.65rem;\r\n  max-height: 38rem;\r\n  overflow-y: auto;\n}\n.order-card {\r\n  align-items: center;\r\n  border-radius: 0.6rem;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  padding: 0.85rem;\r\n  text-align: left;\n}\n.order-card span {\r\n  display: grid;\r\n  gap: 0.25rem;\n}\n.order-card span:last-child {\r\n  text-align: right;\n}\n.order-card small {\r\n  font-weight: 400;\n}\n.order-card[aria-pressed=\"true\"] {\r\n  background: #287a5b;\r\n  color: white;\n}\n.order-detail {\r\n  min-width: 0;\n}\n.order-summary {\r\n  display: grid;\r\n  gap: 1rem;\r\n  grid-template-columns: minmax(10rem, 0.7fr) minmax(0, 1fr);\r\n  margin-bottom: 1rem;\n}\n.order-summary h4 {\r\n  font-size: 1.5rem;\r\n  margin: 0 0 0.35rem;\n}\n.order-totals {\r\n  margin-left: auto;\r\n  margin-top: 1rem;\r\n  max-width: 20rem;\n}\n.order-totals .grand-total {\r\n  border-top: 2px solid #72a790;\r\n  font-size: 1.1rem;\r\n  margin-top: 0.4rem;\r\n  padding-top: 0.6rem;\n}\n.showcase-header {\r\n  background:\r\n    radial-gradient(circle at top right, rgb(65 184 131 / 28%), transparent 42%),\r\n    #eaf7f1;\n}\n.eyebrow,\r\n.section-number {\r\n  color: #287a5b;\r\n  font-size: 0.75rem;\r\n  font-weight: 800;\r\n  letter-spacing: 0.12em;\r\n  margin: 0 0 0.5rem;\r\n  text-transform: uppercase;\n}\nh1,\r\nh2,\r\np {\r\n  margin-top: 0;\n}\nh1 {\r\n  font-size: clamp(2rem, 6vw, 4rem);\r\n  line-height: 1;\r\n  margin-bottom: 1rem;\n}\nnav {\r\n  display: flex;\r\n  gap: 0.75rem;\r\n  overflow-x: auto;\n}\nbutton {\r\n  background: transparent;\r\n  border: 1px solid #72a790;\r\n  border-radius: 999px;\r\n  color: inherit;\r\n  cursor: pointer;\r\n  font: inherit;\r\n  font-weight: 700;\r\n  padding: 0.65rem 1rem;\r\n  white-space: nowrap;\n}\nbutton:hover,\r\nbutton:focus-visible,\r\nbutton[aria-current=\"page\"] {\r\n  background: #287a5b;\r\n  color: white;\n}\nbutton:focus-visible {\r\n  outline: 3px solid #41b883;\r\n  outline-offset: 3px;\n}\n@media (prefers-color-scheme: dark) {\n:host {\r\n    color: #e6f4ee;\n}\n.showcase-header,\r\n  section {\r\n    background: #102c28;\r\n    border-color: #35645a;\n}\n.showcase-header {\r\n    background:\r\n      radial-gradient(circle at top right, rgb(65 184 131 / 24%), transparent 42%),\r\n      #143832;\n}\n.eyebrow,\r\n  .section-number,\r\n  .card-kicker {\r\n    color: #75d5aa;\n}\n.section-intro {\r\n    color: #b8cec5;\n}\n.gallery-card,\r\n  .data-card,\r\n  dialog {\r\n    background: #173a34;\r\n    border-color: #467569;\r\n    color: #e6f4ee;\n}\ninput,\r\n  select,\r\n  .secondary-button {\r\n    background: #0d2925;\r\n    border-color: #56877a;\r\n    color: #e6f4ee;\n}\n.notice {\r\n    background: #164c3c;\n}\nth {\r\n    background: #16453c;\n}\ntbody tr:hover,\r\n  tbody tr.selected {\r\n    background: #1e5447;\n}\n.selection-status {\r\n    color: #b8cec5;\n}\n.request-error {\r\n    background: #4a2020;\r\n    color: #ffd8d8;\n}\n.metric-grid div {\r\n    background: #16453c;\n}\n.sandbox-panel {\r\n    background: #16453c;\r\n    border-color: #467569;\n}\n.dirty-status {\r\n    color: #b8cec5;\n}\n.metric-grid dd {\r\n    color: #75d5aa;\n}\n}\n@media (max-width: 1100px) {\n.gallery-grid,\r\n  .order-workspace {\r\n    grid-template-columns: 1fr;\n}\n.order-list {\r\n    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));\r\n    max-height: none;\n}\n.sandbox-panel {\r\n    align-items: start;\r\n    grid-template-columns: 1fr;\n}\n.sandbox-panel .notice,\r\n  .sandbox-panel .request-error,\r\n  .sandbox-panel > small {\r\n    grid-column: auto;\n}\n}\n@media (max-width: 760px) {\n.field-pair,\r\n  .filter-grid,\r\n  .metric-grid,\r\n  .detail-grid,\r\n  .customer-edit-form {\r\n    grid-template-columns: 1fr;\n}\n.data-heading,\r\n  .pagination,\r\n  .order-summary {\r\n    align-items: flex-start;\r\n    flex-direction: column;\n}\n.order-summary {\r\n    display: flex;\n}\n}\n@media (prefers-reduced-motion: reduce) {\n*,\r\n  *::before,\r\n  *::after {\r\n    scroll-behavior: auto !important;\r\n    transition-duration: 0.01ms !important;\n}\n}\n@media (forced-colors: active) {\nbutton,\r\n  input,\r\n  select,\r\n  .gallery-card,\r\n  .notice {\r\n    border: 1px solid CanvasText;\n}\n}\n\n/* Shared Frontend Lab visual contract. Keep these tokens and structural rules\n   aligned with the React and Angular implementations. */\n:host {\n  --text: #6b6375;\n  --text-h: #08060d;\n  --bg: #fff;\n  --border: #e5e4e7;\n  --code-bg: #f4f3ec;\n  --accent: #aa3bff;\n  --accent-bg: rgb(170 59 255 / 10%);\n  --accent-border: rgb(170 59 255 / 50%);\n  --shadow: rgb(0 0 0 / 10%) 0 10px 15px -3px, rgb(0 0 0 / 5%) 0 4px 6px -2px;\n  background: var(--bg);\n  color: var(--text);\n  color-scheme: light dark;\n  border-radius: 14px;\n  font: 16px/160% Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;\n  letter-spacing: 0.18px;\n  overflow: hidden;\n}\n.showcase {\n  background: transparent;\n  display: block;\n  padding: 48px;\n  text-align: left;\n}\n.showcase-header {\n  align-items: flex-start;\n  background: transparent;\n  border: 0;\n  border-radius: 0;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 32px;\n  padding: 0;\n}\n.showcase-header h1 {\n  color: var(--text-h);\n  font-size: 32px;\n  font-weight: 500;\n  letter-spacing: -1.68px;\n  line-height: 160%;\n  margin: 6px 0 10px;\n}\n.showcase-header p {\n  font-size: 17px;\n  max-width: 680px;\n}\n.framework-badge {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 999px;\n  color: var(--text-h);\n  display: flex;\n  flex: 0 0 auto;\n  font-weight: 650;\n  gap: 10px;\n  padding: 10px 14px;\n}\n.framework-badge > span {\n  align-items: center;\n  background: var(--accent);\n  border-radius: 50%;\n  color: white;\n  display: inline-flex;\n  height: 24px;\n  justify-content: center;\n  width: 24px;\n}\n.showcase-nav {\n  display: flex;\n  gap: 10px;\n  margin: 0 0 28px;\n  overflow-x: auto;\n  padding: 0 0 4px;\n}\n.showcase-nav a {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 999px;\n  color: var(--text-h);\n  flex: 0 0 auto;\n  font-size: 13px;\n  font-weight: 700;\n  padding: 7px 11px;\n  text-decoration: none;\n}\n.showcase-nav a:hover {\n  border-color: var(--accent-border);\n  color: var(--accent);\n}\n.controls-section,\n.data-section {\n  background: transparent;\n  border: 0;\n  border-radius: 0;\n  padding: 32px 0 16px;\n}\n.controls-section {\n  border-top: 1px solid var(--border);\n}\n.data-section {\n  border-top: 1px solid var(--border);\n  margin-top: 42px;\n}\n.section-heading {\n  align-items: end;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 18px;\n}\n.section-heading h2 {\n  color: var(--text-h);\n  font-size: 24px;\n  font-weight: 500;\n  letter-spacing: -0.24px;\n  line-height: 160%;\n  margin: 4px 0 0;\n}\n.section-heading p {\n  font-size: 15px;\n  max-width: 560px;\n}\n.eyebrow,\n.card-kicker {\n  color: var(--accent);\n  font-size: 12px;\n  font-weight: 800;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n}\n.control-layout {\n  display: grid;\n  gap: 18px;\n  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);\n}\n.control-layout > *,\n.control-stack,\n.data-card,\n.order-workspace > * {\n  min-width: 0;\n}\n.control-stack {\n  display: grid;\n  gap: 18px;\n}\n.control-card,\n.data-card,\n.sandbox-panel {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n  color: var(--text);\n  padding: 22px;\n}\n.control-card {\n  display: block;\n}\n.control-card h3,\n.data-card h3,\n.sandbox-panel h3 {\n  color: var(--text-h);\n}\nlabel {\n  font-size: 13px;\n  line-height: 160%;\n}\n.data-card {\n  margin-top: 18px;\n}\n.gallery-card,\n.gallery-stack,\n.gallery-grid {\n  min-width: 0;\n}\n.filter-grid {\n  grid-template-columns: minmax(220px, 1fr) minmax(180px, 0.55fr);\n}\n.table-scroll {\n  border: 1px solid var(--border);\n  border-radius: 8px;\n  overflow-x: auto;\n}\ntable {\n  min-width: 720px;\n  width: 100%;\n}\nth {\n  background: var(--code-bg);\n}\ntbody tr.selected {\n  background: var(--accent-bg);\n  box-shadow: inset 3px 0 0 var(--accent);\n}\n.order-workspace {\n  grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);\n}\nbutton,\ninput,\nselect {\n  font: inherit;\n}\n.primary-button,\n.secondary-button {\n  border-radius: 7px;\n  cursor: pointer;\n  font-weight: 700;\n  min-height: 40px;\n  padding: 8px 13px;\n}\n.primary-button,\n.primary-button:hover,\n.primary-button:focus-visible {\n  background: var(--accent);\n  border: 1px solid var(--accent);\n  color: white;\n}\n.secondary-button,\n.secondary-button:hover,\n.secondary-button:focus-visible {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  color: var(--text-h);\n}\n.tabs {\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 4px;\n  padding-bottom: 12px;\n}\n.tabs button {\n  background: transparent;\n  border: 0;\n  border-radius: 6px;\n  color: var(--text);\n  padding: 7px 10px;\n}\n.tabs button[aria-selected='true'],\n.tabs button[aria-selected='true']:hover,\n.tabs button[aria-selected='true']:focus-visible {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.tab-panel {\n  min-height: 155px;\n  padding-top: 18px;\n}\n.summary-list {\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.summary-list div,\n.metric-grid div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.metric-grid dd {\n  color: var(--accent);\n}\n.sandbox-panel {\n  align-items: center;\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n  display: grid;\n  gap: 16px;\n  grid-template-columns: minmax(0, 1fr) auto auto;\n  margin: 0 0 18px;\n  padding: 22px;\n}\n.sandbox-panel h3,\n.sandbox-panel p {\n  margin: 4px 0 0;\n}\n.sandbox-panel .notice,\n.sandbox-panel .request-error,\n.sandbox-panel > small {\n  grid-column: 1 / -1;\n  margin: 0;\n}\n.order-card[aria-pressed='true'],\n.order-card[aria-pressed='true']:hover,\n.order-card[aria-pressed='true']:focus-visible {\n  background: var(--accent-bg);\n  border-color: var(--accent-border);\n  color: var(--text-h);\n}\ninput:not([type='checkbox']):not([type='radio']):not([type='range']),\nselect {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  color: var(--text-h);\n}\ninput[type='checkbox'],\ninput[type='radio'],\ninput[type='range'],\nprogress {\n  accent-color: var(--accent);\n}\nbutton:focus-visible,\ninput:focus-visible,\nselect:focus-visible,\nsummary:focus-visible,\na:focus-visible {\n  outline: 3px solid var(--accent-border);\n  outline-offset: 2px;\n}\n@media (prefers-color-scheme: dark) {\n:host {\n    --text: #9ca3af;\n    --text-h: #f3f4f6;\n    --bg: #16171d;\n    --border: #2e303a;\n    --code-bg: #1f2028;\n    --accent: #c084fc;\n    --accent-bg: rgb(192 132 252 / 15%);\n    --accent-border: rgb(192 132 252 / 50%);\n    --shadow: rgb(0 0 0 / 40%) 0 10px 15px -3px, rgb(0 0 0 / 25%) 0 4px 6px -2px;\n}\n}\n@media (max-width: 1100px) {\n.control-layout,\n  .order-workspace {\n    grid-template-columns: 1fr;\n}\n.sandbox-panel {\n    align-items: start;\n    grid-template-columns: 1fr;\n}\n.sandbox-panel .notice,\n  .sandbox-panel .request-error,\n  .sandbox-panel > small {\n    grid-column: auto;\n}\n}\n@media (max-width: 760px) {\n.showcase {\n    padding: 24px 16px 40px;\n}\n.showcase-header,\n  .section-heading {\n    align-items: stretch;\n    flex-direction: column;\n    gap: 14px;\n}\n.framework-badge {\n    align-self: flex-start;\n}\n.field-pair,\n  .filter-grid,\n  .customer-detail-layout,\n  .metric-grid {\n    grid-template-columns: 1fr;\n}\n}\n";
 //#endregion
 //#region \0plugin-vue:export-helper
 var _plugin_vue_export_helper_default = (sfc, props) => {
@@ -4836,28 +4836,34 @@ var _hoisted_4 = {
 var _hoisted_5 = ["aria-invalid"];
 var _hoisted_6 = { class: "field-pair" };
 var _hoisted_7 = { class: "choice-row" };
-var _hoisted_8 = { class: "choice-row" };
-var _hoisted_9 = { class: "form-actions" };
-var _hoisted_10 = ["disabled"];
-var _hoisted_11 = { class: "control-stack" };
-var _hoisted_12 = {
+var _hoisted_8 = { class: "choice" };
+var _hoisted_9 = { class: "choice" };
+var _hoisted_10 = { class: "choice" };
+var _hoisted_11 = { class: "choice-row" };
+var _hoisted_12 = { class: "choice" };
+var _hoisted_13 = { class: "choice" };
+var _hoisted_14 = { class: "choice" };
+var _hoisted_15 = { class: "form-actions" };
+var _hoisted_16 = ["disabled"];
+var _hoisted_17 = { class: "control-stack" };
+var _hoisted_18 = {
 	class: "control-card",
 	"aria-labelledby": "preferences-heading"
 };
-var _hoisted_13 = { class: "switch-row" };
-var _hoisted_14 = ["value", "aria-label"];
-var _hoisted_15 = {
+var _hoisted_19 = { class: "switch-row" };
+var _hoisted_20 = ["value", "aria-label"];
+var _hoisted_21 = {
 	class: "control-card",
 	"aria-labelledby": "preview-heading"
 };
-var _hoisted_16 = {
+var _hoisted_22 = {
 	class: "tabs",
 	role: "tablist",
 	"aria-label": "Profile views"
 };
-var _hoisted_17 = ["aria-selected"];
-var _hoisted_18 = ["aria-selected"];
-var _hoisted_19 = {
+var _hoisted_23 = ["aria-selected"];
+var _hoisted_24 = ["aria-selected"];
+var _hoisted_25 = {
 	key: 0,
 	id: "profile-summary-panel",
 	class: "tab-panel",
@@ -4865,8 +4871,8 @@ var _hoisted_19 = {
 	"aria-labelledby": "profile-summary-tab",
 	tabindex: "0"
 };
-var _hoisted_20 = { class: "summary-list" };
-var _hoisted_21 = {
+var _hoisted_26 = { class: "summary-list" };
+var _hoisted_27 = {
 	key: 1,
 	id: "profile-settings-panel",
 	class: "tab-panel",
@@ -4874,194 +4880,194 @@ var _hoisted_21 = {
 	"aria-labelledby": "profile-settings-tab",
 	tabindex: "0"
 };
-var _hoisted_22 = {
+var _hoisted_28 = {
 	key: 0,
 	class: "notification",
 	role: "status",
 	"aria-live": "polite"
 };
-var _hoisted_23 = {
+var _hoisted_29 = {
 	id: "vue-northwind",
 	class: "data-section",
 	"aria-labelledby": "data-heading"
 };
-var _hoisted_24 = {
+var _hoisted_30 = {
 	class: "sandbox-panel",
 	"aria-labelledby": "sandbox-heading"
 };
-var _hoisted_25 = { class: "switch-row" };
-var _hoisted_26 = ["checked"];
-var _hoisted_27 = { key: 1 };
-var _hoisted_28 = {
+var _hoisted_31 = { class: "switch-row" };
+var _hoisted_32 = ["checked"];
+var _hoisted_33 = { key: 1 };
+var _hoisted_34 = {
 	key: 2,
 	class: "notice",
 	role: "status"
 };
-var _hoisted_29 = {
+var _hoisted_35 = {
 	key: 3,
 	class: "request-error",
 	role: "alert"
 };
-var _hoisted_30 = {
+var _hoisted_36 = {
 	class: "data-card",
 	"aria-labelledby": "explorer-heading"
 };
-var _hoisted_31 = { class: "data-heading" };
-var _hoisted_32 = { class: "filter-grid" };
-var _hoisted_33 = ["value"];
-var _hoisted_34 = {
+var _hoisted_37 = { class: "data-heading" };
+var _hoisted_38 = { class: "filter-grid" };
+var _hoisted_39 = ["value"];
+var _hoisted_40 = {
 	key: 0,
 	class: "request-error",
 	role: "alert"
 };
-var _hoisted_35 = {
+var _hoisted_41 = {
 	key: 1,
 	class: "loading-state",
 	role: "status",
 	"aria-live": "polite"
 };
-var _hoisted_36 = {
+var _hoisted_42 = {
 	key: 2,
 	class: "request-error",
 	role: "alert"
 };
-var _hoisted_37 = {
+var _hoisted_43 = {
 	key: 3,
 	class: "empty-state",
 	role: "status"
 };
-var _hoisted_38 = {
+var _hoisted_44 = {
 	key: 4,
 	class: "table-scroll"
 };
-var _hoisted_39 = ["aria-sort"];
-var _hoisted_40 = ["onClick"];
-var _hoisted_41 = {
+var _hoisted_45 = ["aria-sort"];
+var _hoisted_46 = ["onClick"];
+var _hoisted_47 = {
 	key: 0,
 	"aria-hidden": "true"
 };
-var _hoisted_42 = [
+var _hoisted_48 = [
 	"aria-selected",
 	"onClick",
 	"onKeydown"
 ];
-var _hoisted_43 = { "data-label": "Company" };
-var _hoisted_44 = { "data-label": "Contact" };
-var _hoisted_45 = { "data-label": "City" };
-var _hoisted_46 = { "data-label": "Country" };
-var _hoisted_47 = { "data-label": "ID" };
-var _hoisted_48 = {
+var _hoisted_49 = { "data-label": "Company" };
+var _hoisted_50 = { "data-label": "Contact" };
+var _hoisted_51 = { "data-label": "City" };
+var _hoisted_52 = { "data-label": "Country" };
+var _hoisted_53 = { "data-label": "ID" };
+var _hoisted_54 = {
 	class: "pagination",
 	"aria-label": "Customer pages"
 };
-var _hoisted_49 = ["disabled"];
-var _hoisted_50 = ["disabled"];
-var _hoisted_51 = {
+var _hoisted_55 = ["disabled"];
+var _hoisted_56 = ["disabled"];
+var _hoisted_57 = {
 	class: "selection-status",
 	"aria-live": "polite"
 };
-var _hoisted_52 = {
+var _hoisted_58 = {
 	class: "data-card",
 	"aria-labelledby": "customer-details-heading"
 };
-var _hoisted_53 = { class: "data-heading" };
-var _hoisted_54 = { key: 0 };
-var _hoisted_55 = {
+var _hoisted_59 = { class: "data-heading" };
+var _hoisted_60 = { key: 0 };
+var _hoisted_61 = {
 	key: 0,
 	class: "empty-state"
 };
-var _hoisted_56 = {
+var _hoisted_62 = {
 	key: 1,
 	class: "loading-state",
 	role: "status",
 	"aria-live": "polite"
 };
-var _hoisted_57 = {
+var _hoisted_63 = {
 	key: 2,
 	class: "request-error",
 	role: "alert"
 };
-var _hoisted_58 = {
+var _hoisted_64 = {
 	key: 3,
 	class: "customer-detail-layout"
 };
-var _hoisted_59 = {
+var _hoisted_65 = {
 	class: "metric-grid",
 	"aria-label": "Customer sales metrics"
 };
-var _hoisted_60 = ["onUpdate:modelValue", "required"];
-var _hoisted_61 = {
+var _hoisted_66 = ["onUpdate:modelValue", "required"];
+var _hoisted_67 = {
 	key: 0,
 	class: "field-error"
 };
-var _hoisted_62 = {
+var _hoisted_68 = {
 	class: "dirty-status",
 	"aria-live": "polite"
 };
-var _hoisted_63 = { class: "button-row" };
-var _hoisted_64 = ["disabled"];
-var _hoisted_65 = ["disabled"];
-var _hoisted_66 = {
+var _hoisted_69 = { class: "button-row" };
+var _hoisted_70 = ["disabled"];
+var _hoisted_71 = ["disabled"];
+var _hoisted_72 = {
 	key: 1,
 	class: "detail-grid"
 };
-var _hoisted_67 = {
+var _hoisted_73 = {
 	class: "data-card",
 	"aria-labelledby": "orders-heading"
 };
-var _hoisted_68 = { class: "data-heading" };
-var _hoisted_69 = { key: 0 };
-var _hoisted_70 = {
+var _hoisted_74 = { class: "data-heading" };
+var _hoisted_75 = { key: 0 };
+var _hoisted_76 = {
 	key: 0,
 	class: "empty-state"
 };
-var _hoisted_71 = {
+var _hoisted_77 = {
 	key: 1,
 	class: "loading-state",
 	role: "status",
 	"aria-live": "polite"
 };
-var _hoisted_72 = {
+var _hoisted_78 = {
 	key: 2,
 	class: "request-error",
 	role: "alert"
 };
-var _hoisted_73 = {
+var _hoisted_79 = {
 	key: 3,
 	class: "empty-state"
 };
-var _hoisted_74 = {
+var _hoisted_80 = {
 	key: 4,
 	class: "order-workspace"
 };
-var _hoisted_75 = {
+var _hoisted_81 = {
 	class: "order-list",
 	"aria-label": "Customer orders"
 };
-var _hoisted_76 = ["aria-pressed", "onClick"];
-var _hoisted_77 = {
+var _hoisted_82 = ["aria-pressed", "onClick"];
+var _hoisted_83 = {
 	class: "order-detail",
 	"aria-live": "polite"
 };
-var _hoisted_78 = {
+var _hoisted_84 = {
 	key: 0,
 	class: "loading-state",
 	role: "status"
 };
-var _hoisted_79 = {
+var _hoisted_85 = {
 	key: 1,
 	class: "request-error",
 	role: "alert"
 };
-var _hoisted_80 = { key: 2 };
-var _hoisted_81 = { class: "order-summary" };
-var _hoisted_82 = { class: "card-kicker" };
-var _hoisted_83 = { class: "table-scroll" };
-var _hoisted_84 = { class: "visually-hidden" };
-var _hoisted_85 = { class: "order-totals" };
-var _hoisted_86 = { class: "grand-total" };
-var _hoisted_87 = { class: "dialog-content" };
-var _hoisted_88 = { class: "button-row" };
+var _hoisted_86 = { key: 2 };
+var _hoisted_87 = { class: "order-summary" };
+var _hoisted_88 = { class: "card-kicker" };
+var _hoisted_89 = { class: "table-scroll" };
+var _hoisted_90 = { class: "visually-hidden" };
+var _hoisted_91 = { class: "order-totals" };
+var _hoisted_92 = { class: "grand-total" };
+var _hoisted_93 = { class: "dialog-content" };
+var _hoisted_94 = { class: "button-row" };
 var pageSize = 10;
 var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 	__name: "App.ce",
@@ -5477,45 +5483,45 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 							createBaseVNode("option", null, "Manager", -1)
 						])], 512), [[vModelSelect, role.value]])]),
 						createBaseVNode("fieldset", null, [_cache[30] || (_cache[30] = createBaseVNode("legend", null, "Interests", -1)), createBaseVNode("div", _hoisted_7, [
-							createBaseVNode("label", null, [withDirectives(createBaseVNode("input", {
+							createBaseVNode("label", _hoisted_8, [withDirectives(createBaseVNode("input", {
 								"onUpdate:modelValue": _cache[5] || (_cache[5] = ($event) => interests.value = $event),
 								type: "checkbox",
 								value: "Data"
 							}, null, 512), [[vModelCheckbox, interests.value]]), _cache[27] || (_cache[27] = createTextVNode(" Data", -1))]),
-							createBaseVNode("label", null, [withDirectives(createBaseVNode("input", {
+							createBaseVNode("label", _hoisted_9, [withDirectives(createBaseVNode("input", {
 								"onUpdate:modelValue": _cache[6] || (_cache[6] = ($event) => interests.value = $event),
 								type: "checkbox",
 								value: "Design"
 							}, null, 512), [[vModelCheckbox, interests.value]]), _cache[28] || (_cache[28] = createTextVNode(" Design", -1))]),
-							createBaseVNode("label", null, [withDirectives(createBaseVNode("input", {
+							createBaseVNode("label", _hoisted_10, [withDirectives(createBaseVNode("input", {
 								"onUpdate:modelValue": _cache[7] || (_cache[7] = ($event) => interests.value = $event),
 								type: "checkbox",
 								value: "Automation"
 							}, null, 512), [[vModelCheckbox, interests.value]]), _cache[29] || (_cache[29] = createTextVNode(" Automation", -1))])
 						])]),
-						createBaseVNode("fieldset", null, [_cache[34] || (_cache[34] = createBaseVNode("legend", null, "Preferred contact", -1)), createBaseVNode("div", _hoisted_8, [
-							createBaseVNode("label", null, [withDirectives(createBaseVNode("input", {
+						createBaseVNode("fieldset", null, [_cache[34] || (_cache[34] = createBaseVNode("legend", null, "Preferred contact", -1)), createBaseVNode("div", _hoisted_11, [
+							createBaseVNode("label", _hoisted_12, [withDirectives(createBaseVNode("input", {
 								"onUpdate:modelValue": _cache[8] || (_cache[8] = ($event) => contact.value = $event),
 								type: "radio",
 								value: "Email"
 							}, null, 512), [[vModelRadio, contact.value]]), _cache[31] || (_cache[31] = createTextVNode(" Email", -1))]),
-							createBaseVNode("label", null, [withDirectives(createBaseVNode("input", {
+							createBaseVNode("label", _hoisted_13, [withDirectives(createBaseVNode("input", {
 								"onUpdate:modelValue": _cache[9] || (_cache[9] = ($event) => contact.value = $event),
 								type: "radio",
 								value: "Phone"
 							}, null, 512), [[vModelRadio, contact.value]]), _cache[32] || (_cache[32] = createTextVNode(" Phone", -1))]),
-							createBaseVNode("label", null, [withDirectives(createBaseVNode("input", {
+							createBaseVNode("label", _hoisted_14, [withDirectives(createBaseVNode("input", {
 								"onUpdate:modelValue": _cache[10] || (_cache[10] = ($event) => contact.value = $event),
 								type: "radio",
 								value: "Chat"
 							}, null, 512), [[vModelRadio, contact.value]]), _cache[33] || (_cache[33] = createTextVNode(" Chat", -1))])
 						])]),
-						createBaseVNode("div", _hoisted_9, [
+						createBaseVNode("div", _hoisted_15, [
 							createBaseVNode("button", {
 								class: "primary-button",
 								type: "submit",
 								disabled: !isProfileValid.value
-							}, " Validate profile ", 8, _hoisted_10),
+							}, " Validate profile ", 8, _hoisted_16),
 							createBaseVNode("button", {
 								class: "secondary-button",
 								type: "button",
@@ -5527,9 +5533,9 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 								disabled: ""
 							}, "Disabled", -1))
 						])
-					], 32), createBaseVNode("div", _hoisted_11, [createBaseVNode("article", _hoisted_12, [
+					], 32), createBaseVNode("div", _hoisted_17, [createBaseVNode("article", _hoisted_18, [
 						_cache[39] || (_cache[39] = createBaseVNode("div", { class: "card-heading" }, [createBaseVNode("h3", { id: "preferences-heading" }, "Preferences and progress")], -1)),
-						createBaseVNode("label", _hoisted_13, [_cache[37] || (_cache[37] = createBaseVNode("span", null, [createBaseVNode("strong", null, "Notifications"), createBaseVNode("small", null, "Enable status updates")], -1)), withDirectives(createBaseVNode("input", {
+						createBaseVNode("label", _hoisted_19, [_cache[37] || (_cache[37] = createBaseVNode("span", null, [createBaseVNode("strong", null, "Notifications"), createBaseVNode("small", null, "Enable status updates")], -1)), withDirectives(createBaseVNode("input", {
 							"onUpdate:modelValue": _cache[11] || (_cache[11] = ($event) => notifications.value = $event),
 							type: "checkbox",
 							role: "switch"
@@ -5549,10 +5555,10 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 							value: confidence.value,
 							max: "100",
 							"aria-label": `Confidence ${confidence.value}%`
-						}, null, 8, _hoisted_14)
-					]), createBaseVNode("article", _hoisted_15, [
+						}, null, 8, _hoisted_20)
+					]), createBaseVNode("article", _hoisted_21, [
 						_cache[46] || (_cache[46] = createBaseVNode("div", { class: "card-heading" }, [createBaseVNode("h3", { id: "preview-heading" }, "Bound state")], -1)),
-						createBaseVNode("div", _hoisted_16, [createBaseVNode("button", {
+						createBaseVNode("div", _hoisted_22, [createBaseVNode("button", {
 							id: "profile-summary-tab",
 							type: "button",
 							role: "tab",
@@ -5561,7 +5567,7 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 							"aria-controls": "profile-summary-panel",
 							onClick: _cache[13] || (_cache[13] = ($event) => activeTab.value = "summary"),
 							onKeydown: handleTabKeydown
-						}, " Summary ", 40, _hoisted_17), createBaseVNode("button", {
+						}, " Summary ", 40, _hoisted_23), createBaseVNode("button", {
 							id: "profile-settings-tab",
 							type: "button",
 							role: "tab",
@@ -5570,53 +5576,53 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 							"aria-controls": "profile-settings-panel",
 							onClick: _cache[14] || (_cache[14] = ($event) => activeTab.value = "settings"),
 							onKeydown: handleTabKeydown
-						}, " Settings ", 40, _hoisted_18)]),
-						activeTab.value === "summary" ? (openBlock(), createElementBlock("div", _hoisted_19, [createBaseVNode("h3", null, toDisplayString(name.value || "Unnamed profile"), 1), createBaseVNode("dl", _hoisted_20, [
+						}, " Settings ", 40, _hoisted_24)]),
+						activeTab.value === "summary" ? (openBlock(), createElementBlock("div", _hoisted_25, [createBaseVNode("h3", null, toDisplayString(name.value || "Unnamed profile"), 1), createBaseVNode("dl", _hoisted_26, [
 							createBaseVNode("div", null, [_cache[40] || (_cache[40] = createBaseVNode("dt", null, "Role", -1)), createBaseVNode("dd", null, toDisplayString(role.value), 1)]),
 							createBaseVNode("div", null, [_cache[41] || (_cache[41] = createBaseVNode("dt", null, "Seats", -1)), createBaseVNode("dd", null, toDisplayString(seats.value), 1)]),
 							createBaseVNode("div", null, [_cache[42] || (_cache[42] = createBaseVNode("dt", null, "Contact", -1)), createBaseVNode("dd", null, toDisplayString(contact.value), 1)]),
 							createBaseVNode("div", null, [_cache[43] || (_cache[43] = createBaseVNode("dt", null, "Interests", -1)), createBaseVNode("dd", null, toDisplayString(interests.value.join(", ") || "None"), 1)])
-						])])) : (openBlock(), createElementBlock("div", _hoisted_21, [_cache[45] || (_cache[45] = createBaseVNode("h3", null, "Current settings", -1)), createBaseVNode("p", null, [
+						])])) : (openBlock(), createElementBlock("div", _hoisted_27, [_cache[45] || (_cache[45] = createBaseVNode("h3", null, "Current settings", -1)), createBaseVNode("p", null, [
 							_cache[44] || (_cache[44] = createTextVNode(" Notifications are ", -1)),
 							createBaseVNode("strong", null, toDisplayString(notifications.value ? "enabled" : "disabled"), 1),
 							createTextVNode(". The selected start date is " + toDisplayString(startDate.value) + ". ", 1)
 						])])),
 						_cache[47] || (_cache[47] = createBaseVNode("details", null, [createBaseVNode("summary", null, "Implementation note"), createBaseVNode("p", null, " Native controls preserve keyboard behavior while Vue binds each value and derives this summary. ")], -1))
 					])])]),
-					successMessage.value ? (openBlock(), createElementBlock("div", _hoisted_22, [createBaseVNode("span", null, toDisplayString(successMessage.value), 1), createBaseVNode("button", {
+					successMessage.value ? (openBlock(), createElementBlock("div", _hoisted_28, [createBaseVNode("span", null, toDisplayString(successMessage.value), 1), createBaseVNode("button", {
 						type: "button",
 						"aria-label": "Dismiss notification",
 						onClick: _cache[15] || (_cache[15] = ($event) => successMessage.value = "")
 					}, " × ")])) : createCommentVNode("", true)
 				]),
-				createBaseVNode("section", _hoisted_23, [
+				createBaseVNode("section", _hoisted_29, [
 					_cache[77] || (_cache[77] = createBaseVNode("div", { class: "section-heading" }, [createBaseVNode("div", null, [createBaseVNode("span", { class: "eyebrow" }, "API-backed state"), createBaseVNode("h2", { id: "data-heading" }, "Northwind data binding")]), createBaseVNode("p", null, " Server-driven filtering, sorting, paging, and selection against the Northwind API. ")], -1)),
-					createBaseVNode("aside", _hoisted_24, [
+					createBaseVNode("aside", _hoisted_30, [
 						_cache[49] || (_cache[49] = createBaseVNode("div", null, [
 							createBaseVNode("p", { class: "card-kicker" }, "Session-isolated editing"),
 							createBaseVNode("h3", { id: "sandbox-heading" }, "Editing Sandbox"),
 							createBaseVNode("p", null, " Changes use an in-memory browser-session copy. Canonical Northwind customers and every order remain read-only. ")
 						], -1)),
-						createBaseVNode("label", _hoisted_25, [createBaseVNode("span", null, [createBaseVNode("strong", null, toDisplayString(sandboxEnabled.value ? "Enabled" : "Disabled"), 1), createBaseVNode("small", null, toDisplayString(sandboxHasChanges.value ? "Changes made" : "Vanilla copy"), 1)]), createBaseVNode("input", {
+						createBaseVNode("label", _hoisted_31, [createBaseVNode("span", null, [createBaseVNode("strong", null, toDisplayString(sandboxEnabled.value ? "Enabled" : "Disabled"), 1), createBaseVNode("small", null, toDisplayString(sandboxHasChanges.value ? "Changes made" : "Vanilla copy"), 1)]), createBaseVNode("input", {
 							type: "checkbox",
 							role: "switch",
 							"aria-label": "Editing sandbox",
 							checked: sandboxEnabled.value,
 							onChange: _cache[16] || (_cache[16] = ($event) => setSandboxEnabled($event.target.checked, $event.target))
-						}, null, 40, _hoisted_26)]),
+						}, null, 40, _hoisted_32)]),
 						sandboxEnabled.value ? (openBlock(), createElementBlock("button", {
 							key: 0,
 							type: "button",
 							class: "secondary-button",
 							onClick: resetSandbox
 						}, " Reset sandbox ")) : createCommentVNode("", true),
-						sandboxEnabled.value && sandboxExpiresAt.value ? (openBlock(), createElementBlock("small", _hoisted_27, " Session copy expires " + toDisplayString(formatDate(sandboxExpiresAt.value)) + ". ", 1)) : createCommentVNode("", true),
-						sandboxNotice.value ? (openBlock(), createElementBlock("p", _hoisted_28, toDisplayString(sandboxNotice.value), 1)) : createCommentVNode("", true),
-						sandboxError.value ? (openBlock(), createElementBlock("p", _hoisted_29, toDisplayString(sandboxError.value), 1)) : createCommentVNode("", true)
+						sandboxEnabled.value && sandboxExpiresAt.value ? (openBlock(), createElementBlock("small", _hoisted_33, " Session copy expires " + toDisplayString(formatDate(sandboxExpiresAt.value)) + ". ", 1)) : createCommentVNode("", true),
+						sandboxNotice.value ? (openBlock(), createElementBlock("p", _hoisted_34, toDisplayString(sandboxNotice.value), 1)) : createCommentVNode("", true),
+						sandboxError.value ? (openBlock(), createElementBlock("p", _hoisted_35, toDisplayString(sandboxError.value), 1)) : createCommentVNode("", true)
 					]),
-					createBaseVNode("article", _hoisted_30, [
-						createBaseVNode("div", _hoisted_31, [_cache[50] || (_cache[50] = createBaseVNode("div", null, [createBaseVNode("h3", { id: "explorer-heading" }, "Customer explorer")], -1)), createBaseVNode("p", null, toDisplayString(totalCount.value) + " Northwind records", 1)]),
-						createBaseVNode("div", _hoisted_32, [createBaseVNode("label", null, [_cache[51] || (_cache[51] = createBaseVNode("span", null, "Search customers", -1)), withDirectives(createBaseVNode("input", {
+					createBaseVNode("article", _hoisted_36, [
+						createBaseVNode("div", _hoisted_37, [_cache[50] || (_cache[50] = createBaseVNode("div", null, [createBaseVNode("h3", { id: "explorer-heading" }, "Customer explorer")], -1)), createBaseVNode("p", null, toDisplayString(totalCount.value) + " Northwind records", 1)]),
+						createBaseVNode("div", _hoisted_38, [createBaseVNode("label", null, [_cache[51] || (_cache[51] = createBaseVNode("span", null, "Search customers", -1)), withDirectives(createBaseVNode("input", {
 							"onUpdate:modelValue": _cache[17] || (_cache[17] = ($event) => search.value = $event),
 							type: "search",
 							placeholder: "Company or contact"
@@ -5624,14 +5630,14 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 							return openBlock(), createElementBlock("option", {
 								key: item,
 								value: item
-							}, toDisplayString(item), 9, _hoisted_33);
+							}, toDisplayString(item), 9, _hoisted_39);
 						}), 128))], 512), [[vModelSelect, country.value]])])]),
-						countriesError.value ? (openBlock(), createElementBlock("p", _hoisted_34, toDisplayString(countriesError.value), 1)) : createCommentVNode("", true),
-						customersLoading.value ? (openBlock(), createElementBlock("p", _hoisted_35, " Loading customers… ")) : customersError.value ? (openBlock(), createElementBlock("div", _hoisted_36, [createBaseVNode("p", null, toDisplayString(customersError.value), 1), createBaseVNode("button", {
+						countriesError.value ? (openBlock(), createElementBlock("p", _hoisted_40, toDisplayString(countriesError.value), 1)) : createCommentVNode("", true),
+						customersLoading.value ? (openBlock(), createElementBlock("p", _hoisted_41, " Loading customers… ")) : customersError.value ? (openBlock(), createElementBlock("div", _hoisted_42, [createBaseVNode("p", null, toDisplayString(customersError.value), 1), createBaseVNode("button", {
 							type: "button",
 							class: "secondary-button",
 							onClick: loadCustomers
-						}, " Try again ")])) : customers.value.length === 0 ? (openBlock(), createElementBlock("p", _hoisted_37, " No customers match these filters. ")) : (openBlock(), createElementBlock("div", _hoisted_38, [createBaseVNode("table", null, [
+						}, " Try again ")])) : customers.value.length === 0 ? (openBlock(), createElementBlock("p", _hoisted_43, " No customers match these filters. ")) : (openBlock(), createElementBlock("div", _hoisted_44, [createBaseVNode("table", null, [
 							_cache[54] || (_cache[54] = createBaseVNode("caption", { class: "visually-hidden" }, " Filtered Northwind customers ", -1)),
 							createBaseVNode("thead", null, [createBaseVNode("tr", null, [(openBlock(), createElementBlock(Fragment, null, renderList(columns, ([key, label]) => {
 								return createBaseVNode("th", {
@@ -5642,7 +5648,7 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 									type: "button",
 									class: "sort-button",
 									onClick: ($event) => changeSort(key)
-								}, [createTextVNode(toDisplayString(label) + " ", 1), sort.value === key ? (openBlock(), createElementBlock("span", _hoisted_41, toDisplayString(direction.value === "asc" ? "↑" : "↓"), 1)) : createCommentVNode("", true)], 8, _hoisted_40)], 8, _hoisted_39);
+								}, [createTextVNode(toDisplayString(label) + " ", 1), sort.value === key ? (openBlock(), createElementBlock("span", _hoisted_47, toDisplayString(direction.value === "asc" ? "↑" : "↓"), 1)) : createCommentVNode("", true)], 8, _hoisted_46)], 8, _hoisted_45);
 							}), 64))])]),
 							createBaseVNode("tbody", null, [(openBlock(true), createElementBlock(Fragment, null, renderList(customers.value, (customer) => {
 								return openBlock(), createElementBlock("tr", {
@@ -5653,36 +5659,36 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 									onClick: ($event) => selectCustomer(customer.customerId),
 									onKeydown: [withKeys(($event) => selectCustomer(customer.customerId), ["enter"]), withKeys(withModifiers(($event) => selectCustomer(customer.customerId), ["prevent"]), ["space"])]
 								}, [
-									createBaseVNode("td", _hoisted_43, toDisplayString(customer.companyName), 1),
-									createBaseVNode("td", _hoisted_44, toDisplayString(customer.contactName || "—"), 1),
-									createBaseVNode("td", _hoisted_45, toDisplayString(customer.city || "—"), 1),
-									createBaseVNode("td", _hoisted_46, toDisplayString(customer.country || "—"), 1),
-									createBaseVNode("td", _hoisted_47, [createBaseVNode("code", null, toDisplayString(customer.customerId), 1)])
-								], 42, _hoisted_42);
+									createBaseVNode("td", _hoisted_49, toDisplayString(customer.companyName), 1),
+									createBaseVNode("td", _hoisted_50, toDisplayString(customer.contactName || "—"), 1),
+									createBaseVNode("td", _hoisted_51, toDisplayString(customer.city || "—"), 1),
+									createBaseVNode("td", _hoisted_52, toDisplayString(customer.country || "—"), 1),
+									createBaseVNode("td", _hoisted_53, [createBaseVNode("code", null, toDisplayString(customer.customerId), 1)])
+								], 42, _hoisted_48);
 							}), 128))])
 						])])),
-						createBaseVNode("div", _hoisted_48, [
+						createBaseVNode("div", _hoisted_54, [
 							createBaseVNode("button", {
 								type: "button",
 								class: "secondary-button",
 								disabled: page.value <= 1 || customersLoading.value,
 								onClick: _cache[19] || (_cache[19] = ($event) => page.value -= 1)
-							}, " Previous ", 8, _hoisted_49),
+							}, " Previous ", 8, _hoisted_55),
 							createBaseVNode("span", null, toDisplayString(pageDescription.value), 1),
 							createBaseVNode("button", {
 								type: "button",
 								class: "secondary-button",
 								disabled: page.value >= totalPages.value || customersLoading.value,
 								onClick: _cache[20] || (_cache[20] = ($event) => page.value += 1)
-							}, " Next ", 8, _hoisted_50)
+							}, " Next ", 8, _hoisted_56)
 						]),
-						createBaseVNode("p", _hoisted_51, toDisplayString(selectedId.value ? `Selected: ${selectedId.value}` : "Select a customer"), 1)
+						createBaseVNode("p", _hoisted_57, toDisplayString(selectedId.value ? `Selected: ${selectedId.value}` : "Select a customer"), 1)
 					]),
-					createBaseVNode("article", _hoisted_52, [createBaseVNode("div", _hoisted_53, [_cache[55] || (_cache[55] = createBaseVNode("div", null, [createBaseVNode("h3", { id: "customer-details-heading" }, "Customer details")], -1)), selectedId.value ? (openBlock(), createElementBlock("code", _hoisted_54, toDisplayString(selectedId.value), 1)) : createCommentVNode("", true)]), !selectedId.value ? (openBlock(), createElementBlock("p", _hoisted_55, " Select a customer to bind its complete record and sales metrics. ")) : customerDetailLoading.value ? (openBlock(), createElementBlock("p", _hoisted_56, " Loading customer details… ")) : customerDetailError.value ? (openBlock(), createElementBlock("div", _hoisted_57, [createBaseVNode("p", null, toDisplayString(customerDetailError.value), 1), createBaseVNode("button", {
+					createBaseVNode("article", _hoisted_58, [createBaseVNode("div", _hoisted_59, [_cache[55] || (_cache[55] = createBaseVNode("div", null, [createBaseVNode("h3", { id: "customer-details-heading" }, "Customer details")], -1)), selectedId.value ? (openBlock(), createElementBlock("code", _hoisted_60, toDisplayString(selectedId.value), 1)) : createCommentVNode("", true)]), !selectedId.value ? (openBlock(), createElementBlock("p", _hoisted_61, " Select a customer to bind its complete record and sales metrics. ")) : customerDetailLoading.value ? (openBlock(), createElementBlock("p", _hoisted_62, " Loading customer details… ")) : customerDetailError.value ? (openBlock(), createElementBlock("div", _hoisted_63, [createBaseVNode("p", null, toDisplayString(customerDetailError.value), 1), createBaseVNode("button", {
 						type: "button",
 						class: "secondary-button",
 						onClick: loadCustomerDetail
-					}, " Try again ")])) : customerDetail.value ? (openBlock(), createElementBlock("div", _hoisted_58, [createBaseVNode("dl", _hoisted_59, [
+					}, " Try again ")])) : customerDetail.value ? (openBlock(), createElementBlock("div", _hoisted_64, [createBaseVNode("dl", _hoisted_65, [
 						createBaseVNode("div", null, [_cache[56] || (_cache[56] = createBaseVNode("dt", null, "Orders", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.orderCount), 1)]),
 						createBaseVNode("div", null, [_cache[57] || (_cache[57] = createBaseVNode("dt", null, "Total sales", -1)), createBaseVNode("dd", null, toDisplayString(formatCurrency(customerDetail.value.totalSales)), 1)]),
 						createBaseVNode("div", null, [_cache[58] || (_cache[58] = createBaseVNode("dt", null, "Last order", -1)), createBaseVNode("dd", null, toDisplayString(formatDate(customerDetail.value.lastOrderDate)), 1)])
@@ -5697,21 +5703,21 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 								"onUpdate:modelValue": ($event) => customerDraft.value[key] = $event,
 								type: "text",
 								required: key === "companyName"
-							}, null, 8, _hoisted_60), [[vModelText, customerDraft.value[key]]])]);
+							}, null, 8, _hoisted_66), [[vModelText, customerDraft.value[key]]])]);
 						}), 64)),
-						!draftCompanyValid.value ? (openBlock(), createElementBlock("p", _hoisted_61, " Company name is required. ")) : createCommentVNode("", true),
-						createBaseVNode("p", _hoisted_62, toDisplayString(customerDraftDirty.value ? "Unsaved fields" : "No unsaved fields"), 1),
-						createBaseVNode("div", _hoisted_63, [createBaseVNode("button", {
+						!draftCompanyValid.value ? (openBlock(), createElementBlock("p", _hoisted_67, " Company name is required. ")) : createCommentVNode("", true),
+						createBaseVNode("p", _hoisted_68, toDisplayString(customerDraftDirty.value ? "Unsaved fields" : "No unsaved fields"), 1),
+						createBaseVNode("div", _hoisted_69, [createBaseVNode("button", {
 							class: "primary-button",
 							type: "submit",
 							disabled: !customerDraftDirty.value || !draftCompanyValid.value || sandboxSaving.value
-						}, toDisplayString(sandboxSaving.value ? "Saving…" : "Save changes"), 9, _hoisted_64), createBaseVNode("button", {
+						}, toDisplayString(sandboxSaving.value ? "Saving…" : "Save changes"), 9, _hoisted_70), createBaseVNode("button", {
 							class: "secondary-button",
 							type: "button",
 							disabled: !customerDraftDirty.value || sandboxSaving.value,
 							onClick: discardCustomerChanges
-						}, " Discard ", 8, _hoisted_65)])
-					], 32)) : (openBlock(), createElementBlock("dl", _hoisted_66, [
+						}, " Discard ", 8, _hoisted_71)])
+					], 32)) : (openBlock(), createElementBlock("dl", _hoisted_72, [
 						createBaseVNode("div", null, [_cache[59] || (_cache[59] = createBaseVNode("dt", null, "Company", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.companyName), 1)]),
 						createBaseVNode("div", null, [_cache[60] || (_cache[60] = createBaseVNode("dt", null, "Contact", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.contactName || "—"), 1)]),
 						createBaseVNode("div", null, [_cache[61] || (_cache[61] = createBaseVNode("dt", null, "Title", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.contactTitle || "—"), 1)]),
@@ -5723,25 +5729,25 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 						createBaseVNode("div", null, [_cache[67] || (_cache[67] = createBaseVNode("dt", null, "Phone", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.phone || "—"), 1)]),
 						createBaseVNode("div", null, [_cache[68] || (_cache[68] = createBaseVNode("dt", null, "Fax", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.fax || "—"), 1)])
 					]))])) : createCommentVNode("", true)]),
-					createBaseVNode("article", _hoisted_67, [createBaseVNode("div", _hoisted_68, [_cache[69] || (_cache[69] = createBaseVNode("div", null, [createBaseVNode("h3", { id: "orders-heading" }, "Orders and line items")], -1)), orders.value.length ? (openBlock(), createElementBlock("span", _hoisted_69, toDisplayString(orders.value.length) + " orders", 1)) : createCommentVNode("", true)]), !selectedId.value ? (openBlock(), createElementBlock("p", _hoisted_70, " Select a customer to load their orders. ")) : ordersLoading.value ? (openBlock(), createElementBlock("p", _hoisted_71, " Loading customer orders… ")) : ordersError.value ? (openBlock(), createElementBlock("div", _hoisted_72, [createBaseVNode("p", null, toDisplayString(ordersError.value), 1), createBaseVNode("button", {
+					createBaseVNode("article", _hoisted_73, [createBaseVNode("div", _hoisted_74, [_cache[69] || (_cache[69] = createBaseVNode("div", null, [createBaseVNode("h3", { id: "orders-heading" }, "Orders and line items")], -1)), orders.value.length ? (openBlock(), createElementBlock("span", _hoisted_75, toDisplayString(orders.value.length) + " orders", 1)) : createCommentVNode("", true)]), !selectedId.value ? (openBlock(), createElementBlock("p", _hoisted_76, " Select a customer to load their orders. ")) : ordersLoading.value ? (openBlock(), createElementBlock("p", _hoisted_77, " Loading customer orders… ")) : ordersError.value ? (openBlock(), createElementBlock("div", _hoisted_78, [createBaseVNode("p", null, toDisplayString(ordersError.value), 1), createBaseVNode("button", {
 						type: "button",
 						class: "secondary-button",
 						onClick: loadOrders
-					}, " Try again ")])) : orders.value.length === 0 ? (openBlock(), createElementBlock("p", _hoisted_73, " This customer has no orders. ")) : (openBlock(), createElementBlock("div", _hoisted_74, [createBaseVNode("div", _hoisted_75, [(openBlock(true), createElementBlock(Fragment, null, renderList(orders.value, (order) => {
+					}, " Try again ")])) : orders.value.length === 0 ? (openBlock(), createElementBlock("p", _hoisted_79, " This customer has no orders. ")) : (openBlock(), createElementBlock("div", _hoisted_80, [createBaseVNode("div", _hoisted_81, [(openBlock(true), createElementBlock(Fragment, null, renderList(orders.value, (order) => {
 						return openBlock(), createElementBlock("button", {
 							key: order.orderId,
 							type: "button",
 							class: "order-card",
 							"aria-pressed": selectedOrderId.value === order.orderId,
 							onClick: ($event) => selectedOrderId.value = order.orderId
-						}, [createBaseVNode("span", null, [createBaseVNode("strong", null, "Order " + toDisplayString(order.orderId), 1), createBaseVNode("small", null, toDisplayString(formatDate(order.orderDate)), 1)]), createBaseVNode("span", null, [createBaseVNode("strong", null, toDisplayString(formatCurrency(order.total)), 1), createBaseVNode("small", null, toDisplayString(order.status), 1)])], 8, _hoisted_76);
-					}), 128))]), createBaseVNode("div", _hoisted_77, [orderDetailLoading.value ? (openBlock(), createElementBlock("p", _hoisted_78, " Loading order details… ")) : orderDetailError.value ? (openBlock(), createElementBlock("div", _hoisted_79, [createBaseVNode("p", null, toDisplayString(orderDetailError.value), 1), createBaseVNode("button", {
+						}, [createBaseVNode("span", null, [createBaseVNode("strong", null, "Order " + toDisplayString(order.orderId), 1), createBaseVNode("small", null, toDisplayString(formatDate(order.orderDate)), 1)]), createBaseVNode("span", null, [createBaseVNode("strong", null, toDisplayString(formatCurrency(order.total)), 1), createBaseVNode("small", null, toDisplayString(order.status), 1)])], 8, _hoisted_82);
+					}), 128))]), createBaseVNode("div", _hoisted_83, [orderDetailLoading.value ? (openBlock(), createElementBlock("p", _hoisted_84, " Loading order details… ")) : orderDetailError.value ? (openBlock(), createElementBlock("div", _hoisted_85, [createBaseVNode("p", null, toDisplayString(orderDetailError.value), 1), createBaseVNode("button", {
 						type: "button",
 						class: "secondary-button",
 						onClick: loadOrderDetail
-					}, " Try again ")])) : orderDetail.value ? (openBlock(), createElementBlock("div", _hoisted_80, [
-						createBaseVNode("div", _hoisted_81, [createBaseVNode("div", null, [
-							createBaseVNode("p", _hoisted_82, "Order " + toDisplayString(orderDetail.value.orderId), 1),
+					}, " Try again ")])) : orderDetail.value ? (openBlock(), createElementBlock("div", _hoisted_86, [
+						createBaseVNode("div", _hoisted_87, [createBaseVNode("div", null, [
+							createBaseVNode("p", _hoisted_88, "Order " + toDisplayString(orderDetail.value.orderId), 1),
 							createBaseVNode("h4", null, toDisplayString(orderDetail.value.status), 1),
 							createBaseVNode("p", null, toDisplayString(formatDate(orderDetail.value.orderDate)), 1)
 						]), createBaseVNode("dl", null, [
@@ -5749,8 +5755,8 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 							createBaseVNode("div", null, [_cache[71] || (_cache[71] = createBaseVNode("dt", null, "Shipper", -1)), createBaseVNode("dd", null, toDisplayString(orderDetail.value.shipperName || "Unassigned"), 1)]),
 							createBaseVNode("div", null, [_cache[72] || (_cache[72] = createBaseVNode("dt", null, "Destination", -1)), createBaseVNode("dd", null, toDisplayString(orderDetail.value.shippingAddress.city || "—") + ", " + toDisplayString(orderDetail.value.shippingAddress.country || "—"), 1)])
 						])]),
-						createBaseVNode("div", _hoisted_83, [createBaseVNode("table", null, [
-							createBaseVNode("caption", _hoisted_84, " Products in order " + toDisplayString(orderDetail.value.orderId), 1),
+						createBaseVNode("div", _hoisted_89, [createBaseVNode("table", null, [
+							createBaseVNode("caption", _hoisted_90, " Products in order " + toDisplayString(orderDetail.value.orderId), 1),
 							_cache[73] || (_cache[73] = createBaseVNode("thead", null, [createBaseVNode("tr", null, [
 								createBaseVNode("th", { scope: "col" }, "Product"),
 								createBaseVNode("th", { scope: "col" }, "Qty."),
@@ -5766,10 +5772,10 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 								]);
 							}), 128))])
 						])]),
-						createBaseVNode("dl", _hoisted_85, [
+						createBaseVNode("dl", _hoisted_91, [
 							createBaseVNode("div", null, [_cache[74] || (_cache[74] = createBaseVNode("dt", null, "Subtotal", -1)), createBaseVNode("dd", null, toDisplayString(formatCurrency(orderDetail.value.subtotal)), 1)]),
 							createBaseVNode("div", null, [_cache[75] || (_cache[75] = createBaseVNode("dt", null, "Freight", -1)), createBaseVNode("dd", null, toDisplayString(formatCurrency(orderDetail.value.freight)), 1)]),
-							createBaseVNode("div", _hoisted_86, [_cache[76] || (_cache[76] = createBaseVNode("dt", null, "Total", -1)), createBaseVNode("dd", null, toDisplayString(formatCurrency(orderDetail.value.total)), 1)])
+							createBaseVNode("div", _hoisted_92, [_cache[76] || (_cache[76] = createBaseVNode("dt", null, "Total", -1)), createBaseVNode("dd", null, toDisplayString(formatCurrency(orderDetail.value.total)), 1)])
 						])
 					])) : createCommentVNode("", true)])]))])
 				]),
@@ -5778,11 +5784,11 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 					ref: dialog,
 					"aria-labelledby": "dialog-heading",
 					onKeydown: handleDialogKeydown
-				}, [createBaseVNode("div", _hoisted_87, [
+				}, [createBaseVNode("div", _hoisted_93, [
 					_cache[78] || (_cache[78] = createBaseVNode("p", { class: "card-kicker" }, "Vue dialog", -1)),
 					_cache[79] || (_cache[79] = createBaseVNode("h2", { id: "dialog-heading" }, "Keyboard-ready modal", -1)),
 					_cache[80] || (_cache[80] = createBaseVNode("p", null, "Focus stays within this dialog until it is closed.", -1)),
-					createBaseVNode("div", _hoisted_88, [createBaseVNode("button", {
+					createBaseVNode("div", _hoisted_94, [createBaseVNode("button", {
 						ref_key: "dialogCloseButton",
 						ref: dialogCloseButton,
 						class: "primary-button",

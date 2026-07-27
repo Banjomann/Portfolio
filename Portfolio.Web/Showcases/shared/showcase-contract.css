@@ -1,0 +1,133 @@
+/* Shared visual contract bundled into each framework's Shadow DOM. */
+:host {
+  --lab-font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --lab-title-size: 32px;
+  --lab-section-size: 24px;
+  --lab-card-title-size: 18px;
+
+  color: var(--text);
+  font: 16px/1.6 var(--lab-font);
+  font-synthesis: none;
+  letter-spacing: 0.18px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.showcase-header h1,
+.section-heading h2,
+.control-card h3,
+.grid-card h3,
+.data-card h3,
+.detail-card h3,
+.orders-card h3,
+.sandbox-panel h3,
+dialog h2 {
+  color: var(--text-h);
+  font-family: var(--lab-font);
+  font-style: normal;
+}
+
+.showcase-header h1 {
+  font-size: var(--lab-title-size);
+  font-weight: 500;
+  letter-spacing: -1.68px;
+  line-height: 1.6;
+  margin: 6px 0 10px;
+}
+
+.section-heading h2 {
+  font-size: var(--lab-section-size);
+  font-weight: 500;
+  letter-spacing: -0.24px;
+  line-height: 1.6;
+  margin: 4px 0 0;
+}
+
+.control-card h3,
+.grid-card h3,
+.data-card h3,
+.detail-card h3,
+.orders-card h3,
+.sandbox-panel h3 {
+  font-size: var(--lab-card-title-size);
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+.control-card,
+.grid-card,
+.data-card,
+.detail-card,
+.orders-card,
+.sandbox-panel {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  color: var(--text);
+}
+
+fieldset {
+  border: 0;
+  margin: 0;
+  min-width: 0;
+  padding: 0;
+}
+
+legend,
+label {
+  color: var(--text-h);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.choice-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.choice-row .choice,
+.choice-row > label {
+  align-items: center;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  cursor: pointer;
+  display: inline-flex;
+  gap: 7px;
+  min-height: 40px;
+  padding: 7px 11px;
+}
+
+.choice-row .choice:has(input:checked),
+.choice-row > label:has(input:checked) {
+  background: var(--accent-bg);
+  border-color: var(--accent-border);
+}
+
+input[type="checkbox"],
+input[type="radio"],
+input[type="range"],
+progress {
+  accent-color: var(--accent);
+}
+
+@media (max-width: 760px) {
+  :host {
+    --lab-title-size: 32px;
+    --lab-section-size: 20px;
+  }
+}

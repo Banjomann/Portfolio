@@ -572,18 +572,18 @@ onBeforeUnmount(() => {
           <fieldset>
             <legend>Interests</legend>
             <div class="choice-row">
-              <label><input v-model="interests" type="checkbox" value="Data" /> Data</label>
-              <label><input v-model="interests" type="checkbox" value="Design" /> Design</label>
-              <label><input v-model="interests" type="checkbox" value="Automation" /> Automation</label>
+              <label class="choice"><input v-model="interests" type="checkbox" value="Data" /> Data</label>
+              <label class="choice"><input v-model="interests" type="checkbox" value="Design" /> Design</label>
+              <label class="choice"><input v-model="interests" type="checkbox" value="Automation" /> Automation</label>
             </div>
           </fieldset>
 
           <fieldset>
             <legend>Preferred contact</legend>
             <div class="choice-row">
-              <label><input v-model="contact" type="radio" value="Email" /> Email</label>
-              <label><input v-model="contact" type="radio" value="Phone" /> Phone</label>
-              <label><input v-model="contact" type="radio" value="Chat" /> Chat</label>
+              <label class="choice"><input v-model="contact" type="radio" value="Email" /> Email</label>
+              <label class="choice"><input v-model="contact" type="radio" value="Phone" /> Phone</label>
+              <label class="choice"><input v-model="contact" type="radio" value="Chat" /> Chat</label>
             </div>
           </fieldset>
 
@@ -1117,6 +1117,7 @@ onBeforeUnmount(() => {
 </template>
 
 <style>
+@import '../../shared/showcase-contract.css';
 :host {
   color: #193330;
   display: block;
