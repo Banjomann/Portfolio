@@ -2,6 +2,8 @@
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
 const activeSection = ref('controls')
+const controlsSection = ref(null)
+const northwindSection = ref(null)
 const name = ref('Ada Lovelace')
 const email = ref('ada@example.com')
 const seats = ref(3)
@@ -397,6 +399,14 @@ function validateProfile() {
   successMessage.value = `Profile validated for ${name.value.trim()}.`
 }
 
+function navigateToSection(section) {
+  activeSection.value = section
+  const target =
+    section === 'controls' ? controlsSection.value : northwindSection.value
+  target?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  target?.querySelector('h2')?.focus({ preventScroll: true })
+}
+
 async function openDialog() {
   dialog.value?.showModal()
   await nextTick()
@@ -497,22 +507,26 @@ onBeforeUnmount(() => {
       <button
         type="button"
         :aria-current="activeSection === 'controls' ? 'page' : undefined"
-        @click="activeSection = 'controls'"
+        @click="navigateToSection('controls')"
       >
         Control Gallery
       </button>
       <button
         type="button"
         :aria-current="activeSection === 'northwind' ? 'page' : undefined"
-        @click="activeSection = 'northwind'"
+        @click="navigateToSection('northwind')"
       >
         Northwind Data Binding
       </button>
     </nav>
 
-    <section id="controls" aria-labelledby="controls-heading">
+    <section
+      id="controls"
+      ref="controlsSection"
+      aria-labelledby="controls-heading"
+    >
       <p class="section-number">01 · Local state</p>
-      <h2 id="controls-heading">Control Gallery</h2>
+      <h2 id="controls-heading" tabindex="-1">Control Gallery</h2>
       <p class="section-intro">
         Native form controls bound through Vue refs and computed state.
       </p>
@@ -693,9 +707,13 @@ onBeforeUnmount(() => {
       </div>
     </section>
 
-    <section id="northwind" aria-labelledby="northwind-heading">
+    <section
+      id="northwind"
+      ref="northwindSection"
+      aria-labelledby="northwind-heading"
+    >
       <p class="section-number">02 · API state</p>
-      <h2 id="northwind-heading">Northwind Data Binding</h2>
+      <h2 id="northwind-heading" tabindex="-1">Northwind Data Binding</h2>
       <p class="section-intro">
         Server-filtered, sorted, and paged customer data from the portfolio API.
       </p>
