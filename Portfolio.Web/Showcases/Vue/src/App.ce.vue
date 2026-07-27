@@ -484,8 +484,8 @@ onBeforeUnmount(() => {
         <span class="eyebrow">Frontend Lab</span>
         <h1>Vue showcase</h1>
         <p>
-          Interactive UI patterns and data binding implemented with Vue refs,
-          computed state, watchers, and accessible native controls.
+          Interactive UI patterns, form controls, and API-backed data binding
+          built with accessible native controls.
         </p>
       </div>
       <div class="framework-badge" aria-label="Built with Vue">
@@ -506,12 +506,12 @@ onBeforeUnmount(() => {
     >
       <div class="section-heading">
         <div>
-          <span class="eyebrow">Refs and computed state</span>
+          <span class="eyebrow">Reactive UI state</span>
           <h2 id="controls-heading">Control gallery</h2>
         </div>
         <p>
-          Every value below is bound through Vue and immediately reflected in
-          the live summary.
+          Every value below is bound to framework state and immediately
+          reflected in the live summary.
         </p>
       </div>
 
@@ -551,7 +551,7 @@ onBeforeUnmount(() => {
           <div class="field-pair">
             <label>
               <span>Seats</span>
-              <input v-model.number="seats" type="number" min="1" max="12" />
+              <input v-model.number="seats" type="number" min="1" max="20" />
             </label>
             <label>
               <span>Start date</span>
@@ -614,7 +614,7 @@ onBeforeUnmount(() => {
 
             <label>
               <span>Confidence <strong>{{ confidence }}%</strong></span>
-              <input v-model.number="confidence" type="range" min="0" max="100" />
+              <input class="range-field" v-model.number="confidence" type="range" min="0" max="100" />
             </label>
             <progress
               :value="confidence"
@@ -690,8 +690,8 @@ onBeforeUnmount(() => {
             <details>
               <summary>Implementation note</summary>
               <p>
-                Native controls preserve keyboard behavior while Vue binds each
-                value and derives this summary.
+                Native controls preserve keyboard behavior while framework
+                state derives this summary.
               </p>
             </details>
           </article>
@@ -1117,7 +1117,6 @@ onBeforeUnmount(() => {
 </template>
 
 <style>
-@import '../../shared/showcase-contract.css';
 :host {
   color: #193330;
   display: block;
@@ -2237,3 +2236,4 @@ a:focus-visible {
   }
 }
 </style>
+<style src="../../shared/showcase-contract.css"></style>

@@ -87,7 +87,7 @@ const editableFields: readonly (readonly [keyof CustomerDetail, string])[] = [
   selector: 'app-angular-showcase',
   imports: [ReactiveFormsModule],
   templateUrl: './app.html',
-  styleUrl: './app.css',
+  styleUrls: ['./app.css', '../../../shared/showcase-contract.css'],
   encapsulation: ViewEncapsulation.ShadowDom,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

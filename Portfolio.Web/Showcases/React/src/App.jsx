@@ -358,8 +358,8 @@ function App() {
           <span className="eyebrow">Frontend Lab</span>
           <h1>React showcase</h1>
           <p>
-            Interactive UI patterns and data binding implemented with React
-            state, effects, and accessible native controls.
+            Interactive UI patterns, form controls, and API-backed data binding
+            built with accessible native controls.
           </p>
         </div>
         <div className="framework-badge">
@@ -380,33 +380,38 @@ function App() {
       >
         <div className="section-heading">
           <div>
-            <span className="eyebrow">Controlled components</span>
+            <span className="eyebrow">Reactive UI state</span>
             <h2 id="controls-heading">Control gallery</h2>
           </div>
           <p>
-            Every value below is held in React state and immediately reflected
-            in the live summary.
+            Every value below is bound to framework state and immediately
+            reflected in the live summary.
           </p>
         </div>
 
         <div className="control-layout">
           <form
             className="control-card form-card"
+            aria-labelledby="profile-heading"
             onSubmit={(event) => {
               event.preventDefault()
               setNotice('Example profile validated successfully.')
             }}
           >
-            <h3>Profile inputs</h3>
-            <div className="field-grid">
-              <label>
+            <div className="card-heading">
+              <h3 id="profile-heading">Profile inputs</h3>
+            </div>
+            <div className="profile-fields">
+              <label className="field-span">
                 <span>Name</span>
                 <input
+                  type="text"
+                  required
                   value={profile.name}
                   onChange={(event) => updateProfile('name', event.target.value)}
                 />
               </label>
-              <label>
+              <label className="field-span">
                 <span>Email</span>
                 <input
                   type="email"
@@ -426,28 +431,30 @@ function App() {
                     : 'Enter a valid email address.'}
                 </small>
               </label>
-              <label>
-                <span>Seats</span>
-                <input
-                  type="number"
-                  min="1"
-                  max="20"
-                  value={profile.seats}
-                  onChange={(event) =>
-                    updateProfile('seats', Number(event.target.value))
-                  }
-                />
-              </label>
-              <label>
-                <span>Start date</span>
-                <input
-                  type="date"
-                  value={profile.startDate}
-                  onChange={(event) =>
-                    updateProfile('startDate', event.target.value)
-                  }
-                />
-              </label>
+              <div className="field-pair field-span">
+                <label>
+                  <span>Seats</span>
+                  <input
+                    type="number"
+                    min="1"
+                    max="20"
+                    value={profile.seats}
+                    onChange={(event) =>
+                      updateProfile('seats', Number(event.target.value))
+                    }
+                  />
+                </label>
+                <label>
+                  <span>Start date</span>
+                  <input
+                    type="date"
+                    value={profile.startDate}
+                    onChange={(event) =>
+                      updateProfile('startDate', event.target.value)
+                    }
+                  />
+                </label>
+              </div>
               <label className="field-span">
                 <span>Role</span>
                 <select
@@ -518,8 +525,10 @@ function App() {
           </form>
 
           <div className="control-stack">
-            <section className="control-card">
-              <h3>Preferences and progress</h3>
+            <article className="control-card">
+              <div className="card-heading">
+                <h3>Preferences and progress</h3>
+              </div>
               <label className="switch-row">
                 <span>
                   <strong>Notifications</strong>
@@ -552,9 +561,12 @@ function App() {
                 max="100"
                 aria-label={`Confidence ${confidence}%`}
               />
-            </section>
+            </article>
 
-            <section className="control-card">
+            <article className="control-card">
+              <div className="card-heading">
+                <h3>Bound state</h3>
+              </div>
               <div className="tabs" role="tablist" aria-label="Profile views">
                 {['summary', 'settings'].map((tab) => (
                   <button
@@ -630,11 +642,11 @@ function App() {
               <details>
                 <summary>Implementation note</summary>
                 <p>
-                  Native controls preserve keyboard behavior while React binds
-                  each value and derives this summary.
+                  Native controls preserve keyboard behavior while framework
+                  state derives this summary.
                 </p>
               </details>
-            </section>
+            </article>
           </div>
         </div>
 

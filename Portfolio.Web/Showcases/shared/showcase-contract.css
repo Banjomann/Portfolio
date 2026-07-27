@@ -47,6 +47,39 @@ dialog h2 {
   margin: 6px 0 10px;
 }
 
+.showcase-header p {
+  font-size: 17px;
+  max-width: 680px;
+}
+
+.framework-badge {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  min-height: 46px;
+  padding: 10px 14px;
+}
+
+.framework-badge > span,
+.framework-badge > img {
+  height: 24px;
+  width: 24px;
+}
+
+.section-heading {
+  align-items: end;
+  display: flex;
+  gap: 32px;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.section-heading p {
+  font-size: 15px;
+  max-width: 560px;
+}
+
 .section-heading h2 {
   font-size: var(--lab-section-size);
   font-weight: 500;
@@ -66,6 +99,17 @@ dialog h2 {
   line-height: 1.4;
 }
 
+.card-heading {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.card-heading h3 {
+  margin: 0;
+}
+
 .control-card,
 .grid-card,
 .data-card,
@@ -77,6 +121,46 @@ dialog h2 {
   border-radius: 12px;
   box-shadow: var(--shadow);
   color: var(--text);
+  padding: 22px;
+}
+
+.control-layout {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+}
+
+.control-layout > *,
+.control-stack {
+  min-width: 0;
+}
+
+.control-stack,
+.form-card {
+  display: grid;
+  gap: 18px;
+}
+
+.profile-fields {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.profile-fields > label,
+.field-pair > label {
+  display: grid;
+  gap: 6px;
+}
+
+.profile-fields .field-span {
+  grid-column: 1 / -1;
+}
+
+.field-pair {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 fieldset {
@@ -118,6 +202,32 @@ label {
   border-color: var(--accent-border);
 }
 
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.switch-row {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.range-field {
+  width: 100%;
+}
+
+.tabs {
+  margin-top: 0;
+}
+
+.tab-panel {
+  min-height: 155px;
+  padding-top: 18px;
+}
+
 input[type="checkbox"],
 input[type="radio"],
 input[type="range"],
@@ -129,5 +239,26 @@ progress {
   :host {
     --lab-title-size: 32px;
     --lab-section-size: 20px;
+  }
+
+  .profile-fields,
+  .field-pair {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-fields .field-span {
+    grid-column: auto;
+  }
+
+  .section-heading {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .control-layout {
+    grid-template-columns: 1fr;
   }
 }

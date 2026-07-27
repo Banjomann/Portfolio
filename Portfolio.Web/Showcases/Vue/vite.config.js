@@ -11,6 +11,11 @@ export default defineConfig(({ mode }) => ({
   test: {
     environment: 'jsdom',
   },
+  server: {
+    fs: {
+      allow: ['..'],
+    },
+  },
   build: {
     outDir: '../../wwwroot/showcases/vue',
     emptyOutDir: true,

@@ -4,8 +4,8 @@
       <span class="eyebrow">Frontend Lab</span>
       <h1>Angular showcase</h1>
       <p>
-        Interactive UI patterns and data binding implemented with Angular reactive forms, signals,
-        templates, and accessible native controls.
+        Interactive UI patterns, form controls, and API-backed data binding built with accessible
+        native controls.
       </p>
     </div>
     <div class="framework-badge" aria-label="Built with Angular">
@@ -22,23 +22,30 @@
   <section id="angular-controls" class="controls-section" aria-labelledby="controls-heading">
     <div class="section-heading">
       <div>
-        <span class="eyebrow">Reactive forms and signals</span>
+        <span class="eyebrow">Reactive UI state</span>
         <h2 id="controls-heading">Control gallery</h2>
       </div>
       <p>
-        Every value below is bound through Angular and immediately reflected in the live summary.
+        Every value below is bound to framework state and immediately reflected in the live summary.
       </p>
     </div>
 
     <div class="control-layout">
-      <form class="control-card form-card" [formGroup]="profile" (ngSubmit)="validateProfile()">
-        <h3>Profile inputs</h3>
-        <div class="field-grid">
-          <label>
+      <form
+        class="control-card form-card"
+        aria-labelledby="profile-heading"
+        [formGroup]="profile"
+        (ngSubmit)="validateProfile()"
+      >
+        <div class="card-heading">
+          <h3 id="profile-heading">Profile inputs</h3>
+        </div>
+        <div class="profile-fields">
+          <label class="field-span">
             <span>Name</span>
             <input formControlName="name" />
           </label>
-          <label>
+          <label class="field-span">
             <span>Email</span>
             <input
               type="email"
@@ -58,14 +65,16 @@
               }
             </small>
           </label>
-          <label>
-            <span>Seats</span>
-            <input type="number" min="1" max="20" formControlName="seats" />
-          </label>
-          <label>
-            <span>Start date</span>
-            <input type="date" formControlName="startDate" />
-          </label>
+          <div class="field-pair field-span">
+            <label>
+              <span>Seats</span>
+              <input type="number" min="1" max="20" formControlName="seats" />
+            </label>
+            <label>
+              <span>Start date</span>
+              <input type="date" formControlName="startDate" />
+            </label>
+          </div>
           <label class="field-span">
             <span>Role</span>
             <select formControlName="role">
@@ -121,8 +130,10 @@
       </form>
 
       <div class="control-stack">
-        <section class="control-card">
-          <h3>Preferences and progress</h3>
+        <article class="control-card">
+          <div class="card-heading">
+            <h3>Preferences and progress</h3>
+          </div>
           <label class="switch-row">
             <span>
               <strong>Notifications</strong>
@@ -153,9 +164,12 @@
             max="100"
             [attr.aria-label]="'Confidence ' + confidence() + '%'"
           ></progress>
-        </section>
+        </article>
 
-        <section class="control-card">
+        <article class="control-card">
+          <div class="card-heading">
+            <h3>Bound state</h3>
+          </div>
           <div class="tabs" role="tablist" aria-label="Profile views">
             @for (tab of ['summary', 'settings']; track tab) {
               <button
@@ -220,11 +234,10 @@
           <details>
             <summary>Implementation note</summary>
             <p>
-              Native controls preserve keyboard behavior while Angular binds each value and derives
-              this summary.
+              Native controls preserve keyboard behavior while framework state derives this summary.
             </p>
           </details>
-        </section>
+        </article>
       </div>
     </div>
 
