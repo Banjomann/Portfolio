@@ -293,10 +293,6 @@ function formatDate(value) {
   )
 }
 
-function formatDiscount(value) {
-  return `${Math.round(value * 100)}%`
-}
-
 async function loadSandboxStatus() {
   sandboxError.value = ''
   try {
@@ -539,8 +535,7 @@ onBeforeUnmount(() => {
       <div class="control-layout">
         <form class="control-card form-card" aria-labelledby="profile-heading" @submit.prevent="validateProfile">
           <div class="card-heading">
-            <p class="card-kicker">Profile form</p>
-            <h3 id="profile-heading">Attendee details</h3>
+            <h3 id="profile-heading">Profile inputs</h3>
           </div>
 
           <label>
@@ -604,8 +599,7 @@ onBeforeUnmount(() => {
         <div class="control-stack">
           <article class="control-card" aria-labelledby="preferences-heading">
             <div class="card-heading">
-              <p class="card-kicker">Preferences</p>
-              <h3 id="preferences-heading">Experience settings</h3>
+              <h3 id="preferences-heading">Preferences and progress</h3>
             </div>
 
             <label class="switch-row">
@@ -617,7 +611,7 @@ onBeforeUnmount(() => {
             </label>
 
             <label>
-              <span>Confidence: {{ confidence }}%</span>
+              <span>Confidence <strong>{{ confidence }}%</strong></span>
               <input v-model.number="confidence" type="range" min="0" max="100" />
             </label>
             <progress :value="confidence" max="100">{{ confidence }}%</progress>
@@ -633,7 +627,6 @@ onBeforeUnmount(() => {
 
           <article class="control-card" aria-labelledby="preview-heading">
             <div class="card-heading">
-              <p class="card-kicker">Live preview</p>
               <h3 id="preview-heading">Bound state</h3>
             </div>
 
@@ -758,8 +751,7 @@ onBeforeUnmount(() => {
       <article class="data-card" aria-labelledby="explorer-heading">
         <div class="data-heading">
           <div>
-            <p class="card-kicker">Customer Explorer</p>
-            <h3 id="explorer-heading">Northwind customers</h3>
+            <h3 id="explorer-heading">Customer explorer</h3>
           </div>
           <p>{{ totalCount }} Northwind records</p>
         </div>
@@ -770,7 +762,7 @@ onBeforeUnmount(() => {
             <input
               v-model="search"
               type="search"
-              placeholder="Company, contact, or city"
+              placeholder="Company or contact"
             />
           </label>
           <label>
@@ -880,8 +872,7 @@ onBeforeUnmount(() => {
       <article class="data-card" aria-labelledby="customer-details-heading">
         <div class="data-heading">
           <div>
-            <p class="card-kicker">Customer Details</p>
-            <h3 id="customer-details-heading">Selected customer</h3>
+            <h3 id="customer-details-heading">Customer details</h3>
           </div>
           <code v-if="selectedId">{{ selectedId }}</code>
         </div>
@@ -975,8 +966,7 @@ onBeforeUnmount(() => {
       <article class="data-card" aria-labelledby="orders-heading">
         <div class="data-heading">
           <div>
-            <p class="card-kicker">Orders and Line Items</p>
-            <h3 id="orders-heading">Customer order workspace</h3>
+            <h3 id="orders-heading">Orders and line items</h3>
           </div>
           <span v-if="orders.length">{{ orders.length }} orders</span>
         </div>
@@ -1061,10 +1051,9 @@ onBeforeUnmount(() => {
                   <thead>
                     <tr>
                       <th scope="col">Product</th>
-                      <th scope="col">Quantity</th>
-                      <th scope="col">Unit price</th>
-                      <th scope="col">Discount</th>
-                      <th scope="col">Extended price</th>
+                      <th scope="col">Qty.</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Total</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -1072,7 +1061,6 @@ onBeforeUnmount(() => {
                       <td>{{ item.productName }}</td>
                       <td>{{ item.quantity }}</td>
                       <td>{{ formatCurrency(item.unitPrice) }}</td>
-                      <td>{{ formatDiscount(item.discount) }}</td>
                       <td>{{ formatCurrency(item.extendedPrice) }}</td>
                     </tr>
                   </tbody>
@@ -1831,9 +1819,9 @@ button:focus-visible {
   --bg: #fff;
   --border: #e5e4e7;
   --code-bg: #f4f3ec;
-  --accent: #42b883;
-  --accent-bg: rgb(66 184 131 / 10%);
-  --accent-border: rgb(66 184 131 / 50%);
+  --accent: #aa3bff;
+  --accent-bg: rgb(170 59 255 / 10%);
+  --accent-border: rgb(170 59 255 / 50%);
   --shadow: rgb(0 0 0 / 10%) 0 10px 15px -3px, rgb(0 0 0 / 5%) 0 4px 6px -2px;
   background: var(--bg);
   color: var(--text);
@@ -2064,9 +2052,9 @@ a:focus-visible {
     --bg: #16171d;
     --border: #2e303a;
     --code-bg: #1f2028;
-    --accent: #6ee7b7;
-    --accent-bg: rgb(110 231 183 / 15%);
-    --accent-border: rgb(110 231 183 / 50%);
+    --accent: #c084fc;
+    --accent-bg: rgb(192 132 252 / 15%);
+    --accent-border: rgb(192 132 252 / 50%);
     --shadow: rgb(0 0 0 / 40%) 0 10px 15px -3px, rgb(0 0 0 / 25%) 0 4px 6px -2px;
   }
 }
