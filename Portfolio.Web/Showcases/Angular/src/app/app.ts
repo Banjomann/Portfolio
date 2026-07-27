@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  HostListener,
   computed,
   effect,
   inject,
@@ -69,6 +70,18 @@ const customerColumns: ReadonlyArray<readonly [SortColumn, string]> = [
   ['country', 'Country'],
   ['customerId', 'ID'],
 ];
+const editableFields: ReadonlyArray<readonly [keyof CustomerDetail, string]> = [
+  ['companyName', 'Company'],
+  ['contactName', 'Contact'],
+  ['contactTitle', 'Title'],
+  ['address', 'Address'],
+  ['city', 'City'],
+  ['region', 'Region'],
+  ['postalCode', 'Postal code'],
+  ['country', 'Country'],
+  ['phone', 'Phone'],
+  ['fax', 'Fax'],
+];
 
 @Component({
   selector: 'portfolio-angular-showcase',
@@ -118,6 +131,22 @@ export class App {
   protected readonly ordersLoading = signal(false);
   protected readonly orderLoading = signal(false);
   protected readonly orderError = signal('');
+  protected readonly sandboxEnabled = signal(false);
+  protected readonly sandboxHasChanges = signal(false);
+  protected readonly sandboxExpiresAt = signal<string | null>(null);
+  protected readonly sandboxNotice = signal('');
+  protected readonly customerDraft = signal<CustomerDetail | null>(null);
+  protected readonly revision = signal(0);
+  protected readonly editableFields = editableFields;
+  protected readonly draftIsDirty = computed(() => {
+    const detail = this.customerDetail();
+    const draft = this.customerDraft();
+    return Boolean(
+      detail &&
+      draft &&
+      editableFields.some(([field]) => (detail[field] ?? '') !== (draft[field] ?? '')),
+    );
+  });
   protected readonly pageLabel = computed(
     () => `Page ${this.page()} of ${Math.max(this.totalPages(), 1)}`,
   );
@@ -128,6 +157,8 @@ export class App {
     const sort = this.sort();
     const direction = this.direction();
     const page = this.page();
+    const sandboxEnabled = this.sandboxEnabled();
+    this.revision();
     const controller = new AbortController();
     const delay = window.setTimeout(async () => {
       this.loading.set(true);
@@ -143,7 +174,10 @@ export class App {
       if (country) parameters.set('country', country);
 
       try {
-        const response = await fetch(`/api/northwind/customers?${parameters}`, {
+        const path = sandboxEnabled
+          ? '/api/northwind/sandbox/customers'
+          : '/api/northwind/customers';
+        const response = await fetch(`${path}?${parameters}`, {
           signal: controller.signal,
         });
         if (!response.ok) throw new Error('Customers could not be loaded.');
@@ -173,6 +207,8 @@ export class App {
 
   private readonly customerDetailEffect = effect((onCleanup) => {
     const selectedId = this.selectedId();
+    const sandboxEnabled = this.sandboxEnabled();
+    this.revision();
     const controller = new AbortController();
 
     if (!selectedId) {
@@ -183,14 +219,20 @@ export class App {
 
     this.detailLoading.set(true);
     this.detailError.set('');
-    fetch(`/api/northwind/customers/${selectedId}`, {
+    const path = sandboxEnabled
+      ? `/api/northwind/sandbox/customers/${selectedId}`
+      : `/api/northwind/customers/${selectedId}`;
+    fetch(path, {
       signal: controller.signal,
     })
       .then((response) => {
         if (!response.ok) throw new Error('Customer details could not be loaded.');
         return response.json() as Promise<CustomerDetail>;
       })
-      .then((detail) => this.customerDetail.set(detail))
+      .then((detail) => {
+        this.customerDetail.set(detail);
+        this.customerDraft.set({ ...detail });
+      })
       .catch((error: Error) => {
         if (error.name !== 'AbortError') {
           this.customerDetail.set(null);
@@ -256,6 +298,25 @@ export class App {
       })
       .finally(() => {
         if (!controller.signal.aborted) this.orderLoading.set(false);
+      });
+    onCleanup(() => controller.abort());
+  });
+
+  private readonly sandboxStatusEffect = effect((onCleanup) => {
+    if (!this.sandboxEnabled()) return;
+    this.revision();
+    const controller = new AbortController();
+    fetch('/api/northwind/sandbox/status', { signal: controller.signal })
+      .then((response) => {
+        if (!response.ok) throw new Error('Sandbox status could not be loaded.');
+        return response.json() as Promise<{ hasChanges: boolean; expiresAt: string }>;
+      })
+      .then((status) => {
+        this.sandboxHasChanges.set(status.hasChanges);
+        this.sandboxExpiresAt.set(status.expiresAt);
+      })
+      .catch((error: Error) => {
+        if (error.name !== 'AbortError') this.sandboxNotice.set(error.message);
       });
     onCleanup(() => controller.abort());
   });
@@ -344,6 +405,67 @@ export class App {
       [detail.shippingAddress.city, detail.shippingAddress.country].filter(Boolean).join(', ') ||
       '—'
     );
+  }
+
+  protected toggleSandbox(enabled: boolean): void {
+    if (!enabled && this.draftIsDirty()) {
+      this.sandboxNotice.set(
+        'Save or discard the unsaved customer fields before leaving sandbox mode.',
+      );
+      return;
+    }
+    this.sandboxEnabled.set(enabled);
+    this.selectedId.set(null);
+    this.page.set(1);
+    this.sandboxNotice.set('');
+  }
+
+  protected updateCustomerDraft(field: keyof CustomerDetail, value: string): void {
+    this.customerDraft.update((current) => (current ? { ...current, [field]: value } : current));
+  }
+
+  protected discardCustomerDraft(): void {
+    const detail = this.customerDetail();
+    if (detail) this.customerDraft.set({ ...detail });
+    this.sandboxNotice.set('Unsaved field changes discarded.');
+  }
+
+  protected async saveSandboxCustomer(): Promise<void> {
+    const selectedId = this.selectedId();
+    const draft = this.customerDraft();
+    if (!selectedId || !draft || !draft.companyName.trim() || !this.draftIsDirty()) return;
+    const response = await fetch(`/api/northwind/sandbox/customers/${selectedId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(draft),
+    });
+    if (!response.ok) {
+      this.sandboxNotice.set('The sandbox customer could not be saved.');
+      return;
+    }
+    this.sandboxNotice.set("Saved to this session's temporary database.");
+    this.sandboxHasChanges.set(true);
+    this.revision.update((value) => value + 1);
+  }
+
+  protected async resetSandbox(): Promise<void> {
+    const response = await fetch('/api/northwind/sandbox/reset', { method: 'POST' });
+    if (!response.ok) {
+      this.sandboxNotice.set('The sandbox could not be reset.');
+      return;
+    }
+    this.selectedId.set(null);
+    this.sandboxHasChanges.set(false);
+    this.sandboxExpiresAt.set(null);
+    this.sandboxNotice.set('Sandbox reset to vanilla Northwind data.');
+    this.revision.update((value) => value + 1);
+  }
+
+  @HostListener('window:beforeunload', ['$event'])
+  protected warnBeforeUnload(event: BeforeUnloadEvent): void {
+    if (!this.draftIsDirty()) return;
+    event.preventDefault();
+    event.returnValue = '';
   }
 
   private async loadCountries(): Promise<void> {

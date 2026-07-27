@@ -40,23 +40,27 @@ describe('App', () => {
   beforeEach(async () => {
     vi.stubGlobal(
       'fetch',
-      vi.fn((input: string | URL | Request) => {
+      vi.fn((input: string | URL | Request, options: RequestInit = {}) => {
         const url = String(input);
-        const value = url.endsWith('/countries')
-          ? ['Germany']
-          : url.endsWith('/customers/ALFKI/orders')
-            ? [order]
-            : url.endsWith('/orders/10643')
-              ? orderDetail
-              : url.endsWith('/customers/ALFKI')
-                ? customer
-                : {
-                    items: [customer],
-                    page: 1,
-                    pageSize: 10,
-                    totalCount: 1,
-                    totalPages: 1,
-                  };
+        const value = url.endsWith('/sandbox/status')
+          ? { hasChanges: false, expiresAt: '2026-08-01T12:00:00Z' }
+          : options.method === 'PUT' || options.method === 'POST'
+            ? null
+            : url.endsWith('/countries')
+              ? ['Germany']
+              : url.endsWith('/customers/ALFKI/orders')
+                ? [order]
+                : url.endsWith('/orders/10643')
+                  ? orderDetail
+                  : url.endsWith('/customers/ALFKI')
+                    ? customer
+                    : {
+                        items: [customer],
+                        page: 1,
+                        pageSize: 10,
+                        totalCount: 1,
+                        totalPages: 1,
+                      };
         return Promise.resolve({
           ok: true,
           json: () => Promise.resolve(value),
@@ -210,5 +214,39 @@ describe('App', () => {
     expect(root.querySelector('.orders-card')?.textContent).toContain('Order 10643');
     expect(root.querySelector('.orders-card')?.textContent).toContain('Rössle Sauerkraut');
     expect(root.querySelector('.order-totals')?.textContent).toContain('$814.5');
+  });
+
+  it('should save and reset only through sandbox endpoints', async () => {
+    const fixture = TestBed.createComponent(App);
+    await fixture.whenStable();
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    fixture.detectChanges();
+    const root = fixture.nativeElement.shadowRoot as ShadowRoot;
+    (root.querySelector('.sandbox-toggle input') as HTMLInputElement).click();
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    fixture.detectChanges();
+    (root.querySelector('.row-select') as HTMLButtonElement).click();
+    await fixture.whenStable();
+    fixture.detectChanges();
+    const company = root.querySelector('.detail-form input') as HTMLInputElement;
+    company.value = 'Session Company';
+    company.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+    (root.querySelector('.detail-form button[type="submit"]') as HTMLButtonElement).click();
+    await fixture.whenStable();
+    expect(fetch).toHaveBeenCalledWith(
+      '/api/northwind/sandbox/customers/ALFKI',
+      expect.objectContaining({ method: 'PUT' }),
+    );
+    (root.querySelector('.sandbox-toolbar .secondary-button') as HTMLButtonElement).click();
+    await fixture.whenStable();
+    expect(fetch).toHaveBeenCalledWith(
+      '/api/northwind/sandbox/reset',
+      expect.objectContaining({ method: 'POST' }),
+    );
+    expect(fetch).not.toHaveBeenCalledWith(
+      '/api/northwind/customers/ALFKI',
+      expect.objectContaining({ method: 'PUT' }),
+    );
   });
 });

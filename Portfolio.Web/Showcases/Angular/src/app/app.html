@@ -242,8 +242,44 @@
         <span class="eyebrow">API-backed state</span>
         <h2 id="data-heading">Northwind data binding</h2>
       </div>
-      <p>Server-driven filtering, sorting, paging, and selection against the Northwind API.</p>
+      <div class="sandbox-toolbar">
+        <p>Server-driven filtering, sorting, paging, and selection against the Northwind API.</p>
+        <label class="sandbox-toggle">
+          <input
+            type="checkbox"
+            role="switch"
+            [checked]="sandboxEnabled()"
+            (change)="toggleSandbox($any($event.target).checked)"
+          />
+          <span>Editing sandbox</span>
+        </label>
+        @if (sandboxEnabled()) {
+          <button type="button" class="secondary-button" (click)="resetSandbox()">
+            Reset sandbox
+          </button>
+        }
+      </div>
     </div>
+
+    @if (sandboxEnabled()) {
+      <div class="sandbox-banner">
+        <div>
+          <strong>Temporary editing enabled.</strong>
+          <span
+            >Changes are isolated to this browser session and never reach the canonical Northwind
+            database.</span
+          >
+        </div>
+        <div class="sandbox-status">
+          <span [class.changed]="sandboxHasChanges()">
+            {{ sandboxHasChanges() ? 'Changes made' : 'Vanilla copy' }}
+          </span>
+          @if (sandboxExpiresAt()) {
+            <small>Expires after 30 minutes without sandbox activity</small>
+          }
+        </div>
+      </div>
+    }
 
     <section class="grid-card" aria-labelledby="customers-heading">
       <div class="grid-heading">
@@ -368,7 +404,9 @@
     <section class="detail-card" aria-labelledby="detail-heading">
       <div class="detail-heading">
         <div>
-          <span class="eyebrow">Read-only binding</span>
+          <span class="eyebrow">{{
+            sandboxEnabled() ? 'Session database' : 'Read-only binding'
+          }}</span>
           <h3 id="detail-heading">Customer details</h3>
         </div>
         @if (selectedId()) {
@@ -382,6 +420,43 @@
         <div class="detail-status" role="status" aria-live="polite">Loading customer…</div>
       } @else if (detailError()) {
         <div class="detail-status error" role="alert">{{ detailError() }}</div>
+      } @else if (sandboxEnabled() && customerDraft(); as draft) {
+        <form class="detail-form" (submit)="$event.preventDefault(); saveSandboxCustomer()">
+          @for (field of editableFields; track field[0]) {
+            <label>
+              <span>{{ field[1] }}</span>
+              <input
+                [required]="field[0] === 'companyName'"
+                [value]="draft[field[0]] ?? ''"
+                (input)="updateCustomerDraft(field[0], $any($event.target).value)"
+              />
+            </label>
+          }
+          <div class="detail-metrics">
+            <span>{{ draft.orderCount }} orders</span>
+            <span>{{ formatSales(draft.totalSales) }}</span>
+            @if (draftIsDirty()) {
+              <span class="unsaved-indicator">Unsaved fields</span>
+            }
+          </div>
+          <div class="detail-actions">
+            <button
+              type="submit"
+              class="primary-button"
+              [disabled]="!draftIsDirty() || !draft.companyName.trim()"
+            >
+              Save temporary changes
+            </button>
+            <button
+              type="button"
+              class="secondary-button"
+              [disabled]="!draftIsDirty()"
+              (click)="discardCustomerDraft()"
+            >
+              Discard fields
+            </button>
+          </div>
+        </form>
       } @else if (customerDetail(); as detail) {
         <dl class="customer-detail">
           <div>
@@ -421,6 +496,18 @@
             <dd>{{ formatSales(detail.totalSales) }}</dd>
           </div>
         </dl>
+      }
+      @if (sandboxNotice()) {
+        <div class="notification detail-notice" role="status" aria-live="polite">
+          <span>{{ sandboxNotice() }}</span>
+          <button
+            type="button"
+            aria-label="Dismiss sandbox notification"
+            (click)="sandboxNotice.set('')"
+          >
+            ×
+          </button>
+        </div>
       }
     </section>
 

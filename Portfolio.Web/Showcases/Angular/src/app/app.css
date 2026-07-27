@@ -137,6 +137,66 @@
   font-size: 15px;
   max-width: 560px;
 }
+.sandbox-toolbar {
+  align-items: end;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+  max-width: 580px;
+}
+.sandbox-toolbar p {
+  flex-basis: 100%;
+}
+.sandbox-toggle {
+  align-items: center;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  cursor: pointer;
+  display: flex;
+  gap: 8px;
+  min-height: 40px;
+  padding: 7px 11px;
+}
+.sandbox-toggle input {
+  accent-color: var(--accent);
+}
+.sandbox-banner {
+  align-items: center;
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  border-radius: 8px;
+  color: var(--text-h);
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding: 12px 16px;
+}
+.sandbox-banner > div:first-child,
+.sandbox-status {
+  display: grid;
+}
+.sandbox-status {
+  flex: 0 0 auto;
+  justify-items: end;
+}
+.sandbox-status > span {
+  background: var(--code-bg);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 8px;
+}
+.sandbox-status > span.changed {
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+.sandbox-status small {
+  font-size: 11px;
+  margin-top: 3px;
+}
 
 .control-layout {
   display: grid;
@@ -749,6 +809,44 @@ code {
   margin: 0;
   padding: 24px;
 }
+.detail-form {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding: 24px;
+}
+.detail-form > * {
+  min-width: 0;
+}
+.detail-form input {
+  width: 100%;
+}
+.detail-actions,
+.detail-metrics {
+  grid-column: 1 / -1;
+}
+.detail-actions,
+.detail-metrics {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.detail-metrics {
+  color: var(--text-h);
+  font-weight: 700;
+  gap: 18px;
+}
+.unsaved-indicator {
+  background: #fffaeb;
+  border-radius: 999px;
+  color: #dc6803;
+  font-size: 12px;
+  padding: 3px 8px;
+}
+.detail-notice {
+  margin: 0 24px 24px;
+}
 
 .customer-detail > * {
   min-width: 0;
@@ -800,6 +898,10 @@ code {
     align-items: stretch;
     flex-direction: column;
   }
+  .sandbox-toolbar {
+    justify-content: flex-start;
+    max-width: none;
+  }
   .orders-layout {
     grid-template-columns: 1fr;
   }
@@ -829,7 +931,8 @@ code {
   .control-layout,
   .field-grid,
   .summary-list,
-  .customer-detail {
+  .customer-detail,
+  .detail-form {
     grid-template-columns: 1fr;
   }
 
@@ -840,5 +943,16 @@ code {
   .filters {
     align-items: stretch;
     flex-direction: column;
+  }
+  .detail-actions,
+  .detail-metrics {
+    grid-column: auto;
+  }
+  .sandbox-banner {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .sandbox-status {
+    justify-items: start;
   }
 }
