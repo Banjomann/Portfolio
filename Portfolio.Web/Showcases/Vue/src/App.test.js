@@ -29,6 +29,61 @@ beforeEach(async () => {
           totalSales: 4273,
           lastOrderDate: '1998-04-09T00:00:00',
         }
+      } else if (url === '/api/northwind/customers/ALFKI/orders') {
+        result = [
+          {
+            orderId: 11011,
+            orderDate: '1998-04-09T00:00:00',
+            status: 'Shipped',
+            employeeName: 'Janet Leverling',
+            shipperName: 'Speedy Express',
+            shipCity: 'Berlin',
+            shipCountry: 'Germany',
+            freight: 1.21,
+            total: 960,
+          },
+          {
+            orderId: 10952,
+            orderDate: '1998-03-16T00:00:00',
+            status: 'Shipped',
+            total: 471.2,
+          },
+        ]
+      } else if (url === '/api/northwind/orders/11011') {
+        result = {
+          orderId: 11011,
+          customerId: 'ALFKI',
+          companyName: 'Alfreds Futterkiste',
+          orderDate: '1998-04-09T00:00:00',
+          status: 'Shipped',
+          employeeName: 'Janet Leverling',
+          shipperName: 'Speedy Express',
+          freight: 1.21,
+          shippingAddress: {
+            city: 'Berlin',
+            country: 'Germany',
+          },
+          items: [
+            {
+              productId: 58,
+              productName: 'Escargots de Bourgogne',
+              unitPrice: 13.25,
+              quantity: 40,
+              discount: 0,
+              extendedPrice: 530,
+            },
+            {
+              productId: 71,
+              productName: 'Flotemysost',
+              unitPrice: 21.5,
+              quantity: 20,
+              discount: 0,
+              extendedPrice: 430,
+            },
+          ],
+          subtotal: 960,
+          total: 961.21,
+        }
       } else {
         result = {
           items: [
@@ -199,5 +254,33 @@ describe('Customer Explorer', () => {
     expect(detail.textContent).toContain('6')
     expect(detail.textContent).toContain('$4,273.00')
     expect(detail.textContent).toContain('Apr 9, 1998')
+  })
+
+  it('selects the newest order and binds line items and totals', async () => {
+    root.querySelector('.customer-button').click()
+    await nextTick()
+    await new Promise((resolve) => setTimeout(resolve))
+    await nextTick()
+    await new Promise((resolve) => setTimeout(resolve))
+    await nextTick()
+
+    expect(fetch).toHaveBeenCalledWith(
+      '/api/northwind/customers/ALFKI/orders',
+      expect.objectContaining({ signal: expect.any(AbortSignal) }),
+    )
+    expect(fetch).toHaveBeenCalledWith(
+      '/api/northwind/orders/11011',
+      expect.objectContaining({ signal: expect.any(AbortSignal) }),
+    )
+    expect(root.querySelector('.order-card').getAttribute('aria-pressed')).toBe(
+      'true',
+    )
+
+    const orderDetail = root.querySelector('.order-detail')
+    expect(orderDetail.textContent).toContain('Janet Leverling')
+    expect(orderDetail.textContent).toContain('Speedy Express')
+    expect(orderDetail.textContent).toContain('Escargots de Bourgogne')
+    expect(orderDetail.textContent).toContain('$530.00')
+    expect(orderDetail.textContent).toContain('$961.21')
   })
 })

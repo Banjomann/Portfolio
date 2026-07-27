@@ -38,6 +38,13 @@ const selectedId = ref(null)
 const customerDetail = ref(null)
 const customerDetailLoading = ref(false)
 const customerDetailError = ref('')
+const orders = ref([])
+const ordersLoading = ref(false)
+const ordersError = ref('')
+const selectedOrderId = ref(null)
+const orderDetail = ref(null)
+const orderDetailLoading = ref(false)
+const orderDetailError = ref('')
 const customersLoading = ref(true)
 const customersError = ref('')
 const countriesError = ref('')
@@ -45,6 +52,8 @@ let searchTimer
 let customerController
 let countryController
 let customerDetailController
+let ordersController
+let orderDetailController
 
 const isNameValid = computed(() => name.value.trim().length > 0)
 const isEmailValid = computed(() =>
@@ -176,6 +185,64 @@ async function loadCustomerDetail() {
   }
 }
 
+async function loadOrders() {
+  ordersController?.abort()
+  orders.value = []
+  selectedOrderId.value = null
+  ordersError.value = ''
+
+  if (!selectedId.value) {
+    ordersLoading.value = false
+    return
+  }
+
+  const controller = new AbortController()
+  ordersController = controller
+  ordersLoading.value = true
+
+  try {
+    const response = await fetch(
+      `/api/northwind/customers/${selectedId.value}/orders`,
+      { signal: controller.signal },
+    )
+    if (!response.ok) throw new Error('Customer orders could not be loaded.')
+    orders.value = await response.json()
+    selectedOrderId.value = orders.value[0]?.orderId ?? null
+  } catch (error) {
+    if (error.name !== 'AbortError') ordersError.value = error.message
+  } finally {
+    if (!controller.signal.aborted) ordersLoading.value = false
+  }
+}
+
+async function loadOrderDetail() {
+  orderDetailController?.abort()
+  orderDetail.value = null
+  orderDetailError.value = ''
+
+  if (!selectedOrderId.value) {
+    orderDetailLoading.value = false
+    return
+  }
+
+  const controller = new AbortController()
+  orderDetailController = controller
+  orderDetailLoading.value = true
+
+  try {
+    const response = await fetch(
+      `/api/northwind/orders/${selectedOrderId.value}`,
+      { signal: controller.signal },
+    )
+    if (!response.ok) throw new Error('Order details could not be loaded.')
+    orderDetail.value = await response.json()
+  } catch (error) {
+    if (error.name !== 'AbortError') orderDetailError.value = error.message
+  } finally {
+    if (!controller.signal.aborted) orderDetailLoading.value = false
+  }
+}
+
 function formatCurrency(value) {
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -188,6 +255,10 @@ function formatDate(value) {
   return new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' }).format(
     new Date(value),
   )
+}
+
+function formatDiscount(value) {
+  return `${Math.round(value * 100)}%`
 }
 
 function validateProfile() {
@@ -262,6 +333,8 @@ watch(country, () => {
 
 watch([debouncedSearch, country, sort, direction, page], loadCustomers)
 watch(selectedId, loadCustomerDetail)
+watch(selectedId, loadOrders)
+watch(selectedOrderId, loadOrderDetail)
 
 onMounted(() => {
   loadCountries()
@@ -273,6 +346,8 @@ onBeforeUnmount(() => {
   customerController?.abort()
   countryController?.abort()
   customerDetailController?.abort()
+  ordersController?.abort()
+  orderDetailController?.abort()
 })
 </script>
 
@@ -670,6 +745,123 @@ onBeforeUnmount(() => {
             <div><dt>Phone</dt><dd>{{ customerDetail.phone || '—' }}</dd></div>
             <div><dt>Fax</dt><dd>{{ customerDetail.fax || '—' }}</dd></div>
           </dl>
+        </div>
+      </article>
+
+      <article class="data-card" aria-labelledby="orders-heading">
+        <div class="data-heading">
+          <div>
+            <p class="card-kicker">Orders and Line Items</p>
+            <h3 id="orders-heading">Customer order workspace</h3>
+          </div>
+          <span v-if="orders.length">{{ orders.length }} orders</span>
+        </div>
+
+        <p v-if="!selectedId" class="empty-state">
+          Select a customer to load their orders.
+        </p>
+        <p
+          v-else-if="ordersLoading"
+          class="loading-state"
+          role="status"
+          aria-live="polite"
+        >
+          Loading customer orders…
+        </p>
+        <div v-else-if="ordersError" class="request-error" role="alert">
+          <p>{{ ordersError }}</p>
+          <button type="button" class="secondary-button" @click="loadOrders">
+            Try again
+          </button>
+        </div>
+        <p v-else-if="orders.length === 0" class="empty-state">
+          This customer has no orders.
+        </p>
+
+        <div v-else class="order-workspace">
+          <div class="order-list" aria-label="Customer orders">
+            <button
+              v-for="order in orders"
+              :key="order.orderId"
+              type="button"
+              class="order-card"
+              :aria-pressed="selectedOrderId === order.orderId"
+              @click="selectedOrderId = order.orderId"
+            >
+              <span>
+                <strong>Order {{ order.orderId }}</strong>
+                <small>{{ formatDate(order.orderDate) }}</small>
+              </span>
+              <span>
+                <strong>{{ formatCurrency(order.total) }}</strong>
+                <small>{{ order.status }}</small>
+              </span>
+            </button>
+          </div>
+
+          <div class="order-detail" aria-live="polite">
+            <p v-if="orderDetailLoading" class="loading-state" role="status">
+              Loading order details…
+            </p>
+            <div v-else-if="orderDetailError" class="request-error" role="alert">
+              <p>{{ orderDetailError }}</p>
+              <button type="button" class="secondary-button" @click="loadOrderDetail">
+                Try again
+              </button>
+            </div>
+            <div v-else-if="orderDetail">
+              <div class="order-summary">
+                <div>
+                  <p class="card-kicker">Order {{ orderDetail.orderId }}</p>
+                  <h4>{{ orderDetail.status }}</h4>
+                  <p>{{ formatDate(orderDetail.orderDate) }}</p>
+                </div>
+                <dl>
+                  <div><dt>Employee</dt><dd>{{ orderDetail.employeeName || 'Unassigned' }}</dd></div>
+                  <div><dt>Shipper</dt><dd>{{ orderDetail.shipperName || 'Unassigned' }}</dd></div>
+                  <div>
+                    <dt>Destination</dt>
+                    <dd>
+                      {{ orderDetail.shippingAddress.city || '—' }},
+                      {{ orderDetail.shippingAddress.country || '—' }}
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+
+              <div class="table-scroll">
+                <table>
+                  <caption class="visually-hidden">
+                    Products in order {{ orderDetail.orderId }}
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Product</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Unit price</th>
+                      <th scope="col">Discount</th>
+                      <th scope="col">Extended price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="item in orderDetail.items" :key="item.productId">
+                      <td>{{ item.productName }}</td>
+                      <td>{{ item.quantity }}</td>
+                      <td>{{ formatCurrency(item.unitPrice) }}</td>
+                      <td>{{ formatDiscount(item.discount) }}</td>
+                      <td>{{ formatCurrency(item.extendedPrice) }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <dl class="order-totals">
+                <div><dt>Subtotal</dt><dd>{{ formatCurrency(orderDetail.subtotal) }}</dd></div>
+                <div><dt>Freight</dt><dd>{{ formatCurrency(orderDetail.freight) }}</dd></div>
+                <div class="grand-total"><dt>Total</dt><dd>{{ formatCurrency(orderDetail.total) }}</dd></div>
+              </dl>
+            </div>
+          </div>
         </div>
       </article>
     </section>
@@ -1086,6 +1278,77 @@ tbody tr.selected {
   padding: 0.6rem 0;
 }
 
+.order-workspace {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(14rem, 0.7fr) minmax(0, 1.8fr);
+  margin-top: 1.25rem;
+  min-width: 0;
+}
+
+.order-list {
+  display: grid;
+  gap: 0.65rem;
+  max-height: 38rem;
+  overflow-y: auto;
+}
+
+.order-card {
+  align-items: center;
+  border-radius: 0.6rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.85rem;
+  text-align: left;
+}
+
+.order-card span {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.order-card span:last-child {
+  text-align: right;
+}
+
+.order-card small {
+  font-weight: 400;
+}
+
+.order-card[aria-pressed="true"] {
+  background: #287a5b;
+  color: white;
+}
+
+.order-detail {
+  min-width: 0;
+}
+
+.order-summary {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(10rem, 0.7fr) minmax(0, 1fr);
+  margin-bottom: 1rem;
+}
+
+.order-summary h4 {
+  font-size: 1.5rem;
+  margin: 0 0 0.35rem;
+}
+
+.order-totals {
+  margin-left: auto;
+  margin-top: 1rem;
+  max-width: 20rem;
+}
+
+.order-totals .grand-total {
+  border-top: 2px solid #72a790;
+  font-size: 1.1rem;
+  margin-top: 0.4rem;
+  padding-top: 0.6rem;
+}
+
 .showcase-header {
   background:
     radial-gradient(circle at top right, rgb(65 184 131 / 28%), transparent 42%),
@@ -1223,8 +1486,14 @@ button:focus-visible {
 }
 
 @media (max-width: 1100px) {
-  .gallery-grid {
+  .gallery-grid,
+  .order-workspace {
     grid-template-columns: 1fr;
+  }
+
+  .order-list {
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    max-height: none;
   }
 }
 
@@ -1237,9 +1506,14 @@ button:focus-visible {
   }
 
   .data-heading,
-  .pagination {
+  .pagination,
+  .order-summary {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .order-summary {
+    display: flex;
   }
 }
 

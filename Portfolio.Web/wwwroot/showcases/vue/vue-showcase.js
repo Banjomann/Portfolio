@@ -6084,7 +6084,7 @@ function initDev() {
 if (!!(process.env.NODE_ENV !== "production")) initDev();
 //#endregion
 //#region src/App.ce.vue?vue&type=style&index=0&inline&lang.css
-var App_ce_vue_vue_type_style_index_0_inline_lang_default = "\n:host {\n  color: #193330;\n  display: block;\n  font-family:\n    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\",\n    sans-serif;\n}\n* {\n  box-sizing: border-box;\n}\n.showcase-shell {\n  display: grid;\n  gap: 1.5rem;\n}\n.showcase-header,\nsection {\n  background: #f5fbf8;\n  border: 1px solid #c9ddd5;\n  border-radius: 1rem;\n  padding: clamp(1.25rem, 4vw, 2.5rem);\n}\n.section-intro {\n  color: #4c625e;\n}\n.notice {\n  align-items: center;\n  background: #dff6e9;\n  border: 1px solid #58a27e;\n  border-radius: 0.75rem;\n  display: flex;\n  justify-content: space-between;\n  margin: 1rem 0;\n  padding: 0.75rem 1rem;\n}\n.gallery-grid,\n.gallery-stack {\n  display: grid;\n  gap: 1rem;\n  min-width: 0;\n}\n.gallery-grid {\n  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);\n  margin-top: 1.5rem;\n}\n.gallery-card {\n  background: rgb(255 255 255 / 72%);\n  border: 1px solid #c9ddd5;\n  border-radius: 0.8rem;\n  display: grid;\n  gap: 1rem;\n  min-width: 0;\n  padding: 1.25rem;\n}\n.card-heading h3,\n.card-heading p {\n  margin-bottom: 0;\n}\n.card-kicker {\n  color: #287a5b;\n  font-size: 0.7rem;\n  font-weight: 800;\n  letter-spacing: 0.1em;\n  text-transform: uppercase;\n}\nlabel {\n  display: grid;\n  font-weight: 700;\n  gap: 0.4rem;\n}\ninput,\nselect {\n  background: white;\n  border: 1px solid #84a69a;\n  border-radius: 0.45rem;\n  color: #193330;\n  font: inherit;\n  min-width: 0;\n  padding: 0.65rem 0.75rem;\n}\ninput:focus-visible,\nselect:focus-visible,\nsummary:focus-visible {\n  outline: 3px solid #41b883;\n  outline-offset: 2px;\n}\n.field-pair {\n  display: grid;\n  gap: 0.75rem;\n  grid-template-columns: 1fr 1fr;\n}\nfieldset {\n  border: 0;\n  margin: 0;\n  padding: 0;\n}\nlegend {\n  font-weight: 700;\n  margin-bottom: 0.5rem;\n}\n.choice-row,\n.button-row,\n[role=\"tablist\"] {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 0.65rem;\n}\n.choice-row label {\n  align-items: center;\n  display: flex;\n  font-weight: 500;\n}\n.field-error {\n  color: #a32424;\n  font-size: 0.85rem;\n  margin: -0.75rem 0 0;\n}\n.switch-row {\n  align-items: center;\n  display: flex;\n  justify-content: space-between;\n}\n.switch-row span {\n  display: grid;\n}\n.switch-row small {\n  font-weight: 400;\n}\n.switch-row input {\n  height: 1.4rem;\n  width: 2.6rem;\n}\ninput[type=\"range\"],\nprogress {\n  accent-color: #287a5b;\n  width: 100%;\n}\n.primary-button {\n  background: #287a5b;\n  color: white;\n}\n.secondary-button {\n  background: white;\n}\nbutton:disabled {\n  cursor: not-allowed;\n  opacity: 0.5;\n}\n.icon-button {\n  border: 0;\n  font-size: 1.25rem;\n  padding: 0.2rem 0.5rem;\n}\n[role=\"tab\"][aria-selected=\"true\"] {\n  background: #287a5b;\n  color: white;\n}\ndl {\n  display: grid;\n  gap: 0.6rem;\n  margin: 0;\n}\ndl div {\n  display: flex;\n  gap: 1rem;\n  justify-content: space-between;\n}\ndt {\n  font-weight: 700;\n}\ndd {\n  margin: 0;\n  overflow-wrap: anywhere;\n  text-align: right;\n}\ndetails {\n  border-top: 1px solid #c9ddd5;\n  padding-top: 1rem;\n}\nsummary {\n  cursor: pointer;\n  font-weight: 700;\n}\ndialog {\n  background: #f5fbf8;\n  border: 1px solid #72a790;\n  border-radius: 1rem;\n  color: #193330;\n  max-width: min(30rem, calc(100vw - 2rem));\n  padding: 0;\n}\ndialog::backdrop {\n  background: rgb(7 28 24 / 72%);\n}\n.dialog-content {\n  padding: 1.5rem;\n}\n.data-card {\n  background: rgb(255 255 255 / 72%);\n  border: 1px solid #c9ddd5;\n  border-radius: 0.8rem;\n  margin-top: 1.5rem;\n  min-width: 0;\n  padding: 1.25rem;\n}\n.data-heading,\n.pagination {\n  align-items: center;\n  display: flex;\n  gap: 1rem;\n  justify-content: space-between;\n}\n.data-heading h3,\n.data-heading p {\n  margin-bottom: 0;\n}\n.filter-grid {\n  display: grid;\n  gap: 1rem;\n  grid-template-columns: minmax(0, 2fr) minmax(12rem, 1fr);\n  margin: 1.25rem 0;\n}\n.loading-state,\n.empty-state,\n.request-error {\n  border: 1px dashed #84a69a;\n  border-radius: 0.6rem;\n  margin: 1rem 0;\n  padding: 1rem;\n}\n.request-error {\n  background: #fff0f0;\n  border-color: #c76b6b;\n  color: #7e1f1f;\n}\n.table-scroll {\n  max-width: 100%;\n  overflow-x: auto;\n}\ntable {\n  border-collapse: collapse;\n  min-width: 48rem;\n  width: 100%;\n}\nth,\ntd {\n  border-bottom: 1px solid #c9ddd5;\n  padding: 0.75rem;\n  text-align: left;\n}\nth {\n  background: #eaf7f1;\n}\ntbody tr {\n  cursor: pointer;\n}\ntbody tr:hover,\ntbody tr.selected {\n  background: #dff6e9;\n}\n.sort-button,\n.customer-button {\n  border: 0;\n  border-radius: 0.25rem;\n  padding: 0.2rem;\n  text-align: left;\n}\n.sort-button {\n  align-items: center;\n  display: inline-flex;\n  gap: 0.35rem;\n}\n.customer-button {\n  color: #146247;\n  font-weight: 800;\n  text-decoration: underline;\n  text-underline-offset: 0.2em;\n}\n.pagination {\n  margin-top: 1rem;\n}\n.selection-status {\n  color: #4c625e;\n  margin: 1rem 0 0;\n}\n.visually-hidden {\n  clip: rect(0 0 0 0);\n  clip-path: inset(50%);\n  height: 1px;\n  overflow: hidden;\n  position: absolute;\n  white-space: nowrap;\n  width: 1px;\n}\n.customer-detail-layout {\n  display: grid;\n  gap: 1.25rem;\n  margin-top: 1.25rem;\n}\n.metric-grid,\n.detail-grid {\n  display: grid;\n  gap: 0.75rem;\n}\n.metric-grid {\n  grid-template-columns: repeat(3, minmax(0, 1fr));\n}\n.metric-grid div {\n  background: #eaf7f1;\n  border-radius: 0.6rem;\n  display: grid;\n  gap: 0.3rem;\n  justify-content: initial;\n  padding: 1rem;\n}\n.metric-grid dd {\n  color: #146247;\n  font-size: 1.25rem;\n  font-weight: 800;\n  text-align: left;\n}\n.detail-grid {\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.detail-grid div {\n  border-bottom: 1px solid #c9ddd5;\n  padding: 0.6rem 0;\n}\n.showcase-header {\n  background:\n    radial-gradient(circle at top right, rgb(65 184 131 / 28%), transparent 42%),\n    #eaf7f1;\n}\n.eyebrow,\n.section-number {\n  color: #287a5b;\n  font-size: 0.75rem;\n  font-weight: 800;\n  letter-spacing: 0.12em;\n  margin: 0 0 0.5rem;\n  text-transform: uppercase;\n}\nh1,\nh2,\np {\n  margin-top: 0;\n}\nh1 {\n  font-size: clamp(2rem, 6vw, 4rem);\n  line-height: 1;\n  margin-bottom: 1rem;\n}\nnav {\n  display: flex;\n  gap: 0.75rem;\n  overflow-x: auto;\n}\nbutton {\n  background: transparent;\n  border: 1px solid #72a790;\n  border-radius: 999px;\n  color: inherit;\n  cursor: pointer;\n  font: inherit;\n  font-weight: 700;\n  padding: 0.65rem 1rem;\n  white-space: nowrap;\n}\nbutton:hover,\nbutton:focus-visible,\nbutton[aria-current=\"page\"] {\n  background: #287a5b;\n  color: white;\n}\nbutton:focus-visible {\n  outline: 3px solid #41b883;\n  outline-offset: 3px;\n}\n@media (prefers-color-scheme: dark) {\n:host {\n    color: #e6f4ee;\n}\n.showcase-header,\n  section {\n    background: #102c28;\n    border-color: #35645a;\n}\n.showcase-header {\n    background:\n      radial-gradient(circle at top right, rgb(65 184 131 / 24%), transparent 42%),\n      #143832;\n}\n.eyebrow,\n  .section-number,\n  .card-kicker {\n    color: #75d5aa;\n}\n.section-intro {\n    color: #b8cec5;\n}\n.gallery-card,\n  .data-card,\n  dialog {\n    background: #173a34;\n    border-color: #467569;\n    color: #e6f4ee;\n}\ninput,\n  select,\n  .secondary-button {\n    background: #0d2925;\n    border-color: #56877a;\n    color: #e6f4ee;\n}\n.notice {\n    background: #164c3c;\n}\nth {\n    background: #16453c;\n}\ntbody tr:hover,\n  tbody tr.selected {\n    background: #1e5447;\n}\n.customer-button {\n    color: #75d5aa;\n}\n.selection-status {\n    color: #b8cec5;\n}\n.request-error {\n    background: #4a2020;\n    color: #ffd8d8;\n}\n.metric-grid div {\n    background: #16453c;\n}\n.metric-grid dd {\n    color: #75d5aa;\n}\n}\n@media (max-width: 1100px) {\n.gallery-grid {\n    grid-template-columns: 1fr;\n}\n}\n@media (max-width: 760px) {\n.field-pair,\n  .filter-grid,\n  .metric-grid,\n  .detail-grid {\n    grid-template-columns: 1fr;\n}\n.data-heading,\n  .pagination {\n    align-items: flex-start;\n    flex-direction: column;\n}\n}\n@media (prefers-reduced-motion: reduce) {\n*,\n  *::before,\n  *::after {\n    scroll-behavior: auto !important;\n    transition-duration: 0.01ms !important;\n}\n}\n@media (forced-colors: active) {\nbutton,\n  input,\n  select,\n  .gallery-card,\n  .notice {\n    border: 1px solid CanvasText;\n}\n}\n";
+var App_ce_vue_vue_type_style_index_0_inline_lang_default = "\n:host {\n  color: #193330;\n  display: block;\n  font-family:\n    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\",\n    sans-serif;\n}\n* {\n  box-sizing: border-box;\n}\n.showcase-shell {\n  display: grid;\n  gap: 1.5rem;\n}\n.showcase-header,\nsection {\n  background: #f5fbf8;\n  border: 1px solid #c9ddd5;\n  border-radius: 1rem;\n  padding: clamp(1.25rem, 4vw, 2.5rem);\n}\n.section-intro {\n  color: #4c625e;\n}\n.notice {\n  align-items: center;\n  background: #dff6e9;\n  border: 1px solid #58a27e;\n  border-radius: 0.75rem;\n  display: flex;\n  justify-content: space-between;\n  margin: 1rem 0;\n  padding: 0.75rem 1rem;\n}\n.gallery-grid,\n.gallery-stack {\n  display: grid;\n  gap: 1rem;\n  min-width: 0;\n}\n.gallery-grid {\n  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);\n  margin-top: 1.5rem;\n}\n.gallery-card {\n  background: rgb(255 255 255 / 72%);\n  border: 1px solid #c9ddd5;\n  border-radius: 0.8rem;\n  display: grid;\n  gap: 1rem;\n  min-width: 0;\n  padding: 1.25rem;\n}\n.card-heading h3,\n.card-heading p {\n  margin-bottom: 0;\n}\n.card-kicker {\n  color: #287a5b;\n  font-size: 0.7rem;\n  font-weight: 800;\n  letter-spacing: 0.1em;\n  text-transform: uppercase;\n}\nlabel {\n  display: grid;\n  font-weight: 700;\n  gap: 0.4rem;\n}\ninput,\nselect {\n  background: white;\n  border: 1px solid #84a69a;\n  border-radius: 0.45rem;\n  color: #193330;\n  font: inherit;\n  min-width: 0;\n  padding: 0.65rem 0.75rem;\n}\ninput:focus-visible,\nselect:focus-visible,\nsummary:focus-visible {\n  outline: 3px solid #41b883;\n  outline-offset: 2px;\n}\n.field-pair {\n  display: grid;\n  gap: 0.75rem;\n  grid-template-columns: 1fr 1fr;\n}\nfieldset {\n  border: 0;\n  margin: 0;\n  padding: 0;\n}\nlegend {\n  font-weight: 700;\n  margin-bottom: 0.5rem;\n}\n.choice-row,\n.button-row,\n[role=\"tablist\"] {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 0.65rem;\n}\n.choice-row label {\n  align-items: center;\n  display: flex;\n  font-weight: 500;\n}\n.field-error {\n  color: #a32424;\n  font-size: 0.85rem;\n  margin: -0.75rem 0 0;\n}\n.switch-row {\n  align-items: center;\n  display: flex;\n  justify-content: space-between;\n}\n.switch-row span {\n  display: grid;\n}\n.switch-row small {\n  font-weight: 400;\n}\n.switch-row input {\n  height: 1.4rem;\n  width: 2.6rem;\n}\ninput[type=\"range\"],\nprogress {\n  accent-color: #287a5b;\n  width: 100%;\n}\n.primary-button {\n  background: #287a5b;\n  color: white;\n}\n.secondary-button {\n  background: white;\n}\nbutton:disabled {\n  cursor: not-allowed;\n  opacity: 0.5;\n}\n.icon-button {\n  border: 0;\n  font-size: 1.25rem;\n  padding: 0.2rem 0.5rem;\n}\n[role=\"tab\"][aria-selected=\"true\"] {\n  background: #287a5b;\n  color: white;\n}\ndl {\n  display: grid;\n  gap: 0.6rem;\n  margin: 0;\n}\ndl div {\n  display: flex;\n  gap: 1rem;\n  justify-content: space-between;\n}\ndt {\n  font-weight: 700;\n}\ndd {\n  margin: 0;\n  overflow-wrap: anywhere;\n  text-align: right;\n}\ndetails {\n  border-top: 1px solid #c9ddd5;\n  padding-top: 1rem;\n}\nsummary {\n  cursor: pointer;\n  font-weight: 700;\n}\ndialog {\n  background: #f5fbf8;\n  border: 1px solid #72a790;\n  border-radius: 1rem;\n  color: #193330;\n  max-width: min(30rem, calc(100vw - 2rem));\n  padding: 0;\n}\ndialog::backdrop {\n  background: rgb(7 28 24 / 72%);\n}\n.dialog-content {\n  padding: 1.5rem;\n}\n.data-card {\n  background: rgb(255 255 255 / 72%);\n  border: 1px solid #c9ddd5;\n  border-radius: 0.8rem;\n  margin-top: 1.5rem;\n  min-width: 0;\n  padding: 1.25rem;\n}\n.data-heading,\n.pagination {\n  align-items: center;\n  display: flex;\n  gap: 1rem;\n  justify-content: space-between;\n}\n.data-heading h3,\n.data-heading p {\n  margin-bottom: 0;\n}\n.filter-grid {\n  display: grid;\n  gap: 1rem;\n  grid-template-columns: minmax(0, 2fr) minmax(12rem, 1fr);\n  margin: 1.25rem 0;\n}\n.loading-state,\n.empty-state,\n.request-error {\n  border: 1px dashed #84a69a;\n  border-radius: 0.6rem;\n  margin: 1rem 0;\n  padding: 1rem;\n}\n.request-error {\n  background: #fff0f0;\n  border-color: #c76b6b;\n  color: #7e1f1f;\n}\n.table-scroll {\n  max-width: 100%;\n  overflow-x: auto;\n}\ntable {\n  border-collapse: collapse;\n  min-width: 48rem;\n  width: 100%;\n}\nth,\ntd {\n  border-bottom: 1px solid #c9ddd5;\n  padding: 0.75rem;\n  text-align: left;\n}\nth {\n  background: #eaf7f1;\n}\ntbody tr {\n  cursor: pointer;\n}\ntbody tr:hover,\ntbody tr.selected {\n  background: #dff6e9;\n}\n.sort-button,\n.customer-button {\n  border: 0;\n  border-radius: 0.25rem;\n  padding: 0.2rem;\n  text-align: left;\n}\n.sort-button {\n  align-items: center;\n  display: inline-flex;\n  gap: 0.35rem;\n}\n.customer-button {\n  color: #146247;\n  font-weight: 800;\n  text-decoration: underline;\n  text-underline-offset: 0.2em;\n}\n.pagination {\n  margin-top: 1rem;\n}\n.selection-status {\n  color: #4c625e;\n  margin: 1rem 0 0;\n}\n.visually-hidden {\n  clip: rect(0 0 0 0);\n  clip-path: inset(50%);\n  height: 1px;\n  overflow: hidden;\n  position: absolute;\n  white-space: nowrap;\n  width: 1px;\n}\n.customer-detail-layout {\n  display: grid;\n  gap: 1.25rem;\n  margin-top: 1.25rem;\n}\n.metric-grid,\n.detail-grid {\n  display: grid;\n  gap: 0.75rem;\n}\n.metric-grid {\n  grid-template-columns: repeat(3, minmax(0, 1fr));\n}\n.metric-grid div {\n  background: #eaf7f1;\n  border-radius: 0.6rem;\n  display: grid;\n  gap: 0.3rem;\n  justify-content: initial;\n  padding: 1rem;\n}\n.metric-grid dd {\n  color: #146247;\n  font-size: 1.25rem;\n  font-weight: 800;\n  text-align: left;\n}\n.detail-grid {\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.detail-grid div {\n  border-bottom: 1px solid #c9ddd5;\n  padding: 0.6rem 0;\n}\n.order-workspace {\n  display: grid;\n  gap: 1rem;\n  grid-template-columns: minmax(14rem, 0.7fr) minmax(0, 1.8fr);\n  margin-top: 1.25rem;\n  min-width: 0;\n}\n.order-list {\n  display: grid;\n  gap: 0.65rem;\n  max-height: 38rem;\n  overflow-y: auto;\n}\n.order-card {\n  align-items: center;\n  border-radius: 0.6rem;\n  display: flex;\n  justify-content: space-between;\n  padding: 0.85rem;\n  text-align: left;\n}\n.order-card span {\n  display: grid;\n  gap: 0.25rem;\n}\n.order-card span:last-child {\n  text-align: right;\n}\n.order-card small {\n  font-weight: 400;\n}\n.order-card[aria-pressed=\"true\"] {\n  background: #287a5b;\n  color: white;\n}\n.order-detail {\n  min-width: 0;\n}\n.order-summary {\n  display: grid;\n  gap: 1rem;\n  grid-template-columns: minmax(10rem, 0.7fr) minmax(0, 1fr);\n  margin-bottom: 1rem;\n}\n.order-summary h4 {\n  font-size: 1.5rem;\n  margin: 0 0 0.35rem;\n}\n.order-totals {\n  margin-left: auto;\n  margin-top: 1rem;\n  max-width: 20rem;\n}\n.order-totals .grand-total {\n  border-top: 2px solid #72a790;\n  font-size: 1.1rem;\n  margin-top: 0.4rem;\n  padding-top: 0.6rem;\n}\n.showcase-header {\n  background:\n    radial-gradient(circle at top right, rgb(65 184 131 / 28%), transparent 42%),\n    #eaf7f1;\n}\n.eyebrow,\n.section-number {\n  color: #287a5b;\n  font-size: 0.75rem;\n  font-weight: 800;\n  letter-spacing: 0.12em;\n  margin: 0 0 0.5rem;\n  text-transform: uppercase;\n}\nh1,\nh2,\np {\n  margin-top: 0;\n}\nh1 {\n  font-size: clamp(2rem, 6vw, 4rem);\n  line-height: 1;\n  margin-bottom: 1rem;\n}\nnav {\n  display: flex;\n  gap: 0.75rem;\n  overflow-x: auto;\n}\nbutton {\n  background: transparent;\n  border: 1px solid #72a790;\n  border-radius: 999px;\n  color: inherit;\n  cursor: pointer;\n  font: inherit;\n  font-weight: 700;\n  padding: 0.65rem 1rem;\n  white-space: nowrap;\n}\nbutton:hover,\nbutton:focus-visible,\nbutton[aria-current=\"page\"] {\n  background: #287a5b;\n  color: white;\n}\nbutton:focus-visible {\n  outline: 3px solid #41b883;\n  outline-offset: 3px;\n}\n@media (prefers-color-scheme: dark) {\n:host {\n    color: #e6f4ee;\n}\n.showcase-header,\n  section {\n    background: #102c28;\n    border-color: #35645a;\n}\n.showcase-header {\n    background:\n      radial-gradient(circle at top right, rgb(65 184 131 / 24%), transparent 42%),\n      #143832;\n}\n.eyebrow,\n  .section-number,\n  .card-kicker {\n    color: #75d5aa;\n}\n.section-intro {\n    color: #b8cec5;\n}\n.gallery-card,\n  .data-card,\n  dialog {\n    background: #173a34;\n    border-color: #467569;\n    color: #e6f4ee;\n}\ninput,\n  select,\n  .secondary-button {\n    background: #0d2925;\n    border-color: #56877a;\n    color: #e6f4ee;\n}\n.notice {\n    background: #164c3c;\n}\nth {\n    background: #16453c;\n}\ntbody tr:hover,\n  tbody tr.selected {\n    background: #1e5447;\n}\n.customer-button {\n    color: #75d5aa;\n}\n.selection-status {\n    color: #b8cec5;\n}\n.request-error {\n    background: #4a2020;\n    color: #ffd8d8;\n}\n.metric-grid div {\n    background: #16453c;\n}\n.metric-grid dd {\n    color: #75d5aa;\n}\n}\n@media (max-width: 1100px) {\n.gallery-grid,\n  .order-workspace {\n    grid-template-columns: 1fr;\n}\n.order-list {\n    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));\n    max-height: none;\n}\n}\n@media (max-width: 760px) {\n.field-pair,\n  .filter-grid,\n  .metric-grid,\n  .detail-grid {\n    grid-template-columns: 1fr;\n}\n.data-heading,\n  .pagination,\n  .order-summary {\n    align-items: flex-start;\n    flex-direction: column;\n}\n.order-summary {\n    display: flex;\n}\n}\n@media (prefers-reduced-motion: reduce) {\n*,\n  *::before,\n  *::after {\n    scroll-behavior: auto !important;\n    transition-duration: 0.01ms !important;\n}\n}\n@media (forced-colors: active) {\nbutton,\n  input,\n  select,\n  .gallery-card,\n  .notice {\n    border: 1px solid CanvasText;\n}\n}\n";
 //#endregion
 //#region \0plugin-vue:export-helper
 var _plugin_vue_export_helper_default = (sfc, props) => {
@@ -6236,8 +6236,63 @@ var _hoisted_50 = {
 	"aria-label": "Customer sales metrics"
 };
 var _hoisted_51 = { class: "detail-grid" };
-var _hoisted_52 = { class: "dialog-content" };
-var _hoisted_53 = { class: "button-row" };
+var _hoisted_52 = {
+	class: "data-card",
+	"aria-labelledby": "orders-heading"
+};
+var _hoisted_53 = { class: "data-heading" };
+var _hoisted_54 = { key: 0 };
+var _hoisted_55 = {
+	key: 0,
+	class: "empty-state"
+};
+var _hoisted_56 = {
+	key: 1,
+	class: "loading-state",
+	role: "status",
+	"aria-live": "polite"
+};
+var _hoisted_57 = {
+	key: 2,
+	class: "request-error",
+	role: "alert"
+};
+var _hoisted_58 = {
+	key: 3,
+	class: "empty-state"
+};
+var _hoisted_59 = {
+	key: 4,
+	class: "order-workspace"
+};
+var _hoisted_60 = {
+	class: "order-list",
+	"aria-label": "Customer orders"
+};
+var _hoisted_61 = ["aria-pressed", "onClick"];
+var _hoisted_62 = {
+	class: "order-detail",
+	"aria-live": "polite"
+};
+var _hoisted_63 = {
+	key: 0,
+	class: "loading-state",
+	role: "status"
+};
+var _hoisted_64 = {
+	key: 1,
+	class: "request-error",
+	role: "alert"
+};
+var _hoisted_65 = { key: 2 };
+var _hoisted_66 = { class: "order-summary" };
+var _hoisted_67 = { class: "card-kicker" };
+var _hoisted_68 = { class: "table-scroll" };
+var _hoisted_69 = { class: "visually-hidden" };
+var _hoisted_70 = { class: "order-totals" };
+var _hoisted_71 = { class: "grand-total" };
+var _hoisted_72 = { class: "dialog-content" };
+var _hoisted_73 = { class: "button-row" };
 var pageSize = 10;
 var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 	__name: "App.ce",
@@ -6278,6 +6333,13 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 		const customerDetail = /* @__PURE__ */ ref(null);
 		const customerDetailLoading = /* @__PURE__ */ ref(false);
 		const customerDetailError = /* @__PURE__ */ ref("");
+		const orders = /* @__PURE__ */ ref([]);
+		const ordersLoading = /* @__PURE__ */ ref(false);
+		const ordersError = /* @__PURE__ */ ref("");
+		const selectedOrderId = /* @__PURE__ */ ref(null);
+		const orderDetail = /* @__PURE__ */ ref(null);
+		const orderDetailLoading = /* @__PURE__ */ ref(false);
+		const orderDetailError = /* @__PURE__ */ ref("");
 		const customersLoading = /* @__PURE__ */ ref(true);
 		const customersError = /* @__PURE__ */ ref("");
 		const countriesError = /* @__PURE__ */ ref("");
@@ -6285,6 +6347,8 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 		let customerController;
 		let countryController;
 		let customerDetailController;
+		let ordersController;
+		let orderDetailController;
 		const isNameValid = computed(() => name.value.trim().length > 0);
 		const isEmailValid = computed(() => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value));
 		const isProfileValid = computed(() => isNameValid.value && isEmailValid.value);
@@ -6374,6 +6438,50 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 				if (!controller.signal.aborted) customerDetailLoading.value = false;
 			}
 		}
+		async function loadOrders() {
+			ordersController?.abort();
+			orders.value = [];
+			selectedOrderId.value = null;
+			ordersError.value = "";
+			if (!selectedId.value) {
+				ordersLoading.value = false;
+				return;
+			}
+			const controller = new AbortController();
+			ordersController = controller;
+			ordersLoading.value = true;
+			try {
+				const response = await fetch(`/api/northwind/customers/${selectedId.value}/orders`, { signal: controller.signal });
+				if (!response.ok) throw new Error("Customer orders could not be loaded.");
+				orders.value = await response.json();
+				selectedOrderId.value = orders.value[0]?.orderId ?? null;
+			} catch (error) {
+				if (error.name !== "AbortError") ordersError.value = error.message;
+			} finally {
+				if (!controller.signal.aborted) ordersLoading.value = false;
+			}
+		}
+		async function loadOrderDetail() {
+			orderDetailController?.abort();
+			orderDetail.value = null;
+			orderDetailError.value = "";
+			if (!selectedOrderId.value) {
+				orderDetailLoading.value = false;
+				return;
+			}
+			const controller = new AbortController();
+			orderDetailController = controller;
+			orderDetailLoading.value = true;
+			try {
+				const response = await fetch(`/api/northwind/orders/${selectedOrderId.value}`, { signal: controller.signal });
+				if (!response.ok) throw new Error("Order details could not be loaded.");
+				orderDetail.value = await response.json();
+			} catch (error) {
+				if (error.name !== "AbortError") orderDetailError.value = error.message;
+			} finally {
+				if (!controller.signal.aborted) orderDetailLoading.value = false;
+			}
+		}
 		function formatCurrency(value) {
 			return new Intl.NumberFormat("en-US", {
 				style: "currency",
@@ -6383,6 +6491,9 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 		function formatDate(value) {
 			if (!value) return "No orders";
 			return new Intl.DateTimeFormat("en-US", { dateStyle: "medium" }).format(new Date(value));
+		}
+		function formatDiscount(value) {
+			return `${Math.round(value * 100)}%`;
 		}
 		function validateProfile() {
 			if (!isProfileValid.value) return;
@@ -6446,6 +6557,8 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 			page
 		], loadCustomers);
 		watch(selectedId, loadCustomerDetail);
+		watch(selectedId, loadOrders);
+		watch(selectedOrderId, loadOrderDetail);
 		onMounted(() => {
 			loadCountries();
 			loadCustomers();
@@ -6455,10 +6568,12 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 			customerController?.abort();
 			countryController?.abort();
 			customerDetailController?.abort();
+			ordersController?.abort();
+			orderDetailController?.abort();
 		});
 		return (_ctx, _cache) => {
 			return openBlock(), createElementBlock("div", _hoisted_1, [
-				_cache[78] || (_cache[78] = createBaseVNode("header", { class: "showcase-header" }, [
+				_cache[86] || (_cache[86] = createBaseVNode("header", { class: "showcase-header" }, [
 					createBaseVNode("p", { class: "eyebrow" }, "Frontend lab · Vue"),
 					createBaseVNode("h1", null, "Vue interface showcase"),
 					createBaseVNode("p", null, " The shared Frontend Lab experience, implemented with Vue components and the Composition API. ")
@@ -6626,9 +6741,9 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 					])])])
 				]),
 				createBaseVNode("section", _hoisted_24, [
-					_cache[72] || (_cache[72] = createBaseVNode("p", { class: "section-number" }, "02 · API state", -1)),
-					_cache[73] || (_cache[73] = createBaseVNode("h2", { id: "northwind-heading" }, "Northwind Data Binding", -1)),
-					_cache[74] || (_cache[74] = createBaseVNode("p", { class: "section-intro" }, " Server-filtered, sorted, and paged customer data from the portfolio API. ", -1)),
+					_cache[80] || (_cache[80] = createBaseVNode("p", { class: "section-number" }, "02 · API state", -1)),
+					_cache[81] || (_cache[81] = createBaseVNode("h2", { id: "northwind-heading" }, "Northwind Data Binding", -1)),
+					_cache[82] || (_cache[82] = createBaseVNode("p", { class: "section-intro" }, " Server-filtered, sorted, and paged customer data from the portfolio API. ", -1)),
 					createBaseVNode("article", _hoisted_25, [
 						createBaseVNode("div", _hoisted_26, [_cache[53] || (_cache[53] = createBaseVNode("div", null, [createBaseVNode("p", { class: "card-kicker" }, "Customer Explorer"), createBaseVNode("h3", { id: "explorer-heading" }, "Northwind customers")], -1)), createBaseVNode("p", null, toDisplayString(totalCount.value) + " Northwind records", 1)]),
 						createBaseVNode("div", _hoisted_27, [createBaseVNode("label", null, [_cache[54] || (_cache[54] = createBaseVNode("span", null, "Search customers", -1)), withDirectives(createBaseVNode("input", {
@@ -6714,18 +6829,69 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 						createBaseVNode("div", null, [_cache[69] || (_cache[69] = createBaseVNode("dt", null, "Country", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.country || "—"), 1)]),
 						createBaseVNode("div", null, [_cache[70] || (_cache[70] = createBaseVNode("dt", null, "Phone", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.phone || "—"), 1)]),
 						createBaseVNode("div", null, [_cache[71] || (_cache[71] = createBaseVNode("dt", null, "Fax", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.fax || "—"), 1)])
-					])])) : createCommentVNode("", true)])
+					])])) : createCommentVNode("", true)]),
+					createBaseVNode("article", _hoisted_52, [createBaseVNode("div", _hoisted_53, [_cache[72] || (_cache[72] = createBaseVNode("div", null, [createBaseVNode("p", { class: "card-kicker" }, "Orders and Line Items"), createBaseVNode("h3", { id: "orders-heading" }, "Customer order workspace")], -1)), orders.value.length ? (openBlock(), createElementBlock("span", _hoisted_54, toDisplayString(orders.value.length) + " orders", 1)) : createCommentVNode("", true)]), !selectedId.value ? (openBlock(), createElementBlock("p", _hoisted_55, " Select a customer to load their orders. ")) : ordersLoading.value ? (openBlock(), createElementBlock("p", _hoisted_56, " Loading customer orders… ")) : ordersError.value ? (openBlock(), createElementBlock("div", _hoisted_57, [createBaseVNode("p", null, toDisplayString(ordersError.value), 1), createBaseVNode("button", {
+						type: "button",
+						class: "secondary-button",
+						onClick: loadOrders
+					}, " Try again ")])) : orders.value.length === 0 ? (openBlock(), createElementBlock("p", _hoisted_58, " This customer has no orders. ")) : (openBlock(), createElementBlock("div", _hoisted_59, [createBaseVNode("div", _hoisted_60, [(openBlock(true), createElementBlock(Fragment, null, renderList(orders.value, (order) => {
+						return openBlock(), createElementBlock("button", {
+							key: order.orderId,
+							type: "button",
+							class: "order-card",
+							"aria-pressed": selectedOrderId.value === order.orderId,
+							onClick: ($event) => selectedOrderId.value = order.orderId
+						}, [createBaseVNode("span", null, [createBaseVNode("strong", null, "Order " + toDisplayString(order.orderId), 1), createBaseVNode("small", null, toDisplayString(formatDate(order.orderDate)), 1)]), createBaseVNode("span", null, [createBaseVNode("strong", null, toDisplayString(formatCurrency(order.total)), 1), createBaseVNode("small", null, toDisplayString(order.status), 1)])], 8, _hoisted_61);
+					}), 128))]), createBaseVNode("div", _hoisted_62, [orderDetailLoading.value ? (openBlock(), createElementBlock("p", _hoisted_63, " Loading order details… ")) : orderDetailError.value ? (openBlock(), createElementBlock("div", _hoisted_64, [createBaseVNode("p", null, toDisplayString(orderDetailError.value), 1), createBaseVNode("button", {
+						type: "button",
+						class: "secondary-button",
+						onClick: loadOrderDetail
+					}, " Try again ")])) : orderDetail.value ? (openBlock(), createElementBlock("div", _hoisted_65, [
+						createBaseVNode("div", _hoisted_66, [createBaseVNode("div", null, [
+							createBaseVNode("p", _hoisted_67, "Order " + toDisplayString(orderDetail.value.orderId), 1),
+							createBaseVNode("h4", null, toDisplayString(orderDetail.value.status), 1),
+							createBaseVNode("p", null, toDisplayString(formatDate(orderDetail.value.orderDate)), 1)
+						]), createBaseVNode("dl", null, [
+							createBaseVNode("div", null, [_cache[73] || (_cache[73] = createBaseVNode("dt", null, "Employee", -1)), createBaseVNode("dd", null, toDisplayString(orderDetail.value.employeeName || "Unassigned"), 1)]),
+							createBaseVNode("div", null, [_cache[74] || (_cache[74] = createBaseVNode("dt", null, "Shipper", -1)), createBaseVNode("dd", null, toDisplayString(orderDetail.value.shipperName || "Unassigned"), 1)]),
+							createBaseVNode("div", null, [_cache[75] || (_cache[75] = createBaseVNode("dt", null, "Destination", -1)), createBaseVNode("dd", null, toDisplayString(orderDetail.value.shippingAddress.city || "—") + ", " + toDisplayString(orderDetail.value.shippingAddress.country || "—"), 1)])
+						])]),
+						createBaseVNode("div", _hoisted_68, [createBaseVNode("table", null, [
+							createBaseVNode("caption", _hoisted_69, " Products in order " + toDisplayString(orderDetail.value.orderId), 1),
+							_cache[76] || (_cache[76] = createBaseVNode("thead", null, [createBaseVNode("tr", null, [
+								createBaseVNode("th", { scope: "col" }, "Product"),
+								createBaseVNode("th", { scope: "col" }, "Quantity"),
+								createBaseVNode("th", { scope: "col" }, "Unit price"),
+								createBaseVNode("th", { scope: "col" }, "Discount"),
+								createBaseVNode("th", { scope: "col" }, "Extended price")
+							])], -1)),
+							createBaseVNode("tbody", null, [(openBlock(true), createElementBlock(Fragment, null, renderList(orderDetail.value.items, (item) => {
+								return openBlock(), createElementBlock("tr", { key: item.productId }, [
+									createBaseVNode("td", null, toDisplayString(item.productName), 1),
+									createBaseVNode("td", null, toDisplayString(item.quantity), 1),
+									createBaseVNode("td", null, toDisplayString(formatCurrency(item.unitPrice)), 1),
+									createBaseVNode("td", null, toDisplayString(formatDiscount(item.discount)), 1),
+									createBaseVNode("td", null, toDisplayString(formatCurrency(item.extendedPrice)), 1)
+								]);
+							}), 128))])
+						])]),
+						createBaseVNode("dl", _hoisted_70, [
+							createBaseVNode("div", null, [_cache[77] || (_cache[77] = createBaseVNode("dt", null, "Subtotal", -1)), createBaseVNode("dd", null, toDisplayString(formatCurrency(orderDetail.value.subtotal)), 1)]),
+							createBaseVNode("div", null, [_cache[78] || (_cache[78] = createBaseVNode("dt", null, "Freight", -1)), createBaseVNode("dd", null, toDisplayString(formatCurrency(orderDetail.value.freight)), 1)]),
+							createBaseVNode("div", _hoisted_71, [_cache[79] || (_cache[79] = createBaseVNode("dt", null, "Total", -1)), createBaseVNode("dd", null, toDisplayString(formatCurrency(orderDetail.value.total)), 1)])
+						])
+					])) : createCommentVNode("", true)])]))])
 				]),
 				createBaseVNode("dialog", {
 					ref_key: "dialog",
 					ref: dialog,
 					"aria-labelledby": "dialog-heading",
 					onKeydown: handleDialogKeydown
-				}, [createBaseVNode("div", _hoisted_52, [
-					_cache[75] || (_cache[75] = createBaseVNode("p", { class: "card-kicker" }, "Vue dialog", -1)),
-					_cache[76] || (_cache[76] = createBaseVNode("h2", { id: "dialog-heading" }, "Keyboard-ready modal", -1)),
-					_cache[77] || (_cache[77] = createBaseVNode("p", null, "Focus stays within this dialog until it is closed.", -1)),
-					createBaseVNode("div", _hoisted_53, [createBaseVNode("button", {
+				}, [createBaseVNode("div", _hoisted_72, [
+					_cache[83] || (_cache[83] = createBaseVNode("p", { class: "card-kicker" }, "Vue dialog", -1)),
+					_cache[84] || (_cache[84] = createBaseVNode("h2", { id: "dialog-heading" }, "Keyboard-ready modal", -1)),
+					_cache[85] || (_cache[85] = createBaseVNode("p", null, "Focus stays within this dialog until it is closed.", -1)),
+					createBaseVNode("div", _hoisted_73, [createBaseVNode("button", {
 						ref_key: "dialogCloseButton",
 						ref: dialogCloseButton,
 						class: "primary-button",
