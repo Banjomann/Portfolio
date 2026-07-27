@@ -389,7 +389,7 @@ async function resetSandbox() {
 
 function validateProfile() {
   if (!isProfileValid.value) return
-  successMessage.value = `Profile validated for ${name.value.trim()}.`
+  successMessage.value = 'Example profile validated successfully.'
 }
 
 async function openDialog() {
@@ -515,23 +515,6 @@ onBeforeUnmount(() => {
         </p>
       </div>
 
-      <div
-        v-if="successMessage"
-        class="notice"
-        role="status"
-        aria-live="polite"
-      >
-        <span>{{ successMessage }}</span>
-        <button
-          type="button"
-          class="icon-button"
-          aria-label="Dismiss success message"
-          @click="successMessage = ''"
-        >
-          ×
-        </button>
-      </div>
-
       <div class="control-layout">
         <form class="control-card form-card" aria-labelledby="profile-heading" @submit.prevent="validateProfile">
           <div class="card-heading">
@@ -546,11 +529,24 @@ onBeforeUnmount(() => {
 
           <label>
             <span>Email</span>
-            <input v-model="email" type="email" required aria-describedby="email-error" />
+            <input
+              v-model="email"
+              type="email"
+              required
+              :aria-invalid="!isEmailValid"
+              aria-describedby="email-help"
+            />
           </label>
-          <p v-if="!isEmailValid" id="email-error" class="field-error">
-            Enter a valid email address.
-          </p>
+          <small
+            id="email-help"
+            :class="isEmailValid ? 'field-help' : 'field-error'"
+          >
+            {{
+              isEmailValid
+                ? 'Used for example notifications.'
+                : 'Enter a valid email address.'
+            }}
+          </small>
 
           <div class="field-pair">
             <label>
@@ -591,9 +587,15 @@ onBeforeUnmount(() => {
             </div>
           </fieldset>
 
-          <button class="primary-button" type="submit" :disabled="!isProfileValid">
-            Validate profile
-          </button>
+          <div class="form-actions">
+            <button class="primary-button" type="submit" :disabled="!isProfileValid">
+              Validate profile
+            </button>
+            <button class="secondary-button" type="button" @click="openDialog">
+              Open dialog
+            </button>
+            <button class="secondary-button" type="button" disabled>Disabled</button>
+          </div>
         </form>
 
         <div class="control-stack">
@@ -605,7 +607,7 @@ onBeforeUnmount(() => {
             <label class="switch-row">
               <span>
                 <strong>Notifications</strong>
-                <small>Receive event updates</small>
+                <small>Enable status updates</small>
               </span>
               <input v-model="notifications" type="checkbox" role="switch" />
             </label>
@@ -614,15 +616,11 @@ onBeforeUnmount(() => {
               <span>Confidence <strong>{{ confidence }}%</strong></span>
               <input v-model.number="confidence" type="range" min="0" max="100" />
             </label>
-            <progress :value="confidence" max="100">{{ confidence }}%</progress>
-
-            <div class="button-row">
-              <button class="primary-button" type="button" @click="openDialog">
-                Open dialog
-              </button>
-              <button class="secondary-button" type="button">Secondary</button>
-              <button type="button" disabled>Disabled</button>
-            </div>
+            <progress
+              :value="confidence"
+              max="100"
+              :aria-label="`Confidence ${confidence}%`"
+            />
           </article>
 
           <article class="control-card" aria-labelledby="preview-heading">
@@ -630,26 +628,26 @@ onBeforeUnmount(() => {
               <h3 id="preview-heading">Bound state</h3>
             </div>
 
-            <div role="tablist" aria-label="Profile preview">
+            <div class="tabs" role="tablist" aria-label="Profile views">
               <button
-                id="summary-tab"
+                id="profile-summary-tab"
                 type="button"
                 role="tab"
                 data-tab="summary"
                 :aria-selected="activeTab === 'summary'"
-                aria-controls="summary-panel"
+                aria-controls="profile-summary-panel"
                 @click="activeTab = 'summary'"
                 @keydown="handleTabKeydown"
               >
                 Summary
               </button>
               <button
-                id="settings-tab"
+                id="profile-settings-tab"
                 type="button"
                 role="tab"
                 data-tab="settings"
                 :aria-selected="activeTab === 'settings'"
-                aria-controls="settings-panel"
+                aria-controls="profile-settings-panel"
                 @click="activeTab = 'settings'"
                 @keydown="handleTabKeydown"
               >
@@ -657,36 +655,58 @@ onBeforeUnmount(() => {
               </button>
             </div>
 
-            <dl
+            <div
               v-if="activeTab === 'summary'"
-              id="summary-panel"
+              id="profile-summary-panel"
+              class="tab-panel"
               role="tabpanel"
-              aria-labelledby="summary-tab"
+              aria-labelledby="profile-summary-tab"
+              tabindex="0"
             >
-              <div><dt>Name</dt><dd>{{ name || '—' }}</dd></div>
-              <div><dt>Email</dt><dd>{{ email || '—' }}</dd></div>
-              <div><dt>Seats</dt><dd>{{ seats }}</dd></div>
-              <div><dt>Start</dt><dd>{{ startDate }}</dd></div>
-              <div><dt>Role</dt><dd>{{ role }}</dd></div>
-            </dl>
-            <dl
+              <h3>{{ name || 'Unnamed profile' }}</h3>
+              <dl class="summary-list">
+                <div><dt>Role</dt><dd>{{ role }}</dd></div>
+                <div><dt>Seats</dt><dd>{{ seats }}</dd></div>
+                <div><dt>Contact</dt><dd>{{ contact }}</dd></div>
+                <div><dt>Interests</dt><dd>{{ interests.join(', ') || 'None' }}</dd></div>
+              </dl>
+            </div>
+            <div
               v-else
-              id="settings-panel"
+              id="profile-settings-panel"
+              class="tab-panel"
               role="tabpanel"
-              aria-labelledby="settings-tab"
+              aria-labelledby="profile-settings-tab"
+              tabindex="0"
             >
-              <div><dt>Interests</dt><dd>{{ interests.join(', ') || 'None' }}</dd></div>
-              <div><dt>Contact</dt><dd>{{ contact }}</dd></div>
-              <div><dt>Notifications</dt><dd>{{ notifications ? 'On' : 'Off' }}</dd></div>
-              <div><dt>Confidence</dt><dd>{{ confidence }}%</dd></div>
-            </dl>
+              <h3>Current settings</h3>
+              <p>
+                Notifications are
+                <strong>{{ notifications ? 'enabled' : 'disabled' }}</strong>.
+                The selected start date is {{ startDate }}.
+              </p>
+            </div>
 
             <details>
               <summary>Implementation note</summary>
-              <p>Every value above is derived directly from Vue reactive state.</p>
+              <p>
+                Native controls preserve keyboard behavior while Vue binds each
+                value and derives this summary.
+              </p>
             </details>
           </article>
         </div>
+      </div>
+
+      <div v-if="successMessage" class="notification" role="status" aria-live="polite">
+        <span>{{ successMessage }}</span>
+        <button
+          type="button"
+          aria-label="Dismiss notification"
+          @click="successMessage = ''"
+        >
+          ×
+        </button>
       </div>
     </section>
 

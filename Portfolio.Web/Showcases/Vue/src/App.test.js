@@ -181,7 +181,7 @@ describe('Control Gallery', () => {
 
     await updateControl('input[type="text"]', 'Grace Hopper')
 
-    expect(root.querySelector('#summary-panel').textContent).toContain(
+    expect(root.querySelector('#profile-summary-panel').textContent).toContain(
       'Grace Hopper',
     )
   })
@@ -193,7 +193,7 @@ describe('Control Gallery', () => {
       (button) => button.textContent.trim() === 'Validate profile',
     )
     expect(submit.disabled).toBe(true)
-    expect(root.querySelector('#email-error')).not.toBeNull()
+    expect(root.querySelector('#email-help').classList).toContain('field-error')
 
     await updateControl('input[type="email"]', 'grace@example.com')
     expect(submit.disabled).toBe(false)
@@ -202,26 +202,26 @@ describe('Control Gallery', () => {
     await nextTick()
 
     expect(root.querySelector('[role="status"]').textContent).toContain(
-      'Profile validated for Ada Lovelace.',
+      'Example profile validated successfully.',
     )
 
-    root.querySelector('[aria-label="Dismiss success message"]').click()
+    root.querySelector('[aria-label="Dismiss notification"]').click()
     await nextTick()
     expect(root.querySelector('[role="status"]')).toBeNull()
   })
 
   it('switches linked tab panels with arrow keys', async () => {
-    const summaryTab = root.querySelector('#summary-tab')
+    const summaryTab = root.querySelector('#profile-summary-tab')
     summaryTab.dispatchEvent(
       new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }),
     )
     await nextTick()
 
-    expect(root.querySelector('#settings-tab').getAttribute('aria-selected')).toBe(
+    expect(root.querySelector('#profile-settings-tab').getAttribute('aria-selected')).toBe(
       'true',
     )
-    expect(root.querySelector('#settings-panel').textContent).toContain(
-      'Confidence',
+    expect(root.querySelector('#profile-settings-panel').textContent).toContain(
+      'Current settings',
     )
   })
 })

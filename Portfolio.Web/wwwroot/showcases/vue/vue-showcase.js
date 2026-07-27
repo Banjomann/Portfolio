@@ -4809,26 +4809,17 @@ var _hoisted_2 = {
 	class: "controls-section",
 	"aria-labelledby": "controls-heading"
 };
-var _hoisted_3 = {
-	key: 0,
-	class: "notice",
-	role: "status",
-	"aria-live": "polite"
-};
-var _hoisted_4 = { class: "control-layout" };
-var _hoisted_5 = {
+var _hoisted_3 = { class: "control-layout" };
+var _hoisted_4 = {
 	key: 0,
 	id: "name-error",
 	class: "field-error"
 };
-var _hoisted_6 = {
-	key: 1,
-	id: "email-error",
-	class: "field-error"
-};
-var _hoisted_7 = { class: "field-pair" };
+var _hoisted_5 = ["aria-invalid"];
+var _hoisted_6 = { class: "field-pair" };
+var _hoisted_7 = { class: "choice-row" };
 var _hoisted_8 = { class: "choice-row" };
-var _hoisted_9 = { class: "choice-row" };
+var _hoisted_9 = { class: "form-actions" };
 var _hoisted_10 = ["disabled"];
 var _hoisted_11 = { class: "control-stack" };
 var _hoisted_12 = {
@@ -4836,208 +4827,220 @@ var _hoisted_12 = {
 	"aria-labelledby": "preferences-heading"
 };
 var _hoisted_13 = { class: "switch-row" };
-var _hoisted_14 = ["value"];
+var _hoisted_14 = ["value", "aria-label"];
 var _hoisted_15 = {
 	class: "control-card",
 	"aria-labelledby": "preview-heading"
 };
 var _hoisted_16 = {
+	class: "tabs",
 	role: "tablist",
-	"aria-label": "Profile preview"
+	"aria-label": "Profile views"
 };
 var _hoisted_17 = ["aria-selected"];
 var _hoisted_18 = ["aria-selected"];
 var _hoisted_19 = {
 	key: 0,
-	id: "summary-panel",
+	id: "profile-summary-panel",
+	class: "tab-panel",
 	role: "tabpanel",
-	"aria-labelledby": "summary-tab"
+	"aria-labelledby": "profile-summary-tab",
+	tabindex: "0"
 };
-var _hoisted_20 = {
-	key: 1,
-	id: "settings-panel",
-	role: "tabpanel",
-	"aria-labelledby": "settings-tab"
-};
+var _hoisted_20 = { class: "summary-list" };
 var _hoisted_21 = {
+	key: 1,
+	id: "profile-settings-panel",
+	class: "tab-panel",
+	role: "tabpanel",
+	"aria-labelledby": "profile-settings-tab",
+	tabindex: "0"
+};
+var _hoisted_22 = {
+	key: 0,
+	class: "notification",
+	role: "status",
+	"aria-live": "polite"
+};
+var _hoisted_23 = {
 	id: "vue-northwind",
 	class: "data-section",
 	"aria-labelledby": "data-heading"
 };
-var _hoisted_22 = {
+var _hoisted_24 = {
 	class: "sandbox-panel",
 	"aria-labelledby": "sandbox-heading"
 };
-var _hoisted_23 = { class: "switch-row" };
-var _hoisted_24 = ["checked"];
-var _hoisted_25 = { key: 1 };
-var _hoisted_26 = {
+var _hoisted_25 = { class: "switch-row" };
+var _hoisted_26 = ["checked"];
+var _hoisted_27 = { key: 1 };
+var _hoisted_28 = {
 	key: 2,
 	class: "notice",
 	role: "status"
 };
-var _hoisted_27 = {
+var _hoisted_29 = {
 	key: 3,
 	class: "request-error",
 	role: "alert"
 };
-var _hoisted_28 = {
+var _hoisted_30 = {
 	class: "data-card",
 	"aria-labelledby": "explorer-heading"
 };
-var _hoisted_29 = { class: "data-heading" };
-var _hoisted_30 = { class: "filter-grid" };
-var _hoisted_31 = ["value"];
-var _hoisted_32 = {
-	key: 0,
-	class: "request-error",
-	role: "alert"
-};
-var _hoisted_33 = {
-	key: 1,
-	class: "loading-state",
-	role: "status",
-	"aria-live": "polite"
-};
+var _hoisted_31 = { class: "data-heading" };
+var _hoisted_32 = { class: "filter-grid" };
+var _hoisted_33 = ["value"];
 var _hoisted_34 = {
-	key: 2,
+	key: 0,
 	class: "request-error",
 	role: "alert"
 };
 var _hoisted_35 = {
+	key: 1,
+	class: "loading-state",
+	role: "status",
+	"aria-live": "polite"
+};
+var _hoisted_36 = {
+	key: 2,
+	class: "request-error",
+	role: "alert"
+};
+var _hoisted_37 = {
 	key: 3,
 	class: "empty-state",
 	role: "status"
 };
-var _hoisted_36 = {
+var _hoisted_38 = {
 	key: 4,
 	class: "table-scroll"
 };
-var _hoisted_37 = ["aria-sort"];
-var _hoisted_38 = ["onClick"];
-var _hoisted_39 = {
+var _hoisted_39 = ["aria-sort"];
+var _hoisted_40 = ["onClick"];
+var _hoisted_41 = {
 	key: 0,
 	"aria-hidden": "true"
 };
-var _hoisted_40 = ["onClick"];
-var _hoisted_41 = { "data-label": "Company" };
-var _hoisted_42 = ["aria-pressed", "onClick"];
-var _hoisted_43 = { "data-label": "Contact" };
-var _hoisted_44 = { "data-label": "City" };
-var _hoisted_45 = { "data-label": "Country" };
-var _hoisted_46 = { "data-label": "ID" };
-var _hoisted_47 = {
+var _hoisted_42 = ["onClick"];
+var _hoisted_43 = { "data-label": "Company" };
+var _hoisted_44 = ["aria-pressed", "onClick"];
+var _hoisted_45 = { "data-label": "Contact" };
+var _hoisted_46 = { "data-label": "City" };
+var _hoisted_47 = { "data-label": "Country" };
+var _hoisted_48 = { "data-label": "ID" };
+var _hoisted_49 = {
 	class: "pagination",
 	"aria-label": "Customer pages"
 };
-var _hoisted_48 = ["disabled"];
-var _hoisted_49 = ["disabled"];
-var _hoisted_50 = {
+var _hoisted_50 = ["disabled"];
+var _hoisted_51 = ["disabled"];
+var _hoisted_52 = {
 	class: "selection-status",
 	"aria-live": "polite"
 };
-var _hoisted_51 = {
+var _hoisted_53 = {
 	class: "data-card",
 	"aria-labelledby": "customer-details-heading"
 };
-var _hoisted_52 = { class: "data-heading" };
-var _hoisted_53 = { key: 0 };
-var _hoisted_54 = {
+var _hoisted_54 = { class: "data-heading" };
+var _hoisted_55 = { key: 0 };
+var _hoisted_56 = {
 	key: 0,
 	class: "empty-state"
 };
-var _hoisted_55 = {
+var _hoisted_57 = {
 	key: 1,
 	class: "loading-state",
 	role: "status",
 	"aria-live": "polite"
 };
-var _hoisted_56 = {
+var _hoisted_58 = {
 	key: 2,
 	class: "request-error",
 	role: "alert"
 };
-var _hoisted_57 = {
+var _hoisted_59 = {
 	key: 3,
 	class: "customer-detail-layout"
 };
-var _hoisted_58 = {
+var _hoisted_60 = {
 	class: "metric-grid",
 	"aria-label": "Customer sales metrics"
 };
-var _hoisted_59 = ["onUpdate:modelValue", "required"];
-var _hoisted_60 = {
+var _hoisted_61 = ["onUpdate:modelValue", "required"];
+var _hoisted_62 = {
 	key: 0,
 	class: "field-error"
 };
-var _hoisted_61 = {
+var _hoisted_63 = {
 	class: "dirty-status",
 	"aria-live": "polite"
 };
-var _hoisted_62 = { class: "button-row" };
-var _hoisted_63 = ["disabled"];
-var _hoisted_64 = ["disabled"];
-var _hoisted_65 = {
+var _hoisted_64 = { class: "button-row" };
+var _hoisted_65 = ["disabled"];
+var _hoisted_66 = ["disabled"];
+var _hoisted_67 = {
 	key: 1,
 	class: "detail-grid"
 };
-var _hoisted_66 = {
+var _hoisted_68 = {
 	class: "data-card",
 	"aria-labelledby": "orders-heading"
 };
-var _hoisted_67 = { class: "data-heading" };
-var _hoisted_68 = { key: 0 };
-var _hoisted_69 = {
+var _hoisted_69 = { class: "data-heading" };
+var _hoisted_70 = { key: 0 };
+var _hoisted_71 = {
 	key: 0,
 	class: "empty-state"
 };
-var _hoisted_70 = {
+var _hoisted_72 = {
 	key: 1,
 	class: "loading-state",
 	role: "status",
 	"aria-live": "polite"
 };
-var _hoisted_71 = {
+var _hoisted_73 = {
 	key: 2,
 	class: "request-error",
 	role: "alert"
 };
-var _hoisted_72 = {
+var _hoisted_74 = {
 	key: 3,
 	class: "empty-state"
 };
-var _hoisted_73 = {
+var _hoisted_75 = {
 	key: 4,
 	class: "order-workspace"
 };
-var _hoisted_74 = {
+var _hoisted_76 = {
 	class: "order-list",
 	"aria-label": "Customer orders"
 };
-var _hoisted_75 = ["aria-pressed", "onClick"];
-var _hoisted_76 = {
+var _hoisted_77 = ["aria-pressed", "onClick"];
+var _hoisted_78 = {
 	class: "order-detail",
 	"aria-live": "polite"
 };
-var _hoisted_77 = {
+var _hoisted_79 = {
 	key: 0,
 	class: "loading-state",
 	role: "status"
 };
-var _hoisted_78 = {
+var _hoisted_80 = {
 	key: 1,
 	class: "request-error",
 	role: "alert"
 };
-var _hoisted_79 = { key: 2 };
-var _hoisted_80 = { class: "order-summary" };
-var _hoisted_81 = { class: "card-kicker" };
-var _hoisted_82 = { class: "table-scroll" };
-var _hoisted_83 = { class: "visually-hidden" };
-var _hoisted_84 = { class: "order-totals" };
-var _hoisted_85 = { class: "grand-total" };
-var _hoisted_86 = { class: "dialog-content" };
-var _hoisted_87 = { class: "button-row" };
+var _hoisted_81 = { key: 2 };
+var _hoisted_82 = { class: "order-summary" };
+var _hoisted_83 = { class: "card-kicker" };
+var _hoisted_84 = { class: "table-scroll" };
+var _hoisted_85 = { class: "visually-hidden" };
+var _hoisted_86 = { class: "order-totals" };
+var _hoisted_87 = { class: "grand-total" };
+var _hoisted_88 = { class: "dialog-content" };
+var _hoisted_89 = { class: "button-row" };
 var pageSize = 10;
 var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 	__name: "App.ce",
@@ -5329,7 +5332,7 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 		}
 		function validateProfile() {
 			if (!isProfileValid.value) return;
-			successMessage.value = `Profile validated for ${name.value.trim()}.`;
+			successMessage.value = "Example profile validated successfully.";
 		}
 		async function openDialog() {
 			dialog.value?.showModal();
@@ -5405,37 +5408,35 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 		});
 		return (_ctx, _cache) => {
 			return openBlock(), createElementBlock("div", _hoisted_1, [
-				_cache[85] || (_cache[85] = createStaticVNode("<header class=\"showcase-header\"><div><span class=\"eyebrow\">Frontend Lab</span><h1>Vue showcase</h1><p> Interactive UI patterns and data binding implemented with Vue refs, computed state, watchers, and accessible native controls. </p></div><div class=\"framework-badge\" aria-label=\"Built with Vue\"><span aria-hidden=\"true\">V</span><strong>Vue</strong></div></header><nav class=\"showcase-nav\" aria-label=\"Vue showcase sections\"><a href=\"#vue-controls\">Control gallery</a><a href=\"#vue-northwind\">Northwind data binding</a></nav>", 2)),
+				_cache[81] || (_cache[81] = createStaticVNode("<header class=\"showcase-header\"><div><span class=\"eyebrow\">Frontend Lab</span><h1>Vue showcase</h1><p> Interactive UI patterns and data binding implemented with Vue refs, computed state, watchers, and accessible native controls. </p></div><div class=\"framework-badge\" aria-label=\"Built with Vue\"><span aria-hidden=\"true\">V</span><strong>Vue</strong></div></header><nav class=\"showcase-nav\" aria-label=\"Vue showcase sections\"><a href=\"#vue-controls\">Control gallery</a><a href=\"#vue-northwind\">Northwind data binding</a></nav>", 2)),
 				createBaseVNode("section", _hoisted_2, [
-					_cache[52] || (_cache[52] = createBaseVNode("div", { class: "section-heading" }, [createBaseVNode("div", null, [createBaseVNode("span", { class: "eyebrow" }, "Refs and computed state"), createBaseVNode("h2", { id: "controls-heading" }, "Control gallery")]), createBaseVNode("p", null, " Every value below is bound through Vue and immediately reflected in the live summary. ")], -1)),
-					successMessage.value ? (openBlock(), createElementBlock("div", _hoisted_3, [createBaseVNode("span", null, toDisplayString(successMessage.value), 1), createBaseVNode("button", {
-						type: "button",
-						class: "icon-button",
-						"aria-label": "Dismiss success message",
-						onClick: _cache[0] || (_cache[0] = ($event) => successMessage.value = "")
-					}, " × ")])) : createCommentVNode("", true),
-					createBaseVNode("div", _hoisted_4, [createBaseVNode("form", {
+					_cache[48] || (_cache[48] = createBaseVNode("div", { class: "section-heading" }, [createBaseVNode("div", null, [createBaseVNode("span", { class: "eyebrow" }, "Refs and computed state"), createBaseVNode("h2", { id: "controls-heading" }, "Control gallery")]), createBaseVNode("p", null, " Every value below is bound through Vue and immediately reflected in the live summary. ")], -1)),
+					createBaseVNode("div", _hoisted_3, [createBaseVNode("form", {
 						class: "control-card form-card",
 						"aria-labelledby": "profile-heading",
 						onSubmit: withModifiers(validateProfile, ["prevent"])
 					}, [
-						_cache[35] || (_cache[35] = createBaseVNode("div", { class: "card-heading" }, [createBaseVNode("h3", { id: "profile-heading" }, "Profile inputs")], -1)),
+						_cache[36] || (_cache[36] = createBaseVNode("div", { class: "card-heading" }, [createBaseVNode("h3", { id: "profile-heading" }, "Profile inputs")], -1)),
 						createBaseVNode("label", null, [_cache[21] || (_cache[21] = createBaseVNode("span", null, "Name", -1)), withDirectives(createBaseVNode("input", {
-							"onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => name.value = $event),
+							"onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => name.value = $event),
 							type: "text",
 							required: "",
 							"aria-describedby": "name-error"
 						}, null, 512), [[vModelText, name.value]])]),
-						!isNameValid.value ? (openBlock(), createElementBlock("p", _hoisted_5, "Enter a name.")) : createCommentVNode("", true),
+						!isNameValid.value ? (openBlock(), createElementBlock("p", _hoisted_4, "Enter a name.")) : createCommentVNode("", true),
 						createBaseVNode("label", null, [_cache[22] || (_cache[22] = createBaseVNode("span", null, "Email", -1)), withDirectives(createBaseVNode("input", {
-							"onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => email.value = $event),
+							"onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => email.value = $event),
 							type: "email",
 							required: "",
-							"aria-describedby": "email-error"
-						}, null, 512), [[vModelText, email.value]])]),
-						!isEmailValid.value ? (openBlock(), createElementBlock("p", _hoisted_6, " Enter a valid email address. ")) : createCommentVNode("", true),
-						createBaseVNode("div", _hoisted_7, [createBaseVNode("label", null, [_cache[23] || (_cache[23] = createBaseVNode("span", null, "Seats", -1)), withDirectives(createBaseVNode("input", {
-							"onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => seats.value = $event),
+							"aria-invalid": !isEmailValid.value,
+							"aria-describedby": "email-help"
+						}, null, 8, _hoisted_5), [[vModelText, email.value]])]),
+						createBaseVNode("small", {
+							id: "email-help",
+							class: normalizeClass(isEmailValid.value ? "field-help" : "field-error")
+						}, toDisplayString(isEmailValid.value ? "Used for example notifications." : "Enter a valid email address."), 3),
+						createBaseVNode("div", _hoisted_6, [createBaseVNode("label", null, [_cache[23] || (_cache[23] = createBaseVNode("span", null, "Seats", -1)), withDirectives(createBaseVNode("input", {
+							"onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => seats.value = $event),
 							type: "number",
 							min: "1",
 							max: "12"
@@ -5445,63 +5446,75 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 							void 0,
 							{ number: true }
 						]])]), createBaseVNode("label", null, [_cache[24] || (_cache[24] = createBaseVNode("span", null, "Start date", -1)), withDirectives(createBaseVNode("input", {
-							"onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => startDate.value = $event),
+							"onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => startDate.value = $event),
 							type: "date"
 						}, null, 512), [[vModelText, startDate.value]])])]),
-						createBaseVNode("label", null, [_cache[26] || (_cache[26] = createBaseVNode("span", null, "Role", -1)), withDirectives(createBaseVNode("select", { "onUpdate:modelValue": _cache[5] || (_cache[5] = ($event) => role.value = $event) }, [..._cache[25] || (_cache[25] = [
+						createBaseVNode("label", null, [_cache[26] || (_cache[26] = createBaseVNode("span", null, "Role", -1)), withDirectives(createBaseVNode("select", { "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => role.value = $event) }, [..._cache[25] || (_cache[25] = [
 							createBaseVNode("option", null, "Developer", -1),
 							createBaseVNode("option", null, "Designer", -1),
 							createBaseVNode("option", null, "Analyst", -1),
 							createBaseVNode("option", null, "Manager", -1)
 						])], 512), [[vModelSelect, role.value]])]),
-						createBaseVNode("fieldset", null, [_cache[30] || (_cache[30] = createBaseVNode("legend", null, "Interests", -1)), createBaseVNode("div", _hoisted_8, [
+						createBaseVNode("fieldset", null, [_cache[30] || (_cache[30] = createBaseVNode("legend", null, "Interests", -1)), createBaseVNode("div", _hoisted_7, [
 							createBaseVNode("label", null, [withDirectives(createBaseVNode("input", {
-								"onUpdate:modelValue": _cache[6] || (_cache[6] = ($event) => interests.value = $event),
+								"onUpdate:modelValue": _cache[5] || (_cache[5] = ($event) => interests.value = $event),
 								type: "checkbox",
 								value: "Data"
 							}, null, 512), [[vModelCheckbox, interests.value]]), _cache[27] || (_cache[27] = createTextVNode(" Data", -1))]),
 							createBaseVNode("label", null, [withDirectives(createBaseVNode("input", {
-								"onUpdate:modelValue": _cache[7] || (_cache[7] = ($event) => interests.value = $event),
+								"onUpdate:modelValue": _cache[6] || (_cache[6] = ($event) => interests.value = $event),
 								type: "checkbox",
 								value: "Design"
 							}, null, 512), [[vModelCheckbox, interests.value]]), _cache[28] || (_cache[28] = createTextVNode(" Design", -1))]),
 							createBaseVNode("label", null, [withDirectives(createBaseVNode("input", {
-								"onUpdate:modelValue": _cache[8] || (_cache[8] = ($event) => interests.value = $event),
+								"onUpdate:modelValue": _cache[7] || (_cache[7] = ($event) => interests.value = $event),
 								type: "checkbox",
 								value: "Automation"
 							}, null, 512), [[vModelCheckbox, interests.value]]), _cache[29] || (_cache[29] = createTextVNode(" Automation", -1))])
 						])]),
-						createBaseVNode("fieldset", null, [_cache[34] || (_cache[34] = createBaseVNode("legend", null, "Preferred contact", -1)), createBaseVNode("div", _hoisted_9, [
+						createBaseVNode("fieldset", null, [_cache[34] || (_cache[34] = createBaseVNode("legend", null, "Preferred contact", -1)), createBaseVNode("div", _hoisted_8, [
 							createBaseVNode("label", null, [withDirectives(createBaseVNode("input", {
-								"onUpdate:modelValue": _cache[9] || (_cache[9] = ($event) => contact.value = $event),
+								"onUpdate:modelValue": _cache[8] || (_cache[8] = ($event) => contact.value = $event),
 								type: "radio",
 								value: "Email"
 							}, null, 512), [[vModelRadio, contact.value]]), _cache[31] || (_cache[31] = createTextVNode(" Email", -1))]),
 							createBaseVNode("label", null, [withDirectives(createBaseVNode("input", {
-								"onUpdate:modelValue": _cache[10] || (_cache[10] = ($event) => contact.value = $event),
+								"onUpdate:modelValue": _cache[9] || (_cache[9] = ($event) => contact.value = $event),
 								type: "radio",
 								value: "Phone"
 							}, null, 512), [[vModelRadio, contact.value]]), _cache[32] || (_cache[32] = createTextVNode(" Phone", -1))]),
 							createBaseVNode("label", null, [withDirectives(createBaseVNode("input", {
-								"onUpdate:modelValue": _cache[11] || (_cache[11] = ($event) => contact.value = $event),
+								"onUpdate:modelValue": _cache[10] || (_cache[10] = ($event) => contact.value = $event),
 								type: "radio",
 								value: "Chat"
 							}, null, 512), [[vModelRadio, contact.value]]), _cache[33] || (_cache[33] = createTextVNode(" Chat", -1))])
 						])]),
-						createBaseVNode("button", {
-							class: "primary-button",
-							type: "submit",
-							disabled: !isProfileValid.value
-						}, " Validate profile ", 8, _hoisted_10)
+						createBaseVNode("div", _hoisted_9, [
+							createBaseVNode("button", {
+								class: "primary-button",
+								type: "submit",
+								disabled: !isProfileValid.value
+							}, " Validate profile ", 8, _hoisted_10),
+							createBaseVNode("button", {
+								class: "secondary-button",
+								type: "button",
+								onClick: openDialog
+							}, " Open dialog "),
+							_cache[35] || (_cache[35] = createBaseVNode("button", {
+								class: "secondary-button",
+								type: "button",
+								disabled: ""
+							}, "Disabled", -1))
+						])
 					], 32), createBaseVNode("div", _hoisted_11, [createBaseVNode("article", _hoisted_12, [
-						_cache[40] || (_cache[40] = createBaseVNode("div", { class: "card-heading" }, [createBaseVNode("h3", { id: "preferences-heading" }, "Preferences and progress")], -1)),
-						createBaseVNode("label", _hoisted_13, [_cache[36] || (_cache[36] = createBaseVNode("span", null, [createBaseVNode("strong", null, "Notifications"), createBaseVNode("small", null, "Receive event updates")], -1)), withDirectives(createBaseVNode("input", {
-							"onUpdate:modelValue": _cache[12] || (_cache[12] = ($event) => notifications.value = $event),
+						_cache[39] || (_cache[39] = createBaseVNode("div", { class: "card-heading" }, [createBaseVNode("h3", { id: "preferences-heading" }, "Preferences and progress")], -1)),
+						createBaseVNode("label", _hoisted_13, [_cache[37] || (_cache[37] = createBaseVNode("span", null, [createBaseVNode("strong", null, "Notifications"), createBaseVNode("small", null, "Enable status updates")], -1)), withDirectives(createBaseVNode("input", {
+							"onUpdate:modelValue": _cache[11] || (_cache[11] = ($event) => notifications.value = $event),
 							type: "checkbox",
 							role: "switch"
 						}, null, 512), [[vModelCheckbox, notifications.value]])]),
-						createBaseVNode("label", null, [createBaseVNode("span", null, [_cache[37] || (_cache[37] = createTextVNode("Confidence ", -1)), createBaseVNode("strong", null, toDisplayString(confidence.value) + "%", 1)]), withDirectives(createBaseVNode("input", {
-							"onUpdate:modelValue": _cache[13] || (_cache[13] = ($event) => confidence.value = $event),
+						createBaseVNode("label", null, [createBaseVNode("span", null, [_cache[38] || (_cache[38] = createTextVNode("Confidence ", -1)), createBaseVNode("strong", null, toDisplayString(confidence.value) + "%", 1)]), withDirectives(createBaseVNode("input", {
+							"onUpdate:modelValue": _cache[12] || (_cache[12] = ($event) => confidence.value = $event),
 							type: "range",
 							min: "0",
 							max: "100"
@@ -5513,102 +5526,91 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 						]])]),
 						createBaseVNode("progress", {
 							value: confidence.value,
-							max: "100"
-						}, toDisplayString(confidence.value) + "%", 9, _hoisted_14),
-						createBaseVNode("div", { class: "button-row" }, [
-							createBaseVNode("button", {
-								class: "primary-button",
-								type: "button",
-								onClick: openDialog
-							}, " Open dialog "),
-							_cache[38] || (_cache[38] = createBaseVNode("button", {
-								class: "secondary-button",
-								type: "button"
-							}, "Secondary", -1)),
-							_cache[39] || (_cache[39] = createBaseVNode("button", {
-								type: "button",
-								disabled: ""
-							}, "Disabled", -1))
-						])
+							max: "100",
+							"aria-label": `Confidence ${confidence.value}%`
+						}, null, 8, _hoisted_14)
 					]), createBaseVNode("article", _hoisted_15, [
-						_cache[50] || (_cache[50] = createBaseVNode("div", { class: "card-heading" }, [createBaseVNode("h3", { id: "preview-heading" }, "Bound state")], -1)),
+						_cache[46] || (_cache[46] = createBaseVNode("div", { class: "card-heading" }, [createBaseVNode("h3", { id: "preview-heading" }, "Bound state")], -1)),
 						createBaseVNode("div", _hoisted_16, [createBaseVNode("button", {
-							id: "summary-tab",
+							id: "profile-summary-tab",
 							type: "button",
 							role: "tab",
 							"data-tab": "summary",
 							"aria-selected": activeTab.value === "summary",
-							"aria-controls": "summary-panel",
-							onClick: _cache[14] || (_cache[14] = ($event) => activeTab.value = "summary"),
+							"aria-controls": "profile-summary-panel",
+							onClick: _cache[13] || (_cache[13] = ($event) => activeTab.value = "summary"),
 							onKeydown: handleTabKeydown
 						}, " Summary ", 40, _hoisted_17), createBaseVNode("button", {
-							id: "settings-tab",
+							id: "profile-settings-tab",
 							type: "button",
 							role: "tab",
 							"data-tab": "settings",
 							"aria-selected": activeTab.value === "settings",
-							"aria-controls": "settings-panel",
-							onClick: _cache[15] || (_cache[15] = ($event) => activeTab.value = "settings"),
+							"aria-controls": "profile-settings-panel",
+							onClick: _cache[14] || (_cache[14] = ($event) => activeTab.value = "settings"),
 							onKeydown: handleTabKeydown
 						}, " Settings ", 40, _hoisted_18)]),
-						activeTab.value === "summary" ? (openBlock(), createElementBlock("dl", _hoisted_19, [
-							createBaseVNode("div", null, [_cache[41] || (_cache[41] = createBaseVNode("dt", null, "Name", -1)), createBaseVNode("dd", null, toDisplayString(name.value || "—"), 1)]),
-							createBaseVNode("div", null, [_cache[42] || (_cache[42] = createBaseVNode("dt", null, "Email", -1)), createBaseVNode("dd", null, toDisplayString(email.value || "—"), 1)]),
-							createBaseVNode("div", null, [_cache[43] || (_cache[43] = createBaseVNode("dt", null, "Seats", -1)), createBaseVNode("dd", null, toDisplayString(seats.value), 1)]),
-							createBaseVNode("div", null, [_cache[44] || (_cache[44] = createBaseVNode("dt", null, "Start", -1)), createBaseVNode("dd", null, toDisplayString(startDate.value), 1)]),
-							createBaseVNode("div", null, [_cache[45] || (_cache[45] = createBaseVNode("dt", null, "Role", -1)), createBaseVNode("dd", null, toDisplayString(role.value), 1)])
-						])) : (openBlock(), createElementBlock("dl", _hoisted_20, [
-							createBaseVNode("div", null, [_cache[46] || (_cache[46] = createBaseVNode("dt", null, "Interests", -1)), createBaseVNode("dd", null, toDisplayString(interests.value.join(", ") || "None"), 1)]),
-							createBaseVNode("div", null, [_cache[47] || (_cache[47] = createBaseVNode("dt", null, "Contact", -1)), createBaseVNode("dd", null, toDisplayString(contact.value), 1)]),
-							createBaseVNode("div", null, [_cache[48] || (_cache[48] = createBaseVNode("dt", null, "Notifications", -1)), createBaseVNode("dd", null, toDisplayString(notifications.value ? "On" : "Off"), 1)]),
-							createBaseVNode("div", null, [_cache[49] || (_cache[49] = createBaseVNode("dt", null, "Confidence", -1)), createBaseVNode("dd", null, toDisplayString(confidence.value) + "%", 1)])
-						])),
-						_cache[51] || (_cache[51] = createBaseVNode("details", null, [createBaseVNode("summary", null, "Implementation note"), createBaseVNode("p", null, "Every value above is derived directly from Vue reactive state.")], -1))
-					])])])
+						activeTab.value === "summary" ? (openBlock(), createElementBlock("div", _hoisted_19, [createBaseVNode("h3", null, toDisplayString(name.value || "Unnamed profile"), 1), createBaseVNode("dl", _hoisted_20, [
+							createBaseVNode("div", null, [_cache[40] || (_cache[40] = createBaseVNode("dt", null, "Role", -1)), createBaseVNode("dd", null, toDisplayString(role.value), 1)]),
+							createBaseVNode("div", null, [_cache[41] || (_cache[41] = createBaseVNode("dt", null, "Seats", -1)), createBaseVNode("dd", null, toDisplayString(seats.value), 1)]),
+							createBaseVNode("div", null, [_cache[42] || (_cache[42] = createBaseVNode("dt", null, "Contact", -1)), createBaseVNode("dd", null, toDisplayString(contact.value), 1)]),
+							createBaseVNode("div", null, [_cache[43] || (_cache[43] = createBaseVNode("dt", null, "Interests", -1)), createBaseVNode("dd", null, toDisplayString(interests.value.join(", ") || "None"), 1)])
+						])])) : (openBlock(), createElementBlock("div", _hoisted_21, [_cache[45] || (_cache[45] = createBaseVNode("h3", null, "Current settings", -1)), createBaseVNode("p", null, [
+							_cache[44] || (_cache[44] = createTextVNode(" Notifications are ", -1)),
+							createBaseVNode("strong", null, toDisplayString(notifications.value ? "enabled" : "disabled"), 1),
+							createTextVNode(". The selected start date is " + toDisplayString(startDate.value) + ". ", 1)
+						])])),
+						_cache[47] || (_cache[47] = createBaseVNode("details", null, [createBaseVNode("summary", null, "Implementation note"), createBaseVNode("p", null, " Native controls preserve keyboard behavior while Vue binds each value and derives this summary. ")], -1))
+					])])]),
+					successMessage.value ? (openBlock(), createElementBlock("div", _hoisted_22, [createBaseVNode("span", null, toDisplayString(successMessage.value), 1), createBaseVNode("button", {
+						type: "button",
+						"aria-label": "Dismiss notification",
+						onClick: _cache[15] || (_cache[15] = ($event) => successMessage.value = "")
+					}, " × ")])) : createCommentVNode("", true)
 				]),
-				createBaseVNode("section", _hoisted_21, [
-					_cache[81] || (_cache[81] = createBaseVNode("div", { class: "section-heading" }, [createBaseVNode("div", null, [createBaseVNode("span", { class: "eyebrow" }, "API-backed state"), createBaseVNode("h2", { id: "data-heading" }, "Northwind data binding")]), createBaseVNode("p", null, " Server-driven filtering, sorting, paging, and selection against the Northwind API. ")], -1)),
-					createBaseVNode("aside", _hoisted_22, [
-						_cache[53] || (_cache[53] = createBaseVNode("div", null, [
+				createBaseVNode("section", _hoisted_23, [
+					_cache[77] || (_cache[77] = createBaseVNode("div", { class: "section-heading" }, [createBaseVNode("div", null, [createBaseVNode("span", { class: "eyebrow" }, "API-backed state"), createBaseVNode("h2", { id: "data-heading" }, "Northwind data binding")]), createBaseVNode("p", null, " Server-driven filtering, sorting, paging, and selection against the Northwind API. ")], -1)),
+					createBaseVNode("aside", _hoisted_24, [
+						_cache[49] || (_cache[49] = createBaseVNode("div", null, [
 							createBaseVNode("p", { class: "card-kicker" }, "Session-isolated editing"),
 							createBaseVNode("h3", { id: "sandbox-heading" }, "Editing Sandbox"),
 							createBaseVNode("p", null, " Changes use an in-memory browser-session copy. Canonical Northwind customers and every order remain read-only. ")
 						], -1)),
-						createBaseVNode("label", _hoisted_23, [createBaseVNode("span", null, [createBaseVNode("strong", null, toDisplayString(sandboxEnabled.value ? "Enabled" : "Disabled"), 1), createBaseVNode("small", null, toDisplayString(sandboxHasChanges.value ? "Changes made" : "Vanilla copy"), 1)]), createBaseVNode("input", {
+						createBaseVNode("label", _hoisted_25, [createBaseVNode("span", null, [createBaseVNode("strong", null, toDisplayString(sandboxEnabled.value ? "Enabled" : "Disabled"), 1), createBaseVNode("small", null, toDisplayString(sandboxHasChanges.value ? "Changes made" : "Vanilla copy"), 1)]), createBaseVNode("input", {
 							type: "checkbox",
 							role: "switch",
 							checked: sandboxEnabled.value,
 							onChange: _cache[16] || (_cache[16] = ($event) => setSandboxEnabled($event.target.checked, $event.target))
-						}, null, 40, _hoisted_24)]),
+						}, null, 40, _hoisted_26)]),
 						sandboxEnabled.value ? (openBlock(), createElementBlock("button", {
 							key: 0,
 							type: "button",
 							class: "secondary-button",
 							onClick: resetSandbox
 						}, " Reset sandbox ")) : createCommentVNode("", true),
-						sandboxEnabled.value && sandboxExpiresAt.value ? (openBlock(), createElementBlock("small", _hoisted_25, " Session copy expires " + toDisplayString(formatDate(sandboxExpiresAt.value)) + ". ", 1)) : createCommentVNode("", true),
-						sandboxNotice.value ? (openBlock(), createElementBlock("p", _hoisted_26, toDisplayString(sandboxNotice.value), 1)) : createCommentVNode("", true),
-						sandboxError.value ? (openBlock(), createElementBlock("p", _hoisted_27, toDisplayString(sandboxError.value), 1)) : createCommentVNode("", true)
+						sandboxEnabled.value && sandboxExpiresAt.value ? (openBlock(), createElementBlock("small", _hoisted_27, " Session copy expires " + toDisplayString(formatDate(sandboxExpiresAt.value)) + ". ", 1)) : createCommentVNode("", true),
+						sandboxNotice.value ? (openBlock(), createElementBlock("p", _hoisted_28, toDisplayString(sandboxNotice.value), 1)) : createCommentVNode("", true),
+						sandboxError.value ? (openBlock(), createElementBlock("p", _hoisted_29, toDisplayString(sandboxError.value), 1)) : createCommentVNode("", true)
 					]),
-					createBaseVNode("article", _hoisted_28, [
-						createBaseVNode("div", _hoisted_29, [_cache[54] || (_cache[54] = createBaseVNode("div", null, [createBaseVNode("h3", { id: "explorer-heading" }, "Customer explorer")], -1)), createBaseVNode("p", null, toDisplayString(totalCount.value) + " Northwind records", 1)]),
-						createBaseVNode("div", _hoisted_30, [createBaseVNode("label", null, [_cache[55] || (_cache[55] = createBaseVNode("span", null, "Search customers", -1)), withDirectives(createBaseVNode("input", {
+					createBaseVNode("article", _hoisted_30, [
+						createBaseVNode("div", _hoisted_31, [_cache[50] || (_cache[50] = createBaseVNode("div", null, [createBaseVNode("h3", { id: "explorer-heading" }, "Customer explorer")], -1)), createBaseVNode("p", null, toDisplayString(totalCount.value) + " Northwind records", 1)]),
+						createBaseVNode("div", _hoisted_32, [createBaseVNode("label", null, [_cache[51] || (_cache[51] = createBaseVNode("span", null, "Search customers", -1)), withDirectives(createBaseVNode("input", {
 							"onUpdate:modelValue": _cache[17] || (_cache[17] = ($event) => search.value = $event),
 							type: "search",
 							placeholder: "Company or contact"
-						}, null, 512), [[vModelText, search.value]])]), createBaseVNode("label", null, [_cache[57] || (_cache[57] = createBaseVNode("span", null, "Country", -1)), withDirectives(createBaseVNode("select", { "onUpdate:modelValue": _cache[18] || (_cache[18] = ($event) => country.value = $event) }, [_cache[56] || (_cache[56] = createBaseVNode("option", { value: "" }, "All countries", -1)), (openBlock(true), createElementBlock(Fragment, null, renderList(countries.value, (item) => {
+						}, null, 512), [[vModelText, search.value]])]), createBaseVNode("label", null, [_cache[53] || (_cache[53] = createBaseVNode("span", null, "Country", -1)), withDirectives(createBaseVNode("select", { "onUpdate:modelValue": _cache[18] || (_cache[18] = ($event) => country.value = $event) }, [_cache[52] || (_cache[52] = createBaseVNode("option", { value: "" }, "All countries", -1)), (openBlock(true), createElementBlock(Fragment, null, renderList(countries.value, (item) => {
 							return openBlock(), createElementBlock("option", {
 								key: item,
 								value: item
-							}, toDisplayString(item), 9, _hoisted_31);
+							}, toDisplayString(item), 9, _hoisted_33);
 						}), 128))], 512), [[vModelSelect, country.value]])])]),
-						countriesError.value ? (openBlock(), createElementBlock("p", _hoisted_32, toDisplayString(countriesError.value), 1)) : createCommentVNode("", true),
-						customersLoading.value ? (openBlock(), createElementBlock("p", _hoisted_33, " Loading customers… ")) : customersError.value ? (openBlock(), createElementBlock("div", _hoisted_34, [createBaseVNode("p", null, toDisplayString(customersError.value), 1), createBaseVNode("button", {
+						countriesError.value ? (openBlock(), createElementBlock("p", _hoisted_34, toDisplayString(countriesError.value), 1)) : createCommentVNode("", true),
+						customersLoading.value ? (openBlock(), createElementBlock("p", _hoisted_35, " Loading customers… ")) : customersError.value ? (openBlock(), createElementBlock("div", _hoisted_36, [createBaseVNode("p", null, toDisplayString(customersError.value), 1), createBaseVNode("button", {
 							type: "button",
 							class: "secondary-button",
 							onClick: loadCustomers
-						}, " Try again ")])) : customers.value.length === 0 ? (openBlock(), createElementBlock("p", _hoisted_35, " No customers match these filters. ")) : (openBlock(), createElementBlock("div", _hoisted_36, [createBaseVNode("table", null, [
-							_cache[58] || (_cache[58] = createBaseVNode("caption", { class: "visually-hidden" }, " Filtered Northwind customers ", -1)),
+						}, " Try again ")])) : customers.value.length === 0 ? (openBlock(), createElementBlock("p", _hoisted_37, " No customers match these filters. ")) : (openBlock(), createElementBlock("div", _hoisted_38, [createBaseVNode("table", null, [
+							_cache[54] || (_cache[54] = createBaseVNode("caption", { class: "visually-hidden" }, " Filtered Northwind customers ", -1)),
 							createBaseVNode("thead", null, [createBaseVNode("tr", null, [(openBlock(), createElementBlock(Fragment, null, renderList(columns, ([key, label]) => {
 								return createBaseVNode("th", {
 									key,
@@ -5618,7 +5620,7 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 									type: "button",
 									class: "sort-button",
 									onClick: ($event) => changeSort(key)
-								}, [createTextVNode(toDisplayString(label) + " ", 1), sort.value === key ? (openBlock(), createElementBlock("span", _hoisted_39, toDisplayString(direction.value === "asc" ? "↑" : "↓"), 1)) : createCommentVNode("", true)], 8, _hoisted_38)], 8, _hoisted_37);
+								}, [createTextVNode(toDisplayString(label) + " ", 1), sort.value === key ? (openBlock(), createElementBlock("span", _hoisted_41, toDisplayString(direction.value === "asc" ? "↑" : "↓"), 1)) : createCommentVNode("", true)], 8, _hoisted_40)], 8, _hoisted_39);
 							}), 64))])]),
 							createBaseVNode("tbody", null, [(openBlock(true), createElementBlock(Fragment, null, renderList(customers.value, (customer) => {
 								return openBlock(), createElementBlock("tr", {
@@ -5626,44 +5628,44 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 									class: normalizeClass({ selected: selectedId.value === customer.customerId }),
 									onClick: ($event) => selectCustomer(customer.customerId)
 								}, [
-									createBaseVNode("td", _hoisted_41, [createBaseVNode("button", {
+									createBaseVNode("td", _hoisted_43, [createBaseVNode("button", {
 										type: "button",
 										class: "customer-button",
 										"aria-pressed": selectedId.value === customer.customerId,
 										onClick: withModifiers(($event) => selectCustomer(customer.customerId), ["stop"])
-									}, toDisplayString(customer.companyName), 9, _hoisted_42)]),
-									createBaseVNode("td", _hoisted_43, toDisplayString(customer.contactName || "—"), 1),
-									createBaseVNode("td", _hoisted_44, toDisplayString(customer.city || "—"), 1),
-									createBaseVNode("td", _hoisted_45, toDisplayString(customer.country || "—"), 1),
-									createBaseVNode("td", _hoisted_46, [createBaseVNode("code", null, toDisplayString(customer.customerId), 1)])
-								], 10, _hoisted_40);
+									}, toDisplayString(customer.companyName), 9, _hoisted_44)]),
+									createBaseVNode("td", _hoisted_45, toDisplayString(customer.contactName || "—"), 1),
+									createBaseVNode("td", _hoisted_46, toDisplayString(customer.city || "—"), 1),
+									createBaseVNode("td", _hoisted_47, toDisplayString(customer.country || "—"), 1),
+									createBaseVNode("td", _hoisted_48, [createBaseVNode("code", null, toDisplayString(customer.customerId), 1)])
+								], 10, _hoisted_42);
 							}), 128))])
 						])])),
-						createBaseVNode("div", _hoisted_47, [
+						createBaseVNode("div", _hoisted_49, [
 							createBaseVNode("button", {
 								type: "button",
 								class: "secondary-button",
 								disabled: page.value <= 1 || customersLoading.value,
 								onClick: _cache[19] || (_cache[19] = ($event) => page.value -= 1)
-							}, " Previous ", 8, _hoisted_48),
+							}, " Previous ", 8, _hoisted_50),
 							createBaseVNode("span", null, toDisplayString(pageDescription.value), 1),
 							createBaseVNode("button", {
 								type: "button",
 								class: "secondary-button",
 								disabled: page.value >= totalPages.value || customersLoading.value,
 								onClick: _cache[20] || (_cache[20] = ($event) => page.value += 1)
-							}, " Next ", 8, _hoisted_49)
+							}, " Next ", 8, _hoisted_51)
 						]),
-						createBaseVNode("p", _hoisted_50, toDisplayString(selectedId.value ? `Selected: ${selectedId.value}` : "Select a customer"), 1)
+						createBaseVNode("p", _hoisted_52, toDisplayString(selectedId.value ? `Selected: ${selectedId.value}` : "Select a customer"), 1)
 					]),
-					createBaseVNode("article", _hoisted_51, [createBaseVNode("div", _hoisted_52, [_cache[59] || (_cache[59] = createBaseVNode("div", null, [createBaseVNode("h3", { id: "customer-details-heading" }, "Customer details")], -1)), selectedId.value ? (openBlock(), createElementBlock("code", _hoisted_53, toDisplayString(selectedId.value), 1)) : createCommentVNode("", true)]), !selectedId.value ? (openBlock(), createElementBlock("p", _hoisted_54, " Select a customer to bind its complete record and sales metrics. ")) : customerDetailLoading.value ? (openBlock(), createElementBlock("p", _hoisted_55, " Loading customer details… ")) : customerDetailError.value ? (openBlock(), createElementBlock("div", _hoisted_56, [createBaseVNode("p", null, toDisplayString(customerDetailError.value), 1), createBaseVNode("button", {
+					createBaseVNode("article", _hoisted_53, [createBaseVNode("div", _hoisted_54, [_cache[55] || (_cache[55] = createBaseVNode("div", null, [createBaseVNode("h3", { id: "customer-details-heading" }, "Customer details")], -1)), selectedId.value ? (openBlock(), createElementBlock("code", _hoisted_55, toDisplayString(selectedId.value), 1)) : createCommentVNode("", true)]), !selectedId.value ? (openBlock(), createElementBlock("p", _hoisted_56, " Select a customer to bind its complete record and sales metrics. ")) : customerDetailLoading.value ? (openBlock(), createElementBlock("p", _hoisted_57, " Loading customer details… ")) : customerDetailError.value ? (openBlock(), createElementBlock("div", _hoisted_58, [createBaseVNode("p", null, toDisplayString(customerDetailError.value), 1), createBaseVNode("button", {
 						type: "button",
 						class: "secondary-button",
 						onClick: loadCustomerDetail
-					}, " Try again ")])) : customerDetail.value ? (openBlock(), createElementBlock("div", _hoisted_57, [createBaseVNode("dl", _hoisted_58, [
-						createBaseVNode("div", null, [_cache[60] || (_cache[60] = createBaseVNode("dt", null, "Orders", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.orderCount), 1)]),
-						createBaseVNode("div", null, [_cache[61] || (_cache[61] = createBaseVNode("dt", null, "Total sales", -1)), createBaseVNode("dd", null, toDisplayString(formatCurrency(customerDetail.value.totalSales)), 1)]),
-						createBaseVNode("div", null, [_cache[62] || (_cache[62] = createBaseVNode("dt", null, "Last order", -1)), createBaseVNode("dd", null, toDisplayString(formatDate(customerDetail.value.lastOrderDate)), 1)])
+					}, " Try again ")])) : customerDetail.value ? (openBlock(), createElementBlock("div", _hoisted_59, [createBaseVNode("dl", _hoisted_60, [
+						createBaseVNode("div", null, [_cache[56] || (_cache[56] = createBaseVNode("dt", null, "Orders", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.orderCount), 1)]),
+						createBaseVNode("div", null, [_cache[57] || (_cache[57] = createBaseVNode("dt", null, "Total sales", -1)), createBaseVNode("dd", null, toDisplayString(formatCurrency(customerDetail.value.totalSales)), 1)]),
+						createBaseVNode("div", null, [_cache[58] || (_cache[58] = createBaseVNode("dt", null, "Last order", -1)), createBaseVNode("dd", null, toDisplayString(formatDate(customerDetail.value.lastOrderDate)), 1)])
 					]), sandboxEnabled.value ? (openBlock(), createElementBlock("form", {
 						key: 0,
 						class: "customer-edit-form",
@@ -5675,61 +5677,61 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 								"onUpdate:modelValue": ($event) => customerDraft.value[key] = $event,
 								type: "text",
 								required: key === "companyName"
-							}, null, 8, _hoisted_59), [[vModelText, customerDraft.value[key]]])]);
+							}, null, 8, _hoisted_61), [[vModelText, customerDraft.value[key]]])]);
 						}), 64)),
-						!draftCompanyValid.value ? (openBlock(), createElementBlock("p", _hoisted_60, " Company name is required. ")) : createCommentVNode("", true),
-						createBaseVNode("p", _hoisted_61, toDisplayString(customerDraftDirty.value ? "Unsaved fields" : "No unsaved fields"), 1),
-						createBaseVNode("div", _hoisted_62, [createBaseVNode("button", {
+						!draftCompanyValid.value ? (openBlock(), createElementBlock("p", _hoisted_62, " Company name is required. ")) : createCommentVNode("", true),
+						createBaseVNode("p", _hoisted_63, toDisplayString(customerDraftDirty.value ? "Unsaved fields" : "No unsaved fields"), 1),
+						createBaseVNode("div", _hoisted_64, [createBaseVNode("button", {
 							class: "primary-button",
 							type: "submit",
 							disabled: !customerDraftDirty.value || !draftCompanyValid.value || sandboxSaving.value
-						}, toDisplayString(sandboxSaving.value ? "Saving…" : "Save changes"), 9, _hoisted_63), createBaseVNode("button", {
+						}, toDisplayString(sandboxSaving.value ? "Saving…" : "Save changes"), 9, _hoisted_65), createBaseVNode("button", {
 							class: "secondary-button",
 							type: "button",
 							disabled: !customerDraftDirty.value || sandboxSaving.value,
 							onClick: discardCustomerChanges
-						}, " Discard ", 8, _hoisted_64)])
-					], 32)) : (openBlock(), createElementBlock("dl", _hoisted_65, [
-						createBaseVNode("div", null, [_cache[63] || (_cache[63] = createBaseVNode("dt", null, "Company", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.companyName), 1)]),
-						createBaseVNode("div", null, [_cache[64] || (_cache[64] = createBaseVNode("dt", null, "Contact", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.contactName || "—"), 1)]),
-						createBaseVNode("div", null, [_cache[65] || (_cache[65] = createBaseVNode("dt", null, "Title", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.contactTitle || "—"), 1)]),
-						createBaseVNode("div", null, [_cache[66] || (_cache[66] = createBaseVNode("dt", null, "Address", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.address || "—"), 1)]),
-						createBaseVNode("div", null, [_cache[67] || (_cache[67] = createBaseVNode("dt", null, "City", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.city || "—"), 1)]),
-						createBaseVNode("div", null, [_cache[68] || (_cache[68] = createBaseVNode("dt", null, "Region", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.region || "—"), 1)]),
-						createBaseVNode("div", null, [_cache[69] || (_cache[69] = createBaseVNode("dt", null, "Postal code", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.postalCode || "—"), 1)]),
-						createBaseVNode("div", null, [_cache[70] || (_cache[70] = createBaseVNode("dt", null, "Country", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.country || "—"), 1)]),
-						createBaseVNode("div", null, [_cache[71] || (_cache[71] = createBaseVNode("dt", null, "Phone", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.phone || "—"), 1)]),
-						createBaseVNode("div", null, [_cache[72] || (_cache[72] = createBaseVNode("dt", null, "Fax", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.fax || "—"), 1)])
+						}, " Discard ", 8, _hoisted_66)])
+					], 32)) : (openBlock(), createElementBlock("dl", _hoisted_67, [
+						createBaseVNode("div", null, [_cache[59] || (_cache[59] = createBaseVNode("dt", null, "Company", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.companyName), 1)]),
+						createBaseVNode("div", null, [_cache[60] || (_cache[60] = createBaseVNode("dt", null, "Contact", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.contactName || "—"), 1)]),
+						createBaseVNode("div", null, [_cache[61] || (_cache[61] = createBaseVNode("dt", null, "Title", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.contactTitle || "—"), 1)]),
+						createBaseVNode("div", null, [_cache[62] || (_cache[62] = createBaseVNode("dt", null, "Address", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.address || "—"), 1)]),
+						createBaseVNode("div", null, [_cache[63] || (_cache[63] = createBaseVNode("dt", null, "City", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.city || "—"), 1)]),
+						createBaseVNode("div", null, [_cache[64] || (_cache[64] = createBaseVNode("dt", null, "Region", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.region || "—"), 1)]),
+						createBaseVNode("div", null, [_cache[65] || (_cache[65] = createBaseVNode("dt", null, "Postal code", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.postalCode || "—"), 1)]),
+						createBaseVNode("div", null, [_cache[66] || (_cache[66] = createBaseVNode("dt", null, "Country", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.country || "—"), 1)]),
+						createBaseVNode("div", null, [_cache[67] || (_cache[67] = createBaseVNode("dt", null, "Phone", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.phone || "—"), 1)]),
+						createBaseVNode("div", null, [_cache[68] || (_cache[68] = createBaseVNode("dt", null, "Fax", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.fax || "—"), 1)])
 					]))])) : createCommentVNode("", true)]),
-					createBaseVNode("article", _hoisted_66, [createBaseVNode("div", _hoisted_67, [_cache[73] || (_cache[73] = createBaseVNode("div", null, [createBaseVNode("h3", { id: "orders-heading" }, "Orders and line items")], -1)), orders.value.length ? (openBlock(), createElementBlock("span", _hoisted_68, toDisplayString(orders.value.length) + " orders", 1)) : createCommentVNode("", true)]), !selectedId.value ? (openBlock(), createElementBlock("p", _hoisted_69, " Select a customer to load their orders. ")) : ordersLoading.value ? (openBlock(), createElementBlock("p", _hoisted_70, " Loading customer orders… ")) : ordersError.value ? (openBlock(), createElementBlock("div", _hoisted_71, [createBaseVNode("p", null, toDisplayString(ordersError.value), 1), createBaseVNode("button", {
+					createBaseVNode("article", _hoisted_68, [createBaseVNode("div", _hoisted_69, [_cache[69] || (_cache[69] = createBaseVNode("div", null, [createBaseVNode("h3", { id: "orders-heading" }, "Orders and line items")], -1)), orders.value.length ? (openBlock(), createElementBlock("span", _hoisted_70, toDisplayString(orders.value.length) + " orders", 1)) : createCommentVNode("", true)]), !selectedId.value ? (openBlock(), createElementBlock("p", _hoisted_71, " Select a customer to load their orders. ")) : ordersLoading.value ? (openBlock(), createElementBlock("p", _hoisted_72, " Loading customer orders… ")) : ordersError.value ? (openBlock(), createElementBlock("div", _hoisted_73, [createBaseVNode("p", null, toDisplayString(ordersError.value), 1), createBaseVNode("button", {
 						type: "button",
 						class: "secondary-button",
 						onClick: loadOrders
-					}, " Try again ")])) : orders.value.length === 0 ? (openBlock(), createElementBlock("p", _hoisted_72, " This customer has no orders. ")) : (openBlock(), createElementBlock("div", _hoisted_73, [createBaseVNode("div", _hoisted_74, [(openBlock(true), createElementBlock(Fragment, null, renderList(orders.value, (order) => {
+					}, " Try again ")])) : orders.value.length === 0 ? (openBlock(), createElementBlock("p", _hoisted_74, " This customer has no orders. ")) : (openBlock(), createElementBlock("div", _hoisted_75, [createBaseVNode("div", _hoisted_76, [(openBlock(true), createElementBlock(Fragment, null, renderList(orders.value, (order) => {
 						return openBlock(), createElementBlock("button", {
 							key: order.orderId,
 							type: "button",
 							class: "order-card",
 							"aria-pressed": selectedOrderId.value === order.orderId,
 							onClick: ($event) => selectedOrderId.value = order.orderId
-						}, [createBaseVNode("span", null, [createBaseVNode("strong", null, "Order " + toDisplayString(order.orderId), 1), createBaseVNode("small", null, toDisplayString(formatDate(order.orderDate)), 1)]), createBaseVNode("span", null, [createBaseVNode("strong", null, toDisplayString(formatCurrency(order.total)), 1), createBaseVNode("small", null, toDisplayString(order.status), 1)])], 8, _hoisted_75);
-					}), 128))]), createBaseVNode("div", _hoisted_76, [orderDetailLoading.value ? (openBlock(), createElementBlock("p", _hoisted_77, " Loading order details… ")) : orderDetailError.value ? (openBlock(), createElementBlock("div", _hoisted_78, [createBaseVNode("p", null, toDisplayString(orderDetailError.value), 1), createBaseVNode("button", {
+						}, [createBaseVNode("span", null, [createBaseVNode("strong", null, "Order " + toDisplayString(order.orderId), 1), createBaseVNode("small", null, toDisplayString(formatDate(order.orderDate)), 1)]), createBaseVNode("span", null, [createBaseVNode("strong", null, toDisplayString(formatCurrency(order.total)), 1), createBaseVNode("small", null, toDisplayString(order.status), 1)])], 8, _hoisted_77);
+					}), 128))]), createBaseVNode("div", _hoisted_78, [orderDetailLoading.value ? (openBlock(), createElementBlock("p", _hoisted_79, " Loading order details… ")) : orderDetailError.value ? (openBlock(), createElementBlock("div", _hoisted_80, [createBaseVNode("p", null, toDisplayString(orderDetailError.value), 1), createBaseVNode("button", {
 						type: "button",
 						class: "secondary-button",
 						onClick: loadOrderDetail
-					}, " Try again ")])) : orderDetail.value ? (openBlock(), createElementBlock("div", _hoisted_79, [
-						createBaseVNode("div", _hoisted_80, [createBaseVNode("div", null, [
-							createBaseVNode("p", _hoisted_81, "Order " + toDisplayString(orderDetail.value.orderId), 1),
+					}, " Try again ")])) : orderDetail.value ? (openBlock(), createElementBlock("div", _hoisted_81, [
+						createBaseVNode("div", _hoisted_82, [createBaseVNode("div", null, [
+							createBaseVNode("p", _hoisted_83, "Order " + toDisplayString(orderDetail.value.orderId), 1),
 							createBaseVNode("h4", null, toDisplayString(orderDetail.value.status), 1),
 							createBaseVNode("p", null, toDisplayString(formatDate(orderDetail.value.orderDate)), 1)
 						]), createBaseVNode("dl", null, [
-							createBaseVNode("div", null, [_cache[74] || (_cache[74] = createBaseVNode("dt", null, "Employee", -1)), createBaseVNode("dd", null, toDisplayString(orderDetail.value.employeeName || "Unassigned"), 1)]),
-							createBaseVNode("div", null, [_cache[75] || (_cache[75] = createBaseVNode("dt", null, "Shipper", -1)), createBaseVNode("dd", null, toDisplayString(orderDetail.value.shipperName || "Unassigned"), 1)]),
-							createBaseVNode("div", null, [_cache[76] || (_cache[76] = createBaseVNode("dt", null, "Destination", -1)), createBaseVNode("dd", null, toDisplayString(orderDetail.value.shippingAddress.city || "—") + ", " + toDisplayString(orderDetail.value.shippingAddress.country || "—"), 1)])
+							createBaseVNode("div", null, [_cache[70] || (_cache[70] = createBaseVNode("dt", null, "Employee", -1)), createBaseVNode("dd", null, toDisplayString(orderDetail.value.employeeName || "Unassigned"), 1)]),
+							createBaseVNode("div", null, [_cache[71] || (_cache[71] = createBaseVNode("dt", null, "Shipper", -1)), createBaseVNode("dd", null, toDisplayString(orderDetail.value.shipperName || "Unassigned"), 1)]),
+							createBaseVNode("div", null, [_cache[72] || (_cache[72] = createBaseVNode("dt", null, "Destination", -1)), createBaseVNode("dd", null, toDisplayString(orderDetail.value.shippingAddress.city || "—") + ", " + toDisplayString(orderDetail.value.shippingAddress.country || "—"), 1)])
 						])]),
-						createBaseVNode("div", _hoisted_82, [createBaseVNode("table", null, [
-							createBaseVNode("caption", _hoisted_83, " Products in order " + toDisplayString(orderDetail.value.orderId), 1),
-							_cache[77] || (_cache[77] = createBaseVNode("thead", null, [createBaseVNode("tr", null, [
+						createBaseVNode("div", _hoisted_84, [createBaseVNode("table", null, [
+							createBaseVNode("caption", _hoisted_85, " Products in order " + toDisplayString(orderDetail.value.orderId), 1),
+							_cache[73] || (_cache[73] = createBaseVNode("thead", null, [createBaseVNode("tr", null, [
 								createBaseVNode("th", { scope: "col" }, "Product"),
 								createBaseVNode("th", { scope: "col" }, "Qty."),
 								createBaseVNode("th", { scope: "col" }, "Price"),
@@ -5744,10 +5746,10 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 								]);
 							}), 128))])
 						])]),
-						createBaseVNode("dl", _hoisted_84, [
-							createBaseVNode("div", null, [_cache[78] || (_cache[78] = createBaseVNode("dt", null, "Subtotal", -1)), createBaseVNode("dd", null, toDisplayString(formatCurrency(orderDetail.value.subtotal)), 1)]),
-							createBaseVNode("div", null, [_cache[79] || (_cache[79] = createBaseVNode("dt", null, "Freight", -1)), createBaseVNode("dd", null, toDisplayString(formatCurrency(orderDetail.value.freight)), 1)]),
-							createBaseVNode("div", _hoisted_85, [_cache[80] || (_cache[80] = createBaseVNode("dt", null, "Total", -1)), createBaseVNode("dd", null, toDisplayString(formatCurrency(orderDetail.value.total)), 1)])
+						createBaseVNode("dl", _hoisted_86, [
+							createBaseVNode("div", null, [_cache[74] || (_cache[74] = createBaseVNode("dt", null, "Subtotal", -1)), createBaseVNode("dd", null, toDisplayString(formatCurrency(orderDetail.value.subtotal)), 1)]),
+							createBaseVNode("div", null, [_cache[75] || (_cache[75] = createBaseVNode("dt", null, "Freight", -1)), createBaseVNode("dd", null, toDisplayString(formatCurrency(orderDetail.value.freight)), 1)]),
+							createBaseVNode("div", _hoisted_87, [_cache[76] || (_cache[76] = createBaseVNode("dt", null, "Total", -1)), createBaseVNode("dd", null, toDisplayString(formatCurrency(orderDetail.value.total)), 1)])
 						])
 					])) : createCommentVNode("", true)])]))])
 				]),
@@ -5756,11 +5758,11 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 					ref: dialog,
 					"aria-labelledby": "dialog-heading",
 					onKeydown: handleDialogKeydown
-				}, [createBaseVNode("div", _hoisted_86, [
-					_cache[82] || (_cache[82] = createBaseVNode("p", { class: "card-kicker" }, "Vue dialog", -1)),
-					_cache[83] || (_cache[83] = createBaseVNode("h2", { id: "dialog-heading" }, "Keyboard-ready modal", -1)),
-					_cache[84] || (_cache[84] = createBaseVNode("p", null, "Focus stays within this dialog until it is closed.", -1)),
-					createBaseVNode("div", _hoisted_87, [createBaseVNode("button", {
+				}, [createBaseVNode("div", _hoisted_88, [
+					_cache[78] || (_cache[78] = createBaseVNode("p", { class: "card-kicker" }, "Vue dialog", -1)),
+					_cache[79] || (_cache[79] = createBaseVNode("h2", { id: "dialog-heading" }, "Keyboard-ready modal", -1)),
+					_cache[80] || (_cache[80] = createBaseVNode("p", null, "Focus stays within this dialog until it is closed.", -1)),
+					createBaseVNode("div", _hoisted_89, [createBaseVNode("button", {
 						ref_key: "dialogCloseButton",
 						ref: dialogCloseButton,
 						class: "primary-button",
