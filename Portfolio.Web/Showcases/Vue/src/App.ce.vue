@@ -23,6 +23,18 @@ const columns = [
   ['city', 'City'],
   ['country', 'Country'],
 ]
+const editableCustomerFields = [
+  ['companyName', 'Company'],
+  ['contactName', 'Contact'],
+  ['contactTitle', 'Title'],
+  ['address', 'Address'],
+  ['city', 'City'],
+  ['region', 'Region'],
+  ['postalCode', 'Postal code'],
+  ['country', 'Country'],
+  ['phone', 'Phone'],
+  ['fax', 'Fax'],
+]
 const countries = ref([])
 const customers = ref([])
 const search = ref('')
@@ -45,6 +57,13 @@ const selectedOrderId = ref(null)
 const orderDetail = ref(null)
 const orderDetailLoading = ref(false)
 const orderDetailError = ref('')
+const sandboxEnabled = ref(false)
+const sandboxHasChanges = ref(false)
+const sandboxExpiresAt = ref(null)
+const sandboxNotice = ref('')
+const sandboxError = ref('')
+const sandboxSaving = ref(false)
+const customerDraft = ref(null)
 const customersLoading = ref(true)
 const customersError = ref('')
 const countriesError = ref('')
@@ -66,6 +85,15 @@ const pageDescription = computed(() =>
   totalPages.value === 0
     ? 'No pages'
     : `Page ${page.value} of ${totalPages.value}`,
+)
+const customerDraftDirty = computed(() => {
+  if (!customerDetail.value || !customerDraft.value) return false
+  return editableCustomerFields.some(
+    ([key]) => (customerDraft.value[key] ?? '') !== (customerDetail.value[key] ?? ''),
+  )
+})
+const draftCompanyValid = computed(
+  () => customerDraft.value?.companyName?.trim().length > 0,
 )
 
 async function loadCountries() {
@@ -104,7 +132,10 @@ async function loadCustomers() {
   })
 
   try {
-    const response = await fetch(`/api/northwind/customers?${query}`, {
+    const collectionPath = sandboxEnabled.value
+      ? '/api/northwind/sandbox/customers'
+      : '/api/northwind/customers'
+    const response = await fetch(`${collectionPath}?${query}`, {
       signal: controller.signal,
     })
     if (!response.ok) {
@@ -170,12 +201,18 @@ async function loadCustomerDetail() {
   customerDetailLoading.value = true
 
   try {
-    const response = await fetch(
-      `/api/northwind/customers/${selectedId.value}`,
-      { signal: controller.signal },
-    )
+    const detailPath = sandboxEnabled.value
+      ? `/api/northwind/sandbox/customers/${selectedId.value}`
+      : `/api/northwind/customers/${selectedId.value}`
+    const response = await fetch(detailPath, { signal: controller.signal })
     if (!response.ok) throw new Error('Customer details could not be loaded.')
     customerDetail.value = await response.json()
+    customerDraft.value = Object.fromEntries(
+      editableCustomerFields.map(([key]) => [
+        key,
+        customerDetail.value[key] ?? '',
+      ]),
+    )
   } catch (error) {
     if (error.name !== 'AbortError') {
       customerDetailError.value = error.message
@@ -259,6 +296,100 @@ function formatDate(value) {
 
 function formatDiscount(value) {
   return `${Math.round(value * 100)}%`
+}
+
+async function loadSandboxStatus() {
+  sandboxError.value = ''
+  try {
+    const response = await fetch('/api/northwind/sandbox/status')
+    if (!response.ok) throw new Error('Sandbox status could not be loaded.')
+    const status = await response.json()
+    sandboxHasChanges.value = status.hasChanges
+    sandboxExpiresAt.value = status.expiresAt
+  } catch (error) {
+    sandboxError.value = error.message
+  }
+}
+
+async function setSandboxEnabled(enabled, control) {
+  if (!enabled && customerDraftDirty.value) {
+    control.checked = true
+    sandboxNotice.value =
+      'Save or discard unsaved fields before leaving Editing Sandbox.'
+    return
+  }
+
+  sandboxEnabled.value = enabled
+  sandboxNotice.value = ''
+
+  if (enabled) await loadSandboxStatus()
+  await Promise.all([loadCustomers(), loadCustomerDetail()])
+}
+
+function discardCustomerChanges() {
+  if (!customerDetail.value) return
+  customerDraft.value = Object.fromEntries(
+    editableCustomerFields.map(([key]) => [
+      key,
+      customerDetail.value[key] ?? '',
+    ]),
+  )
+  sandboxNotice.value = 'Unsaved fields discarded.'
+}
+
+async function saveCustomer() {
+  if (
+    !selectedId.value ||
+    !customerDraftDirty.value ||
+    !draftCompanyValid.value
+  ) {
+    return
+  }
+
+  sandboxSaving.value = true
+  sandboxError.value = ''
+
+  try {
+    const response = await fetch(
+      `/api/northwind/sandbox/customers/${selectedId.value}`,
+      {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(customerDraft.value),
+      },
+    )
+    if (!response.ok) throw new Error('Customer changes could not be saved.')
+
+    sandboxNotice.value = 'Customer changes saved in this browser session.'
+    sandboxHasChanges.value = true
+    await Promise.all([
+      loadCustomers(),
+      loadCustomerDetail(),
+      loadSandboxStatus(),
+    ])
+  } catch (error) {
+    sandboxError.value = error.message
+  } finally {
+    sandboxSaving.value = false
+  }
+}
+
+async function resetSandbox() {
+  sandboxError.value = ''
+  try {
+    const response = await fetch('/api/northwind/sandbox/reset', {
+      method: 'POST',
+    })
+    if (!response.ok) throw new Error('Sandbox could not be reset.')
+
+    selectedId.value = null
+    sandboxHasChanges.value = false
+    sandboxExpiresAt.value = null
+    sandboxNotice.value = 'Editing Sandbox reset to the vanilla Northwind copy.'
+    await Promise.all([loadCustomers(), loadSandboxStatus()])
+  } catch (error) {
+    sandboxError.value = error.message
+  }
 }
 
 function validateProfile() {
@@ -569,6 +700,48 @@ onBeforeUnmount(() => {
         Server-filtered, sorted, and paged customer data from the portfolio API.
       </p>
 
+      <aside class="sandbox-panel" aria-labelledby="sandbox-heading">
+        <div>
+          <p class="card-kicker">Session-isolated editing</p>
+          <h3 id="sandbox-heading">Editing Sandbox</h3>
+          <p>
+            Changes use an in-memory browser-session copy. Canonical Northwind
+            customers and every order remain read-only.
+          </p>
+        </div>
+        <label class="switch-row">
+          <span>
+            <strong>{{ sandboxEnabled ? 'Enabled' : 'Disabled' }}</strong>
+            <small>
+              {{ sandboxHasChanges ? 'Changes made' : 'Vanilla copy' }}
+            </small>
+          </span>
+          <input
+            type="checkbox"
+            role="switch"
+            :checked="sandboxEnabled"
+            @change="setSandboxEnabled($event.target.checked, $event.target)"
+          />
+        </label>
+        <button
+          v-if="sandboxEnabled"
+          type="button"
+          class="secondary-button"
+          @click="resetSandbox"
+        >
+          Reset sandbox
+        </button>
+        <small v-if="sandboxEnabled && sandboxExpiresAt">
+          Session copy expires {{ formatDate(sandboxExpiresAt) }}.
+        </small>
+        <p v-if="sandboxNotice" class="notice" role="status">
+          {{ sandboxNotice }}
+        </p>
+        <p v-if="sandboxError" class="request-error" role="alert">
+          {{ sandboxError }}
+        </p>
+      </aside>
+
       <article class="data-card" aria-labelledby="explorer-heading">
         <div class="data-heading">
           <div>
@@ -733,7 +906,45 @@ onBeforeUnmount(() => {
             </div>
           </dl>
 
-          <dl class="detail-grid">
+          <form
+            v-if="sandboxEnabled"
+            class="customer-edit-form"
+            aria-label="Edit selected customer"
+            @submit.prevent="saveCustomer"
+          >
+            <label v-for="[key, label] in editableCustomerFields" :key="key">
+              <span>{{ label }}</span>
+              <input
+                v-model="customerDraft[key]"
+                type="text"
+                :required="key === 'companyName'"
+              />
+            </label>
+            <p v-if="!draftCompanyValid" class="field-error">
+              Company name is required.
+            </p>
+            <p class="dirty-status" aria-live="polite">
+              {{ customerDraftDirty ? 'Unsaved fields' : 'No unsaved fields' }}
+            </p>
+            <div class="button-row">
+              <button
+                class="primary-button"
+                type="submit"
+                :disabled="!customerDraftDirty || !draftCompanyValid || sandboxSaving"
+              >
+                {{ sandboxSaving ? 'Saving…' : 'Save changes' }}
+              </button>
+              <button
+                class="secondary-button"
+                type="button"
+                :disabled="!customerDraftDirty || sandboxSaving"
+                @click="discardCustomerChanges"
+              >
+                Discard
+              </button>
+            </div>
+          </form>
+          <dl v-else class="detail-grid">
             <div><dt>Company</dt><dd>{{ customerDetail.companyName }}</dd></div>
             <div><dt>Contact</dt><dd>{{ customerDetail.contactName || '—' }}</dd></div>
             <div><dt>Title</dt><dd>{{ customerDetail.contactTitle || '—' }}</dd></div>
@@ -1243,6 +1454,48 @@ tbody tr.selected {
   margin-top: 1.25rem;
 }
 
+.sandbox-panel {
+  align-items: center;
+  background: #eaf7f1;
+  border: 1px solid #72a790;
+  border-radius: 0.8rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  margin-top: 1.25rem;
+  padding: 1.25rem;
+}
+
+.sandbox-panel h3,
+.sandbox-panel p {
+  margin-bottom: 0.35rem;
+}
+
+.sandbox-panel .notice,
+.sandbox-panel .request-error,
+.sandbox-panel > small {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+
+.customer-edit-form {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.customer-edit-form .button-row,
+.customer-edit-form .dirty-status,
+.customer-edit-form .field-error {
+  grid-column: 1 / -1;
+}
+
+.dirty-status {
+  color: #4c625e;
+  font-weight: 700;
+  margin: 0;
+}
+
 .metric-grid,
 .detail-grid {
   display: grid;
@@ -1480,6 +1733,15 @@ button:focus-visible {
     background: #16453c;
   }
 
+  .sandbox-panel {
+    background: #16453c;
+    border-color: #467569;
+  }
+
+  .dirty-status {
+    color: #b8cec5;
+  }
+
   .metric-grid dd {
     color: #75d5aa;
   }
@@ -1495,13 +1757,25 @@ button:focus-visible {
     grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
     max-height: none;
   }
+
+  .sandbox-panel {
+    align-items: start;
+    grid-template-columns: 1fr;
+  }
+
+  .sandbox-panel .notice,
+  .sandbox-panel .request-error,
+  .sandbox-panel > small {
+    grid-column: auto;
+  }
 }
 
 @media (max-width: 760px) {
   .field-pair,
   .filter-grid,
   .metric-grid,
-  .detail-grid {
+  .detail-grid,
+  .customer-edit-form {
     grid-template-columns: 1fr;
   }
 

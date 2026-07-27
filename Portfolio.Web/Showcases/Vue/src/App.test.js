@@ -4,14 +4,50 @@ import './main.js'
 
 let element
 let root
+let sandboxCompany
 
 beforeEach(async () => {
+  sandboxCompany = 'Alfreds Futterkiste'
   vi.stubGlobal(
     'fetch',
-    vi.fn((url) => {
+    vi.fn((url, options = {}) => {
       let result
       if (url === '/api/northwind/countries') {
         result = ['Germany', 'USA']
+      } else if (url === '/api/northwind/sandbox/status') {
+        result = {
+          hasChanges: sandboxCompany !== 'Alfreds Futterkiste',
+          expiresAt: '2026-08-01T18:00:00Z',
+        }
+      } else if (
+        url === '/api/northwind/sandbox/customers/ALFKI' &&
+        options.method === 'PUT'
+      ) {
+        sandboxCompany = JSON.parse(options.body).companyName
+        result = { customerId: 'ALFKI' }
+      } else if (url === '/api/northwind/sandbox/customers/ALFKI') {
+        result = {
+          customerId: 'ALFKI',
+          companyName: sandboxCompany,
+          contactName: 'Maria Anders',
+          contactTitle: 'Sales Representative',
+          address: 'Obere Str. 57',
+          city: 'Berlin',
+          region: null,
+          postalCode: '12209',
+          country: 'Germany',
+          phone: '030-0074321',
+          fax: '030-0076545',
+          orderCount: 6,
+          totalSales: 4273,
+          lastOrderDate: '1998-04-09T00:00:00',
+        }
+      } else if (
+        url === '/api/northwind/sandbox/reset' &&
+        options.method === 'POST'
+      ) {
+        sandboxCompany = 'Alfreds Futterkiste'
+        result = {}
       } else if (url === '/api/northwind/customers/ALFKI') {
         result = {
           customerId: 'ALFKI',
@@ -85,11 +121,14 @@ beforeEach(async () => {
           total: 961.21,
         }
       } else {
+        const companyName = url.startsWith('/api/northwind/sandbox/customers?')
+          ? sandboxCompany
+          : 'Alfreds Futterkiste'
         result = {
           items: [
             {
               customerId: 'ALFKI',
-              companyName: 'Alfreds Futterkiste',
+              companyName,
               contactName: 'Maria Anders',
               city: 'Berlin',
               country: 'Germany',
@@ -282,5 +321,92 @@ describe('Customer Explorer', () => {
     expect(orderDetail.textContent).toContain('Escargots de Bourgogne')
     expect(orderDetail.textContent).toContain('$530.00')
     expect(orderDetail.textContent).toContain('$961.21')
+  })
+
+  it('saves sandbox customer changes while keeping order reads canonical', async () => {
+    root.querySelector('.customer-button').click()
+    await nextTick()
+    await new Promise((resolve) => setTimeout(resolve))
+    await nextTick()
+
+    const sandboxSwitch = root.querySelector('.sandbox-panel [role="switch"]')
+    sandboxSwitch.checked = true
+    sandboxSwitch.dispatchEvent(new Event('change', { bubbles: true }))
+    await new Promise((resolve) => setTimeout(resolve))
+    await nextTick()
+
+    const company = root.querySelector(
+      '.customer-edit-form input[required]',
+    )
+    company.value = 'Alfreds Session Market'
+    company.dispatchEvent(new Event('input', { bubbles: true }))
+    await nextTick()
+
+    expect(root.querySelector('.dirty-status').textContent).toContain(
+      'Unsaved fields',
+    )
+
+    root.querySelector('.customer-edit-form button[type="submit"]').click()
+    await new Promise((resolve) => setTimeout(resolve))
+    await nextTick()
+
+    expect(fetch).toHaveBeenCalledWith(
+      '/api/northwind/sandbox/customers/ALFKI',
+      expect.objectContaining({
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+      }),
+    )
+    expect(root.querySelector('.customer-edit-form input[required]').value).toBe(
+      'Alfreds Session Market',
+    )
+    expect(root.querySelector('.sandbox-panel').textContent).toContain(
+      'Changes made',
+    )
+    expect(
+      [...fetch.mock.calls].some(
+        ([url]) => url === '/api/northwind/customers/ALFKI/orders',
+      ),
+    ).toBe(true)
+    expect(
+      [...fetch.mock.calls].some(([url]) => url.includes('/sandbox/orders')),
+    ).toBe(false)
+  })
+
+  it('blocks leaving with dirty fields and resets the session copy', async () => {
+    root.querySelector('.customer-button').click()
+    await new Promise((resolve) => setTimeout(resolve))
+    await nextTick()
+
+    const sandboxSwitch = root.querySelector('.sandbox-panel [role="switch"]')
+    sandboxSwitch.checked = true
+    sandboxSwitch.dispatchEvent(new Event('change', { bubbles: true }))
+    await new Promise((resolve) => setTimeout(resolve))
+    await nextTick()
+
+    await updateControl('.customer-edit-form input[required]', 'Unsaved name')
+    sandboxSwitch.checked = false
+    sandboxSwitch.dispatchEvent(new Event('change', { bubbles: true }))
+    await nextTick()
+
+    expect(root.querySelector('.sandbox-panel').textContent).toContain(
+      'Save or discard unsaved fields',
+    )
+
+    root.querySelector('.customer-edit-form .secondary-button').click()
+    await nextTick()
+    root.querySelector('.sandbox-panel > .secondary-button').click()
+    await new Promise((resolve) => setTimeout(resolve))
+    await nextTick()
+
+    expect(fetch).toHaveBeenCalledWith('/api/northwind/sandbox/reset', {
+      method: 'POST',
+    })
+    expect(root.querySelector('.selection-status').textContent).toContain(
+      'Select a customer',
+    )
+    expect(root.querySelector('.sandbox-panel').textContent).toContain(
+      'Vanilla copy',
+    )
   })
 })
