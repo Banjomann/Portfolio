@@ -1,0 +1,633 @@
+<div class="showcase">
+  <header class="showcase-header">
+    <div>
+      <span class="eyebrow">Frontend Lab</span>
+      <h1>Angular showcase</h1>
+      <p>
+        Interactive UI patterns and data binding implemented with Angular reactive forms, signals,
+        templates, and accessible native controls.
+      </p>
+    </div>
+    <div class="framework-badge" aria-label="Built with Angular">
+      <span aria-hidden="true">A</span>
+      <strong>Angular</strong>
+    </div>
+  </header>
+
+  <nav class="showcase-nav" aria-label="Angular showcase sections">
+    <a href="#angular-controls">Control gallery</a>
+    <a href="#angular-northwind">Northwind data binding</a>
+  </nav>
+
+  <section id="angular-controls" class="controls-section" aria-labelledby="controls-heading">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">Reactive forms and signals</span>
+        <h2 id="controls-heading">Control gallery</h2>
+      </div>
+      <p>
+        Every value below is bound through Angular and immediately reflected in the live summary.
+      </p>
+    </div>
+
+    <div class="control-layout">
+      <form class="control-card form-card" [formGroup]="profile" (ngSubmit)="validateProfile()">
+        <h3>Profile inputs</h3>
+        <div class="field-grid">
+          <label>
+            <span>Name</span>
+            <input formControlName="name" />
+          </label>
+          <label>
+            <span>Email</span>
+            <input
+              type="email"
+              formControlName="email"
+              [attr.aria-invalid]="profile.controls.email.invalid"
+              aria-describedby="email-help"
+            />
+            <small
+              id="email-help"
+              [class.field-error]="profile.controls.email.invalid"
+              [class.field-help]="profile.controls.email.valid"
+            >
+              @if (profile.controls.email.valid) {
+                Used for example notifications.
+              } @else {
+                Enter a valid email address.
+              }
+            </small>
+          </label>
+          <label>
+            <span>Seats</span>
+            <input type="number" min="1" max="20" formControlName="seats" />
+          </label>
+          <label>
+            <span>Start date</span>
+            <input type="date" formControlName="startDate" />
+          </label>
+          <label class="field-span">
+            <span>Role</span>
+            <select formControlName="role">
+              <option>Developer</option>
+              <option>Designer</option>
+              <option>Analyst</option>
+              <option>Manager</option>
+            </select>
+          </label>
+        </div>
+
+        <fieldset>
+          <legend>Interests</legend>
+          <div class="choice-row">
+            @for (interest of ['Data', 'Design', 'Automation']; track interest) {
+              <label class="choice">
+                <input
+                  type="checkbox"
+                  [checked]="interests().includes(interest)"
+                  (change)="toggleInterest(interest)"
+                />
+                <span>{{ interest }}</span>
+              </label>
+            }
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Preferred contact</legend>
+          <div class="choice-row">
+            @for (method of ['Email', 'Phone', 'Chat']; track method) {
+              <label class="choice">
+                <input
+                  type="radio"
+                  name="contact-method"
+                  [value]="method"
+                  [checked]="contactMethod() === method"
+                  (change)="contactMethod.set(method)"
+                />
+                <span>{{ method }}</span>
+              </label>
+            }
+          </div>
+        </fieldset>
+
+        <div class="form-actions">
+          <button type="submit" class="primary-button" [disabled]="profile.invalid">
+            Validate profile
+          </button>
+          <button type="button" class="secondary-button" (click)="openDialog()">Open dialog</button>
+          <button type="button" class="secondary-button" disabled>Disabled</button>
+        </div>
+      </form>
+
+      <div class="control-stack">
+        <section class="control-card">
+          <h3>Preferences and progress</h3>
+          <label class="switch-row">
+            <span>
+              <strong>Notifications</strong>
+              <small>Enable status updates</small>
+            </span>
+            <input
+              class="switch"
+              type="checkbox"
+              role="switch"
+              [checked]="notificationsEnabled()"
+              (change)="notificationsEnabled.set($any($event.target).checked)"
+            />
+          </label>
+          <label class="range-field">
+            <span>
+              Confidence <strong>{{ confidence() }}%</strong>
+            </span>
+            <input
+              type="range"
+              min="0"
+              max="100"
+              [value]="confidence()"
+              (input)="confidence.set(+$any($event.target).value)"
+            />
+          </label>
+          <progress
+            [value]="confidence()"
+            max="100"
+            [attr.aria-label]="'Confidence ' + confidence() + '%'"
+          ></progress>
+        </section>
+
+        <section class="control-card">
+          <div class="tabs" role="tablist" aria-label="Profile views">
+            @for (tab of ['summary', 'settings']; track tab) {
+              <button
+                [id]="'profile-' + tab + '-tab'"
+                type="button"
+                role="tab"
+                [attr.aria-selected]="activeTab() === tab"
+                [attr.aria-controls]="'profile-' + tab + '-panel'"
+                (click)="selectTab($any(tab))"
+                (keydown)="handleTabKey($event, $any(tab))"
+              >
+                {{ tab === 'summary' ? 'Summary' : 'Settings' }}
+              </button>
+            }
+          </div>
+
+          @if (activeTab() === 'summary') {
+            <div
+              id="profile-summary-panel"
+              class="tab-panel"
+              role="tabpanel"
+              aria-labelledby="profile-summary-tab"
+              tabindex="0"
+            >
+              <h3>{{ profile.controls.name.value || 'Unnamed profile' }}</h3>
+              <dl class="summary-list">
+                <div>
+                  <dt>Role</dt>
+                  <dd>{{ profile.controls.role.value }}</dd>
+                </div>
+                <div>
+                  <dt>Seats</dt>
+                  <dd>{{ profile.controls.seats.value }}</dd>
+                </div>
+                <div>
+                  <dt>Contact</dt>
+                  <dd>{{ contactMethod() }}</dd>
+                </div>
+                <div>
+                  <dt>Interests</dt>
+                  <dd>{{ interestsSummary() }}</dd>
+                </div>
+              </dl>
+            </div>
+          } @else {
+            <div
+              id="profile-settings-panel"
+              class="tab-panel"
+              role="tabpanel"
+              aria-labelledby="profile-settings-tab"
+              tabindex="0"
+            >
+              <h3>Current settings</h3>
+              <p>
+                Notifications are
+                <strong>{{ notificationsEnabled() ? 'enabled' : 'disabled' }}</strong
+                >. The selected start date is {{ profile.controls.startDate.value }}.
+              </p>
+            </div>
+          }
+
+          <details>
+            <summary>Implementation note</summary>
+            <p>
+              Native controls preserve keyboard behavior while Angular binds each value and derives
+              this summary.
+            </p>
+          </details>
+        </section>
+      </div>
+    </div>
+
+    @if (notice()) {
+      <div class="notification" role="status" aria-live="polite">
+        <span>{{ notice() }}</span>
+        <button type="button" aria-label="Dismiss notification" (click)="notice.set('')">×</button>
+      </div>
+    }
+  </section>
+
+  <section id="angular-northwind" class="data-section" aria-labelledby="data-heading">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">API-backed state</span>
+        <h2 id="data-heading">Northwind data binding</h2>
+      </div>
+      <div class="sandbox-toolbar">
+        <p>Server-driven filtering, sorting, paging, and selection against the Northwind API.</p>
+        <label class="sandbox-toggle">
+          <input
+            type="checkbox"
+            role="switch"
+            [checked]="sandboxEnabled()"
+            (change)="toggleSandbox($any($event.target).checked)"
+          />
+          <span>Editing sandbox</span>
+        </label>
+        @if (sandboxEnabled()) {
+          <button type="button" class="secondary-button" (click)="resetSandbox()">
+            Reset sandbox
+          </button>
+        }
+      </div>
+    </div>
+
+    @if (sandboxEnabled()) {
+      <div class="sandbox-banner">
+        <div>
+          <strong>Temporary editing enabled.</strong>
+          <span
+            >Changes are isolated to this browser session and never reach the canonical Northwind
+            database.</span
+          >
+        </div>
+        <div class="sandbox-status">
+          <span [class.changed]="sandboxHasChanges()">
+            {{ sandboxHasChanges() ? 'Changes made' : 'Vanilla copy' }}
+          </span>
+          @if (sandboxExpiresAt()) {
+            <small>Expires after 30 minutes without sandbox activity</small>
+          }
+        </div>
+      </div>
+    }
+
+    <section class="grid-card" aria-labelledby="customers-heading">
+      <div class="grid-heading">
+        <div>
+          <h3 id="customers-heading">Customer explorer</h3>
+          <p>{{ totalCount() }} Northwind records</p>
+        </div>
+        <div class="filters">
+          <label>
+            <span>Search</span>
+            <input
+              type="search"
+              [value]="search()"
+              placeholder="Company or contact"
+              (input)="updateSearch($any($event.target).value)"
+            />
+          </label>
+          <label>
+            <span>Country</span>
+            <select [value]="country()" (change)="updateCountry($any($event.target).value)">
+              <option value="">All countries</option>
+              @for (item of countries(); track item) {
+                <option [value]="item">{{ item }}</option>
+              }
+            </select>
+          </label>
+        </div>
+      </div>
+
+      @if (customerError()) {
+        <div class="status error" role="alert">{{ customerError() }}</div>
+      }
+
+      <div class="table-wrap" [attr.aria-busy]="loading()">
+        <table aria-label="Northwind customers">
+          <thead>
+            <tr>
+              @for (column of columns; track column[0]) {
+                <th
+                  scope="col"
+                  [attr.aria-sort]="
+                    sort() === column[0]
+                      ? direction() === 'asc'
+                        ? 'ascending'
+                        : 'descending'
+                      : 'none'
+                  "
+                >
+                  <button
+                    type="button"
+                    [class.active-sort]="sort() === column[0]"
+                    [attr.aria-label]="column[1] + ': ' + sortLabel(column[0])"
+                    (click)="changeSort(column[0])"
+                  >
+                    {{ column[1] }}
+                    <span aria-hidden="true">
+                      {{ sort() === column[0] ? (direction() === 'asc' ? '↑' : '↓') : '↕' }}
+                    </span>
+                  </button>
+                </th>
+              }
+            </tr>
+          </thead>
+          <tbody>
+            @if (!loading()) {
+              @for (customer of customers(); track customer.customerId) {
+                <tr
+                  [class.selected]="selectedId() === customer.customerId"
+                  (click)="selectedId.set(customer.customerId)"
+                >
+                  <td data-label="Company">
+                    <button
+                      type="button"
+                      class="row-select"
+                      [attr.aria-pressed]="selectedId() === customer.customerId"
+                      (click)="$event.stopPropagation(); selectedId.set(customer.customerId)"
+                    >
+                      {{ customer.companyName }}
+                    </button>
+                  </td>
+                  <td data-label="Contact">{{ customer.contactName || '—' }}</td>
+                  <td data-label="City">{{ customer.city || '—' }}</td>
+                  <td data-label="Country">{{ customer.country || '—' }}</td>
+                  <td data-label="ID">
+                    <code>{{ customer.customerId }}</code>
+                  </td>
+                </tr>
+              }
+            }
+          </tbody>
+        </table>
+
+        @if (loading()) {
+          <div class="status" role="status" aria-live="polite">Loading customers…</div>
+        } @else if (!customerError() && customers().length === 0) {
+          <div class="status">No customers match these filters.</div>
+        }
+      </div>
+
+      <footer class="grid-footer">
+        <span>{{ selectedId() ? 'Selected: ' + selectedId() : 'Select a customer row' }}</span>
+        <div class="pagination">
+          <button
+            type="button"
+            [disabled]="loading() || page() <= 1"
+            (click)="page.update((current) => current - 1)"
+          >
+            Previous
+          </button>
+          <span>{{ pageLabel() }}</span>
+          <button
+            type="button"
+            [disabled]="loading() || page() >= totalPages()"
+            (click)="page.update((current) => current + 1)"
+          >
+            Next
+          </button>
+        </div>
+      </footer>
+    </section>
+
+    <section class="detail-card" aria-labelledby="detail-heading">
+      <div class="detail-heading">
+        <div>
+          <span class="eyebrow">{{
+            sandboxEnabled() ? 'Session database' : 'Read-only binding'
+          }}</span>
+          <h3 id="detail-heading">Customer details</h3>
+        </div>
+        @if (selectedId()) {
+          <code>{{ selectedId() }}</code>
+        }
+      </div>
+
+      @if (!selectedId()) {
+        <div class="detail-status">Select a customer row to bind the detail controls.</div>
+      } @else if (detailLoading()) {
+        <div class="detail-status" role="status" aria-live="polite">Loading customer…</div>
+      } @else if (detailError()) {
+        <div class="detail-status error" role="alert">{{ detailError() }}</div>
+      } @else if (sandboxEnabled() && customerDraft(); as draft) {
+        <form class="detail-form" (submit)="$event.preventDefault(); saveSandboxCustomer()">
+          @for (field of editableFields; track field[0]) {
+            <label>
+              <span>{{ field[1] }}</span>
+              <input
+                [required]="field[0] === 'companyName'"
+                [value]="draft[field[0]] ?? ''"
+                (input)="updateCustomerDraft(field[0], $any($event.target).value)"
+              />
+            </label>
+          }
+          <div class="detail-metrics">
+            <span>{{ draft.orderCount }} orders</span>
+            <span>{{ formatSales(draft.totalSales) }}</span>
+            @if (draftIsDirty()) {
+              <span class="unsaved-indicator">Unsaved fields</span>
+            }
+          </div>
+          <div class="detail-actions">
+            <button
+              type="submit"
+              class="primary-button"
+              [disabled]="!draftIsDirty() || !draft.companyName.trim()"
+            >
+              Save temporary changes
+            </button>
+            <button
+              type="button"
+              class="secondary-button"
+              [disabled]="!draftIsDirty()"
+              (click)="discardCustomerDraft()"
+            >
+              Discard fields
+            </button>
+          </div>
+        </form>
+      } @else if (customerDetail(); as detail) {
+        <dl class="customer-detail">
+          <div>
+            <dt>Company</dt>
+            <dd>{{ detail.companyName || '—' }}</dd>
+          </div>
+          <div>
+            <dt>Contact</dt>
+            <dd>{{ detail.contactName || '—' }}</dd>
+          </div>
+          <div>
+            <dt>Title</dt>
+            <dd>{{ detail.contactTitle || '—' }}</dd>
+          </div>
+          <div>
+            <dt>Address</dt>
+            <dd>{{ detail.address || '—' }}</dd>
+          </div>
+          <div>
+            <dt>Location</dt>
+            <dd>{{ customerLocation(detail) || '—' }}</dd>
+          </div>
+          <div>
+            <dt>Phone</dt>
+            <dd>{{ detail.phone || '—' }}</dd>
+          </div>
+          <div>
+            <dt>Fax</dt>
+            <dd>{{ detail.fax || '—' }}</dd>
+          </div>
+          <div>
+            <dt>Orders</dt>
+            <dd>{{ detail.orderCount }}</dd>
+          </div>
+          <div>
+            <dt>Total sales</dt>
+            <dd>{{ formatSales(detail.totalSales) }}</dd>
+          </div>
+        </dl>
+      }
+      @if (sandboxNotice()) {
+        <div class="notification detail-notice" role="status" aria-live="polite">
+          <span>{{ sandboxNotice() }}</span>
+          <button
+            type="button"
+            aria-label="Dismiss sandbox notification"
+            (click)="sandboxNotice.set('')"
+          >
+            ×
+          </button>
+        </div>
+      }
+    </section>
+
+    <section class="orders-card" aria-labelledby="orders-heading">
+      <div class="detail-heading">
+        <div>
+          <span class="eyebrow">Selection chain</span>
+          <h3 id="orders-heading">Orders and line items</h3>
+        </div>
+        @if (selectedOrderId()) {
+          <code>Order {{ selectedOrderId() }}</code>
+        }
+      </div>
+      @if (!selectedId()) {
+        <div class="detail-status">Select a customer to load their orders.</div>
+      } @else {
+        <div class="orders-layout">
+          <div class="order-list" [attr.aria-busy]="ordersLoading()">
+            <h4>Customer orders</h4>
+            @if (ordersLoading()) {
+              <div class="detail-status" role="status" aria-live="polite">Loading orders…</div>
+            } @else if (orders().length === 0) {
+              <div class="detail-status">This customer has no orders.</div>
+            } @else {
+              @for (order of orders(); track order.orderId) {
+                <button
+                  type="button"
+                  [class.selected]="selectedOrderId() === order.orderId"
+                  [attr.aria-pressed]="selectedOrderId() === order.orderId"
+                  (click)="selectedOrderId.set(order.orderId)"
+                >
+                  <span
+                    ><strong>Order {{ order.orderId }}</strong
+                    ><small>{{ formatDate(order.orderDate) }}</small></span
+                  >
+                  <span
+                    ><strong>{{ formatSales(order.total) }}</strong
+                    ><small>{{ order.status }}</small></span
+                  >
+                </button>
+              }
+            }
+          </div>
+          <div class="order-detail" [attr.aria-busy]="orderLoading()">
+            <h4>Order detail</h4>
+            @if (orderLoading()) {
+              <div class="detail-status" role="status" aria-live="polite">Loading order…</div>
+            } @else if (orderError()) {
+              <div class="detail-status error" role="alert">{{ orderError() }}</div>
+            } @else if (orderDetail(); as detail) {
+              <dl class="order-summary">
+                <div>
+                  <dt>Employee</dt>
+                  <dd>{{ detail.employeeName || '—' }}</dd>
+                </div>
+                <div>
+                  <dt>Shipper</dt>
+                  <dd>{{ detail.shipperName || '—' }}</dd>
+                </div>
+                <div>
+                  <dt>Status</dt>
+                  <dd>{{ detail.status }}</dd>
+                </div>
+                <div>
+                  <dt>Destination</dt>
+                  <dd>{{ destination(detail) }}</dd>
+                </div>
+              </dl>
+              <div class="line-items-wrap">
+                <table class="line-items">
+                  <caption>
+                    Order line items
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Product</th>
+                      <th scope="col">Qty.</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (item of detail.items; track item.productId) {
+                      <tr>
+                        <td>{{ item.productName }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ formatSales(item.unitPrice) }}</td>
+                        <td>{{ formatSales(item.extendedPrice) }}</td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+              <dl class="order-totals">
+                <div>
+                  <dt>Subtotal</dt>
+                  <dd>{{ formatSales(detail.subtotal) }}</dd>
+                </div>
+                <div>
+                  <dt>Freight</dt>
+                  <dd>{{ formatSales(detail.freight) }}</dd>
+                </div>
+                <div>
+                  <dt>Total</dt>
+                  <dd>{{ formatSales(detail.total) }}</dd>
+                </div>
+              </dl>
+            }
+          </div>
+        </div>
+      }
+    </section>
+  </section>
+
+  <dialog #profileDialog>
+    <form method="dialog">
+      <span class="eyebrow">Native dialog</span>
+      <h2>Angular-controlled launch</h2>
+      <p>This modal uses the browser dialog element for focus management and keyboard dismissal.</p>
+      <button class="primary-button">Close dialog</button>
+    </form>
+  </dialog>
+</div>
