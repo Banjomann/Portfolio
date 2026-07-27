@@ -8,6 +8,14 @@ const customer = {
   contactName: 'Maria Anders',
   city: 'Berlin',
   country: 'Germany',
+  contactTitle: 'Sales Representative',
+  address: 'Obere Str. 57',
+  region: null,
+  postalCode: '12209',
+  phone: '030-0074321',
+  fax: null,
+  orderCount: 6,
+  totalSales: 4273.5,
 };
 
 describe('App', () => {
@@ -18,13 +26,15 @@ describe('App', () => {
         const url = String(input);
         const value = url.endsWith('/countries')
           ? ['Germany']
-          : {
-              items: [customer],
-              page: 1,
-              pageSize: 10,
-              totalCount: 1,
-              totalPages: 1,
-            };
+          : url.endsWith('/customers/ALFKI')
+            ? customer
+            : {
+                items: [customer],
+                page: 1,
+                pageSize: 10,
+                totalCount: 1,
+                totalPages: 1,
+              };
         return Promise.resolve({
           ok: true,
           json: () => Promise.resolve(value),
@@ -140,5 +150,27 @@ describe('App', () => {
 
     expect(customerButton.getAttribute('aria-pressed')).toBe('true');
     expect(shadowRoot.querySelector('.grid-footer')?.textContent).toContain('Selected: ALFKI');
+  });
+
+  it('should bind selected customer details and aggregate metrics', async () => {
+    const fixture = TestBed.createComponent(App);
+    await fixture.whenStable();
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    fixture.detectChanges();
+    const shadowRoot = fixture.nativeElement.shadowRoot as ShadowRoot;
+
+    (shadowRoot.querySelector('.row-select') as HTMLButtonElement).click();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    const details = shadowRoot.querySelector('.customer-detail')?.textContent;
+    expect(fetch).toHaveBeenCalledWith(
+      '/api/northwind/customers/ALFKI',
+      expect.objectContaining({ signal: expect.any(AbortSignal) }),
+    );
+    expect(details).toContain('Sales Representative');
+    expect(details).toContain('Berlin, 12209, Germany');
+    expect(details).toContain('6');
+    expect(details).toContain('$4,273.5');
   });
 });

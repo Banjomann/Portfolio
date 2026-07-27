@@ -21,6 +21,17 @@ interface CustomerSummary {
   country: string | null;
 }
 
+interface CustomerDetail extends CustomerSummary {
+  contactTitle: string | null;
+  address: string | null;
+  region: string | null;
+  postalCode: string | null;
+  phone: string | null;
+  fax: string | null;
+  orderCount: number;
+  totalSales: number;
+}
+
 interface CustomerPage {
   items: CustomerSummary[];
   totalCount: number;
@@ -74,6 +85,9 @@ export class App {
   protected readonly selectedId = signal<string | null>(null);
   protected readonly loading = signal(true);
   protected readonly customerError = signal('');
+  protected readonly customerDetail = signal<CustomerDetail | null>(null);
+  protected readonly detailLoading = signal(false);
+  protected readonly detailError = signal('');
   protected readonly pageLabel = computed(
     () => `Page ${this.page()} of ${Math.max(this.totalPages(), 1)}`,
   );
@@ -125,6 +139,39 @@ export class App {
       window.clearTimeout(delay);
       controller.abort();
     });
+  });
+
+  private readonly customerDetailEffect = effect((onCleanup) => {
+    const selectedId = this.selectedId();
+    const controller = new AbortController();
+
+    if (!selectedId) {
+      this.customerDetail.set(null);
+      this.detailError.set('');
+      return;
+    }
+
+    this.detailLoading.set(true);
+    this.detailError.set('');
+    fetch(`/api/northwind/customers/${selectedId}`, {
+      signal: controller.signal,
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error('Customer details could not be loaded.');
+        return response.json() as Promise<CustomerDetail>;
+      })
+      .then((detail) => this.customerDetail.set(detail))
+      .catch((error: Error) => {
+        if (error.name !== 'AbortError') {
+          this.customerDetail.set(null);
+          this.detailError.set(error.message);
+        }
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) this.detailLoading.set(false);
+      });
+
+    onCleanup(() => controller.abort());
   });
 
   constructor() {
@@ -190,6 +237,16 @@ export class App {
   protected sortLabel(column: SortColumn): string {
     if (this.sort() !== column) return 'Not sorted';
     return this.direction() === 'asc' ? 'Sorted ascending' : 'Sorted descending';
+  }
+
+  protected customerLocation(detail: CustomerDetail): string {
+    return [detail.city, detail.region, detail.postalCode, detail.country]
+      .filter(Boolean)
+      .join(', ');
+  }
+
+  protected formatSales(value: number): string {
+    return `$${Number(value).toLocaleString()}`;
   }
 
   private async loadCountries(): Promise<void> {

@@ -364,6 +364,65 @@
         </div>
       </footer>
     </section>
+
+    <section class="detail-card" aria-labelledby="detail-heading">
+      <div class="detail-heading">
+        <div>
+          <span class="eyebrow">Read-only binding</span>
+          <h3 id="detail-heading">Customer details</h3>
+        </div>
+        @if (selectedId()) {
+          <code>{{ selectedId() }}</code>
+        }
+      </div>
+
+      @if (!selectedId()) {
+        <div class="detail-status">Select a customer row to bind the detail controls.</div>
+      } @else if (detailLoading()) {
+        <div class="detail-status" role="status" aria-live="polite">Loading customer…</div>
+      } @else if (detailError()) {
+        <div class="detail-status error" role="alert">{{ detailError() }}</div>
+      } @else if (customerDetail(); as detail) {
+        <dl class="customer-detail">
+          <div>
+            <dt>Company</dt>
+            <dd>{{ detail.companyName || '—' }}</dd>
+          </div>
+          <div>
+            <dt>Contact</dt>
+            <dd>{{ detail.contactName || '—' }}</dd>
+          </div>
+          <div>
+            <dt>Title</dt>
+            <dd>{{ detail.contactTitle || '—' }}</dd>
+          </div>
+          <div>
+            <dt>Address</dt>
+            <dd>{{ detail.address || '—' }}</dd>
+          </div>
+          <div>
+            <dt>Location</dt>
+            <dd>{{ customerLocation(detail) || '—' }}</dd>
+          </div>
+          <div>
+            <dt>Phone</dt>
+            <dd>{{ detail.phone || '—' }}</dd>
+          </div>
+          <div>
+            <dt>Fax</dt>
+            <dd>{{ detail.fax || '—' }}</dd>
+          </div>
+          <div>
+            <dt>Orders</dt>
+            <dd>{{ detail.orderCount }}</dd>
+          </div>
+          <div>
+            <dt>Total sales</dt>
+            <dd>{{ formatSales(detail.totalSales) }}</dd>
+          </div>
+        </dl>
+      }
+    </section>
   </section>
 
   <dialog #profileDialog>
