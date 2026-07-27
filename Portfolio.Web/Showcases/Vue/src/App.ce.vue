@@ -1829,7 +1829,7 @@ button:focus-visible {
   --accent-bg: rgb(170 59 255 / 10%);
   --accent-border: rgb(170 59 255 / 50%);
   --shadow: rgb(0 0 0 / 10%) 0 10px 15px -3px, rgb(0 0 0 / 5%) 0 4px 6px -2px;
-  background: transparent;
+  background: var(--bg);
   color: var(--text);
   color-scheme: light dark;
   font: 18px/145% system-ui, 'Segoe UI', Roboto, sans-serif;
