@@ -35,12 +35,16 @@ const pageSize = 10
 const totalCount = ref(0)
 const totalPages = ref(0)
 const selectedId = ref(null)
+const customerDetail = ref(null)
+const customerDetailLoading = ref(false)
+const customerDetailError = ref('')
 const customersLoading = ref(true)
 const customersError = ref('')
 const countriesError = ref('')
 let searchTimer
 let customerController
 let countryController
+let customerDetailController
 
 const isNameValid = computed(() => name.value.trim().length > 0)
 const isEmailValid = computed(() =>
@@ -142,6 +146,50 @@ function selectCustomer(customerId) {
   selectedId.value = customerId
 }
 
+async function loadCustomerDetail() {
+  customerDetailController?.abort()
+  customerDetail.value = null
+  customerDetailError.value = ''
+
+  if (!selectedId.value) {
+    customerDetailLoading.value = false
+    return
+  }
+
+  const controller = new AbortController()
+  customerDetailController = controller
+  customerDetailLoading.value = true
+
+  try {
+    const response = await fetch(
+      `/api/northwind/customers/${selectedId.value}`,
+      { signal: controller.signal },
+    )
+    if (!response.ok) throw new Error('Customer details could not be loaded.')
+    customerDetail.value = await response.json()
+  } catch (error) {
+    if (error.name !== 'AbortError') {
+      customerDetailError.value = error.message
+    }
+  } finally {
+    if (!controller.signal.aborted) customerDetailLoading.value = false
+  }
+}
+
+function formatCurrency(value) {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  }).format(value)
+}
+
+function formatDate(value) {
+  if (!value) return 'No orders'
+  return new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' }).format(
+    new Date(value),
+  )
+}
+
 function validateProfile() {
   if (!isProfileValid.value) return
   successMessage.value = `Profile validated for ${name.value.trim()}.`
@@ -213,6 +261,7 @@ watch(country, () => {
 })
 
 watch([debouncedSearch, country, sort, direction, page], loadCustomers)
+watch(selectedId, loadCustomerDetail)
 
 onMounted(() => {
   loadCountries()
@@ -223,6 +272,7 @@ onBeforeUnmount(() => {
   clearTimeout(searchTimer)
   customerController?.abort()
   countryController?.abort()
+  customerDetailController?.abort()
 })
 </script>
 
@@ -564,6 +614,63 @@ onBeforeUnmount(() => {
         <p class="selection-status" aria-live="polite">
           {{ selectedId ? `Selected: ${selectedId}` : 'Select a customer' }}
         </p>
+      </article>
+
+      <article class="data-card" aria-labelledby="customer-details-heading">
+        <div class="data-heading">
+          <div>
+            <p class="card-kicker">Customer Details</p>
+            <h3 id="customer-details-heading">Selected customer</h3>
+          </div>
+          <code v-if="selectedId">{{ selectedId }}</code>
+        </div>
+
+        <p v-if="!selectedId" class="empty-state">
+          Select a customer to bind its complete record and sales metrics.
+        </p>
+        <p
+          v-else-if="customerDetailLoading"
+          class="loading-state"
+          role="status"
+          aria-live="polite"
+        >
+          Loading customer details…
+        </p>
+        <div v-else-if="customerDetailError" class="request-error" role="alert">
+          <p>{{ customerDetailError }}</p>
+          <button type="button" class="secondary-button" @click="loadCustomerDetail">
+            Try again
+          </button>
+        </div>
+        <div v-else-if="customerDetail" class="customer-detail-layout">
+          <dl class="metric-grid" aria-label="Customer sales metrics">
+            <div>
+              <dt>Orders</dt>
+              <dd>{{ customerDetail.orderCount }}</dd>
+            </div>
+            <div>
+              <dt>Total sales</dt>
+              <dd>{{ formatCurrency(customerDetail.totalSales) }}</dd>
+            </div>
+            <div>
+              <dt>Last order</dt>
+              <dd>{{ formatDate(customerDetail.lastOrderDate) }}</dd>
+            </div>
+          </dl>
+
+          <dl class="detail-grid">
+            <div><dt>Company</dt><dd>{{ customerDetail.companyName }}</dd></div>
+            <div><dt>Contact</dt><dd>{{ customerDetail.contactName || '—' }}</dd></div>
+            <div><dt>Title</dt><dd>{{ customerDetail.contactTitle || '—' }}</dd></div>
+            <div><dt>Address</dt><dd>{{ customerDetail.address || '—' }}</dd></div>
+            <div><dt>City</dt><dd>{{ customerDetail.city || '—' }}</dd></div>
+            <div><dt>Region</dt><dd>{{ customerDetail.region || '—' }}</dd></div>
+            <div><dt>Postal code</dt><dd>{{ customerDetail.postalCode || '—' }}</dd></div>
+            <div><dt>Country</dt><dd>{{ customerDetail.country || '—' }}</dd></div>
+            <div><dt>Phone</dt><dd>{{ customerDetail.phone || '—' }}</dd></div>
+            <div><dt>Fax</dt><dd>{{ customerDetail.fax || '—' }}</dd></div>
+          </dl>
+        </div>
       </article>
     </section>
 
@@ -938,6 +1045,47 @@ tbody tr.selected {
   width: 1px;
 }
 
+.customer-detail-layout {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.metric-grid,
+.detail-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.metric-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.metric-grid div {
+  background: #eaf7f1;
+  border-radius: 0.6rem;
+  display: grid;
+  gap: 0.3rem;
+  justify-content: initial;
+  padding: 1rem;
+}
+
+.metric-grid dd {
+  color: #146247;
+  font-size: 1.25rem;
+  font-weight: 800;
+  text-align: left;
+}
+
+.detail-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.detail-grid div {
+  border-bottom: 1px solid #c9ddd5;
+  padding: 0.6rem 0;
+}
+
 .showcase-header {
   background:
     radial-gradient(circle at top right, rgb(65 184 131 / 28%), transparent 42%),
@@ -1064,6 +1212,14 @@ button:focus-visible {
     background: #4a2020;
     color: #ffd8d8;
   }
+
+  .metric-grid div {
+    background: #16453c;
+  }
+
+  .metric-grid dd {
+    color: #75d5aa;
+  }
 }
 
 @media (max-width: 1100px) {
@@ -1074,7 +1230,9 @@ button:focus-visible {
 
 @media (max-width: 760px) {
   .field-pair,
-  .filter-grid {
+  .filter-grid,
+  .metric-grid,
+  .detail-grid {
     grid-template-columns: 1fr;
   }
 

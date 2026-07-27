@@ -8,29 +8,48 @@ let root
 beforeEach(async () => {
   vi.stubGlobal(
     'fetch',
-    vi.fn((url) =>
-      Promise.resolve({
+    vi.fn((url) => {
+      let result
+      if (url === '/api/northwind/countries') {
+        result = ['Germany', 'USA']
+      } else if (url === '/api/northwind/customers/ALFKI') {
+        result = {
+          customerId: 'ALFKI',
+          companyName: 'Alfreds Futterkiste',
+          contactName: 'Maria Anders',
+          contactTitle: 'Sales Representative',
+          address: 'Obere Str. 57',
+          city: 'Berlin',
+          region: null,
+          postalCode: '12209',
+          country: 'Germany',
+          phone: '030-0074321',
+          fax: '030-0076545',
+          orderCount: 6,
+          totalSales: 4273,
+          lastOrderDate: '1998-04-09T00:00:00',
+        }
+      } else {
+        result = {
+          items: [
+            {
+              customerId: 'ALFKI',
+              companyName: 'Alfreds Futterkiste',
+              contactName: 'Maria Anders',
+              city: 'Berlin',
+              country: 'Germany',
+            },
+          ],
+          totalCount: 1,
+          totalPages: 1,
+        }
+      }
+
+      return Promise.resolve({
         ok: true,
-        json: () =>
-          Promise.resolve(
-            url === '/api/northwind/countries'
-              ? ['Germany', 'USA']
-              : {
-                  items: [
-                    {
-                      customerId: 'ALFKI',
-                      companyName: 'Alfreds Futterkiste',
-                      contactName: 'Maria Anders',
-                      city: 'Berlin',
-                      country: 'Germany',
-                    },
-                  ],
-                  totalCount: 1,
-                  totalPages: 1,
-                },
-          ),
-      }),
-    ),
+        json: () => Promise.resolve(result),
+      })
+    }),
   )
   element = document.createElement('vue-showcase')
   document.body.append(element)
@@ -162,5 +181,23 @@ describe('Customer Explorer', () => {
     expect(root.querySelector('.customer-button').getAttribute('aria-pressed')).toBe(
       'true',
     )
+  })
+
+  it('loads and binds the selected customer detail and metrics', async () => {
+    root.querySelector('.customer-button').click()
+    await nextTick()
+    await new Promise((resolve) => setTimeout(resolve))
+    await nextTick()
+
+    expect(fetch).toHaveBeenCalledWith(
+      '/api/northwind/customers/ALFKI',
+      expect.objectContaining({ signal: expect.any(AbortSignal) }),
+    )
+    const detail = root.querySelector('.customer-detail-layout')
+    expect(detail.textContent).toContain('Maria Anders')
+    expect(detail.textContent).toContain('Sales Representative')
+    expect(detail.textContent).toContain('6')
+    expect(detail.textContent).toContain('$4,273.00')
+    expect(detail.textContent).toContain('Apr 9, 1998')
   })
 })

@@ -6084,7 +6084,7 @@ function initDev() {
 if (!!(process.env.NODE_ENV !== "production")) initDev();
 //#endregion
 //#region src/App.ce.vue?vue&type=style&index=0&inline&lang.css
-var App_ce_vue_vue_type_style_index_0_inline_lang_default = "\n:host {\n  color: #193330;\n  display: block;\n  font-family:\n    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\",\n    sans-serif;\n}\n* {\n  box-sizing: border-box;\n}\n.showcase-shell {\n  display: grid;\n  gap: 1.5rem;\n}\n.showcase-header,\nsection {\n  background: #f5fbf8;\n  border: 1px solid #c9ddd5;\n  border-radius: 1rem;\n  padding: clamp(1.25rem, 4vw, 2.5rem);\n}\n.section-intro {\n  color: #4c625e;\n}\n.notice {\n  align-items: center;\n  background: #dff6e9;\n  border: 1px solid #58a27e;\n  border-radius: 0.75rem;\n  display: flex;\n  justify-content: space-between;\n  margin: 1rem 0;\n  padding: 0.75rem 1rem;\n}\n.gallery-grid,\n.gallery-stack {\n  display: grid;\n  gap: 1rem;\n  min-width: 0;\n}\n.gallery-grid {\n  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);\n  margin-top: 1.5rem;\n}\n.gallery-card {\n  background: rgb(255 255 255 / 72%);\n  border: 1px solid #c9ddd5;\n  border-radius: 0.8rem;\n  display: grid;\n  gap: 1rem;\n  min-width: 0;\n  padding: 1.25rem;\n}\n.card-heading h3,\n.card-heading p {\n  margin-bottom: 0;\n}\n.card-kicker {\n  color: #287a5b;\n  font-size: 0.7rem;\n  font-weight: 800;\n  letter-spacing: 0.1em;\n  text-transform: uppercase;\n}\nlabel {\n  display: grid;\n  font-weight: 700;\n  gap: 0.4rem;\n}\ninput,\nselect {\n  background: white;\n  border: 1px solid #84a69a;\n  border-radius: 0.45rem;\n  color: #193330;\n  font: inherit;\n  min-width: 0;\n  padding: 0.65rem 0.75rem;\n}\ninput:focus-visible,\nselect:focus-visible,\nsummary:focus-visible {\n  outline: 3px solid #41b883;\n  outline-offset: 2px;\n}\n.field-pair {\n  display: grid;\n  gap: 0.75rem;\n  grid-template-columns: 1fr 1fr;\n}\nfieldset {\n  border: 0;\n  margin: 0;\n  padding: 0;\n}\nlegend {\n  font-weight: 700;\n  margin-bottom: 0.5rem;\n}\n.choice-row,\n.button-row,\n[role=\"tablist\"] {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 0.65rem;\n}\n.choice-row label {\n  align-items: center;\n  display: flex;\n  font-weight: 500;\n}\n.field-error {\n  color: #a32424;\n  font-size: 0.85rem;\n  margin: -0.75rem 0 0;\n}\n.switch-row {\n  align-items: center;\n  display: flex;\n  justify-content: space-between;\n}\n.switch-row span {\n  display: grid;\n}\n.switch-row small {\n  font-weight: 400;\n}\n.switch-row input {\n  height: 1.4rem;\n  width: 2.6rem;\n}\ninput[type=\"range\"],\nprogress {\n  accent-color: #287a5b;\n  width: 100%;\n}\n.primary-button {\n  background: #287a5b;\n  color: white;\n}\n.secondary-button {\n  background: white;\n}\nbutton:disabled {\n  cursor: not-allowed;\n  opacity: 0.5;\n}\n.icon-button {\n  border: 0;\n  font-size: 1.25rem;\n  padding: 0.2rem 0.5rem;\n}\n[role=\"tab\"][aria-selected=\"true\"] {\n  background: #287a5b;\n  color: white;\n}\ndl {\n  display: grid;\n  gap: 0.6rem;\n  margin: 0;\n}\ndl div {\n  display: flex;\n  gap: 1rem;\n  justify-content: space-between;\n}\ndt {\n  font-weight: 700;\n}\ndd {\n  margin: 0;\n  overflow-wrap: anywhere;\n  text-align: right;\n}\ndetails {\n  border-top: 1px solid #c9ddd5;\n  padding-top: 1rem;\n}\nsummary {\n  cursor: pointer;\n  font-weight: 700;\n}\ndialog {\n  background: #f5fbf8;\n  border: 1px solid #72a790;\n  border-radius: 1rem;\n  color: #193330;\n  max-width: min(30rem, calc(100vw - 2rem));\n  padding: 0;\n}\ndialog::backdrop {\n  background: rgb(7 28 24 / 72%);\n}\n.dialog-content {\n  padding: 1.5rem;\n}\n.data-card {\n  background: rgb(255 255 255 / 72%);\n  border: 1px solid #c9ddd5;\n  border-radius: 0.8rem;\n  margin-top: 1.5rem;\n  min-width: 0;\n  padding: 1.25rem;\n}\n.data-heading,\n.pagination {\n  align-items: center;\n  display: flex;\n  gap: 1rem;\n  justify-content: space-between;\n}\n.data-heading h3,\n.data-heading p {\n  margin-bottom: 0;\n}\n.filter-grid {\n  display: grid;\n  gap: 1rem;\n  grid-template-columns: minmax(0, 2fr) minmax(12rem, 1fr);\n  margin: 1.25rem 0;\n}\n.loading-state,\n.empty-state,\n.request-error {\n  border: 1px dashed #84a69a;\n  border-radius: 0.6rem;\n  margin: 1rem 0;\n  padding: 1rem;\n}\n.request-error {\n  background: #fff0f0;\n  border-color: #c76b6b;\n  color: #7e1f1f;\n}\n.table-scroll {\n  max-width: 100%;\n  overflow-x: auto;\n}\ntable {\n  border-collapse: collapse;\n  min-width: 48rem;\n  width: 100%;\n}\nth,\ntd {\n  border-bottom: 1px solid #c9ddd5;\n  padding: 0.75rem;\n  text-align: left;\n}\nth {\n  background: #eaf7f1;\n}\ntbody tr {\n  cursor: pointer;\n}\ntbody tr:hover,\ntbody tr.selected {\n  background: #dff6e9;\n}\n.sort-button,\n.customer-button {\n  border: 0;\n  border-radius: 0.25rem;\n  padding: 0.2rem;\n  text-align: left;\n}\n.sort-button {\n  align-items: center;\n  display: inline-flex;\n  gap: 0.35rem;\n}\n.customer-button {\n  color: #146247;\n  font-weight: 800;\n  text-decoration: underline;\n  text-underline-offset: 0.2em;\n}\n.pagination {\n  margin-top: 1rem;\n}\n.selection-status {\n  color: #4c625e;\n  margin: 1rem 0 0;\n}\n.visually-hidden {\n  clip: rect(0 0 0 0);\n  clip-path: inset(50%);\n  height: 1px;\n  overflow: hidden;\n  position: absolute;\n  white-space: nowrap;\n  width: 1px;\n}\n.showcase-header {\n  background:\n    radial-gradient(circle at top right, rgb(65 184 131 / 28%), transparent 42%),\n    #eaf7f1;\n}\n.eyebrow,\n.section-number {\n  color: #287a5b;\n  font-size: 0.75rem;\n  font-weight: 800;\n  letter-spacing: 0.12em;\n  margin: 0 0 0.5rem;\n  text-transform: uppercase;\n}\nh1,\nh2,\np {\n  margin-top: 0;\n}\nh1 {\n  font-size: clamp(2rem, 6vw, 4rem);\n  line-height: 1;\n  margin-bottom: 1rem;\n}\nnav {\n  display: flex;\n  gap: 0.75rem;\n  overflow-x: auto;\n}\nbutton {\n  background: transparent;\n  border: 1px solid #72a790;\n  border-radius: 999px;\n  color: inherit;\n  cursor: pointer;\n  font: inherit;\n  font-weight: 700;\n  padding: 0.65rem 1rem;\n  white-space: nowrap;\n}\nbutton:hover,\nbutton:focus-visible,\nbutton[aria-current=\"page\"] {\n  background: #287a5b;\n  color: white;\n}\nbutton:focus-visible {\n  outline: 3px solid #41b883;\n  outline-offset: 3px;\n}\n@media (prefers-color-scheme: dark) {\n:host {\n    color: #e6f4ee;\n}\n.showcase-header,\n  section {\n    background: #102c28;\n    border-color: #35645a;\n}\n.showcase-header {\n    background:\n      radial-gradient(circle at top right, rgb(65 184 131 / 24%), transparent 42%),\n      #143832;\n}\n.eyebrow,\n  .section-number,\n  .card-kicker {\n    color: #75d5aa;\n}\n.section-intro {\n    color: #b8cec5;\n}\n.gallery-card,\n  .data-card,\n  dialog {\n    background: #173a34;\n    border-color: #467569;\n    color: #e6f4ee;\n}\ninput,\n  select,\n  .secondary-button {\n    background: #0d2925;\n    border-color: #56877a;\n    color: #e6f4ee;\n}\n.notice {\n    background: #164c3c;\n}\nth {\n    background: #16453c;\n}\ntbody tr:hover,\n  tbody tr.selected {\n    background: #1e5447;\n}\n.customer-button {\n    color: #75d5aa;\n}\n.selection-status {\n    color: #b8cec5;\n}\n.request-error {\n    background: #4a2020;\n    color: #ffd8d8;\n}\n}\n@media (max-width: 1100px) {\n.gallery-grid {\n    grid-template-columns: 1fr;\n}\n}\n@media (max-width: 760px) {\n.field-pair,\n  .filter-grid {\n    grid-template-columns: 1fr;\n}\n.data-heading,\n  .pagination {\n    align-items: flex-start;\n    flex-direction: column;\n}\n}\n@media (prefers-reduced-motion: reduce) {\n*,\n  *::before,\n  *::after {\n    scroll-behavior: auto !important;\n    transition-duration: 0.01ms !important;\n}\n}\n@media (forced-colors: active) {\nbutton,\n  input,\n  select,\n  .gallery-card,\n  .notice {\n    border: 1px solid CanvasText;\n}\n}\n";
+var App_ce_vue_vue_type_style_index_0_inline_lang_default = "\n:host {\n  color: #193330;\n  display: block;\n  font-family:\n    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\",\n    sans-serif;\n}\n* {\n  box-sizing: border-box;\n}\n.showcase-shell {\n  display: grid;\n  gap: 1.5rem;\n}\n.showcase-header,\nsection {\n  background: #f5fbf8;\n  border: 1px solid #c9ddd5;\n  border-radius: 1rem;\n  padding: clamp(1.25rem, 4vw, 2.5rem);\n}\n.section-intro {\n  color: #4c625e;\n}\n.notice {\n  align-items: center;\n  background: #dff6e9;\n  border: 1px solid #58a27e;\n  border-radius: 0.75rem;\n  display: flex;\n  justify-content: space-between;\n  margin: 1rem 0;\n  padding: 0.75rem 1rem;\n}\n.gallery-grid,\n.gallery-stack {\n  display: grid;\n  gap: 1rem;\n  min-width: 0;\n}\n.gallery-grid {\n  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);\n  margin-top: 1.5rem;\n}\n.gallery-card {\n  background: rgb(255 255 255 / 72%);\n  border: 1px solid #c9ddd5;\n  border-radius: 0.8rem;\n  display: grid;\n  gap: 1rem;\n  min-width: 0;\n  padding: 1.25rem;\n}\n.card-heading h3,\n.card-heading p {\n  margin-bottom: 0;\n}\n.card-kicker {\n  color: #287a5b;\n  font-size: 0.7rem;\n  font-weight: 800;\n  letter-spacing: 0.1em;\n  text-transform: uppercase;\n}\nlabel {\n  display: grid;\n  font-weight: 700;\n  gap: 0.4rem;\n}\ninput,\nselect {\n  background: white;\n  border: 1px solid #84a69a;\n  border-radius: 0.45rem;\n  color: #193330;\n  font: inherit;\n  min-width: 0;\n  padding: 0.65rem 0.75rem;\n}\ninput:focus-visible,\nselect:focus-visible,\nsummary:focus-visible {\n  outline: 3px solid #41b883;\n  outline-offset: 2px;\n}\n.field-pair {\n  display: grid;\n  gap: 0.75rem;\n  grid-template-columns: 1fr 1fr;\n}\nfieldset {\n  border: 0;\n  margin: 0;\n  padding: 0;\n}\nlegend {\n  font-weight: 700;\n  margin-bottom: 0.5rem;\n}\n.choice-row,\n.button-row,\n[role=\"tablist\"] {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 0.65rem;\n}\n.choice-row label {\n  align-items: center;\n  display: flex;\n  font-weight: 500;\n}\n.field-error {\n  color: #a32424;\n  font-size: 0.85rem;\n  margin: -0.75rem 0 0;\n}\n.switch-row {\n  align-items: center;\n  display: flex;\n  justify-content: space-between;\n}\n.switch-row span {\n  display: grid;\n}\n.switch-row small {\n  font-weight: 400;\n}\n.switch-row input {\n  height: 1.4rem;\n  width: 2.6rem;\n}\ninput[type=\"range\"],\nprogress {\n  accent-color: #287a5b;\n  width: 100%;\n}\n.primary-button {\n  background: #287a5b;\n  color: white;\n}\n.secondary-button {\n  background: white;\n}\nbutton:disabled {\n  cursor: not-allowed;\n  opacity: 0.5;\n}\n.icon-button {\n  border: 0;\n  font-size: 1.25rem;\n  padding: 0.2rem 0.5rem;\n}\n[role=\"tab\"][aria-selected=\"true\"] {\n  background: #287a5b;\n  color: white;\n}\ndl {\n  display: grid;\n  gap: 0.6rem;\n  margin: 0;\n}\ndl div {\n  display: flex;\n  gap: 1rem;\n  justify-content: space-between;\n}\ndt {\n  font-weight: 700;\n}\ndd {\n  margin: 0;\n  overflow-wrap: anywhere;\n  text-align: right;\n}\ndetails {\n  border-top: 1px solid #c9ddd5;\n  padding-top: 1rem;\n}\nsummary {\n  cursor: pointer;\n  font-weight: 700;\n}\ndialog {\n  background: #f5fbf8;\n  border: 1px solid #72a790;\n  border-radius: 1rem;\n  color: #193330;\n  max-width: min(30rem, calc(100vw - 2rem));\n  padding: 0;\n}\ndialog::backdrop {\n  background: rgb(7 28 24 / 72%);\n}\n.dialog-content {\n  padding: 1.5rem;\n}\n.data-card {\n  background: rgb(255 255 255 / 72%);\n  border: 1px solid #c9ddd5;\n  border-radius: 0.8rem;\n  margin-top: 1.5rem;\n  min-width: 0;\n  padding: 1.25rem;\n}\n.data-heading,\n.pagination {\n  align-items: center;\n  display: flex;\n  gap: 1rem;\n  justify-content: space-between;\n}\n.data-heading h3,\n.data-heading p {\n  margin-bottom: 0;\n}\n.filter-grid {\n  display: grid;\n  gap: 1rem;\n  grid-template-columns: minmax(0, 2fr) minmax(12rem, 1fr);\n  margin: 1.25rem 0;\n}\n.loading-state,\n.empty-state,\n.request-error {\n  border: 1px dashed #84a69a;\n  border-radius: 0.6rem;\n  margin: 1rem 0;\n  padding: 1rem;\n}\n.request-error {\n  background: #fff0f0;\n  border-color: #c76b6b;\n  color: #7e1f1f;\n}\n.table-scroll {\n  max-width: 100%;\n  overflow-x: auto;\n}\ntable {\n  border-collapse: collapse;\n  min-width: 48rem;\n  width: 100%;\n}\nth,\ntd {\n  border-bottom: 1px solid #c9ddd5;\n  padding: 0.75rem;\n  text-align: left;\n}\nth {\n  background: #eaf7f1;\n}\ntbody tr {\n  cursor: pointer;\n}\ntbody tr:hover,\ntbody tr.selected {\n  background: #dff6e9;\n}\n.sort-button,\n.customer-button {\n  border: 0;\n  border-radius: 0.25rem;\n  padding: 0.2rem;\n  text-align: left;\n}\n.sort-button {\n  align-items: center;\n  display: inline-flex;\n  gap: 0.35rem;\n}\n.customer-button {\n  color: #146247;\n  font-weight: 800;\n  text-decoration: underline;\n  text-underline-offset: 0.2em;\n}\n.pagination {\n  margin-top: 1rem;\n}\n.selection-status {\n  color: #4c625e;\n  margin: 1rem 0 0;\n}\n.visually-hidden {\n  clip: rect(0 0 0 0);\n  clip-path: inset(50%);\n  height: 1px;\n  overflow: hidden;\n  position: absolute;\n  white-space: nowrap;\n  width: 1px;\n}\n.customer-detail-layout {\n  display: grid;\n  gap: 1.25rem;\n  margin-top: 1.25rem;\n}\n.metric-grid,\n.detail-grid {\n  display: grid;\n  gap: 0.75rem;\n}\n.metric-grid {\n  grid-template-columns: repeat(3, minmax(0, 1fr));\n}\n.metric-grid div {\n  background: #eaf7f1;\n  border-radius: 0.6rem;\n  display: grid;\n  gap: 0.3rem;\n  justify-content: initial;\n  padding: 1rem;\n}\n.metric-grid dd {\n  color: #146247;\n  font-size: 1.25rem;\n  font-weight: 800;\n  text-align: left;\n}\n.detail-grid {\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.detail-grid div {\n  border-bottom: 1px solid #c9ddd5;\n  padding: 0.6rem 0;\n}\n.showcase-header {\n  background:\n    radial-gradient(circle at top right, rgb(65 184 131 / 28%), transparent 42%),\n    #eaf7f1;\n}\n.eyebrow,\n.section-number {\n  color: #287a5b;\n  font-size: 0.75rem;\n  font-weight: 800;\n  letter-spacing: 0.12em;\n  margin: 0 0 0.5rem;\n  text-transform: uppercase;\n}\nh1,\nh2,\np {\n  margin-top: 0;\n}\nh1 {\n  font-size: clamp(2rem, 6vw, 4rem);\n  line-height: 1;\n  margin-bottom: 1rem;\n}\nnav {\n  display: flex;\n  gap: 0.75rem;\n  overflow-x: auto;\n}\nbutton {\n  background: transparent;\n  border: 1px solid #72a790;\n  border-radius: 999px;\n  color: inherit;\n  cursor: pointer;\n  font: inherit;\n  font-weight: 700;\n  padding: 0.65rem 1rem;\n  white-space: nowrap;\n}\nbutton:hover,\nbutton:focus-visible,\nbutton[aria-current=\"page\"] {\n  background: #287a5b;\n  color: white;\n}\nbutton:focus-visible {\n  outline: 3px solid #41b883;\n  outline-offset: 3px;\n}\n@media (prefers-color-scheme: dark) {\n:host {\n    color: #e6f4ee;\n}\n.showcase-header,\n  section {\n    background: #102c28;\n    border-color: #35645a;\n}\n.showcase-header {\n    background:\n      radial-gradient(circle at top right, rgb(65 184 131 / 24%), transparent 42%),\n      #143832;\n}\n.eyebrow,\n  .section-number,\n  .card-kicker {\n    color: #75d5aa;\n}\n.section-intro {\n    color: #b8cec5;\n}\n.gallery-card,\n  .data-card,\n  dialog {\n    background: #173a34;\n    border-color: #467569;\n    color: #e6f4ee;\n}\ninput,\n  select,\n  .secondary-button {\n    background: #0d2925;\n    border-color: #56877a;\n    color: #e6f4ee;\n}\n.notice {\n    background: #164c3c;\n}\nth {\n    background: #16453c;\n}\ntbody tr:hover,\n  tbody tr.selected {\n    background: #1e5447;\n}\n.customer-button {\n    color: #75d5aa;\n}\n.selection-status {\n    color: #b8cec5;\n}\n.request-error {\n    background: #4a2020;\n    color: #ffd8d8;\n}\n.metric-grid div {\n    background: #16453c;\n}\n.metric-grid dd {\n    color: #75d5aa;\n}\n}\n@media (max-width: 1100px) {\n.gallery-grid {\n    grid-template-columns: 1fr;\n}\n}\n@media (max-width: 760px) {\n.field-pair,\n  .filter-grid,\n  .metric-grid,\n  .detail-grid {\n    grid-template-columns: 1fr;\n}\n.data-heading,\n  .pagination {\n    align-items: flex-start;\n    flex-direction: column;\n}\n}\n@media (prefers-reduced-motion: reduce) {\n*,\n  *::before,\n  *::after {\n    scroll-behavior: auto !important;\n    transition-duration: 0.01ms !important;\n}\n}\n@media (forced-colors: active) {\nbutton,\n  input,\n  select,\n  .gallery-card,\n  .notice {\n    border: 1px solid CanvasText;\n}\n}\n";
 //#endregion
 //#region \0plugin-vue:export-helper
 var _plugin_vue_export_helper_default = (sfc, props) => {
@@ -6206,8 +6206,38 @@ var _hoisted_42 = {
 	class: "selection-status",
 	"aria-live": "polite"
 };
-var _hoisted_43 = { class: "dialog-content" };
-var _hoisted_44 = { class: "button-row" };
+var _hoisted_43 = {
+	class: "data-card",
+	"aria-labelledby": "customer-details-heading"
+};
+var _hoisted_44 = { class: "data-heading" };
+var _hoisted_45 = { key: 0 };
+var _hoisted_46 = {
+	key: 0,
+	class: "empty-state"
+};
+var _hoisted_47 = {
+	key: 1,
+	class: "loading-state",
+	role: "status",
+	"aria-live": "polite"
+};
+var _hoisted_48 = {
+	key: 2,
+	class: "request-error",
+	role: "alert"
+};
+var _hoisted_49 = {
+	key: 3,
+	class: "customer-detail-layout"
+};
+var _hoisted_50 = {
+	class: "metric-grid",
+	"aria-label": "Customer sales metrics"
+};
+var _hoisted_51 = { class: "detail-grid" };
+var _hoisted_52 = { class: "dialog-content" };
+var _hoisted_53 = { class: "button-row" };
 var pageSize = 10;
 var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 	__name: "App.ce",
@@ -6245,12 +6275,16 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 		const totalCount = /* @__PURE__ */ ref(0);
 		const totalPages = /* @__PURE__ */ ref(0);
 		const selectedId = /* @__PURE__ */ ref(null);
+		const customerDetail = /* @__PURE__ */ ref(null);
+		const customerDetailLoading = /* @__PURE__ */ ref(false);
+		const customerDetailError = /* @__PURE__ */ ref("");
 		const customersLoading = /* @__PURE__ */ ref(true);
 		const customersError = /* @__PURE__ */ ref("");
 		const countriesError = /* @__PURE__ */ ref("");
 		let searchTimer;
 		let customerController;
 		let countryController;
+		let customerDetailController;
 		const isNameValid = computed(() => name.value.trim().length > 0);
 		const isEmailValid = computed(() => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value));
 		const isProfileValid = computed(() => isNameValid.value && isEmailValid.value);
@@ -6319,6 +6353,37 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 		function selectCustomer(customerId) {
 			selectedId.value = customerId;
 		}
+		async function loadCustomerDetail() {
+			customerDetailController?.abort();
+			customerDetail.value = null;
+			customerDetailError.value = "";
+			if (!selectedId.value) {
+				customerDetailLoading.value = false;
+				return;
+			}
+			const controller = new AbortController();
+			customerDetailController = controller;
+			customerDetailLoading.value = true;
+			try {
+				const response = await fetch(`/api/northwind/customers/${selectedId.value}`, { signal: controller.signal });
+				if (!response.ok) throw new Error("Customer details could not be loaded.");
+				customerDetail.value = await response.json();
+			} catch (error) {
+				if (error.name !== "AbortError") customerDetailError.value = error.message;
+			} finally {
+				if (!controller.signal.aborted) customerDetailLoading.value = false;
+			}
+		}
+		function formatCurrency(value) {
+			return new Intl.NumberFormat("en-US", {
+				style: "currency",
+				currency: "USD"
+			}).format(value);
+		}
+		function formatDate(value) {
+			if (!value) return "No orders";
+			return new Intl.DateTimeFormat("en-US", { dateStyle: "medium" }).format(new Date(value));
+		}
 		function validateProfile() {
 			if (!isProfileValid.value) return;
 			successMessage.value = `Profile validated for ${name.value.trim()}.`;
@@ -6380,6 +6445,7 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 			direction,
 			page
 		], loadCustomers);
+		watch(selectedId, loadCustomerDetail);
 		onMounted(() => {
 			loadCountries();
 			loadCustomers();
@@ -6388,10 +6454,11 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 			clearTimeout(searchTimer);
 			customerController?.abort();
 			countryController?.abort();
+			customerDetailController?.abort();
 		});
 		return (_ctx, _cache) => {
 			return openBlock(), createElementBlock("div", _hoisted_1, [
-				_cache[64] || (_cache[64] = createBaseVNode("header", { class: "showcase-header" }, [
+				_cache[78] || (_cache[78] = createBaseVNode("header", { class: "showcase-header" }, [
 					createBaseVNode("p", { class: "eyebrow" }, "Frontend lab · Vue"),
 					createBaseVNode("h1", null, "Vue interface showcase"),
 					createBaseVNode("p", null, " The shared Frontend Lab experience, implemented with Vue components and the Composition API. ")
@@ -6559,9 +6626,9 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 					])])])
 				]),
 				createBaseVNode("section", _hoisted_24, [
-					_cache[58] || (_cache[58] = createBaseVNode("p", { class: "section-number" }, "02 · API state", -1)),
-					_cache[59] || (_cache[59] = createBaseVNode("h2", { id: "northwind-heading" }, "Northwind Data Binding", -1)),
-					_cache[60] || (_cache[60] = createBaseVNode("p", { class: "section-intro" }, " Server-filtered, sorted, and paged customer data from the portfolio API. ", -1)),
+					_cache[72] || (_cache[72] = createBaseVNode("p", { class: "section-number" }, "02 · API state", -1)),
+					_cache[73] || (_cache[73] = createBaseVNode("h2", { id: "northwind-heading" }, "Northwind Data Binding", -1)),
+					_cache[74] || (_cache[74] = createBaseVNode("p", { class: "section-intro" }, " Server-filtered, sorted, and paged customer data from the portfolio API. ", -1)),
 					createBaseVNode("article", _hoisted_25, [
 						createBaseVNode("div", _hoisted_26, [_cache[53] || (_cache[53] = createBaseVNode("div", null, [createBaseVNode("p", { class: "card-kicker" }, "Customer Explorer"), createBaseVNode("h3", { id: "explorer-heading" }, "Northwind customers")], -1)), createBaseVNode("p", null, toDisplayString(totalCount.value) + " Northwind records", 1)]),
 						createBaseVNode("div", _hoisted_27, [createBaseVNode("label", null, [_cache[54] || (_cache[54] = createBaseVNode("span", null, "Search customers", -1)), withDirectives(createBaseVNode("input", {
@@ -6627,18 +6694,38 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 							}, " Next ", 8, _hoisted_41)
 						]),
 						createBaseVNode("p", _hoisted_42, toDisplayString(selectedId.value ? `Selected: ${selectedId.value}` : "Select a customer"), 1)
-					])
+					]),
+					createBaseVNode("article", _hoisted_43, [createBaseVNode("div", _hoisted_44, [_cache[58] || (_cache[58] = createBaseVNode("div", null, [createBaseVNode("p", { class: "card-kicker" }, "Customer Details"), createBaseVNode("h3", { id: "customer-details-heading" }, "Selected customer")], -1)), selectedId.value ? (openBlock(), createElementBlock("code", _hoisted_45, toDisplayString(selectedId.value), 1)) : createCommentVNode("", true)]), !selectedId.value ? (openBlock(), createElementBlock("p", _hoisted_46, " Select a customer to bind its complete record and sales metrics. ")) : customerDetailLoading.value ? (openBlock(), createElementBlock("p", _hoisted_47, " Loading customer details… ")) : customerDetailError.value ? (openBlock(), createElementBlock("div", _hoisted_48, [createBaseVNode("p", null, toDisplayString(customerDetailError.value), 1), createBaseVNode("button", {
+						type: "button",
+						class: "secondary-button",
+						onClick: loadCustomerDetail
+					}, " Try again ")])) : customerDetail.value ? (openBlock(), createElementBlock("div", _hoisted_49, [createBaseVNode("dl", _hoisted_50, [
+						createBaseVNode("div", null, [_cache[59] || (_cache[59] = createBaseVNode("dt", null, "Orders", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.orderCount), 1)]),
+						createBaseVNode("div", null, [_cache[60] || (_cache[60] = createBaseVNode("dt", null, "Total sales", -1)), createBaseVNode("dd", null, toDisplayString(formatCurrency(customerDetail.value.totalSales)), 1)]),
+						createBaseVNode("div", null, [_cache[61] || (_cache[61] = createBaseVNode("dt", null, "Last order", -1)), createBaseVNode("dd", null, toDisplayString(formatDate(customerDetail.value.lastOrderDate)), 1)])
+					]), createBaseVNode("dl", _hoisted_51, [
+						createBaseVNode("div", null, [_cache[62] || (_cache[62] = createBaseVNode("dt", null, "Company", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.companyName), 1)]),
+						createBaseVNode("div", null, [_cache[63] || (_cache[63] = createBaseVNode("dt", null, "Contact", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.contactName || "—"), 1)]),
+						createBaseVNode("div", null, [_cache[64] || (_cache[64] = createBaseVNode("dt", null, "Title", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.contactTitle || "—"), 1)]),
+						createBaseVNode("div", null, [_cache[65] || (_cache[65] = createBaseVNode("dt", null, "Address", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.address || "—"), 1)]),
+						createBaseVNode("div", null, [_cache[66] || (_cache[66] = createBaseVNode("dt", null, "City", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.city || "—"), 1)]),
+						createBaseVNode("div", null, [_cache[67] || (_cache[67] = createBaseVNode("dt", null, "Region", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.region || "—"), 1)]),
+						createBaseVNode("div", null, [_cache[68] || (_cache[68] = createBaseVNode("dt", null, "Postal code", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.postalCode || "—"), 1)]),
+						createBaseVNode("div", null, [_cache[69] || (_cache[69] = createBaseVNode("dt", null, "Country", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.country || "—"), 1)]),
+						createBaseVNode("div", null, [_cache[70] || (_cache[70] = createBaseVNode("dt", null, "Phone", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.phone || "—"), 1)]),
+						createBaseVNode("div", null, [_cache[71] || (_cache[71] = createBaseVNode("dt", null, "Fax", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.fax || "—"), 1)])
+					])])) : createCommentVNode("", true)])
 				]),
 				createBaseVNode("dialog", {
 					ref_key: "dialog",
 					ref: dialog,
 					"aria-labelledby": "dialog-heading",
 					onKeydown: handleDialogKeydown
-				}, [createBaseVNode("div", _hoisted_43, [
-					_cache[61] || (_cache[61] = createBaseVNode("p", { class: "card-kicker" }, "Vue dialog", -1)),
-					_cache[62] || (_cache[62] = createBaseVNode("h2", { id: "dialog-heading" }, "Keyboard-ready modal", -1)),
-					_cache[63] || (_cache[63] = createBaseVNode("p", null, "Focus stays within this dialog until it is closed.", -1)),
-					createBaseVNode("div", _hoisted_44, [createBaseVNode("button", {
+				}, [createBaseVNode("div", _hoisted_52, [
+					_cache[75] || (_cache[75] = createBaseVNode("p", { class: "card-kicker" }, "Vue dialog", -1)),
+					_cache[76] || (_cache[76] = createBaseVNode("h2", { id: "dialog-heading" }, "Keyboard-ready modal", -1)),
+					_cache[77] || (_cache[77] = createBaseVNode("p", null, "Focus stays within this dialog until it is closed.", -1)),
+					createBaseVNode("div", _hoisted_53, [createBaseVNode("button", {
 						ref_key: "dialogCloseButton",
 						ref: dialogCloseButton,
 						class: "primary-button",
