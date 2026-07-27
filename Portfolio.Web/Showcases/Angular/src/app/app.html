@@ -1,19 +1,257 @@
 <div class="showcase">
   <header class="showcase-header">
     <div>
-      <p class="eyebrow">Frontend lab</p>
+      <span class="eyebrow">Frontend Lab</span>
       <h1>Angular showcase</h1>
-      <p>Angular components, templates, and reactive state are ready for the showcase implementation.</p>
+      <p>
+        Interactive UI patterns and data binding implemented with Angular reactive forms, signals,
+        templates, and accessible native controls.
+      </p>
     </div>
-    <span class="framework-badge" aria-label="Built with Angular">
+    <div class="framework-badge" aria-label="Built with Angular">
       <span aria-hidden="true">A</span>
-      Angular
-    </span>
+      <strong>Angular</strong>
+    </div>
   </header>
 
-  <section class="foundation-card" aria-labelledby="angular-foundation-heading">
-    <p class="eyebrow">Foundation ready</p>
-    <h2 id="angular-foundation-heading">Angular is connected to the portfolio host.</h2>
-    <p>The interactive Control Gallery and Northwind data binding will be added next.</p>
+  <nav class="showcase-nav" aria-label="Angular showcase sections">
+    <a href="#angular-controls">Control gallery</a>
+    <a href="#angular-northwind">Northwind data binding</a>
+  </nav>
+
+  <section id="angular-controls" class="controls-section" aria-labelledby="controls-heading">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">Reactive forms and signals</span>
+        <h2 id="controls-heading">Control gallery</h2>
+      </div>
+      <p>
+        Every value below is bound through Angular and immediately reflected in the live summary.
+      </p>
+    </div>
+
+    <div class="control-layout">
+      <form class="control-card form-card" [formGroup]="profile" (ngSubmit)="validateProfile()">
+        <h3>Profile inputs</h3>
+        <div class="field-grid">
+          <label>
+            <span>Name</span>
+            <input formControlName="name" />
+          </label>
+          <label>
+            <span>Email</span>
+            <input
+              type="email"
+              formControlName="email"
+              [attr.aria-invalid]="profile.controls.email.invalid"
+              aria-describedby="email-help"
+            />
+            <small
+              id="email-help"
+              [class.field-error]="profile.controls.email.invalid"
+              [class.field-help]="profile.controls.email.valid"
+            >
+              @if (profile.controls.email.valid) {
+                Used for example notifications.
+              } @else {
+                Enter a valid email address.
+              }
+            </small>
+          </label>
+          <label>
+            <span>Seats</span>
+            <input type="number" min="1" max="20" formControlName="seats" />
+          </label>
+          <label>
+            <span>Start date</span>
+            <input type="date" formControlName="startDate" />
+          </label>
+          <label class="field-span">
+            <span>Role</span>
+            <select formControlName="role">
+              <option>Developer</option>
+              <option>Designer</option>
+              <option>Analyst</option>
+              <option>Manager</option>
+            </select>
+          </label>
+        </div>
+
+        <fieldset>
+          <legend>Interests</legend>
+          <div class="choice-row">
+            @for (interest of ['Data', 'Design', 'Automation']; track interest) {
+              <label class="choice">
+                <input
+                  type="checkbox"
+                  [checked]="interests().includes(interest)"
+                  (change)="toggleInterest(interest)"
+                />
+                <span>{{ interest }}</span>
+              </label>
+            }
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Preferred contact</legend>
+          <div class="choice-row">
+            @for (method of ['Email', 'Phone', 'Chat']; track method) {
+              <label class="choice">
+                <input
+                  type="radio"
+                  name="contact-method"
+                  [value]="method"
+                  [checked]="contactMethod() === method"
+                  (change)="contactMethod.set(method)"
+                />
+                <span>{{ method }}</span>
+              </label>
+            }
+          </div>
+        </fieldset>
+
+        <div class="form-actions">
+          <button type="submit" class="primary-button" [disabled]="profile.invalid">
+            Validate profile
+          </button>
+          <button type="button" class="secondary-button" (click)="openDialog()">Open dialog</button>
+          <button type="button" class="secondary-button" disabled>Disabled</button>
+        </div>
+      </form>
+
+      <div class="control-stack">
+        <section class="control-card">
+          <h3>Preferences and progress</h3>
+          <label class="switch-row">
+            <span>
+              <strong>Notifications</strong>
+              <small>Enable status updates</small>
+            </span>
+            <input
+              class="switch"
+              type="checkbox"
+              role="switch"
+              [checked]="notificationsEnabled()"
+              (change)="notificationsEnabled.set($any($event.target).checked)"
+            />
+          </label>
+          <label class="range-field">
+            <span>
+              Confidence <strong>{{ confidence() }}%</strong>
+            </span>
+            <input
+              type="range"
+              min="0"
+              max="100"
+              [value]="confidence()"
+              (input)="confidence.set(+$any($event.target).value)"
+            />
+          </label>
+          <progress
+            [value]="confidence()"
+            max="100"
+            [attr.aria-label]="'Confidence ' + confidence() + '%'"
+          ></progress>
+        </section>
+
+        <section class="control-card">
+          <div class="tabs" role="tablist" aria-label="Profile views">
+            @for (tab of ['summary', 'settings']; track tab) {
+              <button
+                [id]="'profile-' + tab + '-tab'"
+                type="button"
+                role="tab"
+                [attr.aria-selected]="activeTab() === tab"
+                [attr.aria-controls]="'profile-' + tab + '-panel'"
+                (click)="selectTab($any(tab))"
+                (keydown)="handleTabKey($event, $any(tab))"
+              >
+                {{ tab === 'summary' ? 'Summary' : 'Settings' }}
+              </button>
+            }
+          </div>
+
+          @if (activeTab() === 'summary') {
+            <div
+              id="profile-summary-panel"
+              class="tab-panel"
+              role="tabpanel"
+              aria-labelledby="profile-summary-tab"
+              tabindex="0"
+            >
+              <h3>{{ profile.controls.name.value || 'Unnamed profile' }}</h3>
+              <dl class="summary-list">
+                <div>
+                  <dt>Role</dt>
+                  <dd>{{ profile.controls.role.value }}</dd>
+                </div>
+                <div>
+                  <dt>Seats</dt>
+                  <dd>{{ profile.controls.seats.value }}</dd>
+                </div>
+                <div>
+                  <dt>Contact</dt>
+                  <dd>{{ contactMethod() }}</dd>
+                </div>
+                <div>
+                  <dt>Interests</dt>
+                  <dd>{{ interestsSummary() }}</dd>
+                </div>
+              </dl>
+            </div>
+          } @else {
+            <div
+              id="profile-settings-panel"
+              class="tab-panel"
+              role="tabpanel"
+              aria-labelledby="profile-settings-tab"
+              tabindex="0"
+            >
+              <h3>Current settings</h3>
+              <p>
+                Notifications are
+                <strong>{{ notificationsEnabled() ? 'enabled' : 'disabled' }}</strong
+                >. The selected start date is {{ profile.controls.startDate.value }}.
+              </p>
+            </div>
+          }
+
+          <details>
+            <summary>Implementation note</summary>
+            <p>
+              Native controls preserve keyboard behavior while Angular binds each value and derives
+              this summary.
+            </p>
+          </details>
+        </section>
+      </div>
+    </div>
+
+    @if (notice()) {
+      <div class="notification" role="status" aria-live="polite">
+        <span>{{ notice() }}</span>
+        <button type="button" aria-label="Dismiss notification" (click)="notice.set('')">×</button>
+      </div>
+    }
   </section>
+
+  <section
+    id="angular-northwind"
+    class="data-section placeholder-card"
+    aria-labelledby="northwind-heading"
+  >
+    <span class="eyebrow">Next implementation stage</span>
+    <h2 id="northwind-heading">Northwind data binding</h2>
+    <p>The Angular customer explorer, details, orders, and editing sandbox come next.</p>
+  </section>
+
+  <dialog #profileDialog>
+    <form method="dialog">
+      <span class="eyebrow">Native dialog</span>
+      <h2>Angular-controlled launch</h2>
+      <p>This modal uses the browser dialog element for focus management and keyboard dismissal.</p>
+      <button class="primary-button">Close dialog</button>
+    </form>
+  </dialog>
 </div>
