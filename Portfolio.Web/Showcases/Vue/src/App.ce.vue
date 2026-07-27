@@ -844,17 +844,14 @@ onBeforeUnmount(() => {
                 v-for="customer in customers"
                 :key="customer.customerId"
                 :class="{ selected: selectedId === customer.customerId }"
+                :aria-selected="selectedId === customer.customerId"
+                tabindex="0"
                 @click="selectCustomer(customer.customerId)"
+                @keydown.enter="selectCustomer(customer.customerId)"
+                @keydown.space.prevent="selectCustomer(customer.customerId)"
               >
                 <td data-label="Company">
-                  <button
-                    type="button"
-                    class="customer-button"
-                    :aria-pressed="selectedId === customer.customerId"
-                    @click.stop="selectCustomer(customer.customerId)"
-                  >
-                    {{ customer.companyName }}
-                  </button>
+                  {{ customer.companyName }}
                 </td>
                 <td data-label="Contact">{{ customer.contactName || '—' }}</td>
                 <td data-label="City">{{ customer.city || '—' }}</td>
@@ -1429,8 +1426,7 @@ tbody tr.selected {
   background: #dff6e9;
 }
 
-.sort-button,
-.customer-button {
+.sort-button {
   border: 0;
   border-radius: 0.25rem;
   padding: 0.2rem;
@@ -1441,13 +1437,6 @@ tbody tr.selected {
   align-items: center;
   display: inline-flex;
   gap: 0.35rem;
-}
-
-.customer-button {
-  color: #146247;
-  font-weight: 800;
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
 }
 
 .pagination {
@@ -1737,9 +1726,6 @@ button:focus-visible {
     background: #1e5447;
   }
 
-  .customer-button {
-    color: #75d5aa;
-  }
 
   .selection-status {
     color: #b8cec5;
@@ -2125,8 +2111,7 @@ select {
   padding: 10px;
 }
 
-.metric-grid dd,
-.customer-button {
+.metric-grid dd {
   color: var(--accent);
 }
 

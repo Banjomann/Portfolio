@@ -240,7 +240,7 @@ describe('Customer Explorer', () => {
       ),
     ).toBe(true)
     expect(root.querySelector('option[value="Germany"]')).not.toBeNull()
-    expect(root.querySelector('.customer-button').textContent).toContain(
+    expect(root.querySelector('tbody tr td').textContent).toContain(
       'Alfreds Futterkiste',
     )
     expect(
@@ -265,20 +265,20 @@ describe('Customer Explorer', () => {
     vi.useRealTimers()
   })
 
-  it('selects a customer from the full row or accessible company button', async () => {
+  it('selects a customer from the full row', async () => {
     root.querySelector('tbody tr').click()
     await nextTick()
 
     expect(root.querySelector('.selection-status').textContent).toContain(
       'Selected: ALFKI',
     )
-    expect(root.querySelector('.customer-button').getAttribute('aria-pressed')).toBe(
+    expect(root.querySelector('tbody tr').getAttribute('aria-selected')).toBe(
       'true',
     )
   })
 
   it('loads and binds the selected customer detail and metrics', async () => {
-    root.querySelector('.customer-button').click()
+    root.querySelector('tbody tr').click()
     await nextTick()
     await new Promise((resolve) => setTimeout(resolve))
     await nextTick()
@@ -296,7 +296,7 @@ describe('Customer Explorer', () => {
   })
 
   it('selects the newest order and binds line items and totals', async () => {
-    root.querySelector('.customer-button').click()
+    root.querySelector('tbody tr').click()
     await nextTick()
     await new Promise((resolve) => setTimeout(resolve))
     await nextTick()
@@ -324,7 +324,7 @@ describe('Customer Explorer', () => {
   })
 
   it('saves sandbox customer changes while keeping order reads canonical', async () => {
-    root.querySelector('.customer-button').click()
+    root.querySelector('tbody tr').click()
     await nextTick()
     await new Promise((resolve) => setTimeout(resolve))
     await nextTick()
@@ -374,7 +374,7 @@ describe('Customer Explorer', () => {
   })
 
   it('blocks leaving with dirty fields and resets the session copy', async () => {
-    root.querySelector('.customer-button').click()
+    root.querySelector('tbody tr').click()
     await new Promise((resolve) => setTimeout(resolve))
     await nextTick()
 

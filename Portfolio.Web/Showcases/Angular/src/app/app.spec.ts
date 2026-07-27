@@ -169,12 +169,12 @@ describe('App', () => {
     await new Promise((resolve) => setTimeout(resolve, 300));
     fixture.detectChanges();
     const shadowRoot = fixture.nativeElement.shadowRoot as ShadowRoot;
-    const customerButton = shadowRoot.querySelector('.row-select') as HTMLButtonElement;
+    const customerRow = shadowRoot.querySelector('tbody tr') as HTMLTableRowElement;
 
-    customerButton.click();
+    customerRow.click();
     fixture.detectChanges();
 
-    expect(customerButton.getAttribute('aria-pressed')).toBe('true');
+    expect(customerRow.getAttribute('aria-selected')).toBe('true');
     expect(shadowRoot.querySelector('.grid-footer')?.textContent).toContain('Selected: ALFKI');
   });
 
@@ -185,7 +185,7 @@ describe('App', () => {
     fixture.detectChanges();
     const shadowRoot = fixture.nativeElement.shadowRoot as ShadowRoot;
 
-    (shadowRoot.querySelector('.row-select') as HTMLButtonElement).click();
+    (shadowRoot.querySelector('tbody tr') as HTMLTableRowElement).click();
     await fixture.whenStable();
     fixture.detectChanges();
 
@@ -206,7 +206,7 @@ describe('App', () => {
     await new Promise((resolve) => setTimeout(resolve, 300));
     fixture.detectChanges();
     const root = fixture.nativeElement.shadowRoot as ShadowRoot;
-    (root.querySelector('.row-select') as HTMLButtonElement).click();
+    (root.querySelector('tbody tr') as HTMLTableRowElement).click();
     await fixture.whenStable();
     await new Promise((resolve) => setTimeout(resolve, 0));
     await fixture.whenStable();
@@ -225,7 +225,7 @@ describe('App', () => {
     (root.querySelector('.sandbox-toggle input') as HTMLInputElement).click();
     await new Promise((resolve) => setTimeout(resolve, 300));
     fixture.detectChanges();
-    (root.querySelector('.row-select') as HTMLButtonElement).click();
+    (root.querySelector('tbody tr') as HTMLTableRowElement).click();
     await fixture.whenStable();
     fixture.detectChanges();
     const company = root.querySelector('.detail-form input') as HTMLInputElement;

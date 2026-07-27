@@ -597,16 +597,6 @@ tbody tr.selected {
   background: var(--accent-bg);
 }
 
-.row-select {
-  background: transparent;
-  border: 0;
-  color: var(--text-h);
-  cursor: pointer;
-  font-weight: 700;
-  padding: 0;
-  text-align: left;
-}
-
 code {
   background: var(--code-bg);
   border-radius: 4px;

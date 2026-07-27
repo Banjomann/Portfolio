@@ -4757,6 +4757,24 @@ var withModifiers = (fn, modifiers) => {
 		return fn(event, ...args);
 	}));
 };
+var keyNames = {
+	esc: "escape",
+	space: " ",
+	up: "arrow-up",
+	left: "arrow-left",
+	right: "arrow-right",
+	down: "arrow-down",
+	delete: "backspace"
+};
+var withKeys = (fn, modifiers) => {
+	const cache = fn._withKeys || (fn._withKeys = {});
+	const cacheKey = modifiers.join(".");
+	return cache[cacheKey] || (cache[cacheKey] = ((event) => {
+		if (!("key" in event)) return;
+		const eventKey = hyphenate(event.key);
+		if (modifiers.some((k) => k === eventKey || keyNames[k] === eventKey)) return fn(event);
+	}));
+};
 var rendererOptions = /* @__PURE__ */ extend({ patchProp }, nodeOps);
 var renderer;
 function ensureRenderer() {
@@ -4793,7 +4811,7 @@ function normalizeContainer(container) {
 }
 //#endregion
 //#region src/App.ce.vue?vue&type=style&index=0&inline&lang.css
-var App_ce_vue_vue_type_style_index_0_inline_lang_default = "\n:host {\r\n  color: #193330;\r\n  display: block;\r\n  font-family:\r\n    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\",\r\n    sans-serif;\n}\n* {\r\n  box-sizing: border-box;\n}\n.showcase-shell {\r\n  display: grid;\r\n  gap: 1.5rem;\n}\n.showcase-header,\r\nsection {\r\n  background: #f5fbf8;\r\n  border: 1px solid #c9ddd5;\r\n  border-radius: 1rem;\r\n  padding: clamp(1.25rem, 4vw, 2.5rem);\n}\n.section-intro {\r\n  color: #4c625e;\n}\n.notice {\r\n  align-items: center;\r\n  background: #dff6e9;\r\n  border: 1px solid #58a27e;\r\n  border-radius: 0.75rem;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  margin: 1rem 0;\r\n  padding: 0.75rem 1rem;\n}\n.gallery-grid,\r\n.gallery-stack {\r\n  display: grid;\r\n  gap: 1rem;\r\n  min-width: 0;\n}\n.gallery-grid {\r\n  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);\r\n  margin-top: 1.5rem;\n}\n.gallery-card {\r\n  background: rgb(255 255 255 / 72%);\r\n  border: 1px solid #c9ddd5;\r\n  border-radius: 0.8rem;\r\n  display: grid;\r\n  gap: 1rem;\r\n  min-width: 0;\r\n  padding: 1.25rem;\n}\n.card-heading h3,\r\n.card-heading p {\r\n  margin-bottom: 0;\n}\n.card-kicker {\r\n  color: #287a5b;\r\n  font-size: 0.7rem;\r\n  font-weight: 800;\r\n  letter-spacing: 0.1em;\r\n  text-transform: uppercase;\n}\nlabel {\r\n  display: grid;\r\n  font-weight: 700;\r\n  gap: 0.4rem;\n}\ninput,\r\nselect {\r\n  background: white;\r\n  border: 1px solid #84a69a;\r\n  border-radius: 0.45rem;\r\n  color: #193330;\r\n  font: inherit;\r\n  min-width: 0;\r\n  padding: 0.65rem 0.75rem;\n}\ninput:focus-visible,\r\nselect:focus-visible,\r\nsummary:focus-visible {\r\n  outline: 3px solid #41b883;\r\n  outline-offset: 2px;\n}\n.field-pair {\r\n  display: grid;\r\n  gap: 0.75rem;\r\n  grid-template-columns: 1fr 1fr;\n}\nfieldset {\r\n  border: 0;\r\n  margin: 0;\r\n  padding: 0;\n}\nlegend {\r\n  font-weight: 700;\r\n  margin-bottom: 0.5rem;\n}\n.choice-row,\r\n.button-row,\r\n[role=\"tablist\"] {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  gap: 0.65rem;\n}\n.choice-row label {\r\n  align-items: center;\r\n  display: flex;\r\n  font-weight: 500;\n}\n.field-error {\r\n  color: #a32424;\r\n  font-size: 0.85rem;\r\n  margin: -0.75rem 0 0;\n}\n.switch-row {\r\n  align-items: center;\r\n  display: flex;\r\n  justify-content: space-between;\n}\n.switch-row span {\r\n  display: grid;\n}\n.switch-row small {\r\n  font-weight: 400;\n}\n.switch-row input {\r\n  height: 1.4rem;\r\n  width: 2.6rem;\n}\ninput[type=\"range\"],\r\nprogress {\r\n  accent-color: #287a5b;\r\n  width: 100%;\n}\n.primary-button {\r\n  background: #287a5b;\r\n  color: white;\n}\n.secondary-button {\r\n  background: white;\n}\nbutton:disabled {\r\n  cursor: not-allowed;\r\n  opacity: 0.5;\n}\n.icon-button {\r\n  border: 0;\r\n  font-size: 1.25rem;\r\n  padding: 0.2rem 0.5rem;\n}\n[role=\"tab\"][aria-selected=\"true\"] {\r\n  background: #287a5b;\r\n  color: white;\n}\ndl {\r\n  display: grid;\r\n  gap: 0.6rem;\r\n  margin: 0;\n}\ndl div {\r\n  display: flex;\r\n  gap: 1rem;\r\n  justify-content: space-between;\n}\ndt {\r\n  font-weight: 700;\n}\ndd {\r\n  margin: 0;\r\n  overflow-wrap: anywhere;\r\n  text-align: right;\n}\ndetails {\r\n  border-top: 1px solid #c9ddd5;\r\n  padding-top: 1rem;\n}\nsummary {\r\n  cursor: pointer;\r\n  font-weight: 700;\n}\ndialog {\r\n  background: #f5fbf8;\r\n  border: 1px solid #72a790;\r\n  border-radius: 1rem;\r\n  color: #193330;\r\n  max-width: min(30rem, calc(100vw - 2rem));\r\n  padding: 0;\n}\ndialog::backdrop {\r\n  background: rgb(7 28 24 / 72%);\n}\n.dialog-content {\r\n  padding: 1.5rem;\n}\n.data-card {\r\n  background: rgb(255 255 255 / 72%);\r\n  border: 1px solid #c9ddd5;\r\n  border-radius: 0.8rem;\r\n  margin-top: 1.5rem;\r\n  min-width: 0;\r\n  padding: 1.25rem;\n}\n.data-heading,\r\n.pagination {\r\n  align-items: center;\r\n  display: flex;\r\n  gap: 1rem;\r\n  justify-content: space-between;\n}\n.data-heading h3,\r\n.data-heading p {\r\n  margin-bottom: 0;\n}\n.filter-grid {\r\n  display: grid;\r\n  gap: 1rem;\r\n  grid-template-columns: minmax(0, 2fr) minmax(12rem, 1fr);\r\n  margin: 1.25rem 0;\n}\n.loading-state,\r\n.empty-state,\r\n.request-error {\r\n  border: 1px dashed #84a69a;\r\n  border-radius: 0.6rem;\r\n  margin: 1rem 0;\r\n  padding: 1rem;\n}\n.request-error {\r\n  background: #fff0f0;\r\n  border-color: #c76b6b;\r\n  color: #7e1f1f;\n}\n.table-scroll {\r\n  max-width: 100%;\r\n  overflow-x: auto;\n}\ntable {\r\n  border-collapse: collapse;\r\n  min-width: 48rem;\r\n  width: 100%;\n}\nth,\r\ntd {\r\n  border-bottom: 1px solid #c9ddd5;\r\n  padding: 0.75rem;\r\n  text-align: left;\n}\nth {\r\n  background: #eaf7f1;\n}\ntbody tr {\r\n  cursor: pointer;\n}\ntbody tr:hover,\r\ntbody tr.selected {\r\n  background: #dff6e9;\n}\n.sort-button,\r\n.customer-button {\r\n  border: 0;\r\n  border-radius: 0.25rem;\r\n  padding: 0.2rem;\r\n  text-align: left;\n}\n.sort-button {\r\n  align-items: center;\r\n  display: inline-flex;\r\n  gap: 0.35rem;\n}\n.customer-button {\r\n  color: #146247;\r\n  font-weight: 800;\r\n  text-decoration: underline;\r\n  text-underline-offset: 0.2em;\n}\n.pagination {\r\n  margin-top: 1rem;\n}\n.selection-status {\r\n  color: #4c625e;\r\n  margin: 1rem 0 0;\n}\n.visually-hidden {\r\n  clip: rect(0 0 0 0);\r\n  clip-path: inset(50%);\r\n  height: 1px;\r\n  overflow: hidden;\r\n  position: absolute;\r\n  white-space: nowrap;\r\n  width: 1px;\n}\n.customer-detail-layout {\r\n  display: grid;\r\n  gap: 1.25rem;\r\n  margin-top: 1.25rem;\n}\n.sandbox-panel {\r\n  align-items: center;\r\n  background: #eaf7f1;\r\n  border: 1px solid #72a790;\r\n  border-radius: 0.8rem;\r\n  display: grid;\r\n  gap: 1rem;\r\n  grid-template-columns: minmax(0, 1fr) auto auto;\r\n  margin-top: 1.25rem;\r\n  padding: 1.25rem;\n}\n.sandbox-panel h3,\r\n.sandbox-panel p {\r\n  margin-bottom: 0.35rem;\n}\n.sandbox-panel .notice,\r\n.sandbox-panel .request-error,\r\n.sandbox-panel > small {\r\n  grid-column: 1 / -1;\r\n  margin: 0;\n}\n.customer-edit-form {\r\n  display: grid;\r\n  gap: 1rem;\r\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.customer-edit-form .button-row,\r\n.customer-edit-form .dirty-status,\r\n.customer-edit-form .field-error {\r\n  grid-column: 1 / -1;\n}\n.dirty-status {\r\n  color: #4c625e;\r\n  font-weight: 700;\r\n  margin: 0;\n}\n.metric-grid,\r\n.detail-grid {\r\n  display: grid;\r\n  gap: 0.75rem;\n}\n.metric-grid {\r\n  grid-template-columns: repeat(3, minmax(0, 1fr));\n}\n.metric-grid div {\r\n  background: #eaf7f1;\r\n  border-radius: 0.6rem;\r\n  display: grid;\r\n  gap: 0.3rem;\r\n  justify-content: initial;\r\n  padding: 1rem;\n}\n.metric-grid dd {\r\n  color: #146247;\r\n  font-size: 1.25rem;\r\n  font-weight: 800;\r\n  text-align: left;\n}\n.detail-grid {\r\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.detail-grid div {\r\n  border-bottom: 1px solid #c9ddd5;\r\n  padding: 0.6rem 0;\n}\n.order-workspace {\r\n  display: grid;\r\n  gap: 1rem;\r\n  grid-template-columns: minmax(14rem, 0.7fr) minmax(0, 1.8fr);\r\n  margin-top: 1.25rem;\r\n  min-width: 0;\n}\n.order-list {\r\n  display: grid;\r\n  gap: 0.65rem;\r\n  max-height: 38rem;\r\n  overflow-y: auto;\n}\n.order-card {\r\n  align-items: center;\r\n  border-radius: 0.6rem;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  padding: 0.85rem;\r\n  text-align: left;\n}\n.order-card span {\r\n  display: grid;\r\n  gap: 0.25rem;\n}\n.order-card span:last-child {\r\n  text-align: right;\n}\n.order-card small {\r\n  font-weight: 400;\n}\n.order-card[aria-pressed=\"true\"] {\r\n  background: #287a5b;\r\n  color: white;\n}\n.order-detail {\r\n  min-width: 0;\n}\n.order-summary {\r\n  display: grid;\r\n  gap: 1rem;\r\n  grid-template-columns: minmax(10rem, 0.7fr) minmax(0, 1fr);\r\n  margin-bottom: 1rem;\n}\n.order-summary h4 {\r\n  font-size: 1.5rem;\r\n  margin: 0 0 0.35rem;\n}\n.order-totals {\r\n  margin-left: auto;\r\n  margin-top: 1rem;\r\n  max-width: 20rem;\n}\n.order-totals .grand-total {\r\n  border-top: 2px solid #72a790;\r\n  font-size: 1.1rem;\r\n  margin-top: 0.4rem;\r\n  padding-top: 0.6rem;\n}\n.showcase-header {\r\n  background:\r\n    radial-gradient(circle at top right, rgb(65 184 131 / 28%), transparent 42%),\r\n    #eaf7f1;\n}\n.eyebrow,\r\n.section-number {\r\n  color: #287a5b;\r\n  font-size: 0.75rem;\r\n  font-weight: 800;\r\n  letter-spacing: 0.12em;\r\n  margin: 0 0 0.5rem;\r\n  text-transform: uppercase;\n}\nh1,\r\nh2,\r\np {\r\n  margin-top: 0;\n}\nh1 {\r\n  font-size: clamp(2rem, 6vw, 4rem);\r\n  line-height: 1;\r\n  margin-bottom: 1rem;\n}\nnav {\r\n  display: flex;\r\n  gap: 0.75rem;\r\n  overflow-x: auto;\n}\nbutton {\r\n  background: transparent;\r\n  border: 1px solid #72a790;\r\n  border-radius: 999px;\r\n  color: inherit;\r\n  cursor: pointer;\r\n  font: inherit;\r\n  font-weight: 700;\r\n  padding: 0.65rem 1rem;\r\n  white-space: nowrap;\n}\nbutton:hover,\r\nbutton:focus-visible,\r\nbutton[aria-current=\"page\"] {\r\n  background: #287a5b;\r\n  color: white;\n}\nbutton:focus-visible {\r\n  outline: 3px solid #41b883;\r\n  outline-offset: 3px;\n}\n@media (prefers-color-scheme: dark) {\n:host {\r\n    color: #e6f4ee;\n}\n.showcase-header,\r\n  section {\r\n    background: #102c28;\r\n    border-color: #35645a;\n}\n.showcase-header {\r\n    background:\r\n      radial-gradient(circle at top right, rgb(65 184 131 / 24%), transparent 42%),\r\n      #143832;\n}\n.eyebrow,\r\n  .section-number,\r\n  .card-kicker {\r\n    color: #75d5aa;\n}\n.section-intro {\r\n    color: #b8cec5;\n}\n.gallery-card,\r\n  .data-card,\r\n  dialog {\r\n    background: #173a34;\r\n    border-color: #467569;\r\n    color: #e6f4ee;\n}\ninput,\r\n  select,\r\n  .secondary-button {\r\n    background: #0d2925;\r\n    border-color: #56877a;\r\n    color: #e6f4ee;\n}\n.notice {\r\n    background: #164c3c;\n}\nth {\r\n    background: #16453c;\n}\ntbody tr:hover,\r\n  tbody tr.selected {\r\n    background: #1e5447;\n}\n.customer-button {\r\n    color: #75d5aa;\n}\n.selection-status {\r\n    color: #b8cec5;\n}\n.request-error {\r\n    background: #4a2020;\r\n    color: #ffd8d8;\n}\n.metric-grid div {\r\n    background: #16453c;\n}\n.sandbox-panel {\r\n    background: #16453c;\r\n    border-color: #467569;\n}\n.dirty-status {\r\n    color: #b8cec5;\n}\n.metric-grid dd {\r\n    color: #75d5aa;\n}\n}\n@media (max-width: 1100px) {\n.gallery-grid,\r\n  .order-workspace {\r\n    grid-template-columns: 1fr;\n}\n.order-list {\r\n    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));\r\n    max-height: none;\n}\n.sandbox-panel {\r\n    align-items: start;\r\n    grid-template-columns: 1fr;\n}\n.sandbox-panel .notice,\r\n  .sandbox-panel .request-error,\r\n  .sandbox-panel > small {\r\n    grid-column: auto;\n}\n}\n@media (max-width: 760px) {\n.field-pair,\r\n  .filter-grid,\r\n  .metric-grid,\r\n  .detail-grid,\r\n  .customer-edit-form {\r\n    grid-template-columns: 1fr;\n}\n.data-heading,\r\n  .pagination,\r\n  .order-summary {\r\n    align-items: flex-start;\r\n    flex-direction: column;\n}\n.order-summary {\r\n    display: flex;\n}\n}\n@media (prefers-reduced-motion: reduce) {\n*,\r\n  *::before,\r\n  *::after {\r\n    scroll-behavior: auto !important;\r\n    transition-duration: 0.01ms !important;\n}\n}\n@media (forced-colors: active) {\nbutton,\r\n  input,\r\n  select,\r\n  .gallery-card,\r\n  .notice {\r\n    border: 1px solid CanvasText;\n}\n}\n\n/* Shared Frontend Lab visual contract. Keep these tokens and structural rules\n   aligned with the React and Angular implementations. */\n:host {\n  --text: #6b6375;\n  --text-h: #08060d;\n  --bg: #fff;\n  --border: #e5e4e7;\n  --code-bg: #f4f3ec;\n  --accent: #aa3bff;\n  --accent-bg: rgb(170 59 255 / 10%);\n  --accent-border: rgb(170 59 255 / 50%);\n  --shadow: rgb(0 0 0 / 10%) 0 10px 15px -3px, rgb(0 0 0 / 5%) 0 4px 6px -2px;\n  background: transparent;\n  color: var(--text);\n  color-scheme: light dark;\n  font: 18px/145% system-ui, 'Segoe UI', Roboto, sans-serif;\n  letter-spacing: 0.18px;\n}\n.showcase {\n  background: transparent;\n  display: block;\n  padding: 48px;\n  text-align: left;\n}\n.showcase-header {\n  align-items: flex-start;\n  background: transparent;\n  border: 0;\n  border-radius: 0;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 32px;\n  padding: 0;\n}\n.showcase-header h1 {\n  color: var(--text-h);\n  font-size: 48px;\n  font-weight: 500;\n  letter-spacing: -1.68px;\n  line-height: 118%;\n  margin: 6px 0 10px;\n}\n.showcase-header p {\n  font-size: 17px;\n  max-width: 680px;\n}\n.framework-badge {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 999px;\n  color: var(--text-h);\n  display: flex;\n  flex: 0 0 auto;\n  font-weight: 650;\n  gap: 10px;\n  padding: 10px 14px;\n}\n.framework-badge > span {\n  align-items: center;\n  background: var(--accent);\n  border-radius: 50%;\n  color: white;\n  display: inline-flex;\n  height: 24px;\n  justify-content: center;\n  width: 24px;\n}\n.showcase-nav {\n  display: flex;\n  gap: 10px;\n  margin: 0 0 28px;\n  overflow-x: auto;\n  padding: 0 0 4px;\n}\n.showcase-nav a {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 999px;\n  color: var(--text-h);\n  flex: 0 0 auto;\n  font-size: 13px;\n  font-weight: 700;\n  padding: 7px 11px;\n  text-decoration: none;\n}\n.showcase-nav a:hover {\n  border-color: var(--accent-border);\n  color: var(--accent);\n}\n.controls-section,\n.data-section {\n  background: transparent;\n  border: 0;\n  border-radius: 0;\n  padding: 32px 0 16px;\n}\n.controls-section {\n  border-top: 1px solid var(--border);\n}\n.data-section {\n  border-top: 1px solid var(--border);\n  margin-top: 42px;\n}\n.section-heading {\n  align-items: end;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 18px;\n}\n.section-heading h2 {\n  color: var(--text-h);\n  font-size: 24px;\n  font-weight: 500;\n  letter-spacing: -0.24px;\n  line-height: 118%;\n  margin: 4px 0 0;\n}\n.section-heading p {\n  font-size: 15px;\n  max-width: 560px;\n}\n.eyebrow,\n.card-kicker {\n  color: var(--accent);\n  font-size: 12px;\n  font-weight: 800;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n}\n.control-layout {\n  display: grid;\n  gap: 18px;\n  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);\n}\n.control-layout > *,\n.control-stack,\n.data-card,\n.order-workspace > * {\n  min-width: 0;\n}\n.control-stack {\n  display: grid;\n  gap: 18px;\n}\n.control-card,\n.data-card,\n.sandbox-panel {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  color: var(--text);\n  padding: 22px;\n}\n.control-card {\n  display: block;\n}\n.control-card h3,\n.data-card h3,\n.sandbox-panel h3 {\n  color: var(--text-h);\n}\n.data-card {\n  margin-top: 18px;\n}\n.gallery-card,\n.gallery-stack,\n.gallery-grid {\n  min-width: 0;\n}\n.filter-grid {\n  grid-template-columns: minmax(220px, 1fr) minmax(180px, 0.55fr);\n}\n.table-scroll {\n  border: 1px solid var(--border);\n  border-radius: 8px;\n  overflow-x: auto;\n}\ntable {\n  min-width: 720px;\n  width: 100%;\n}\nth {\n  background: var(--code-bg);\n}\ntbody tr.selected {\n  background: var(--accent-bg);\n  box-shadow: inset 3px 0 0 var(--accent);\n}\n.order-workspace {\n  grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);\n}\nbutton,\ninput,\nselect {\n  font: inherit;\n}\n.primary-button,\n.secondary-button {\n  border-radius: 7px;\n  cursor: pointer;\n  font-weight: 700;\n  min-height: 40px;\n  padding: 8px 13px;\n}\n.primary-button,\n.primary-button:hover,\n.primary-button:focus-visible {\n  background: var(--accent);\n  border: 1px solid var(--accent);\n  color: white;\n}\n.secondary-button,\n.secondary-button:hover,\n.secondary-button:focus-visible {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  color: var(--text-h);\n}\n.tabs {\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 4px;\n  padding-bottom: 12px;\n}\n.tabs button {\n  background: transparent;\n  border: 0;\n  border-radius: 6px;\n  color: var(--text);\n  padding: 7px 10px;\n}\n.tabs button[aria-selected='true'],\n.tabs button[aria-selected='true']:hover,\n.tabs button[aria-selected='true']:focus-visible {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.tab-panel {\n  min-height: 155px;\n  padding-top: 18px;\n}\n.summary-list {\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.summary-list div,\n.metric-grid div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.metric-grid dd,\n.customer-button {\n  color: var(--accent);\n}\n.sandbox-panel {\n  background: var(--accent-bg);\n  border-color: var(--accent-border);\n}\n.order-card[aria-pressed='true'],\n.order-card[aria-pressed='true']:hover,\n.order-card[aria-pressed='true']:focus-visible {\n  background: var(--accent-bg);\n  border-color: var(--accent-border);\n  color: var(--text-h);\n}\ninput:not([type='checkbox']):not([type='radio']):not([type='range']),\nselect {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  color: var(--text-h);\n}\ninput[type='checkbox'],\ninput[type='radio'],\ninput[type='range'],\nprogress {\n  accent-color: var(--accent);\n}\nbutton:focus-visible,\ninput:focus-visible,\nselect:focus-visible,\nsummary:focus-visible,\na:focus-visible {\n  outline: 3px solid var(--accent-border);\n  outline-offset: 2px;\n}\n@media (prefers-color-scheme: dark) {\n:host {\n    --text: #9ca3af;\n    --text-h: #f3f4f6;\n    --bg: #16171d;\n    --border: #2e303a;\n    --code-bg: #1f2028;\n    --accent: #c084fc;\n    --accent-bg: rgb(192 132 252 / 15%);\n    --accent-border: rgb(192 132 252 / 50%);\n    --shadow: rgb(0 0 0 / 40%) 0 10px 15px -3px, rgb(0 0 0 / 25%) 0 4px 6px -2px;\n}\n}\n@media (max-width: 1100px) {\n.control-layout,\n  .order-workspace {\n    grid-template-columns: 1fr;\n}\n}\n@media (max-width: 760px) {\n.showcase {\n    padding: 24px 16px 40px;\n}\n.showcase-header,\n  .section-heading {\n    align-items: stretch;\n    flex-direction: column;\n    gap: 14px;\n}\n.framework-badge {\n    align-self: flex-start;\n}\n.field-pair,\n  .filter-grid,\n  .customer-detail-layout,\n  .metric-grid {\n    grid-template-columns: 1fr;\n}\n}\n";
+var App_ce_vue_vue_type_style_index_0_inline_lang_default = "\n:host {\r\n  color: #193330;\r\n  display: block;\r\n  font-family:\r\n    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\",\r\n    sans-serif;\n}\n* {\r\n  box-sizing: border-box;\n}\n.showcase-shell {\r\n  display: grid;\r\n  gap: 1.5rem;\n}\n.showcase-header,\r\nsection {\r\n  background: #f5fbf8;\r\n  border: 1px solid #c9ddd5;\r\n  border-radius: 1rem;\r\n  padding: clamp(1.25rem, 4vw, 2.5rem);\n}\n.section-intro {\r\n  color: #4c625e;\n}\n.notice {\r\n  align-items: center;\r\n  background: #dff6e9;\r\n  border: 1px solid #58a27e;\r\n  border-radius: 0.75rem;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  margin: 1rem 0;\r\n  padding: 0.75rem 1rem;\n}\n.gallery-grid,\r\n.gallery-stack {\r\n  display: grid;\r\n  gap: 1rem;\r\n  min-width: 0;\n}\n.gallery-grid {\r\n  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);\r\n  margin-top: 1.5rem;\n}\n.gallery-card {\r\n  background: rgb(255 255 255 / 72%);\r\n  border: 1px solid #c9ddd5;\r\n  border-radius: 0.8rem;\r\n  display: grid;\r\n  gap: 1rem;\r\n  min-width: 0;\r\n  padding: 1.25rem;\n}\n.card-heading h3,\r\n.card-heading p {\r\n  margin-bottom: 0;\n}\n.card-kicker {\r\n  color: #287a5b;\r\n  font-size: 0.7rem;\r\n  font-weight: 800;\r\n  letter-spacing: 0.1em;\r\n  text-transform: uppercase;\n}\nlabel {\r\n  display: grid;\r\n  font-weight: 700;\r\n  gap: 0.4rem;\n}\ninput,\r\nselect {\r\n  background: white;\r\n  border: 1px solid #84a69a;\r\n  border-radius: 0.45rem;\r\n  color: #193330;\r\n  font: inherit;\r\n  min-width: 0;\r\n  padding: 0.65rem 0.75rem;\n}\ninput:focus-visible,\r\nselect:focus-visible,\r\nsummary:focus-visible {\r\n  outline: 3px solid #41b883;\r\n  outline-offset: 2px;\n}\n.field-pair {\r\n  display: grid;\r\n  gap: 0.75rem;\r\n  grid-template-columns: 1fr 1fr;\n}\nfieldset {\r\n  border: 0;\r\n  margin: 0;\r\n  padding: 0;\n}\nlegend {\r\n  font-weight: 700;\r\n  margin-bottom: 0.5rem;\n}\n.choice-row,\r\n.button-row,\r\n[role=\"tablist\"] {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  gap: 0.65rem;\n}\n.choice-row label {\r\n  align-items: center;\r\n  display: flex;\r\n  font-weight: 500;\n}\n.field-error {\r\n  color: #a32424;\r\n  font-size: 0.85rem;\r\n  margin: -0.75rem 0 0;\n}\n.switch-row {\r\n  align-items: center;\r\n  display: flex;\r\n  justify-content: space-between;\n}\n.switch-row span {\r\n  display: grid;\n}\n.switch-row small {\r\n  font-weight: 400;\n}\n.switch-row input {\r\n  height: 1.4rem;\r\n  width: 2.6rem;\n}\ninput[type=\"range\"],\r\nprogress {\r\n  accent-color: #287a5b;\r\n  width: 100%;\n}\n.primary-button {\r\n  background: #287a5b;\r\n  color: white;\n}\n.secondary-button {\r\n  background: white;\n}\nbutton:disabled {\r\n  cursor: not-allowed;\r\n  opacity: 0.5;\n}\n.icon-button {\r\n  border: 0;\r\n  font-size: 1.25rem;\r\n  padding: 0.2rem 0.5rem;\n}\n[role=\"tab\"][aria-selected=\"true\"] {\r\n  background: #287a5b;\r\n  color: white;\n}\ndl {\r\n  display: grid;\r\n  gap: 0.6rem;\r\n  margin: 0;\n}\ndl div {\r\n  display: flex;\r\n  gap: 1rem;\r\n  justify-content: space-between;\n}\ndt {\r\n  font-weight: 700;\n}\ndd {\r\n  margin: 0;\r\n  overflow-wrap: anywhere;\r\n  text-align: right;\n}\ndetails {\r\n  border-top: 1px solid #c9ddd5;\r\n  padding-top: 1rem;\n}\nsummary {\r\n  cursor: pointer;\r\n  font-weight: 700;\n}\ndialog {\r\n  background: #f5fbf8;\r\n  border: 1px solid #72a790;\r\n  border-radius: 1rem;\r\n  color: #193330;\r\n  max-width: min(30rem, calc(100vw - 2rem));\r\n  padding: 0;\n}\ndialog::backdrop {\r\n  background: rgb(7 28 24 / 72%);\n}\n.dialog-content {\r\n  padding: 1.5rem;\n}\n.data-card {\r\n  background: rgb(255 255 255 / 72%);\r\n  border: 1px solid #c9ddd5;\r\n  border-radius: 0.8rem;\r\n  margin-top: 1.5rem;\r\n  min-width: 0;\r\n  padding: 1.25rem;\n}\n.data-heading,\r\n.pagination {\r\n  align-items: center;\r\n  display: flex;\r\n  gap: 1rem;\r\n  justify-content: space-between;\n}\n.data-heading h3,\r\n.data-heading p {\r\n  margin-bottom: 0;\n}\n.filter-grid {\r\n  display: grid;\r\n  gap: 1rem;\r\n  grid-template-columns: minmax(0, 2fr) minmax(12rem, 1fr);\r\n  margin: 1.25rem 0;\n}\n.loading-state,\r\n.empty-state,\r\n.request-error {\r\n  border: 1px dashed #84a69a;\r\n  border-radius: 0.6rem;\r\n  margin: 1rem 0;\r\n  padding: 1rem;\n}\n.request-error {\r\n  background: #fff0f0;\r\n  border-color: #c76b6b;\r\n  color: #7e1f1f;\n}\n.table-scroll {\r\n  max-width: 100%;\r\n  overflow-x: auto;\n}\ntable {\r\n  border-collapse: collapse;\r\n  min-width: 48rem;\r\n  width: 100%;\n}\nth,\r\ntd {\r\n  border-bottom: 1px solid #c9ddd5;\r\n  padding: 0.75rem;\r\n  text-align: left;\n}\nth {\r\n  background: #eaf7f1;\n}\ntbody tr {\r\n  cursor: pointer;\n}\ntbody tr:hover,\r\ntbody tr.selected {\r\n  background: #dff6e9;\n}\n.sort-button {\n  border: 0;\r\n  border-radius: 0.25rem;\r\n  padding: 0.2rem;\r\n  text-align: left;\n}\n.sort-button {\r\n  align-items: center;\r\n  display: inline-flex;\r\n  gap: 0.35rem;\n}\n.pagination {\r\n  margin-top: 1rem;\n}\n.selection-status {\r\n  color: #4c625e;\r\n  margin: 1rem 0 0;\n}\n.visually-hidden {\r\n  clip: rect(0 0 0 0);\r\n  clip-path: inset(50%);\r\n  height: 1px;\r\n  overflow: hidden;\r\n  position: absolute;\r\n  white-space: nowrap;\r\n  width: 1px;\n}\n.customer-detail-layout {\r\n  display: grid;\r\n  gap: 1.25rem;\r\n  margin-top: 1.25rem;\n}\n.sandbox-panel {\r\n  align-items: center;\r\n  background: #eaf7f1;\r\n  border: 1px solid #72a790;\r\n  border-radius: 0.8rem;\r\n  display: grid;\r\n  gap: 1rem;\r\n  grid-template-columns: minmax(0, 1fr) auto auto;\r\n  margin-top: 1.25rem;\r\n  padding: 1.25rem;\n}\n.sandbox-panel h3,\r\n.sandbox-panel p {\r\n  margin-bottom: 0.35rem;\n}\n.sandbox-panel .notice,\r\n.sandbox-panel .request-error,\r\n.sandbox-panel > small {\r\n  grid-column: 1 / -1;\r\n  margin: 0;\n}\n.customer-edit-form {\r\n  display: grid;\r\n  gap: 1rem;\r\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.customer-edit-form .button-row,\r\n.customer-edit-form .dirty-status,\r\n.customer-edit-form .field-error {\r\n  grid-column: 1 / -1;\n}\n.dirty-status {\r\n  color: #4c625e;\r\n  font-weight: 700;\r\n  margin: 0;\n}\n.metric-grid,\r\n.detail-grid {\r\n  display: grid;\r\n  gap: 0.75rem;\n}\n.metric-grid {\r\n  grid-template-columns: repeat(3, minmax(0, 1fr));\n}\n.metric-grid div {\r\n  background: #eaf7f1;\r\n  border-radius: 0.6rem;\r\n  display: grid;\r\n  gap: 0.3rem;\r\n  justify-content: initial;\r\n  padding: 1rem;\n}\n.metric-grid dd {\r\n  color: #146247;\r\n  font-size: 1.25rem;\r\n  font-weight: 800;\r\n  text-align: left;\n}\n.detail-grid {\r\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.detail-grid div {\r\n  border-bottom: 1px solid #c9ddd5;\r\n  padding: 0.6rem 0;\n}\n.order-workspace {\r\n  display: grid;\r\n  gap: 1rem;\r\n  grid-template-columns: minmax(14rem, 0.7fr) minmax(0, 1.8fr);\r\n  margin-top: 1.25rem;\r\n  min-width: 0;\n}\n.order-list {\r\n  display: grid;\r\n  gap: 0.65rem;\r\n  max-height: 38rem;\r\n  overflow-y: auto;\n}\n.order-card {\r\n  align-items: center;\r\n  border-radius: 0.6rem;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  padding: 0.85rem;\r\n  text-align: left;\n}\n.order-card span {\r\n  display: grid;\r\n  gap: 0.25rem;\n}\n.order-card span:last-child {\r\n  text-align: right;\n}\n.order-card small {\r\n  font-weight: 400;\n}\n.order-card[aria-pressed=\"true\"] {\r\n  background: #287a5b;\r\n  color: white;\n}\n.order-detail {\r\n  min-width: 0;\n}\n.order-summary {\r\n  display: grid;\r\n  gap: 1rem;\r\n  grid-template-columns: minmax(10rem, 0.7fr) minmax(0, 1fr);\r\n  margin-bottom: 1rem;\n}\n.order-summary h4 {\r\n  font-size: 1.5rem;\r\n  margin: 0 0 0.35rem;\n}\n.order-totals {\r\n  margin-left: auto;\r\n  margin-top: 1rem;\r\n  max-width: 20rem;\n}\n.order-totals .grand-total {\r\n  border-top: 2px solid #72a790;\r\n  font-size: 1.1rem;\r\n  margin-top: 0.4rem;\r\n  padding-top: 0.6rem;\n}\n.showcase-header {\r\n  background:\r\n    radial-gradient(circle at top right, rgb(65 184 131 / 28%), transparent 42%),\r\n    #eaf7f1;\n}\n.eyebrow,\r\n.section-number {\r\n  color: #287a5b;\r\n  font-size: 0.75rem;\r\n  font-weight: 800;\r\n  letter-spacing: 0.12em;\r\n  margin: 0 0 0.5rem;\r\n  text-transform: uppercase;\n}\nh1,\r\nh2,\r\np {\r\n  margin-top: 0;\n}\nh1 {\r\n  font-size: clamp(2rem, 6vw, 4rem);\r\n  line-height: 1;\r\n  margin-bottom: 1rem;\n}\nnav {\r\n  display: flex;\r\n  gap: 0.75rem;\r\n  overflow-x: auto;\n}\nbutton {\r\n  background: transparent;\r\n  border: 1px solid #72a790;\r\n  border-radius: 999px;\r\n  color: inherit;\r\n  cursor: pointer;\r\n  font: inherit;\r\n  font-weight: 700;\r\n  padding: 0.65rem 1rem;\r\n  white-space: nowrap;\n}\nbutton:hover,\r\nbutton:focus-visible,\r\nbutton[aria-current=\"page\"] {\r\n  background: #287a5b;\r\n  color: white;\n}\nbutton:focus-visible {\r\n  outline: 3px solid #41b883;\r\n  outline-offset: 3px;\n}\n@media (prefers-color-scheme: dark) {\n:host {\r\n    color: #e6f4ee;\n}\n.showcase-header,\r\n  section {\r\n    background: #102c28;\r\n    border-color: #35645a;\n}\n.showcase-header {\r\n    background:\r\n      radial-gradient(circle at top right, rgb(65 184 131 / 24%), transparent 42%),\r\n      #143832;\n}\n.eyebrow,\r\n  .section-number,\r\n  .card-kicker {\r\n    color: #75d5aa;\n}\n.section-intro {\r\n    color: #b8cec5;\n}\n.gallery-card,\r\n  .data-card,\r\n  dialog {\r\n    background: #173a34;\r\n    border-color: #467569;\r\n    color: #e6f4ee;\n}\ninput,\r\n  select,\r\n  .secondary-button {\r\n    background: #0d2925;\r\n    border-color: #56877a;\r\n    color: #e6f4ee;\n}\n.notice {\r\n    background: #164c3c;\n}\nth {\r\n    background: #16453c;\n}\ntbody tr:hover,\r\n  tbody tr.selected {\r\n    background: #1e5447;\n}\n.selection-status {\r\n    color: #b8cec5;\n}\n.request-error {\r\n    background: #4a2020;\r\n    color: #ffd8d8;\n}\n.metric-grid div {\r\n    background: #16453c;\n}\n.sandbox-panel {\r\n    background: #16453c;\r\n    border-color: #467569;\n}\n.dirty-status {\r\n    color: #b8cec5;\n}\n.metric-grid dd {\r\n    color: #75d5aa;\n}\n}\n@media (max-width: 1100px) {\n.gallery-grid,\r\n  .order-workspace {\r\n    grid-template-columns: 1fr;\n}\n.order-list {\r\n    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));\r\n    max-height: none;\n}\n.sandbox-panel {\r\n    align-items: start;\r\n    grid-template-columns: 1fr;\n}\n.sandbox-panel .notice,\r\n  .sandbox-panel .request-error,\r\n  .sandbox-panel > small {\r\n    grid-column: auto;\n}\n}\n@media (max-width: 760px) {\n.field-pair,\r\n  .filter-grid,\r\n  .metric-grid,\r\n  .detail-grid,\r\n  .customer-edit-form {\r\n    grid-template-columns: 1fr;\n}\n.data-heading,\r\n  .pagination,\r\n  .order-summary {\r\n    align-items: flex-start;\r\n    flex-direction: column;\n}\n.order-summary {\r\n    display: flex;\n}\n}\n@media (prefers-reduced-motion: reduce) {\n*,\r\n  *::before,\r\n  *::after {\r\n    scroll-behavior: auto !important;\r\n    transition-duration: 0.01ms !important;\n}\n}\n@media (forced-colors: active) {\nbutton,\r\n  input,\r\n  select,\r\n  .gallery-card,\r\n  .notice {\r\n    border: 1px solid CanvasText;\n}\n}\n\n/* Shared Frontend Lab visual contract. Keep these tokens and structural rules\n   aligned with the React and Angular implementations. */\n:host {\n  --text: #6b6375;\n  --text-h: #08060d;\n  --bg: #fff;\n  --border: #e5e4e7;\n  --code-bg: #f4f3ec;\n  --accent: #aa3bff;\n  --accent-bg: rgb(170 59 255 / 10%);\n  --accent-border: rgb(170 59 255 / 50%);\n  --shadow: rgb(0 0 0 / 10%) 0 10px 15px -3px, rgb(0 0 0 / 5%) 0 4px 6px -2px;\n  background: transparent;\n  color: var(--text);\n  color-scheme: light dark;\n  font: 18px/145% system-ui, 'Segoe UI', Roboto, sans-serif;\n  letter-spacing: 0.18px;\n}\n.showcase {\n  background: transparent;\n  display: block;\n  padding: 48px;\n  text-align: left;\n}\n.showcase-header {\n  align-items: flex-start;\n  background: transparent;\n  border: 0;\n  border-radius: 0;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 32px;\n  padding: 0;\n}\n.showcase-header h1 {\n  color: var(--text-h);\n  font-size: 48px;\n  font-weight: 500;\n  letter-spacing: -1.68px;\n  line-height: 118%;\n  margin: 6px 0 10px;\n}\n.showcase-header p {\n  font-size: 17px;\n  max-width: 680px;\n}\n.framework-badge {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 999px;\n  color: var(--text-h);\n  display: flex;\n  flex: 0 0 auto;\n  font-weight: 650;\n  gap: 10px;\n  padding: 10px 14px;\n}\n.framework-badge > span {\n  align-items: center;\n  background: var(--accent);\n  border-radius: 50%;\n  color: white;\n  display: inline-flex;\n  height: 24px;\n  justify-content: center;\n  width: 24px;\n}\n.showcase-nav {\n  display: flex;\n  gap: 10px;\n  margin: 0 0 28px;\n  overflow-x: auto;\n  padding: 0 0 4px;\n}\n.showcase-nav a {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 999px;\n  color: var(--text-h);\n  flex: 0 0 auto;\n  font-size: 13px;\n  font-weight: 700;\n  padding: 7px 11px;\n  text-decoration: none;\n}\n.showcase-nav a:hover {\n  border-color: var(--accent-border);\n  color: var(--accent);\n}\n.controls-section,\n.data-section {\n  background: transparent;\n  border: 0;\n  border-radius: 0;\n  padding: 32px 0 16px;\n}\n.controls-section {\n  border-top: 1px solid var(--border);\n}\n.data-section {\n  border-top: 1px solid var(--border);\n  margin-top: 42px;\n}\n.section-heading {\n  align-items: end;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 18px;\n}\n.section-heading h2 {\n  color: var(--text-h);\n  font-size: 24px;\n  font-weight: 500;\n  letter-spacing: -0.24px;\n  line-height: 118%;\n  margin: 4px 0 0;\n}\n.section-heading p {\n  font-size: 15px;\n  max-width: 560px;\n}\n.eyebrow,\n.card-kicker {\n  color: var(--accent);\n  font-size: 12px;\n  font-weight: 800;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n}\n.control-layout {\n  display: grid;\n  gap: 18px;\n  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);\n}\n.control-layout > *,\n.control-stack,\n.data-card,\n.order-workspace > * {\n  min-width: 0;\n}\n.control-stack {\n  display: grid;\n  gap: 18px;\n}\n.control-card,\n.data-card,\n.sandbox-panel {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  color: var(--text);\n  padding: 22px;\n}\n.control-card {\n  display: block;\n}\n.control-card h3,\n.data-card h3,\n.sandbox-panel h3 {\n  color: var(--text-h);\n}\n.data-card {\n  margin-top: 18px;\n}\n.gallery-card,\n.gallery-stack,\n.gallery-grid {\n  min-width: 0;\n}\n.filter-grid {\n  grid-template-columns: minmax(220px, 1fr) minmax(180px, 0.55fr);\n}\n.table-scroll {\n  border: 1px solid var(--border);\n  border-radius: 8px;\n  overflow-x: auto;\n}\ntable {\n  min-width: 720px;\n  width: 100%;\n}\nth {\n  background: var(--code-bg);\n}\ntbody tr.selected {\n  background: var(--accent-bg);\n  box-shadow: inset 3px 0 0 var(--accent);\n}\n.order-workspace {\n  grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);\n}\nbutton,\ninput,\nselect {\n  font: inherit;\n}\n.primary-button,\n.secondary-button {\n  border-radius: 7px;\n  cursor: pointer;\n  font-weight: 700;\n  min-height: 40px;\n  padding: 8px 13px;\n}\n.primary-button,\n.primary-button:hover,\n.primary-button:focus-visible {\n  background: var(--accent);\n  border: 1px solid var(--accent);\n  color: white;\n}\n.secondary-button,\n.secondary-button:hover,\n.secondary-button:focus-visible {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  color: var(--text-h);\n}\n.tabs {\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 4px;\n  padding-bottom: 12px;\n}\n.tabs button {\n  background: transparent;\n  border: 0;\n  border-radius: 6px;\n  color: var(--text);\n  padding: 7px 10px;\n}\n.tabs button[aria-selected='true'],\n.tabs button[aria-selected='true']:hover,\n.tabs button[aria-selected='true']:focus-visible {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.tab-panel {\n  min-height: 155px;\n  padding-top: 18px;\n}\n.summary-list {\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.summary-list div,\n.metric-grid div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.metric-grid dd {\n  color: var(--accent);\n}\n.sandbox-panel {\n  background: var(--accent-bg);\n  border-color: var(--accent-border);\n}\n.order-card[aria-pressed='true'],\n.order-card[aria-pressed='true']:hover,\n.order-card[aria-pressed='true']:focus-visible {\n  background: var(--accent-bg);\n  border-color: var(--accent-border);\n  color: var(--text-h);\n}\ninput:not([type='checkbox']):not([type='radio']):not([type='range']),\nselect {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  color: var(--text-h);\n}\ninput[type='checkbox'],\ninput[type='radio'],\ninput[type='range'],\nprogress {\n  accent-color: var(--accent);\n}\nbutton:focus-visible,\ninput:focus-visible,\nselect:focus-visible,\nsummary:focus-visible,\na:focus-visible {\n  outline: 3px solid var(--accent-border);\n  outline-offset: 2px;\n}\n@media (prefers-color-scheme: dark) {\n:host {\n    --text: #9ca3af;\n    --text-h: #f3f4f6;\n    --bg: #16171d;\n    --border: #2e303a;\n    --code-bg: #1f2028;\n    --accent: #c084fc;\n    --accent-bg: rgb(192 132 252 / 15%);\n    --accent-border: rgb(192 132 252 / 50%);\n    --shadow: rgb(0 0 0 / 40%) 0 10px 15px -3px, rgb(0 0 0 / 25%) 0 4px 6px -2px;\n}\n}\n@media (max-width: 1100px) {\n.control-layout,\n  .order-workspace {\n    grid-template-columns: 1fr;\n}\n}\n@media (max-width: 760px) {\n.showcase {\n    padding: 24px 16px 40px;\n}\n.showcase-header,\n  .section-heading {\n    align-items: stretch;\n    flex-direction: column;\n    gap: 14px;\n}\n.framework-badge {\n    align-self: flex-start;\n}\n.field-pair,\n  .filter-grid,\n  .customer-detail-layout,\n  .metric-grid {\n    grid-template-columns: 1fr;\n}\n}\n";
 //#endregion
 //#region \0plugin-vue:export-helper
 var _plugin_vue_export_helper_default = (sfc, props) => {
@@ -4922,125 +4940,128 @@ var _hoisted_41 = {
 	key: 0,
 	"aria-hidden": "true"
 };
-var _hoisted_42 = ["onClick"];
+var _hoisted_42 = [
+	"aria-selected",
+	"onClick",
+	"onKeydown"
+];
 var _hoisted_43 = { "data-label": "Company" };
-var _hoisted_44 = ["aria-pressed", "onClick"];
-var _hoisted_45 = { "data-label": "Contact" };
-var _hoisted_46 = { "data-label": "City" };
-var _hoisted_47 = { "data-label": "Country" };
-var _hoisted_48 = { "data-label": "ID" };
-var _hoisted_49 = {
+var _hoisted_44 = { "data-label": "Contact" };
+var _hoisted_45 = { "data-label": "City" };
+var _hoisted_46 = { "data-label": "Country" };
+var _hoisted_47 = { "data-label": "ID" };
+var _hoisted_48 = {
 	class: "pagination",
 	"aria-label": "Customer pages"
 };
+var _hoisted_49 = ["disabled"];
 var _hoisted_50 = ["disabled"];
-var _hoisted_51 = ["disabled"];
-var _hoisted_52 = {
+var _hoisted_51 = {
 	class: "selection-status",
 	"aria-live": "polite"
 };
-var _hoisted_53 = {
+var _hoisted_52 = {
 	class: "data-card",
 	"aria-labelledby": "customer-details-heading"
 };
-var _hoisted_54 = { class: "data-heading" };
-var _hoisted_55 = { key: 0 };
-var _hoisted_56 = {
+var _hoisted_53 = { class: "data-heading" };
+var _hoisted_54 = { key: 0 };
+var _hoisted_55 = {
 	key: 0,
 	class: "empty-state"
 };
-var _hoisted_57 = {
+var _hoisted_56 = {
 	key: 1,
 	class: "loading-state",
 	role: "status",
 	"aria-live": "polite"
 };
-var _hoisted_58 = {
+var _hoisted_57 = {
 	key: 2,
 	class: "request-error",
 	role: "alert"
 };
-var _hoisted_59 = {
+var _hoisted_58 = {
 	key: 3,
 	class: "customer-detail-layout"
 };
-var _hoisted_60 = {
+var _hoisted_59 = {
 	class: "metric-grid",
 	"aria-label": "Customer sales metrics"
 };
-var _hoisted_61 = ["onUpdate:modelValue", "required"];
-var _hoisted_62 = {
+var _hoisted_60 = ["onUpdate:modelValue", "required"];
+var _hoisted_61 = {
 	key: 0,
 	class: "field-error"
 };
-var _hoisted_63 = {
+var _hoisted_62 = {
 	class: "dirty-status",
 	"aria-live": "polite"
 };
-var _hoisted_64 = { class: "button-row" };
+var _hoisted_63 = { class: "button-row" };
+var _hoisted_64 = ["disabled"];
 var _hoisted_65 = ["disabled"];
-var _hoisted_66 = ["disabled"];
-var _hoisted_67 = {
+var _hoisted_66 = {
 	key: 1,
 	class: "detail-grid"
 };
-var _hoisted_68 = {
+var _hoisted_67 = {
 	class: "data-card",
 	"aria-labelledby": "orders-heading"
 };
-var _hoisted_69 = { class: "data-heading" };
-var _hoisted_70 = { key: 0 };
-var _hoisted_71 = {
+var _hoisted_68 = { class: "data-heading" };
+var _hoisted_69 = { key: 0 };
+var _hoisted_70 = {
 	key: 0,
 	class: "empty-state"
 };
-var _hoisted_72 = {
+var _hoisted_71 = {
 	key: 1,
 	class: "loading-state",
 	role: "status",
 	"aria-live": "polite"
 };
-var _hoisted_73 = {
+var _hoisted_72 = {
 	key: 2,
 	class: "request-error",
 	role: "alert"
 };
-var _hoisted_74 = {
+var _hoisted_73 = {
 	key: 3,
 	class: "empty-state"
 };
-var _hoisted_75 = {
+var _hoisted_74 = {
 	key: 4,
 	class: "order-workspace"
 };
-var _hoisted_76 = {
+var _hoisted_75 = {
 	class: "order-list",
 	"aria-label": "Customer orders"
 };
-var _hoisted_77 = ["aria-pressed", "onClick"];
-var _hoisted_78 = {
+var _hoisted_76 = ["aria-pressed", "onClick"];
+var _hoisted_77 = {
 	class: "order-detail",
 	"aria-live": "polite"
 };
-var _hoisted_79 = {
+var _hoisted_78 = {
 	key: 0,
 	class: "loading-state",
 	role: "status"
 };
-var _hoisted_80 = {
+var _hoisted_79 = {
 	key: 1,
 	class: "request-error",
 	role: "alert"
 };
-var _hoisted_81 = { key: 2 };
-var _hoisted_82 = { class: "order-summary" };
-var _hoisted_83 = { class: "card-kicker" };
-var _hoisted_84 = { class: "table-scroll" };
-var _hoisted_85 = { class: "visually-hidden" };
-var _hoisted_86 = { class: "order-totals" };
-var _hoisted_87 = { class: "grand-total" };
-var _hoisted_88 = { class: "dialog-content" };
-var _hoisted_89 = { class: "button-row" };
+var _hoisted_80 = { key: 2 };
+var _hoisted_81 = { class: "order-summary" };
+var _hoisted_82 = { class: "card-kicker" };
+var _hoisted_83 = { class: "table-scroll" };
+var _hoisted_84 = { class: "visually-hidden" };
+var _hoisted_85 = { class: "order-totals" };
+var _hoisted_86 = { class: "grand-total" };
+var _hoisted_87 = { class: "dialog-content" };
+var _hoisted_88 = { class: "button-row" };
 var pageSize = 10;
 var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 	__name: "App.ce",
@@ -5626,43 +5647,41 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 								return openBlock(), createElementBlock("tr", {
 									key: customer.customerId,
 									class: normalizeClass({ selected: selectedId.value === customer.customerId }),
-									onClick: ($event) => selectCustomer(customer.customerId)
+									"aria-selected": selectedId.value === customer.customerId,
+									tabindex: "0",
+									onClick: ($event) => selectCustomer(customer.customerId),
+									onKeydown: [withKeys(($event) => selectCustomer(customer.customerId), ["enter"]), withKeys(withModifiers(($event) => selectCustomer(customer.customerId), ["prevent"]), ["space"])]
 								}, [
-									createBaseVNode("td", _hoisted_43, [createBaseVNode("button", {
-										type: "button",
-										class: "customer-button",
-										"aria-pressed": selectedId.value === customer.customerId,
-										onClick: withModifiers(($event) => selectCustomer(customer.customerId), ["stop"])
-									}, toDisplayString(customer.companyName), 9, _hoisted_44)]),
-									createBaseVNode("td", _hoisted_45, toDisplayString(customer.contactName || "—"), 1),
-									createBaseVNode("td", _hoisted_46, toDisplayString(customer.city || "—"), 1),
-									createBaseVNode("td", _hoisted_47, toDisplayString(customer.country || "—"), 1),
-									createBaseVNode("td", _hoisted_48, [createBaseVNode("code", null, toDisplayString(customer.customerId), 1)])
-								], 10, _hoisted_42);
+									createBaseVNode("td", _hoisted_43, toDisplayString(customer.companyName), 1),
+									createBaseVNode("td", _hoisted_44, toDisplayString(customer.contactName || "—"), 1),
+									createBaseVNode("td", _hoisted_45, toDisplayString(customer.city || "—"), 1),
+									createBaseVNode("td", _hoisted_46, toDisplayString(customer.country || "—"), 1),
+									createBaseVNode("td", _hoisted_47, [createBaseVNode("code", null, toDisplayString(customer.customerId), 1)])
+								], 42, _hoisted_42);
 							}), 128))])
 						])])),
-						createBaseVNode("div", _hoisted_49, [
+						createBaseVNode("div", _hoisted_48, [
 							createBaseVNode("button", {
 								type: "button",
 								class: "secondary-button",
 								disabled: page.value <= 1 || customersLoading.value,
 								onClick: _cache[19] || (_cache[19] = ($event) => page.value -= 1)
-							}, " Previous ", 8, _hoisted_50),
+							}, " Previous ", 8, _hoisted_49),
 							createBaseVNode("span", null, toDisplayString(pageDescription.value), 1),
 							createBaseVNode("button", {
 								type: "button",
 								class: "secondary-button",
 								disabled: page.value >= totalPages.value || customersLoading.value,
 								onClick: _cache[20] || (_cache[20] = ($event) => page.value += 1)
-							}, " Next ", 8, _hoisted_51)
+							}, " Next ", 8, _hoisted_50)
 						]),
-						createBaseVNode("p", _hoisted_52, toDisplayString(selectedId.value ? `Selected: ${selectedId.value}` : "Select a customer"), 1)
+						createBaseVNode("p", _hoisted_51, toDisplayString(selectedId.value ? `Selected: ${selectedId.value}` : "Select a customer"), 1)
 					]),
-					createBaseVNode("article", _hoisted_53, [createBaseVNode("div", _hoisted_54, [_cache[55] || (_cache[55] = createBaseVNode("div", null, [createBaseVNode("h3", { id: "customer-details-heading" }, "Customer details")], -1)), selectedId.value ? (openBlock(), createElementBlock("code", _hoisted_55, toDisplayString(selectedId.value), 1)) : createCommentVNode("", true)]), !selectedId.value ? (openBlock(), createElementBlock("p", _hoisted_56, " Select a customer to bind its complete record and sales metrics. ")) : customerDetailLoading.value ? (openBlock(), createElementBlock("p", _hoisted_57, " Loading customer details… ")) : customerDetailError.value ? (openBlock(), createElementBlock("div", _hoisted_58, [createBaseVNode("p", null, toDisplayString(customerDetailError.value), 1), createBaseVNode("button", {
+					createBaseVNode("article", _hoisted_52, [createBaseVNode("div", _hoisted_53, [_cache[55] || (_cache[55] = createBaseVNode("div", null, [createBaseVNode("h3", { id: "customer-details-heading" }, "Customer details")], -1)), selectedId.value ? (openBlock(), createElementBlock("code", _hoisted_54, toDisplayString(selectedId.value), 1)) : createCommentVNode("", true)]), !selectedId.value ? (openBlock(), createElementBlock("p", _hoisted_55, " Select a customer to bind its complete record and sales metrics. ")) : customerDetailLoading.value ? (openBlock(), createElementBlock("p", _hoisted_56, " Loading customer details… ")) : customerDetailError.value ? (openBlock(), createElementBlock("div", _hoisted_57, [createBaseVNode("p", null, toDisplayString(customerDetailError.value), 1), createBaseVNode("button", {
 						type: "button",
 						class: "secondary-button",
 						onClick: loadCustomerDetail
-					}, " Try again ")])) : customerDetail.value ? (openBlock(), createElementBlock("div", _hoisted_59, [createBaseVNode("dl", _hoisted_60, [
+					}, " Try again ")])) : customerDetail.value ? (openBlock(), createElementBlock("div", _hoisted_58, [createBaseVNode("dl", _hoisted_59, [
 						createBaseVNode("div", null, [_cache[56] || (_cache[56] = createBaseVNode("dt", null, "Orders", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.orderCount), 1)]),
 						createBaseVNode("div", null, [_cache[57] || (_cache[57] = createBaseVNode("dt", null, "Total sales", -1)), createBaseVNode("dd", null, toDisplayString(formatCurrency(customerDetail.value.totalSales)), 1)]),
 						createBaseVNode("div", null, [_cache[58] || (_cache[58] = createBaseVNode("dt", null, "Last order", -1)), createBaseVNode("dd", null, toDisplayString(formatDate(customerDetail.value.lastOrderDate)), 1)])
@@ -5677,21 +5696,21 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 								"onUpdate:modelValue": ($event) => customerDraft.value[key] = $event,
 								type: "text",
 								required: key === "companyName"
-							}, null, 8, _hoisted_61), [[vModelText, customerDraft.value[key]]])]);
+							}, null, 8, _hoisted_60), [[vModelText, customerDraft.value[key]]])]);
 						}), 64)),
-						!draftCompanyValid.value ? (openBlock(), createElementBlock("p", _hoisted_62, " Company name is required. ")) : createCommentVNode("", true),
-						createBaseVNode("p", _hoisted_63, toDisplayString(customerDraftDirty.value ? "Unsaved fields" : "No unsaved fields"), 1),
-						createBaseVNode("div", _hoisted_64, [createBaseVNode("button", {
+						!draftCompanyValid.value ? (openBlock(), createElementBlock("p", _hoisted_61, " Company name is required. ")) : createCommentVNode("", true),
+						createBaseVNode("p", _hoisted_62, toDisplayString(customerDraftDirty.value ? "Unsaved fields" : "No unsaved fields"), 1),
+						createBaseVNode("div", _hoisted_63, [createBaseVNode("button", {
 							class: "primary-button",
 							type: "submit",
 							disabled: !customerDraftDirty.value || !draftCompanyValid.value || sandboxSaving.value
-						}, toDisplayString(sandboxSaving.value ? "Saving…" : "Save changes"), 9, _hoisted_65), createBaseVNode("button", {
+						}, toDisplayString(sandboxSaving.value ? "Saving…" : "Save changes"), 9, _hoisted_64), createBaseVNode("button", {
 							class: "secondary-button",
 							type: "button",
 							disabled: !customerDraftDirty.value || sandboxSaving.value,
 							onClick: discardCustomerChanges
-						}, " Discard ", 8, _hoisted_66)])
-					], 32)) : (openBlock(), createElementBlock("dl", _hoisted_67, [
+						}, " Discard ", 8, _hoisted_65)])
+					], 32)) : (openBlock(), createElementBlock("dl", _hoisted_66, [
 						createBaseVNode("div", null, [_cache[59] || (_cache[59] = createBaseVNode("dt", null, "Company", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.companyName), 1)]),
 						createBaseVNode("div", null, [_cache[60] || (_cache[60] = createBaseVNode("dt", null, "Contact", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.contactName || "—"), 1)]),
 						createBaseVNode("div", null, [_cache[61] || (_cache[61] = createBaseVNode("dt", null, "Title", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.contactTitle || "—"), 1)]),
@@ -5703,25 +5722,25 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 						createBaseVNode("div", null, [_cache[67] || (_cache[67] = createBaseVNode("dt", null, "Phone", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.phone || "—"), 1)]),
 						createBaseVNode("div", null, [_cache[68] || (_cache[68] = createBaseVNode("dt", null, "Fax", -1)), createBaseVNode("dd", null, toDisplayString(customerDetail.value.fax || "—"), 1)])
 					]))])) : createCommentVNode("", true)]),
-					createBaseVNode("article", _hoisted_68, [createBaseVNode("div", _hoisted_69, [_cache[69] || (_cache[69] = createBaseVNode("div", null, [createBaseVNode("h3", { id: "orders-heading" }, "Orders and line items")], -1)), orders.value.length ? (openBlock(), createElementBlock("span", _hoisted_70, toDisplayString(orders.value.length) + " orders", 1)) : createCommentVNode("", true)]), !selectedId.value ? (openBlock(), createElementBlock("p", _hoisted_71, " Select a customer to load their orders. ")) : ordersLoading.value ? (openBlock(), createElementBlock("p", _hoisted_72, " Loading customer orders… ")) : ordersError.value ? (openBlock(), createElementBlock("div", _hoisted_73, [createBaseVNode("p", null, toDisplayString(ordersError.value), 1), createBaseVNode("button", {
+					createBaseVNode("article", _hoisted_67, [createBaseVNode("div", _hoisted_68, [_cache[69] || (_cache[69] = createBaseVNode("div", null, [createBaseVNode("h3", { id: "orders-heading" }, "Orders and line items")], -1)), orders.value.length ? (openBlock(), createElementBlock("span", _hoisted_69, toDisplayString(orders.value.length) + " orders", 1)) : createCommentVNode("", true)]), !selectedId.value ? (openBlock(), createElementBlock("p", _hoisted_70, " Select a customer to load their orders. ")) : ordersLoading.value ? (openBlock(), createElementBlock("p", _hoisted_71, " Loading customer orders… ")) : ordersError.value ? (openBlock(), createElementBlock("div", _hoisted_72, [createBaseVNode("p", null, toDisplayString(ordersError.value), 1), createBaseVNode("button", {
 						type: "button",
 						class: "secondary-button",
 						onClick: loadOrders
-					}, " Try again ")])) : orders.value.length === 0 ? (openBlock(), createElementBlock("p", _hoisted_74, " This customer has no orders. ")) : (openBlock(), createElementBlock("div", _hoisted_75, [createBaseVNode("div", _hoisted_76, [(openBlock(true), createElementBlock(Fragment, null, renderList(orders.value, (order) => {
+					}, " Try again ")])) : orders.value.length === 0 ? (openBlock(), createElementBlock("p", _hoisted_73, " This customer has no orders. ")) : (openBlock(), createElementBlock("div", _hoisted_74, [createBaseVNode("div", _hoisted_75, [(openBlock(true), createElementBlock(Fragment, null, renderList(orders.value, (order) => {
 						return openBlock(), createElementBlock("button", {
 							key: order.orderId,
 							type: "button",
 							class: "order-card",
 							"aria-pressed": selectedOrderId.value === order.orderId,
 							onClick: ($event) => selectedOrderId.value = order.orderId
-						}, [createBaseVNode("span", null, [createBaseVNode("strong", null, "Order " + toDisplayString(order.orderId), 1), createBaseVNode("small", null, toDisplayString(formatDate(order.orderDate)), 1)]), createBaseVNode("span", null, [createBaseVNode("strong", null, toDisplayString(formatCurrency(order.total)), 1), createBaseVNode("small", null, toDisplayString(order.status), 1)])], 8, _hoisted_77);
-					}), 128))]), createBaseVNode("div", _hoisted_78, [orderDetailLoading.value ? (openBlock(), createElementBlock("p", _hoisted_79, " Loading order details… ")) : orderDetailError.value ? (openBlock(), createElementBlock("div", _hoisted_80, [createBaseVNode("p", null, toDisplayString(orderDetailError.value), 1), createBaseVNode("button", {
+						}, [createBaseVNode("span", null, [createBaseVNode("strong", null, "Order " + toDisplayString(order.orderId), 1), createBaseVNode("small", null, toDisplayString(formatDate(order.orderDate)), 1)]), createBaseVNode("span", null, [createBaseVNode("strong", null, toDisplayString(formatCurrency(order.total)), 1), createBaseVNode("small", null, toDisplayString(order.status), 1)])], 8, _hoisted_76);
+					}), 128))]), createBaseVNode("div", _hoisted_77, [orderDetailLoading.value ? (openBlock(), createElementBlock("p", _hoisted_78, " Loading order details… ")) : orderDetailError.value ? (openBlock(), createElementBlock("div", _hoisted_79, [createBaseVNode("p", null, toDisplayString(orderDetailError.value), 1), createBaseVNode("button", {
 						type: "button",
 						class: "secondary-button",
 						onClick: loadOrderDetail
-					}, " Try again ")])) : orderDetail.value ? (openBlock(), createElementBlock("div", _hoisted_81, [
-						createBaseVNode("div", _hoisted_82, [createBaseVNode("div", null, [
-							createBaseVNode("p", _hoisted_83, "Order " + toDisplayString(orderDetail.value.orderId), 1),
+					}, " Try again ")])) : orderDetail.value ? (openBlock(), createElementBlock("div", _hoisted_80, [
+						createBaseVNode("div", _hoisted_81, [createBaseVNode("div", null, [
+							createBaseVNode("p", _hoisted_82, "Order " + toDisplayString(orderDetail.value.orderId), 1),
 							createBaseVNode("h4", null, toDisplayString(orderDetail.value.status), 1),
 							createBaseVNode("p", null, toDisplayString(formatDate(orderDetail.value.orderDate)), 1)
 						]), createBaseVNode("dl", null, [
@@ -5729,8 +5748,8 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 							createBaseVNode("div", null, [_cache[71] || (_cache[71] = createBaseVNode("dt", null, "Shipper", -1)), createBaseVNode("dd", null, toDisplayString(orderDetail.value.shipperName || "Unassigned"), 1)]),
 							createBaseVNode("div", null, [_cache[72] || (_cache[72] = createBaseVNode("dt", null, "Destination", -1)), createBaseVNode("dd", null, toDisplayString(orderDetail.value.shippingAddress.city || "—") + ", " + toDisplayString(orderDetail.value.shippingAddress.country || "—"), 1)])
 						])]),
-						createBaseVNode("div", _hoisted_84, [createBaseVNode("table", null, [
-							createBaseVNode("caption", _hoisted_85, " Products in order " + toDisplayString(orderDetail.value.orderId), 1),
+						createBaseVNode("div", _hoisted_83, [createBaseVNode("table", null, [
+							createBaseVNode("caption", _hoisted_84, " Products in order " + toDisplayString(orderDetail.value.orderId), 1),
 							_cache[73] || (_cache[73] = createBaseVNode("thead", null, [createBaseVNode("tr", null, [
 								createBaseVNode("th", { scope: "col" }, "Product"),
 								createBaseVNode("th", { scope: "col" }, "Qty."),
@@ -5746,10 +5765,10 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 								]);
 							}), 128))])
 						])]),
-						createBaseVNode("dl", _hoisted_86, [
+						createBaseVNode("dl", _hoisted_85, [
 							createBaseVNode("div", null, [_cache[74] || (_cache[74] = createBaseVNode("dt", null, "Subtotal", -1)), createBaseVNode("dd", null, toDisplayString(formatCurrency(orderDetail.value.subtotal)), 1)]),
 							createBaseVNode("div", null, [_cache[75] || (_cache[75] = createBaseVNode("dt", null, "Freight", -1)), createBaseVNode("dd", null, toDisplayString(formatCurrency(orderDetail.value.freight)), 1)]),
-							createBaseVNode("div", _hoisted_87, [_cache[76] || (_cache[76] = createBaseVNode("dt", null, "Total", -1)), createBaseVNode("dd", null, toDisplayString(formatCurrency(orderDetail.value.total)), 1)])
+							createBaseVNode("div", _hoisted_86, [_cache[76] || (_cache[76] = createBaseVNode("dt", null, "Total", -1)), createBaseVNode("dd", null, toDisplayString(formatCurrency(orderDetail.value.total)), 1)])
 						])
 					])) : createCommentVNode("", true)])]))])
 				]),
@@ -5758,11 +5777,11 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 					ref: dialog,
 					"aria-labelledby": "dialog-heading",
 					onKeydown: handleDialogKeydown
-				}, [createBaseVNode("div", _hoisted_88, [
+				}, [createBaseVNode("div", _hoisted_87, [
 					_cache[78] || (_cache[78] = createBaseVNode("p", { class: "card-kicker" }, "Vue dialog", -1)),
 					_cache[79] || (_cache[79] = createBaseVNode("h2", { id: "dialog-heading" }, "Keyboard-ready modal", -1)),
 					_cache[80] || (_cache[80] = createBaseVNode("p", null, "Focus stays within this dialog until it is closed.", -1)),
-					createBaseVNode("div", _hoisted_89, [createBaseVNode("button", {
+					createBaseVNode("div", _hoisted_88, [createBaseVNode("button", {
 						ref_key: "dialogCloseButton",
 						ref: dialogCloseButton,
 						class: "primary-button",

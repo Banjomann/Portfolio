@@ -348,17 +348,14 @@
               @for (customer of customers(); track customer.customerId) {
                 <tr
                   [class.selected]="selectedId() === customer.customerId"
+                  [attr.aria-selected]="selectedId() === customer.customerId"
+                  tabindex="0"
                   (click)="selectedId.set(customer.customerId)"
+                  (keydown.enter)="selectedId.set(customer.customerId)"
+                  (keydown.space)="$event.preventDefault(); selectedId.set(customer.customerId)"
                 >
                   <td data-label="Company">
-                    <button
-                      type="button"
-                      class="row-select"
-                      [attr.aria-pressed]="selectedId() === customer.customerId"
-                      (click)="$event.stopPropagation(); selectedId.set(customer.customerId)"
-                    >
-                      {{ customer.companyName }}
-                    </button>
+                    {{ customer.companyName }}
                   </td>
                   <td data-label="Contact">{{ customer.contactName || '—' }}</td>
                   <td data-label="City">{{ customer.city || '—' }}</td>

@@ -34146,36 +34146,38 @@ function App_Conditional_157_For_1_Template(rf, ctx) {
       const customer_r14 = \u0275\u0275restoreView(_r13).$implicit;
       const ctx_r2 = \u0275\u0275nextContext(2);
       return \u0275\u0275resetView(ctx_r2.selectedId.set(customer_r14.customerId));
-    });
-    \u0275\u0275elementStart(1, "td", 87)(2, "button", 88);
-    \u0275\u0275listener("click", function App_Conditional_157_For_1_Template_button_click_2_listener($event) {
+    })("keydown.enter", function App_Conditional_157_For_1_Template_tr_keydown_enter_0_listener() {
       const customer_r14 = \u0275\u0275restoreView(_r13).$implicit;
       const ctx_r2 = \u0275\u0275nextContext(2);
-      $event.stopPropagation();
+      return \u0275\u0275resetView(ctx_r2.selectedId.set(customer_r14.customerId));
+    })("keydown.space", function App_Conditional_157_For_1_Template_tr_keydown_space_0_listener($event) {
+      const customer_r14 = \u0275\u0275restoreView(_r13).$implicit;
+      const ctx_r2 = \u0275\u0275nextContext(2);
+      $event.preventDefault();
       return \u0275\u0275resetView(ctx_r2.selectedId.set(customer_r14.customerId));
     });
-    \u0275\u0275text(3);
-    \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(4, "td", 89);
-    \u0275\u0275text(5);
+    \u0275\u0275elementStart(1, "td", 87);
+    \u0275\u0275text(2);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(6, "td", 90);
-    \u0275\u0275text(7);
+    \u0275\u0275elementStart(3, "td", 88);
+    \u0275\u0275text(4);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(8, "td", 91);
-    \u0275\u0275text(9);
+    \u0275\u0275elementStart(5, "td", 89);
+    \u0275\u0275text(6);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(10, "td", 92)(11, "code");
-    \u0275\u0275text(12);
+    \u0275\u0275elementStart(7, "td", 90);
+    \u0275\u0275text(8);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(9, "td", 91)(10, "code");
+    \u0275\u0275text(11);
     \u0275\u0275elementEnd()()();
   }
   if (rf & 2) {
     const customer_r14 = ctx.$implicit;
     const ctx_r2 = \u0275\u0275nextContext(2);
     \u0275\u0275classProp("selected", ctx_r2.selectedId() === customer_r14.customerId);
+    \u0275\u0275attribute("aria-selected", ctx_r2.selectedId() === customer_r14.customerId);
     \u0275\u0275advance(2);
-    \u0275\u0275attribute("aria-pressed", ctx_r2.selectedId() === customer_r14.customerId);
-    \u0275\u0275advance();
     \u0275\u0275textInterpolate1(" ", customer_r14.companyName, " ");
     \u0275\u0275advance(2);
     \u0275\u0275textInterpolate(customer_r14.contactName || "\u2014");
@@ -34189,7 +34191,7 @@ function App_Conditional_157_For_1_Template(rf, ctx) {
 }
 function App_Conditional_157_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275repeaterCreate(0, App_Conditional_157_For_1_Template, 13, 8, "tr", 85, _forTrack1);
+    \u0275\u0275repeaterCreate(0, App_Conditional_157_For_1_Template, 12, 8, "tr", 85, _forTrack1);
   }
   if (rf & 2) {
     const ctx_r2 = \u0275\u0275nextContext();
@@ -34254,7 +34256,7 @@ function App_Conditional_181_For_2_Template(rf, ctx) {
     \u0275\u0275elementStart(0, "label")(1, "span");
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "input", 98);
+    \u0275\u0275elementStart(3, "input", 97);
     \u0275\u0275listener("input", function App_Conditional_181_For_2_Template_input_input_3_listener($event) {
       const field_r17 = \u0275\u0275restoreView(_r16).$implicit;
       const ctx_r2 = \u0275\u0275nextContext(2);
@@ -34273,7 +34275,7 @@ function App_Conditional_181_For_2_Template(rf, ctx) {
 }
 function App_Conditional_181_Conditional_8_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "span", 95);
+    \u0275\u0275elementStart(0, "span", 94);
     \u0275\u0275text(1, "Unsaved fields");
     \u0275\u0275elementEnd();
   }
@@ -34281,7 +34283,7 @@ function App_Conditional_181_Conditional_8_Template(rf, ctx) {
 function App_Conditional_181_Template(rf, ctx) {
   if (rf & 1) {
     const _r15 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "form", 93);
+    \u0275\u0275elementStart(0, "form", 92);
     \u0275\u0275listener("submit", function App_Conditional_181_Template_form_submit_0_listener($event) {
       \u0275\u0275restoreView(_r15);
       const ctx_r2 = \u0275\u0275nextContext();
@@ -34289,18 +34291,18 @@ function App_Conditional_181_Template(rf, ctx) {
       return \u0275\u0275resetView(ctx_r2.saveSandboxCustomer());
     });
     \u0275\u0275repeaterCreate(1, App_Conditional_181_For_2_Template, 4, 3, "label", null, _forTrack0);
-    \u0275\u0275elementStart(3, "div", 94)(4, "span");
+    \u0275\u0275elementStart(3, "div", 93)(4, "span");
     \u0275\u0275text(5);
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(6, "span");
     \u0275\u0275text(7);
     \u0275\u0275elementEnd();
-    \u0275\u0275conditionalCreate(8, App_Conditional_181_Conditional_8_Template, 2, 0, "span", 95);
+    \u0275\u0275conditionalCreate(8, App_Conditional_181_Conditional_8_Template, 2, 0, "span", 94);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(9, "div", 96)(10, "button", 25);
+    \u0275\u0275elementStart(9, "div", 95)(10, "button", 25);
     \u0275\u0275text(11, " Save temporary changes ");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(12, "button", 97);
+    \u0275\u0275elementStart(12, "button", 96);
     \u0275\u0275listener("click", function App_Conditional_181_Template_button_click_12_listener() {
       \u0275\u0275restoreView(_r15);
       const ctx_r2 = \u0275\u0275nextContext();
@@ -34412,7 +34414,7 @@ function App_Conditional_183_Template(rf, ctx) {
     \u0275\u0275elementStart(0, "div", 72)(1, "span");
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "button", 99);
+    \u0275\u0275elementStart(3, "button", 98);
     \u0275\u0275listener("click", function App_Conditional_183_Template_button_click_3_listener() {
       \u0275\u0275restoreView(_r20);
       const ctx_r2 = \u0275\u0275nextContext();
@@ -34499,7 +34501,7 @@ function App_Conditional_193_Conditional_6_For_1_Template(rf, ctx) {
 }
 function App_Conditional_193_Conditional_6_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275repeaterCreate(0, App_Conditional_193_Conditional_6_For_1_Template, 11, 7, "button", 102, _forTrack2);
+    \u0275\u0275repeaterCreate(0, App_Conditional_193_Conditional_6_For_1_Template, 11, 7, "button", 101, _forTrack2);
   }
   if (rf & 2) {
     const ctx_r2 = \u0275\u0275nextContext(2);
@@ -34555,7 +34557,7 @@ function App_Conditional_193_Conditional_12_For_37_Template(rf, ctx) {
 }
 function App_Conditional_193_Conditional_12_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "dl", 103)(1, "div")(2, "dt");
+    \u0275\u0275elementStart(0, "dl", 102)(1, "div")(2, "dt");
     \u0275\u0275text(3, "Employee");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(4, "dd");
@@ -34579,7 +34581,7 @@ function App_Conditional_193_Conditional_12_Template(rf, ctx) {
     \u0275\u0275elementStart(19, "dd");
     \u0275\u0275text(20);
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(21, "div", 104)(22, "table", 105)(23, "caption");
+    \u0275\u0275elementStart(21, "div", 103)(22, "table", 104)(23, "caption");
     \u0275\u0275text(24, " Order line items ");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(25, "thead")(26, "tr")(27, "th", 58);
@@ -34597,7 +34599,7 @@ function App_Conditional_193_Conditional_12_Template(rf, ctx) {
     \u0275\u0275elementStart(35, "tbody");
     \u0275\u0275repeaterCreate(36, App_Conditional_193_Conditional_12_For_37_Template, 9, 4, "tr", null, _forTrack3);
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(38, "dl", 106)(39, "div")(40, "dt");
+    \u0275\u0275elementStart(38, "dl", 105)(39, "div")(40, "dt");
     \u0275\u0275text(41, "Subtotal");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(42, "dd");
@@ -34639,12 +34641,12 @@ function App_Conditional_193_Conditional_12_Template(rf, ctx) {
 }
 function App_Conditional_193_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 75)(1, "div", 100)(2, "h4");
+    \u0275\u0275elementStart(0, "div", 75)(1, "div", 99)(2, "h4");
     \u0275\u0275text(3, "Customer orders");
     \u0275\u0275elementEnd();
     \u0275\u0275conditionalCreate(4, App_Conditional_193_Conditional_4_Template, 2, 0, "div", 68)(5, App_Conditional_193_Conditional_5_Template, 2, 0, "div", 67)(6, App_Conditional_193_Conditional_6_Template, 2, 0);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(7, "div", 101)(8, "h4");
+    \u0275\u0275elementStart(7, "div", 100)(8, "h4");
     \u0275\u0275text(9, "Order detail");
     \u0275\u0275elementEnd();
     \u0275\u0275conditionalCreate(10, App_Conditional_193_Conditional_10_Template, 2, 0, "div", 68)(11, App_Conditional_193_Conditional_11_Template, 2, 1, "div", 69)(12, App_Conditional_193_Conditional_12_Template, 54, 7);
@@ -35148,7 +35150,7 @@ var App = class _App {
         return ctx.warnBeforeUnload($event);
       }, \u0275\u0275resolveWindow);
     }
-  }, decls: 205, vars: 38, consts: [["profileDialog", ""], [1, "showcase"], [1, "showcase-header"], [1, "eyebrow"], ["aria-label", "Built with Angular", 1, "framework-badge"], ["aria-hidden", "true"], ["aria-label", "Angular showcase sections", 1, "showcase-nav"], ["href", "#angular-controls"], ["href", "#angular-northwind"], ["id", "angular-controls", "aria-labelledby", "controls-heading", 1, "controls-section"], [1, "section-heading"], ["id", "controls-heading"], [1, "control-layout"], [1, "control-card", "form-card", 3, "ngSubmit", "formGroup"], [1, "field-grid"], ["formControlName", "name"], ["type", "email", "formControlName", "email", "aria-describedby", "email-help"], ["id", "email-help"], ["type", "number", "min", "1", "max", "20", "formControlName", "seats"], ["type", "date", "formControlName", "startDate"], [1, "field-span"], ["formControlName", "role"], [1, "choice-row"], [1, "choice"], [1, "form-actions"], ["type", "submit", 1, "primary-button", 3, "disabled"], ["type", "button", 1, "secondary-button", 3, "click"], ["type", "button", "disabled", "", 1, "secondary-button"], [1, "control-stack"], [1, "control-card"], [1, "switch-row"], ["type", "checkbox", "role", "switch", 1, "switch", 3, "change", "checked"], [1, "range-field"], ["type", "range", "min", "0", "max", "100", 3, "input", "value"], ["max", "100", 3, "value"], ["role", "tablist", "aria-label", "Profile views", 1, "tabs"], ["type", "button", "role", "tab", 3, "id"], ["id", "profile-summary-panel", "role", "tabpanel", "aria-labelledby", "profile-summary-tab", "tabindex", "0", 1, "tab-panel"], ["id", "profile-settings-panel", "role", "tabpanel", "aria-labelledby", "profile-settings-tab", "tabindex", "0", 1, "tab-panel"], ["role", "status", "aria-live", "polite", 1, "notification"], ["id", "angular-northwind", "aria-labelledby", "data-heading", 1, "data-section"], ["id", "data-heading"], [1, "sandbox-toolbar"], [1, "sandbox-toggle"], ["type", "checkbox", "role", "switch", 3, "change", "checked"], ["type", "button", 1, "secondary-button"], [1, "sandbox-banner"], ["aria-labelledby", "customers-heading", 1, "grid-card"], [1, "grid-heading"], ["id", "customers-heading"], [1, "filters"], ["type", "search", "placeholder", "Company or contact", 3, "input", "value"], [3, "change", "value"], ["value", ""], [3, "value"], ["role", "alert", 1, "status", "error"], [1, "table-wrap"], ["aria-label", "Northwind customers"], ["scope", "col"], ["role", "status", "aria-live", "polite", 1, "status"], [1, "status"], [1, "grid-footer"], [1, "pagination"], ["type", "button", 3, "click", "disabled"], ["aria-labelledby", "detail-heading", 1, "detail-card"], [1, "detail-heading"], ["id", "detail-heading"], [1, "detail-status"], ["role", "status", "aria-live", "polite", 1, "detail-status"], ["role", "alert", 1, "detail-status", "error"], [1, "detail-form"], [1, "customer-detail"], ["role", "status", "aria-live", "polite", 1, "notification", "detail-notice"], ["aria-labelledby", "orders-heading", 1, "orders-card"], ["id", "orders-heading"], [1, "orders-layout"], ["method", "dialog"], [1, "primary-button"], ["type", "checkbox", 3, "change", "checked"], ["type", "radio", "name", "contact-method", 3, "change", "value", "checked"], ["type", "button", "role", "tab", 3, "click", "keydown", "id"], [1, "summary-list"], ["type", "button", "aria-label", "Dismiss notification", 3, "click"], [1, "sandbox-status"], ["type", "button", 3, "click"], [3, "selected"], [3, "click"], ["data-label", "Company"], ["type", "button", 1, "row-select", 3, "click"], ["data-label", "Contact"], ["data-label", "City"], ["data-label", "Country"], ["data-label", "ID"], [1, "detail-form", 3, "submit"], [1, "detail-metrics"], [1, "unsaved-indicator"], [1, "detail-actions"], ["type", "button", 1, "secondary-button", 3, "click", "disabled"], [3, "input", "required", "value"], ["type", "button", "aria-label", "Dismiss sandbox notification", 3, "click"], [1, "order-list"], [1, "order-detail"], ["type", "button", 3, "selected"], [1, "order-summary"], [1, "line-items-wrap"], [1, "line-items"], [1, "order-totals"]], template: function App_Template(rf, ctx) {
+  }, decls: 205, vars: 38, consts: [["profileDialog", ""], [1, "showcase"], [1, "showcase-header"], [1, "eyebrow"], ["aria-label", "Built with Angular", 1, "framework-badge"], ["aria-hidden", "true"], ["aria-label", "Angular showcase sections", 1, "showcase-nav"], ["href", "#angular-controls"], ["href", "#angular-northwind"], ["id", "angular-controls", "aria-labelledby", "controls-heading", 1, "controls-section"], [1, "section-heading"], ["id", "controls-heading"], [1, "control-layout"], [1, "control-card", "form-card", 3, "ngSubmit", "formGroup"], [1, "field-grid"], ["formControlName", "name"], ["type", "email", "formControlName", "email", "aria-describedby", "email-help"], ["id", "email-help"], ["type", "number", "min", "1", "max", "20", "formControlName", "seats"], ["type", "date", "formControlName", "startDate"], [1, "field-span"], ["formControlName", "role"], [1, "choice-row"], [1, "choice"], [1, "form-actions"], ["type", "submit", 1, "primary-button", 3, "disabled"], ["type", "button", 1, "secondary-button", 3, "click"], ["type", "button", "disabled", "", 1, "secondary-button"], [1, "control-stack"], [1, "control-card"], [1, "switch-row"], ["type", "checkbox", "role", "switch", 1, "switch", 3, "change", "checked"], [1, "range-field"], ["type", "range", "min", "0", "max", "100", 3, "input", "value"], ["max", "100", 3, "value"], ["role", "tablist", "aria-label", "Profile views", 1, "tabs"], ["type", "button", "role", "tab", 3, "id"], ["id", "profile-summary-panel", "role", "tabpanel", "aria-labelledby", "profile-summary-tab", "tabindex", "0", 1, "tab-panel"], ["id", "profile-settings-panel", "role", "tabpanel", "aria-labelledby", "profile-settings-tab", "tabindex", "0", 1, "tab-panel"], ["role", "status", "aria-live", "polite", 1, "notification"], ["id", "angular-northwind", "aria-labelledby", "data-heading", 1, "data-section"], ["id", "data-heading"], [1, "sandbox-toolbar"], [1, "sandbox-toggle"], ["type", "checkbox", "role", "switch", 3, "change", "checked"], ["type", "button", 1, "secondary-button"], [1, "sandbox-banner"], ["aria-labelledby", "customers-heading", 1, "grid-card"], [1, "grid-heading"], ["id", "customers-heading"], [1, "filters"], ["type", "search", "placeholder", "Company or contact", 3, "input", "value"], [3, "change", "value"], ["value", ""], [3, "value"], ["role", "alert", 1, "status", "error"], [1, "table-wrap"], ["aria-label", "Northwind customers"], ["scope", "col"], ["role", "status", "aria-live", "polite", 1, "status"], [1, "status"], [1, "grid-footer"], [1, "pagination"], ["type", "button", 3, "click", "disabled"], ["aria-labelledby", "detail-heading", 1, "detail-card"], [1, "detail-heading"], ["id", "detail-heading"], [1, "detail-status"], ["role", "status", "aria-live", "polite", 1, "detail-status"], ["role", "alert", 1, "detail-status", "error"], [1, "detail-form"], [1, "customer-detail"], ["role", "status", "aria-live", "polite", 1, "notification", "detail-notice"], ["aria-labelledby", "orders-heading", 1, "orders-card"], ["id", "orders-heading"], [1, "orders-layout"], ["method", "dialog"], [1, "primary-button"], ["type", "checkbox", 3, "change", "checked"], ["type", "radio", "name", "contact-method", 3, "change", "value", "checked"], ["type", "button", "role", "tab", 3, "click", "keydown", "id"], [1, "summary-list"], ["type", "button", "aria-label", "Dismiss notification", 3, "click"], [1, "sandbox-status"], ["type", "button", 3, "click"], ["tabindex", "0", 3, "selected"], ["tabindex", "0", 3, "click", "keydown.enter", "keydown.space"], ["data-label", "Company"], ["data-label", "Contact"], ["data-label", "City"], ["data-label", "Country"], ["data-label", "ID"], [1, "detail-form", 3, "submit"], [1, "detail-metrics"], [1, "unsaved-indicator"], [1, "detail-actions"], ["type", "button", 1, "secondary-button", 3, "click", "disabled"], [3, "input", "required", "value"], ["type", "button", "aria-label", "Dismiss sandbox notification", 3, "click"], [1, "order-list"], [1, "order-detail"], ["type", "button", 3, "selected"], [1, "order-summary"], [1, "line-items-wrap"], [1, "line-items"], [1, "order-totals"]], template: function App_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "div", 1)(1, "header", 2)(2, "div")(3, "span", 3);
       \u0275\u0275text(4, "Frontend Lab");
@@ -35469,645 +35471,642 @@ var App = class _App {
       \u0275\u0275advance();
       \u0275\u0275conditional(!ctx.selectedId() ? 192 : 193);
     }
-  }, dependencies: [ReactiveFormsModule, \u0275NgNoValidate, NgSelectOption, \u0275NgSelectMultipleOption, DefaultValueAccessor, NumberValueAccessor, SelectControlValueAccessor, NgControlStatus, NgControlStatusGroup, MinValidator, MaxValidator, FormGroupDirective, FormControlName], styles: ["/* src/app/app.css */\n:host {\n  --text: #6b6375;\n  --text-h: #08060d;\n  --bg: #fff;\n  --border: #e5e4e7;\n  --code-bg: #f4f3ec;\n  --accent: #aa3bff;\n  --accent-bg: rgb(170 59 255 / 10%);\n  --accent-border: rgb(170 59 255 / 50%);\n  --shadow: rgb(0 0 0 / 10%) 0 10px 15px -3px, rgb(0 0 0 / 5%) 0 4px 6px -2px;\n  background: var(--bg);\n  color: var(--text);\n  color-scheme: light dark;\n  display: block;\n  font-family: inherit;\n}\n@media (prefers-color-scheme: dark) {\n  :host {\n    --text: #9ca3af;\n    --text-h: #f3f4f6;\n    --bg: #16171d;\n    --border: #2e303a;\n    --code-bg: #1f2028;\n    --accent: #c084fc;\n    --accent-bg: rgb(192 132 252 / 15%);\n    --accent-border: rgb(192 132 252 / 50%);\n    --shadow: rgb(0 0 0 / 40%) 0 10px 15px -3px, rgb(0 0 0 / 25%) 0 4px 6px -2px;\n  }\n}\n* {\n  box-sizing: border-box;\n}\n.showcase {\n  padding: 48px;\n  text-align: left;\n}\n.showcase-header {\n  align-items: flex-start;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 32px;\n}\n.showcase-header h1 {\n  margin: 6px 0 10px;\n}\n.showcase-header p {\n  max-width: 680px;\n}\n.showcase-nav {\n  display: flex;\n  gap: 8px;\n  margin: -12px 0 32px;\n}\n.showcase-nav a {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 999px;\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 700;\n  padding: 7px 11px;\n  text-decoration: none;\n}\n.showcase-nav a:hover {\n  border-color: var(--accent-border);\n  color: var(--accent);\n}\n.controls-section,\n.data-section {\n  scroll-margin-top: 90px;\n}\n.eyebrow {\n  color: var(--accent);\n  font-size: 13px;\n  font-weight: 700;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n}\n.framework-badge {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 999px;\n  color: var(--text-h);\n  display: flex;\n  font-weight: 650;\n  gap: 10px;\n  padding: 10px 14px;\n}\n.framework-badge > span {\n  align-items: center;\n  background: var(--accent);\n  border-radius: 50%;\n  color: white;\n  display: inline-flex;\n  height: 24px;\n  justify-content: center;\n  width: 24px;\n}\n.controls-section {\n  margin-bottom: 32px;\n}\n.data-section {\n  margin-top: 40px;\n}\n.section-heading {\n  align-items: end;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 18px;\n}\n.section-heading h2 {\n  margin: 4px 0 0;\n}\n.section-heading p {\n  font-size: 15px;\n  max-width: 560px;\n}\n.sandbox-toolbar {\n  align-items: end;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n  justify-content: flex-end;\n  max-width: 580px;\n}\n.sandbox-toolbar p {\n  flex-basis: 100%;\n}\n.sandbox-toggle {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: flex;\n  gap: 8px;\n  min-height: 40px;\n  padding: 7px 11px;\n}\n.sandbox-toggle input {\n  accent-color: var(--accent);\n}\n.sandbox-banner {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 8px;\n  justify-content: space-between;\n  margin-bottom: 14px;\n  padding: 12px 16px;\n}\n.sandbox-banner > div:first-child,\n.sandbox-status {\n  display: grid;\n}\n.sandbox-status {\n  flex: 0 0 auto;\n  justify-items: end;\n}\n.sandbox-status > span {\n  background: var(--code-bg);\n  border-radius: 999px;\n  font-size: 12px;\n  font-weight: 700;\n  padding: 3px 8px;\n}\n.sandbox-status > span.changed {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.sandbox-status small {\n  font-size: 11px;\n  margin-top: 3px;\n}\n.control-layout {\n  display: grid;\n  gap: 18px;\n  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);\n}\n.control-layout > *,\n.field-grid > * {\n  min-width: 0;\n}\n.control-stack {\n  display: grid;\n  gap: 18px;\n}\n.control-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  padding: 22px;\n}\n.control-card h3 {\n  color: var(--text-h);\n  font-size: 18px;\n  margin: 0 0 18px;\n}\n.field-grid {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.field-span {\n  grid-column: 1 / -1;\n}\nlabel {\n  color: var(--text-h);\n  display: grid;\n  font-size: 13px;\n  font-weight: 650;\n  gap: 5px;\n}\ninput,\nselect,\nbutton {\n  font: inherit;\n}\ninput:not([type=checkbox]):not([type=radio]):not([type=range]),\nselect {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  min-height: 42px;\n  padding: 8px 11px;\n}\n.form-card input:not([type=checkbox]):not([type=radio]),\n.form-card select {\n  width: 100%;\n}\n.field-help,\n.field-error {\n  font-size: 12px;\n  font-weight: 450;\n}\n.field-help {\n  color: var(--text);\n}\n.field-error {\n  color: #b42318;\n}\ninput[aria-invalid=true] {\n  border-color: #d92d20;\n}\nfieldset {\n  border: 0;\n  margin: 20px 0 0;\n  padding: 0;\n}\nlegend {\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 650;\n  margin-bottom: 8px;\n}\n.choice-row,\n.form-actions {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n.choice {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: flex;\n  gap: 7px;\n  padding: 7px 10px;\n}\n.choice input,\n.range-field input {\n  accent-color: var(--accent);\n}\n.form-actions {\n  margin-top: 22px;\n}\n.primary-button,\n.secondary-button {\n  border-radius: 7px;\n  cursor: pointer;\n  font-weight: 700;\n  min-height: 40px;\n  padding: 8px 13px;\n}\n.primary-button {\n  background: var(--accent);\n  border: 1px solid var(--accent);\n  color: white;\n}\n.secondary-button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  color: var(--text-h);\n}\n.primary-button:disabled,\n.secondary-button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n.switch-row {\n  align-items: center;\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n}\n.switch-row > span {\n  display: grid;\n}\n.switch-row small {\n  color: var(--text);\n  font-weight: 450;\n}\n.switch {\n  accent-color: var(--accent);\n  height: 24px;\n  width: 44px;\n}\n.range-field {\n  margin-top: 22px;\n}\n.range-field > span {\n  display: flex;\n  justify-content: space-between;\n}\n.range-field input,\nprogress {\n  width: 100%;\n}\nprogress {\n  accent-color: var(--accent);\n  height: 8px;\n  margin-top: 12px;\n}\n.tabs {\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 4px;\n  padding-bottom: 12px;\n}\n.tabs button {\n  background: transparent;\n  border: 0;\n  border-radius: 6px;\n  color: var(--text);\n  cursor: pointer;\n  font-weight: 700;\n  padding: 7px 10px;\n}\n.tabs button[aria-selected=true] {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.tab-panel {\n  min-height: 155px;\n  padding-top: 18px;\n}\n.summary-list {\n  display: grid;\n  gap: 10px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n}\n.summary-list div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.summary-list dt {\n  font-size: 12px;\n}\n.summary-list dd {\n  color: var(--text-h);\n  font-weight: 700;\n  margin: 2px 0 0;\n}\ndetails {\n  border-top: 1px solid var(--border);\n  font-size: 14px;\n  padding-top: 12px;\n}\nsummary {\n  color: var(--text-h);\n  cursor: pointer;\n  font-weight: 700;\n}\ndetails p {\n  padding-top: 10px;\n}\n.notification {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n  margin-top: 14px;\n  padding: 12px 16px;\n}\n.notification button {\n  background: transparent;\n  border: 0;\n  color: var(--text-h);\n  cursor: pointer;\n  font-size: 22px;\n}\ndialog {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n  color: var(--text);\n  max-width: 430px;\n  padding: 26px;\n}\ndialog::backdrop {\n  -webkit-backdrop-filter: blur(3px);\n  backdrop-filter: blur(3px);\n  background: rgb(8 6 13 / 68%);\n}\ndialog h2 {\n  margin: 8px 0 10px;\n}\ndialog .primary-button {\n  margin-top: 22px;\n}\ninput:focus,\nselect:focus,\nbutton:focus-visible {\n  outline: 2px solid var(--accent);\n  outline-offset: 2px;\n}\n.grid-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  box-shadow: var(--shadow);\n  overflow: hidden;\n}\n.grid-heading,\n.grid-footer {\n  align-items: end;\n  display: flex;\n  gap: 24px;\n  justify-content: space-between;\n  padding: 22px 24px;\n}\n.grid-heading {\n  border-bottom: 1px solid var(--border);\n}\n.grid-heading h3 {\n  color: var(--text-h);\n  font-size: 22px;\n  margin: 0 0 4px;\n}\n.grid-heading p,\n.grid-footer {\n  font-size: 14px;\n}\n.filters {\n  display: flex;\n  gap: 12px;\n}\n.table-wrap {\n  min-height: 486px;\n  overflow-x: auto;\n  position: relative;\n}\ntable {\n  border-collapse: collapse;\n  width: 100%;\n}\nth,\ntd {\n  border-bottom: 1px solid var(--border);\n  padding: 13px 16px;\n  text-align: left;\n  white-space: nowrap;\n}\nth {\n  background: var(--code-bg);\n  color: var(--text-h);\n  font-size: 12px;\n}\nth button {\n  align-items: center;\n  background: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-flex;\n  font-weight: 700;\n  gap: 7px;\n  padding: 0;\n}\nth button.active-sort {\n  color: var(--accent);\n}\ntbody tr {\n  cursor: pointer;\n}\ntbody tr:hover,\ntbody tr.selected {\n  background: var(--accent-bg);\n}\n.row-select {\n  background: transparent;\n  border: 0;\n  color: var(--text-h);\n  cursor: pointer;\n  font-weight: 700;\n  padding: 0;\n  text-align: left;\n}\ncode {\n  background: var(--code-bg);\n  border-radius: 4px;\n  padding: 2px 5px;\n}\n.status {\n  inset: 50% auto auto 50%;\n  position: absolute;\n  transform: translate(-50%, -50%);\n}\n.status.error {\n  background: #fef3f2;\n  border: 1px solid #fecdca;\n  border-radius: 8px;\n  color: #b42318;\n  margin: 14px 24px;\n  padding: 12px 16px;\n  position: static;\n  transform: none;\n}\n.pagination {\n  align-items: center;\n  display: flex;\n  gap: 10px;\n}\n.pagination button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  cursor: pointer;\n  min-height: 36px;\n  padding: 6px 10px;\n}\n.pagination button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n.detail-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  margin-top: 18px;\n  overflow: hidden;\n}\n.orders-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  margin-top: 18px;\n  overflow: hidden;\n}\n.orders-layout {\n  display: grid;\n  grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);\n}\n.order-list,\n.order-detail {\n  min-width: 0;\n  padding: 20px;\n}\n.order-list {\n  border-right: 1px solid var(--border);\n}\n.order-list h4,\n.order-detail h4 {\n  color: var(--text-h);\n  font-size: 15px;\n  margin: 0 0 14px;\n}\n.order-list > button {\n  align-items: center;\n  background: transparent;\n  border: 1px solid transparent;\n  border-radius: 8px;\n  color: var(--text);\n  cursor: pointer;\n  display: flex;\n  gap: 12px;\n  justify-content: space-between;\n  padding: 11px 12px;\n  text-align: left;\n  width: 100%;\n}\n.order-list > button:hover,\n.order-list > button.selected {\n  background: var(--accent-bg);\n  border-color: var(--accent-border);\n}\n.order-list > button > span {\n  display: grid;\n  gap: 2px;\n}\n.order-list > button > span:last-child {\n  justify-items: end;\n}\n.order-list strong {\n  color: var(--text-h);\n}\n.order-list small {\n  font-size: 12px;\n}\n.order-summary,\n.order-totals {\n  display: grid;\n  gap: 10px;\n  margin: 0;\n}\n.order-summary {\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.order-summary div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.order-summary dt,\n.order-totals dt {\n  font-size: 12px;\n}\n.order-summary dd,\n.order-totals dd {\n  color: var(--text-h);\n  font-weight: 650;\n  margin: 2px 0 0;\n}\n.line-items-wrap {\n  border: 1px solid var(--border);\n  border-radius: 8px;\n  margin-top: 16px;\n  overflow-x: auto;\n}\n.line-items {\n  font-size: 13px;\n}\n.line-items caption {\n  clip: rect(0 0 0 0);\n  height: 1px;\n  overflow: hidden;\n  position: absolute;\n  width: 1px;\n}\n.line-items th,\n.line-items td {\n  padding: 9px 10px;\n}\n.line-items th:not(:first-child),\n.line-items td:not(:first-child) {\n  text-align: right;\n}\n.order-totals {\n  justify-content: end;\n  margin-top: 14px;\n  text-align: right;\n}\n.order-totals div {\n  display: grid;\n  gap: 12px;\n  grid-template-columns: 80px 110px;\n}\n.order-totals div:last-child {\n  border-top: 1px solid var(--border);\n  padding-top: 7px;\n}\n.detail-heading {\n  align-items: center;\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n  padding: 20px 24px;\n}\n.detail-heading h3 {\n  color: var(--text-h);\n  font-size: 22px;\n  margin: 3px 0 0;\n}\n.detail-status {\n  padding: 24px;\n}\n.detail-status.error {\n  color: #b42318;\n}\n.customer-detail {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n  padding: 24px;\n}\n.detail-form {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  padding: 24px;\n}\n.detail-form > * {\n  min-width: 0;\n}\n.detail-form input {\n  width: 100%;\n}\n.detail-actions,\n.detail-metrics {\n  grid-column: 1 / -1;\n}\n.detail-actions,\n.detail-metrics {\n  align-items: center;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n.detail-metrics {\n  color: var(--text-h);\n  font-weight: 700;\n  gap: 18px;\n}\n.unsaved-indicator {\n  background: #fffaeb;\n  border-radius: 999px;\n  color: #dc6803;\n  font-size: 12px;\n  padding: 3px 8px;\n}\n.detail-notice {\n  margin: 0 24px 24px;\n}\n.customer-detail > * {\n  min-width: 0;\n}\n.customer-detail div {\n  background: var(--code-bg);\n  border-radius: 8px;\n  padding: 12px;\n}\n.customer-detail dt {\n  font-size: 12px;\n}\n.customer-detail dd {\n  color: var(--text-h);\n  font-weight: 650;\n  margin: 3px 0 0;\n}\n@media (prefers-reduced-motion: reduce) {\n  *,\n  *::before,\n  *::after {\n    animation-duration: 0.01ms !important;\n    animation-iteration-count: 1 !important;\n    scroll-behavior: auto !important;\n    transition-duration: 0.01ms !important;\n  }\n}\n@media (forced-colors: active) {\n  .framework-badge,\n  .control-card,\n  .grid-card,\n  .detail-card,\n  .orders-card {\n    border: 1px solid CanvasText;\n  }\n}\n@media (max-width: 1100px) {\n  .control-layout {\n    grid-template-columns: 1fr;\n  }\n  .data-section .section-heading {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .sandbox-toolbar {\n    justify-content: flex-start;\n    max-width: none;\n  }\n  .orders-layout {\n    grid-template-columns: 1fr;\n  }\n  .order-list {\n    border-bottom: 1px solid var(--border);\n    border-right: 0;\n  }\n}\n@media (max-width: 760px) {\n  .showcase {\n    padding: 24px 16px;\n  }\n  .showcase-header,\n  .section-heading,\n  .grid-heading,\n  .grid-footer {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .showcase-nav {\n    overflow-x: auto;\n  }\n  .control-layout,\n  .field-grid,\n  .summary-list,\n  .customer-detail,\n  .detail-form {\n    grid-template-columns: 1fr;\n  }\n  .field-span {\n    grid-column: auto;\n  }\n  .filters {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .detail-actions,\n  .detail-metrics {\n    grid-column: auto;\n  }\n  .sandbox-banner {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .sandbox-status {\n    justify-items: start;\n  }\n}\n"], encapsulation: 3, changeDetection: 0 });
+  }, dependencies: [ReactiveFormsModule, \u0275NgNoValidate, NgSelectOption, \u0275NgSelectMultipleOption, DefaultValueAccessor, NumberValueAccessor, SelectControlValueAccessor, NgControlStatus, NgControlStatusGroup, MinValidator, MaxValidator, FormGroupDirective, FormControlName], styles: ["/* src/app/app.css */\n:host {\n  --text: #6b6375;\n  --text-h: #08060d;\n  --bg: #fff;\n  --border: #e5e4e7;\n  --code-bg: #f4f3ec;\n  --accent: #aa3bff;\n  --accent-bg: rgb(170 59 255 / 10%);\n  --accent-border: rgb(170 59 255 / 50%);\n  --shadow: rgb(0 0 0 / 10%) 0 10px 15px -3px, rgb(0 0 0 / 5%) 0 4px 6px -2px;\n  background: var(--bg);\n  color: var(--text);\n  color-scheme: light dark;\n  display: block;\n  font-family: inherit;\n}\n@media (prefers-color-scheme: dark) {\n  :host {\n    --text: #9ca3af;\n    --text-h: #f3f4f6;\n    --bg: #16171d;\n    --border: #2e303a;\n    --code-bg: #1f2028;\n    --accent: #c084fc;\n    --accent-bg: rgb(192 132 252 / 15%);\n    --accent-border: rgb(192 132 252 / 50%);\n    --shadow: rgb(0 0 0 / 40%) 0 10px 15px -3px, rgb(0 0 0 / 25%) 0 4px 6px -2px;\n  }\n}\n* {\n  box-sizing: border-box;\n}\n.showcase {\n  padding: 48px;\n  text-align: left;\n}\n.showcase-header {\n  align-items: flex-start;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 32px;\n}\n.showcase-header h1 {\n  margin: 6px 0 10px;\n}\n.showcase-header p {\n  max-width: 680px;\n}\n.showcase-nav {\n  display: flex;\n  gap: 8px;\n  margin: -12px 0 32px;\n}\n.showcase-nav a {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 999px;\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 700;\n  padding: 7px 11px;\n  text-decoration: none;\n}\n.showcase-nav a:hover {\n  border-color: var(--accent-border);\n  color: var(--accent);\n}\n.controls-section,\n.data-section {\n  scroll-margin-top: 90px;\n}\n.eyebrow {\n  color: var(--accent);\n  font-size: 13px;\n  font-weight: 700;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n}\n.framework-badge {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 999px;\n  color: var(--text-h);\n  display: flex;\n  font-weight: 650;\n  gap: 10px;\n  padding: 10px 14px;\n}\n.framework-badge > span {\n  align-items: center;\n  background: var(--accent);\n  border-radius: 50%;\n  color: white;\n  display: inline-flex;\n  height: 24px;\n  justify-content: center;\n  width: 24px;\n}\n.controls-section {\n  margin-bottom: 32px;\n}\n.data-section {\n  margin-top: 40px;\n}\n.section-heading {\n  align-items: end;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 18px;\n}\n.section-heading h2 {\n  margin: 4px 0 0;\n}\n.section-heading p {\n  font-size: 15px;\n  max-width: 560px;\n}\n.sandbox-toolbar {\n  align-items: end;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n  justify-content: flex-end;\n  max-width: 580px;\n}\n.sandbox-toolbar p {\n  flex-basis: 100%;\n}\n.sandbox-toggle {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: flex;\n  gap: 8px;\n  min-height: 40px;\n  padding: 7px 11px;\n}\n.sandbox-toggle input {\n  accent-color: var(--accent);\n}\n.sandbox-banner {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 8px;\n  justify-content: space-between;\n  margin-bottom: 14px;\n  padding: 12px 16px;\n}\n.sandbox-banner > div:first-child,\n.sandbox-status {\n  display: grid;\n}\n.sandbox-status {\n  flex: 0 0 auto;\n  justify-items: end;\n}\n.sandbox-status > span {\n  background: var(--code-bg);\n  border-radius: 999px;\n  font-size: 12px;\n  font-weight: 700;\n  padding: 3px 8px;\n}\n.sandbox-status > span.changed {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.sandbox-status small {\n  font-size: 11px;\n  margin-top: 3px;\n}\n.control-layout {\n  display: grid;\n  gap: 18px;\n  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);\n}\n.control-layout > *,\n.field-grid > * {\n  min-width: 0;\n}\n.control-stack {\n  display: grid;\n  gap: 18px;\n}\n.control-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  padding: 22px;\n}\n.control-card h3 {\n  color: var(--text-h);\n  font-size: 18px;\n  margin: 0 0 18px;\n}\n.field-grid {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.field-span {\n  grid-column: 1 / -1;\n}\nlabel {\n  color: var(--text-h);\n  display: grid;\n  font-size: 13px;\n  font-weight: 650;\n  gap: 5px;\n}\ninput,\nselect,\nbutton {\n  font: inherit;\n}\ninput:not([type=checkbox]):not([type=radio]):not([type=range]),\nselect {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  min-height: 42px;\n  padding: 8px 11px;\n}\n.form-card input:not([type=checkbox]):not([type=radio]),\n.form-card select {\n  width: 100%;\n}\n.field-help,\n.field-error {\n  font-size: 12px;\n  font-weight: 450;\n}\n.field-help {\n  color: var(--text);\n}\n.field-error {\n  color: #b42318;\n}\ninput[aria-invalid=true] {\n  border-color: #d92d20;\n}\nfieldset {\n  border: 0;\n  margin: 20px 0 0;\n  padding: 0;\n}\nlegend {\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 650;\n  margin-bottom: 8px;\n}\n.choice-row,\n.form-actions {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n.choice {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: flex;\n  gap: 7px;\n  padding: 7px 10px;\n}\n.choice input,\n.range-field input {\n  accent-color: var(--accent);\n}\n.form-actions {\n  margin-top: 22px;\n}\n.primary-button,\n.secondary-button {\n  border-radius: 7px;\n  cursor: pointer;\n  font-weight: 700;\n  min-height: 40px;\n  padding: 8px 13px;\n}\n.primary-button {\n  background: var(--accent);\n  border: 1px solid var(--accent);\n  color: white;\n}\n.secondary-button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  color: var(--text-h);\n}\n.primary-button:disabled,\n.secondary-button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n.switch-row {\n  align-items: center;\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n}\n.switch-row > span {\n  display: grid;\n}\n.switch-row small {\n  color: var(--text);\n  font-weight: 450;\n}\n.switch {\n  accent-color: var(--accent);\n  height: 24px;\n  width: 44px;\n}\n.range-field {\n  margin-top: 22px;\n}\n.range-field > span {\n  display: flex;\n  justify-content: space-between;\n}\n.range-field input,\nprogress {\n  width: 100%;\n}\nprogress {\n  accent-color: var(--accent);\n  height: 8px;\n  margin-top: 12px;\n}\n.tabs {\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 4px;\n  padding-bottom: 12px;\n}\n.tabs button {\n  background: transparent;\n  border: 0;\n  border-radius: 6px;\n  color: var(--text);\n  cursor: pointer;\n  font-weight: 700;\n  padding: 7px 10px;\n}\n.tabs button[aria-selected=true] {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.tab-panel {\n  min-height: 155px;\n  padding-top: 18px;\n}\n.summary-list {\n  display: grid;\n  gap: 10px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n}\n.summary-list div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.summary-list dt {\n  font-size: 12px;\n}\n.summary-list dd {\n  color: var(--text-h);\n  font-weight: 700;\n  margin: 2px 0 0;\n}\ndetails {\n  border-top: 1px solid var(--border);\n  font-size: 14px;\n  padding-top: 12px;\n}\nsummary {\n  color: var(--text-h);\n  cursor: pointer;\n  font-weight: 700;\n}\ndetails p {\n  padding-top: 10px;\n}\n.notification {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n  margin-top: 14px;\n  padding: 12px 16px;\n}\n.notification button {\n  background: transparent;\n  border: 0;\n  color: var(--text-h);\n  cursor: pointer;\n  font-size: 22px;\n}\ndialog {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n  color: var(--text);\n  max-width: 430px;\n  padding: 26px;\n}\ndialog::backdrop {\n  -webkit-backdrop-filter: blur(3px);\n  backdrop-filter: blur(3px);\n  background: rgb(8 6 13 / 68%);\n}\ndialog h2 {\n  margin: 8px 0 10px;\n}\ndialog .primary-button {\n  margin-top: 22px;\n}\ninput:focus,\nselect:focus,\nbutton:focus-visible {\n  outline: 2px solid var(--accent);\n  outline-offset: 2px;\n}\n.grid-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  box-shadow: var(--shadow);\n  overflow: hidden;\n}\n.grid-heading,\n.grid-footer {\n  align-items: end;\n  display: flex;\n  gap: 24px;\n  justify-content: space-between;\n  padding: 22px 24px;\n}\n.grid-heading {\n  border-bottom: 1px solid var(--border);\n}\n.grid-heading h3 {\n  color: var(--text-h);\n  font-size: 22px;\n  margin: 0 0 4px;\n}\n.grid-heading p,\n.grid-footer {\n  font-size: 14px;\n}\n.filters {\n  display: flex;\n  gap: 12px;\n}\n.table-wrap {\n  min-height: 486px;\n  overflow-x: auto;\n  position: relative;\n}\ntable {\n  border-collapse: collapse;\n  width: 100%;\n}\nth,\ntd {\n  border-bottom: 1px solid var(--border);\n  padding: 13px 16px;\n  text-align: left;\n  white-space: nowrap;\n}\nth {\n  background: var(--code-bg);\n  color: var(--text-h);\n  font-size: 12px;\n}\nth button {\n  align-items: center;\n  background: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-flex;\n  font-weight: 700;\n  gap: 7px;\n  padding: 0;\n}\nth button.active-sort {\n  color: var(--accent);\n}\ntbody tr {\n  cursor: pointer;\n}\ntbody tr:hover,\ntbody tr.selected {\n  background: var(--accent-bg);\n}\ncode {\n  background: var(--code-bg);\n  border-radius: 4px;\n  padding: 2px 5px;\n}\n.status {\n  inset: 50% auto auto 50%;\n  position: absolute;\n  transform: translate(-50%, -50%);\n}\n.status.error {\n  background: #fef3f2;\n  border: 1px solid #fecdca;\n  border-radius: 8px;\n  color: #b42318;\n  margin: 14px 24px;\n  padding: 12px 16px;\n  position: static;\n  transform: none;\n}\n.pagination {\n  align-items: center;\n  display: flex;\n  gap: 10px;\n}\n.pagination button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  cursor: pointer;\n  min-height: 36px;\n  padding: 6px 10px;\n}\n.pagination button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n.detail-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  margin-top: 18px;\n  overflow: hidden;\n}\n.orders-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  margin-top: 18px;\n  overflow: hidden;\n}\n.orders-layout {\n  display: grid;\n  grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);\n}\n.order-list,\n.order-detail {\n  min-width: 0;\n  padding: 20px;\n}\n.order-list {\n  border-right: 1px solid var(--border);\n}\n.order-list h4,\n.order-detail h4 {\n  color: var(--text-h);\n  font-size: 15px;\n  margin: 0 0 14px;\n}\n.order-list > button {\n  align-items: center;\n  background: transparent;\n  border: 1px solid transparent;\n  border-radius: 8px;\n  color: var(--text);\n  cursor: pointer;\n  display: flex;\n  gap: 12px;\n  justify-content: space-between;\n  padding: 11px 12px;\n  text-align: left;\n  width: 100%;\n}\n.order-list > button:hover,\n.order-list > button.selected {\n  background: var(--accent-bg);\n  border-color: var(--accent-border);\n}\n.order-list > button > span {\n  display: grid;\n  gap: 2px;\n}\n.order-list > button > span:last-child {\n  justify-items: end;\n}\n.order-list strong {\n  color: var(--text-h);\n}\n.order-list small {\n  font-size: 12px;\n}\n.order-summary,\n.order-totals {\n  display: grid;\n  gap: 10px;\n  margin: 0;\n}\n.order-summary {\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.order-summary div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.order-summary dt,\n.order-totals dt {\n  font-size: 12px;\n}\n.order-summary dd,\n.order-totals dd {\n  color: var(--text-h);\n  font-weight: 650;\n  margin: 2px 0 0;\n}\n.line-items-wrap {\n  border: 1px solid var(--border);\n  border-radius: 8px;\n  margin-top: 16px;\n  overflow-x: auto;\n}\n.line-items {\n  font-size: 13px;\n}\n.line-items caption {\n  clip: rect(0 0 0 0);\n  height: 1px;\n  overflow: hidden;\n  position: absolute;\n  width: 1px;\n}\n.line-items th,\n.line-items td {\n  padding: 9px 10px;\n}\n.line-items th:not(:first-child),\n.line-items td:not(:first-child) {\n  text-align: right;\n}\n.order-totals {\n  justify-content: end;\n  margin-top: 14px;\n  text-align: right;\n}\n.order-totals div {\n  display: grid;\n  gap: 12px;\n  grid-template-columns: 80px 110px;\n}\n.order-totals div:last-child {\n  border-top: 1px solid var(--border);\n  padding-top: 7px;\n}\n.detail-heading {\n  align-items: center;\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n  padding: 20px 24px;\n}\n.detail-heading h3 {\n  color: var(--text-h);\n  font-size: 22px;\n  margin: 3px 0 0;\n}\n.detail-status {\n  padding: 24px;\n}\n.detail-status.error {\n  color: #b42318;\n}\n.customer-detail {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n  padding: 24px;\n}\n.detail-form {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  padding: 24px;\n}\n.detail-form > * {\n  min-width: 0;\n}\n.detail-form input {\n  width: 100%;\n}\n.detail-actions,\n.detail-metrics {\n  grid-column: 1 / -1;\n}\n.detail-actions,\n.detail-metrics {\n  align-items: center;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n.detail-metrics {\n  color: var(--text-h);\n  font-weight: 700;\n  gap: 18px;\n}\n.unsaved-indicator {\n  background: #fffaeb;\n  border-radius: 999px;\n  color: #dc6803;\n  font-size: 12px;\n  padding: 3px 8px;\n}\n.detail-notice {\n  margin: 0 24px 24px;\n}\n.customer-detail > * {\n  min-width: 0;\n}\n.customer-detail div {\n  background: var(--code-bg);\n  border-radius: 8px;\n  padding: 12px;\n}\n.customer-detail dt {\n  font-size: 12px;\n}\n.customer-detail dd {\n  color: var(--text-h);\n  font-weight: 650;\n  margin: 3px 0 0;\n}\n@media (prefers-reduced-motion: reduce) {\n  *,\n  *::before,\n  *::after {\n    animation-duration: 0.01ms !important;\n    animation-iteration-count: 1 !important;\n    scroll-behavior: auto !important;\n    transition-duration: 0.01ms !important;\n  }\n}\n@media (forced-colors: active) {\n  .framework-badge,\n  .control-card,\n  .grid-card,\n  .detail-card,\n  .orders-card {\n    border: 1px solid CanvasText;\n  }\n}\n@media (max-width: 1100px) {\n  .control-layout {\n    grid-template-columns: 1fr;\n  }\n  .data-section .section-heading {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .sandbox-toolbar {\n    justify-content: flex-start;\n    max-width: none;\n  }\n  .orders-layout {\n    grid-template-columns: 1fr;\n  }\n  .order-list {\n    border-bottom: 1px solid var(--border);\n    border-right: 0;\n  }\n}\n@media (max-width: 760px) {\n  .showcase {\n    padding: 24px 16px;\n  }\n  .showcase-header,\n  .section-heading,\n  .grid-heading,\n  .grid-footer {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .showcase-nav {\n    overflow-x: auto;\n  }\n  .control-layout,\n  .field-grid,\n  .summary-list,\n  .customer-detail,\n  .detail-form {\n    grid-template-columns: 1fr;\n  }\n  .field-span {\n    grid-column: auto;\n  }\n  .filters {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .detail-actions,\n  .detail-metrics {\n    grid-column: auto;\n  }\n  .sandbox-banner {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .sandbox-status {\n    justify-items: start;\n  }\n}\n"], encapsulation: 3, changeDetection: 0 });
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(App, [{
     type: Component,
-    args: [{ selector: "app-angular-showcase", imports: [ReactiveFormsModule], encapsulation: ViewEncapsulation.ShadowDom, changeDetection: ChangeDetectionStrategy.OnPush, template: `<div class="showcase">
-  <header class="showcase-header">
-    <div>
-      <span class="eyebrow">Frontend Lab</span>
-      <h1>Angular showcase</h1>
-      <p>
-        Interactive UI patterns and data binding implemented with Angular reactive forms, signals,
-        templates, and accessible native controls.
-      </p>
-    </div>
-    <div class="framework-badge" aria-label="Built with Angular">
-      <span aria-hidden="true">A</span>
-      <strong>Angular</strong>
-    </div>
-  </header>
-
-  <nav class="showcase-nav" aria-label="Angular showcase sections">
-    <a href="#angular-controls">Control gallery</a>
-    <a href="#angular-northwind">Northwind data binding</a>
-  </nav>
-
-  <section id="angular-controls" class="controls-section" aria-labelledby="controls-heading">
-    <div class="section-heading">
-      <div>
-        <span class="eyebrow">Reactive forms and signals</span>
-        <h2 id="controls-heading">Control gallery</h2>
-      </div>
-      <p>
-        Every value below is bound through Angular and immediately reflected in the live summary.
-      </p>
-    </div>
-
-    <div class="control-layout">
-      <form class="control-card form-card" [formGroup]="profile" (ngSubmit)="validateProfile()">
-        <h3>Profile inputs</h3>
-        <div class="field-grid">
-          <label>
-            <span>Name</span>
-            <input formControlName="name" />
-          </label>
-          <label>
-            <span>Email</span>
-            <input
-              type="email"
-              formControlName="email"
-              [attr.aria-invalid]="profile.controls.email.invalid"
-              aria-describedby="email-help"
-            />
-            <small
-              id="email-help"
-              [class.field-error]="profile.controls.email.invalid"
-              [class.field-help]="profile.controls.email.valid"
-            >
-              @if (profile.controls.email.valid) {
-                Used for example notifications.
-              } @else {
-                Enter a valid email address.
-              }
-            </small>
-          </label>
-          <label>
-            <span>Seats</span>
-            <input type="number" min="1" max="20" formControlName="seats" />
-          </label>
-          <label>
-            <span>Start date</span>
-            <input type="date" formControlName="startDate" />
-          </label>
-          <label class="field-span">
-            <span>Role</span>
-            <select formControlName="role">
-              <option>Developer</option>
-              <option>Designer</option>
-              <option>Analyst</option>
-              <option>Manager</option>
-            </select>
-          </label>
-        </div>
-
-        <fieldset>
-          <legend>Interests</legend>
-          <div class="choice-row">
-            @for (interest of ['Data', 'Design', 'Automation']; track interest) {
-              <label class="choice">
-                <input
-                  type="checkbox"
-                  [checked]="interests().includes(interest)"
-                  (change)="toggleInterest(interest)"
-                />
-                <span>{{ interest }}</span>
-              </label>
-            }
-          </div>
-        </fieldset>
-
-        <fieldset>
-          <legend>Preferred contact</legend>
-          <div class="choice-row">
-            @for (method of ['Email', 'Phone', 'Chat']; track method) {
-              <label class="choice">
-                <input
-                  type="radio"
-                  name="contact-method"
-                  [value]="method"
-                  [checked]="contactMethod() === method"
-                  (change)="contactMethod.set(method)"
-                />
-                <span>{{ method }}</span>
-              </label>
-            }
-          </div>
-        </fieldset>
-
-        <div class="form-actions">
-          <button type="submit" class="primary-button" [disabled]="profile.invalid">
-            Validate profile
-          </button>
-          <button type="button" class="secondary-button" (click)="openDialog()">Open dialog</button>
-          <button type="button" class="secondary-button" disabled>Disabled</button>
-        </div>
-      </form>
-
-      <div class="control-stack">
-        <section class="control-card">
-          <h3>Preferences and progress</h3>
-          <label class="switch-row">
-            <span>
-              <strong>Notifications</strong>
-              <small>Enable status updates</small>
-            </span>
-            <input
-              class="switch"
-              type="checkbox"
-              role="switch"
-              [checked]="notificationsEnabled()"
-              (change)="notificationsEnabled.set($any($event.target).checked)"
-            />
-          </label>
-          <label class="range-field">
-            <span>
-              Confidence <strong>{{ confidence() }}%</strong>
-            </span>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              [value]="confidence()"
-              (input)="confidence.set(+$any($event.target).value)"
-            />
-          </label>
-          <progress
-            [value]="confidence()"
-            max="100"
-            [attr.aria-label]="'Confidence ' + confidence() + '%'"
-          ></progress>
-        </section>
-
-        <section class="control-card">
-          <div class="tabs" role="tablist" aria-label="Profile views">
-            @for (tab of ['summary', 'settings']; track tab) {
-              <button
-                [id]="'profile-' + tab + '-tab'"
-                type="button"
-                role="tab"
-                [attr.aria-selected]="activeTab() === tab"
-                [attr.aria-controls]="'profile-' + tab + '-panel'"
-                (click)="selectTab($any(tab))"
-                (keydown)="handleTabKey($event, $any(tab))"
-              >
-                {{ tab === 'summary' ? 'Summary' : 'Settings' }}
-              </button>
-            }
-          </div>
-
-          @if (activeTab() === 'summary') {
-            <div
-              id="profile-summary-panel"
-              class="tab-panel"
-              role="tabpanel"
-              aria-labelledby="profile-summary-tab"
-              tabindex="0"
-            >
-              <h3>{{ profile.controls.name.value || 'Unnamed profile' }}</h3>
-              <dl class="summary-list">
-                <div>
-                  <dt>Role</dt>
-                  <dd>{{ profile.controls.role.value }}</dd>
-                </div>
-                <div>
-                  <dt>Seats</dt>
-                  <dd>{{ profile.controls.seats.value }}</dd>
-                </div>
-                <div>
-                  <dt>Contact</dt>
-                  <dd>{{ contactMethod() }}</dd>
-                </div>
-                <div>
-                  <dt>Interests</dt>
-                  <dd>{{ interestsSummary() }}</dd>
-                </div>
-              </dl>
-            </div>
-          } @else {
-            <div
-              id="profile-settings-panel"
-              class="tab-panel"
-              role="tabpanel"
-              aria-labelledby="profile-settings-tab"
-              tabindex="0"
-            >
-              <h3>Current settings</h3>
-              <p>
-                Notifications are
-                <strong>{{ notificationsEnabled() ? 'enabled' : 'disabled' }}</strong
-                >. The selected start date is {{ profile.controls.startDate.value }}.
-              </p>
-            </div>
-          }
-
-          <details>
-            <summary>Implementation note</summary>
-            <p>
-              Native controls preserve keyboard behavior while Angular binds each value and derives
-              this summary.
-            </p>
-          </details>
-        </section>
-      </div>
-    </div>
-
-    @if (notice()) {
-      <div class="notification" role="status" aria-live="polite">
-        <span>{{ notice() }}</span>
-        <button type="button" aria-label="Dismiss notification" (click)="notice.set('')">\xD7</button>
-      </div>
-    }
-  </section>
-
-  <section id="angular-northwind" class="data-section" aria-labelledby="data-heading">
-    <div class="section-heading">
-      <div>
-        <span class="eyebrow">API-backed state</span>
-        <h2 id="data-heading">Northwind data binding</h2>
-      </div>
-      <div class="sandbox-toolbar">
-        <p>Server-driven filtering, sorting, paging, and selection against the Northwind API.</p>
-        <label class="sandbox-toggle">
-          <input
-            type="checkbox"
-            role="switch"
-            [checked]="sandboxEnabled()"
-            (change)="toggleSandbox($any($event.target).checked)"
-          />
-          <span>Editing sandbox</span>
-        </label>
-        @if (sandboxEnabled()) {
-          <button type="button" class="secondary-button" (click)="resetSandbox()">
-            Reset sandbox
-          </button>
-        }
-      </div>
-    </div>
-
-    @if (sandboxEnabled()) {
-      <div class="sandbox-banner">
-        <div>
-          <strong>Temporary editing enabled.</strong>
-          <span
-            >Changes are isolated to this browser session and never reach the canonical Northwind
-            database.</span
-          >
-        </div>
-        <div class="sandbox-status">
-          <span [class.changed]="sandboxHasChanges()">
-            {{ sandboxHasChanges() ? 'Changes made' : 'Vanilla copy' }}
-          </span>
-          @if (sandboxExpiresAt()) {
-            <small>Expires after 30 minutes without sandbox activity</small>
-          }
-        </div>
-      </div>
-    }
-
-    <section class="grid-card" aria-labelledby="customers-heading">
-      <div class="grid-heading">
-        <div>
-          <h3 id="customers-heading">Customer explorer</h3>
-          <p>{{ totalCount() }} Northwind records</p>
-        </div>
-        <div class="filters">
-          <label>
-            <span>Search</span>
-            <input
-              type="search"
-              [value]="search()"
-              placeholder="Company or contact"
-              (input)="updateSearch($any($event.target).value)"
-            />
-          </label>
-          <label>
-            <span>Country</span>
-            <select [value]="country()" (change)="updateCountry($any($event.target).value)">
-              <option value="">All countries</option>
-              @for (item of countries(); track item) {
-                <option [value]="item">{{ item }}</option>
-              }
-            </select>
-          </label>
-        </div>
-      </div>
-
-      @if (customerError()) {
-        <div class="status error" role="alert">{{ customerError() }}</div>
-      }
-
-      <div class="table-wrap" [attr.aria-busy]="loading()">
-        <table aria-label="Northwind customers">
-          <thead>
-            <tr>
-              @for (column of columns; track column[0]) {
-                <th
-                  scope="col"
-                  [attr.aria-sort]="
-                    sort() === column[0]
-                      ? direction() === 'asc'
-                        ? 'ascending'
-                        : 'descending'
-                      : 'none'
-                  "
-                >
-                  <button
-                    type="button"
-                    [class.active-sort]="sort() === column[0]"
-                    [attr.aria-label]="column[1] + ': ' + sortLabel(column[0])"
-                    (click)="changeSort(column[0])"
-                  >
-                    {{ column[1] }}
-                    <span aria-hidden="true">
-                      {{ sort() === column[0] ? (direction() === 'asc' ? '\u2191' : '\u2193') : '\u2195' }}
-                    </span>
-                  </button>
-                </th>
-              }
-            </tr>
-          </thead>
-          <tbody>
-            @if (!loading()) {
-              @for (customer of customers(); track customer.customerId) {
+    args: [{ selector: "app-angular-showcase", imports: [ReactiveFormsModule], encapsulation: ViewEncapsulation.ShadowDom, changeDetection: ChangeDetectionStrategy.OnPush, template: `<div class="showcase">\r
+  <header class="showcase-header">\r
+    <div>\r
+      <span class="eyebrow">Frontend Lab</span>\r
+      <h1>Angular showcase</h1>\r
+      <p>\r
+        Interactive UI patterns and data binding implemented with Angular reactive forms, signals,\r
+        templates, and accessible native controls.\r
+      </p>\r
+    </div>\r
+    <div class="framework-badge" aria-label="Built with Angular">\r
+      <span aria-hidden="true">A</span>\r
+      <strong>Angular</strong>\r
+    </div>\r
+  </header>\r
+\r
+  <nav class="showcase-nav" aria-label="Angular showcase sections">\r
+    <a href="#angular-controls">Control gallery</a>\r
+    <a href="#angular-northwind">Northwind data binding</a>\r
+  </nav>\r
+\r
+  <section id="angular-controls" class="controls-section" aria-labelledby="controls-heading">\r
+    <div class="section-heading">\r
+      <div>\r
+        <span class="eyebrow">Reactive forms and signals</span>\r
+        <h2 id="controls-heading">Control gallery</h2>\r
+      </div>\r
+      <p>\r
+        Every value below is bound through Angular and immediately reflected in the live summary.\r
+      </p>\r
+    </div>\r
+\r
+    <div class="control-layout">\r
+      <form class="control-card form-card" [formGroup]="profile" (ngSubmit)="validateProfile()">\r
+        <h3>Profile inputs</h3>\r
+        <div class="field-grid">\r
+          <label>\r
+            <span>Name</span>\r
+            <input formControlName="name" />\r
+          </label>\r
+          <label>\r
+            <span>Email</span>\r
+            <input\r
+              type="email"\r
+              formControlName="email"\r
+              [attr.aria-invalid]="profile.controls.email.invalid"\r
+              aria-describedby="email-help"\r
+            />\r
+            <small\r
+              id="email-help"\r
+              [class.field-error]="profile.controls.email.invalid"\r
+              [class.field-help]="profile.controls.email.valid"\r
+            >\r
+              @if (profile.controls.email.valid) {\r
+                Used for example notifications.\r
+              } @else {\r
+                Enter a valid email address.\r
+              }\r
+            </small>\r
+          </label>\r
+          <label>\r
+            <span>Seats</span>\r
+            <input type="number" min="1" max="20" formControlName="seats" />\r
+          </label>\r
+          <label>\r
+            <span>Start date</span>\r
+            <input type="date" formControlName="startDate" />\r
+          </label>\r
+          <label class="field-span">\r
+            <span>Role</span>\r
+            <select formControlName="role">\r
+              <option>Developer</option>\r
+              <option>Designer</option>\r
+              <option>Analyst</option>\r
+              <option>Manager</option>\r
+            </select>\r
+          </label>\r
+        </div>\r
+\r
+        <fieldset>\r
+          <legend>Interests</legend>\r
+          <div class="choice-row">\r
+            @for (interest of ['Data', 'Design', 'Automation']; track interest) {\r
+              <label class="choice">\r
+                <input\r
+                  type="checkbox"\r
+                  [checked]="interests().includes(interest)"\r
+                  (change)="toggleInterest(interest)"\r
+                />\r
+                <span>{{ interest }}</span>\r
+              </label>\r
+            }\r
+          </div>\r
+        </fieldset>\r
+\r
+        <fieldset>\r
+          <legend>Preferred contact</legend>\r
+          <div class="choice-row">\r
+            @for (method of ['Email', 'Phone', 'Chat']; track method) {\r
+              <label class="choice">\r
+                <input\r
+                  type="radio"\r
+                  name="contact-method"\r
+                  [value]="method"\r
+                  [checked]="contactMethod() === method"\r
+                  (change)="contactMethod.set(method)"\r
+                />\r
+                <span>{{ method }}</span>\r
+              </label>\r
+            }\r
+          </div>\r
+        </fieldset>\r
+\r
+        <div class="form-actions">\r
+          <button type="submit" class="primary-button" [disabled]="profile.invalid">\r
+            Validate profile\r
+          </button>\r
+          <button type="button" class="secondary-button" (click)="openDialog()">Open dialog</button>\r
+          <button type="button" class="secondary-button" disabled>Disabled</button>\r
+        </div>\r
+      </form>\r
+\r
+      <div class="control-stack">\r
+        <section class="control-card">\r
+          <h3>Preferences and progress</h3>\r
+          <label class="switch-row">\r
+            <span>\r
+              <strong>Notifications</strong>\r
+              <small>Enable status updates</small>\r
+            </span>\r
+            <input\r
+              class="switch"\r
+              type="checkbox"\r
+              role="switch"\r
+              [checked]="notificationsEnabled()"\r
+              (change)="notificationsEnabled.set($any($event.target).checked)"\r
+            />\r
+          </label>\r
+          <label class="range-field">\r
+            <span>\r
+              Confidence <strong>{{ confidence() }}%</strong>\r
+            </span>\r
+            <input\r
+              type="range"\r
+              min="0"\r
+              max="100"\r
+              [value]="confidence()"\r
+              (input)="confidence.set(+$any($event.target).value)"\r
+            />\r
+          </label>\r
+          <progress\r
+            [value]="confidence()"\r
+            max="100"\r
+            [attr.aria-label]="'Confidence ' + confidence() + '%'"\r
+          ></progress>\r
+        </section>\r
+\r
+        <section class="control-card">\r
+          <div class="tabs" role="tablist" aria-label="Profile views">\r
+            @for (tab of ['summary', 'settings']; track tab) {\r
+              <button\r
+                [id]="'profile-' + tab + '-tab'"\r
+                type="button"\r
+                role="tab"\r
+                [attr.aria-selected]="activeTab() === tab"\r
+                [attr.aria-controls]="'profile-' + tab + '-panel'"\r
+                (click)="selectTab($any(tab))"\r
+                (keydown)="handleTabKey($event, $any(tab))"\r
+              >\r
+                {{ tab === 'summary' ? 'Summary' : 'Settings' }}\r
+              </button>\r
+            }\r
+          </div>\r
+\r
+          @if (activeTab() === 'summary') {\r
+            <div\r
+              id="profile-summary-panel"\r
+              class="tab-panel"\r
+              role="tabpanel"\r
+              aria-labelledby="profile-summary-tab"\r
+              tabindex="0"\r
+            >\r
+              <h3>{{ profile.controls.name.value || 'Unnamed profile' }}</h3>\r
+              <dl class="summary-list">\r
+                <div>\r
+                  <dt>Role</dt>\r
+                  <dd>{{ profile.controls.role.value }}</dd>\r
+                </div>\r
+                <div>\r
+                  <dt>Seats</dt>\r
+                  <dd>{{ profile.controls.seats.value }}</dd>\r
+                </div>\r
+                <div>\r
+                  <dt>Contact</dt>\r
+                  <dd>{{ contactMethod() }}</dd>\r
+                </div>\r
+                <div>\r
+                  <dt>Interests</dt>\r
+                  <dd>{{ interestsSummary() }}</dd>\r
+                </div>\r
+              </dl>\r
+            </div>\r
+          } @else {\r
+            <div\r
+              id="profile-settings-panel"\r
+              class="tab-panel"\r
+              role="tabpanel"\r
+              aria-labelledby="profile-settings-tab"\r
+              tabindex="0"\r
+            >\r
+              <h3>Current settings</h3>\r
+              <p>\r
+                Notifications are\r
+                <strong>{{ notificationsEnabled() ? 'enabled' : 'disabled' }}</strong\r
+                >. The selected start date is {{ profile.controls.startDate.value }}.\r
+              </p>\r
+            </div>\r
+          }\r
+\r
+          <details>\r
+            <summary>Implementation note</summary>\r
+            <p>\r
+              Native controls preserve keyboard behavior while Angular binds each value and derives\r
+              this summary.\r
+            </p>\r
+          </details>\r
+        </section>\r
+      </div>\r
+    </div>\r
+\r
+    @if (notice()) {\r
+      <div class="notification" role="status" aria-live="polite">\r
+        <span>{{ notice() }}</span>\r
+        <button type="button" aria-label="Dismiss notification" (click)="notice.set('')">\xD7</button>\r
+      </div>\r
+    }\r
+  </section>\r
+\r
+  <section id="angular-northwind" class="data-section" aria-labelledby="data-heading">\r
+    <div class="section-heading">\r
+      <div>\r
+        <span class="eyebrow">API-backed state</span>\r
+        <h2 id="data-heading">Northwind data binding</h2>\r
+      </div>\r
+      <div class="sandbox-toolbar">\r
+        <p>Server-driven filtering, sorting, paging, and selection against the Northwind API.</p>\r
+        <label class="sandbox-toggle">\r
+          <input\r
+            type="checkbox"\r
+            role="switch"\r
+            [checked]="sandboxEnabled()"\r
+            (change)="toggleSandbox($any($event.target).checked)"\r
+          />\r
+          <span>Editing sandbox</span>\r
+        </label>\r
+        @if (sandboxEnabled()) {\r
+          <button type="button" class="secondary-button" (click)="resetSandbox()">\r
+            Reset sandbox\r
+          </button>\r
+        }\r
+      </div>\r
+    </div>\r
+\r
+    @if (sandboxEnabled()) {\r
+      <div class="sandbox-banner">\r
+        <div>\r
+          <strong>Temporary editing enabled.</strong>\r
+          <span\r
+            >Changes are isolated to this browser session and never reach the canonical Northwind\r
+            database.</span\r
+          >\r
+        </div>\r
+        <div class="sandbox-status">\r
+          <span [class.changed]="sandboxHasChanges()">\r
+            {{ sandboxHasChanges() ? 'Changes made' : 'Vanilla copy' }}\r
+          </span>\r
+          @if (sandboxExpiresAt()) {\r
+            <small>Expires after 30 minutes without sandbox activity</small>\r
+          }\r
+        </div>\r
+      </div>\r
+    }\r
+\r
+    <section class="grid-card" aria-labelledby="customers-heading">\r
+      <div class="grid-heading">\r
+        <div>\r
+          <h3 id="customers-heading">Customer explorer</h3>\r
+          <p>{{ totalCount() }} Northwind records</p>\r
+        </div>\r
+        <div class="filters">\r
+          <label>\r
+            <span>Search</span>\r
+            <input\r
+              type="search"\r
+              [value]="search()"\r
+              placeholder="Company or contact"\r
+              (input)="updateSearch($any($event.target).value)"\r
+            />\r
+          </label>\r
+          <label>\r
+            <span>Country</span>\r
+            <select [value]="country()" (change)="updateCountry($any($event.target).value)">\r
+              <option value="">All countries</option>\r
+              @for (item of countries(); track item) {\r
+                <option [value]="item">{{ item }}</option>\r
+              }\r
+            </select>\r
+          </label>\r
+        </div>\r
+      </div>\r
+\r
+      @if (customerError()) {\r
+        <div class="status error" role="alert">{{ customerError() }}</div>\r
+      }\r
+\r
+      <div class="table-wrap" [attr.aria-busy]="loading()">\r
+        <table aria-label="Northwind customers">\r
+          <thead>\r
+            <tr>\r
+              @for (column of columns; track column[0]) {\r
+                <th\r
+                  scope="col"\r
+                  [attr.aria-sort]="\r
+                    sort() === column[0]\r
+                      ? direction() === 'asc'\r
+                        ? 'ascending'\r
+                        : 'descending'\r
+                      : 'none'\r
+                  "\r
+                >\r
+                  <button\r
+                    type="button"\r
+                    [class.active-sort]="sort() === column[0]"\r
+                    [attr.aria-label]="column[1] + ': ' + sortLabel(column[0])"\r
+                    (click)="changeSort(column[0])"\r
+                  >\r
+                    {{ column[1] }}\r
+                    <span aria-hidden="true">\r
+                      {{ sort() === column[0] ? (direction() === 'asc' ? '\u2191' : '\u2193') : '\u2195' }}\r
+                    </span>\r
+                  </button>\r
+                </th>\r
+              }\r
+            </tr>\r
+          </thead>\r
+          <tbody>\r
+            @if (!loading()) {\r
+              @for (customer of customers(); track customer.customerId) {\r
                 <tr
                   [class.selected]="selectedId() === customer.customerId"
+                  [attr.aria-selected]="selectedId() === customer.customerId"
+                  tabindex="0"
                   (click)="selectedId.set(customer.customerId)"
+                  (keydown.enter)="selectedId.set(customer.customerId)"
+                  (keydown.space)="$event.preventDefault(); selectedId.set(customer.customerId)"
                 >
                   <td data-label="Company">
-                    <button
-                      type="button"
-                      class="row-select"
-                      [attr.aria-pressed]="selectedId() === customer.customerId"
-                      (click)="$event.stopPropagation(); selectedId.set(customer.customerId)"
-                    >
-                      {{ customer.companyName }}
-                    </button>
+                    {{ customer.companyName }}
                   </td>
-                  <td data-label="Contact">{{ customer.contactName || '\u2014' }}</td>
-                  <td data-label="City">{{ customer.city || '\u2014' }}</td>
-                  <td data-label="Country">{{ customer.country || '\u2014' }}</td>
-                  <td data-label="ID">
-                    <code>{{ customer.customerId }}</code>
-                  </td>
-                </tr>
-              }
-            }
-          </tbody>
-        </table>
-
-        @if (loading()) {
-          <div class="status" role="status" aria-live="polite">Loading customers\u2026</div>
-        } @else if (!customerError() && customers().length === 0) {
-          <div class="status">No customers match these filters.</div>
-        }
-      </div>
-
-      <footer class="grid-footer">
-        <span>{{ selectedId() ? 'Selected: ' + selectedId() : 'Select a customer row' }}</span>
-        <div class="pagination">
-          <button
-            type="button"
-            [disabled]="loading() || page() <= 1"
-            (click)="page.update((current) => current - 1)"
-          >
-            Previous
-          </button>
-          <span>{{ pageLabel() }}</span>
-          <button
-            type="button"
-            [disabled]="loading() || page() >= totalPages()"
-            (click)="page.update((current) => current + 1)"
-          >
-            Next
-          </button>
-        </div>
-      </footer>
-    </section>
-
-    <section class="detail-card" aria-labelledby="detail-heading">
-      <div class="detail-heading">
-        <div>
-          <span class="eyebrow">{{
-            sandboxEnabled() ? 'Session database' : 'Read-only binding'
-          }}</span>
-          <h3 id="detail-heading">Customer details</h3>
-        </div>
-        @if (selectedId()) {
-          <code>{{ selectedId() }}</code>
-        }
-      </div>
-
-      @if (!selectedId()) {
-        <div class="detail-status">Select a customer row to bind the detail controls.</div>
-      } @else if (detailLoading()) {
-        <div class="detail-status" role="status" aria-live="polite">Loading customer\u2026</div>
-      } @else if (detailError()) {
-        <div class="detail-status error" role="alert">{{ detailError() }}</div>
-      } @else if (sandboxEnabled() && customerDraft(); as draft) {
-        <form class="detail-form" (submit)="$event.preventDefault(); saveSandboxCustomer()">
-          @for (field of editableFields; track field[0]) {
-            <label>
-              <span>{{ field[1] }}</span>
-              <input
-                [required]="field[0] === 'companyName'"
-                [value]="draft[field[0]] ?? ''"
-                (input)="updateCustomerDraft(field[0], $any($event.target).value)"
-              />
-            </label>
-          }
-          <div class="detail-metrics">
-            <span>{{ draft.orderCount }} orders</span>
-            <span>{{ formatSales(draft.totalSales) }}</span>
-            @if (draftIsDirty()) {
-              <span class="unsaved-indicator">Unsaved fields</span>
-            }
-          </div>
-          <div class="detail-actions">
-            <button
-              type="submit"
-              class="primary-button"
-              [disabled]="!draftIsDirty() || !draft.companyName.trim()"
-            >
-              Save temporary changes
-            </button>
-            <button
-              type="button"
-              class="secondary-button"
-              [disabled]="!draftIsDirty()"
-              (click)="discardCustomerDraft()"
-            >
-              Discard fields
-            </button>
-          </div>
-        </form>
-      } @else if (customerDetail(); as detail) {
-        <dl class="customer-detail">
-          <div>
-            <dt>Company</dt>
-            <dd>{{ detail.companyName || '\u2014' }}</dd>
-          </div>
-          <div>
-            <dt>Contact</dt>
-            <dd>{{ detail.contactName || '\u2014' }}</dd>
-          </div>
-          <div>
-            <dt>Title</dt>
-            <dd>{{ detail.contactTitle || '\u2014' }}</dd>
-          </div>
-          <div>
-            <dt>Address</dt>
-            <dd>{{ detail.address || '\u2014' }}</dd>
-          </div>
-          <div>
-            <dt>Location</dt>
-            <dd>{{ customerLocation(detail) || '\u2014' }}</dd>
-          </div>
-          <div>
-            <dt>Phone</dt>
-            <dd>{{ detail.phone || '\u2014' }}</dd>
-          </div>
-          <div>
-            <dt>Fax</dt>
-            <dd>{{ detail.fax || '\u2014' }}</dd>
-          </div>
-          <div>
-            <dt>Orders</dt>
-            <dd>{{ detail.orderCount }}</dd>
-          </div>
-          <div>
-            <dt>Total sales</dt>
-            <dd>{{ formatSales(detail.totalSales) }}</dd>
-          </div>
-        </dl>
-      }
-      @if (sandboxNotice()) {
-        <div class="notification detail-notice" role="status" aria-live="polite">
-          <span>{{ sandboxNotice() }}</span>
-          <button
-            type="button"
-            aria-label="Dismiss sandbox notification"
-            (click)="sandboxNotice.set('')"
-          >
-            \xD7
-          </button>
-        </div>
-      }
-    </section>
-
-    <section class="orders-card" aria-labelledby="orders-heading">
-      <div class="detail-heading">
-        <div>
-          <span class="eyebrow">Selection chain</span>
-          <h3 id="orders-heading">Orders and line items</h3>
-        </div>
-        @if (selectedOrderId()) {
-          <code>Order {{ selectedOrderId() }}</code>
-        }
-      </div>
-      @if (!selectedId()) {
-        <div class="detail-status">Select a customer to load their orders.</div>
-      } @else {
-        <div class="orders-layout">
-          <div class="order-list" [attr.aria-busy]="ordersLoading()">
-            <h4>Customer orders</h4>
-            @if (ordersLoading()) {
-              <div class="detail-status" role="status" aria-live="polite">Loading orders\u2026</div>
-            } @else if (orders().length === 0) {
-              <div class="detail-status">This customer has no orders.</div>
-            } @else {
-              @for (order of orders(); track order.orderId) {
-                <button
-                  type="button"
-                  [class.selected]="selectedOrderId() === order.orderId"
-                  [attr.aria-pressed]="selectedOrderId() === order.orderId"
-                  (click)="selectedOrderId.set(order.orderId)"
-                >
-                  <span
-                    ><strong>Order {{ order.orderId }}</strong
-                    ><small>{{ formatDate(order.orderDate) }}</small></span
-                  >
-                  <span
-                    ><strong>{{ formatSales(order.total) }}</strong
-                    ><small>{{ order.status }}</small></span
-                  >
-                </button>
-              }
-            }
-          </div>
-          <div class="order-detail" [attr.aria-busy]="orderLoading()">
-            <h4>Order detail</h4>
-            @if (orderLoading()) {
-              <div class="detail-status" role="status" aria-live="polite">Loading order\u2026</div>
-            } @else if (orderError()) {
-              <div class="detail-status error" role="alert">{{ orderError() }}</div>
-            } @else if (orderDetail(); as detail) {
-              <dl class="order-summary">
-                <div>
-                  <dt>Employee</dt>
-                  <dd>{{ detail.employeeName || '\u2014' }}</dd>
-                </div>
-                <div>
-                  <dt>Shipper</dt>
-                  <dd>{{ detail.shipperName || '\u2014' }}</dd>
-                </div>
-                <div>
-                  <dt>Status</dt>
-                  <dd>{{ detail.status }}</dd>
-                </div>
-                <div>
-                  <dt>Destination</dt>
-                  <dd>{{ destination(detail) }}</dd>
-                </div>
-              </dl>
-              <div class="line-items-wrap">
-                <table class="line-items">
-                  <caption>
-                    Order line items
-                  </caption>
-                  <thead>
-                    <tr>
-                      <th scope="col">Product</th>
-                      <th scope="col">Qty.</th>
-                      <th scope="col">Price</th>
-                      <th scope="col">Total</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @for (item of detail.items; track item.productId) {
-                      <tr>
-                        <td>{{ item.productName }}</td>
-                        <td>{{ item.quantity }}</td>
-                        <td>{{ formatSales(item.unitPrice) }}</td>
-                        <td>{{ formatSales(item.extendedPrice) }}</td>
-                      </tr>
-                    }
-                  </tbody>
-                </table>
-              </div>
-              <dl class="order-totals">
-                <div>
-                  <dt>Subtotal</dt>
-                  <dd>{{ formatSales(detail.subtotal) }}</dd>
-                </div>
-                <div>
-                  <dt>Freight</dt>
-                  <dd>{{ formatSales(detail.freight) }}</dd>
-                </div>
-                <div>
-                  <dt>Total</dt>
-                  <dd>{{ formatSales(detail.total) }}</dd>
-                </div>
-              </dl>
-            }
-          </div>
-        </div>
-      }
-    </section>
-  </section>
-
-  <dialog #profileDialog>
-    <form method="dialog">
-      <span class="eyebrow">Native dialog</span>
-      <h2>Angular-controlled launch</h2>
-      <p>This modal uses the browser dialog element for focus management and keyboard dismissal.</p>
-      <button class="primary-button">Close dialog</button>
-    </form>
-  </dialog>
-</div>
-`, styles: ["/* src/app/app.css */\n:host {\n  --text: #6b6375;\n  --text-h: #08060d;\n  --bg: #fff;\n  --border: #e5e4e7;\n  --code-bg: #f4f3ec;\n  --accent: #aa3bff;\n  --accent-bg: rgb(170 59 255 / 10%);\n  --accent-border: rgb(170 59 255 / 50%);\n  --shadow: rgb(0 0 0 / 10%) 0 10px 15px -3px, rgb(0 0 0 / 5%) 0 4px 6px -2px;\n  background: var(--bg);\n  color: var(--text);\n  color-scheme: light dark;\n  display: block;\n  font-family: inherit;\n}\n@media (prefers-color-scheme: dark) {\n  :host {\n    --text: #9ca3af;\n    --text-h: #f3f4f6;\n    --bg: #16171d;\n    --border: #2e303a;\n    --code-bg: #1f2028;\n    --accent: #c084fc;\n    --accent-bg: rgb(192 132 252 / 15%);\n    --accent-border: rgb(192 132 252 / 50%);\n    --shadow: rgb(0 0 0 / 40%) 0 10px 15px -3px, rgb(0 0 0 / 25%) 0 4px 6px -2px;\n  }\n}\n* {\n  box-sizing: border-box;\n}\n.showcase {\n  padding: 48px;\n  text-align: left;\n}\n.showcase-header {\n  align-items: flex-start;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 32px;\n}\n.showcase-header h1 {\n  margin: 6px 0 10px;\n}\n.showcase-header p {\n  max-width: 680px;\n}\n.showcase-nav {\n  display: flex;\n  gap: 8px;\n  margin: -12px 0 32px;\n}\n.showcase-nav a {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 999px;\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 700;\n  padding: 7px 11px;\n  text-decoration: none;\n}\n.showcase-nav a:hover {\n  border-color: var(--accent-border);\n  color: var(--accent);\n}\n.controls-section,\n.data-section {\n  scroll-margin-top: 90px;\n}\n.eyebrow {\n  color: var(--accent);\n  font-size: 13px;\n  font-weight: 700;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n}\n.framework-badge {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 999px;\n  color: var(--text-h);\n  display: flex;\n  font-weight: 650;\n  gap: 10px;\n  padding: 10px 14px;\n}\n.framework-badge > span {\n  align-items: center;\n  background: var(--accent);\n  border-radius: 50%;\n  color: white;\n  display: inline-flex;\n  height: 24px;\n  justify-content: center;\n  width: 24px;\n}\n.controls-section {\n  margin-bottom: 32px;\n}\n.data-section {\n  margin-top: 40px;\n}\n.section-heading {\n  align-items: end;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 18px;\n}\n.section-heading h2 {\n  margin: 4px 0 0;\n}\n.section-heading p {\n  font-size: 15px;\n  max-width: 560px;\n}\n.sandbox-toolbar {\n  align-items: end;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n  justify-content: flex-end;\n  max-width: 580px;\n}\n.sandbox-toolbar p {\n  flex-basis: 100%;\n}\n.sandbox-toggle {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: flex;\n  gap: 8px;\n  min-height: 40px;\n  padding: 7px 11px;\n}\n.sandbox-toggle input {\n  accent-color: var(--accent);\n}\n.sandbox-banner {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 8px;\n  justify-content: space-between;\n  margin-bottom: 14px;\n  padding: 12px 16px;\n}\n.sandbox-banner > div:first-child,\n.sandbox-status {\n  display: grid;\n}\n.sandbox-status {\n  flex: 0 0 auto;\n  justify-items: end;\n}\n.sandbox-status > span {\n  background: var(--code-bg);\n  border-radius: 999px;\n  font-size: 12px;\n  font-weight: 700;\n  padding: 3px 8px;\n}\n.sandbox-status > span.changed {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.sandbox-status small {\n  font-size: 11px;\n  margin-top: 3px;\n}\n.control-layout {\n  display: grid;\n  gap: 18px;\n  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);\n}\n.control-layout > *,\n.field-grid > * {\n  min-width: 0;\n}\n.control-stack {\n  display: grid;\n  gap: 18px;\n}\n.control-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  padding: 22px;\n}\n.control-card h3 {\n  color: var(--text-h);\n  font-size: 18px;\n  margin: 0 0 18px;\n}\n.field-grid {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.field-span {\n  grid-column: 1 / -1;\n}\nlabel {\n  color: var(--text-h);\n  display: grid;\n  font-size: 13px;\n  font-weight: 650;\n  gap: 5px;\n}\ninput,\nselect,\nbutton {\n  font: inherit;\n}\ninput:not([type=checkbox]):not([type=radio]):not([type=range]),\nselect {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  min-height: 42px;\n  padding: 8px 11px;\n}\n.form-card input:not([type=checkbox]):not([type=radio]),\n.form-card select {\n  width: 100%;\n}\n.field-help,\n.field-error {\n  font-size: 12px;\n  font-weight: 450;\n}\n.field-help {\n  color: var(--text);\n}\n.field-error {\n  color: #b42318;\n}\ninput[aria-invalid=true] {\n  border-color: #d92d20;\n}\nfieldset {\n  border: 0;\n  margin: 20px 0 0;\n  padding: 0;\n}\nlegend {\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 650;\n  margin-bottom: 8px;\n}\n.choice-row,\n.form-actions {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n.choice {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: flex;\n  gap: 7px;\n  padding: 7px 10px;\n}\n.choice input,\n.range-field input {\n  accent-color: var(--accent);\n}\n.form-actions {\n  margin-top: 22px;\n}\n.primary-button,\n.secondary-button {\n  border-radius: 7px;\n  cursor: pointer;\n  font-weight: 700;\n  min-height: 40px;\n  padding: 8px 13px;\n}\n.primary-button {\n  background: var(--accent);\n  border: 1px solid var(--accent);\n  color: white;\n}\n.secondary-button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  color: var(--text-h);\n}\n.primary-button:disabled,\n.secondary-button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n.switch-row {\n  align-items: center;\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n}\n.switch-row > span {\n  display: grid;\n}\n.switch-row small {\n  color: var(--text);\n  font-weight: 450;\n}\n.switch {\n  accent-color: var(--accent);\n  height: 24px;\n  width: 44px;\n}\n.range-field {\n  margin-top: 22px;\n}\n.range-field > span {\n  display: flex;\n  justify-content: space-between;\n}\n.range-field input,\nprogress {\n  width: 100%;\n}\nprogress {\n  accent-color: var(--accent);\n  height: 8px;\n  margin-top: 12px;\n}\n.tabs {\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 4px;\n  padding-bottom: 12px;\n}\n.tabs button {\n  background: transparent;\n  border: 0;\n  border-radius: 6px;\n  color: var(--text);\n  cursor: pointer;\n  font-weight: 700;\n  padding: 7px 10px;\n}\n.tabs button[aria-selected=true] {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.tab-panel {\n  min-height: 155px;\n  padding-top: 18px;\n}\n.summary-list {\n  display: grid;\n  gap: 10px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n}\n.summary-list div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.summary-list dt {\n  font-size: 12px;\n}\n.summary-list dd {\n  color: var(--text-h);\n  font-weight: 700;\n  margin: 2px 0 0;\n}\ndetails {\n  border-top: 1px solid var(--border);\n  font-size: 14px;\n  padding-top: 12px;\n}\nsummary {\n  color: var(--text-h);\n  cursor: pointer;\n  font-weight: 700;\n}\ndetails p {\n  padding-top: 10px;\n}\n.notification {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n  margin-top: 14px;\n  padding: 12px 16px;\n}\n.notification button {\n  background: transparent;\n  border: 0;\n  color: var(--text-h);\n  cursor: pointer;\n  font-size: 22px;\n}\ndialog {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n  color: var(--text);\n  max-width: 430px;\n  padding: 26px;\n}\ndialog::backdrop {\n  -webkit-backdrop-filter: blur(3px);\n  backdrop-filter: blur(3px);\n  background: rgb(8 6 13 / 68%);\n}\ndialog h2 {\n  margin: 8px 0 10px;\n}\ndialog .primary-button {\n  margin-top: 22px;\n}\ninput:focus,\nselect:focus,\nbutton:focus-visible {\n  outline: 2px solid var(--accent);\n  outline-offset: 2px;\n}\n.grid-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  box-shadow: var(--shadow);\n  overflow: hidden;\n}\n.grid-heading,\n.grid-footer {\n  align-items: end;\n  display: flex;\n  gap: 24px;\n  justify-content: space-between;\n  padding: 22px 24px;\n}\n.grid-heading {\n  border-bottom: 1px solid var(--border);\n}\n.grid-heading h3 {\n  color: var(--text-h);\n  font-size: 22px;\n  margin: 0 0 4px;\n}\n.grid-heading p,\n.grid-footer {\n  font-size: 14px;\n}\n.filters {\n  display: flex;\n  gap: 12px;\n}\n.table-wrap {\n  min-height: 486px;\n  overflow-x: auto;\n  position: relative;\n}\ntable {\n  border-collapse: collapse;\n  width: 100%;\n}\nth,\ntd {\n  border-bottom: 1px solid var(--border);\n  padding: 13px 16px;\n  text-align: left;\n  white-space: nowrap;\n}\nth {\n  background: var(--code-bg);\n  color: var(--text-h);\n  font-size: 12px;\n}\nth button {\n  align-items: center;\n  background: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-flex;\n  font-weight: 700;\n  gap: 7px;\n  padding: 0;\n}\nth button.active-sort {\n  color: var(--accent);\n}\ntbody tr {\n  cursor: pointer;\n}\ntbody tr:hover,\ntbody tr.selected {\n  background: var(--accent-bg);\n}\n.row-select {\n  background: transparent;\n  border: 0;\n  color: var(--text-h);\n  cursor: pointer;\n  font-weight: 700;\n  padding: 0;\n  text-align: left;\n}\ncode {\n  background: var(--code-bg);\n  border-radius: 4px;\n  padding: 2px 5px;\n}\n.status {\n  inset: 50% auto auto 50%;\n  position: absolute;\n  transform: translate(-50%, -50%);\n}\n.status.error {\n  background: #fef3f2;\n  border: 1px solid #fecdca;\n  border-radius: 8px;\n  color: #b42318;\n  margin: 14px 24px;\n  padding: 12px 16px;\n  position: static;\n  transform: none;\n}\n.pagination {\n  align-items: center;\n  display: flex;\n  gap: 10px;\n}\n.pagination button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  cursor: pointer;\n  min-height: 36px;\n  padding: 6px 10px;\n}\n.pagination button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n.detail-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  margin-top: 18px;\n  overflow: hidden;\n}\n.orders-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  margin-top: 18px;\n  overflow: hidden;\n}\n.orders-layout {\n  display: grid;\n  grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);\n}\n.order-list,\n.order-detail {\n  min-width: 0;\n  padding: 20px;\n}\n.order-list {\n  border-right: 1px solid var(--border);\n}\n.order-list h4,\n.order-detail h4 {\n  color: var(--text-h);\n  font-size: 15px;\n  margin: 0 0 14px;\n}\n.order-list > button {\n  align-items: center;\n  background: transparent;\n  border: 1px solid transparent;\n  border-radius: 8px;\n  color: var(--text);\n  cursor: pointer;\n  display: flex;\n  gap: 12px;\n  justify-content: space-between;\n  padding: 11px 12px;\n  text-align: left;\n  width: 100%;\n}\n.order-list > button:hover,\n.order-list > button.selected {\n  background: var(--accent-bg);\n  border-color: var(--accent-border);\n}\n.order-list > button > span {\n  display: grid;\n  gap: 2px;\n}\n.order-list > button > span:last-child {\n  justify-items: end;\n}\n.order-list strong {\n  color: var(--text-h);\n}\n.order-list small {\n  font-size: 12px;\n}\n.order-summary,\n.order-totals {\n  display: grid;\n  gap: 10px;\n  margin: 0;\n}\n.order-summary {\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.order-summary div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.order-summary dt,\n.order-totals dt {\n  font-size: 12px;\n}\n.order-summary dd,\n.order-totals dd {\n  color: var(--text-h);\n  font-weight: 650;\n  margin: 2px 0 0;\n}\n.line-items-wrap {\n  border: 1px solid var(--border);\n  border-radius: 8px;\n  margin-top: 16px;\n  overflow-x: auto;\n}\n.line-items {\n  font-size: 13px;\n}\n.line-items caption {\n  clip: rect(0 0 0 0);\n  height: 1px;\n  overflow: hidden;\n  position: absolute;\n  width: 1px;\n}\n.line-items th,\n.line-items td {\n  padding: 9px 10px;\n}\n.line-items th:not(:first-child),\n.line-items td:not(:first-child) {\n  text-align: right;\n}\n.order-totals {\n  justify-content: end;\n  margin-top: 14px;\n  text-align: right;\n}\n.order-totals div {\n  display: grid;\n  gap: 12px;\n  grid-template-columns: 80px 110px;\n}\n.order-totals div:last-child {\n  border-top: 1px solid var(--border);\n  padding-top: 7px;\n}\n.detail-heading {\n  align-items: center;\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n  padding: 20px 24px;\n}\n.detail-heading h3 {\n  color: var(--text-h);\n  font-size: 22px;\n  margin: 3px 0 0;\n}\n.detail-status {\n  padding: 24px;\n}\n.detail-status.error {\n  color: #b42318;\n}\n.customer-detail {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n  padding: 24px;\n}\n.detail-form {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  padding: 24px;\n}\n.detail-form > * {\n  min-width: 0;\n}\n.detail-form input {\n  width: 100%;\n}\n.detail-actions,\n.detail-metrics {\n  grid-column: 1 / -1;\n}\n.detail-actions,\n.detail-metrics {\n  align-items: center;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n.detail-metrics {\n  color: var(--text-h);\n  font-weight: 700;\n  gap: 18px;\n}\n.unsaved-indicator {\n  background: #fffaeb;\n  border-radius: 999px;\n  color: #dc6803;\n  font-size: 12px;\n  padding: 3px 8px;\n}\n.detail-notice {\n  margin: 0 24px 24px;\n}\n.customer-detail > * {\n  min-width: 0;\n}\n.customer-detail div {\n  background: var(--code-bg);\n  border-radius: 8px;\n  padding: 12px;\n}\n.customer-detail dt {\n  font-size: 12px;\n}\n.customer-detail dd {\n  color: var(--text-h);\n  font-weight: 650;\n  margin: 3px 0 0;\n}\n@media (prefers-reduced-motion: reduce) {\n  *,\n  *::before,\n  *::after {\n    animation-duration: 0.01ms !important;\n    animation-iteration-count: 1 !important;\n    scroll-behavior: auto !important;\n    transition-duration: 0.01ms !important;\n  }\n}\n@media (forced-colors: active) {\n  .framework-badge,\n  .control-card,\n  .grid-card,\n  .detail-card,\n  .orders-card {\n    border: 1px solid CanvasText;\n  }\n}\n@media (max-width: 1100px) {\n  .control-layout {\n    grid-template-columns: 1fr;\n  }\n  .data-section .section-heading {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .sandbox-toolbar {\n    justify-content: flex-start;\n    max-width: none;\n  }\n  .orders-layout {\n    grid-template-columns: 1fr;\n  }\n  .order-list {\n    border-bottom: 1px solid var(--border);\n    border-right: 0;\n  }\n}\n@media (max-width: 760px) {\n  .showcase {\n    padding: 24px 16px;\n  }\n  .showcase-header,\n  .section-heading,\n  .grid-heading,\n  .grid-footer {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .showcase-nav {\n    overflow-x: auto;\n  }\n  .control-layout,\n  .field-grid,\n  .summary-list,\n  .customer-detail,\n  .detail-form {\n    grid-template-columns: 1fr;\n  }\n  .field-span {\n    grid-column: auto;\n  }\n  .filters {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .detail-actions,\n  .detail-metrics {\n    grid-column: auto;\n  }\n  .sandbox-banner {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .sandbox-status {\n    justify-items: start;\n  }\n}\n"] }]
+                  <td data-label="Contact">{{ customer.contactName || '\u2014' }}</td>\r
+                  <td data-label="City">{{ customer.city || '\u2014' }}</td>\r
+                  <td data-label="Country">{{ customer.country || '\u2014' }}</td>\r
+                  <td data-label="ID">\r
+                    <code>{{ customer.customerId }}</code>\r
+                  </td>\r
+                </tr>\r
+              }\r
+            }\r
+          </tbody>\r
+        </table>\r
+\r
+        @if (loading()) {\r
+          <div class="status" role="status" aria-live="polite">Loading customers\u2026</div>\r
+        } @else if (!customerError() && customers().length === 0) {\r
+          <div class="status">No customers match these filters.</div>\r
+        }\r
+      </div>\r
+\r
+      <footer class="grid-footer">\r
+        <span>{{ selectedId() ? 'Selected: ' + selectedId() : 'Select a customer row' }}</span>\r
+        <div class="pagination">\r
+          <button\r
+            type="button"\r
+            [disabled]="loading() || page() <= 1"\r
+            (click)="page.update((current) => current - 1)"\r
+          >\r
+            Previous\r
+          </button>\r
+          <span>{{ pageLabel() }}</span>\r
+          <button\r
+            type="button"\r
+            [disabled]="loading() || page() >= totalPages()"\r
+            (click)="page.update((current) => current + 1)"\r
+          >\r
+            Next\r
+          </button>\r
+        </div>\r
+      </footer>\r
+    </section>\r
+\r
+    <section class="detail-card" aria-labelledby="detail-heading">\r
+      <div class="detail-heading">\r
+        <div>\r
+          <span class="eyebrow">{{\r
+            sandboxEnabled() ? 'Session database' : 'Read-only binding'\r
+          }}</span>\r
+          <h3 id="detail-heading">Customer details</h3>\r
+        </div>\r
+        @if (selectedId()) {\r
+          <code>{{ selectedId() }}</code>\r
+        }\r
+      </div>\r
+\r
+      @if (!selectedId()) {\r
+        <div class="detail-status">Select a customer row to bind the detail controls.</div>\r
+      } @else if (detailLoading()) {\r
+        <div class="detail-status" role="status" aria-live="polite">Loading customer\u2026</div>\r
+      } @else if (detailError()) {\r
+        <div class="detail-status error" role="alert">{{ detailError() }}</div>\r
+      } @else if (sandboxEnabled() && customerDraft(); as draft) {\r
+        <form class="detail-form" (submit)="$event.preventDefault(); saveSandboxCustomer()">\r
+          @for (field of editableFields; track field[0]) {\r
+            <label>\r
+              <span>{{ field[1] }}</span>\r
+              <input\r
+                [required]="field[0] === 'companyName'"\r
+                [value]="draft[field[0]] ?? ''"\r
+                (input)="updateCustomerDraft(field[0], $any($event.target).value)"\r
+              />\r
+            </label>\r
+          }\r
+          <div class="detail-metrics">\r
+            <span>{{ draft.orderCount }} orders</span>\r
+            <span>{{ formatSales(draft.totalSales) }}</span>\r
+            @if (draftIsDirty()) {\r
+              <span class="unsaved-indicator">Unsaved fields</span>\r
+            }\r
+          </div>\r
+          <div class="detail-actions">\r
+            <button\r
+              type="submit"\r
+              class="primary-button"\r
+              [disabled]="!draftIsDirty() || !draft.companyName.trim()"\r
+            >\r
+              Save temporary changes\r
+            </button>\r
+            <button\r
+              type="button"\r
+              class="secondary-button"\r
+              [disabled]="!draftIsDirty()"\r
+              (click)="discardCustomerDraft()"\r
+            >\r
+              Discard fields\r
+            </button>\r
+          </div>\r
+        </form>\r
+      } @else if (customerDetail(); as detail) {\r
+        <dl class="customer-detail">\r
+          <div>\r
+            <dt>Company</dt>\r
+            <dd>{{ detail.companyName || '\u2014' }}</dd>\r
+          </div>\r
+          <div>\r
+            <dt>Contact</dt>\r
+            <dd>{{ detail.contactName || '\u2014' }}</dd>\r
+          </div>\r
+          <div>\r
+            <dt>Title</dt>\r
+            <dd>{{ detail.contactTitle || '\u2014' }}</dd>\r
+          </div>\r
+          <div>\r
+            <dt>Address</dt>\r
+            <dd>{{ detail.address || '\u2014' }}</dd>\r
+          </div>\r
+          <div>\r
+            <dt>Location</dt>\r
+            <dd>{{ customerLocation(detail) || '\u2014' }}</dd>\r
+          </div>\r
+          <div>\r
+            <dt>Phone</dt>\r
+            <dd>{{ detail.phone || '\u2014' }}</dd>\r
+          </div>\r
+          <div>\r
+            <dt>Fax</dt>\r
+            <dd>{{ detail.fax || '\u2014' }}</dd>\r
+          </div>\r
+          <div>\r
+            <dt>Orders</dt>\r
+            <dd>{{ detail.orderCount }}</dd>\r
+          </div>\r
+          <div>\r
+            <dt>Total sales</dt>\r
+            <dd>{{ formatSales(detail.totalSales) }}</dd>\r
+          </div>\r
+        </dl>\r
+      }\r
+      @if (sandboxNotice()) {\r
+        <div class="notification detail-notice" role="status" aria-live="polite">\r
+          <span>{{ sandboxNotice() }}</span>\r
+          <button\r
+            type="button"\r
+            aria-label="Dismiss sandbox notification"\r
+            (click)="sandboxNotice.set('')"\r
+          >\r
+            \xD7\r
+          </button>\r
+        </div>\r
+      }\r
+    </section>\r
+\r
+    <section class="orders-card" aria-labelledby="orders-heading">\r
+      <div class="detail-heading">\r
+        <div>\r
+          <span class="eyebrow">Selection chain</span>\r
+          <h3 id="orders-heading">Orders and line items</h3>\r
+        </div>\r
+        @if (selectedOrderId()) {\r
+          <code>Order {{ selectedOrderId() }}</code>\r
+        }\r
+      </div>\r
+      @if (!selectedId()) {\r
+        <div class="detail-status">Select a customer to load their orders.</div>\r
+      } @else {\r
+        <div class="orders-layout">\r
+          <div class="order-list" [attr.aria-busy]="ordersLoading()">\r
+            <h4>Customer orders</h4>\r
+            @if (ordersLoading()) {\r
+              <div class="detail-status" role="status" aria-live="polite">Loading orders\u2026</div>\r
+            } @else if (orders().length === 0) {\r
+              <div class="detail-status">This customer has no orders.</div>\r
+            } @else {\r
+              @for (order of orders(); track order.orderId) {\r
+                <button\r
+                  type="button"\r
+                  [class.selected]="selectedOrderId() === order.orderId"\r
+                  [attr.aria-pressed]="selectedOrderId() === order.orderId"\r
+                  (click)="selectedOrderId.set(order.orderId)"\r
+                >\r
+                  <span\r
+                    ><strong>Order {{ order.orderId }}</strong\r
+                    ><small>{{ formatDate(order.orderDate) }}</small></span\r
+                  >\r
+                  <span\r
+                    ><strong>{{ formatSales(order.total) }}</strong\r
+                    ><small>{{ order.status }}</small></span\r
+                  >\r
+                </button>\r
+              }\r
+            }\r
+          </div>\r
+          <div class="order-detail" [attr.aria-busy]="orderLoading()">\r
+            <h4>Order detail</h4>\r
+            @if (orderLoading()) {\r
+              <div class="detail-status" role="status" aria-live="polite">Loading order\u2026</div>\r
+            } @else if (orderError()) {\r
+              <div class="detail-status error" role="alert">{{ orderError() }}</div>\r
+            } @else if (orderDetail(); as detail) {\r
+              <dl class="order-summary">\r
+                <div>\r
+                  <dt>Employee</dt>\r
+                  <dd>{{ detail.employeeName || '\u2014' }}</dd>\r
+                </div>\r
+                <div>\r
+                  <dt>Shipper</dt>\r
+                  <dd>{{ detail.shipperName || '\u2014' }}</dd>\r
+                </div>\r
+                <div>\r
+                  <dt>Status</dt>\r
+                  <dd>{{ detail.status }}</dd>\r
+                </div>\r
+                <div>\r
+                  <dt>Destination</dt>\r
+                  <dd>{{ destination(detail) }}</dd>\r
+                </div>\r
+              </dl>\r
+              <div class="line-items-wrap">\r
+                <table class="line-items">\r
+                  <caption>\r
+                    Order line items\r
+                  </caption>\r
+                  <thead>\r
+                    <tr>\r
+                      <th scope="col">Product</th>\r
+                      <th scope="col">Qty.</th>\r
+                      <th scope="col">Price</th>\r
+                      <th scope="col">Total</th>\r
+                    </tr>\r
+                  </thead>\r
+                  <tbody>\r
+                    @for (item of detail.items; track item.productId) {\r
+                      <tr>\r
+                        <td>{{ item.productName }}</td>\r
+                        <td>{{ item.quantity }}</td>\r
+                        <td>{{ formatSales(item.unitPrice) }}</td>\r
+                        <td>{{ formatSales(item.extendedPrice) }}</td>\r
+                      </tr>\r
+                    }\r
+                  </tbody>\r
+                </table>\r
+              </div>\r
+              <dl class="order-totals">\r
+                <div>\r
+                  <dt>Subtotal</dt>\r
+                  <dd>{{ formatSales(detail.subtotal) }}</dd>\r
+                </div>\r
+                <div>\r
+                  <dt>Freight</dt>\r
+                  <dd>{{ formatSales(detail.freight) }}</dd>\r
+                </div>\r
+                <div>\r
+                  <dt>Total</dt>\r
+                  <dd>{{ formatSales(detail.total) }}</dd>\r
+                </div>\r
+              </dl>\r
+            }\r
+          </div>\r
+        </div>\r
+      }\r
+    </section>\r
+  </section>\r
+\r
+  <dialog #profileDialog>\r
+    <form method="dialog">\r
+      <span class="eyebrow">Native dialog</span>\r
+      <h2>Angular-controlled launch</h2>\r
+      <p>This modal uses the browser dialog element for focus management and keyboard dismissal.</p>\r
+      <button class="primary-button">Close dialog</button>\r
+    </form>\r
+  </dialog>\r
+</div>\r
+`, styles: ["/* src/app/app.css */\n:host {\n  --text: #6b6375;\n  --text-h: #08060d;\n  --bg: #fff;\n  --border: #e5e4e7;\n  --code-bg: #f4f3ec;\n  --accent: #aa3bff;\n  --accent-bg: rgb(170 59 255 / 10%);\n  --accent-border: rgb(170 59 255 / 50%);\n  --shadow: rgb(0 0 0 / 10%) 0 10px 15px -3px, rgb(0 0 0 / 5%) 0 4px 6px -2px;\n  background: var(--bg);\n  color: var(--text);\n  color-scheme: light dark;\n  display: block;\n  font-family: inherit;\n}\n@media (prefers-color-scheme: dark) {\n  :host {\n    --text: #9ca3af;\n    --text-h: #f3f4f6;\n    --bg: #16171d;\n    --border: #2e303a;\n    --code-bg: #1f2028;\n    --accent: #c084fc;\n    --accent-bg: rgb(192 132 252 / 15%);\n    --accent-border: rgb(192 132 252 / 50%);\n    --shadow: rgb(0 0 0 / 40%) 0 10px 15px -3px, rgb(0 0 0 / 25%) 0 4px 6px -2px;\n  }\n}\n* {\n  box-sizing: border-box;\n}\n.showcase {\n  padding: 48px;\n  text-align: left;\n}\n.showcase-header {\n  align-items: flex-start;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 32px;\n}\n.showcase-header h1 {\n  margin: 6px 0 10px;\n}\n.showcase-header p {\n  max-width: 680px;\n}\n.showcase-nav {\n  display: flex;\n  gap: 8px;\n  margin: -12px 0 32px;\n}\n.showcase-nav a {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 999px;\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 700;\n  padding: 7px 11px;\n  text-decoration: none;\n}\n.showcase-nav a:hover {\n  border-color: var(--accent-border);\n  color: var(--accent);\n}\n.controls-section,\n.data-section {\n  scroll-margin-top: 90px;\n}\n.eyebrow {\n  color: var(--accent);\n  font-size: 13px;\n  font-weight: 700;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n}\n.framework-badge {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 999px;\n  color: var(--text-h);\n  display: flex;\n  font-weight: 650;\n  gap: 10px;\n  padding: 10px 14px;\n}\n.framework-badge > span {\n  align-items: center;\n  background: var(--accent);\n  border-radius: 50%;\n  color: white;\n  display: inline-flex;\n  height: 24px;\n  justify-content: center;\n  width: 24px;\n}\n.controls-section {\n  margin-bottom: 32px;\n}\n.data-section {\n  margin-top: 40px;\n}\n.section-heading {\n  align-items: end;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 18px;\n}\n.section-heading h2 {\n  margin: 4px 0 0;\n}\n.section-heading p {\n  font-size: 15px;\n  max-width: 560px;\n}\n.sandbox-toolbar {\n  align-items: end;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n  justify-content: flex-end;\n  max-width: 580px;\n}\n.sandbox-toolbar p {\n  flex-basis: 100%;\n}\n.sandbox-toggle {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: flex;\n  gap: 8px;\n  min-height: 40px;\n  padding: 7px 11px;\n}\n.sandbox-toggle input {\n  accent-color: var(--accent);\n}\n.sandbox-banner {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 8px;\n  justify-content: space-between;\n  margin-bottom: 14px;\n  padding: 12px 16px;\n}\n.sandbox-banner > div:first-child,\n.sandbox-status {\n  display: grid;\n}\n.sandbox-status {\n  flex: 0 0 auto;\n  justify-items: end;\n}\n.sandbox-status > span {\n  background: var(--code-bg);\n  border-radius: 999px;\n  font-size: 12px;\n  font-weight: 700;\n  padding: 3px 8px;\n}\n.sandbox-status > span.changed {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.sandbox-status small {\n  font-size: 11px;\n  margin-top: 3px;\n}\n.control-layout {\n  display: grid;\n  gap: 18px;\n  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);\n}\n.control-layout > *,\n.field-grid > * {\n  min-width: 0;\n}\n.control-stack {\n  display: grid;\n  gap: 18px;\n}\n.control-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  padding: 22px;\n}\n.control-card h3 {\n  color: var(--text-h);\n  font-size: 18px;\n  margin: 0 0 18px;\n}\n.field-grid {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.field-span {\n  grid-column: 1 / -1;\n}\nlabel {\n  color: var(--text-h);\n  display: grid;\n  font-size: 13px;\n  font-weight: 650;\n  gap: 5px;\n}\ninput,\nselect,\nbutton {\n  font: inherit;\n}\ninput:not([type=checkbox]):not([type=radio]):not([type=range]),\nselect {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  min-height: 42px;\n  padding: 8px 11px;\n}\n.form-card input:not([type=checkbox]):not([type=radio]),\n.form-card select {\n  width: 100%;\n}\n.field-help,\n.field-error {\n  font-size: 12px;\n  font-weight: 450;\n}\n.field-help {\n  color: var(--text);\n}\n.field-error {\n  color: #b42318;\n}\ninput[aria-invalid=true] {\n  border-color: #d92d20;\n}\nfieldset {\n  border: 0;\n  margin: 20px 0 0;\n  padding: 0;\n}\nlegend {\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 650;\n  margin-bottom: 8px;\n}\n.choice-row,\n.form-actions {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n.choice {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: flex;\n  gap: 7px;\n  padding: 7px 10px;\n}\n.choice input,\n.range-field input {\n  accent-color: var(--accent);\n}\n.form-actions {\n  margin-top: 22px;\n}\n.primary-button,\n.secondary-button {\n  border-radius: 7px;\n  cursor: pointer;\n  font-weight: 700;\n  min-height: 40px;\n  padding: 8px 13px;\n}\n.primary-button {\n  background: var(--accent);\n  border: 1px solid var(--accent);\n  color: white;\n}\n.secondary-button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  color: var(--text-h);\n}\n.primary-button:disabled,\n.secondary-button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n.switch-row {\n  align-items: center;\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n}\n.switch-row > span {\n  display: grid;\n}\n.switch-row small {\n  color: var(--text);\n  font-weight: 450;\n}\n.switch {\n  accent-color: var(--accent);\n  height: 24px;\n  width: 44px;\n}\n.range-field {\n  margin-top: 22px;\n}\n.range-field > span {\n  display: flex;\n  justify-content: space-between;\n}\n.range-field input,\nprogress {\n  width: 100%;\n}\nprogress {\n  accent-color: var(--accent);\n  height: 8px;\n  margin-top: 12px;\n}\n.tabs {\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 4px;\n  padding-bottom: 12px;\n}\n.tabs button {\n  background: transparent;\n  border: 0;\n  border-radius: 6px;\n  color: var(--text);\n  cursor: pointer;\n  font-weight: 700;\n  padding: 7px 10px;\n}\n.tabs button[aria-selected=true] {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.tab-panel {\n  min-height: 155px;\n  padding-top: 18px;\n}\n.summary-list {\n  display: grid;\n  gap: 10px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n}\n.summary-list div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.summary-list dt {\n  font-size: 12px;\n}\n.summary-list dd {\n  color: var(--text-h);\n  font-weight: 700;\n  margin: 2px 0 0;\n}\ndetails {\n  border-top: 1px solid var(--border);\n  font-size: 14px;\n  padding-top: 12px;\n}\nsummary {\n  color: var(--text-h);\n  cursor: pointer;\n  font-weight: 700;\n}\ndetails p {\n  padding-top: 10px;\n}\n.notification {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n  margin-top: 14px;\n  padding: 12px 16px;\n}\n.notification button {\n  background: transparent;\n  border: 0;\n  color: var(--text-h);\n  cursor: pointer;\n  font-size: 22px;\n}\ndialog {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n  color: var(--text);\n  max-width: 430px;\n  padding: 26px;\n}\ndialog::backdrop {\n  -webkit-backdrop-filter: blur(3px);\n  backdrop-filter: blur(3px);\n  background: rgb(8 6 13 / 68%);\n}\ndialog h2 {\n  margin: 8px 0 10px;\n}\ndialog .primary-button {\n  margin-top: 22px;\n}\ninput:focus,\nselect:focus,\nbutton:focus-visible {\n  outline: 2px solid var(--accent);\n  outline-offset: 2px;\n}\n.grid-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  box-shadow: var(--shadow);\n  overflow: hidden;\n}\n.grid-heading,\n.grid-footer {\n  align-items: end;\n  display: flex;\n  gap: 24px;\n  justify-content: space-between;\n  padding: 22px 24px;\n}\n.grid-heading {\n  border-bottom: 1px solid var(--border);\n}\n.grid-heading h3 {\n  color: var(--text-h);\n  font-size: 22px;\n  margin: 0 0 4px;\n}\n.grid-heading p,\n.grid-footer {\n  font-size: 14px;\n}\n.filters {\n  display: flex;\n  gap: 12px;\n}\n.table-wrap {\n  min-height: 486px;\n  overflow-x: auto;\n  position: relative;\n}\ntable {\n  border-collapse: collapse;\n  width: 100%;\n}\nth,\ntd {\n  border-bottom: 1px solid var(--border);\n  padding: 13px 16px;\n  text-align: left;\n  white-space: nowrap;\n}\nth {\n  background: var(--code-bg);\n  color: var(--text-h);\n  font-size: 12px;\n}\nth button {\n  align-items: center;\n  background: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-flex;\n  font-weight: 700;\n  gap: 7px;\n  padding: 0;\n}\nth button.active-sort {\n  color: var(--accent);\n}\ntbody tr {\n  cursor: pointer;\n}\ntbody tr:hover,\ntbody tr.selected {\n  background: var(--accent-bg);\n}\ncode {\n  background: var(--code-bg);\n  border-radius: 4px;\n  padding: 2px 5px;\n}\n.status {\n  inset: 50% auto auto 50%;\n  position: absolute;\n  transform: translate(-50%, -50%);\n}\n.status.error {\n  background: #fef3f2;\n  border: 1px solid #fecdca;\n  border-radius: 8px;\n  color: #b42318;\n  margin: 14px 24px;\n  padding: 12px 16px;\n  position: static;\n  transform: none;\n}\n.pagination {\n  align-items: center;\n  display: flex;\n  gap: 10px;\n}\n.pagination button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  cursor: pointer;\n  min-height: 36px;\n  padding: 6px 10px;\n}\n.pagination button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n.detail-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  margin-top: 18px;\n  overflow: hidden;\n}\n.orders-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  margin-top: 18px;\n  overflow: hidden;\n}\n.orders-layout {\n  display: grid;\n  grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);\n}\n.order-list,\n.order-detail {\n  min-width: 0;\n  padding: 20px;\n}\n.order-list {\n  border-right: 1px solid var(--border);\n}\n.order-list h4,\n.order-detail h4 {\n  color: var(--text-h);\n  font-size: 15px;\n  margin: 0 0 14px;\n}\n.order-list > button {\n  align-items: center;\n  background: transparent;\n  border: 1px solid transparent;\n  border-radius: 8px;\n  color: var(--text);\n  cursor: pointer;\n  display: flex;\n  gap: 12px;\n  justify-content: space-between;\n  padding: 11px 12px;\n  text-align: left;\n  width: 100%;\n}\n.order-list > button:hover,\n.order-list > button.selected {\n  background: var(--accent-bg);\n  border-color: var(--accent-border);\n}\n.order-list > button > span {\n  display: grid;\n  gap: 2px;\n}\n.order-list > button > span:last-child {\n  justify-items: end;\n}\n.order-list strong {\n  color: var(--text-h);\n}\n.order-list small {\n  font-size: 12px;\n}\n.order-summary,\n.order-totals {\n  display: grid;\n  gap: 10px;\n  margin: 0;\n}\n.order-summary {\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.order-summary div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.order-summary dt,\n.order-totals dt {\n  font-size: 12px;\n}\n.order-summary dd,\n.order-totals dd {\n  color: var(--text-h);\n  font-weight: 650;\n  margin: 2px 0 0;\n}\n.line-items-wrap {\n  border: 1px solid var(--border);\n  border-radius: 8px;\n  margin-top: 16px;\n  overflow-x: auto;\n}\n.line-items {\n  font-size: 13px;\n}\n.line-items caption {\n  clip: rect(0 0 0 0);\n  height: 1px;\n  overflow: hidden;\n  position: absolute;\n  width: 1px;\n}\n.line-items th,\n.line-items td {\n  padding: 9px 10px;\n}\n.line-items th:not(:first-child),\n.line-items td:not(:first-child) {\n  text-align: right;\n}\n.order-totals {\n  justify-content: end;\n  margin-top: 14px;\n  text-align: right;\n}\n.order-totals div {\n  display: grid;\n  gap: 12px;\n  grid-template-columns: 80px 110px;\n}\n.order-totals div:last-child {\n  border-top: 1px solid var(--border);\n  padding-top: 7px;\n}\n.detail-heading {\n  align-items: center;\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n  padding: 20px 24px;\n}\n.detail-heading h3 {\n  color: var(--text-h);\n  font-size: 22px;\n  margin: 3px 0 0;\n}\n.detail-status {\n  padding: 24px;\n}\n.detail-status.error {\n  color: #b42318;\n}\n.customer-detail {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n  padding: 24px;\n}\n.detail-form {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  padding: 24px;\n}\n.detail-form > * {\n  min-width: 0;\n}\n.detail-form input {\n  width: 100%;\n}\n.detail-actions,\n.detail-metrics {\n  grid-column: 1 / -1;\n}\n.detail-actions,\n.detail-metrics {\n  align-items: center;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n.detail-metrics {\n  color: var(--text-h);\n  font-weight: 700;\n  gap: 18px;\n}\n.unsaved-indicator {\n  background: #fffaeb;\n  border-radius: 999px;\n  color: #dc6803;\n  font-size: 12px;\n  padding: 3px 8px;\n}\n.detail-notice {\n  margin: 0 24px 24px;\n}\n.customer-detail > * {\n  min-width: 0;\n}\n.customer-detail div {\n  background: var(--code-bg);\n  border-radius: 8px;\n  padding: 12px;\n}\n.customer-detail dt {\n  font-size: 12px;\n}\n.customer-detail dd {\n  color: var(--text-h);\n  font-weight: 650;\n  margin: 3px 0 0;\n}\n@media (prefers-reduced-motion: reduce) {\n  *,\n  *::before,\n  *::after {\n    animation-duration: 0.01ms !important;\n    animation-iteration-count: 1 !important;\n    scroll-behavior: auto !important;\n    transition-duration: 0.01ms !important;\n  }\n}\n@media (forced-colors: active) {\n  .framework-badge,\n  .control-card,\n  .grid-card,\n  .detail-card,\n  .orders-card {\n    border: 1px solid CanvasText;\n  }\n}\n@media (max-width: 1100px) {\n  .control-layout {\n    grid-template-columns: 1fr;\n  }\n  .data-section .section-heading {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .sandbox-toolbar {\n    justify-content: flex-start;\n    max-width: none;\n  }\n  .orders-layout {\n    grid-template-columns: 1fr;\n  }\n  .order-list {\n    border-bottom: 1px solid var(--border);\n    border-right: 0;\n  }\n}\n@media (max-width: 760px) {\n  .showcase {\n    padding: 24px 16px;\n  }\n  .showcase-header,\n  .section-heading,\n  .grid-heading,\n  .grid-footer {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .showcase-nav {\n    overflow-x: auto;\n  }\n  .control-layout,\n  .field-grid,\n  .summary-list,\n  .customer-detail,\n  .detail-form {\n    grid-template-columns: 1fr;\n  }\n  .field-span {\n    grid-column: auto;\n  }\n  .filters {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .detail-actions,\n  .detail-metrics {\n    grid-column: auto;\n  }\n  .sandbox-banner {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .sandbox-status {\n    justify-items: start;\n  }\n}\n"] }]
   }], () => [], { dialog: [{ type: ViewChild, args: ["profileDialog", { isSignal: true }] }], warnBeforeUnload: [{
     type: HostListener,
     args: ["window:beforeunload", ["$event"]]

@@ -805,27 +805,18 @@ function App() {
                     className={
                       selectedId === customer.customerId ? 'selected' : ''
                     }
+                    tabIndex="0"
+                    aria-selected={selectedId === customer.customerId}
                     onClick={() => setSelectedId(customer.customerId)}
+                    onKeyDown={(event) => {
+                      if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault()
+                        setSelectedId(customer.customerId)
+                      }
+                    }}
                   >
                     <td data-label="Company">
-                      <button
-                        type="button"
-                        className="row-select"
-                        aria-pressed={selectedId === customer.customerId}
-                        onClick={(event) => {
-                          event.stopPropagation()
-                          setSelectedId(customer.customerId)
-                        }}
-                        onKeyDown={(event) => {
-                          if (event.key === 'Enter' || event.key === ' ') {
-                            event.preventDefault()
-                            event.stopPropagation()
-                            setSelectedId(customer.customerId)
-                          }
-                        }}
-                      >
-                        {customer.companyName}
-                      </button>
+                      {customer.companyName}
                     </td>
                     <td data-label="Contact">{customer.contactName || '—'}</td>
                     <td data-label="City">{customer.city || '—'}</td>

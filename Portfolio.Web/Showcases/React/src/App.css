@@ -585,20 +585,6 @@ td:first-child {
   font-weight: 650;
 }
 
-.row-select {
-  padding: 0;
-  color: inherit;
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-  font-weight: inherit;
-  text-align: left;
-}
-
-.row-select:hover {
-  color: var(--accent);
-}
-
 td code {
   padding: 3px 6px;
 }

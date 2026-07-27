@@ -102,7 +102,7 @@ describe('React showcase', () => {
     const user = userEvent.setup()
     render(<App />)
 
-    await screen.findByRole('button', { name: 'Alfreds Futterkiste' })
+    await screen.findByRole('row', { name: /Alfreds Futterkiste/ })
     await user.click(screen.getByRole('switch', { name: 'Editing sandbox' }))
     await user.click(
       await screen.findByRole('row', { name: /Alfreds Futterkiste/ }),
