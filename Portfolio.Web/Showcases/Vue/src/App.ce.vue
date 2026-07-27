@@ -2062,6 +2062,87 @@ select {
   font: inherit;
 }
 
+.primary-button,
+.secondary-button {
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: 700;
+  min-height: 40px;
+  padding: 8px 13px;
+}
+
+.primary-button,
+.primary-button:hover,
+.primary-button:focus-visible {
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  color: white;
+}
+
+.secondary-button,
+.secondary-button:hover,
+.secondary-button:focus-visible {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  color: var(--text-h);
+}
+
+.tabs {
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 4px;
+  padding-bottom: 12px;
+}
+
+.tabs button {
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  color: var(--text);
+  padding: 7px 10px;
+}
+
+.tabs button[aria-selected='true'],
+.tabs button[aria-selected='true']:hover,
+.tabs button[aria-selected='true']:focus-visible {
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.tab-panel {
+  min-height: 155px;
+  padding-top: 18px;
+}
+
+.summary-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.summary-list div,
+.metric-grid div {
+  background: var(--code-bg);
+  border-radius: 7px;
+  padding: 10px;
+}
+
+.metric-grid dd,
+.customer-button {
+  color: var(--accent);
+}
+
+.sandbox-panel {
+  background: var(--accent-bg);
+  border-color: var(--accent-border);
+}
+
+.order-card[aria-pressed='true'],
+.order-card[aria-pressed='true']:hover,
+.order-card[aria-pressed='true']:focus-visible {
+  background: var(--accent-bg);
+  border-color: var(--accent-border);
+  color: var(--text-h);
+}
+
 input:not([type='checkbox']):not([type='radio']):not([type='range']),
 select {
   background: var(--bg);
