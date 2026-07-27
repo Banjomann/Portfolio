@@ -1,9 +1,6 @@
 <script setup>
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
-const activeSection = ref('controls')
-const controlsSection = ref(null)
-const northwindSection = ref(null)
 const name = ref('Ada Lovelace')
 const email = ref('ada@example.com')
 const seats = ref(3)
@@ -399,14 +396,6 @@ function validateProfile() {
   successMessage.value = `Profile validated for ${name.value.trim()}.`
 }
 
-function navigateToSection(section) {
-  activeSection.value = section
-  const target =
-    section === 'controls' ? controlsSection.value : northwindSection.value
-  target?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  target?.querySelector('h2')?.focus({ preventScroll: true })
-}
-
 async function openDialog() {
   dialog.value?.showModal()
   await nextTick()
@@ -493,43 +482,42 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="showcase-shell">
+  <div class="showcase">
     <header class="showcase-header">
-      <p class="eyebrow">Frontend lab · Vue</p>
-      <h1>Vue interface showcase</h1>
-      <p>
-        The shared Frontend Lab experience, implemented with Vue components and
-        the Composition API.
-      </p>
+      <div>
+        <span class="eyebrow">Frontend Lab</span>
+        <h1>Vue showcase</h1>
+        <p>
+          Interactive UI patterns and data binding implemented with Vue refs,
+          computed state, watchers, and accessible native controls.
+        </p>
+      </div>
+      <div class="framework-badge" aria-label="Built with Vue">
+        <span aria-hidden="true">V</span>
+        <strong>Vue</strong>
+      </div>
     </header>
 
-    <nav aria-label="Vue showcase sections">
-      <button
-        type="button"
-        :aria-current="activeSection === 'controls' ? 'page' : undefined"
-        @click="navigateToSection('controls')"
-      >
-        Control Gallery
-      </button>
-      <button
-        type="button"
-        :aria-current="activeSection === 'northwind' ? 'page' : undefined"
-        @click="navigateToSection('northwind')"
-      >
-        Northwind Data Binding
-      </button>
+    <nav class="showcase-nav" aria-label="Vue showcase sections">
+      <a href="#vue-controls">Control gallery</a>
+      <a href="#vue-northwind">Northwind data binding</a>
     </nav>
 
     <section
-      id="controls"
-      ref="controlsSection"
+      id="vue-controls"
+      class="controls-section"
       aria-labelledby="controls-heading"
     >
-      <p class="section-number">01 · Local state</p>
-      <h2 id="controls-heading" tabindex="-1">Control Gallery</h2>
-      <p class="section-intro">
-        Native form controls bound through Vue refs and computed state.
-      </p>
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Refs and computed state</span>
+          <h2 id="controls-heading">Control gallery</h2>
+        </div>
+        <p>
+          Every value below is bound through Vue and immediately reflected in
+          the live summary.
+        </p>
+      </div>
 
       <div
         v-if="successMessage"
@@ -548,8 +536,8 @@ onBeforeUnmount(() => {
         </button>
       </div>
 
-      <div class="gallery-grid">
-        <form class="gallery-card" aria-labelledby="profile-heading" @submit.prevent="validateProfile">
+      <div class="control-layout">
+        <form class="control-card form-card" aria-labelledby="profile-heading" @submit.prevent="validateProfile">
           <div class="card-heading">
             <p class="card-kicker">Profile form</p>
             <h3 id="profile-heading">Attendee details</h3>
@@ -613,8 +601,8 @@ onBeforeUnmount(() => {
           </button>
         </form>
 
-        <div class="gallery-stack">
-          <article class="gallery-card" aria-labelledby="preferences-heading">
+        <div class="control-stack">
+          <article class="control-card" aria-labelledby="preferences-heading">
             <div class="card-heading">
               <p class="card-kicker">Preferences</p>
               <h3 id="preferences-heading">Experience settings</h3>
@@ -643,7 +631,7 @@ onBeforeUnmount(() => {
             </div>
           </article>
 
-          <article class="gallery-card" aria-labelledby="preview-heading">
+          <article class="control-card" aria-labelledby="preview-heading">
             <div class="card-heading">
               <p class="card-kicker">Live preview</p>
               <h3 id="preview-heading">Bound state</h3>
@@ -710,15 +698,20 @@ onBeforeUnmount(() => {
     </section>
 
     <section
-      id="northwind"
-      ref="northwindSection"
-      aria-labelledby="northwind-heading"
+      id="vue-northwind"
+      class="data-section"
+      aria-labelledby="data-heading"
     >
-      <p class="section-number">02 · API state</p>
-      <h2 id="northwind-heading" tabindex="-1">Northwind Data Binding</h2>
-      <p class="section-intro">
-        Server-filtered, sorted, and paged customer data from the portfolio API.
-      </p>
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">API-backed state</span>
+          <h2 id="data-heading">Northwind data binding</h2>
+        </div>
+        <p>
+          Server-driven filtering, sorting, paging, and selection against the
+          Northwind API.
+        </p>
+      </div>
 
       <aside class="sandbox-panel" aria-labelledby="sandbox-heading">
         <div>
@@ -1827,6 +1820,285 @@ button:focus-visible {
   .gallery-card,
   .notice {
     border: 1px solid CanvasText;
+  }
+}
+
+/* Shared Frontend Lab visual contract. Keep these tokens and structural rules
+   aligned with the React and Angular implementations. */
+:host {
+  --text: #6b6375;
+  --text-h: #08060d;
+  --bg: #fff;
+  --border: #e5e4e7;
+  --code-bg: #f4f3ec;
+  --accent: #42b883;
+  --accent-bg: rgb(66 184 131 / 10%);
+  --accent-border: rgb(66 184 131 / 50%);
+  --shadow: rgb(0 0 0 / 10%) 0 10px 15px -3px, rgb(0 0 0 / 5%) 0 4px 6px -2px;
+  background: var(--bg);
+  color: var(--text);
+  color-scheme: light dark;
+  font-family: inherit;
+}
+
+.showcase {
+  display: block;
+  padding: 48px;
+  text-align: left;
+}
+
+.showcase-header {
+  align-items: flex-start;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  display: flex;
+  gap: 32px;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  padding: 0;
+}
+
+.showcase-header h1 {
+  color: var(--text-h);
+  font-size: clamp(34px, 6vw, 64px);
+  letter-spacing: -0.045em;
+  line-height: 1;
+  margin: 8px 0 16px;
+}
+
+.showcase-header p {
+  font-size: 17px;
+  max-width: 680px;
+}
+
+.framework-badge {
+  align-items: center;
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  border-radius: 999px;
+  color: var(--text-h);
+  display: flex;
+  flex: 0 0 auto;
+  font-weight: 650;
+  gap: 10px;
+  padding: 10px 14px;
+}
+
+.framework-badge > span {
+  align-items: center;
+  background: var(--accent);
+  border-radius: 50%;
+  color: white;
+  display: inline-flex;
+  height: 24px;
+  justify-content: center;
+  width: 24px;
+}
+
+.showcase-nav {
+  display: flex;
+  gap: 10px;
+  margin: 0 0 28px;
+  overflow-x: auto;
+  padding: 0 0 4px;
+}
+
+.showcase-nav a {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-h);
+  flex: 0 0 auto;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 7px 11px;
+  text-decoration: none;
+}
+
+.showcase-nav a:hover {
+  border-color: var(--accent-border);
+  color: var(--accent);
+}
+
+.controls-section,
+.data-section {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 32px 0 16px;
+}
+
+.controls-section {
+  border-top: 1px solid var(--border);
+}
+
+.data-section {
+  border-top: 1px solid var(--border);
+  margin-top: 42px;
+}
+
+.section-heading {
+  align-items: end;
+  display: flex;
+  gap: 32px;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.section-heading h2 {
+  color: var(--text-h);
+  font-size: clamp(26px, 4vw, 38px);
+  margin: 6px 0 0;
+}
+
+.section-heading p {
+  font-size: 15px;
+  max-width: 560px;
+}
+
+.eyebrow,
+.card-kicker {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.control-layout {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+}
+
+.control-layout > *,
+.control-stack,
+.data-card,
+.order-workspace > * {
+  min-width: 0;
+}
+
+.control-stack {
+  display: grid;
+  gap: 18px;
+}
+
+.control-card,
+.data-card,
+.sandbox-panel {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  padding: 22px;
+}
+
+.control-card {
+  display: block;
+}
+
+.control-card h3,
+.data-card h3,
+.sandbox-panel h3 {
+  color: var(--text-h);
+}
+
+.data-card {
+  margin-top: 18px;
+}
+
+.gallery-card,
+.gallery-stack,
+.gallery-grid {
+  min-width: 0;
+}
+
+.filter-grid {
+  grid-template-columns: minmax(220px, 1fr) minmax(180px, 0.55fr);
+}
+
+.table-scroll {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+table {
+  min-width: 720px;
+  width: 100%;
+}
+
+th {
+  background: var(--code-bg);
+}
+
+tbody tr.selected {
+  background: var(--accent-bg);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.order-workspace {
+  grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+summary:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--accent-border);
+  outline-offset: 2px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :host {
+    --text: #9ca3af;
+    --text-h: #f3f4f6;
+    --bg: #16171d;
+    --border: #2e303a;
+    --code-bg: #1f2028;
+    --accent: #6ee7b7;
+    --accent-bg: rgb(110 231 183 / 15%);
+    --accent-border: rgb(110 231 183 / 50%);
+    --shadow: rgb(0 0 0 / 40%) 0 10px 15px -3px, rgb(0 0 0 / 25%) 0 4px 6px -2px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .control-layout,
+  .order-workspace {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .showcase {
+    padding: 24px 16px 40px;
+  }
+
+  .showcase-header,
+  .section-heading {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .framework-badge {
+    align-self: flex-start;
+  }
+
+  .field-pair,
+  .filter-grid,
+  .customer-detail-layout,
+  .metric-grid {
+    grid-template-columns: 1fr;
   }
 }
 </style>
