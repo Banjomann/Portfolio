@@ -1843,13 +1843,15 @@ button:focus-visible {
   --accent-bg: rgb(170 59 255 / 10%);
   --accent-border: rgb(170 59 255 / 50%);
   --shadow: rgb(0 0 0 / 10%) 0 10px 15px -3px, rgb(0 0 0 / 5%) 0 4px 6px -2px;
-  background: var(--bg);
+  background: transparent;
   color: var(--text);
   color-scheme: light dark;
-  font-family: inherit;
+  font: 18px/145% system-ui, 'Segoe UI', Roboto, sans-serif;
+  letter-spacing: 0.18px;
 }
 
 .showcase {
+  background: transparent;
   display: block;
   padding: 48px;
   text-align: left;
@@ -1869,10 +1871,11 @@ button:focus-visible {
 
 .showcase-header h1 {
   color: var(--text-h);
-  font-size: clamp(34px, 6vw, 64px);
-  letter-spacing: -0.045em;
-  line-height: 1;
-  margin: 8px 0 16px;
+  font-size: 48px;
+  font-weight: 500;
+  letter-spacing: -1.68px;
+  line-height: 118%;
+  margin: 6px 0 10px;
 }
 
 .showcase-header p {
@@ -1956,8 +1959,11 @@ button:focus-visible {
 
 .section-heading h2 {
   color: var(--text-h);
-  font-size: clamp(26px, 4vw, 38px);
-  margin: 6px 0 0;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.24px;
+  line-height: 118%;
+  margin: 4px 0 0;
 }
 
 .section-heading p {
@@ -2054,6 +2060,20 @@ button,
 input,
 select {
   font: inherit;
+}
+
+input:not([type='checkbox']):not([type='radio']):not([type='range']),
+select {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text-h);
+}
+
+input[type='checkbox'],
+input[type='radio'],
+input[type='range'],
+progress {
+  accent-color: var(--accent);
 }
 
 button:focus-visible,
