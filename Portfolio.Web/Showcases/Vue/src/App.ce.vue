@@ -19,11 +19,11 @@ const dialog = ref(null)
 const dialogCloseButton = ref(null)
 const tabNames = ['summary', 'settings']
 const columns = [
-  ['customerId', 'ID'],
   ['companyName', 'Company'],
   ['contactName', 'Contact'],
   ['city', 'City'],
   ['country', 'Country'],
+  ['customerId', 'ID'],
 ]
 const editableCustomerFields = [
   ['companyName', 'Company'],
@@ -585,7 +585,8 @@ onBeforeUnmount(() => {
             <select v-model="role">
               <option>Developer</option>
               <option>Designer</option>
-              <option>Product manager</option>
+              <option>Analyst</option>
+              <option>Manager</option>
             </select>
           </label>
 
@@ -593,8 +594,8 @@ onBeforeUnmount(() => {
             <legend>Interests</legend>
             <div class="choice-row">
               <label><input v-model="interests" type="checkbox" value="Data" /> Data</label>
-              <label><input v-model="interests" type="checkbox" value="UI" /> UI</label>
-              <label><input v-model="interests" type="checkbox" value="Testing" /> Testing</label>
+              <label><input v-model="interests" type="checkbox" value="Design" /> Design</label>
+              <label><input v-model="interests" type="checkbox" value="Automation" /> Automation</label>
             </div>
           </fieldset>
 
@@ -603,6 +604,7 @@ onBeforeUnmount(() => {
             <div class="choice-row">
               <label><input v-model="contact" type="radio" value="Email" /> Email</label>
               <label><input v-model="contact" type="radio" value="Phone" /> Phone</label>
+              <label><input v-model="contact" type="radio" value="Chat" /> Chat</label>
             </div>
           </fieldset>
 
@@ -839,8 +841,7 @@ onBeforeUnmount(() => {
                 :class="{ selected: selectedId === customer.customerId }"
                 @click="selectCustomer(customer.customerId)"
               >
-                <td>{{ customer.customerId }}</td>
-                <td>
+                <td data-label="Company">
                   <button
                     type="button"
                     class="customer-button"
@@ -850,9 +851,10 @@ onBeforeUnmount(() => {
                     {{ customer.companyName }}
                   </button>
                 </td>
-                <td>{{ customer.contactName || '—' }}</td>
-                <td>{{ customer.city || '—' }}</td>
-                <td>{{ customer.country || '—' }}</td>
+                <td data-label="Contact">{{ customer.contactName || '—' }}</td>
+                <td data-label="City">{{ customer.city || '—' }}</td>
+                <td data-label="Country">{{ customer.country || '—' }}</td>
+                <td data-label="ID"><code>{{ customer.customerId }}</code></td>
               </tr>
             </tbody>
           </table>
