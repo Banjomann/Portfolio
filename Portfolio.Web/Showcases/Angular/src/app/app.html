@@ -423,6 +423,116 @@
         </dl>
       }
     </section>
+
+    <section class="orders-card" aria-labelledby="orders-heading">
+      <div class="detail-heading">
+        <div>
+          <span class="eyebrow">Selection chain</span>
+          <h3 id="orders-heading">Orders and line items</h3>
+        </div>
+        @if (selectedOrderId()) {
+          <code>Order {{ selectedOrderId() }}</code>
+        }
+      </div>
+      @if (!selectedId()) {
+        <div class="detail-status">Select a customer to load their orders.</div>
+      } @else {
+        <div class="orders-layout">
+          <div class="order-list" [attr.aria-busy]="ordersLoading()">
+            <h4>Customer orders</h4>
+            @if (ordersLoading()) {
+              <div class="detail-status" role="status" aria-live="polite">Loading orders…</div>
+            } @else if (orders().length === 0) {
+              <div class="detail-status">This customer has no orders.</div>
+            } @else {
+              @for (order of orders(); track order.orderId) {
+                <button
+                  type="button"
+                  [class.selected]="selectedOrderId() === order.orderId"
+                  [attr.aria-pressed]="selectedOrderId() === order.orderId"
+                  (click)="selectedOrderId.set(order.orderId)"
+                >
+                  <span
+                    ><strong>Order {{ order.orderId }}</strong
+                    ><small>{{ formatDate(order.orderDate) }}</small></span
+                  >
+                  <span
+                    ><strong>{{ formatSales(order.total) }}</strong
+                    ><small>{{ order.status }}</small></span
+                  >
+                </button>
+              }
+            }
+          </div>
+          <div class="order-detail" [attr.aria-busy]="orderLoading()">
+            <h4>Order detail</h4>
+            @if (orderLoading()) {
+              <div class="detail-status" role="status" aria-live="polite">Loading order…</div>
+            } @else if (orderError()) {
+              <div class="detail-status error" role="alert">{{ orderError() }}</div>
+            } @else if (orderDetail(); as detail) {
+              <dl class="order-summary">
+                <div>
+                  <dt>Employee</dt>
+                  <dd>{{ detail.employeeName || '—' }}</dd>
+                </div>
+                <div>
+                  <dt>Shipper</dt>
+                  <dd>{{ detail.shipperName || '—' }}</dd>
+                </div>
+                <div>
+                  <dt>Status</dt>
+                  <dd>{{ detail.status }}</dd>
+                </div>
+                <div>
+                  <dt>Destination</dt>
+                  <dd>{{ destination(detail) }}</dd>
+                </div>
+              </dl>
+              <div class="line-items-wrap">
+                <table class="line-items">
+                  <caption>
+                    Order line items
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Product</th>
+                      <th scope="col">Qty.</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (item of detail.items; track item.productId) {
+                      <tr>
+                        <td>{{ item.productName }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ formatSales(item.unitPrice) }}</td>
+                        <td>{{ formatSales(item.extendedPrice) }}</td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+              <dl class="order-totals">
+                <div>
+                  <dt>Subtotal</dt>
+                  <dd>{{ formatSales(detail.subtotal) }}</dd>
+                </div>
+                <div>
+                  <dt>Freight</dt>
+                  <dd>{{ formatSales(detail.freight) }}</dd>
+                </div>
+                <div>
+                  <dt>Total</dt>
+                  <dd>{{ formatSales(detail.total) }}</dd>
+                </div>
+              </dl>
+            }
+          </div>
+        </div>
+      }
+    </section>
   </section>
 
   <dialog #profileDialog>

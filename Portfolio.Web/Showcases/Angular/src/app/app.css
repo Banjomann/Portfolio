@@ -599,6 +599,126 @@ code {
   overflow: hidden;
 }
 
+.orders-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  margin-top: 18px;
+  overflow: hidden;
+}
+.orders-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);
+}
+.order-list,
+.order-detail {
+  min-width: 0;
+  padding: 20px;
+}
+.order-list {
+  border-right: 1px solid var(--border);
+}
+.order-list h4,
+.order-detail h4 {
+  color: var(--text-h);
+  font-size: 15px;
+  margin: 0 0 14px;
+}
+.order-list > button {
+  align-items: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  padding: 11px 12px;
+  text-align: left;
+  width: 100%;
+}
+.order-list > button:hover,
+.order-list > button.selected {
+  background: var(--accent-bg);
+  border-color: var(--accent-border);
+}
+.order-list > button > span {
+  display: grid;
+  gap: 2px;
+}
+.order-list > button > span:last-child {
+  justify-items: end;
+}
+.order-list strong {
+  color: var(--text-h);
+}
+.order-list small {
+  font-size: 12px;
+}
+.order-summary,
+.order-totals {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+.order-summary {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.order-summary div {
+  background: var(--code-bg);
+  border-radius: 7px;
+  padding: 10px;
+}
+.order-summary dt,
+.order-totals dt {
+  font-size: 12px;
+}
+.order-summary dd,
+.order-totals dd {
+  color: var(--text-h);
+  font-weight: 650;
+  margin: 2px 0 0;
+}
+.line-items-wrap {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-top: 16px;
+  overflow-x: auto;
+}
+.line-items {
+  font-size: 13px;
+}
+.line-items caption {
+  clip: rect(0 0 0 0);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+}
+.line-items th,
+.line-items td {
+  padding: 9px 10px;
+}
+.line-items th:not(:first-child),
+.line-items td:not(:first-child) {
+  text-align: right;
+}
+.order-totals {
+  justify-content: end;
+  margin-top: 14px;
+  text-align: right;
+}
+.order-totals div {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 80px 110px;
+}
+.order-totals div:last-child {
+  border-top: 1px solid var(--border);
+  padding-top: 7px;
+}
+
 .detail-heading {
   align-items: center;
   border-bottom: 1px solid var(--border);
@@ -665,7 +785,8 @@ code {
   .framework-badge,
   .control-card,
   .grid-card,
-  .detail-card {
+  .detail-card,
+  .orders-card {
     border: 1px solid CanvasText;
   }
 }
@@ -678,6 +799,13 @@ code {
   .data-section .section-heading {
     align-items: stretch;
     flex-direction: column;
+  }
+  .orders-layout {
+    grid-template-columns: 1fr;
+  }
+  .order-list {
+    border-bottom: 1px solid var(--border);
+    border-right: 0;
   }
 }
 

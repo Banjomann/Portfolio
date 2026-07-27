@@ -38,6 +38,30 @@ interface CustomerPage {
   totalPages: number;
 }
 
+interface CustomerOrder {
+  orderId: number;
+  orderDate: string | null;
+  status: string;
+  total: number;
+}
+interface OrderDetail {
+  orderId: number;
+  employeeName: string | null;
+  shipperName: string | null;
+  status: string;
+  freight: number;
+  subtotal: number;
+  total: number;
+  shippingAddress: { city: string | null; country: string | null };
+  items: Array<{
+    productId: number;
+    productName: string;
+    unitPrice: number;
+    quantity: number;
+    extendedPrice: number;
+  }>;
+}
+
 const customerColumns: ReadonlyArray<readonly [SortColumn, string]> = [
   ['companyName', 'Company'],
   ['contactName', 'Contact'],
@@ -88,6 +112,12 @@ export class App {
   protected readonly customerDetail = signal<CustomerDetail | null>(null);
   protected readonly detailLoading = signal(false);
   protected readonly detailError = signal('');
+  protected readonly orders = signal<CustomerOrder[]>([]);
+  protected readonly selectedOrderId = signal<number | null>(null);
+  protected readonly orderDetail = signal<OrderDetail | null>(null);
+  protected readonly ordersLoading = signal(false);
+  protected readonly orderLoading = signal(false);
+  protected readonly orderError = signal('');
   protected readonly pageLabel = computed(
     () => `Page ${this.page()} of ${Math.max(this.totalPages(), 1)}`,
   );
@@ -174,6 +204,62 @@ export class App {
     onCleanup(() => controller.abort());
   });
 
+  private readonly ordersEffect = effect((onCleanup) => {
+    const selectedId = this.selectedId();
+    const controller = new AbortController();
+    if (!selectedId) {
+      this.orders.set([]);
+      this.selectedOrderId.set(null);
+      return;
+    }
+    this.ordersLoading.set(true);
+    this.orderError.set('');
+    fetch(`/api/northwind/customers/${selectedId}/orders`, { signal: controller.signal })
+      .then((response) => {
+        if (!response.ok) throw new Error('Customer orders could not be loaded.');
+        return response.json() as Promise<CustomerOrder[]>;
+      })
+      .then((orders) => {
+        this.orders.set(orders);
+        this.selectedOrderId.update((current) =>
+          orders.some((order) => order.orderId === current)
+            ? current
+            : (orders[0]?.orderId ?? null),
+        );
+      })
+      .catch((error: Error) => {
+        if (error.name !== 'AbortError') this.orderError.set(error.message);
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) this.ordersLoading.set(false);
+      });
+    onCleanup(() => controller.abort());
+  });
+
+  private readonly orderDetailEffect = effect((onCleanup) => {
+    const orderId = this.selectedOrderId();
+    const controller = new AbortController();
+    if (!orderId) {
+      this.orderDetail.set(null);
+      return;
+    }
+    this.orderLoading.set(true);
+    this.orderError.set('');
+    fetch(`/api/northwind/orders/${orderId}`, { signal: controller.signal })
+      .then((response) => {
+        if (!response.ok) throw new Error('Order details could not be loaded.');
+        return response.json() as Promise<OrderDetail>;
+      })
+      .then((detail) => this.orderDetail.set(detail))
+      .catch((error: Error) => {
+        if (error.name !== 'AbortError') this.orderError.set(error.message);
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) this.orderLoading.set(false);
+      });
+    onCleanup(() => controller.abort());
+  });
+
   constructor() {
     void this.loadCountries();
   }
@@ -247,6 +333,17 @@ export class App {
 
   protected formatSales(value: number): string {
     return `$${Number(value).toLocaleString()}`;
+  }
+
+  protected formatDate(value: string | null): string {
+    return value ? new Date(value).toLocaleDateString() : 'No order date';
+  }
+
+  protected destination(detail: OrderDetail): string {
+    return (
+      [detail.shippingAddress.city, detail.shippingAddress.country].filter(Boolean).join(', ') ||
+      '—'
+    );
   }
 
   private async loadCountries(): Promise<void> {

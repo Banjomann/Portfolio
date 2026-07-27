@@ -17,6 +17,24 @@ const customer = {
   orderCount: 6,
   totalSales: 4273.5,
 };
+const order = { orderId: 10643, orderDate: '1997-08-25T00:00:00', status: 'Shipped', total: 814.5 };
+const orderDetail = {
+  ...order,
+  employeeName: 'Nancy Davolio',
+  shipperName: 'Speedy Express',
+  freight: 29.46,
+  subtotal: 785.04,
+  shippingAddress: { city: 'Berlin', country: 'Germany' },
+  items: [
+    {
+      productId: 28,
+      productName: 'Rössle Sauerkraut',
+      unitPrice: 45.6,
+      quantity: 15,
+      extendedPrice: 684,
+    },
+  ],
+};
 
 describe('App', () => {
   beforeEach(async () => {
@@ -26,15 +44,19 @@ describe('App', () => {
         const url = String(input);
         const value = url.endsWith('/countries')
           ? ['Germany']
-          : url.endsWith('/customers/ALFKI')
-            ? customer
-            : {
-                items: [customer],
-                page: 1,
-                pageSize: 10,
-                totalCount: 1,
-                totalPages: 1,
-              };
+          : url.endsWith('/customers/ALFKI/orders')
+            ? [order]
+            : url.endsWith('/orders/10643')
+              ? orderDetail
+              : url.endsWith('/customers/ALFKI')
+                ? customer
+                : {
+                    items: [customer],
+                    page: 1,
+                    pageSize: 10,
+                    totalCount: 1,
+                    totalPages: 1,
+                  };
         return Promise.resolve({
           ok: true,
           json: () => Promise.resolve(value),
@@ -172,5 +194,21 @@ describe('App', () => {
     expect(details).toContain('Berlin, 12209, Germany');
     expect(details).toContain('6');
     expect(details).toContain('$4,273.5');
+  });
+
+  it('should select the newest order and bind line items and totals', async () => {
+    const fixture = TestBed.createComponent(App);
+    await fixture.whenStable();
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    fixture.detectChanges();
+    const root = fixture.nativeElement.shadowRoot as ShadowRoot;
+    (root.querySelector('.row-select') as HTMLButtonElement).click();
+    await fixture.whenStable();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    await fixture.whenStable();
+    fixture.detectChanges();
+    expect(root.querySelector('.orders-card')?.textContent).toContain('Order 10643');
+    expect(root.querySelector('.orders-card')?.textContent).toContain('Rössle Sauerkraut');
+    expect(root.querySelector('.order-totals')?.textContent).toContain('$814.5');
   });
 });
