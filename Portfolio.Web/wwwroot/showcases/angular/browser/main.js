@@ -37,6 +37,9 @@ function setActiveConsumer(consumer) {
 function getActiveConsumer() {
   return activeConsumer;
 }
+function isInNotificationPhase() {
+  return inNotificationPhase;
+}
 var REACTIVE_NODE = {
   version: 0,
   lastCleanEpoch: 0,
@@ -391,6 +394,26 @@ function signalValueChanged(node) {
   producerIncrementEpoch();
   producerNotifyConsumers(node);
   postSignalSetFn?.(node);
+}
+var BASE_EFFECT_NODE = /* @__PURE__ */ (() => __spreadProps(__spreadValues({}, REACTIVE_NODE), {
+  consumerIsAlwaysLive: true,
+  consumerAllowSignalWrites: true,
+  dirty: true,
+  kind: "effect"
+}))();
+function runEffect(node) {
+  node.dirty = false;
+  if (node.version > 0 && !consumerPollProducersForChange(node)) {
+    return;
+  }
+  node.version++;
+  const prevNode = consumerBeforeComputation(node);
+  try {
+    node.cleanup();
+    node.fn();
+  } finally {
+    consumerAfterComputation(node, prevNode);
+  }
 }
 
 // node_modules/rxjs/dist/esm/internal/util/isFunction.js
@@ -2294,6 +2317,14 @@ function emitInjectEvent(token, value, flags) {
       value,
       flags
     }
+  });
+}
+function emitEffectCreatedEvent(effect2) {
+  !ngDevMode && throwError("Injector profiler should never be called in production mode");
+  injectorProfiler({
+    type: 3,
+    context: getInjectorProfilerContext(),
+    effect: effect2
   });
 }
 function runInInjectorProfilerContext(injector, token, callback) {
@@ -4631,6 +4662,137 @@ var EffectRefImpl = class {
     this[SIGNAL].destroy();
   }
 };
+function effect(effectFn, options) {
+  ngDevMode && assertNotInReactiveContext(effect, "Call `effect` outside of a reactive context. For example, schedule the effect inside the component constructor.");
+  if (ngDevMode && !options?.injector) {
+    assertInInjectionContext(effect);
+  }
+  if (ngDevMode && options?.allowSignalWrites !== void 0) {
+    console.warn(`The 'allowSignalWrites' flag is deprecated and no longer impacts effect() (writes are always allowed)`);
+  }
+  const injector = options?.injector ?? inject2(Injector);
+  let destroyRef = options?.manualCleanup !== true ? injector.get(DestroyRef) : null;
+  let node;
+  const viewContext = injector.get(ViewContext, null, {
+    optional: true
+  });
+  const notifier = injector.get(ChangeDetectionScheduler);
+  if (viewContext !== null) {
+    node = createViewEffect(viewContext.view, notifier, effectFn);
+    if (destroyRef instanceof NodeInjectorDestroyRef && destroyRef._lView === viewContext.view) {
+      destroyRef = null;
+    }
+  } else {
+    node = createRootEffect(effectFn, injector.get(EffectScheduler), notifier);
+  }
+  node.injector = injector;
+  if (destroyRef !== null) {
+    node.onDestroyFns = [destroyRef.onDestroy(() => node.destroy())];
+  }
+  const effectRef = new EffectRefImpl(node);
+  if (ngDevMode) {
+    node.debugName = options?.debugName ?? "";
+    const prevInjectorProfilerContext = setInjectorProfilerContext({
+      injector,
+      token: null
+    });
+    try {
+      emitEffectCreatedEvent(effectRef);
+    } finally {
+      setInjectorProfilerContext(prevInjectorProfilerContext);
+    }
+  }
+  return effectRef;
+}
+var EFFECT_NODE = /* @__PURE__ */ (() => __spreadProps(__spreadValues({}, BASE_EFFECT_NODE), {
+  cleanupFns: void 0,
+  zone: null,
+  onDestroyFns: null,
+  run() {
+    if (ngDevMode && isInNotificationPhase()) {
+      throw new Error(`Schedulers cannot synchronously execute watches while scheduling.`);
+    }
+    const prevRefreshingViews = setIsRefreshingViews(false);
+    try {
+      runEffect(this);
+    } finally {
+      setIsRefreshingViews(prevRefreshingViews);
+    }
+  },
+  cleanup() {
+    if (!this.cleanupFns?.length) {
+      return;
+    }
+    const prevConsumer = setActiveConsumer(null);
+    try {
+      while (this.cleanupFns.length) {
+        this.cleanupFns.pop()();
+      }
+    } finally {
+      this.cleanupFns = [];
+      setActiveConsumer(prevConsumer);
+    }
+  }
+}))();
+var ROOT_EFFECT_NODE = /* @__PURE__ */ (() => __spreadProps(__spreadValues({}, EFFECT_NODE), {
+  consumerMarkedDirty() {
+    this.scheduler.schedule(this);
+    this.notifier.notify(12);
+  },
+  destroy() {
+    consumerDestroy(this);
+    if (this.onDestroyFns !== null) {
+      for (const fn of this.onDestroyFns) {
+        fn();
+      }
+    }
+    this.cleanup();
+    this.scheduler.remove(this);
+  }
+}))();
+var VIEW_EFFECT_NODE = /* @__PURE__ */ (() => __spreadProps(__spreadValues({}, EFFECT_NODE), {
+  consumerMarkedDirty() {
+    this.view[FLAGS] |= 8192;
+    markAncestorsForTraversal(this.view);
+    this.notifier.notify(13);
+  },
+  destroy() {
+    consumerDestroy(this);
+    if (this.onDestroyFns !== null) {
+      for (const fn of this.onDestroyFns) {
+        fn();
+      }
+    }
+    this.cleanup();
+    this.view[EFFECTS]?.delete(this);
+  }
+}))();
+function createViewEffect(view, notifier, fn) {
+  const node = Object.create(VIEW_EFFECT_NODE);
+  node.view = view;
+  node.zone = typeof Zone !== "undefined" ? Zone.current : null;
+  node.notifier = notifier;
+  node.fn = createEffectFn(node, fn);
+  view[EFFECTS] ??= /* @__PURE__ */ new Set();
+  view[EFFECTS].add(node);
+  node.consumerMarkedDirty(node);
+  return node;
+}
+function createRootEffect(fn, scheduler2, notifier) {
+  const node = Object.create(ROOT_EFFECT_NODE);
+  node.fn = createEffectFn(node, fn);
+  node.scheduler = scheduler2;
+  node.notifier = notifier;
+  node.zone = typeof Zone !== "undefined" ? Zone.current : null;
+  node.scheduler.add(node);
+  node.notifier.notify(12);
+  return node;
+}
+function createEffectFn(node, fn) {
+  return () => {
+    fn((cleanupFn) => (node.cleanupFns ??= []).push(cleanupFn));
+  };
+}
 
 // node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs
 /**
@@ -33709,6 +33871,8 @@ var _c0 = ["profileDialog"];
 var _c1 = () => ["Data", "Design", "Automation"];
 var _c2 = () => ["Email", "Phone", "Chat"];
 var _c3 = () => ["summary", "settings"];
+var _forTrack0 = ($index, $item) => $item[0];
+var _forTrack1 = ($index, $item) => $item.customerId;
 function App_Conditional_42_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275text(0, " Used for example notifications. ");
@@ -33722,7 +33886,7 @@ function App_Conditional_43_Template(rf, ctx) {
 function App_For_69_Template(rf, ctx) {
   if (rf & 1) {
     const _r1 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "label", 23)(1, "input", 44);
+    \u0275\u0275elementStart(0, "label", 23)(1, "input", 61);
     \u0275\u0275listener("change", function App_For_69_Template_input_change_1_listener() {
       const interest_r2 = \u0275\u0275restoreView(_r1).$implicit;
       const ctx_r2 = \u0275\u0275nextContext();
@@ -33745,7 +33909,7 @@ function App_For_69_Template(rf, ctx) {
 function App_For_75_Template(rf, ctx) {
   if (rf & 1) {
     const _r4 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "label", 23)(1, "input", 45);
+    \u0275\u0275elementStart(0, "label", 23)(1, "input", 62);
     \u0275\u0275listener("change", function App_For_75_Template_input_change_1_listener() {
       const method_r5 = \u0275\u0275restoreView(_r4).$implicit;
       const ctx_r2 = \u0275\u0275nextContext();
@@ -33768,7 +33932,7 @@ function App_For_75_Template(rf, ctx) {
 function App_For_104_Template(rf, ctx) {
   if (rf & 1) {
     const _r6 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "button", 46);
+    \u0275\u0275elementStart(0, "button", 63);
     \u0275\u0275listener("click", function App_For_104_Template_button_click_0_listener() {
       const tab_r7 = \u0275\u0275restoreView(_r6).$implicit;
       const ctx_r2 = \u0275\u0275nextContext();
@@ -33795,7 +33959,7 @@ function App_Conditional_105_Template(rf, ctx) {
     \u0275\u0275elementStart(0, "div", 37)(1, "h3");
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "dl", 47)(4, "div")(5, "dt");
+    \u0275\u0275elementStart(3, "dl", 64)(4, "div")(5, "dt");
     \u0275\u0275text(6, "Role");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(7, "dd");
@@ -33861,7 +34025,7 @@ function App_Conditional_112_Template(rf, ctx) {
     \u0275\u0275elementStart(0, "div", 39)(1, "span");
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "button", 48);
+    \u0275\u0275elementStart(3, "button", 65);
     \u0275\u0275listener("click", function App_Conditional_112_Template_button_click_3_listener() {
       \u0275\u0275restoreView(_r8);
       const ctx_r2 = \u0275\u0275nextContext();
@@ -33876,6 +34040,137 @@ function App_Conditional_112_Template(rf, ctx) {
     \u0275\u0275textInterpolate(ctx_r2.notice());
   }
 }
+function App_For_141_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "option", 49);
+    \u0275\u0275text(1);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const item_r9 = ctx.$implicit;
+    \u0275\u0275property("value", item_r9);
+    \u0275\u0275advance();
+    \u0275\u0275textInterpolate(item_r9);
+  }
+}
+function App_Conditional_142_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 50);
+    \u0275\u0275text(1);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const ctx_r2 = \u0275\u0275nextContext();
+    \u0275\u0275advance();
+    \u0275\u0275textInterpolate(ctx_r2.customerError());
+  }
+}
+function App_For_148_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r10 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "th", 53)(1, "button", 66);
+    \u0275\u0275listener("click", function App_For_148_Template_button_click_1_listener() {
+      const column_r11 = \u0275\u0275restoreView(_r10).$implicit;
+      const ctx_r2 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r2.changeSort(column_r11[0]));
+    });
+    \u0275\u0275text(2);
+    \u0275\u0275elementStart(3, "span", 5);
+    \u0275\u0275text(4);
+    \u0275\u0275elementEnd()()();
+  }
+  if (rf & 2) {
+    const column_r11 = ctx.$implicit;
+    const ctx_r2 = \u0275\u0275nextContext();
+    \u0275\u0275attribute("aria-sort", ctx_r2.sort() === column_r11[0] ? ctx_r2.direction() === "asc" ? "ascending" : "descending" : "none");
+    \u0275\u0275advance();
+    \u0275\u0275classProp("active-sort", ctx_r2.sort() === column_r11[0]);
+    \u0275\u0275attribute("aria-label", column_r11[1] + ": " + ctx_r2.sortLabel(column_r11[0]));
+    \u0275\u0275advance();
+    \u0275\u0275textInterpolate1(" ", column_r11[1], " ");
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate1(" ", ctx_r2.sort() === column_r11[0] ? ctx_r2.direction() === "asc" ? "\u2191" : "\u2193" : "\u2195", " ");
+  }
+}
+function App_Conditional_150_For_1_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r12 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "tr", 68);
+    \u0275\u0275listener("click", function App_Conditional_150_For_1_Template_tr_click_0_listener() {
+      const customer_r13 = \u0275\u0275restoreView(_r12).$implicit;
+      const ctx_r2 = \u0275\u0275nextContext(2);
+      return \u0275\u0275resetView(ctx_r2.selectedId.set(customer_r13.customerId));
+    });
+    \u0275\u0275elementStart(1, "td", 69)(2, "button", 70);
+    \u0275\u0275listener("click", function App_Conditional_150_For_1_Template_button_click_2_listener($event) {
+      const customer_r13 = \u0275\u0275restoreView(_r12).$implicit;
+      const ctx_r2 = \u0275\u0275nextContext(2);
+      $event.stopPropagation();
+      return \u0275\u0275resetView(ctx_r2.selectedId.set(customer_r13.customerId));
+    });
+    \u0275\u0275text(3);
+    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(4, "td", 71);
+    \u0275\u0275text(5);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(6, "td", 72);
+    \u0275\u0275text(7);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(8, "td", 73);
+    \u0275\u0275text(9);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(10, "td", 74)(11, "code");
+    \u0275\u0275text(12);
+    \u0275\u0275elementEnd()()();
+  }
+  if (rf & 2) {
+    const customer_r13 = ctx.$implicit;
+    const ctx_r2 = \u0275\u0275nextContext(2);
+    \u0275\u0275classProp("selected", ctx_r2.selectedId() === customer_r13.customerId);
+    \u0275\u0275advance(2);
+    \u0275\u0275attribute("aria-pressed", ctx_r2.selectedId() === customer_r13.customerId);
+    \u0275\u0275advance();
+    \u0275\u0275textInterpolate1(" ", customer_r13.companyName, " ");
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate(customer_r13.contactName || "\u2014");
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate(customer_r13.city || "\u2014");
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate(customer_r13.country || "\u2014");
+    \u0275\u0275advance(3);
+    \u0275\u0275textInterpolate(customer_r13.customerId);
+  }
+}
+function App_Conditional_150_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275repeaterCreate(0, App_Conditional_150_For_1_Template, 13, 8, "tr", 67, _forTrack1);
+  }
+  if (rf & 2) {
+    const ctx_r2 = \u0275\u0275nextContext();
+    \u0275\u0275repeater(ctx_r2.customers());
+  }
+}
+function App_Conditional_151_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 54);
+    \u0275\u0275text(1, "Loading customers\u2026");
+    \u0275\u0275elementEnd();
+  }
+}
+function App_Conditional_152_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 55);
+    \u0275\u0275text(1, "No customers match these filters.");
+    \u0275\u0275elementEnd();
+  }
+}
+var customerColumns = [
+  ["companyName", "Company"],
+  ["contactName", "Contact"],
+  ["city", "City"],
+  ["country", "Country"],
+  ["customerId", "ID"]
+];
 var App = class _App {
   formBuilder = inject2(FormBuilder);
   dialog = viewChild.required("profileDialog");
@@ -33914,6 +34209,111 @@ var App = class _App {
     /* istanbul ignore next */
     []
   ));
+  columns = customerColumns;
+  countries = signal([], ...ngDevMode ? [{ debugName: "countries" }] : (
+    /* istanbul ignore next */
+    []
+  ));
+  customers = signal([], ...ngDevMode ? [{ debugName: "customers" }] : (
+    /* istanbul ignore next */
+    []
+  ));
+  search = signal("", ...ngDevMode ? [{ debugName: "search" }] : (
+    /* istanbul ignore next */
+    []
+  ));
+  country = signal("", ...ngDevMode ? [{ debugName: "country" }] : (
+    /* istanbul ignore next */
+    []
+  ));
+  sort = signal("companyName", ...ngDevMode ? [{ debugName: "sort" }] : (
+    /* istanbul ignore next */
+    []
+  ));
+  direction = signal("asc", ...ngDevMode ? [{ debugName: "direction" }] : (
+    /* istanbul ignore next */
+    []
+  ));
+  page = signal(1, ...ngDevMode ? [{ debugName: "page" }] : (
+    /* istanbul ignore next */
+    []
+  ));
+  totalCount = signal(0, ...ngDevMode ? [{ debugName: "totalCount" }] : (
+    /* istanbul ignore next */
+    []
+  ));
+  totalPages = signal(0, ...ngDevMode ? [{ debugName: "totalPages" }] : (
+    /* istanbul ignore next */
+    []
+  ));
+  selectedId = signal(null, ...ngDevMode ? [{ debugName: "selectedId" }] : (
+    /* istanbul ignore next */
+    []
+  ));
+  loading = signal(true, ...ngDevMode ? [{ debugName: "loading" }] : (
+    /* istanbul ignore next */
+    []
+  ));
+  customerError = signal("", ...ngDevMode ? [{ debugName: "customerError" }] : (
+    /* istanbul ignore next */
+    []
+  ));
+  pageLabel = computed(() => `Page ${this.page()} of ${Math.max(this.totalPages(), 1)}`, ...ngDevMode ? [{ debugName: "pageLabel" }] : (
+    /* istanbul ignore next */
+    []
+  ));
+  customerQueryEffect = effect((onCleanup) => {
+    const search = this.search().trim();
+    const country = this.country();
+    const sort = this.sort();
+    const direction = this.direction();
+    const page = this.page();
+    const controller = new AbortController();
+    const delay = window.setTimeout(async () => {
+      this.loading.set(true);
+      this.customerError.set("");
+      const parameters = new URLSearchParams({
+        sort,
+        direction,
+        page: String(page),
+        pageSize: "10"
+      });
+      if (search)
+        parameters.set("search", search);
+      if (country)
+        parameters.set("country", country);
+      try {
+        const response = await fetch(`/api/northwind/customers?${parameters}`, {
+          signal: controller.signal
+        });
+        if (!response.ok)
+          throw new Error("Customers could not be loaded.");
+        const result = await response.json();
+        this.customers.set(result.items);
+        this.totalCount.set(result.totalCount);
+        this.totalPages.set(result.totalPages);
+        this.selectedId.update((current) => result.items.some((customer) => customer.customerId === current) ? current : null);
+      } catch (error) {
+        if (error.name !== "AbortError") {
+          this.customers.set([]);
+          this.customerError.set(error.message);
+        }
+      } finally {
+        if (!controller.signal.aborted)
+          this.loading.set(false);
+      }
+    }, 250);
+    onCleanup(() => {
+      window.clearTimeout(delay);
+      controller.abort();
+    });
+  }, ...ngDevMode ? [{ debugName: "customerQueryEffect" }] : (
+    /* istanbul ignore next */
+    []
+  ));
+  constructor() {
+    void this.loadCountries();
+  }
   toggleInterest(interest) {
     this.interests.update((current) => current.includes(interest) ? current.filter((item) => item !== interest) : [...current, interest]);
   }
@@ -33939,6 +34339,38 @@ var App = class _App {
     const tabList = event.currentTarget.parentElement;
     tabList?.querySelector(`#profile-${nextTab}-tab`)?.focus();
   }
+  updateSearch(value) {
+    this.search.set(value);
+    this.page.set(1);
+  }
+  updateCountry(value) {
+    this.country.set(value);
+    this.page.set(1);
+  }
+  changeSort(nextSort) {
+    if (this.sort() === nextSort) {
+      this.direction.update((current) => current === "asc" ? "desc" : "asc");
+    } else {
+      this.sort.set(nextSort);
+      this.direction.set("asc");
+    }
+    this.page.set(1);
+  }
+  sortLabel(column) {
+    if (this.sort() !== column)
+      return "Not sorted";
+    return this.direction() === "asc" ? "Sorted ascending" : "Sorted descending";
+  }
+  async loadCountries() {
+    try {
+      const response = await fetch("/api/northwind/countries");
+      if (!response.ok)
+        throw new Error("Countries could not be loaded.");
+      this.countries.set(await response.json());
+    } catch (error) {
+      this.customerError.set(error.message);
+    }
+  }
   static \u0275fac = function App_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _App)();
   };
@@ -33949,7 +34381,7 @@ var App = class _App {
     if (rf & 2) {
       \u0275\u0275queryAdvance();
     }
-  }, decls: 131, vars: 18, consts: [["profileDialog", ""], [1, "showcase"], [1, "showcase-header"], [1, "eyebrow"], ["aria-label", "Built with Angular", 1, "framework-badge"], ["aria-hidden", "true"], ["aria-label", "Angular showcase sections", 1, "showcase-nav"], ["href", "#angular-controls"], ["href", "#angular-northwind"], ["id", "angular-controls", "aria-labelledby", "controls-heading", 1, "controls-section"], [1, "section-heading"], ["id", "controls-heading"], [1, "control-layout"], [1, "control-card", "form-card", 3, "ngSubmit", "formGroup"], [1, "field-grid"], ["formControlName", "name"], ["type", "email", "formControlName", "email", "aria-describedby", "email-help"], ["id", "email-help"], ["type", "number", "min", "1", "max", "20", "formControlName", "seats"], ["type", "date", "formControlName", "startDate"], [1, "field-span"], ["formControlName", "role"], [1, "choice-row"], [1, "choice"], [1, "form-actions"], ["type", "submit", 1, "primary-button", 3, "disabled"], ["type", "button", 1, "secondary-button", 3, "click"], ["type", "button", "disabled", "", 1, "secondary-button"], [1, "control-stack"], [1, "control-card"], [1, "switch-row"], ["type", "checkbox", "role", "switch", 1, "switch", 3, "change", "checked"], [1, "range-field"], ["type", "range", "min", "0", "max", "100", 3, "input", "value"], ["max", "100", 3, "value"], ["role", "tablist", "aria-label", "Profile views", 1, "tabs"], ["type", "button", "role", "tab", 3, "id"], ["id", "profile-summary-panel", "role", "tabpanel", "aria-labelledby", "profile-summary-tab", "tabindex", "0", 1, "tab-panel"], ["id", "profile-settings-panel", "role", "tabpanel", "aria-labelledby", "profile-settings-tab", "tabindex", "0", 1, "tab-panel"], ["role", "status", "aria-live", "polite", 1, "notification"], ["id", "angular-northwind", "aria-labelledby", "northwind-heading", 1, "data-section", "placeholder-card"], ["id", "northwind-heading"], ["method", "dialog"], [1, "primary-button"], ["type", "checkbox", 3, "change", "checked"], ["type", "radio", "name", "contact-method", 3, "change", "value", "checked"], ["type", "button", "role", "tab", 3, "click", "keydown", "id"], [1, "summary-list"], ["type", "button", "aria-label", "Dismiss notification", 3, "click"]], template: function App_Template(rf, ctx) {
+  }, decls: 174, vars: 29, consts: [["profileDialog", ""], [1, "showcase"], [1, "showcase-header"], [1, "eyebrow"], ["aria-label", "Built with Angular", 1, "framework-badge"], ["aria-hidden", "true"], ["aria-label", "Angular showcase sections", 1, "showcase-nav"], ["href", "#angular-controls"], ["href", "#angular-northwind"], ["id", "angular-controls", "aria-labelledby", "controls-heading", 1, "controls-section"], [1, "section-heading"], ["id", "controls-heading"], [1, "control-layout"], [1, "control-card", "form-card", 3, "ngSubmit", "formGroup"], [1, "field-grid"], ["formControlName", "name"], ["type", "email", "formControlName", "email", "aria-describedby", "email-help"], ["id", "email-help"], ["type", "number", "min", "1", "max", "20", "formControlName", "seats"], ["type", "date", "formControlName", "startDate"], [1, "field-span"], ["formControlName", "role"], [1, "choice-row"], [1, "choice"], [1, "form-actions"], ["type", "submit", 1, "primary-button", 3, "disabled"], ["type", "button", 1, "secondary-button", 3, "click"], ["type", "button", "disabled", "", 1, "secondary-button"], [1, "control-stack"], [1, "control-card"], [1, "switch-row"], ["type", "checkbox", "role", "switch", 1, "switch", 3, "change", "checked"], [1, "range-field"], ["type", "range", "min", "0", "max", "100", 3, "input", "value"], ["max", "100", 3, "value"], ["role", "tablist", "aria-label", "Profile views", 1, "tabs"], ["type", "button", "role", "tab", 3, "id"], ["id", "profile-summary-panel", "role", "tabpanel", "aria-labelledby", "profile-summary-tab", "tabindex", "0", 1, "tab-panel"], ["id", "profile-settings-panel", "role", "tabpanel", "aria-labelledby", "profile-settings-tab", "tabindex", "0", 1, "tab-panel"], ["role", "status", "aria-live", "polite", 1, "notification"], ["id", "angular-northwind", "aria-labelledby", "data-heading", 1, "data-section"], ["id", "data-heading"], ["aria-labelledby", "customers-heading", 1, "grid-card"], [1, "grid-heading"], ["id", "customers-heading"], [1, "filters"], ["type", "search", "placeholder", "Company or contact", 3, "input", "value"], [3, "change", "value"], ["value", ""], [3, "value"], ["role", "alert", 1, "status", "error"], [1, "table-wrap"], ["aria-label", "Northwind customers"], ["scope", "col"], ["role", "status", "aria-live", "polite", 1, "status"], [1, "status"], [1, "grid-footer"], [1, "pagination"], ["type", "button", 3, "click", "disabled"], ["method", "dialog"], [1, "primary-button"], ["type", "checkbox", 3, "change", "checked"], ["type", "radio", "name", "contact-method", 3, "change", "value", "checked"], ["type", "button", "role", "tab", 3, "click", "keydown", "id"], [1, "summary-list"], ["type", "button", "aria-label", "Dismiss notification", 3, "click"], ["type", "button", 3, "click"], [3, "selected"], [3, "click"], ["data-label", "Company"], ["type", "button", 1, "row-select", 3, "click"], ["data-label", "Contact"], ["data-label", "City"], ["data-label", "Country"], ["data-label", "ID"]], template: function App_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "div", 1)(1, "header", 2)(2, "div")(3, "span", 3);
       \u0275\u0275text(4, "Frontend Lab");
@@ -34087,26 +34519,79 @@ var App = class _App {
       \u0275\u0275elementEnd()()()()();
       \u0275\u0275conditionalCreate(112, App_Conditional_112_Template, 5, 1, "div", 39);
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(113, "section", 40)(114, "span", 3);
-      \u0275\u0275text(115, "Next implementation stage");
+      \u0275\u0275elementStart(113, "section", 40)(114, "div", 10)(115, "div")(116, "span", 3);
+      \u0275\u0275text(117, "API-backed state");
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(116, "h2", 41);
-      \u0275\u0275text(117, "Northwind data binding");
-      \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(118, "p");
-      \u0275\u0275text(119, "The Angular customer explorer, details, orders, and editing sandbox come next.");
+      \u0275\u0275elementStart(118, "h2", 41);
+      \u0275\u0275text(119, "Northwind data binding");
       \u0275\u0275elementEnd()();
-      \u0275\u0275elementStart(120, "dialog", null, 0)(122, "form", 42)(123, "span", 3);
-      \u0275\u0275text(124, "Native dialog");
-      \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(125, "h2");
-      \u0275\u0275text(126, "Angular-controlled launch");
+      \u0275\u0275elementStart(120, "p");
+      \u0275\u0275text(121, "Server-driven filtering, sorting, paging, and selection against the Northwind API.");
+      \u0275\u0275elementEnd()();
+      \u0275\u0275elementStart(122, "section", 42)(123, "div", 43)(124, "div")(125, "h3", 44);
+      \u0275\u0275text(126, "Customer explorer");
       \u0275\u0275elementEnd();
       \u0275\u0275elementStart(127, "p");
-      \u0275\u0275text(128, "This modal uses the browser dialog element for focus management and keyboard dismissal.");
+      \u0275\u0275text(128);
+      \u0275\u0275elementEnd()();
+      \u0275\u0275elementStart(129, "div", 45)(130, "label")(131, "span");
+      \u0275\u0275text(132, "Search");
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(129, "button", 43);
-      \u0275\u0275text(130, "Close dialog");
+      \u0275\u0275elementStart(133, "input", 46);
+      \u0275\u0275listener("input", function App_Template_input_input_133_listener($event) {
+        return ctx.updateSearch($event.target.value);
+      });
+      \u0275\u0275elementEnd()();
+      \u0275\u0275elementStart(134, "label")(135, "span");
+      \u0275\u0275text(136, "Country");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(137, "select", 47);
+      \u0275\u0275listener("change", function App_Template_select_change_137_listener($event) {
+        return ctx.updateCountry($event.target.value);
+      });
+      \u0275\u0275elementStart(138, "option", 48);
+      \u0275\u0275text(139, "All countries");
+      \u0275\u0275elementEnd();
+      \u0275\u0275repeaterCreate(140, App_For_141_Template, 2, 2, "option", 49, \u0275\u0275repeaterTrackByIdentity);
+      \u0275\u0275elementEnd()()()();
+      \u0275\u0275conditionalCreate(142, App_Conditional_142_Template, 2, 1, "div", 50);
+      \u0275\u0275elementStart(143, "div", 51)(144, "table", 52)(145, "thead")(146, "tr");
+      \u0275\u0275repeaterCreate(147, App_For_148_Template, 5, 6, "th", 53, _forTrack0);
+      \u0275\u0275elementEnd()();
+      \u0275\u0275elementStart(149, "tbody");
+      \u0275\u0275conditionalCreate(150, App_Conditional_150_Template, 2, 0);
+      \u0275\u0275elementEnd()();
+      \u0275\u0275conditionalCreate(151, App_Conditional_151_Template, 2, 0, "div", 54)(152, App_Conditional_152_Template, 2, 0, "div", 55);
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(153, "footer", 56)(154, "span");
+      \u0275\u0275text(155);
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(156, "div", 57)(157, "button", 58);
+      \u0275\u0275listener("click", function App_Template_button_click_157_listener() {
+        return ctx.page.update((current) => current - 1);
+      });
+      \u0275\u0275text(158, " Previous ");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(159, "span");
+      \u0275\u0275text(160);
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(161, "button", 58);
+      \u0275\u0275listener("click", function App_Template_button_click_161_listener() {
+        return ctx.page.update((current) => current + 1);
+      });
+      \u0275\u0275text(162, " Next ");
+      \u0275\u0275elementEnd()()()()();
+      \u0275\u0275elementStart(163, "dialog", null, 0)(165, "form", 59)(166, "span", 3);
+      \u0275\u0275text(167, "Native dialog");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(168, "h2");
+      \u0275\u0275text(169, "Angular-controlled launch");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(170, "p");
+      \u0275\u0275text(171, "This modal uses the browser dialog element for focus management and keyboard dismissal.");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(172, "button", 60);
+      \u0275\u0275text(173, "Close dialog");
       \u0275\u0275elementEnd()()()();
     }
     if (rf & 2) {
@@ -34119,9 +34604,9 @@ var App = class _App {
       \u0275\u0275advance();
       \u0275\u0275conditional(ctx.profile.controls.email.valid ? 42 : 43);
       \u0275\u0275advance(26);
-      \u0275\u0275repeater(\u0275\u0275pureFunction0(15, _c1));
+      \u0275\u0275repeater(\u0275\u0275pureFunction0(26, _c1));
       \u0275\u0275advance(6);
-      \u0275\u0275repeater(\u0275\u0275pureFunction0(16, _c2));
+      \u0275\u0275repeater(\u0275\u0275pureFunction0(27, _c2));
       \u0275\u0275advance(3);
       \u0275\u0275property("disabled", ctx.profile.invalid);
       \u0275\u0275advance(16);
@@ -34134,13 +34619,39 @@ var App = class _App {
       \u0275\u0275property("value", ctx.confidence());
       \u0275\u0275attribute("aria-label", "Confidence " + ctx.confidence() + "%");
       \u0275\u0275advance(3);
-      \u0275\u0275repeater(\u0275\u0275pureFunction0(17, _c3));
+      \u0275\u0275repeater(\u0275\u0275pureFunction0(28, _c3));
       \u0275\u0275advance(2);
       \u0275\u0275conditional(ctx.activeTab() === "summary" ? 105 : 106);
       \u0275\u0275advance(7);
       \u0275\u0275conditional(ctx.notice() ? 112 : -1);
+      \u0275\u0275advance(16);
+      \u0275\u0275textInterpolate1("", ctx.totalCount(), " Northwind records");
+      \u0275\u0275advance(5);
+      \u0275\u0275property("value", ctx.search());
+      \u0275\u0275advance(4);
+      \u0275\u0275property("value", ctx.country());
+      \u0275\u0275advance(3);
+      \u0275\u0275repeater(ctx.countries());
+      \u0275\u0275advance(2);
+      \u0275\u0275conditional(ctx.customerError() ? 142 : -1);
+      \u0275\u0275advance();
+      \u0275\u0275attribute("aria-busy", ctx.loading());
+      \u0275\u0275advance(4);
+      \u0275\u0275repeater(ctx.columns);
+      \u0275\u0275advance(3);
+      \u0275\u0275conditional(!ctx.loading() ? 150 : -1);
+      \u0275\u0275advance();
+      \u0275\u0275conditional(ctx.loading() ? 151 : !ctx.customerError() && ctx.customers().length === 0 ? 152 : -1);
+      \u0275\u0275advance(4);
+      \u0275\u0275textInterpolate(ctx.selectedId() ? "Selected: " + ctx.selectedId() : "Select a customer row");
+      \u0275\u0275advance(2);
+      \u0275\u0275property("disabled", ctx.loading() || ctx.page() <= 1);
+      \u0275\u0275advance(3);
+      \u0275\u0275textInterpolate(ctx.pageLabel());
+      \u0275\u0275advance();
+      \u0275\u0275property("disabled", ctx.loading() || ctx.page() >= ctx.totalPages());
     }
-  }, dependencies: [ReactiveFormsModule, \u0275NgNoValidate, NgSelectOption, \u0275NgSelectMultipleOption, DefaultValueAccessor, NumberValueAccessor, SelectControlValueAccessor, NgControlStatus, NgControlStatusGroup, MinValidator, MaxValidator, FormGroupDirective, FormControlName], styles: ["/* src/app/app.css */\n:host {\n  color: var(--text);\n  display: block;\n  font-family: inherit;\n}\n* {\n  box-sizing: border-box;\n}\n.showcase {\n  padding: 48px;\n  text-align: left;\n}\n.showcase-header {\n  align-items: flex-start;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 32px;\n}\n.showcase-header h1 {\n  margin: 6px 0 10px;\n}\n.showcase-header p {\n  max-width: 680px;\n}\n.showcase-nav {\n  display: flex;\n  gap: 8px;\n  margin: -12px 0 32px;\n}\n.showcase-nav a {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 999px;\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 700;\n  padding: 7px 11px;\n  text-decoration: none;\n}\n.showcase-nav a:hover {\n  border-color: var(--accent-border);\n  color: var(--accent);\n}\n.controls-section,\n.data-section {\n  scroll-margin-top: 90px;\n}\n.eyebrow {\n  color: var(--accent);\n  font-size: 13px;\n  font-weight: 700;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n}\n.framework-badge {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 999px;\n  color: var(--text-h);\n  display: flex;\n  font-weight: 650;\n  gap: 10px;\n  padding: 10px 14px;\n}\n.framework-badge > span {\n  align-items: center;\n  background: var(--accent);\n  border-radius: 50%;\n  color: white;\n  display: inline-flex;\n  height: 24px;\n  justify-content: center;\n  width: 24px;\n}\n.controls-section {\n  margin-bottom: 32px;\n}\n.data-section {\n  margin-top: 40px;\n}\n.section-heading {\n  align-items: end;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 18px;\n}\n.section-heading h2 {\n  margin: 4px 0 0;\n}\n.section-heading p {\n  font-size: 15px;\n  max-width: 560px;\n}\n.control-layout {\n  display: grid;\n  gap: 18px;\n  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);\n}\n.control-layout > *,\n.field-grid > * {\n  min-width: 0;\n}\n.control-stack {\n  display: grid;\n  gap: 18px;\n}\n.control-card,\n.placeholder-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  padding: 22px;\n}\n.control-card h3 {\n  color: var(--text-h);\n  font-size: 18px;\n  margin: 0 0 18px;\n}\n.field-grid {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.field-span {\n  grid-column: 1 / -1;\n}\nlabel {\n  color: var(--text-h);\n  display: grid;\n  font-size: 13px;\n  font-weight: 650;\n  gap: 5px;\n}\ninput,\nselect,\nbutton {\n  font: inherit;\n}\ninput:not([type=checkbox]):not([type=radio]):not([type=range]),\nselect {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  min-height: 42px;\n  padding: 8px 11px;\n}\n.form-card input:not([type=checkbox]):not([type=radio]),\n.form-card select {\n  width: 100%;\n}\n.field-help,\n.field-error {\n  font-size: 12px;\n  font-weight: 450;\n}\n.field-help {\n  color: var(--text);\n}\n.field-error {\n  color: #b42318;\n}\ninput[aria-invalid=true] {\n  border-color: #d92d20;\n}\nfieldset {\n  border: 0;\n  margin: 20px 0 0;\n  padding: 0;\n}\nlegend {\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 650;\n  margin-bottom: 8px;\n}\n.choice-row,\n.form-actions {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n.choice {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: flex;\n  gap: 7px;\n  padding: 7px 10px;\n}\n.choice input,\n.range-field input {\n  accent-color: var(--accent);\n}\n.form-actions {\n  margin-top: 22px;\n}\n.primary-button,\n.secondary-button {\n  border-radius: 7px;\n  cursor: pointer;\n  font-weight: 700;\n  min-height: 40px;\n  padding: 8px 13px;\n}\n.primary-button {\n  background: var(--accent);\n  border: 1px solid var(--accent);\n  color: white;\n}\n.secondary-button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  color: var(--text-h);\n}\n.primary-button:disabled,\n.secondary-button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n.switch-row {\n  align-items: center;\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n}\n.switch-row > span {\n  display: grid;\n}\n.switch-row small {\n  color: var(--text);\n  font-weight: 450;\n}\n.switch {\n  accent-color: var(--accent);\n  height: 24px;\n  width: 44px;\n}\n.range-field {\n  margin-top: 22px;\n}\n.range-field > span {\n  display: flex;\n  justify-content: space-between;\n}\n.range-field input,\nprogress {\n  width: 100%;\n}\nprogress {\n  accent-color: var(--accent);\n  height: 8px;\n  margin-top: 12px;\n}\n.tabs {\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 4px;\n  padding-bottom: 12px;\n}\n.tabs button {\n  background: transparent;\n  border: 0;\n  border-radius: 6px;\n  color: var(--text);\n  cursor: pointer;\n  font-weight: 700;\n  padding: 7px 10px;\n}\n.tabs button[aria-selected=true] {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.tab-panel {\n  min-height: 155px;\n  padding-top: 18px;\n}\n.summary-list {\n  display: grid;\n  gap: 10px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n}\n.summary-list div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.summary-list dt {\n  font-size: 12px;\n}\n.summary-list dd {\n  color: var(--text-h);\n  font-weight: 700;\n  margin: 2px 0 0;\n}\ndetails {\n  border-top: 1px solid var(--border);\n  font-size: 14px;\n  padding-top: 12px;\n}\nsummary {\n  color: var(--text-h);\n  cursor: pointer;\n  font-weight: 700;\n}\ndetails p {\n  padding-top: 10px;\n}\n.notification {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n  margin-top: 14px;\n  padding: 12px 16px;\n}\n.notification button {\n  background: transparent;\n  border: 0;\n  color: var(--text-h);\n  cursor: pointer;\n  font-size: 22px;\n}\ndialog {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n  color: var(--text);\n  max-width: 430px;\n  padding: 26px;\n}\ndialog::backdrop {\n  -webkit-backdrop-filter: blur(3px);\n  backdrop-filter: blur(3px);\n  background: rgb(8 6 13 / 68%);\n}\ndialog h2 {\n  margin: 8px 0 10px;\n}\ndialog .primary-button {\n  margin-top: 22px;\n}\ninput:focus,\nselect:focus,\nbutton:focus-visible {\n  outline: 2px solid var(--accent);\n  outline-offset: 2px;\n}\n.placeholder-card h2 {\n  margin: 4px 0 8px;\n}\n@media (prefers-reduced-motion: reduce) {\n  *,\n  *::before,\n  *::after {\n    animation-duration: 0.01ms !important;\n    animation-iteration-count: 1 !important;\n    scroll-behavior: auto !important;\n    transition-duration: 0.01ms !important;\n  }\n}\n@media (forced-colors: active) {\n  .framework-badge,\n  .control-card,\n  .placeholder-card {\n    border: 1px solid CanvasText;\n  }\n}\n@media (max-width: 1100px) {\n  .control-layout {\n    grid-template-columns: 1fr;\n  }\n}\n@media (max-width: 760px) {\n  .showcase {\n    padding: 24px 16px;\n  }\n  .showcase-header,\n  .section-heading {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .showcase-nav {\n    overflow-x: auto;\n  }\n  .control-layout,\n  .field-grid,\n  .summary-list {\n    grid-template-columns: 1fr;\n  }\n  .field-span {\n    grid-column: auto;\n  }\n}\n"], encapsulation: 3, changeDetection: 0 });
+  }, dependencies: [ReactiveFormsModule, \u0275NgNoValidate, NgSelectOption, \u0275NgSelectMultipleOption, DefaultValueAccessor, NumberValueAccessor, SelectControlValueAccessor, NgControlStatus, NgControlStatusGroup, MinValidator, MaxValidator, FormGroupDirective, FormControlName], styles: ["/* src/app/app.css */\n:host {\n  color: var(--text);\n  display: block;\n  font-family: inherit;\n}\n* {\n  box-sizing: border-box;\n}\n.showcase {\n  padding: 48px;\n  text-align: left;\n}\n.showcase-header {\n  align-items: flex-start;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 32px;\n}\n.showcase-header h1 {\n  margin: 6px 0 10px;\n}\n.showcase-header p {\n  max-width: 680px;\n}\n.showcase-nav {\n  display: flex;\n  gap: 8px;\n  margin: -12px 0 32px;\n}\n.showcase-nav a {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 999px;\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 700;\n  padding: 7px 11px;\n  text-decoration: none;\n}\n.showcase-nav a:hover {\n  border-color: var(--accent-border);\n  color: var(--accent);\n}\n.controls-section,\n.data-section {\n  scroll-margin-top: 90px;\n}\n.eyebrow {\n  color: var(--accent);\n  font-size: 13px;\n  font-weight: 700;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n}\n.framework-badge {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 999px;\n  color: var(--text-h);\n  display: flex;\n  font-weight: 650;\n  gap: 10px;\n  padding: 10px 14px;\n}\n.framework-badge > span {\n  align-items: center;\n  background: var(--accent);\n  border-radius: 50%;\n  color: white;\n  display: inline-flex;\n  height: 24px;\n  justify-content: center;\n  width: 24px;\n}\n.controls-section {\n  margin-bottom: 32px;\n}\n.data-section {\n  margin-top: 40px;\n}\n.section-heading {\n  align-items: end;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 18px;\n}\n.section-heading h2 {\n  margin: 4px 0 0;\n}\n.section-heading p {\n  font-size: 15px;\n  max-width: 560px;\n}\n.control-layout {\n  display: grid;\n  gap: 18px;\n  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);\n}\n.control-layout > *,\n.field-grid > * {\n  min-width: 0;\n}\n.control-stack {\n  display: grid;\n  gap: 18px;\n}\n.control-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  padding: 22px;\n}\n.control-card h3 {\n  color: var(--text-h);\n  font-size: 18px;\n  margin: 0 0 18px;\n}\n.field-grid {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.field-span {\n  grid-column: 1 / -1;\n}\nlabel {\n  color: var(--text-h);\n  display: grid;\n  font-size: 13px;\n  font-weight: 650;\n  gap: 5px;\n}\ninput,\nselect,\nbutton {\n  font: inherit;\n}\ninput:not([type=checkbox]):not([type=radio]):not([type=range]),\nselect {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  min-height: 42px;\n  padding: 8px 11px;\n}\n.form-card input:not([type=checkbox]):not([type=radio]),\n.form-card select {\n  width: 100%;\n}\n.field-help,\n.field-error {\n  font-size: 12px;\n  font-weight: 450;\n}\n.field-help {\n  color: var(--text);\n}\n.field-error {\n  color: #b42318;\n}\ninput[aria-invalid=true] {\n  border-color: #d92d20;\n}\nfieldset {\n  border: 0;\n  margin: 20px 0 0;\n  padding: 0;\n}\nlegend {\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 650;\n  margin-bottom: 8px;\n}\n.choice-row,\n.form-actions {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n.choice {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: flex;\n  gap: 7px;\n  padding: 7px 10px;\n}\n.choice input,\n.range-field input {\n  accent-color: var(--accent);\n}\n.form-actions {\n  margin-top: 22px;\n}\n.primary-button,\n.secondary-button {\n  border-radius: 7px;\n  cursor: pointer;\n  font-weight: 700;\n  min-height: 40px;\n  padding: 8px 13px;\n}\n.primary-button {\n  background: var(--accent);\n  border: 1px solid var(--accent);\n  color: white;\n}\n.secondary-button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  color: var(--text-h);\n}\n.primary-button:disabled,\n.secondary-button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n.switch-row {\n  align-items: center;\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n}\n.switch-row > span {\n  display: grid;\n}\n.switch-row small {\n  color: var(--text);\n  font-weight: 450;\n}\n.switch {\n  accent-color: var(--accent);\n  height: 24px;\n  width: 44px;\n}\n.range-field {\n  margin-top: 22px;\n}\n.range-field > span {\n  display: flex;\n  justify-content: space-between;\n}\n.range-field input,\nprogress {\n  width: 100%;\n}\nprogress {\n  accent-color: var(--accent);\n  height: 8px;\n  margin-top: 12px;\n}\n.tabs {\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 4px;\n  padding-bottom: 12px;\n}\n.tabs button {\n  background: transparent;\n  border: 0;\n  border-radius: 6px;\n  color: var(--text);\n  cursor: pointer;\n  font-weight: 700;\n  padding: 7px 10px;\n}\n.tabs button[aria-selected=true] {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.tab-panel {\n  min-height: 155px;\n  padding-top: 18px;\n}\n.summary-list {\n  display: grid;\n  gap: 10px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n}\n.summary-list div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.summary-list dt {\n  font-size: 12px;\n}\n.summary-list dd {\n  color: var(--text-h);\n  font-weight: 700;\n  margin: 2px 0 0;\n}\ndetails {\n  border-top: 1px solid var(--border);\n  font-size: 14px;\n  padding-top: 12px;\n}\nsummary {\n  color: var(--text-h);\n  cursor: pointer;\n  font-weight: 700;\n}\ndetails p {\n  padding-top: 10px;\n}\n.notification {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n  margin-top: 14px;\n  padding: 12px 16px;\n}\n.notification button {\n  background: transparent;\n  border: 0;\n  color: var(--text-h);\n  cursor: pointer;\n  font-size: 22px;\n}\ndialog {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n  color: var(--text);\n  max-width: 430px;\n  padding: 26px;\n}\ndialog::backdrop {\n  -webkit-backdrop-filter: blur(3px);\n  backdrop-filter: blur(3px);\n  background: rgb(8 6 13 / 68%);\n}\ndialog h2 {\n  margin: 8px 0 10px;\n}\ndialog .primary-button {\n  margin-top: 22px;\n}\ninput:focus,\nselect:focus,\nbutton:focus-visible {\n  outline: 2px solid var(--accent);\n  outline-offset: 2px;\n}\n.grid-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  box-shadow: var(--shadow);\n  overflow: hidden;\n}\n.grid-heading,\n.grid-footer {\n  align-items: end;\n  display: flex;\n  gap: 24px;\n  justify-content: space-between;\n  padding: 22px 24px;\n}\n.grid-heading {\n  border-bottom: 1px solid var(--border);\n}\n.grid-heading h3 {\n  color: var(--text-h);\n  font-size: 22px;\n  margin: 0 0 4px;\n}\n.grid-heading p,\n.grid-footer {\n  font-size: 14px;\n}\n.filters {\n  display: flex;\n  gap: 12px;\n}\n.table-wrap {\n  min-height: 486px;\n  overflow-x: auto;\n  position: relative;\n}\ntable {\n  border-collapse: collapse;\n  width: 100%;\n}\nth,\ntd {\n  border-bottom: 1px solid var(--border);\n  padding: 13px 16px;\n  text-align: left;\n  white-space: nowrap;\n}\nth {\n  background: var(--code-bg);\n  color: var(--text-h);\n  font-size: 12px;\n}\nth button {\n  align-items: center;\n  background: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-flex;\n  font-weight: 700;\n  gap: 7px;\n  padding: 0;\n}\nth button.active-sort {\n  color: var(--accent);\n}\ntbody tr {\n  cursor: pointer;\n}\ntbody tr:hover,\ntbody tr.selected {\n  background: var(--accent-bg);\n}\n.row-select {\n  background: transparent;\n  border: 0;\n  color: var(--text-h);\n  cursor: pointer;\n  font-weight: 700;\n  padding: 0;\n  text-align: left;\n}\ncode {\n  background: var(--code-bg);\n  border-radius: 4px;\n  padding: 2px 5px;\n}\n.status {\n  inset: 50% auto auto 50%;\n  position: absolute;\n  transform: translate(-50%, -50%);\n}\n.status.error {\n  background: #fef3f2;\n  border: 1px solid #fecdca;\n  border-radius: 8px;\n  color: #b42318;\n  margin: 14px 24px;\n  padding: 12px 16px;\n  position: static;\n  transform: none;\n}\n.pagination {\n  align-items: center;\n  display: flex;\n  gap: 10px;\n}\n.pagination button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  cursor: pointer;\n  min-height: 36px;\n  padding: 6px 10px;\n}\n.pagination button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n@media (prefers-reduced-motion: reduce) {\n  *,\n  *::before,\n  *::after {\n    animation-duration: 0.01ms !important;\n    animation-iteration-count: 1 !important;\n    scroll-behavior: auto !important;\n    transition-duration: 0.01ms !important;\n  }\n}\n@media (forced-colors: active) {\n  .framework-badge,\n  .control-card,\n  .grid-card {\n    border: 1px solid CanvasText;\n  }\n}\n@media (max-width: 1100px) {\n  .control-layout {\n    grid-template-columns: 1fr;\n  }\n  .data-section .section-heading {\n    align-items: stretch;\n    flex-direction: column;\n  }\n}\n@media (max-width: 760px) {\n  .showcase {\n    padding: 24px 16px;\n  }\n  .showcase-header,\n  .section-heading,\n  .grid-heading,\n  .grid-footer {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .showcase-nav {\n    overflow-x: auto;\n  }\n  .control-layout,\n  .field-grid,\n  .summary-list {\n    grid-template-columns: 1fr;\n  }\n  .field-span {\n    grid-column: auto;\n  }\n  .filters {\n    align-items: stretch;\n    flex-direction: column;\n  }\n}\n"], encapsulation: 3, changeDetection: 0 });
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(App, [{
@@ -34383,14 +34894,134 @@ var App = class _App {
     }
   </section>
 
-  <section
-    id="angular-northwind"
-    class="data-section placeholder-card"
-    aria-labelledby="northwind-heading"
-  >
-    <span class="eyebrow">Next implementation stage</span>
-    <h2 id="northwind-heading">Northwind data binding</h2>
-    <p>The Angular customer explorer, details, orders, and editing sandbox come next.</p>
+  <section id="angular-northwind" class="data-section" aria-labelledby="data-heading">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">API-backed state</span>
+        <h2 id="data-heading">Northwind data binding</h2>
+      </div>
+      <p>Server-driven filtering, sorting, paging, and selection against the Northwind API.</p>
+    </div>
+
+    <section class="grid-card" aria-labelledby="customers-heading">
+      <div class="grid-heading">
+        <div>
+          <h3 id="customers-heading">Customer explorer</h3>
+          <p>{{ totalCount() }} Northwind records</p>
+        </div>
+        <div class="filters">
+          <label>
+            <span>Search</span>
+            <input
+              type="search"
+              [value]="search()"
+              placeholder="Company or contact"
+              (input)="updateSearch($any($event.target).value)"
+            />
+          </label>
+          <label>
+            <span>Country</span>
+            <select [value]="country()" (change)="updateCountry($any($event.target).value)">
+              <option value="">All countries</option>
+              @for (item of countries(); track item) {
+                <option [value]="item">{{ item }}</option>
+              }
+            </select>
+          </label>
+        </div>
+      </div>
+
+      @if (customerError()) {
+        <div class="status error" role="alert">{{ customerError() }}</div>
+      }
+
+      <div class="table-wrap" [attr.aria-busy]="loading()">
+        <table aria-label="Northwind customers">
+          <thead>
+            <tr>
+              @for (column of columns; track column[0]) {
+                <th
+                  scope="col"
+                  [attr.aria-sort]="
+                    sort() === column[0]
+                      ? direction() === 'asc'
+                        ? 'ascending'
+                        : 'descending'
+                      : 'none'
+                  "
+                >
+                  <button
+                    type="button"
+                    [class.active-sort]="sort() === column[0]"
+                    [attr.aria-label]="column[1] + ': ' + sortLabel(column[0])"
+                    (click)="changeSort(column[0])"
+                  >
+                    {{ column[1] }}
+                    <span aria-hidden="true">
+                      {{ sort() === column[0] ? (direction() === 'asc' ? '\u2191' : '\u2193') : '\u2195' }}
+                    </span>
+                  </button>
+                </th>
+              }
+            </tr>
+          </thead>
+          <tbody>
+            @if (!loading()) {
+              @for (customer of customers(); track customer.customerId) {
+                <tr
+                  [class.selected]="selectedId() === customer.customerId"
+                  (click)="selectedId.set(customer.customerId)"
+                >
+                  <td data-label="Company">
+                    <button
+                      type="button"
+                      class="row-select"
+                      [attr.aria-pressed]="selectedId() === customer.customerId"
+                      (click)="$event.stopPropagation(); selectedId.set(customer.customerId)"
+                    >
+                      {{ customer.companyName }}
+                    </button>
+                  </td>
+                  <td data-label="Contact">{{ customer.contactName || '\u2014' }}</td>
+                  <td data-label="City">{{ customer.city || '\u2014' }}</td>
+                  <td data-label="Country">{{ customer.country || '\u2014' }}</td>
+                  <td data-label="ID">
+                    <code>{{ customer.customerId }}</code>
+                  </td>
+                </tr>
+              }
+            }
+          </tbody>
+        </table>
+
+        @if (loading()) {
+          <div class="status" role="status" aria-live="polite">Loading customers\u2026</div>
+        } @else if (!customerError() && customers().length === 0) {
+          <div class="status">No customers match these filters.</div>
+        }
+      </div>
+
+      <footer class="grid-footer">
+        <span>{{ selectedId() ? 'Selected: ' + selectedId() : 'Select a customer row' }}</span>
+        <div class="pagination">
+          <button
+            type="button"
+            [disabled]="loading() || page() <= 1"
+            (click)="page.update((current) => current - 1)"
+          >
+            Previous
+          </button>
+          <span>{{ pageLabel() }}</span>
+          <button
+            type="button"
+            [disabled]="loading() || page() >= totalPages()"
+            (click)="page.update((current) => current + 1)"
+          >
+            Next
+          </button>
+        </div>
+      </footer>
+    </section>
   </section>
 
   <dialog #profileDialog>
@@ -34402,11 +35033,11 @@ var App = class _App {
     </form>
   </dialog>
 </div>
-`, styles: ["/* src/app/app.css */\n:host {\n  color: var(--text);\n  display: block;\n  font-family: inherit;\n}\n* {\n  box-sizing: border-box;\n}\n.showcase {\n  padding: 48px;\n  text-align: left;\n}\n.showcase-header {\n  align-items: flex-start;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 32px;\n}\n.showcase-header h1 {\n  margin: 6px 0 10px;\n}\n.showcase-header p {\n  max-width: 680px;\n}\n.showcase-nav {\n  display: flex;\n  gap: 8px;\n  margin: -12px 0 32px;\n}\n.showcase-nav a {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 999px;\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 700;\n  padding: 7px 11px;\n  text-decoration: none;\n}\n.showcase-nav a:hover {\n  border-color: var(--accent-border);\n  color: var(--accent);\n}\n.controls-section,\n.data-section {\n  scroll-margin-top: 90px;\n}\n.eyebrow {\n  color: var(--accent);\n  font-size: 13px;\n  font-weight: 700;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n}\n.framework-badge {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 999px;\n  color: var(--text-h);\n  display: flex;\n  font-weight: 650;\n  gap: 10px;\n  padding: 10px 14px;\n}\n.framework-badge > span {\n  align-items: center;\n  background: var(--accent);\n  border-radius: 50%;\n  color: white;\n  display: inline-flex;\n  height: 24px;\n  justify-content: center;\n  width: 24px;\n}\n.controls-section {\n  margin-bottom: 32px;\n}\n.data-section {\n  margin-top: 40px;\n}\n.section-heading {\n  align-items: end;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 18px;\n}\n.section-heading h2 {\n  margin: 4px 0 0;\n}\n.section-heading p {\n  font-size: 15px;\n  max-width: 560px;\n}\n.control-layout {\n  display: grid;\n  gap: 18px;\n  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);\n}\n.control-layout > *,\n.field-grid > * {\n  min-width: 0;\n}\n.control-stack {\n  display: grid;\n  gap: 18px;\n}\n.control-card,\n.placeholder-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  padding: 22px;\n}\n.control-card h3 {\n  color: var(--text-h);\n  font-size: 18px;\n  margin: 0 0 18px;\n}\n.field-grid {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.field-span {\n  grid-column: 1 / -1;\n}\nlabel {\n  color: var(--text-h);\n  display: grid;\n  font-size: 13px;\n  font-weight: 650;\n  gap: 5px;\n}\ninput,\nselect,\nbutton {\n  font: inherit;\n}\ninput:not([type=checkbox]):not([type=radio]):not([type=range]),\nselect {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  min-height: 42px;\n  padding: 8px 11px;\n}\n.form-card input:not([type=checkbox]):not([type=radio]),\n.form-card select {\n  width: 100%;\n}\n.field-help,\n.field-error {\n  font-size: 12px;\n  font-weight: 450;\n}\n.field-help {\n  color: var(--text);\n}\n.field-error {\n  color: #b42318;\n}\ninput[aria-invalid=true] {\n  border-color: #d92d20;\n}\nfieldset {\n  border: 0;\n  margin: 20px 0 0;\n  padding: 0;\n}\nlegend {\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 650;\n  margin-bottom: 8px;\n}\n.choice-row,\n.form-actions {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n.choice {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: flex;\n  gap: 7px;\n  padding: 7px 10px;\n}\n.choice input,\n.range-field input {\n  accent-color: var(--accent);\n}\n.form-actions {\n  margin-top: 22px;\n}\n.primary-button,\n.secondary-button {\n  border-radius: 7px;\n  cursor: pointer;\n  font-weight: 700;\n  min-height: 40px;\n  padding: 8px 13px;\n}\n.primary-button {\n  background: var(--accent);\n  border: 1px solid var(--accent);\n  color: white;\n}\n.secondary-button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  color: var(--text-h);\n}\n.primary-button:disabled,\n.secondary-button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n.switch-row {\n  align-items: center;\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n}\n.switch-row > span {\n  display: grid;\n}\n.switch-row small {\n  color: var(--text);\n  font-weight: 450;\n}\n.switch {\n  accent-color: var(--accent);\n  height: 24px;\n  width: 44px;\n}\n.range-field {\n  margin-top: 22px;\n}\n.range-field > span {\n  display: flex;\n  justify-content: space-between;\n}\n.range-field input,\nprogress {\n  width: 100%;\n}\nprogress {\n  accent-color: var(--accent);\n  height: 8px;\n  margin-top: 12px;\n}\n.tabs {\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 4px;\n  padding-bottom: 12px;\n}\n.tabs button {\n  background: transparent;\n  border: 0;\n  border-radius: 6px;\n  color: var(--text);\n  cursor: pointer;\n  font-weight: 700;\n  padding: 7px 10px;\n}\n.tabs button[aria-selected=true] {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.tab-panel {\n  min-height: 155px;\n  padding-top: 18px;\n}\n.summary-list {\n  display: grid;\n  gap: 10px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n}\n.summary-list div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.summary-list dt {\n  font-size: 12px;\n}\n.summary-list dd {\n  color: var(--text-h);\n  font-weight: 700;\n  margin: 2px 0 0;\n}\ndetails {\n  border-top: 1px solid var(--border);\n  font-size: 14px;\n  padding-top: 12px;\n}\nsummary {\n  color: var(--text-h);\n  cursor: pointer;\n  font-weight: 700;\n}\ndetails p {\n  padding-top: 10px;\n}\n.notification {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n  margin-top: 14px;\n  padding: 12px 16px;\n}\n.notification button {\n  background: transparent;\n  border: 0;\n  color: var(--text-h);\n  cursor: pointer;\n  font-size: 22px;\n}\ndialog {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n  color: var(--text);\n  max-width: 430px;\n  padding: 26px;\n}\ndialog::backdrop {\n  -webkit-backdrop-filter: blur(3px);\n  backdrop-filter: blur(3px);\n  background: rgb(8 6 13 / 68%);\n}\ndialog h2 {\n  margin: 8px 0 10px;\n}\ndialog .primary-button {\n  margin-top: 22px;\n}\ninput:focus,\nselect:focus,\nbutton:focus-visible {\n  outline: 2px solid var(--accent);\n  outline-offset: 2px;\n}\n.placeholder-card h2 {\n  margin: 4px 0 8px;\n}\n@media (prefers-reduced-motion: reduce) {\n  *,\n  *::before,\n  *::after {\n    animation-duration: 0.01ms !important;\n    animation-iteration-count: 1 !important;\n    scroll-behavior: auto !important;\n    transition-duration: 0.01ms !important;\n  }\n}\n@media (forced-colors: active) {\n  .framework-badge,\n  .control-card,\n  .placeholder-card {\n    border: 1px solid CanvasText;\n  }\n}\n@media (max-width: 1100px) {\n  .control-layout {\n    grid-template-columns: 1fr;\n  }\n}\n@media (max-width: 760px) {\n  .showcase {\n    padding: 24px 16px;\n  }\n  .showcase-header,\n  .section-heading {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .showcase-nav {\n    overflow-x: auto;\n  }\n  .control-layout,\n  .field-grid,\n  .summary-list {\n    grid-template-columns: 1fr;\n  }\n  .field-span {\n    grid-column: auto;\n  }\n}\n"] }]
-  }], null, { dialog: [{ type: ViewChild, args: ["profileDialog", { isSignal: true }] }] });
+`, styles: ["/* src/app/app.css */\n:host {\n  color: var(--text);\n  display: block;\n  font-family: inherit;\n}\n* {\n  box-sizing: border-box;\n}\n.showcase {\n  padding: 48px;\n  text-align: left;\n}\n.showcase-header {\n  align-items: flex-start;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 32px;\n}\n.showcase-header h1 {\n  margin: 6px 0 10px;\n}\n.showcase-header p {\n  max-width: 680px;\n}\n.showcase-nav {\n  display: flex;\n  gap: 8px;\n  margin: -12px 0 32px;\n}\n.showcase-nav a {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 999px;\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 700;\n  padding: 7px 11px;\n  text-decoration: none;\n}\n.showcase-nav a:hover {\n  border-color: var(--accent-border);\n  color: var(--accent);\n}\n.controls-section,\n.data-section {\n  scroll-margin-top: 90px;\n}\n.eyebrow {\n  color: var(--accent);\n  font-size: 13px;\n  font-weight: 700;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n}\n.framework-badge {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 999px;\n  color: var(--text-h);\n  display: flex;\n  font-weight: 650;\n  gap: 10px;\n  padding: 10px 14px;\n}\n.framework-badge > span {\n  align-items: center;\n  background: var(--accent);\n  border-radius: 50%;\n  color: white;\n  display: inline-flex;\n  height: 24px;\n  justify-content: center;\n  width: 24px;\n}\n.controls-section {\n  margin-bottom: 32px;\n}\n.data-section {\n  margin-top: 40px;\n}\n.section-heading {\n  align-items: end;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 18px;\n}\n.section-heading h2 {\n  margin: 4px 0 0;\n}\n.section-heading p {\n  font-size: 15px;\n  max-width: 560px;\n}\n.control-layout {\n  display: grid;\n  gap: 18px;\n  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);\n}\n.control-layout > *,\n.field-grid > * {\n  min-width: 0;\n}\n.control-stack {\n  display: grid;\n  gap: 18px;\n}\n.control-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  padding: 22px;\n}\n.control-card h3 {\n  color: var(--text-h);\n  font-size: 18px;\n  margin: 0 0 18px;\n}\n.field-grid {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.field-span {\n  grid-column: 1 / -1;\n}\nlabel {\n  color: var(--text-h);\n  display: grid;\n  font-size: 13px;\n  font-weight: 650;\n  gap: 5px;\n}\ninput,\nselect,\nbutton {\n  font: inherit;\n}\ninput:not([type=checkbox]):not([type=radio]):not([type=range]),\nselect {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  min-height: 42px;\n  padding: 8px 11px;\n}\n.form-card input:not([type=checkbox]):not([type=radio]),\n.form-card select {\n  width: 100%;\n}\n.field-help,\n.field-error {\n  font-size: 12px;\n  font-weight: 450;\n}\n.field-help {\n  color: var(--text);\n}\n.field-error {\n  color: #b42318;\n}\ninput[aria-invalid=true] {\n  border-color: #d92d20;\n}\nfieldset {\n  border: 0;\n  margin: 20px 0 0;\n  padding: 0;\n}\nlegend {\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 650;\n  margin-bottom: 8px;\n}\n.choice-row,\n.form-actions {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n.choice {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: flex;\n  gap: 7px;\n  padding: 7px 10px;\n}\n.choice input,\n.range-field input {\n  accent-color: var(--accent);\n}\n.form-actions {\n  margin-top: 22px;\n}\n.primary-button,\n.secondary-button {\n  border-radius: 7px;\n  cursor: pointer;\n  font-weight: 700;\n  min-height: 40px;\n  padding: 8px 13px;\n}\n.primary-button {\n  background: var(--accent);\n  border: 1px solid var(--accent);\n  color: white;\n}\n.secondary-button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  color: var(--text-h);\n}\n.primary-button:disabled,\n.secondary-button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n.switch-row {\n  align-items: center;\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n}\n.switch-row > span {\n  display: grid;\n}\n.switch-row small {\n  color: var(--text);\n  font-weight: 450;\n}\n.switch {\n  accent-color: var(--accent);\n  height: 24px;\n  width: 44px;\n}\n.range-field {\n  margin-top: 22px;\n}\n.range-field > span {\n  display: flex;\n  justify-content: space-between;\n}\n.range-field input,\nprogress {\n  width: 100%;\n}\nprogress {\n  accent-color: var(--accent);\n  height: 8px;\n  margin-top: 12px;\n}\n.tabs {\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 4px;\n  padding-bottom: 12px;\n}\n.tabs button {\n  background: transparent;\n  border: 0;\n  border-radius: 6px;\n  color: var(--text);\n  cursor: pointer;\n  font-weight: 700;\n  padding: 7px 10px;\n}\n.tabs button[aria-selected=true] {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.tab-panel {\n  min-height: 155px;\n  padding-top: 18px;\n}\n.summary-list {\n  display: grid;\n  gap: 10px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n}\n.summary-list div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.summary-list dt {\n  font-size: 12px;\n}\n.summary-list dd {\n  color: var(--text-h);\n  font-weight: 700;\n  margin: 2px 0 0;\n}\ndetails {\n  border-top: 1px solid var(--border);\n  font-size: 14px;\n  padding-top: 12px;\n}\nsummary {\n  color: var(--text-h);\n  cursor: pointer;\n  font-weight: 700;\n}\ndetails p {\n  padding-top: 10px;\n}\n.notification {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n  margin-top: 14px;\n  padding: 12px 16px;\n}\n.notification button {\n  background: transparent;\n  border: 0;\n  color: var(--text-h);\n  cursor: pointer;\n  font-size: 22px;\n}\ndialog {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n  color: var(--text);\n  max-width: 430px;\n  padding: 26px;\n}\ndialog::backdrop {\n  -webkit-backdrop-filter: blur(3px);\n  backdrop-filter: blur(3px);\n  background: rgb(8 6 13 / 68%);\n}\ndialog h2 {\n  margin: 8px 0 10px;\n}\ndialog .primary-button {\n  margin-top: 22px;\n}\ninput:focus,\nselect:focus,\nbutton:focus-visible {\n  outline: 2px solid var(--accent);\n  outline-offset: 2px;\n}\n.grid-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  box-shadow: var(--shadow);\n  overflow: hidden;\n}\n.grid-heading,\n.grid-footer {\n  align-items: end;\n  display: flex;\n  gap: 24px;\n  justify-content: space-between;\n  padding: 22px 24px;\n}\n.grid-heading {\n  border-bottom: 1px solid var(--border);\n}\n.grid-heading h3 {\n  color: var(--text-h);\n  font-size: 22px;\n  margin: 0 0 4px;\n}\n.grid-heading p,\n.grid-footer {\n  font-size: 14px;\n}\n.filters {\n  display: flex;\n  gap: 12px;\n}\n.table-wrap {\n  min-height: 486px;\n  overflow-x: auto;\n  position: relative;\n}\ntable {\n  border-collapse: collapse;\n  width: 100%;\n}\nth,\ntd {\n  border-bottom: 1px solid var(--border);\n  padding: 13px 16px;\n  text-align: left;\n  white-space: nowrap;\n}\nth {\n  background: var(--code-bg);\n  color: var(--text-h);\n  font-size: 12px;\n}\nth button {\n  align-items: center;\n  background: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-flex;\n  font-weight: 700;\n  gap: 7px;\n  padding: 0;\n}\nth button.active-sort {\n  color: var(--accent);\n}\ntbody tr {\n  cursor: pointer;\n}\ntbody tr:hover,\ntbody tr.selected {\n  background: var(--accent-bg);\n}\n.row-select {\n  background: transparent;\n  border: 0;\n  color: var(--text-h);\n  cursor: pointer;\n  font-weight: 700;\n  padding: 0;\n  text-align: left;\n}\ncode {\n  background: var(--code-bg);\n  border-radius: 4px;\n  padding: 2px 5px;\n}\n.status {\n  inset: 50% auto auto 50%;\n  position: absolute;\n  transform: translate(-50%, -50%);\n}\n.status.error {\n  background: #fef3f2;\n  border: 1px solid #fecdca;\n  border-radius: 8px;\n  color: #b42318;\n  margin: 14px 24px;\n  padding: 12px 16px;\n  position: static;\n  transform: none;\n}\n.pagination {\n  align-items: center;\n  display: flex;\n  gap: 10px;\n}\n.pagination button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  cursor: pointer;\n  min-height: 36px;\n  padding: 6px 10px;\n}\n.pagination button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n@media (prefers-reduced-motion: reduce) {\n  *,\n  *::before,\n  *::after {\n    animation-duration: 0.01ms !important;\n    animation-iteration-count: 1 !important;\n    scroll-behavior: auto !important;\n    transition-duration: 0.01ms !important;\n  }\n}\n@media (forced-colors: active) {\n  .framework-badge,\n  .control-card,\n  .grid-card {\n    border: 1px solid CanvasText;\n  }\n}\n@media (max-width: 1100px) {\n  .control-layout {\n    grid-template-columns: 1fr;\n  }\n  .data-section .section-heading {\n    align-items: stretch;\n    flex-direction: column;\n  }\n}\n@media (max-width: 760px) {\n  .showcase {\n    padding: 24px 16px;\n  }\n  .showcase-header,\n  .section-heading,\n  .grid-heading,\n  .grid-footer {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .showcase-nav {\n    overflow-x: auto;\n  }\n  .control-layout,\n  .field-grid,\n  .summary-list {\n    grid-template-columns: 1fr;\n  }\n  .field-span {\n    grid-column: auto;\n  }\n  .filters {\n    align-items: stretch;\n    flex-direction: column;\n  }\n}\n"] }]
+  }], () => [], { dialog: [{ type: ViewChild, args: ["profileDialog", { isSignal: true }] }] });
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(App, { className: "App", filePath: "src/app/app.ts", lineNumber: 21 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(App, { className: "App", filePath: "src/app/app.ts", lineNumber: 46 });
 })();
 
 // src/main.ts

@@ -236,14 +236,134 @@
     }
   </section>
 
-  <section
-    id="angular-northwind"
-    class="data-section placeholder-card"
-    aria-labelledby="northwind-heading"
-  >
-    <span class="eyebrow">Next implementation stage</span>
-    <h2 id="northwind-heading">Northwind data binding</h2>
-    <p>The Angular customer explorer, details, orders, and editing sandbox come next.</p>
+  <section id="angular-northwind" class="data-section" aria-labelledby="data-heading">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">API-backed state</span>
+        <h2 id="data-heading">Northwind data binding</h2>
+      </div>
+      <p>Server-driven filtering, sorting, paging, and selection against the Northwind API.</p>
+    </div>
+
+    <section class="grid-card" aria-labelledby="customers-heading">
+      <div class="grid-heading">
+        <div>
+          <h3 id="customers-heading">Customer explorer</h3>
+          <p>{{ totalCount() }} Northwind records</p>
+        </div>
+        <div class="filters">
+          <label>
+            <span>Search</span>
+            <input
+              type="search"
+              [value]="search()"
+              placeholder="Company or contact"
+              (input)="updateSearch($any($event.target).value)"
+            />
+          </label>
+          <label>
+            <span>Country</span>
+            <select [value]="country()" (change)="updateCountry($any($event.target).value)">
+              <option value="">All countries</option>
+              @for (item of countries(); track item) {
+                <option [value]="item">{{ item }}</option>
+              }
+            </select>
+          </label>
+        </div>
+      </div>
+
+      @if (customerError()) {
+        <div class="status error" role="alert">{{ customerError() }}</div>
+      }
+
+      <div class="table-wrap" [attr.aria-busy]="loading()">
+        <table aria-label="Northwind customers">
+          <thead>
+            <tr>
+              @for (column of columns; track column[0]) {
+                <th
+                  scope="col"
+                  [attr.aria-sort]="
+                    sort() === column[0]
+                      ? direction() === 'asc'
+                        ? 'ascending'
+                        : 'descending'
+                      : 'none'
+                  "
+                >
+                  <button
+                    type="button"
+                    [class.active-sort]="sort() === column[0]"
+                    [attr.aria-label]="column[1] + ': ' + sortLabel(column[0])"
+                    (click)="changeSort(column[0])"
+                  >
+                    {{ column[1] }}
+                    <span aria-hidden="true">
+                      {{ sort() === column[0] ? (direction() === 'asc' ? '↑' : '↓') : '↕' }}
+                    </span>
+                  </button>
+                </th>
+              }
+            </tr>
+          </thead>
+          <tbody>
+            @if (!loading()) {
+              @for (customer of customers(); track customer.customerId) {
+                <tr
+                  [class.selected]="selectedId() === customer.customerId"
+                  (click)="selectedId.set(customer.customerId)"
+                >
+                  <td data-label="Company">
+                    <button
+                      type="button"
+                      class="row-select"
+                      [attr.aria-pressed]="selectedId() === customer.customerId"
+                      (click)="$event.stopPropagation(); selectedId.set(customer.customerId)"
+                    >
+                      {{ customer.companyName }}
+                    </button>
+                  </td>
+                  <td data-label="Contact">{{ customer.contactName || '—' }}</td>
+                  <td data-label="City">{{ customer.city || '—' }}</td>
+                  <td data-label="Country">{{ customer.country || '—' }}</td>
+                  <td data-label="ID">
+                    <code>{{ customer.customerId }}</code>
+                  </td>
+                </tr>
+              }
+            }
+          </tbody>
+        </table>
+
+        @if (loading()) {
+          <div class="status" role="status" aria-live="polite">Loading customers…</div>
+        } @else if (!customerError() && customers().length === 0) {
+          <div class="status">No customers match these filters.</div>
+        }
+      </div>
+
+      <footer class="grid-footer">
+        <span>{{ selectedId() ? 'Selected: ' + selectedId() : 'Select a customer row' }}</span>
+        <div class="pagination">
+          <button
+            type="button"
+            [disabled]="loading() || page() <= 1"
+            (click)="page.update((current) => current - 1)"
+          >
+            Previous
+          </button>
+          <span>{{ pageLabel() }}</span>
+          <button
+            type="button"
+            [disabled]="loading() || page() >= totalPages()"
+            (click)="page.update((current) => current + 1)"
+          >
+            Next
+          </button>
+        </div>
+      </footer>
+    </section>
   </section>
 
   <dialog #profileDialog>

@@ -1,8 +1,37 @@
 import { TestBed } from '@angular/core/testing';
+import { beforeEach, vi } from 'vitest';
 import { App } from './app';
+
+const customer = {
+  customerId: 'ALFKI',
+  companyName: 'Alfreds Futterkiste',
+  contactName: 'Maria Anders',
+  city: 'Berlin',
+  country: 'Germany',
+};
 
 describe('App', () => {
   beforeEach(async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn((input: string | URL | Request) => {
+        const url = String(input);
+        const value = url.endsWith('/countries')
+          ? ['Germany']
+          : {
+              items: [customer],
+              page: 1,
+              pageSize: 10,
+              totalCount: 1,
+              totalPages: 1,
+            };
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve(value),
+        });
+      }),
+    );
+
     await TestBed.configureTestingModule({
       imports: [App],
     }).compileComponents();
@@ -58,13 +87,13 @@ describe('App', () => {
 
     submitButton.click();
     fixture.detectChanges();
-    expect(shadowRoot.querySelector('[role="status"]')?.textContent).toContain(
+    expect(shadowRoot.querySelector('.notification[role="status"]')?.textContent).toContain(
       'validated successfully',
     );
 
     (shadowRoot.querySelector('[aria-label="Dismiss notification"]') as HTMLButtonElement).click();
     fixture.detectChanges();
-    expect(shadowRoot.querySelector('[role="status"]')).toBeNull();
+    expect(shadowRoot.querySelector('.notification[role="status"]')).toBeNull();
   });
 
   it('should switch tabs with arrow keys', async () => {
@@ -79,5 +108,37 @@ describe('App', () => {
     const settingsTab = shadowRoot.querySelector('#profile-settings-tab') as HTMLButtonElement;
     expect(settingsTab.getAttribute('aria-selected')).toBe('true');
     expect(shadowRoot.querySelector('#profile-settings-panel')).not.toBeNull();
+  });
+
+  it('should send debounced customer filters to the API', async () => {
+    const fixture = TestBed.createComponent(App);
+    await fixture.whenStable();
+    const shadowRoot = fixture.nativeElement.shadowRoot as ShadowRoot;
+    const searchInput = shadowRoot.querySelector('input[type="search"]') as HTMLInputElement;
+
+    searchInput.value = 'alfreds';
+    searchInput.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+    await new Promise((resolve) => setTimeout(resolve, 300));
+
+    expect(fetch).toHaveBeenCalledWith(
+      expect.stringContaining('search=alfreds'),
+      expect.objectContaining({ signal: expect.any(AbortSignal) }),
+    );
+  });
+
+  it('should bind and retain a customer selection on the current page', async () => {
+    const fixture = TestBed.createComponent(App);
+    await fixture.whenStable();
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    fixture.detectChanges();
+    const shadowRoot = fixture.nativeElement.shadowRoot as ShadowRoot;
+    const customerButton = shadowRoot.querySelector('.row-select') as HTMLButtonElement;
+
+    customerButton.click();
+    fixture.detectChanges();
+
+    expect(customerButton.getAttribute('aria-pressed')).toBe('true');
+    expect(shadowRoot.querySelector('.grid-footer')?.textContent).toContain('Selected: ALFKI');
   });
 });

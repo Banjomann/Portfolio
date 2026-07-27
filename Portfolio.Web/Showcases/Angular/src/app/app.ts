@@ -3,12 +3,37 @@ import {
   Component,
   ElementRef,
   computed,
+  effect,
   inject,
   signal,
   viewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+
+type SortColumn = 'companyName' | 'contactName' | 'city' | 'country' | 'customerId';
+
+interface CustomerSummary {
+  customerId: string;
+  companyName: string;
+  contactName: string | null;
+  city: string | null;
+  country: string | null;
+}
+
+interface CustomerPage {
+  items: CustomerSummary[];
+  totalCount: number;
+  totalPages: number;
+}
+
+const customerColumns: ReadonlyArray<readonly [SortColumn, string]> = [
+  ['companyName', 'Company'],
+  ['contactName', 'Contact'],
+  ['city', 'City'],
+  ['country', 'Country'],
+  ['customerId', 'ID'],
+];
 
 @Component({
   selector: 'portfolio-angular-showcase',
@@ -36,6 +61,75 @@ export class App {
   protected readonly activeTab = signal<'summary' | 'settings'>('summary');
   protected readonly notice = signal('');
   protected readonly interestsSummary = computed(() => this.interests().join(', ') || 'None');
+  protected readonly columns = customerColumns;
+  protected readonly countries = signal<string[]>([]);
+  protected readonly customers = signal<CustomerSummary[]>([]);
+  protected readonly search = signal('');
+  protected readonly country = signal('');
+  protected readonly sort = signal<SortColumn>('companyName');
+  protected readonly direction = signal<'asc' | 'desc'>('asc');
+  protected readonly page = signal(1);
+  protected readonly totalCount = signal(0);
+  protected readonly totalPages = signal(0);
+  protected readonly selectedId = signal<string | null>(null);
+  protected readonly loading = signal(true);
+  protected readonly customerError = signal('');
+  protected readonly pageLabel = computed(
+    () => `Page ${this.page()} of ${Math.max(this.totalPages(), 1)}`,
+  );
+
+  private readonly customerQueryEffect = effect((onCleanup) => {
+    const search = this.search().trim();
+    const country = this.country();
+    const sort = this.sort();
+    const direction = this.direction();
+    const page = this.page();
+    const controller = new AbortController();
+    const delay = window.setTimeout(async () => {
+      this.loading.set(true);
+      this.customerError.set('');
+      const parameters = new URLSearchParams({
+        sort,
+        direction,
+        page: String(page),
+        pageSize: '10',
+      });
+
+      if (search) parameters.set('search', search);
+      if (country) parameters.set('country', country);
+
+      try {
+        const response = await fetch(`/api/northwind/customers?${parameters}`, {
+          signal: controller.signal,
+        });
+        if (!response.ok) throw new Error('Customers could not be loaded.');
+
+        const result = (await response.json()) as CustomerPage;
+        this.customers.set(result.items);
+        this.totalCount.set(result.totalCount);
+        this.totalPages.set(result.totalPages);
+        this.selectedId.update((current) =>
+          result.items.some((customer) => customer.customerId === current) ? current : null,
+        );
+      } catch (error) {
+        if ((error as Error).name !== 'AbortError') {
+          this.customers.set([]);
+          this.customerError.set((error as Error).message);
+        }
+      } finally {
+        if (!controller.signal.aborted) this.loading.set(false);
+      }
+    }, 250);
+
+    onCleanup(() => {
+      window.clearTimeout(delay);
+      controller.abort();
+    });
+  });
+
+  constructor() {
+    void this.loadCountries();
+  }
 
   protected toggleInterest(interest: string): void {
     this.interests.update((current) =>
@@ -71,5 +165,40 @@ export class App {
     this.activeTab.set(nextTab);
     const tabList = (event.currentTarget as HTMLElement).parentElement;
     tabList?.querySelector<HTMLButtonElement>(`#profile-${nextTab}-tab`)?.focus();
+  }
+
+  protected updateSearch(value: string): void {
+    this.search.set(value);
+    this.page.set(1);
+  }
+
+  protected updateCountry(value: string): void {
+    this.country.set(value);
+    this.page.set(1);
+  }
+
+  protected changeSort(nextSort: SortColumn): void {
+    if (this.sort() === nextSort) {
+      this.direction.update((current) => (current === 'asc' ? 'desc' : 'asc'));
+    } else {
+      this.sort.set(nextSort);
+      this.direction.set('asc');
+    }
+    this.page.set(1);
+  }
+
+  protected sortLabel(column: SortColumn): string {
+    if (this.sort() !== column) return 'Not sorted';
+    return this.direction() === 'asc' ? 'Sorted ascending' : 'Sorted descending';
+  }
+
+  private async loadCountries(): Promise<void> {
+    try {
+      const response = await fetch('/api/northwind/countries');
+      if (!response.ok) throw new Error('Countries could not be loaded.');
+      this.countries.set((await response.json()) as string[]);
+    } catch (error) {
+      this.customerError.set((error as Error).message);
+    }
   }
 }
