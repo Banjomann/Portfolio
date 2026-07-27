@@ -163,6 +163,30 @@ function looseEqual(a, b) {
 	}
 	return String(a) === String(b);
 }
+function looseIndexOf(arr, val) {
+	return arr.findIndex((item) => looseEqual(item, val));
+}
+var isRef$1 = (val) => {
+	return !!(val && val["__v_isRef"] === true);
+};
+var toDisplayString = (val) => {
+	return isString(val) ? val : val == null ? "" : isArray(val) || isObject(val) && (val.toString === objectToString || !isFunction(val.toString)) ? isRef$1(val) ? toDisplayString(val.value) : JSON.stringify(val, replacer, 2) : String(val);
+};
+var replacer = (_key, val) => {
+	if (isRef$1(val)) return replacer(_key, val.value);
+	else if (isMap(val)) return { [`Map(${val.size})`]: [...val.entries()].reduce((entries, [key, val2], i) => {
+		entries[stringifySymbol(key, i) + " =>"] = val2;
+		return entries;
+	}, {}) };
+	else if (isSet(val)) return { [`Set(${val.size})`]: [...val.values()].map((v) => stringifySymbol(v)) };
+	else if (isSymbol(val)) return stringifySymbol(val);
+	else if (isObject(val) && !isArray(val) && !isPlainObject(val)) return String(val);
+	return val;
+};
+var stringifySymbol = (v, i = "") => {
+	var _a;
+	return isSymbol(v) ? `Symbol(${(_a = v.description) != null ? _a : i})` : v;
+};
 //#endregion
 //#region node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js
 /**
@@ -2048,6 +2072,33 @@ function withCtx(fn, ctx = currentRenderingInstance, isNonScopedSlot) {
 }
 function validateDirectiveName(name) {
 	if (isBuiltInDirective(name)) warn$1("Do not use built-in directive ids as custom directive id: " + name);
+}
+function withDirectives(vnode, directives) {
+	if (currentRenderingInstance === null) {
+		process.env.NODE_ENV !== "production" && warn$1(`withDirectives can only be used inside render functions.`);
+		return vnode;
+	}
+	const instance = getComponentPublicInstance(currentRenderingInstance);
+	const bindings = vnode.dirs || (vnode.dirs = []);
+	for (let i = 0; i < directives.length; i++) {
+		let [dir, value, arg, modifiers = EMPTY_OBJ] = directives[i];
+		if (dir) {
+			if (isFunction(dir)) dir = {
+				mounted: dir,
+				updated: dir
+			};
+			if (dir.deep) traverse(value);
+			bindings.push({
+				dir,
+				instance,
+				value,
+				oldValue: void 0,
+				arg,
+				modifiers
+			});
+		}
+	}
+	return vnode;
 }
 function invokeDirectiveHook(vnode, prevVNode, instance, name) {
 	const bindings = vnode.dirs;
@@ -4353,6 +4404,9 @@ function setupBlock(vnode) {
 function createElementBlock(type, props, children, patchFlag, dynamicProps, shapeFlag) {
 	return setupBlock(createBaseVNode(type, props, children, patchFlag, dynamicProps, shapeFlag, true));
 }
+function createBlock(type, props, children, patchFlag, dynamicProps) {
+	return setupBlock(createVNode(type, props, children, patchFlag, dynamicProps, true));
+}
 function isVNode(value) {
 	return value ? value.__v_isVNode === true : false;
 }
@@ -4500,10 +4554,8 @@ function deepCloneVNode(vnode) {
 function createTextVNode(text = " ", flag = 0) {
 	return createVNode(Text, null, text, flag);
 }
-function createStaticVNode(content, numberOfNodes) {
-	const vnode = createVNode(Static, null, content);
-	vnode.staticCount = numberOfNodes;
-	return vnode;
+function createCommentVNode(text = "", asBlock = false) {
+	return asBlock ? (openBlock(), createBlock(Comment, null, text)) : createVNode(Comment, null, text);
 }
 function normalizeVNode(child) {
 	if (child == null || typeof child === "boolean") return createVNode(Comment);
@@ -5713,6 +5765,201 @@ var VueElement = class VueElement extends BaseClass {
 		}
 	}
 };
+var getModelAssigner = (vnode) => {
+	const fn = vnode.props["onUpdate:modelValue"] || false;
+	return isArray(fn) ? (value) => invokeArrayFns(fn, value) : fn;
+};
+function onCompositionStart(e) {
+	e.target.composing = true;
+}
+function onCompositionEnd(e) {
+	const target = e.target;
+	if (target.composing) {
+		target.composing = false;
+		target.dispatchEvent(new Event("input"));
+	}
+}
+var assignKey = /* @__PURE__ */ Symbol("_assign");
+function castValue(value, trim, number) {
+	if (trim) value = value.trim();
+	if (number) value = looseToNumber(value);
+	return value;
+}
+var vModelText = {
+	created(el, { modifiers: { lazy, trim, number } }, vnode) {
+		el[assignKey] = getModelAssigner(vnode);
+		const castToNumber = number || vnode.props && vnode.props.type === "number";
+		addEventListener(el, lazy ? "change" : "input", (e) => {
+			if (e.target.composing) return;
+			el[assignKey](castValue(el.value, trim, castToNumber));
+		});
+		if (trim || castToNumber) addEventListener(el, "change", () => {
+			el.value = castValue(el.value, trim, castToNumber);
+		});
+		if (!lazy) {
+			addEventListener(el, "compositionstart", onCompositionStart);
+			addEventListener(el, "compositionend", onCompositionEnd);
+			addEventListener(el, "change", onCompositionEnd);
+		}
+	},
+	mounted(el, { value }) {
+		el.value = value == null ? "" : value;
+	},
+	beforeUpdate(el, { value, oldValue, modifiers: { lazy, trim, number } }, vnode) {
+		el[assignKey] = getModelAssigner(vnode);
+		if (el.composing) return;
+		const elValue = (number || el.type === "number") && !/^0\d/.test(el.value) ? looseToNumber(el.value) : el.value;
+		const newValue = value == null ? "" : value;
+		if (elValue === newValue) return;
+		const rootNode = el.getRootNode();
+		if ((rootNode instanceof Document || rootNode instanceof ShadowRoot) && rootNode.activeElement === el && el.type !== "range") {
+			if (lazy && value === oldValue) return;
+			if (trim && el.value.trim() === newValue) return;
+		}
+		el.value = newValue;
+	}
+};
+var vModelCheckbox = {
+	deep: true,
+	created(el, _, vnode) {
+		el[assignKey] = getModelAssigner(vnode);
+		addEventListener(el, "change", () => {
+			const modelValue = el._modelValue;
+			const elementValue = getValue(el);
+			const checked = el.checked;
+			const assign = el[assignKey];
+			if (isArray(modelValue)) {
+				const index = looseIndexOf(modelValue, elementValue);
+				const found = index !== -1;
+				if (checked && !found) assign(modelValue.concat(elementValue));
+				else if (!checked && found) {
+					const filtered = [...modelValue];
+					filtered.splice(index, 1);
+					assign(filtered);
+				}
+			} else if (isSet(modelValue)) {
+				const cloned = new Set(modelValue);
+				if (checked) cloned.add(elementValue);
+				else cloned.delete(elementValue);
+				assign(cloned);
+			} else assign(getCheckboxValue(el, checked));
+		});
+	},
+	mounted: setChecked,
+	beforeUpdate(el, binding, vnode) {
+		el[assignKey] = getModelAssigner(vnode);
+		setChecked(el, binding, vnode);
+	}
+};
+function setChecked(el, { value, oldValue }, vnode) {
+	el._modelValue = value;
+	let checked;
+	if (isArray(value)) checked = looseIndexOf(value, vnode.props.value) > -1;
+	else if (isSet(value)) checked = value.has(vnode.props.value);
+	else {
+		if (value === oldValue) return;
+		checked = looseEqual(value, getCheckboxValue(el, true));
+	}
+	if (el.checked !== checked) el.checked = checked;
+}
+var vModelRadio = {
+	created(el, { value }, vnode) {
+		el.checked = looseEqual(value, vnode.props.value);
+		el[assignKey] = getModelAssigner(vnode);
+		addEventListener(el, "change", () => {
+			el[assignKey](getValue(el));
+		});
+	},
+	beforeUpdate(el, { value, oldValue }, vnode) {
+		el[assignKey] = getModelAssigner(vnode);
+		if (value !== oldValue) el.checked = looseEqual(value, vnode.props.value);
+	}
+};
+var vModelSelect = {
+	deep: true,
+	created(el, { value, modifiers: { number } }, vnode) {
+		el._modelValue = value;
+		addEventListener(el, "change", () => {
+			const selectedVal = Array.prototype.filter.call(el.options, (o) => o.selected).map((o) => number ? looseToNumber(getValue(o)) : getValue(o));
+			el[assignKey](el.multiple ? isSet(el._modelValue) ? new Set(selectedVal) : selectedVal : selectedVal[0]);
+			el._assigning = true;
+			nextTick(() => {
+				el._assigning = false;
+			});
+		});
+		el[assignKey] = getModelAssigner(vnode);
+	},
+	mounted(el, { value }) {
+		setSelected(el, value);
+	},
+	beforeUpdate(el, { value }, vnode) {
+		el._modelValue = value;
+		el[assignKey] = getModelAssigner(vnode);
+	},
+	updated(el, { value }) {
+		if (!el._assigning) setSelected(el, value);
+	}
+};
+function setSelected(el, value) {
+	const isMultiple = el.multiple;
+	const isArrayValue = isArray(value);
+	if (isMultiple && !isArrayValue && !isSet(value)) {
+		process.env.NODE_ENV !== "production" && warn(`<select multiple v-model> expects an Array or Set value for its binding, but got ${Object.prototype.toString.call(value).slice(8, -1)}.`);
+		return;
+	}
+	for (let i = 0, l = el.options.length; i < l; i++) {
+		const option = el.options[i];
+		const optionValue = getValue(option);
+		if (isMultiple) if (isArrayValue) {
+			const optionType = typeof optionValue;
+			if (optionType === "string" || optionType === "number") option.selected = value.some((v) => String(v) === String(optionValue));
+			else option.selected = looseIndexOf(value, optionValue) > -1;
+		} else option.selected = value.has(optionValue);
+		else if (looseEqual(getValue(option), value)) {
+			if (el.selectedIndex !== i) el.selectedIndex = i;
+			return;
+		}
+	}
+	if (!isMultiple && el.selectedIndex !== -1) el.selectedIndex = -1;
+}
+function getValue(el) {
+	return "_value" in el ? el._value : el.value;
+}
+function getCheckboxValue(el, checked) {
+	const key = checked ? "_trueValue" : "_falseValue";
+	return key in el ? el[key] : checked;
+}
+var systemModifiers = [
+	"ctrl",
+	"shift",
+	"alt",
+	"meta"
+];
+var modifierGuards = {
+	stop: (e) => e.stopPropagation(),
+	prevent: (e) => e.preventDefault(),
+	self: (e) => e.target !== e.currentTarget,
+	ctrl: (e) => !e.ctrlKey,
+	shift: (e) => !e.shiftKey,
+	alt: (e) => !e.altKey,
+	meta: (e) => !e.metaKey,
+	left: (e) => "button" in e && e.button !== 0,
+	middle: (e) => "button" in e && e.button !== 1,
+	right: (e) => "button" in e && e.button !== 2,
+	exact: (e, modifiers) => systemModifiers.some((m) => e[`${m}Key`] && !modifiers.includes(m))
+};
+var withModifiers = (fn, modifiers) => {
+	if (!fn) return fn;
+	const cache = fn._withMods || (fn._withMods = {});
+	const cacheKey = modifiers.join(".");
+	return cache[cacheKey] || (cache[cacheKey] = ((event, ...args) => {
+		for (let i = 0; i < modifiers.length; i++) {
+			const guard = modifierGuards[modifiers[i]];
+			if (guard && guard(event, modifiers)) return;
+		}
+		return fn(event, ...args);
+	}));
+};
 var rendererOptions = /* @__PURE__ */ extend({ patchProp }, nodeOps);
 var renderer;
 function ensureRenderer() {
@@ -5802,7 +6049,7 @@ function initDev() {
 if (!!(process.env.NODE_ENV !== "production")) initDev();
 //#endregion
 //#region src/App.ce.vue?vue&type=style&index=0&inline&lang.css
-var App_ce_vue_vue_type_style_index_0_inline_lang_default = "\n:host {\n  color: #193330;\n  display: block;\n  font-family:\n    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\",\n    sans-serif;\n}\n* {\n  box-sizing: border-box;\n}\n.showcase-shell {\n  display: grid;\n  gap: 1.5rem;\n}\n.showcase-header,\nsection {\n  background: #f5fbf8;\n  border: 1px solid #c9ddd5;\n  border-radius: 1rem;\n  padding: clamp(1.25rem, 4vw, 2.5rem);\n}\n.showcase-header {\n  background:\n    radial-gradient(circle at top right, rgb(65 184 131 / 28%), transparent 42%),\n    #eaf7f1;\n}\n.eyebrow,\n.section-number {\n  color: #287a5b;\n  font-size: 0.75rem;\n  font-weight: 800;\n  letter-spacing: 0.12em;\n  margin: 0 0 0.5rem;\n  text-transform: uppercase;\n}\nh1,\nh2,\np {\n  margin-top: 0;\n}\nh1 {\n  font-size: clamp(2rem, 6vw, 4rem);\n  line-height: 1;\n  margin-bottom: 1rem;\n}\nnav {\n  display: flex;\n  gap: 0.75rem;\n  overflow-x: auto;\n}\nbutton {\n  background: transparent;\n  border: 1px solid #72a790;\n  border-radius: 999px;\n  color: inherit;\n  cursor: pointer;\n  font: inherit;\n  font-weight: 700;\n  padding: 0.65rem 1rem;\n  white-space: nowrap;\n}\nbutton:hover,\nbutton:focus-visible,\nbutton[aria-current=\"page\"] {\n  background: #287a5b;\n  color: white;\n}\nbutton:focus-visible {\n  outline: 3px solid #41b883;\n  outline-offset: 3px;\n}\n@media (prefers-color-scheme: dark) {\n:host {\n    color: #e6f4ee;\n}\n.showcase-header,\n  section {\n    background: #102c28;\n    border-color: #35645a;\n}\n.showcase-header {\n    background:\n      radial-gradient(circle at top right, rgb(65 184 131 / 24%), transparent 42%),\n      #143832;\n}\n.eyebrow,\n  .section-number {\n    color: #75d5aa;\n}\n}\n";
+var App_ce_vue_vue_type_style_index_0_inline_lang_default = "\n:host {\n  color: #193330;\n  display: block;\n  font-family:\n    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\",\n    sans-serif;\n}\n* {\n  box-sizing: border-box;\n}\n.showcase-shell {\n  display: grid;\n  gap: 1.5rem;\n}\n.showcase-header,\nsection {\n  background: #f5fbf8;\n  border: 1px solid #c9ddd5;\n  border-radius: 1rem;\n  padding: clamp(1.25rem, 4vw, 2.5rem);\n}\n.section-intro {\n  color: #4c625e;\n}\n.notice {\n  align-items: center;\n  background: #dff6e9;\n  border: 1px solid #58a27e;\n  border-radius: 0.75rem;\n  display: flex;\n  justify-content: space-between;\n  margin: 1rem 0;\n  padding: 0.75rem 1rem;\n}\n.gallery-grid,\n.gallery-stack {\n  display: grid;\n  gap: 1rem;\n  min-width: 0;\n}\n.gallery-grid {\n  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);\n  margin-top: 1.5rem;\n}\n.gallery-card {\n  background: rgb(255 255 255 / 72%);\n  border: 1px solid #c9ddd5;\n  border-radius: 0.8rem;\n  display: grid;\n  gap: 1rem;\n  min-width: 0;\n  padding: 1.25rem;\n}\n.card-heading h3,\n.card-heading p {\n  margin-bottom: 0;\n}\n.card-kicker {\n  color: #287a5b;\n  font-size: 0.7rem;\n  font-weight: 800;\n  letter-spacing: 0.1em;\n  text-transform: uppercase;\n}\nlabel {\n  display: grid;\n  font-weight: 700;\n  gap: 0.4rem;\n}\ninput,\nselect {\n  background: white;\n  border: 1px solid #84a69a;\n  border-radius: 0.45rem;\n  color: #193330;\n  font: inherit;\n  min-width: 0;\n  padding: 0.65rem 0.75rem;\n}\ninput:focus-visible,\nselect:focus-visible,\nsummary:focus-visible {\n  outline: 3px solid #41b883;\n  outline-offset: 2px;\n}\n.field-pair {\n  display: grid;\n  gap: 0.75rem;\n  grid-template-columns: 1fr 1fr;\n}\nfieldset {\n  border: 0;\n  margin: 0;\n  padding: 0;\n}\nlegend {\n  font-weight: 700;\n  margin-bottom: 0.5rem;\n}\n.choice-row,\n.button-row,\n[role=\"tablist\"] {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 0.65rem;\n}\n.choice-row label {\n  align-items: center;\n  display: flex;\n  font-weight: 500;\n}\n.field-error {\n  color: #a32424;\n  font-size: 0.85rem;\n  margin: -0.75rem 0 0;\n}\n.switch-row {\n  align-items: center;\n  display: flex;\n  justify-content: space-between;\n}\n.switch-row span {\n  display: grid;\n}\n.switch-row small {\n  font-weight: 400;\n}\n.switch-row input {\n  height: 1.4rem;\n  width: 2.6rem;\n}\ninput[type=\"range\"],\nprogress {\n  accent-color: #287a5b;\n  width: 100%;\n}\n.primary-button {\n  background: #287a5b;\n  color: white;\n}\n.secondary-button {\n  background: white;\n}\nbutton:disabled {\n  cursor: not-allowed;\n  opacity: 0.5;\n}\n.icon-button {\n  border: 0;\n  font-size: 1.25rem;\n  padding: 0.2rem 0.5rem;\n}\n[role=\"tab\"][aria-selected=\"true\"] {\n  background: #287a5b;\n  color: white;\n}\ndl {\n  display: grid;\n  gap: 0.6rem;\n  margin: 0;\n}\ndl div {\n  display: flex;\n  gap: 1rem;\n  justify-content: space-between;\n}\ndt {\n  font-weight: 700;\n}\ndd {\n  margin: 0;\n  overflow-wrap: anywhere;\n  text-align: right;\n}\ndetails {\n  border-top: 1px solid #c9ddd5;\n  padding-top: 1rem;\n}\nsummary {\n  cursor: pointer;\n  font-weight: 700;\n}\ndialog {\n  background: #f5fbf8;\n  border: 1px solid #72a790;\n  border-radius: 1rem;\n  color: #193330;\n  max-width: min(30rem, calc(100vw - 2rem));\n  padding: 0;\n}\ndialog::backdrop {\n  background: rgb(7 28 24 / 72%);\n}\n.dialog-content {\n  padding: 1.5rem;\n}\n.showcase-header {\n  background:\n    radial-gradient(circle at top right, rgb(65 184 131 / 28%), transparent 42%),\n    #eaf7f1;\n}\n.eyebrow,\n.section-number {\n  color: #287a5b;\n  font-size: 0.75rem;\n  font-weight: 800;\n  letter-spacing: 0.12em;\n  margin: 0 0 0.5rem;\n  text-transform: uppercase;\n}\nh1,\nh2,\np {\n  margin-top: 0;\n}\nh1 {\n  font-size: clamp(2rem, 6vw, 4rem);\n  line-height: 1;\n  margin-bottom: 1rem;\n}\nnav {\n  display: flex;\n  gap: 0.75rem;\n  overflow-x: auto;\n}\nbutton {\n  background: transparent;\n  border: 1px solid #72a790;\n  border-radius: 999px;\n  color: inherit;\n  cursor: pointer;\n  font: inherit;\n  font-weight: 700;\n  padding: 0.65rem 1rem;\n  white-space: nowrap;\n}\nbutton:hover,\nbutton:focus-visible,\nbutton[aria-current=\"page\"] {\n  background: #287a5b;\n  color: white;\n}\nbutton:focus-visible {\n  outline: 3px solid #41b883;\n  outline-offset: 3px;\n}\n@media (prefers-color-scheme: dark) {\n:host {\n    color: #e6f4ee;\n}\n.showcase-header,\n  section {\n    background: #102c28;\n    border-color: #35645a;\n}\n.showcase-header {\n    background:\n      radial-gradient(circle at top right, rgb(65 184 131 / 24%), transparent 42%),\n      #143832;\n}\n.eyebrow,\n  .section-number,\n  .card-kicker {\n    color: #75d5aa;\n}\n.section-intro {\n    color: #b8cec5;\n}\n.gallery-card,\n  dialog {\n    background: #173a34;\n    border-color: #467569;\n    color: #e6f4ee;\n}\ninput,\n  select,\n  .secondary-button {\n    background: #0d2925;\n    border-color: #56877a;\n    color: #e6f4ee;\n}\n.notice {\n    background: #164c3c;\n}\n}\n@media (max-width: 1100px) {\n.gallery-grid {\n    grid-template-columns: 1fr;\n}\n}\n@media (max-width: 760px) {\n.field-pair {\n    grid-template-columns: 1fr;\n}\n}\n@media (prefers-reduced-motion: reduce) {\n*,\n  *::before,\n  *::after {\n    scroll-behavior: auto !important;\n    transition-duration: 0.01ms !important;\n}\n}\n@media (forced-colors: active) {\nbutton,\n  input,\n  select,\n  .gallery-card,\n  .notice {\n    border: 1px solid CanvasText;\n}\n}\n";
 //#endregion
 //#region \0plugin-vue:export-helper
 var _plugin_vue_export_helper_default = (sfc, props) => {
@@ -5816,13 +6063,130 @@ var _hoisted_1 = { class: "showcase-shell" };
 var _hoisted_2 = { "aria-label": "Vue showcase sections" };
 var _hoisted_3 = ["aria-current"];
 var _hoisted_4 = ["aria-current"];
+var _hoisted_5 = {
+	id: "controls",
+	"aria-labelledby": "controls-heading"
+};
+var _hoisted_6 = {
+	key: 0,
+	class: "notice",
+	role: "status",
+	"aria-live": "polite"
+};
+var _hoisted_7 = { class: "gallery-grid" };
+var _hoisted_8 = {
+	key: 0,
+	id: "name-error",
+	class: "field-error"
+};
+var _hoisted_9 = {
+	key: 1,
+	id: "email-error",
+	class: "field-error"
+};
+var _hoisted_10 = { class: "field-pair" };
+var _hoisted_11 = { class: "choice-row" };
+var _hoisted_12 = { class: "choice-row" };
+var _hoisted_13 = ["disabled"];
+var _hoisted_14 = { class: "gallery-stack" };
+var _hoisted_15 = {
+	class: "gallery-card",
+	"aria-labelledby": "preferences-heading"
+};
+var _hoisted_16 = { class: "switch-row" };
+var _hoisted_17 = ["value"];
+var _hoisted_18 = {
+	class: "gallery-card",
+	"aria-labelledby": "preview-heading"
+};
+var _hoisted_19 = {
+	role: "tablist",
+	"aria-label": "Profile preview"
+};
+var _hoisted_20 = ["aria-selected"];
+var _hoisted_21 = ["aria-selected"];
+var _hoisted_22 = {
+	key: 0,
+	id: "summary-panel",
+	role: "tabpanel",
+	"aria-labelledby": "summary-tab"
+};
+var _hoisted_23 = {
+	key: 1,
+	id: "settings-panel",
+	role: "tabpanel",
+	"aria-labelledby": "settings-tab"
+};
+var _hoisted_24 = { class: "dialog-content" };
+var _hoisted_25 = { class: "button-row" };
 var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 	__name: "App.ce",
 	setup(__props) {
 		const activeSection = /* @__PURE__ */ ref("controls");
+		const name = /* @__PURE__ */ ref("Ada Lovelace");
+		const email = /* @__PURE__ */ ref("ada@example.com");
+		const seats = /* @__PURE__ */ ref(3);
+		const startDate = /* @__PURE__ */ ref("2026-08-01");
+		const role = /* @__PURE__ */ ref("Developer");
+		const interests = /* @__PURE__ */ ref(["Data"]);
+		const contact = /* @__PURE__ */ ref("Email");
+		const notifications = /* @__PURE__ */ ref(true);
+		const confidence = /* @__PURE__ */ ref(72);
+		const activeTab = /* @__PURE__ */ ref("summary");
+		const successMessage = /* @__PURE__ */ ref("");
+		const dialog = /* @__PURE__ */ ref(null);
+		const dialogCloseButton = /* @__PURE__ */ ref(null);
+		const tabNames = ["summary", "settings"];
+		const isNameValid = computed(() => name.value.trim().length > 0);
+		const isEmailValid = computed(() => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value));
+		const isProfileValid = computed(() => isNameValid.value && isEmailValid.value);
+		function validateProfile() {
+			if (!isProfileValid.value) return;
+			successMessage.value = `Profile validated for ${name.value.trim()}.`;
+		}
+		async function openDialog() {
+			dialog.value?.showModal();
+			await nextTick();
+			dialogCloseButton.value?.focus();
+		}
+		function closeDialog() {
+			dialog.value?.close();
+		}
+		function handleDialogKeydown(event) {
+			if (event.key === "Escape") {
+				event.preventDefault();
+				closeDialog();
+				return;
+			}
+			if (event.key !== "Tab") return;
+			const controls = [...dialog.value.querySelectorAll("button")];
+			const first = controls[0];
+			const last = controls.at(-1);
+			const activeElement = dialog.value.getRootNode().activeElement;
+			if (event.shiftKey && activeElement === first) {
+				event.preventDefault();
+				last.focus();
+			} else if (!event.shiftKey && activeElement === last) {
+				event.preventDefault();
+				first.focus();
+			}
+		}
+		function handleTabKeydown(event) {
+			if (![
+				"ArrowLeft",
+				"ArrowRight",
+				"Home",
+				"End"
+			].includes(event.key)) return;
+			event.preventDefault();
+			const currentIndex = tabNames.indexOf(activeTab.value);
+			const nextIndex = event.key === "Home" ? 0 : event.key === "End" ? tabNames.length - 1 : (currentIndex + (event.key === "ArrowRight" ? 1 : -1) + tabNames.length) % tabNames.length;
+			activeTab.value = tabNames[nextIndex];
+			event.currentTarget.closest("[role=\"tablist\"]").querySelector(`[data-tab="${activeTab.value}"]`).focus();
+		}
 		return (_ctx, _cache) => {
 			return openBlock(), createElementBlock("div", _hoisted_1, [
-				_cache[2] || (_cache[2] = createBaseVNode("header", { class: "showcase-header" }, [
+				_cache[52] || (_cache[52] = createBaseVNode("header", { class: "showcase-header" }, [
 					createBaseVNode("p", { class: "eyebrow" }, "Frontend lab · Vue"),
 					createBaseVNode("h1", null, "Vue interface showcase"),
 					createBaseVNode("p", null, " The shared Frontend Lab experience, implemented with Vue components and the Composition API. ")
@@ -5836,7 +6200,188 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 					"aria-current": activeSection.value === "northwind" ? "page" : void 0,
 					onClick: _cache[1] || (_cache[1] = ($event) => activeSection.value = "northwind")
 				}, " Northwind Data Binding ", 8, _hoisted_4)]),
-				_cache[3] || (_cache[3] = createStaticVNode("<section id=\"controls\" aria-labelledby=\"controls-heading\"><p class=\"section-number\">01 · Local state</p><h2 id=\"controls-heading\">Control Gallery</h2><p>The interactive control gallery will be added in the next checkpoint.</p></section><section id=\"northwind\" aria-labelledby=\"northwind-heading\"><p class=\"section-number\">02 · API state</p><h2 id=\"northwind-heading\">Northwind Data Binding</h2><p>Customer, order, and sandbox binding will follow as atomic features.</p></section>", 2))
+				createBaseVNode("section", _hoisted_5, [
+					_cache[46] || (_cache[46] = createBaseVNode("p", { class: "section-number" }, "01 · Local state", -1)),
+					_cache[47] || (_cache[47] = createBaseVNode("h2", { id: "controls-heading" }, "Control Gallery", -1)),
+					_cache[48] || (_cache[48] = createBaseVNode("p", { class: "section-intro" }, " Native form controls bound through Vue refs and computed state. ", -1)),
+					successMessage.value ? (openBlock(), createElementBlock("div", _hoisted_6, [createBaseVNode("span", null, toDisplayString(successMessage.value), 1), createBaseVNode("button", {
+						type: "button",
+						class: "icon-button",
+						"aria-label": "Dismiss success message",
+						onClick: _cache[2] || (_cache[2] = ($event) => successMessage.value = "")
+					}, " × ")])) : createCommentVNode("", true),
+					createBaseVNode("div", _hoisted_7, [createBaseVNode("form", {
+						class: "gallery-card",
+						"aria-labelledby": "profile-heading",
+						onSubmit: withModifiers(validateProfile, ["prevent"])
+					}, [
+						_cache[30] || (_cache[30] = createBaseVNode("div", { class: "card-heading" }, [createBaseVNode("p", { class: "card-kicker" }, "Profile form"), createBaseVNode("h3", { id: "profile-heading" }, "Attendee details")], -1)),
+						createBaseVNode("label", null, [_cache[17] || (_cache[17] = createBaseVNode("span", null, "Name", -1)), withDirectives(createBaseVNode("input", {
+							"onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => name.value = $event),
+							type: "text",
+							required: "",
+							"aria-describedby": "name-error"
+						}, null, 512), [[vModelText, name.value]])]),
+						!isNameValid.value ? (openBlock(), createElementBlock("p", _hoisted_8, "Enter a name.")) : createCommentVNode("", true),
+						createBaseVNode("label", null, [_cache[18] || (_cache[18] = createBaseVNode("span", null, "Email", -1)), withDirectives(createBaseVNode("input", {
+							"onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => email.value = $event),
+							type: "email",
+							required: "",
+							"aria-describedby": "email-error"
+						}, null, 512), [[vModelText, email.value]])]),
+						!isEmailValid.value ? (openBlock(), createElementBlock("p", _hoisted_9, " Enter a valid email address. ")) : createCommentVNode("", true),
+						createBaseVNode("div", _hoisted_10, [createBaseVNode("label", null, [_cache[19] || (_cache[19] = createBaseVNode("span", null, "Seats", -1)), withDirectives(createBaseVNode("input", {
+							"onUpdate:modelValue": _cache[5] || (_cache[5] = ($event) => seats.value = $event),
+							type: "number",
+							min: "1",
+							max: "12"
+						}, null, 512), [[
+							vModelText,
+							seats.value,
+							void 0,
+							{ number: true }
+						]])]), createBaseVNode("label", null, [_cache[20] || (_cache[20] = createBaseVNode("span", null, "Start date", -1)), withDirectives(createBaseVNode("input", {
+							"onUpdate:modelValue": _cache[6] || (_cache[6] = ($event) => startDate.value = $event),
+							type: "date"
+						}, null, 512), [[vModelText, startDate.value]])])]),
+						createBaseVNode("label", null, [_cache[22] || (_cache[22] = createBaseVNode("span", null, "Role", -1)), withDirectives(createBaseVNode("select", { "onUpdate:modelValue": _cache[7] || (_cache[7] = ($event) => role.value = $event) }, [..._cache[21] || (_cache[21] = [
+							createBaseVNode("option", null, "Developer", -1),
+							createBaseVNode("option", null, "Designer", -1),
+							createBaseVNode("option", null, "Product manager", -1)
+						])], 512), [[vModelSelect, role.value]])]),
+						createBaseVNode("fieldset", null, [_cache[26] || (_cache[26] = createBaseVNode("legend", null, "Interests", -1)), createBaseVNode("div", _hoisted_11, [
+							createBaseVNode("label", null, [withDirectives(createBaseVNode("input", {
+								"onUpdate:modelValue": _cache[8] || (_cache[8] = ($event) => interests.value = $event),
+								type: "checkbox",
+								value: "Data"
+							}, null, 512), [[vModelCheckbox, interests.value]]), _cache[23] || (_cache[23] = createTextVNode(" Data", -1))]),
+							createBaseVNode("label", null, [withDirectives(createBaseVNode("input", {
+								"onUpdate:modelValue": _cache[9] || (_cache[9] = ($event) => interests.value = $event),
+								type: "checkbox",
+								value: "UI"
+							}, null, 512), [[vModelCheckbox, interests.value]]), _cache[24] || (_cache[24] = createTextVNode(" UI", -1))]),
+							createBaseVNode("label", null, [withDirectives(createBaseVNode("input", {
+								"onUpdate:modelValue": _cache[10] || (_cache[10] = ($event) => interests.value = $event),
+								type: "checkbox",
+								value: "Testing"
+							}, null, 512), [[vModelCheckbox, interests.value]]), _cache[25] || (_cache[25] = createTextVNode(" Testing", -1))])
+						])]),
+						createBaseVNode("fieldset", null, [_cache[29] || (_cache[29] = createBaseVNode("legend", null, "Preferred contact", -1)), createBaseVNode("div", _hoisted_12, [createBaseVNode("label", null, [withDirectives(createBaseVNode("input", {
+							"onUpdate:modelValue": _cache[11] || (_cache[11] = ($event) => contact.value = $event),
+							type: "radio",
+							value: "Email"
+						}, null, 512), [[vModelRadio, contact.value]]), _cache[27] || (_cache[27] = createTextVNode(" Email", -1))]), createBaseVNode("label", null, [withDirectives(createBaseVNode("input", {
+							"onUpdate:modelValue": _cache[12] || (_cache[12] = ($event) => contact.value = $event),
+							type: "radio",
+							value: "Phone"
+						}, null, 512), [[vModelRadio, contact.value]]), _cache[28] || (_cache[28] = createTextVNode(" Phone", -1))])])]),
+						createBaseVNode("button", {
+							class: "primary-button",
+							type: "submit",
+							disabled: !isProfileValid.value
+						}, " Validate profile ", 8, _hoisted_13)
+					], 32), createBaseVNode("div", _hoisted_14, [createBaseVNode("article", _hoisted_15, [
+						_cache[34] || (_cache[34] = createBaseVNode("div", { class: "card-heading" }, [createBaseVNode("p", { class: "card-kicker" }, "Preferences"), createBaseVNode("h3", { id: "preferences-heading" }, "Experience settings")], -1)),
+						createBaseVNode("label", _hoisted_16, [_cache[31] || (_cache[31] = createBaseVNode("span", null, [createBaseVNode("strong", null, "Notifications"), createBaseVNode("small", null, "Receive event updates")], -1)), withDirectives(createBaseVNode("input", {
+							"onUpdate:modelValue": _cache[13] || (_cache[13] = ($event) => notifications.value = $event),
+							type: "checkbox",
+							role: "switch"
+						}, null, 512), [[vModelCheckbox, notifications.value]])]),
+						createBaseVNode("label", null, [createBaseVNode("span", null, "Confidence: " + toDisplayString(confidence.value) + "%", 1), withDirectives(createBaseVNode("input", {
+							"onUpdate:modelValue": _cache[14] || (_cache[14] = ($event) => confidence.value = $event),
+							type: "range",
+							min: "0",
+							max: "100"
+						}, null, 512), [[
+							vModelText,
+							confidence.value,
+							void 0,
+							{ number: true }
+						]])]),
+						createBaseVNode("progress", {
+							value: confidence.value,
+							max: "100"
+						}, toDisplayString(confidence.value) + "%", 9, _hoisted_17),
+						createBaseVNode("div", { class: "button-row" }, [
+							createBaseVNode("button", {
+								class: "primary-button",
+								type: "button",
+								onClick: openDialog
+							}, " Open dialog "),
+							_cache[32] || (_cache[32] = createBaseVNode("button", {
+								class: "secondary-button",
+								type: "button"
+							}, "Secondary", -1)),
+							_cache[33] || (_cache[33] = createBaseVNode("button", {
+								type: "button",
+								disabled: ""
+							}, "Disabled", -1))
+						])
+					]), createBaseVNode("article", _hoisted_18, [
+						_cache[44] || (_cache[44] = createBaseVNode("div", { class: "card-heading" }, [createBaseVNode("p", { class: "card-kicker" }, "Live preview"), createBaseVNode("h3", { id: "preview-heading" }, "Bound state")], -1)),
+						createBaseVNode("div", _hoisted_19, [createBaseVNode("button", {
+							id: "summary-tab",
+							type: "button",
+							role: "tab",
+							"data-tab": "summary",
+							"aria-selected": activeTab.value === "summary",
+							"aria-controls": "summary-panel",
+							onClick: _cache[15] || (_cache[15] = ($event) => activeTab.value = "summary"),
+							onKeydown: handleTabKeydown
+						}, " Summary ", 40, _hoisted_20), createBaseVNode("button", {
+							id: "settings-tab",
+							type: "button",
+							role: "tab",
+							"data-tab": "settings",
+							"aria-selected": activeTab.value === "settings",
+							"aria-controls": "settings-panel",
+							onClick: _cache[16] || (_cache[16] = ($event) => activeTab.value = "settings"),
+							onKeydown: handleTabKeydown
+						}, " Settings ", 40, _hoisted_21)]),
+						activeTab.value === "summary" ? (openBlock(), createElementBlock("dl", _hoisted_22, [
+							createBaseVNode("div", null, [_cache[35] || (_cache[35] = createBaseVNode("dt", null, "Name", -1)), createBaseVNode("dd", null, toDisplayString(name.value || "—"), 1)]),
+							createBaseVNode("div", null, [_cache[36] || (_cache[36] = createBaseVNode("dt", null, "Email", -1)), createBaseVNode("dd", null, toDisplayString(email.value || "—"), 1)]),
+							createBaseVNode("div", null, [_cache[37] || (_cache[37] = createBaseVNode("dt", null, "Seats", -1)), createBaseVNode("dd", null, toDisplayString(seats.value), 1)]),
+							createBaseVNode("div", null, [_cache[38] || (_cache[38] = createBaseVNode("dt", null, "Start", -1)), createBaseVNode("dd", null, toDisplayString(startDate.value), 1)]),
+							createBaseVNode("div", null, [_cache[39] || (_cache[39] = createBaseVNode("dt", null, "Role", -1)), createBaseVNode("dd", null, toDisplayString(role.value), 1)])
+						])) : (openBlock(), createElementBlock("dl", _hoisted_23, [
+							createBaseVNode("div", null, [_cache[40] || (_cache[40] = createBaseVNode("dt", null, "Interests", -1)), createBaseVNode("dd", null, toDisplayString(interests.value.join(", ") || "None"), 1)]),
+							createBaseVNode("div", null, [_cache[41] || (_cache[41] = createBaseVNode("dt", null, "Contact", -1)), createBaseVNode("dd", null, toDisplayString(contact.value), 1)]),
+							createBaseVNode("div", null, [_cache[42] || (_cache[42] = createBaseVNode("dt", null, "Notifications", -1)), createBaseVNode("dd", null, toDisplayString(notifications.value ? "On" : "Off"), 1)]),
+							createBaseVNode("div", null, [_cache[43] || (_cache[43] = createBaseVNode("dt", null, "Confidence", -1)), createBaseVNode("dd", null, toDisplayString(confidence.value) + "%", 1)])
+						])),
+						_cache[45] || (_cache[45] = createBaseVNode("details", null, [createBaseVNode("summary", null, "Implementation note"), createBaseVNode("p", null, "Every value above is derived directly from Vue reactive state.")], -1))
+					])])])
+				]),
+				_cache[53] || (_cache[53] = createBaseVNode("section", {
+					id: "northwind",
+					"aria-labelledby": "northwind-heading"
+				}, [
+					createBaseVNode("p", { class: "section-number" }, "02 · API state"),
+					createBaseVNode("h2", { id: "northwind-heading" }, "Northwind Data Binding"),
+					createBaseVNode("p", null, "Customer, order, and sandbox binding will follow as atomic features.")
+				], -1)),
+				createBaseVNode("dialog", {
+					ref_key: "dialog",
+					ref: dialog,
+					"aria-labelledby": "dialog-heading",
+					onKeydown: handleDialogKeydown
+				}, [createBaseVNode("div", _hoisted_24, [
+					_cache[49] || (_cache[49] = createBaseVNode("p", { class: "card-kicker" }, "Vue dialog", -1)),
+					_cache[50] || (_cache[50] = createBaseVNode("h2", { id: "dialog-heading" }, "Keyboard-ready modal", -1)),
+					_cache[51] || (_cache[51] = createBaseVNode("p", null, "Focus stays within this dialog until it is closed.", -1)),
+					createBaseVNode("div", _hoisted_25, [createBaseVNode("button", {
+						ref_key: "dialogCloseButton",
+						ref: dialogCloseButton,
+						class: "primary-button",
+						type: "button",
+						onClick: closeDialog
+					}, " Close dialog ", 512), createBaseVNode("button", {
+						class: "secondary-button",
+						type: "button",
+						onClick: closeDialog
+					}, "Done")])
+				])], 544)
 			]);
 		};
 	}
