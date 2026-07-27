@@ -2413,6 +2413,41 @@ function onErrorCaptured(hook, target = currentInstance) {
 	injectHook("ec", hook, target);
 }
 var NULL_DYNAMIC_COMPONENT = /* @__PURE__ */ Symbol.for("v-ndc");
+function renderList(source, renderItem, cache, index) {
+	let ret;
+	const cached = cache && cache[index];
+	const sourceIsArray = isArray(source);
+	if (sourceIsArray || isString(source)) {
+		const sourceIsReactiveArray = sourceIsArray && /* @__PURE__ */ isReactive(source);
+		let needsWrap = false;
+		let isReadonlySource = false;
+		if (sourceIsReactiveArray) {
+			needsWrap = !/* @__PURE__ */ isShallow(source);
+			isReadonlySource = /* @__PURE__ */ isReadonly(source);
+			source = shallowReadArray(source);
+		}
+		ret = new Array(source.length);
+		for (let i = 0, l = source.length; i < l; i++) ret[i] = renderItem(needsWrap ? isReadonlySource ? toReadonly(toReactive(source[i])) : toReactive(source[i]) : source[i], i, void 0, cached && cached[i]);
+	} else if (typeof source === "number") if (!!(process.env.NODE_ENV !== "production") && (!Number.isInteger(source) || source < 0)) {
+		warn$1(`The v-for range expects a positive integer value but got ${source}.`);
+		ret = [];
+	} else {
+		ret = new Array(source);
+		for (let i = 0; i < source; i++) ret[i] = renderItem(i + 1, i, void 0, cached && cached[i]);
+	}
+	else if (isObject(source)) if (source[Symbol.iterator]) ret = Array.from(source, (item, i) => renderItem(item, i, void 0, cached && cached[i]));
+	else {
+		const keys = Object.keys(source);
+		ret = new Array(keys.length);
+		for (let i = 0, l = keys.length; i < l; i++) {
+			const key = keys[i];
+			ret[i] = renderItem(source[key], key, i, cached && cached[i]);
+		}
+	}
+	else ret = [];
+	if (cache) cache[index] = ret;
+	return ret;
+}
 var getPublicInstance = (i) => {
 	if (!i) return null;
 	if (isStatefulComponent(i)) return getComponentPublicInstance(i);
@@ -6049,7 +6084,7 @@ function initDev() {
 if (!!(process.env.NODE_ENV !== "production")) initDev();
 //#endregion
 //#region src/App.ce.vue?vue&type=style&index=0&inline&lang.css
-var App_ce_vue_vue_type_style_index_0_inline_lang_default = "\n:host {\n  color: #193330;\n  display: block;\n  font-family:\n    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\",\n    sans-serif;\n}\n* {\n  box-sizing: border-box;\n}\n.showcase-shell {\n  display: grid;\n  gap: 1.5rem;\n}\n.showcase-header,\nsection {\n  background: #f5fbf8;\n  border: 1px solid #c9ddd5;\n  border-radius: 1rem;\n  padding: clamp(1.25rem, 4vw, 2.5rem);\n}\n.section-intro {\n  color: #4c625e;\n}\n.notice {\n  align-items: center;\n  background: #dff6e9;\n  border: 1px solid #58a27e;\n  border-radius: 0.75rem;\n  display: flex;\n  justify-content: space-between;\n  margin: 1rem 0;\n  padding: 0.75rem 1rem;\n}\n.gallery-grid,\n.gallery-stack {\n  display: grid;\n  gap: 1rem;\n  min-width: 0;\n}\n.gallery-grid {\n  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);\n  margin-top: 1.5rem;\n}\n.gallery-card {\n  background: rgb(255 255 255 / 72%);\n  border: 1px solid #c9ddd5;\n  border-radius: 0.8rem;\n  display: grid;\n  gap: 1rem;\n  min-width: 0;\n  padding: 1.25rem;\n}\n.card-heading h3,\n.card-heading p {\n  margin-bottom: 0;\n}\n.card-kicker {\n  color: #287a5b;\n  font-size: 0.7rem;\n  font-weight: 800;\n  letter-spacing: 0.1em;\n  text-transform: uppercase;\n}\nlabel {\n  display: grid;\n  font-weight: 700;\n  gap: 0.4rem;\n}\ninput,\nselect {\n  background: white;\n  border: 1px solid #84a69a;\n  border-radius: 0.45rem;\n  color: #193330;\n  font: inherit;\n  min-width: 0;\n  padding: 0.65rem 0.75rem;\n}\ninput:focus-visible,\nselect:focus-visible,\nsummary:focus-visible {\n  outline: 3px solid #41b883;\n  outline-offset: 2px;\n}\n.field-pair {\n  display: grid;\n  gap: 0.75rem;\n  grid-template-columns: 1fr 1fr;\n}\nfieldset {\n  border: 0;\n  margin: 0;\n  padding: 0;\n}\nlegend {\n  font-weight: 700;\n  margin-bottom: 0.5rem;\n}\n.choice-row,\n.button-row,\n[role=\"tablist\"] {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 0.65rem;\n}\n.choice-row label {\n  align-items: center;\n  display: flex;\n  font-weight: 500;\n}\n.field-error {\n  color: #a32424;\n  font-size: 0.85rem;\n  margin: -0.75rem 0 0;\n}\n.switch-row {\n  align-items: center;\n  display: flex;\n  justify-content: space-between;\n}\n.switch-row span {\n  display: grid;\n}\n.switch-row small {\n  font-weight: 400;\n}\n.switch-row input {\n  height: 1.4rem;\n  width: 2.6rem;\n}\ninput[type=\"range\"],\nprogress {\n  accent-color: #287a5b;\n  width: 100%;\n}\n.primary-button {\n  background: #287a5b;\n  color: white;\n}\n.secondary-button {\n  background: white;\n}\nbutton:disabled {\n  cursor: not-allowed;\n  opacity: 0.5;\n}\n.icon-button {\n  border: 0;\n  font-size: 1.25rem;\n  padding: 0.2rem 0.5rem;\n}\n[role=\"tab\"][aria-selected=\"true\"] {\n  background: #287a5b;\n  color: white;\n}\ndl {\n  display: grid;\n  gap: 0.6rem;\n  margin: 0;\n}\ndl div {\n  display: flex;\n  gap: 1rem;\n  justify-content: space-between;\n}\ndt {\n  font-weight: 700;\n}\ndd {\n  margin: 0;\n  overflow-wrap: anywhere;\n  text-align: right;\n}\ndetails {\n  border-top: 1px solid #c9ddd5;\n  padding-top: 1rem;\n}\nsummary {\n  cursor: pointer;\n  font-weight: 700;\n}\ndialog {\n  background: #f5fbf8;\n  border: 1px solid #72a790;\n  border-radius: 1rem;\n  color: #193330;\n  max-width: min(30rem, calc(100vw - 2rem));\n  padding: 0;\n}\ndialog::backdrop {\n  background: rgb(7 28 24 / 72%);\n}\n.dialog-content {\n  padding: 1.5rem;\n}\n.showcase-header {\n  background:\n    radial-gradient(circle at top right, rgb(65 184 131 / 28%), transparent 42%),\n    #eaf7f1;\n}\n.eyebrow,\n.section-number {\n  color: #287a5b;\n  font-size: 0.75rem;\n  font-weight: 800;\n  letter-spacing: 0.12em;\n  margin: 0 0 0.5rem;\n  text-transform: uppercase;\n}\nh1,\nh2,\np {\n  margin-top: 0;\n}\nh1 {\n  font-size: clamp(2rem, 6vw, 4rem);\n  line-height: 1;\n  margin-bottom: 1rem;\n}\nnav {\n  display: flex;\n  gap: 0.75rem;\n  overflow-x: auto;\n}\nbutton {\n  background: transparent;\n  border: 1px solid #72a790;\n  border-radius: 999px;\n  color: inherit;\n  cursor: pointer;\n  font: inherit;\n  font-weight: 700;\n  padding: 0.65rem 1rem;\n  white-space: nowrap;\n}\nbutton:hover,\nbutton:focus-visible,\nbutton[aria-current=\"page\"] {\n  background: #287a5b;\n  color: white;\n}\nbutton:focus-visible {\n  outline: 3px solid #41b883;\n  outline-offset: 3px;\n}\n@media (prefers-color-scheme: dark) {\n:host {\n    color: #e6f4ee;\n}\n.showcase-header,\n  section {\n    background: #102c28;\n    border-color: #35645a;\n}\n.showcase-header {\n    background:\n      radial-gradient(circle at top right, rgb(65 184 131 / 24%), transparent 42%),\n      #143832;\n}\n.eyebrow,\n  .section-number,\n  .card-kicker {\n    color: #75d5aa;\n}\n.section-intro {\n    color: #b8cec5;\n}\n.gallery-card,\n  dialog {\n    background: #173a34;\n    border-color: #467569;\n    color: #e6f4ee;\n}\ninput,\n  select,\n  .secondary-button {\n    background: #0d2925;\n    border-color: #56877a;\n    color: #e6f4ee;\n}\n.notice {\n    background: #164c3c;\n}\n}\n@media (max-width: 1100px) {\n.gallery-grid {\n    grid-template-columns: 1fr;\n}\n}\n@media (max-width: 760px) {\n.field-pair {\n    grid-template-columns: 1fr;\n}\n}\n@media (prefers-reduced-motion: reduce) {\n*,\n  *::before,\n  *::after {\n    scroll-behavior: auto !important;\n    transition-duration: 0.01ms !important;\n}\n}\n@media (forced-colors: active) {\nbutton,\n  input,\n  select,\n  .gallery-card,\n  .notice {\n    border: 1px solid CanvasText;\n}\n}\n";
+var App_ce_vue_vue_type_style_index_0_inline_lang_default = "\n:host {\n  color: #193330;\n  display: block;\n  font-family:\n    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\",\n    sans-serif;\n}\n* {\n  box-sizing: border-box;\n}\n.showcase-shell {\n  display: grid;\n  gap: 1.5rem;\n}\n.showcase-header,\nsection {\n  background: #f5fbf8;\n  border: 1px solid #c9ddd5;\n  border-radius: 1rem;\n  padding: clamp(1.25rem, 4vw, 2.5rem);\n}\n.section-intro {\n  color: #4c625e;\n}\n.notice {\n  align-items: center;\n  background: #dff6e9;\n  border: 1px solid #58a27e;\n  border-radius: 0.75rem;\n  display: flex;\n  justify-content: space-between;\n  margin: 1rem 0;\n  padding: 0.75rem 1rem;\n}\n.gallery-grid,\n.gallery-stack {\n  display: grid;\n  gap: 1rem;\n  min-width: 0;\n}\n.gallery-grid {\n  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);\n  margin-top: 1.5rem;\n}\n.gallery-card {\n  background: rgb(255 255 255 / 72%);\n  border: 1px solid #c9ddd5;\n  border-radius: 0.8rem;\n  display: grid;\n  gap: 1rem;\n  min-width: 0;\n  padding: 1.25rem;\n}\n.card-heading h3,\n.card-heading p {\n  margin-bottom: 0;\n}\n.card-kicker {\n  color: #287a5b;\n  font-size: 0.7rem;\n  font-weight: 800;\n  letter-spacing: 0.1em;\n  text-transform: uppercase;\n}\nlabel {\n  display: grid;\n  font-weight: 700;\n  gap: 0.4rem;\n}\ninput,\nselect {\n  background: white;\n  border: 1px solid #84a69a;\n  border-radius: 0.45rem;\n  color: #193330;\n  font: inherit;\n  min-width: 0;\n  padding: 0.65rem 0.75rem;\n}\ninput:focus-visible,\nselect:focus-visible,\nsummary:focus-visible {\n  outline: 3px solid #41b883;\n  outline-offset: 2px;\n}\n.field-pair {\n  display: grid;\n  gap: 0.75rem;\n  grid-template-columns: 1fr 1fr;\n}\nfieldset {\n  border: 0;\n  margin: 0;\n  padding: 0;\n}\nlegend {\n  font-weight: 700;\n  margin-bottom: 0.5rem;\n}\n.choice-row,\n.button-row,\n[role=\"tablist\"] {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 0.65rem;\n}\n.choice-row label {\n  align-items: center;\n  display: flex;\n  font-weight: 500;\n}\n.field-error {\n  color: #a32424;\n  font-size: 0.85rem;\n  margin: -0.75rem 0 0;\n}\n.switch-row {\n  align-items: center;\n  display: flex;\n  justify-content: space-between;\n}\n.switch-row span {\n  display: grid;\n}\n.switch-row small {\n  font-weight: 400;\n}\n.switch-row input {\n  height: 1.4rem;\n  width: 2.6rem;\n}\ninput[type=\"range\"],\nprogress {\n  accent-color: #287a5b;\n  width: 100%;\n}\n.primary-button {\n  background: #287a5b;\n  color: white;\n}\n.secondary-button {\n  background: white;\n}\nbutton:disabled {\n  cursor: not-allowed;\n  opacity: 0.5;\n}\n.icon-button {\n  border: 0;\n  font-size: 1.25rem;\n  padding: 0.2rem 0.5rem;\n}\n[role=\"tab\"][aria-selected=\"true\"] {\n  background: #287a5b;\n  color: white;\n}\ndl {\n  display: grid;\n  gap: 0.6rem;\n  margin: 0;\n}\ndl div {\n  display: flex;\n  gap: 1rem;\n  justify-content: space-between;\n}\ndt {\n  font-weight: 700;\n}\ndd {\n  margin: 0;\n  overflow-wrap: anywhere;\n  text-align: right;\n}\ndetails {\n  border-top: 1px solid #c9ddd5;\n  padding-top: 1rem;\n}\nsummary {\n  cursor: pointer;\n  font-weight: 700;\n}\ndialog {\n  background: #f5fbf8;\n  border: 1px solid #72a790;\n  border-radius: 1rem;\n  color: #193330;\n  max-width: min(30rem, calc(100vw - 2rem));\n  padding: 0;\n}\ndialog::backdrop {\n  background: rgb(7 28 24 / 72%);\n}\n.dialog-content {\n  padding: 1.5rem;\n}\n.data-card {\n  background: rgb(255 255 255 / 72%);\n  border: 1px solid #c9ddd5;\n  border-radius: 0.8rem;\n  margin-top: 1.5rem;\n  min-width: 0;\n  padding: 1.25rem;\n}\n.data-heading,\n.pagination {\n  align-items: center;\n  display: flex;\n  gap: 1rem;\n  justify-content: space-between;\n}\n.data-heading h3,\n.data-heading p {\n  margin-bottom: 0;\n}\n.filter-grid {\n  display: grid;\n  gap: 1rem;\n  grid-template-columns: minmax(0, 2fr) minmax(12rem, 1fr);\n  margin: 1.25rem 0;\n}\n.loading-state,\n.empty-state,\n.request-error {\n  border: 1px dashed #84a69a;\n  border-radius: 0.6rem;\n  margin: 1rem 0;\n  padding: 1rem;\n}\n.request-error {\n  background: #fff0f0;\n  border-color: #c76b6b;\n  color: #7e1f1f;\n}\n.table-scroll {\n  max-width: 100%;\n  overflow-x: auto;\n}\ntable {\n  border-collapse: collapse;\n  min-width: 48rem;\n  width: 100%;\n}\nth,\ntd {\n  border-bottom: 1px solid #c9ddd5;\n  padding: 0.75rem;\n  text-align: left;\n}\nth {\n  background: #eaf7f1;\n}\ntbody tr {\n  cursor: pointer;\n}\ntbody tr:hover,\ntbody tr.selected {\n  background: #dff6e9;\n}\n.sort-button,\n.customer-button {\n  border: 0;\n  border-radius: 0.25rem;\n  padding: 0.2rem;\n  text-align: left;\n}\n.sort-button {\n  align-items: center;\n  display: inline-flex;\n  gap: 0.35rem;\n}\n.customer-button {\n  color: #146247;\n  font-weight: 800;\n  text-decoration: underline;\n  text-underline-offset: 0.2em;\n}\n.pagination {\n  margin-top: 1rem;\n}\n.selection-status {\n  color: #4c625e;\n  margin: 1rem 0 0;\n}\n.visually-hidden {\n  clip: rect(0 0 0 0);\n  clip-path: inset(50%);\n  height: 1px;\n  overflow: hidden;\n  position: absolute;\n  white-space: nowrap;\n  width: 1px;\n}\n.showcase-header {\n  background:\n    radial-gradient(circle at top right, rgb(65 184 131 / 28%), transparent 42%),\n    #eaf7f1;\n}\n.eyebrow,\n.section-number {\n  color: #287a5b;\n  font-size: 0.75rem;\n  font-weight: 800;\n  letter-spacing: 0.12em;\n  margin: 0 0 0.5rem;\n  text-transform: uppercase;\n}\nh1,\nh2,\np {\n  margin-top: 0;\n}\nh1 {\n  font-size: clamp(2rem, 6vw, 4rem);\n  line-height: 1;\n  margin-bottom: 1rem;\n}\nnav {\n  display: flex;\n  gap: 0.75rem;\n  overflow-x: auto;\n}\nbutton {\n  background: transparent;\n  border: 1px solid #72a790;\n  border-radius: 999px;\n  color: inherit;\n  cursor: pointer;\n  font: inherit;\n  font-weight: 700;\n  padding: 0.65rem 1rem;\n  white-space: nowrap;\n}\nbutton:hover,\nbutton:focus-visible,\nbutton[aria-current=\"page\"] {\n  background: #287a5b;\n  color: white;\n}\nbutton:focus-visible {\n  outline: 3px solid #41b883;\n  outline-offset: 3px;\n}\n@media (prefers-color-scheme: dark) {\n:host {\n    color: #e6f4ee;\n}\n.showcase-header,\n  section {\n    background: #102c28;\n    border-color: #35645a;\n}\n.showcase-header {\n    background:\n      radial-gradient(circle at top right, rgb(65 184 131 / 24%), transparent 42%),\n      #143832;\n}\n.eyebrow,\n  .section-number,\n  .card-kicker {\n    color: #75d5aa;\n}\n.section-intro {\n    color: #b8cec5;\n}\n.gallery-card,\n  .data-card,\n  dialog {\n    background: #173a34;\n    border-color: #467569;\n    color: #e6f4ee;\n}\ninput,\n  select,\n  .secondary-button {\n    background: #0d2925;\n    border-color: #56877a;\n    color: #e6f4ee;\n}\n.notice {\n    background: #164c3c;\n}\nth {\n    background: #16453c;\n}\ntbody tr:hover,\n  tbody tr.selected {\n    background: #1e5447;\n}\n.customer-button {\n    color: #75d5aa;\n}\n.selection-status {\n    color: #b8cec5;\n}\n.request-error {\n    background: #4a2020;\n    color: #ffd8d8;\n}\n}\n@media (max-width: 1100px) {\n.gallery-grid {\n    grid-template-columns: 1fr;\n}\n}\n@media (max-width: 760px) {\n.field-pair,\n  .filter-grid {\n    grid-template-columns: 1fr;\n}\n.data-heading,\n  .pagination {\n    align-items: flex-start;\n    flex-direction: column;\n}\n}\n@media (prefers-reduced-motion: reduce) {\n*,\n  *::before,\n  *::after {\n    scroll-behavior: auto !important;\n    transition-duration: 0.01ms !important;\n}\n}\n@media (forced-colors: active) {\nbutton,\n  input,\n  select,\n  .gallery-card,\n  .notice {\n    border: 1px solid CanvasText;\n}\n}\n";
 //#endregion
 //#region \0plugin-vue:export-helper
 var _plugin_vue_export_helper_default = (sfc, props) => {
@@ -6117,8 +6152,63 @@ var _hoisted_23 = {
 	role: "tabpanel",
 	"aria-labelledby": "settings-tab"
 };
-var _hoisted_24 = { class: "dialog-content" };
-var _hoisted_25 = { class: "button-row" };
+var _hoisted_24 = {
+	id: "northwind",
+	"aria-labelledby": "northwind-heading"
+};
+var _hoisted_25 = {
+	class: "data-card",
+	"aria-labelledby": "explorer-heading"
+};
+var _hoisted_26 = { class: "data-heading" };
+var _hoisted_27 = { class: "filter-grid" };
+var _hoisted_28 = ["value"];
+var _hoisted_29 = {
+	key: 0,
+	class: "request-error",
+	role: "alert"
+};
+var _hoisted_30 = {
+	key: 1,
+	class: "loading-state",
+	role: "status",
+	"aria-live": "polite"
+};
+var _hoisted_31 = {
+	key: 2,
+	class: "request-error",
+	role: "alert"
+};
+var _hoisted_32 = {
+	key: 3,
+	class: "empty-state",
+	role: "status"
+};
+var _hoisted_33 = {
+	key: 4,
+	class: "table-scroll"
+};
+var _hoisted_34 = ["aria-sort"];
+var _hoisted_35 = ["onClick"];
+var _hoisted_36 = {
+	key: 0,
+	"aria-hidden": "true"
+};
+var _hoisted_37 = ["onClick"];
+var _hoisted_38 = ["aria-pressed", "onClick"];
+var _hoisted_39 = {
+	class: "pagination",
+	"aria-label": "Customer pages"
+};
+var _hoisted_40 = ["disabled"];
+var _hoisted_41 = ["disabled"];
+var _hoisted_42 = {
+	class: "selection-status",
+	"aria-live": "polite"
+};
+var _hoisted_43 = { class: "dialog-content" };
+var _hoisted_44 = { class: "button-row" };
+var pageSize = 10;
 var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 	__name: "App.ce",
 	setup(__props) {
@@ -6137,9 +6227,98 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 		const dialog = /* @__PURE__ */ ref(null);
 		const dialogCloseButton = /* @__PURE__ */ ref(null);
 		const tabNames = ["summary", "settings"];
+		const columns = [
+			["customerId", "ID"],
+			["companyName", "Company"],
+			["contactName", "Contact"],
+			["city", "City"],
+			["country", "Country"]
+		];
+		const countries = /* @__PURE__ */ ref([]);
+		const customers = /* @__PURE__ */ ref([]);
+		const search = /* @__PURE__ */ ref("");
+		const debouncedSearch = /* @__PURE__ */ ref("");
+		const country = /* @__PURE__ */ ref("");
+		const sort = /* @__PURE__ */ ref("companyName");
+		const direction = /* @__PURE__ */ ref("asc");
+		const page = /* @__PURE__ */ ref(1);
+		const totalCount = /* @__PURE__ */ ref(0);
+		const totalPages = /* @__PURE__ */ ref(0);
+		const selectedId = /* @__PURE__ */ ref(null);
+		const customersLoading = /* @__PURE__ */ ref(true);
+		const customersError = /* @__PURE__ */ ref("");
+		const countriesError = /* @__PURE__ */ ref("");
+		let searchTimer;
+		let customerController;
+		let countryController;
 		const isNameValid = computed(() => name.value.trim().length > 0);
 		const isEmailValid = computed(() => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value));
 		const isProfileValid = computed(() => isNameValid.value && isEmailValid.value);
+		const pageDescription = computed(() => totalPages.value === 0 ? "No pages" : `Page ${page.value} of ${totalPages.value}`);
+		async function loadCountries() {
+			countryController?.abort();
+			const controller = new AbortController();
+			countryController = controller;
+			countriesError.value = "";
+			try {
+				const response = await fetch("/api/northwind/countries", { signal: controller.signal });
+				if (!response.ok) throw new Error("Countries could not be loaded.");
+				countries.value = await response.json();
+			} catch (error) {
+				if (error.name !== "AbortError") countriesError.value = error.message;
+			}
+		}
+		async function loadCustomers() {
+			customerController?.abort();
+			const controller = new AbortController();
+			customerController = controller;
+			customersLoading.value = true;
+			customersError.value = "";
+			const query = new URLSearchParams({
+				search: debouncedSearch.value,
+				country: country.value,
+				sort: sort.value,
+				direction: direction.value,
+				page: String(page.value),
+				pageSize: String(pageSize)
+			});
+			try {
+				const response = await fetch(`/api/northwind/customers?${query}`, { signal: controller.signal });
+				if (!response.ok) {
+					const message = response.status === 400 ? "The customer query is invalid." : "Customers could not be loaded.";
+					throw new Error(message);
+				}
+				const result = await response.json();
+				customers.value = result.items;
+				totalCount.value = result.totalCount;
+				totalPages.value = result.totalPages;
+				selectedId.value = result.items.some((customer) => customer.customerId === selectedId.value) ? selectedId.value : null;
+			} catch (error) {
+				if (error.name !== "AbortError") {
+					customers.value = [];
+					totalCount.value = 0;
+					totalPages.value = 0;
+					customersError.value = error.message;
+				}
+			} finally {
+				if (!controller.signal.aborted) customersLoading.value = false;
+			}
+		}
+		function changeSort(column) {
+			if (sort.value === column) direction.value = direction.value === "asc" ? "desc" : "asc";
+			else {
+				sort.value = column;
+				direction.value = "asc";
+			}
+			page.value = 1;
+		}
+		function ariaSort(column) {
+			if (sort.value !== column) return "none";
+			return direction.value === "asc" ? "ascending" : "descending";
+		}
+		function selectCustomer(customerId) {
+			selectedId.value = customerId;
+		}
 		function validateProfile() {
 			if (!isProfileValid.value) return;
 			successMessage.value = `Profile validated for ${name.value.trim()}.`;
@@ -6184,9 +6363,35 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 			activeTab.value = tabNames[nextIndex];
 			event.currentTarget.closest("[role=\"tablist\"]").querySelector(`[data-tab="${activeTab.value}"]`).focus();
 		}
+		watch(search, (value) => {
+			clearTimeout(searchTimer);
+			searchTimer = setTimeout(() => {
+				page.value = 1;
+				debouncedSearch.value = value;
+			}, 250);
+		});
+		watch(country, () => {
+			page.value = 1;
+		});
+		watch([
+			debouncedSearch,
+			country,
+			sort,
+			direction,
+			page
+		], loadCustomers);
+		onMounted(() => {
+			loadCountries();
+			loadCustomers();
+		});
+		onBeforeUnmount(() => {
+			clearTimeout(searchTimer);
+			customerController?.abort();
+			countryController?.abort();
+		});
 		return (_ctx, _cache) => {
 			return openBlock(), createElementBlock("div", _hoisted_1, [
-				_cache[52] || (_cache[52] = createBaseVNode("header", { class: "showcase-header" }, [
+				_cache[64] || (_cache[64] = createBaseVNode("header", { class: "showcase-header" }, [
 					createBaseVNode("p", { class: "eyebrow" }, "Frontend lab · Vue"),
 					createBaseVNode("h1", null, "Vue interface showcase"),
 					createBaseVNode("p", null, " The shared Frontend Lab experience, implemented with Vue components and the Composition API. ")
@@ -6201,9 +6406,9 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 					onClick: _cache[1] || (_cache[1] = ($event) => activeSection.value = "northwind")
 				}, " Northwind Data Binding ", 8, _hoisted_4)]),
 				createBaseVNode("section", _hoisted_5, [
-					_cache[46] || (_cache[46] = createBaseVNode("p", { class: "section-number" }, "01 · Local state", -1)),
-					_cache[47] || (_cache[47] = createBaseVNode("h2", { id: "controls-heading" }, "Control Gallery", -1)),
-					_cache[48] || (_cache[48] = createBaseVNode("p", { class: "section-intro" }, " Native form controls bound through Vue refs and computed state. ", -1)),
+					_cache[50] || (_cache[50] = createBaseVNode("p", { class: "section-number" }, "01 · Local state", -1)),
+					_cache[51] || (_cache[51] = createBaseVNode("h2", { id: "controls-heading" }, "Control Gallery", -1)),
+					_cache[52] || (_cache[52] = createBaseVNode("p", { class: "section-intro" }, " Native form controls bound through Vue refs and computed state. ", -1)),
 					successMessage.value ? (openBlock(), createElementBlock("div", _hoisted_6, [createBaseVNode("span", null, toDisplayString(successMessage.value), 1), createBaseVNode("button", {
 						type: "button",
 						class: "icon-button",
@@ -6215,22 +6420,22 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 						"aria-labelledby": "profile-heading",
 						onSubmit: withModifiers(validateProfile, ["prevent"])
 					}, [
-						_cache[30] || (_cache[30] = createBaseVNode("div", { class: "card-heading" }, [createBaseVNode("p", { class: "card-kicker" }, "Profile form"), createBaseVNode("h3", { id: "profile-heading" }, "Attendee details")], -1)),
-						createBaseVNode("label", null, [_cache[17] || (_cache[17] = createBaseVNode("span", null, "Name", -1)), withDirectives(createBaseVNode("input", {
+						_cache[34] || (_cache[34] = createBaseVNode("div", { class: "card-heading" }, [createBaseVNode("p", { class: "card-kicker" }, "Profile form"), createBaseVNode("h3", { id: "profile-heading" }, "Attendee details")], -1)),
+						createBaseVNode("label", null, [_cache[21] || (_cache[21] = createBaseVNode("span", null, "Name", -1)), withDirectives(createBaseVNode("input", {
 							"onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => name.value = $event),
 							type: "text",
 							required: "",
 							"aria-describedby": "name-error"
 						}, null, 512), [[vModelText, name.value]])]),
 						!isNameValid.value ? (openBlock(), createElementBlock("p", _hoisted_8, "Enter a name.")) : createCommentVNode("", true),
-						createBaseVNode("label", null, [_cache[18] || (_cache[18] = createBaseVNode("span", null, "Email", -1)), withDirectives(createBaseVNode("input", {
+						createBaseVNode("label", null, [_cache[22] || (_cache[22] = createBaseVNode("span", null, "Email", -1)), withDirectives(createBaseVNode("input", {
 							"onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => email.value = $event),
 							type: "email",
 							required: "",
 							"aria-describedby": "email-error"
 						}, null, 512), [[vModelText, email.value]])]),
 						!isEmailValid.value ? (openBlock(), createElementBlock("p", _hoisted_9, " Enter a valid email address. ")) : createCommentVNode("", true),
-						createBaseVNode("div", _hoisted_10, [createBaseVNode("label", null, [_cache[19] || (_cache[19] = createBaseVNode("span", null, "Seats", -1)), withDirectives(createBaseVNode("input", {
+						createBaseVNode("div", _hoisted_10, [createBaseVNode("label", null, [_cache[23] || (_cache[23] = createBaseVNode("span", null, "Seats", -1)), withDirectives(createBaseVNode("input", {
 							"onUpdate:modelValue": _cache[5] || (_cache[5] = ($event) => seats.value = $event),
 							type: "number",
 							min: "1",
@@ -6240,49 +6445,49 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 							seats.value,
 							void 0,
 							{ number: true }
-						]])]), createBaseVNode("label", null, [_cache[20] || (_cache[20] = createBaseVNode("span", null, "Start date", -1)), withDirectives(createBaseVNode("input", {
+						]])]), createBaseVNode("label", null, [_cache[24] || (_cache[24] = createBaseVNode("span", null, "Start date", -1)), withDirectives(createBaseVNode("input", {
 							"onUpdate:modelValue": _cache[6] || (_cache[6] = ($event) => startDate.value = $event),
 							type: "date"
 						}, null, 512), [[vModelText, startDate.value]])])]),
-						createBaseVNode("label", null, [_cache[22] || (_cache[22] = createBaseVNode("span", null, "Role", -1)), withDirectives(createBaseVNode("select", { "onUpdate:modelValue": _cache[7] || (_cache[7] = ($event) => role.value = $event) }, [..._cache[21] || (_cache[21] = [
+						createBaseVNode("label", null, [_cache[26] || (_cache[26] = createBaseVNode("span", null, "Role", -1)), withDirectives(createBaseVNode("select", { "onUpdate:modelValue": _cache[7] || (_cache[7] = ($event) => role.value = $event) }, [..._cache[25] || (_cache[25] = [
 							createBaseVNode("option", null, "Developer", -1),
 							createBaseVNode("option", null, "Designer", -1),
 							createBaseVNode("option", null, "Product manager", -1)
 						])], 512), [[vModelSelect, role.value]])]),
-						createBaseVNode("fieldset", null, [_cache[26] || (_cache[26] = createBaseVNode("legend", null, "Interests", -1)), createBaseVNode("div", _hoisted_11, [
+						createBaseVNode("fieldset", null, [_cache[30] || (_cache[30] = createBaseVNode("legend", null, "Interests", -1)), createBaseVNode("div", _hoisted_11, [
 							createBaseVNode("label", null, [withDirectives(createBaseVNode("input", {
 								"onUpdate:modelValue": _cache[8] || (_cache[8] = ($event) => interests.value = $event),
 								type: "checkbox",
 								value: "Data"
-							}, null, 512), [[vModelCheckbox, interests.value]]), _cache[23] || (_cache[23] = createTextVNode(" Data", -1))]),
+							}, null, 512), [[vModelCheckbox, interests.value]]), _cache[27] || (_cache[27] = createTextVNode(" Data", -1))]),
 							createBaseVNode("label", null, [withDirectives(createBaseVNode("input", {
 								"onUpdate:modelValue": _cache[9] || (_cache[9] = ($event) => interests.value = $event),
 								type: "checkbox",
 								value: "UI"
-							}, null, 512), [[vModelCheckbox, interests.value]]), _cache[24] || (_cache[24] = createTextVNode(" UI", -1))]),
+							}, null, 512), [[vModelCheckbox, interests.value]]), _cache[28] || (_cache[28] = createTextVNode(" UI", -1))]),
 							createBaseVNode("label", null, [withDirectives(createBaseVNode("input", {
 								"onUpdate:modelValue": _cache[10] || (_cache[10] = ($event) => interests.value = $event),
 								type: "checkbox",
 								value: "Testing"
-							}, null, 512), [[vModelCheckbox, interests.value]]), _cache[25] || (_cache[25] = createTextVNode(" Testing", -1))])
+							}, null, 512), [[vModelCheckbox, interests.value]]), _cache[29] || (_cache[29] = createTextVNode(" Testing", -1))])
 						])]),
-						createBaseVNode("fieldset", null, [_cache[29] || (_cache[29] = createBaseVNode("legend", null, "Preferred contact", -1)), createBaseVNode("div", _hoisted_12, [createBaseVNode("label", null, [withDirectives(createBaseVNode("input", {
+						createBaseVNode("fieldset", null, [_cache[33] || (_cache[33] = createBaseVNode("legend", null, "Preferred contact", -1)), createBaseVNode("div", _hoisted_12, [createBaseVNode("label", null, [withDirectives(createBaseVNode("input", {
 							"onUpdate:modelValue": _cache[11] || (_cache[11] = ($event) => contact.value = $event),
 							type: "radio",
 							value: "Email"
-						}, null, 512), [[vModelRadio, contact.value]]), _cache[27] || (_cache[27] = createTextVNode(" Email", -1))]), createBaseVNode("label", null, [withDirectives(createBaseVNode("input", {
+						}, null, 512), [[vModelRadio, contact.value]]), _cache[31] || (_cache[31] = createTextVNode(" Email", -1))]), createBaseVNode("label", null, [withDirectives(createBaseVNode("input", {
 							"onUpdate:modelValue": _cache[12] || (_cache[12] = ($event) => contact.value = $event),
 							type: "radio",
 							value: "Phone"
-						}, null, 512), [[vModelRadio, contact.value]]), _cache[28] || (_cache[28] = createTextVNode(" Phone", -1))])])]),
+						}, null, 512), [[vModelRadio, contact.value]]), _cache[32] || (_cache[32] = createTextVNode(" Phone", -1))])])]),
 						createBaseVNode("button", {
 							class: "primary-button",
 							type: "submit",
 							disabled: !isProfileValid.value
 						}, " Validate profile ", 8, _hoisted_13)
 					], 32), createBaseVNode("div", _hoisted_14, [createBaseVNode("article", _hoisted_15, [
-						_cache[34] || (_cache[34] = createBaseVNode("div", { class: "card-heading" }, [createBaseVNode("p", { class: "card-kicker" }, "Preferences"), createBaseVNode("h3", { id: "preferences-heading" }, "Experience settings")], -1)),
-						createBaseVNode("label", _hoisted_16, [_cache[31] || (_cache[31] = createBaseVNode("span", null, [createBaseVNode("strong", null, "Notifications"), createBaseVNode("small", null, "Receive event updates")], -1)), withDirectives(createBaseVNode("input", {
+						_cache[38] || (_cache[38] = createBaseVNode("div", { class: "card-heading" }, [createBaseVNode("p", { class: "card-kicker" }, "Preferences"), createBaseVNode("h3", { id: "preferences-heading" }, "Experience settings")], -1)),
+						createBaseVNode("label", _hoisted_16, [_cache[35] || (_cache[35] = createBaseVNode("span", null, [createBaseVNode("strong", null, "Notifications"), createBaseVNode("small", null, "Receive event updates")], -1)), withDirectives(createBaseVNode("input", {
 							"onUpdate:modelValue": _cache[13] || (_cache[13] = ($event) => notifications.value = $event),
 							type: "checkbox",
 							role: "switch"
@@ -6308,17 +6513,17 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 								type: "button",
 								onClick: openDialog
 							}, " Open dialog "),
-							_cache[32] || (_cache[32] = createBaseVNode("button", {
+							_cache[36] || (_cache[36] = createBaseVNode("button", {
 								class: "secondary-button",
 								type: "button"
 							}, "Secondary", -1)),
-							_cache[33] || (_cache[33] = createBaseVNode("button", {
+							_cache[37] || (_cache[37] = createBaseVNode("button", {
 								type: "button",
 								disabled: ""
 							}, "Disabled", -1))
 						])
 					]), createBaseVNode("article", _hoisted_18, [
-						_cache[44] || (_cache[44] = createBaseVNode("div", { class: "card-heading" }, [createBaseVNode("p", { class: "card-kicker" }, "Live preview"), createBaseVNode("h3", { id: "preview-heading" }, "Bound state")], -1)),
+						_cache[48] || (_cache[48] = createBaseVNode("div", { class: "card-heading" }, [createBaseVNode("p", { class: "card-kicker" }, "Live preview"), createBaseVNode("h3", { id: "preview-heading" }, "Bound state")], -1)),
 						createBaseVNode("div", _hoisted_19, [createBaseVNode("button", {
 							id: "summary-tab",
 							type: "button",
@@ -6339,38 +6544,101 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 							onKeydown: handleTabKeydown
 						}, " Settings ", 40, _hoisted_21)]),
 						activeTab.value === "summary" ? (openBlock(), createElementBlock("dl", _hoisted_22, [
-							createBaseVNode("div", null, [_cache[35] || (_cache[35] = createBaseVNode("dt", null, "Name", -1)), createBaseVNode("dd", null, toDisplayString(name.value || "—"), 1)]),
-							createBaseVNode("div", null, [_cache[36] || (_cache[36] = createBaseVNode("dt", null, "Email", -1)), createBaseVNode("dd", null, toDisplayString(email.value || "—"), 1)]),
-							createBaseVNode("div", null, [_cache[37] || (_cache[37] = createBaseVNode("dt", null, "Seats", -1)), createBaseVNode("dd", null, toDisplayString(seats.value), 1)]),
-							createBaseVNode("div", null, [_cache[38] || (_cache[38] = createBaseVNode("dt", null, "Start", -1)), createBaseVNode("dd", null, toDisplayString(startDate.value), 1)]),
-							createBaseVNode("div", null, [_cache[39] || (_cache[39] = createBaseVNode("dt", null, "Role", -1)), createBaseVNode("dd", null, toDisplayString(role.value), 1)])
+							createBaseVNode("div", null, [_cache[39] || (_cache[39] = createBaseVNode("dt", null, "Name", -1)), createBaseVNode("dd", null, toDisplayString(name.value || "—"), 1)]),
+							createBaseVNode("div", null, [_cache[40] || (_cache[40] = createBaseVNode("dt", null, "Email", -1)), createBaseVNode("dd", null, toDisplayString(email.value || "—"), 1)]),
+							createBaseVNode("div", null, [_cache[41] || (_cache[41] = createBaseVNode("dt", null, "Seats", -1)), createBaseVNode("dd", null, toDisplayString(seats.value), 1)]),
+							createBaseVNode("div", null, [_cache[42] || (_cache[42] = createBaseVNode("dt", null, "Start", -1)), createBaseVNode("dd", null, toDisplayString(startDate.value), 1)]),
+							createBaseVNode("div", null, [_cache[43] || (_cache[43] = createBaseVNode("dt", null, "Role", -1)), createBaseVNode("dd", null, toDisplayString(role.value), 1)])
 						])) : (openBlock(), createElementBlock("dl", _hoisted_23, [
-							createBaseVNode("div", null, [_cache[40] || (_cache[40] = createBaseVNode("dt", null, "Interests", -1)), createBaseVNode("dd", null, toDisplayString(interests.value.join(", ") || "None"), 1)]),
-							createBaseVNode("div", null, [_cache[41] || (_cache[41] = createBaseVNode("dt", null, "Contact", -1)), createBaseVNode("dd", null, toDisplayString(contact.value), 1)]),
-							createBaseVNode("div", null, [_cache[42] || (_cache[42] = createBaseVNode("dt", null, "Notifications", -1)), createBaseVNode("dd", null, toDisplayString(notifications.value ? "On" : "Off"), 1)]),
-							createBaseVNode("div", null, [_cache[43] || (_cache[43] = createBaseVNode("dt", null, "Confidence", -1)), createBaseVNode("dd", null, toDisplayString(confidence.value) + "%", 1)])
+							createBaseVNode("div", null, [_cache[44] || (_cache[44] = createBaseVNode("dt", null, "Interests", -1)), createBaseVNode("dd", null, toDisplayString(interests.value.join(", ") || "None"), 1)]),
+							createBaseVNode("div", null, [_cache[45] || (_cache[45] = createBaseVNode("dt", null, "Contact", -1)), createBaseVNode("dd", null, toDisplayString(contact.value), 1)]),
+							createBaseVNode("div", null, [_cache[46] || (_cache[46] = createBaseVNode("dt", null, "Notifications", -1)), createBaseVNode("dd", null, toDisplayString(notifications.value ? "On" : "Off"), 1)]),
+							createBaseVNode("div", null, [_cache[47] || (_cache[47] = createBaseVNode("dt", null, "Confidence", -1)), createBaseVNode("dd", null, toDisplayString(confidence.value) + "%", 1)])
 						])),
-						_cache[45] || (_cache[45] = createBaseVNode("details", null, [createBaseVNode("summary", null, "Implementation note"), createBaseVNode("p", null, "Every value above is derived directly from Vue reactive state.")], -1))
+						_cache[49] || (_cache[49] = createBaseVNode("details", null, [createBaseVNode("summary", null, "Implementation note"), createBaseVNode("p", null, "Every value above is derived directly from Vue reactive state.")], -1))
 					])])])
 				]),
-				_cache[53] || (_cache[53] = createBaseVNode("section", {
-					id: "northwind",
-					"aria-labelledby": "northwind-heading"
-				}, [
-					createBaseVNode("p", { class: "section-number" }, "02 · API state"),
-					createBaseVNode("h2", { id: "northwind-heading" }, "Northwind Data Binding"),
-					createBaseVNode("p", null, "Customer, order, and sandbox binding will follow as atomic features.")
-				], -1)),
+				createBaseVNode("section", _hoisted_24, [
+					_cache[58] || (_cache[58] = createBaseVNode("p", { class: "section-number" }, "02 · API state", -1)),
+					_cache[59] || (_cache[59] = createBaseVNode("h2", { id: "northwind-heading" }, "Northwind Data Binding", -1)),
+					_cache[60] || (_cache[60] = createBaseVNode("p", { class: "section-intro" }, " Server-filtered, sorted, and paged customer data from the portfolio API. ", -1)),
+					createBaseVNode("article", _hoisted_25, [
+						createBaseVNode("div", _hoisted_26, [_cache[53] || (_cache[53] = createBaseVNode("div", null, [createBaseVNode("p", { class: "card-kicker" }, "Customer Explorer"), createBaseVNode("h3", { id: "explorer-heading" }, "Northwind customers")], -1)), createBaseVNode("p", null, toDisplayString(totalCount.value) + " Northwind records", 1)]),
+						createBaseVNode("div", _hoisted_27, [createBaseVNode("label", null, [_cache[54] || (_cache[54] = createBaseVNode("span", null, "Search customers", -1)), withDirectives(createBaseVNode("input", {
+							"onUpdate:modelValue": _cache[17] || (_cache[17] = ($event) => search.value = $event),
+							type: "search",
+							placeholder: "Company, contact, or city"
+						}, null, 512), [[vModelText, search.value]])]), createBaseVNode("label", null, [_cache[56] || (_cache[56] = createBaseVNode("span", null, "Country", -1)), withDirectives(createBaseVNode("select", { "onUpdate:modelValue": _cache[18] || (_cache[18] = ($event) => country.value = $event) }, [_cache[55] || (_cache[55] = createBaseVNode("option", { value: "" }, "All countries", -1)), (openBlock(true), createElementBlock(Fragment, null, renderList(countries.value, (item) => {
+							return openBlock(), createElementBlock("option", {
+								key: item,
+								value: item
+							}, toDisplayString(item), 9, _hoisted_28);
+						}), 128))], 512), [[vModelSelect, country.value]])])]),
+						countriesError.value ? (openBlock(), createElementBlock("p", _hoisted_29, toDisplayString(countriesError.value), 1)) : createCommentVNode("", true),
+						customersLoading.value ? (openBlock(), createElementBlock("p", _hoisted_30, " Loading customers… ")) : customersError.value ? (openBlock(), createElementBlock("div", _hoisted_31, [createBaseVNode("p", null, toDisplayString(customersError.value), 1), createBaseVNode("button", {
+							type: "button",
+							class: "secondary-button",
+							onClick: loadCustomers
+						}, " Try again ")])) : customers.value.length === 0 ? (openBlock(), createElementBlock("p", _hoisted_32, " No customers match these filters. ")) : (openBlock(), createElementBlock("div", _hoisted_33, [createBaseVNode("table", null, [
+							_cache[57] || (_cache[57] = createBaseVNode("caption", { class: "visually-hidden" }, " Filtered Northwind customers ", -1)),
+							createBaseVNode("thead", null, [createBaseVNode("tr", null, [(openBlock(), createElementBlock(Fragment, null, renderList(columns, ([key, label]) => {
+								return createBaseVNode("th", {
+									key,
+									scope: "col",
+									"aria-sort": ariaSort(key)
+								}, [createBaseVNode("button", {
+									type: "button",
+									class: "sort-button",
+									onClick: ($event) => changeSort(key)
+								}, [createTextVNode(toDisplayString(label) + " ", 1), sort.value === key ? (openBlock(), createElementBlock("span", _hoisted_36, toDisplayString(direction.value === "asc" ? "↑" : "↓"), 1)) : createCommentVNode("", true)], 8, _hoisted_35)], 8, _hoisted_34);
+							}), 64))])]),
+							createBaseVNode("tbody", null, [(openBlock(true), createElementBlock(Fragment, null, renderList(customers.value, (customer) => {
+								return openBlock(), createElementBlock("tr", {
+									key: customer.customerId,
+									class: normalizeClass({ selected: selectedId.value === customer.customerId }),
+									onClick: ($event) => selectCustomer(customer.customerId)
+								}, [
+									createBaseVNode("td", null, toDisplayString(customer.customerId), 1),
+									createBaseVNode("td", null, [createBaseVNode("button", {
+										type: "button",
+										class: "customer-button",
+										"aria-pressed": selectedId.value === customer.customerId,
+										onClick: withModifiers(($event) => selectCustomer(customer.customerId), ["stop"])
+									}, toDisplayString(customer.companyName), 9, _hoisted_38)]),
+									createBaseVNode("td", null, toDisplayString(customer.contactName || "—"), 1),
+									createBaseVNode("td", null, toDisplayString(customer.city || "—"), 1),
+									createBaseVNode("td", null, toDisplayString(customer.country || "—"), 1)
+								], 10, _hoisted_37);
+							}), 128))])
+						])])),
+						createBaseVNode("div", _hoisted_39, [
+							createBaseVNode("button", {
+								type: "button",
+								class: "secondary-button",
+								disabled: page.value <= 1 || customersLoading.value,
+								onClick: _cache[19] || (_cache[19] = ($event) => page.value -= 1)
+							}, " Previous ", 8, _hoisted_40),
+							createBaseVNode("span", null, toDisplayString(pageDescription.value), 1),
+							createBaseVNode("button", {
+								type: "button",
+								class: "secondary-button",
+								disabled: page.value >= totalPages.value || customersLoading.value,
+								onClick: _cache[20] || (_cache[20] = ($event) => page.value += 1)
+							}, " Next ", 8, _hoisted_41)
+						]),
+						createBaseVNode("p", _hoisted_42, toDisplayString(selectedId.value ? `Selected: ${selectedId.value}` : "Select a customer"), 1)
+					])
+				]),
 				createBaseVNode("dialog", {
 					ref_key: "dialog",
 					ref: dialog,
 					"aria-labelledby": "dialog-heading",
 					onKeydown: handleDialogKeydown
-				}, [createBaseVNode("div", _hoisted_24, [
-					_cache[49] || (_cache[49] = createBaseVNode("p", { class: "card-kicker" }, "Vue dialog", -1)),
-					_cache[50] || (_cache[50] = createBaseVNode("h2", { id: "dialog-heading" }, "Keyboard-ready modal", -1)),
-					_cache[51] || (_cache[51] = createBaseVNode("p", null, "Focus stays within this dialog until it is closed.", -1)),
-					createBaseVNode("div", _hoisted_25, [createBaseVNode("button", {
+				}, [createBaseVNode("div", _hoisted_43, [
+					_cache[61] || (_cache[61] = createBaseVNode("p", { class: "card-kicker" }, "Vue dialog", -1)),
+					_cache[62] || (_cache[62] = createBaseVNode("h2", { id: "dialog-heading" }, "Keyboard-ready modal", -1)),
+					_cache[63] || (_cache[63] = createBaseVNode("p", null, "Focus stays within this dialog until it is closed.", -1)),
+					createBaseVNode("div", _hoisted_44, [createBaseVNode("button", {
 						ref_key: "dialogCloseButton",
 						ref: dialogCloseButton,
 						class: "primary-button",

@@ -1,5 +1,5 @@
 <script setup>
-import { computed, nextTick, ref } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
 const activeSection = ref('controls')
 const name = ref('Ada Lovelace')
@@ -16,6 +16,31 @@ const successMessage = ref('')
 const dialog = ref(null)
 const dialogCloseButton = ref(null)
 const tabNames = ['summary', 'settings']
+const columns = [
+  ['customerId', 'ID'],
+  ['companyName', 'Company'],
+  ['contactName', 'Contact'],
+  ['city', 'City'],
+  ['country', 'Country'],
+]
+const countries = ref([])
+const customers = ref([])
+const search = ref('')
+const debouncedSearch = ref('')
+const country = ref('')
+const sort = ref('companyName')
+const direction = ref('asc')
+const page = ref(1)
+const pageSize = 10
+const totalCount = ref(0)
+const totalPages = ref(0)
+const selectedId = ref(null)
+const customersLoading = ref(true)
+const customersError = ref('')
+const countriesError = ref('')
+let searchTimer
+let customerController
+let countryController
 
 const isNameValid = computed(() => name.value.trim().length > 0)
 const isEmailValid = computed(() =>
@@ -24,6 +49,98 @@ const isEmailValid = computed(() =>
 const isProfileValid = computed(
   () => isNameValid.value && isEmailValid.value,
 )
+const pageDescription = computed(() =>
+  totalPages.value === 0
+    ? 'No pages'
+    : `Page ${page.value} of ${totalPages.value}`,
+)
+
+async function loadCountries() {
+  countryController?.abort()
+  const controller = new AbortController()
+  countryController = controller
+  countriesError.value = ''
+
+  try {
+    const response = await fetch('/api/northwind/countries', {
+      signal: controller.signal,
+    })
+    if (!response.ok) throw new Error('Countries could not be loaded.')
+    countries.value = await response.json()
+  } catch (error) {
+    if (error.name !== 'AbortError') {
+      countriesError.value = error.message
+    }
+  }
+}
+
+async function loadCustomers() {
+  customerController?.abort()
+  const controller = new AbortController()
+  customerController = controller
+  customersLoading.value = true
+  customersError.value = ''
+
+  const query = new URLSearchParams({
+    search: debouncedSearch.value,
+    country: country.value,
+    sort: sort.value,
+    direction: direction.value,
+    page: String(page.value),
+    pageSize: String(pageSize),
+  })
+
+  try {
+    const response = await fetch(`/api/northwind/customers?${query}`, {
+      signal: controller.signal,
+    })
+    if (!response.ok) {
+      const message =
+        response.status === 400
+          ? 'The customer query is invalid.'
+          : 'Customers could not be loaded.'
+      throw new Error(message)
+    }
+
+    const result = await response.json()
+    customers.value = result.items
+    totalCount.value = result.totalCount
+    totalPages.value = result.totalPages
+    selectedId.value = result.items.some(
+      (customer) => customer.customerId === selectedId.value,
+    )
+      ? selectedId.value
+      : null
+  } catch (error) {
+    if (error.name !== 'AbortError') {
+      customers.value = []
+      totalCount.value = 0
+      totalPages.value = 0
+      customersError.value = error.message
+    }
+  } finally {
+    if (!controller.signal.aborted) customersLoading.value = false
+  }
+}
+
+function changeSort(column) {
+  if (sort.value === column) {
+    direction.value = direction.value === 'asc' ? 'desc' : 'asc'
+  } else {
+    sort.value = column
+    direction.value = 'asc'
+  }
+  page.value = 1
+}
+
+function ariaSort(column) {
+  if (sort.value !== column) return 'none'
+  return direction.value === 'asc' ? 'ascending' : 'descending'
+}
+
+function selectCustomer(customerId) {
+  selectedId.value = customerId
+}
 
 function validateProfile() {
   if (!isProfileValid.value) return
@@ -82,6 +199,31 @@ function handleTabKeydown(event) {
     .querySelector(`[data-tab="${activeTab.value}"]`)
     .focus()
 }
+
+watch(search, (value) => {
+  clearTimeout(searchTimer)
+  searchTimer = setTimeout(() => {
+    page.value = 1
+    debouncedSearch.value = value
+  }, 250)
+})
+
+watch(country, () => {
+  page.value = 1
+})
+
+watch([debouncedSearch, country, sort, direction, page], loadCustomers)
+
+onMounted(() => {
+  loadCountries()
+  loadCustomers()
+})
+
+onBeforeUnmount(() => {
+  clearTimeout(searchTimer)
+  customerController?.abort()
+  countryController?.abort()
+})
 </script>
 
 <template>
@@ -298,7 +440,131 @@ function handleTabKeydown(event) {
     <section id="northwind" aria-labelledby="northwind-heading">
       <p class="section-number">02 · API state</p>
       <h2 id="northwind-heading">Northwind Data Binding</h2>
-      <p>Customer, order, and sandbox binding will follow as atomic features.</p>
+      <p class="section-intro">
+        Server-filtered, sorted, and paged customer data from the portfolio API.
+      </p>
+
+      <article class="data-card" aria-labelledby="explorer-heading">
+        <div class="data-heading">
+          <div>
+            <p class="card-kicker">Customer Explorer</p>
+            <h3 id="explorer-heading">Northwind customers</h3>
+          </div>
+          <p>{{ totalCount }} Northwind records</p>
+        </div>
+
+        <div class="filter-grid">
+          <label>
+            <span>Search customers</span>
+            <input
+              v-model="search"
+              type="search"
+              placeholder="Company, contact, or city"
+            />
+          </label>
+          <label>
+            <span>Country</span>
+            <select v-model="country">
+              <option value="">All countries</option>
+              <option v-for="item in countries" :key="item" :value="item">
+                {{ item }}
+              </option>
+            </select>
+          </label>
+        </div>
+
+        <p v-if="countriesError" class="request-error" role="alert">
+          {{ countriesError }}
+        </p>
+        <p
+          v-if="customersLoading"
+          class="loading-state"
+          role="status"
+          aria-live="polite"
+        >
+          Loading customers…
+        </p>
+        <div v-else-if="customersError" class="request-error" role="alert">
+          <p>{{ customersError }}</p>
+          <button type="button" class="secondary-button" @click="loadCustomers">
+            Try again
+          </button>
+        </div>
+        <p v-else-if="customers.length === 0" class="empty-state" role="status">
+          No customers match these filters.
+        </p>
+
+        <div v-else class="table-scroll">
+          <table>
+            <caption class="visually-hidden">
+              Filtered Northwind customers
+            </caption>
+            <thead>
+              <tr>
+                <th
+                  v-for="[key, label] in columns"
+                  :key="key"
+                  scope="col"
+                  :aria-sort="ariaSort(key)"
+                >
+                  <button type="button" class="sort-button" @click="changeSort(key)">
+                    {{ label }}
+                    <span v-if="sort === key" aria-hidden="true">
+                      {{ direction === 'asc' ? '↑' : '↓' }}
+                    </span>
+                  </button>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="customer in customers"
+                :key="customer.customerId"
+                :class="{ selected: selectedId === customer.customerId }"
+                @click="selectCustomer(customer.customerId)"
+              >
+                <td>{{ customer.customerId }}</td>
+                <td>
+                  <button
+                    type="button"
+                    class="customer-button"
+                    :aria-pressed="selectedId === customer.customerId"
+                    @click.stop="selectCustomer(customer.customerId)"
+                  >
+                    {{ customer.companyName }}
+                  </button>
+                </td>
+                <td>{{ customer.contactName || '—' }}</td>
+                <td>{{ customer.city || '—' }}</td>
+                <td>{{ customer.country || '—' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="pagination" aria-label="Customer pages">
+          <button
+            type="button"
+            class="secondary-button"
+            :disabled="page <= 1 || customersLoading"
+            @click="page -= 1"
+          >
+            Previous
+          </button>
+          <span>{{ pageDescription }}</span>
+          <button
+            type="button"
+            class="secondary-button"
+            :disabled="page >= totalPages || customersLoading"
+            @click="page += 1"
+          >
+            Next
+          </button>
+        </div>
+        <p class="selection-status" aria-live="polite">
+          {{ selectedId ? `Selected: ${selectedId}` : 'Select a customer' }}
+        </p>
+      </article>
     </section>
 
     <dialog
@@ -557,6 +823,121 @@ dialog::backdrop {
   padding: 1.5rem;
 }
 
+.data-card {
+  background: rgb(255 255 255 / 72%);
+  border: 1px solid #c9ddd5;
+  border-radius: 0.8rem;
+  margin-top: 1.5rem;
+  min-width: 0;
+  padding: 1.25rem;
+}
+
+.data-heading,
+.pagination {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.data-heading h3,
+.data-heading p {
+  margin-bottom: 0;
+}
+
+.filter-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 2fr) minmax(12rem, 1fr);
+  margin: 1.25rem 0;
+}
+
+.loading-state,
+.empty-state,
+.request-error {
+  border: 1px dashed #84a69a;
+  border-radius: 0.6rem;
+  margin: 1rem 0;
+  padding: 1rem;
+}
+
+.request-error {
+  background: #fff0f0;
+  border-color: #c76b6b;
+  color: #7e1f1f;
+}
+
+.table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  border-collapse: collapse;
+  min-width: 48rem;
+  width: 100%;
+}
+
+th,
+td {
+  border-bottom: 1px solid #c9ddd5;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+th {
+  background: #eaf7f1;
+}
+
+tbody tr {
+  cursor: pointer;
+}
+
+tbody tr:hover,
+tbody tr.selected {
+  background: #dff6e9;
+}
+
+.sort-button,
+.customer-button {
+  border: 0;
+  border-radius: 0.25rem;
+  padding: 0.2rem;
+  text-align: left;
+}
+
+.sort-button {
+  align-items: center;
+  display: inline-flex;
+  gap: 0.35rem;
+}
+
+.customer-button {
+  color: #146247;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.pagination {
+  margin-top: 1rem;
+}
+
+.selection-status {
+  color: #4c625e;
+  margin: 1rem 0 0;
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
 .showcase-header {
   background:
     radial-gradient(circle at top right, rgb(65 184 131 / 28%), transparent 42%),
@@ -643,6 +1024,7 @@ button:focus-visible {
   }
 
   .gallery-card,
+  .data-card,
   dialog {
     background: #173a34;
     border-color: #467569;
@@ -660,6 +1042,28 @@ button:focus-visible {
   .notice {
     background: #164c3c;
   }
+
+  th {
+    background: #16453c;
+  }
+
+  tbody tr:hover,
+  tbody tr.selected {
+    background: #1e5447;
+  }
+
+  .customer-button {
+    color: #75d5aa;
+  }
+
+  .selection-status {
+    color: #b8cec5;
+  }
+
+  .request-error {
+    background: #4a2020;
+    color: #ffd8d8;
+  }
 }
 
 @media (max-width: 1100px) {
@@ -669,8 +1073,15 @@ button:focus-visible {
 }
 
 @media (max-width: 760px) {
-  .field-pair {
+  .field-pair,
+  .filter-grid {
     grid-template-columns: 1fr;
+  }
+
+  .data-heading,
+  .pagination {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
 
