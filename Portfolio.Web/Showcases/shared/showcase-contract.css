@@ -309,6 +309,12 @@ label {
   width: 44px;
 }
 
+:host input[aria-label="Editing sandbox"]:focus,
+:host input[aria-label="Editing sandbox"]:focus-visible {
+  box-shadow: none;
+  outline: none;
+}
+
 .tabs {
   margin-top: 0;
 }
