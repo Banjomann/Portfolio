@@ -1,5 +1,5 @@
 <script setup>
-import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
 const name = ref('Ada Lovelace')
 const email = ref('ada@example.com')
@@ -13,7 +13,6 @@ const confidence = ref(72)
 const activeTab = ref('summary')
 const successMessage = ref('')
 const dialog = ref(null)
-const dialogCloseButton = ref(null)
 const tabNames = ['summary', 'settings']
 const columns = [
   ['companyName', 'Company'],
@@ -392,37 +391,8 @@ function validateProfile() {
   successMessage.value = 'Example profile validated successfully.'
 }
 
-async function openDialog() {
+function openDialog() {
   dialog.value?.showModal()
-  await nextTick()
-  dialogCloseButton.value?.focus()
-}
-
-function closeDialog() {
-  dialog.value?.close()
-}
-
-function handleDialogKeydown(event) {
-  if (event.key === 'Escape') {
-    event.preventDefault()
-    closeDialog()
-    return
-  }
-
-  if (event.key !== 'Tab') return
-
-  const controls = [...dialog.value.querySelectorAll('button')]
-  const first = controls[0]
-  const last = controls.at(-1)
-  const activeElement = dialog.value.getRootNode().activeElement
-
-  if (event.shiftKey && activeElement === first) {
-    event.preventDefault()
-    last.focus()
-  } else if (!event.shiftKey && activeElement === last) {
-    event.preventDefault()
-    first.focus()
-  }
 }
 
 function handleTabKeydown(event) {
@@ -1092,22 +1062,13 @@ onBeforeUnmount(() => {
       </article>
     </section>
 
-    <dialog
-      ref="dialog"
-      aria-labelledby="dialog-heading"
-      @keydown="handleDialogKeydown"
-    >
-      <div class="dialog-content">
-        <p class="card-kicker">Vue dialog</p>
-        <h2 id="dialog-heading">Keyboard-ready modal</h2>
-        <p>Focus stays within this dialog until it is closed.</p>
-        <div class="button-row">
-          <button ref="dialogCloseButton" class="primary-button" type="button" @click="closeDialog">
-            Close dialog
-          </button>
-          <button class="secondary-button" type="button" @click="closeDialog">Done</button>
-        </div>
-      </div>
+    <dialog ref="dialog">
+      <form method="dialog">
+        <span class="eyebrow">Native dialog</span>
+        <h2>Vue-controlled launch</h2>
+        <p>This modal uses the browser dialog element for focus management and keyboard dismissal.</p>
+        <button class="primary-button">Close dialog</button>
+      </form>
     </dialog>
   </div>
 </template>
