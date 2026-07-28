@@ -382,6 +382,19 @@ label {
   font-weight: 650;
 }
 
+.grid-card tbody td:last-child code,
+.data-card tbody td:last-child code {
+  align-items: center;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-h);
+  display: inline-flex;
+  font: 400 12px/1.6 var(--mono, ui-monospace, Consolas, monospace);
+  min-height: 25px;
+  padding: 2px 6px;
+}
+
 .grid-card tbody tr:last-child td,
 .data-card tbody tr:last-child td {
   border-bottom: 0;

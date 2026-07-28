@@ -364,7 +364,7 @@ function App() {
         </div>
         <div className="framework-badge">
           <img src={reactLogo} alt="" />
-          <span>React</span>
+          <strong>React</strong>
         </div>
       </header>
 
