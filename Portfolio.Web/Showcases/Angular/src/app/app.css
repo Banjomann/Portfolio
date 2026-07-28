@@ -10,10 +10,12 @@
   --shadow: rgb(0 0 0 / 10%) 0 10px 15px -3px, rgb(0 0 0 / 5%) 0 4px 6px -2px;
 
   background: var(--bg);
+  border-radius: 14px;
   color: var(--text);
   color-scheme: light dark;
   display: block;
-  font-family: inherit;
+  font: 16px/1.6 var(--lab-font);
+  overflow: hidden;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -597,16 +599,6 @@ tbody tr.selected {
   background: var(--accent-bg);
 }
 
-.row-select {
-  background: transparent;
-  border: 0;
-  color: var(--text-h);
-  cursor: pointer;
-  font-weight: 700;
-  padding: 0;
-  text-align: left;
-}
-
 code {
   background: var(--code-bg);
   border-radius: 4px;
@@ -868,6 +860,37 @@ code {
   margin: 3px 0 0;
 }
 
+.control-card,
+.grid-card,
+.detail-card,
+.orders-card,
+.sandbox-panel {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.sandbox-panel {
+  align-items: center;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  margin-bottom: 18px;
+  padding: 22px;
+}
+
+.sandbox-panel h3,
+.sandbox-panel p {
+  margin: 4px 0 0;
+}
+
+.sandbox-panel .notification,
+.sandbox-panel > small {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -904,6 +927,14 @@ code {
   }
   .orders-layout {
     grid-template-columns: 1fr;
+  }
+  .sandbox-panel {
+    align-items: start;
+    grid-template-columns: 1fr;
+  }
+  .sandbox-panel .notification,
+  .sandbox-panel > small {
+    grid-column: auto;
   }
   .order-list {
     border-bottom: 1px solid var(--border);

@@ -358,13 +358,13 @@ function App() {
           <span className="eyebrow">Frontend Lab</span>
           <h1>React showcase</h1>
           <p>
-            Interactive UI patterns and data binding implemented with React
-            state, effects, and accessible native controls.
+            Interactive UI patterns, form controls, and API-backed data binding
+            built with accessible native controls.
           </p>
         </div>
         <div className="framework-badge">
           <img src={reactLogo} alt="" />
-          <span>React</span>
+          <strong>React</strong>
         </div>
       </header>
 
@@ -380,33 +380,38 @@ function App() {
       >
         <div className="section-heading">
           <div>
-            <span className="eyebrow">Controlled components</span>
+            <span className="eyebrow">Reactive UI state</span>
             <h2 id="controls-heading">Control gallery</h2>
           </div>
           <p>
-            Every value below is held in React state and immediately reflected
-            in the live summary.
+            Every value below is bound to framework state and immediately
+            reflected in the live summary.
           </p>
         </div>
 
         <div className="control-layout">
           <form
             className="control-card form-card"
+            aria-labelledby="profile-heading"
             onSubmit={(event) => {
               event.preventDefault()
               setNotice('Example profile validated successfully.')
             }}
           >
-            <h3>Profile inputs</h3>
-            <div className="field-grid">
-              <label>
+            <div className="card-heading">
+              <h3 id="profile-heading">Profile inputs</h3>
+            </div>
+            <div className="profile-fields">
+              <label className="field-span">
                 <span>Name</span>
                 <input
+                  type="text"
+                  required
                   value={profile.name}
                   onChange={(event) => updateProfile('name', event.target.value)}
                 />
               </label>
-              <label>
+              <label className="field-span">
                 <span>Email</span>
                 <input
                   type="email"
@@ -426,28 +431,30 @@ function App() {
                     : 'Enter a valid email address.'}
                 </small>
               </label>
-              <label>
-                <span>Seats</span>
-                <input
-                  type="number"
-                  min="1"
-                  max="20"
-                  value={profile.seats}
-                  onChange={(event) =>
-                    updateProfile('seats', Number(event.target.value))
-                  }
-                />
-              </label>
-              <label>
-                <span>Start date</span>
-                <input
-                  type="date"
-                  value={profile.startDate}
-                  onChange={(event) =>
-                    updateProfile('startDate', event.target.value)
-                  }
-                />
-              </label>
+              <div className="field-pair field-span">
+                <label>
+                  <span>Seats</span>
+                  <input
+                    type="number"
+                    min="1"
+                    max="20"
+                    value={profile.seats}
+                    onChange={(event) =>
+                      updateProfile('seats', Number(event.target.value))
+                    }
+                  />
+                </label>
+                <label>
+                  <span>Start date</span>
+                  <input
+                    type="date"
+                    value={profile.startDate}
+                    onChange={(event) =>
+                      updateProfile('startDate', event.target.value)
+                    }
+                  />
+                </label>
+              </div>
               <label className="field-span">
                 <span>Role</span>
                 <select
@@ -518,8 +525,10 @@ function App() {
           </form>
 
           <div className="control-stack">
-            <section className="control-card">
-              <h3>Preferences and progress</h3>
+            <article className="control-card">
+              <div className="card-heading">
+                <h3>Preferences and progress</h3>
+              </div>
               <label className="switch-row">
                 <span>
                   <strong>Notifications</strong>
@@ -552,9 +561,12 @@ function App() {
                 max="100"
                 aria-label={`Confidence ${confidence}%`}
               />
-            </section>
+            </article>
 
-            <section className="control-card">
+            <article className="control-card">
+              <div className="card-heading">
+                <h3>Bound state</h3>
+              </div>
               <div className="tabs" role="tablist" aria-label="Profile views">
                 {['summary', 'settings'].map((tab) => (
                   <button
@@ -630,11 +642,11 @@ function App() {
               <details>
                 <summary>Implementation note</summary>
                 <p>
-                  Native controls preserve keyboard behavior while React binds
-                  each value and derives this summary.
+                  Native controls preserve keyboard behavior while framework
+                  state derives this summary.
                 </p>
               </details>
-            </section>
+            </article>
           </div>
         </div>
 
@@ -662,74 +674,82 @@ function App() {
             <span className="eyebrow">API-backed state</span>
             <h2 id="data-heading">Northwind data binding</h2>
           </div>
-          <div className="sandbox-toolbar">
-            <p>
-              Server-driven filtering, sorting, paging, and selection against
-              the Northwind API.
-            </p>
-            <label className="sandbox-toggle">
-              <input
-                type="checkbox"
-                role="switch"
-                checked={sandboxEnabled}
-                onChange={(event) => {
-                  if (!event.target.checked && draftIsDirty) {
-                    setSandboxNotice(
-                      'Save or discard the unsaved customer fields before leaving sandbox mode.',
-                    )
-                    return
-                  }
-                  setSandboxEnabled(event.target.checked)
-                  setSelectedId(null)
-                  setPage(1)
-                  setSandboxNotice('')
-                }}
-              />
-              <span>Editing sandbox</span>
-            </label>
-            {sandboxEnabled && (
-              <button
-                type="button"
-                className="secondary-button"
-                onClick={resetSandbox}
-              >
-                Reset sandbox
-              </button>
-            )}
-          </div>
+          <p>
+            Server-driven filtering, sorting, paging, and selection against
+            the Northwind API.
+          </p>
         </div>
 
-        {sandboxEnabled && (
-          <div className="sandbox-banner">
-            <div>
-              <strong>Temporary editing enabled.</strong>
-              <span>
-                Changes are isolated to this browser session and never reach
-                the canonical Northwind database.
-              </span>
-            </div>
-            <div className="sandbox-status">
-              <span className={sandboxHasChanges ? 'changed' : ''}>
-                {sandboxHasChanges ? 'Changes made' : 'Vanilla copy'}
-              </span>
-              {sandboxExpiresAt && (
-                <small>
-                  Expires after 30 minutes without sandbox activity
-                </small>
-              )}
-            </div>
+        <aside className="sandbox-panel" aria-labelledby="sandbox-heading">
+          <div>
+            <span className="eyebrow">Session-isolated editing</span>
+            <h3 id="sandbox-heading">Editing Sandbox</h3>
+            <p>
+              Changes use an in-memory browser-session copy. Canonical Northwind
+              customers and every order remain read-only.
+            </p>
           </div>
-        )}
-
-        <section className="grid-card" aria-labelledby="customers-heading">
-          <div className="grid-heading">
-            <div>
-              <h3 id="customers-heading">Customer explorer</h3>
-              <p>{totalCount} Northwind records</p>
+          <label className="switch-row">
+            <span>
+              <strong>{sandboxEnabled ? 'Enabled' : 'Disabled'}</strong>
+              <small>
+                {sandboxHasChanges ? 'Changes made' : 'Vanilla copy'}
+              </small>
+            </span>
+            <input
+              className="switch"
+              type="checkbox"
+              role="switch"
+              aria-label="Editing sandbox"
+              checked={sandboxEnabled}
+              onChange={(event) => {
+                if (!event.target.checked && draftIsDirty) {
+                  setSandboxNotice(
+                    'Save or discard the unsaved customer fields before leaving sandbox mode.',
+                  )
+                  return
+                }
+                setSandboxEnabled(event.target.checked)
+                setSelectedId(null)
+                setPage(1)
+                setSandboxNotice('')
+              }}
+            />
+          </label>
+          {sandboxEnabled && (
+            <button
+              type="button"
+              className="secondary-button"
+              onClick={resetSandbox}
+            >
+              Reset sandbox
+            </button>
+          )}
+          {sandboxEnabled && sandboxExpiresAt && (
+            <small>Session copy expires after 30 minutes without sandbox activity.</small>
+          )}
+          {sandboxNotice && (
+            <div className="notification" role="status" aria-live="polite">
+              <span>{sandboxNotice}</span>
+              <button
+                type="button"
+                aria-label="Dismiss sandbox notification"
+                onClick={() => setSandboxNotice('')}
+              >
+                ×
+              </button>
             </div>
-            <div className="filters">
+          )}
+        </aside>
+
+        <section className="data-card grid-card" aria-labelledby="customers-heading">
+          <div className="data-heading">
+            <h3 id="customers-heading">Customer explorer</h3>
+            <p>{totalCount} Northwind records</p>
+          </div>
+          <div className="filter-grid filters">
               <label>
-                <span>Search</span>
+                <span>Search customers</span>
                 <input
                   type="search"
                   value={search}
@@ -757,7 +777,6 @@ function App() {
                   ))}
                 </select>
               </label>
-            </div>
           </div>
 
           {error && (
@@ -805,27 +824,18 @@ function App() {
                     className={
                       selectedId === customer.customerId ? 'selected' : ''
                     }
+                    tabIndex="0"
+                    aria-selected={selectedId === customer.customerId}
                     onClick={() => setSelectedId(customer.customerId)}
+                    onKeyDown={(event) => {
+                      if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault()
+                        setSelectedId(customer.customerId)
+                      }
+                    }}
                   >
                     <td data-label="Company">
-                      <button
-                        type="button"
-                        className="row-select"
-                        aria-pressed={selectedId === customer.customerId}
-                        onClick={(event) => {
-                          event.stopPropagation()
-                          setSelectedId(customer.customerId)
-                        }}
-                        onKeyDown={(event) => {
-                          if (event.key === 'Enter' || event.key === ' ') {
-                            event.preventDefault()
-                            event.stopPropagation()
-                            setSelectedId(customer.customerId)
-                          }
-                        }}
-                      >
-                        {customer.companyName}
-                      </button>
+                      {customer.companyName}
                     </td>
                     <td data-label="Contact">{customer.contactName || '—'}</td>
                     <td data-label="City">{customer.city || '—'}</td>
@@ -848,11 +858,7 @@ function App() {
             )}
           </div>
 
-          <footer className="grid-footer">
-            <span>
-              {selectedId ? `Selected: ${selectedId}` : 'Select a customer row'}
-            </span>
-            <div className="pagination">
+          <div className="pagination" aria-label="Customer pages">
               <button
                 type="button"
                 disabled={loading || page <= 1}
@@ -870,30 +876,45 @@ function App() {
               >
                 Next
               </button>
-            </div>
-          </footer>
+          </div>
+          <p className="selection-status" aria-live="polite">
+            {selectedId ? `Selected: ${selectedId}` : 'Select a customer'}
+          </p>
         </section>
 
-        <section className="detail-card" aria-labelledby="detail-heading">
-          <div className="detail-heading">
-            <div>
-              <span className="eyebrow">
-                {sandboxEnabled ? 'Session database' : 'Read-only binding'}
-              </span>
-              <h3 id="detail-heading">Customer details</h3>
-            </div>
+        <section className="data-card detail-card" aria-labelledby="detail-heading">
+          <div className="data-heading">
+            <h3 id="detail-heading">Customer details</h3>
             {selectedId && <code>{selectedId}</code>}
           </div>
 
           {!selectedId && (
             <div className="status">
-              Select a customer row to bind the detail controls.
+              Select a customer to bind its complete record and sales metrics.
             </div>
           )}
           {detailLoading && (
             <div className="status" role="status" aria-live="polite">
               Loading customer…
             </div>
+          )}
+
+          {!detailLoading && customerDetail && (
+            <dl className="metric-grid" aria-label="Customer sales metrics">
+              <div><dt>Orders</dt><dd>{customerDetail.orderCount}</dd></div>
+              <div>
+                <dt>Total sales</dt>
+                <dd>${Number(customerDetail.totalSales).toLocaleString()}</dd>
+              </div>
+              <div>
+                <dt>Last order</dt>
+                <dd>
+                  {customerDetail.lastOrderDate
+                    ? new Date(customerDetail.lastOrderDate).toLocaleDateString()
+                    : '—'}
+                </dd>
+              </div>
+            </dl>
           )}
 
           {!detailLoading && customerDraft && sandboxEnabled && (
@@ -910,22 +931,16 @@ function App() {
                   />
                 </label>
               ))}
-              <div className="detail-metrics">
-                <span>{customerDraft.orderCount} orders</span>
-                <span>
-                  ${Number(customerDraft.totalSales).toLocaleString()}
-                </span>
-                {draftIsDirty && (
-                  <span className="unsaved-indicator">Unsaved fields</span>
-                )}
-              </div>
+              <p className="dirty-status" aria-live="polite">
+                {draftIsDirty ? 'Unsaved fields' : 'No unsaved fields'}
+              </p>
               <div className="detail-actions">
                 <button
                   type="submit"
                   className="primary-button"
                   disabled={!draftIsDirty}
                 >
-                  Save temporary changes
+                  Save changes
                 </button>
                 <button
                   type="button"
@@ -936,37 +951,25 @@ function App() {
                     setSandboxNotice('Unsaved field changes discarded.')
                   }}
                 >
-                  Discard fields
+                  Discard
                 </button>
               </div>
             </form>
           )}
 
           {!detailLoading && customerDetail && !sandboxEnabled && (
-            <dl className="customer-detail">
+            <dl className="detail-grid customer-detail">
               {[
                 ['Company', customerDetail.companyName],
                 ['Contact', customerDetail.contactName],
                 ['Title', customerDetail.contactTitle],
                 ['Address', customerDetail.address],
-                [
-                  'Location',
-                  [
-                    customerDetail.city,
-                    customerDetail.region,
-                    customerDetail.postalCode,
-                    customerDetail.country,
-                  ]
-                    .filter(Boolean)
-                    .join(', '),
-                ],
+                ['City', customerDetail.city],
+                ['Region', customerDetail.region],
+                ['Postal code', customerDetail.postalCode],
+                ['Country', customerDetail.country],
                 ['Phone', customerDetail.phone],
                 ['Fax', customerDetail.fax],
-                ['Orders', customerDetail.orderCount],
-                [
-                  'Total sales',
-                  `$${Number(customerDetail.totalSales).toLocaleString()}`,
-                ],
               ].map(([label, value]) => (
                 <div key={label}>
                   <dt>{label}</dt>
@@ -976,31 +979,12 @@ function App() {
             </dl>
           )}
 
-          {sandboxNotice && (
-            <div
-              className="notification detail-notice"
-              role="status"
-              aria-live="polite"
-            >
-              <span>{sandboxNotice}</span>
-              <button
-                type="button"
-                aria-label="Dismiss sandbox notification"
-                onClick={() => setSandboxNotice('')}
-              >
-                ×
-              </button>
-            </div>
-          )}
         </section>
 
-        <section className="orders-card" aria-labelledby="orders-heading">
-          <div className="detail-heading">
-            <div>
-              <span className="eyebrow">Selection chain</span>
-              <h3 id="orders-heading">Orders and line items</h3>
-            </div>
-            {selectedOrderId && <code>Order {selectedOrderId}</code>}
+        <section className="data-card orders-card" aria-labelledby="orders-heading">
+          <div className="data-heading">
+            <h3 id="orders-heading">Orders and line items</h3>
+            {orders.length > 0 && <span>{orders.length} orders</span>}
           </div>
 
           {!selectedId && (
@@ -1010,9 +994,8 @@ function App() {
           )}
 
           {selectedId && (
-            <div className="orders-layout">
-              <div className="order-list" aria-busy={ordersLoading}>
-                <h4>Customer orders</h4>
+            <div className="order-workspace orders-layout">
+              <div className="order-list" aria-label="Customer orders" aria-busy={ordersLoading}>
                 {ordersLoading && (
                   <div className="status" role="status" aria-live="polite">
                     Loading orders…
@@ -1026,9 +1009,7 @@ function App() {
                     <button
                       type="button"
                       key={order.orderId}
-                      className={
-                        selectedOrderId === order.orderId ? 'selected' : ''
-                      }
+                      className="order-card"
                       aria-pressed={selectedOrderId === order.orderId}
                       onClick={() => setSelectedOrderId(order.orderId)}
                     >
@@ -1052,8 +1033,7 @@ function App() {
                   ))}
               </div>
 
-              <div className="order-detail" aria-busy={orderLoading}>
-                <h4>Order detail</h4>
+              <div className="order-detail" aria-live="polite" aria-busy={orderLoading}>
                 {orderLoading && (
                   <div className="status" role="status" aria-live="polite">
                     Loading order…
@@ -1061,6 +1041,15 @@ function App() {
                 )}
                 {!orderLoading && orderDetail && (
                   <>
+                    <div className="order-detail-heading">
+                      <p className="card-kicker">Order {orderDetail.orderId}</p>
+                      <h4>{orderDetail.status}</h4>
+                      <p>
+                        {orderDetail.orderDate
+                          ? new Date(orderDetail.orderDate).toLocaleDateString()
+                          : 'No order date'}
+                      </p>
+                    </div>
                     <dl className="order-summary">
                       <div>
                         <dt>Employee</dt>
@@ -1069,10 +1058,6 @@ function App() {
                       <div>
                         <dt>Shipper</dt>
                         <dd>{orderDetail.shipperName || '—'}</dd>
-                      </div>
-                      <div>
-                        <dt>Status</dt>
-                        <dd>{orderDetail.status}</dd>
                       </div>
                       <div>
                         <dt>Destination</dt>
@@ -1088,7 +1073,7 @@ function App() {
                     </dl>
                     <div className="line-items-wrap">
                       <table className="line-items">
-                        <caption>Order line items</caption>
+                        <caption className="visually-hidden">Order line items</caption>
                         <thead>
                           <tr>
                             <th scope="col">Product</th>

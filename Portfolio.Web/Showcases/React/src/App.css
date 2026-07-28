@@ -496,6 +496,7 @@ label {
   color: var(--text-h);
   font-size: 13px;
   font-weight: 650;
+  line-height: 160%;
 }
 
 input,
@@ -583,20 +584,6 @@ tbody tr.selected {
 td:first-child {
   color: var(--text-h);
   font-weight: 650;
-}
-
-.row-select {
-  padding: 0;
-  color: inherit;
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-  font-weight: inherit;
-  text-align: left;
-}
-
-.row-select:hover {
-  color: var(--accent);
 }
 
 td code {
@@ -892,6 +879,37 @@ td code {
   margin: 0 24px 24px;
 }
 
+.control-card,
+.grid-card,
+.detail-card,
+.orders-card,
+.sandbox-panel {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.sandbox-panel {
+  align-items: center;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  margin-bottom: 18px;
+  padding: 22px;
+}
+
+.sandbox-panel h3,
+.sandbox-panel p {
+  margin: 4px 0 0;
+}
+
+.sandbox-panel .notification,
+.sandbox-panel > small {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -935,6 +953,16 @@ td code {
 
   .orders-layout {
     grid-template-columns: 1fr;
+  }
+
+  .sandbox-panel {
+    align-items: start;
+    grid-template-columns: 1fr;
+  }
+
+  .sandbox-panel .notification,
+  .sandbox-panel > small {
+    grid-column: auto;
   }
 
   .order-list {

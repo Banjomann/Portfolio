@@ -181,7 +181,7 @@ describe('Control Gallery', () => {
 
     await updateControl('input[type="text"]', 'Grace Hopper')
 
-    expect(root.querySelector('#summary-panel').textContent).toContain(
+    expect(root.querySelector('#profile-summary-panel').textContent).toContain(
       'Grace Hopper',
     )
   })
@@ -193,7 +193,7 @@ describe('Control Gallery', () => {
       (button) => button.textContent.trim() === 'Validate profile',
     )
     expect(submit.disabled).toBe(true)
-    expect(root.querySelector('#email-error')).not.toBeNull()
+    expect(root.querySelector('#email-help').classList).toContain('field-error')
 
     await updateControl('input[type="email"]', 'grace@example.com')
     expect(submit.disabled).toBe(false)
@@ -202,26 +202,26 @@ describe('Control Gallery', () => {
     await nextTick()
 
     expect(root.querySelector('[role="status"]').textContent).toContain(
-      'Profile validated for Ada Lovelace.',
+      'Example profile validated successfully.',
     )
 
-    root.querySelector('[aria-label="Dismiss success message"]').click()
+    root.querySelector('[aria-label="Dismiss notification"]').click()
     await nextTick()
     expect(root.querySelector('[role="status"]')).toBeNull()
   })
 
   it('switches linked tab panels with arrow keys', async () => {
-    const summaryTab = root.querySelector('#summary-tab')
+    const summaryTab = root.querySelector('#profile-summary-tab')
     summaryTab.dispatchEvent(
       new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }),
     )
     await nextTick()
 
-    expect(root.querySelector('#settings-tab').getAttribute('aria-selected')).toBe(
+    expect(root.querySelector('#profile-settings-tab').getAttribute('aria-selected')).toBe(
       'true',
     )
-    expect(root.querySelector('#settings-panel').textContent).toContain(
-      'Confidence',
+    expect(root.querySelector('#profile-settings-panel').textContent).toContain(
+      'Current settings',
     )
   })
 })
@@ -240,7 +240,7 @@ describe('Customer Explorer', () => {
       ),
     ).toBe(true)
     expect(root.querySelector('option[value="Germany"]')).not.toBeNull()
-    expect(root.querySelector('.customer-button').textContent).toContain(
+    expect(root.querySelector('tbody tr td').textContent).toContain(
       'Alfreds Futterkiste',
     )
     expect(
@@ -265,20 +265,20 @@ describe('Customer Explorer', () => {
     vi.useRealTimers()
   })
 
-  it('selects a customer from the full row or accessible company button', async () => {
+  it('selects a customer from the full row', async () => {
     root.querySelector('tbody tr').click()
     await nextTick()
 
     expect(root.querySelector('.selection-status').textContent).toContain(
       'Selected: ALFKI',
     )
-    expect(root.querySelector('.customer-button').getAttribute('aria-pressed')).toBe(
+    expect(root.querySelector('tbody tr').getAttribute('aria-selected')).toBe(
       'true',
     )
   })
 
   it('loads and binds the selected customer detail and metrics', async () => {
-    root.querySelector('.customer-button').click()
+    root.querySelector('tbody tr').click()
     await nextTick()
     await new Promise((resolve) => setTimeout(resolve))
     await nextTick()
@@ -291,12 +291,12 @@ describe('Customer Explorer', () => {
     expect(detail.textContent).toContain('Maria Anders')
     expect(detail.textContent).toContain('Sales Representative')
     expect(detail.textContent).toContain('6')
-    expect(detail.textContent).toContain('$4,273.00')
-    expect(detail.textContent).toContain('Apr 9, 1998')
+    expect(detail.textContent).toContain('$4,273')
+    expect(detail.textContent).toContain('4/9/1998')
   })
 
   it('selects the newest order and binds line items and totals', async () => {
-    root.querySelector('.customer-button').click()
+    root.querySelector('tbody tr').click()
     await nextTick()
     await new Promise((resolve) => setTimeout(resolve))
     await nextTick()
@@ -319,12 +319,12 @@ describe('Customer Explorer', () => {
     expect(orderDetail.textContent).toContain('Janet Leverling')
     expect(orderDetail.textContent).toContain('Speedy Express')
     expect(orderDetail.textContent).toContain('Escargots de Bourgogne')
-    expect(orderDetail.textContent).toContain('$530.00')
+    expect(orderDetail.textContent).toContain('$530')
     expect(orderDetail.textContent).toContain('$961.21')
   })
 
   it('saves sandbox customer changes while keeping order reads canonical', async () => {
-    root.querySelector('.customer-button').click()
+    root.querySelector('tbody tr').click()
     await nextTick()
     await new Promise((resolve) => setTimeout(resolve))
     await nextTick()
@@ -374,7 +374,7 @@ describe('Customer Explorer', () => {
   })
 
   it('blocks leaving with dirty fields and resets the session copy', async () => {
-    root.querySelector('.customer-button').click()
+    root.querySelector('tbody tr').click()
     await new Promise((resolve) => setTimeout(resolve))
     await nextTick()
 

@@ -190,7 +190,8 @@ Section navigation may scroll horizontally on narrow screens.
 - Label sections, navigation, forms, tables, dialogs, and loading states.
 - Use native inputs, buttons, tables, details, dialog, and progress elements.
 - Expose `aria-sort` on sortable table headers.
-- Make customer selection a real button rather than an interactive table row.
+- Select customers through the full table row; company names are plain text.
+- Keep selectable rows keyboard operable with Enter and Space.
 - Support keyboard operation for all interactions.
 - Connect tabs and tab panels with `aria-controls` and `aria-labelledby`.
 - Announce loading, errors, save results, and reset results.

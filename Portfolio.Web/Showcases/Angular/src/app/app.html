@@ -4,8 +4,8 @@
       <span class="eyebrow">Frontend Lab</span>
       <h1>Angular showcase</h1>
       <p>
-        Interactive UI patterns and data binding implemented with Angular reactive forms, signals,
-        templates, and accessible native controls.
+        Interactive UI patterns, form controls, and API-backed data binding built with accessible
+        native controls.
       </p>
     </div>
     <div class="framework-badge" aria-label="Built with Angular">
@@ -22,23 +22,30 @@
   <section id="angular-controls" class="controls-section" aria-labelledby="controls-heading">
     <div class="section-heading">
       <div>
-        <span class="eyebrow">Reactive forms and signals</span>
+        <span class="eyebrow">Reactive UI state</span>
         <h2 id="controls-heading">Control gallery</h2>
       </div>
       <p>
-        Every value below is bound through Angular and immediately reflected in the live summary.
+        Every value below is bound to framework state and immediately reflected in the live summary.
       </p>
     </div>
 
     <div class="control-layout">
-      <form class="control-card form-card" [formGroup]="profile" (ngSubmit)="validateProfile()">
-        <h3>Profile inputs</h3>
-        <div class="field-grid">
-          <label>
+      <form
+        class="control-card form-card"
+        aria-labelledby="profile-heading"
+        [formGroup]="profile"
+        (ngSubmit)="validateProfile()"
+      >
+        <div class="card-heading">
+          <h3 id="profile-heading">Profile inputs</h3>
+        </div>
+        <div class="profile-fields">
+          <label class="field-span">
             <span>Name</span>
             <input formControlName="name" />
           </label>
-          <label>
+          <label class="field-span">
             <span>Email</span>
             <input
               type="email"
@@ -58,14 +65,16 @@
               }
             </small>
           </label>
-          <label>
-            <span>Seats</span>
-            <input type="number" min="1" max="20" formControlName="seats" />
-          </label>
-          <label>
-            <span>Start date</span>
-            <input type="date" formControlName="startDate" />
-          </label>
+          <div class="field-pair field-span">
+            <label>
+              <span>Seats</span>
+              <input type="number" min="1" max="20" formControlName="seats" />
+            </label>
+            <label>
+              <span>Start date</span>
+              <input type="date" formControlName="startDate" />
+            </label>
+          </div>
           <label class="field-span">
             <span>Role</span>
             <select formControlName="role">
@@ -121,8 +130,10 @@
       </form>
 
       <div class="control-stack">
-        <section class="control-card">
-          <h3>Preferences and progress</h3>
+        <article class="control-card">
+          <div class="card-heading">
+            <h3>Preferences and progress</h3>
+          </div>
           <label class="switch-row">
             <span>
               <strong>Notifications</strong>
@@ -153,9 +164,12 @@
             max="100"
             [attr.aria-label]="'Confidence ' + confidence() + '%'"
           ></progress>
-        </section>
+        </article>
 
-        <section class="control-card">
+        <article class="control-card">
+          <div class="card-heading">
+            <h3>Bound state</h3>
+          </div>
           <div class="tabs" role="tablist" aria-label="Profile views">
             @for (tab of ['summary', 'settings']; track tab) {
               <button
@@ -220,11 +234,10 @@
           <details>
             <summary>Implementation note</summary>
             <p>
-              Native controls preserve keyboard behavior while Angular binds each value and derives
-              this summary.
+              Native controls preserve keyboard behavior while framework state derives this summary.
             </p>
           </details>
-        </section>
+        </article>
       </div>
     </div>
 
@@ -242,54 +255,62 @@
         <span class="eyebrow">API-backed state</span>
         <h2 id="data-heading">Northwind data binding</h2>
       </div>
-      <div class="sandbox-toolbar">
-        <p>Server-driven filtering, sorting, paging, and selection against the Northwind API.</p>
-        <label class="sandbox-toggle">
-          <input
-            type="checkbox"
-            role="switch"
-            [checked]="sandboxEnabled()"
-            (change)="toggleSandbox($any($event.target).checked)"
-          />
-          <span>Editing sandbox</span>
-        </label>
-        @if (sandboxEnabled()) {
-          <button type="button" class="secondary-button" (click)="resetSandbox()">
-            Reset sandbox
-          </button>
-        }
-      </div>
+      <p>Server-driven filtering, sorting, paging, and selection against the Northwind API.</p>
     </div>
 
-    @if (sandboxEnabled()) {
-      <div class="sandbox-banner">
-        <div>
-          <strong>Temporary editing enabled.</strong>
-          <span
-            >Changes are isolated to this browser session and never reach the canonical Northwind
-            database.</span
-          >
-        </div>
-        <div class="sandbox-status">
-          <span [class.changed]="sandboxHasChanges()">
-            {{ sandboxHasChanges() ? 'Changes made' : 'Vanilla copy' }}
-          </span>
-          @if (sandboxExpiresAt()) {
-            <small>Expires after 30 minutes without sandbox activity</small>
-          }
-        </div>
+    <aside class="sandbox-panel" aria-labelledby="sandbox-heading">
+      <div>
+        <span class="eyebrow">Session-isolated editing</span>
+        <h3 id="sandbox-heading">Editing Sandbox</h3>
+        <p>
+          Changes use an in-memory browser-session copy. Canonical Northwind customers and every
+          order remain read-only.
+        </p>
       </div>
-    }
-
-    <section class="grid-card" aria-labelledby="customers-heading">
-      <div class="grid-heading">
-        <div>
-          <h3 id="customers-heading">Customer explorer</h3>
-          <p>{{ totalCount() }} Northwind records</p>
+      <label class="switch-row">
+        <span>
+          <strong>{{ sandboxEnabled() ? 'Enabled' : 'Disabled' }}</strong>
+          <small>{{ sandboxHasChanges() ? 'Changes made' : 'Vanilla copy' }}</small>
+        </span>
+        <input
+          class="switch"
+          type="checkbox"
+          role="switch"
+          aria-label="Editing sandbox"
+          [checked]="sandboxEnabled()"
+          (change)="toggleSandbox($any($event.target).checked)"
+        />
+      </label>
+      @if (sandboxEnabled()) {
+        <button type="button" class="secondary-button" (click)="resetSandbox()">
+          Reset sandbox
+        </button>
+      }
+      @if (sandboxEnabled() && sandboxExpiresAt()) {
+        <small>Session copy expires after 30 minutes without sandbox activity.</small>
+      }
+      @if (sandboxNotice()) {
+        <div class="notification" role="status" aria-live="polite">
+          <span>{{ sandboxNotice() }}</span>
+          <button
+            type="button"
+            aria-label="Dismiss sandbox notification"
+            (click)="sandboxNotice.set('')"
+          >
+            ×
+          </button>
         </div>
-        <div class="filters">
+      }
+    </aside>
+
+    <section class="data-card grid-card" aria-labelledby="customers-heading">
+      <div class="data-heading">
+        <h3 id="customers-heading">Customer explorer</h3>
+        <p>{{ totalCount() }} Northwind records</p>
+      </div>
+      <div class="filter-grid filters">
           <label>
-            <span>Search</span>
+            <span>Search customers</span>
             <input
               type="search"
               [value]="search()"
@@ -306,7 +327,6 @@
               }
             </select>
           </label>
-        </div>
       </div>
 
       @if (customerError()) {
@@ -348,17 +368,14 @@
               @for (customer of customers(); track customer.customerId) {
                 <tr
                   [class.selected]="selectedId() === customer.customerId"
+                  [attr.aria-selected]="selectedId() === customer.customerId"
+                  tabindex="0"
                   (click)="selectedId.set(customer.customerId)"
+                  (keydown.enter)="selectedId.set(customer.customerId)"
+                  (keydown.space)="$event.preventDefault(); selectedId.set(customer.customerId)"
                 >
                   <td data-label="Company">
-                    <button
-                      type="button"
-                      class="row-select"
-                      [attr.aria-pressed]="selectedId() === customer.customerId"
-                      (click)="$event.stopPropagation(); selectedId.set(customer.customerId)"
-                    >
-                      {{ customer.companyName }}
-                    </button>
+                    {{ customer.companyName }}
                   </td>
                   <td data-label="Contact">{{ customer.contactName || '—' }}</td>
                   <td data-label="City">{{ customer.city || '—' }}</td>
@@ -379,9 +396,7 @@
         }
       </div>
 
-      <footer class="grid-footer">
-        <span>{{ selectedId() ? 'Selected: ' + selectedId() : 'Select a customer row' }}</span>
-        <div class="pagination">
+      <div class="pagination" aria-label="Customer pages">
           <button
             type="button"
             [disabled]="loading() || page() <= 1"
@@ -397,30 +412,37 @@
           >
             Next
           </button>
-        </div>
-      </footer>
+      </div>
+      <p class="selection-status" aria-live="polite">
+        {{ selectedId() ? 'Selected: ' + selectedId() : 'Select a customer' }}
+      </p>
     </section>
 
-    <section class="detail-card" aria-labelledby="detail-heading">
-      <div class="detail-heading">
-        <div>
-          <span class="eyebrow">{{
-            sandboxEnabled() ? 'Session database' : 'Read-only binding'
-          }}</span>
-          <h3 id="detail-heading">Customer details</h3>
-        </div>
+    <section class="data-card detail-card" aria-labelledby="detail-heading">
+      <div class="data-heading">
+        <h3 id="detail-heading">Customer details</h3>
         @if (selectedId()) {
           <code>{{ selectedId() }}</code>
         }
       </div>
 
       @if (!selectedId()) {
-        <div class="detail-status">Select a customer row to bind the detail controls.</div>
+        <div class="detail-status">
+          Select a customer to bind its complete record and sales metrics.
+        </div>
       } @else if (detailLoading()) {
         <div class="detail-status" role="status" aria-live="polite">Loading customer…</div>
       } @else if (detailError()) {
         <div class="detail-status error" role="alert">{{ detailError() }}</div>
-      } @else if (sandboxEnabled() && customerDraft(); as draft) {
+      } @else if (customerDetail(); as metrics) {
+        <dl class="metric-grid" aria-label="Customer sales metrics">
+          <div><dt>Orders</dt><dd>{{ metrics.orderCount }}</dd></div>
+          <div><dt>Total sales</dt><dd>{{ formatSales(metrics.totalSales) }}</dd></div>
+          <div><dt>Last order</dt><dd>{{ formatDate(metrics.lastOrderDate) }}</dd></div>
+        </dl>
+      }
+
+      @if (!detailLoading() && sandboxEnabled() && customerDraft(); as draft) {
         <form class="detail-form" (submit)="$event.preventDefault(); saveSandboxCustomer()">
           @for (field of editableFields; track field[0]) {
             <label>
@@ -432,20 +454,16 @@
               />
             </label>
           }
-          <div class="detail-metrics">
-            <span>{{ draft.orderCount }} orders</span>
-            <span>{{ formatSales(draft.totalSales) }}</span>
-            @if (draftIsDirty()) {
-              <span class="unsaved-indicator">Unsaved fields</span>
-            }
-          </div>
+          <p class="dirty-status" aria-live="polite">
+            {{ draftIsDirty() ? 'Unsaved fields' : 'No unsaved fields' }}
+          </p>
           <div class="detail-actions">
             <button
               type="submit"
               class="primary-button"
               [disabled]="!draftIsDirty() || !draft.companyName.trim()"
             >
-              Save temporary changes
+              Save changes
             </button>
             <button
               type="button"
@@ -453,12 +471,12 @@
               [disabled]="!draftIsDirty()"
               (click)="discardCustomerDraft()"
             >
-              Discard fields
+              Discard
             </button>
           </div>
         </form>
-      } @else if (customerDetail(); as detail) {
-        <dl class="customer-detail">
+      } @else if (!detailLoading() && !sandboxEnabled() && customerDetail(); as detail) {
+        <dl class="detail-grid customer-detail">
           <div>
             <dt>Company</dt>
             <dd>{{ detail.companyName || '—' }}</dd>
@@ -476,9 +494,12 @@
             <dd>{{ detail.address || '—' }}</dd>
           </div>
           <div>
-            <dt>Location</dt>
-            <dd>{{ customerLocation(detail) || '—' }}</dd>
+            <dt>City</dt>
+            <dd>{{ detail.city || '—' }}</dd>
           </div>
+          <div><dt>Region</dt><dd>{{ detail.region || '—' }}</dd></div>
+          <div><dt>Postal code</dt><dd>{{ detail.postalCode || '—' }}</dd></div>
+          <div><dt>Country</dt><dd>{{ detail.country || '—' }}</dd></div>
           <div>
             <dt>Phone</dt>
             <dd>{{ detail.phone || '—' }}</dd>
@@ -487,46 +508,22 @@
             <dt>Fax</dt>
             <dd>{{ detail.fax || '—' }}</dd>
           </div>
-          <div>
-            <dt>Orders</dt>
-            <dd>{{ detail.orderCount }}</dd>
-          </div>
-          <div>
-            <dt>Total sales</dt>
-            <dd>{{ formatSales(detail.totalSales) }}</dd>
-          </div>
         </dl>
-      }
-      @if (sandboxNotice()) {
-        <div class="notification detail-notice" role="status" aria-live="polite">
-          <span>{{ sandboxNotice() }}</span>
-          <button
-            type="button"
-            aria-label="Dismiss sandbox notification"
-            (click)="sandboxNotice.set('')"
-          >
-            ×
-          </button>
-        </div>
       }
     </section>
 
-    <section class="orders-card" aria-labelledby="orders-heading">
-      <div class="detail-heading">
-        <div>
-          <span class="eyebrow">Selection chain</span>
-          <h3 id="orders-heading">Orders and line items</h3>
-        </div>
-        @if (selectedOrderId()) {
-          <code>Order {{ selectedOrderId() }}</code>
+    <section class="data-card orders-card" aria-labelledby="orders-heading">
+      <div class="data-heading">
+        <h3 id="orders-heading">Orders and line items</h3>
+        @if (orders().length) {
+          <span>{{ orders().length }} orders</span>
         }
       </div>
       @if (!selectedId()) {
         <div class="detail-status">Select a customer to load their orders.</div>
       } @else {
-        <div class="orders-layout">
-          <div class="order-list" [attr.aria-busy]="ordersLoading()">
-            <h4>Customer orders</h4>
+        <div class="order-workspace orders-layout">
+          <div class="order-list" aria-label="Customer orders" [attr.aria-busy]="ordersLoading()">
             @if (ordersLoading()) {
               <div class="detail-status" role="status" aria-live="polite">Loading orders…</div>
             } @else if (orders().length === 0) {
@@ -535,7 +532,7 @@
               @for (order of orders(); track order.orderId) {
                 <button
                   type="button"
-                  [class.selected]="selectedOrderId() === order.orderId"
+                  class="order-card"
                   [attr.aria-pressed]="selectedOrderId() === order.orderId"
                   (click)="selectedOrderId.set(order.orderId)"
                 >
@@ -545,19 +542,25 @@
                   >
                   <span
                     ><strong>{{ formatSales(order.total) }}</strong
-                    ><small>{{ order.status }}</small></span
+                    ><small [class]="'order-status ' + order.status.toLowerCase()">{{
+                      order.status
+                    }}</small></span
                   >
                 </button>
               }
             }
           </div>
-          <div class="order-detail" [attr.aria-busy]="orderLoading()">
-            <h4>Order detail</h4>
+          <div class="order-detail" aria-live="polite" [attr.aria-busy]="orderLoading()">
             @if (orderLoading()) {
               <div class="detail-status" role="status" aria-live="polite">Loading order…</div>
             } @else if (orderError()) {
               <div class="detail-status error" role="alert">{{ orderError() }}</div>
             } @else if (orderDetail(); as detail) {
+              <div class="order-detail-heading">
+                <p class="card-kicker">Order {{ detail.orderId }}</p>
+                <h4>{{ detail.status }}</h4>
+                <p>{{ formatDate(detail.orderDate) }}</p>
+              </div>
               <dl class="order-summary">
                 <div>
                   <dt>Employee</dt>
@@ -568,19 +571,13 @@
                   <dd>{{ detail.shipperName || '—' }}</dd>
                 </div>
                 <div>
-                  <dt>Status</dt>
-                  <dd>{{ detail.status }}</dd>
-                </div>
-                <div>
                   <dt>Destination</dt>
                   <dd>{{ destination(detail) }}</dd>
                 </div>
               </dl>
               <div class="line-items-wrap">
                 <table class="line-items">
-                  <caption>
-                    Order line items
-                  </caption>
+                  <caption class="visually-hidden">Order line items</caption>
                   <thead>
                     <tr>
                       <th scope="col">Product</th>

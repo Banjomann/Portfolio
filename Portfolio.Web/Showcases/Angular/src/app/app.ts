@@ -31,6 +31,7 @@ interface CustomerDetail extends CustomerSummary {
   fax: string | null;
   orderCount: number;
   totalSales: number;
+  lastOrderDate: string | null;
 }
 
 interface CustomerPage {
@@ -47,6 +48,7 @@ interface CustomerOrder {
 }
 interface OrderDetail {
   orderId: number;
+  orderDate: string | null;
   employeeName: string | null;
   shipperName: string | null;
   status: string;
@@ -87,7 +89,7 @@ const editableFields: readonly (readonly [keyof CustomerDetail, string])[] = [
   selector: 'app-angular-showcase',
   imports: [ReactiveFormsModule],
   templateUrl: './app.html',
-  styleUrl: './app.css',
+  styleUrls: ['./app.css', '../../../shared/showcase-contract.css'],
   encapsulation: ViewEncapsulation.ShadowDom,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

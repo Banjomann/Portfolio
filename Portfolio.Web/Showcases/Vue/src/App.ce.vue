@@ -1,9 +1,6 @@
 <script setup>
-import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
-const activeSection = ref('controls')
-const controlsSection = ref(null)
-const northwindSection = ref(null)
 const name = ref('Ada Lovelace')
 const email = ref('ada@example.com')
 const seats = ref(3)
@@ -16,14 +13,13 @@ const confidence = ref(72)
 const activeTab = ref('summary')
 const successMessage = ref('')
 const dialog = ref(null)
-const dialogCloseButton = ref(null)
 const tabNames = ['summary', 'settings']
 const columns = [
-  ['customerId', 'ID'],
   ['companyName', 'Company'],
   ['contactName', 'Contact'],
   ['city', 'City'],
   ['country', 'Country'],
+  ['customerId', 'ID'],
 ]
 const editableCustomerFields = [
   ['companyName', 'Company'],
@@ -283,21 +279,12 @@ async function loadOrderDetail() {
 }
 
 function formatCurrency(value) {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  }).format(value)
+  return `$${Number(value).toLocaleString()}`
 }
 
 function formatDate(value) {
   if (!value) return 'No orders'
-  return new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' }).format(
-    new Date(value),
-  )
-}
-
-function formatDiscount(value) {
-  return `${Math.round(value * 100)}%`
+  return new Date(value).toLocaleDateString()
 }
 
 async function loadSandboxStatus() {
@@ -396,48 +383,11 @@ async function resetSandbox() {
 
 function validateProfile() {
   if (!isProfileValid.value) return
-  successMessage.value = `Profile validated for ${name.value.trim()}.`
+  successMessage.value = 'Example profile validated successfully.'
 }
 
-function navigateToSection(section) {
-  activeSection.value = section
-  const target =
-    section === 'controls' ? controlsSection.value : northwindSection.value
-  target?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  target?.querySelector('h2')?.focus({ preventScroll: true })
-}
-
-async function openDialog() {
+function openDialog() {
   dialog.value?.showModal()
-  await nextTick()
-  dialogCloseButton.value?.focus()
-}
-
-function closeDialog() {
-  dialog.value?.close()
-}
-
-function handleDialogKeydown(event) {
-  if (event.key === 'Escape') {
-    event.preventDefault()
-    closeDialog()
-    return
-  }
-
-  if (event.key !== 'Tab') return
-
-  const controls = [...dialog.value.querySelectorAll('button')]
-  const first = controls[0]
-  const last = controls.at(-1)
-  const activeElement = dialog.value.getRootNode().activeElement
-
-  if (event.shiftKey && activeElement === first) {
-    event.preventDefault()
-    last.focus()
-  } else if (!event.shiftKey && activeElement === last) {
-    event.preventDefault()
-    first.focus()
-  }
 }
 
 function handleTabKeydown(event) {
@@ -493,180 +443,178 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="showcase-shell">
+  <div class="showcase">
     <header class="showcase-header">
-      <p class="eyebrow">Frontend lab · Vue</p>
-      <h1>Vue interface showcase</h1>
-      <p>
-        The shared Frontend Lab experience, implemented with Vue components and
-        the Composition API.
-      </p>
+      <div>
+        <span class="eyebrow">Frontend Lab</span>
+        <h1>Vue showcase</h1>
+        <p>
+          Interactive UI patterns, form controls, and API-backed data binding
+          built with accessible native controls.
+        </p>
+      </div>
+      <div class="framework-badge" aria-label="Built with Vue">
+        <span aria-hidden="true">V</span>
+        <strong>Vue</strong>
+      </div>
     </header>
 
-    <nav aria-label="Vue showcase sections">
-      <button
-        type="button"
-        :aria-current="activeSection === 'controls' ? 'page' : undefined"
-        @click="navigateToSection('controls')"
-      >
-        Control Gallery
-      </button>
-      <button
-        type="button"
-        :aria-current="activeSection === 'northwind' ? 'page' : undefined"
-        @click="navigateToSection('northwind')"
-      >
-        Northwind Data Binding
-      </button>
+    <nav class="showcase-nav" aria-label="Vue showcase sections">
+      <a href="#vue-controls">Control gallery</a>
+      <a href="#vue-northwind">Northwind data binding</a>
     </nav>
 
     <section
-      id="controls"
-      ref="controlsSection"
+      id="vue-controls"
+      class="controls-section"
       aria-labelledby="controls-heading"
     >
-      <p class="section-number">01 · Local state</p>
-      <h2 id="controls-heading" tabindex="-1">Control Gallery</h2>
-      <p class="section-intro">
-        Native form controls bound through Vue refs and computed state.
-      </p>
-
-      <div
-        v-if="successMessage"
-        class="notice"
-        role="status"
-        aria-live="polite"
-      >
-        <span>{{ successMessage }}</span>
-        <button
-          type="button"
-          class="icon-button"
-          aria-label="Dismiss success message"
-          @click="successMessage = ''"
-        >
-          ×
-        </button>
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Reactive UI state</span>
+          <h2 id="controls-heading">Control gallery</h2>
+        </div>
+        <p>
+          Every value below is bound to framework state and immediately
+          reflected in the live summary.
+        </p>
       </div>
 
-      <div class="gallery-grid">
-        <form class="gallery-card" aria-labelledby="profile-heading" @submit.prevent="validateProfile">
+      <div class="control-layout">
+        <form class="control-card form-card" aria-labelledby="profile-heading" @submit.prevent="validateProfile">
           <div class="card-heading">
-            <p class="card-kicker">Profile form</p>
-            <h3 id="profile-heading">Attendee details</h3>
+            <h3 id="profile-heading">Profile inputs</h3>
           </div>
 
-          <label>
-            <span>Name</span>
-            <input v-model="name" type="text" required aria-describedby="name-error" />
-          </label>
-          <p v-if="!isNameValid" id="name-error" class="field-error">Enter a name.</p>
-
-          <label>
-            <span>Email</span>
-            <input v-model="email" type="email" required aria-describedby="email-error" />
-          </label>
-          <p v-if="!isEmailValid" id="email-error" class="field-error">
-            Enter a valid email address.
-          </p>
-
-          <div class="field-pair">
-            <label>
-              <span>Seats</span>
-              <input v-model.number="seats" type="number" min="1" max="12" />
+          <div class="profile-fields">
+            <label class="field-span">
+              <span>Name</span>
+              <input v-model="name" type="text" required aria-describedby="name-error" />
+              <small v-if="!isNameValid" id="name-error" class="field-error">Enter a name.</small>
             </label>
-            <label>
-              <span>Start date</span>
-              <input v-model="startDate" type="date" />
+
+            <label class="field-span">
+              <span>Email</span>
+              <input
+                v-model="email"
+                type="email"
+                required
+                :aria-invalid="!isEmailValid"
+                aria-describedby="email-help"
+              />
+              <small
+                id="email-help"
+                :class="isEmailValid ? 'field-help' : 'field-error'"
+              >
+                {{
+                  isEmailValid
+                    ? 'Used for example notifications.'
+                    : 'Enter a valid email address.'
+                }}
+              </small>
+            </label>
+
+            <div class="field-pair field-span">
+              <label>
+                <span>Seats</span>
+                <input v-model.number="seats" type="number" min="1" max="20" />
+              </label>
+              <label>
+                <span>Start date</span>
+                <input v-model="startDate" type="date" />
+              </label>
+            </div>
+
+            <label class="field-span">
+              <span>Role</span>
+              <select v-model="role">
+                <option>Developer</option>
+                <option>Designer</option>
+                <option>Analyst</option>
+                <option>Manager</option>
+              </select>
             </label>
           </div>
-
-          <label>
-            <span>Role</span>
-            <select v-model="role">
-              <option>Developer</option>
-              <option>Designer</option>
-              <option>Product manager</option>
-            </select>
-          </label>
 
           <fieldset>
             <legend>Interests</legend>
             <div class="choice-row">
-              <label><input v-model="interests" type="checkbox" value="Data" /> Data</label>
-              <label><input v-model="interests" type="checkbox" value="UI" /> UI</label>
-              <label><input v-model="interests" type="checkbox" value="Testing" /> Testing</label>
+              <label class="choice"><input v-model="interests" type="checkbox" value="Data" /> Data</label>
+              <label class="choice"><input v-model="interests" type="checkbox" value="Design" /> Design</label>
+              <label class="choice"><input v-model="interests" type="checkbox" value="Automation" /> Automation</label>
             </div>
           </fieldset>
 
           <fieldset>
             <legend>Preferred contact</legend>
             <div class="choice-row">
-              <label><input v-model="contact" type="radio" value="Email" /> Email</label>
-              <label><input v-model="contact" type="radio" value="Phone" /> Phone</label>
+              <label class="choice"><input v-model="contact" type="radio" value="Email" /> Email</label>
+              <label class="choice"><input v-model="contact" type="radio" value="Phone" /> Phone</label>
+              <label class="choice"><input v-model="contact" type="radio" value="Chat" /> Chat</label>
             </div>
           </fieldset>
 
-          <button class="primary-button" type="submit" :disabled="!isProfileValid">
-            Validate profile
-          </button>
+          <div class="form-actions">
+            <button class="primary-button" type="submit" :disabled="!isProfileValid">
+              Validate profile
+            </button>
+            <button class="secondary-button" type="button" @click="openDialog">
+              Open dialog
+            </button>
+            <button class="secondary-button" type="button" disabled>Disabled</button>
+          </div>
         </form>
 
-        <div class="gallery-stack">
-          <article class="gallery-card" aria-labelledby="preferences-heading">
+        <div class="control-stack">
+          <article class="control-card" aria-labelledby="preferences-heading">
             <div class="card-heading">
-              <p class="card-kicker">Preferences</p>
-              <h3 id="preferences-heading">Experience settings</h3>
+              <h3 id="preferences-heading">Preferences and progress</h3>
             </div>
 
             <label class="switch-row">
               <span>
                 <strong>Notifications</strong>
-                <small>Receive event updates</small>
+                <small>Enable status updates</small>
               </span>
               <input v-model="notifications" type="checkbox" role="switch" />
             </label>
 
-            <label>
-              <span>Confidence: {{ confidence }}%</span>
+            <label class="range-field">
+              <span>Confidence <strong>{{ confidence }}%</strong></span>
               <input v-model.number="confidence" type="range" min="0" max="100" />
             </label>
-            <progress :value="confidence" max="100">{{ confidence }}%</progress>
-
-            <div class="button-row">
-              <button class="primary-button" type="button" @click="openDialog">
-                Open dialog
-              </button>
-              <button class="secondary-button" type="button">Secondary</button>
-              <button type="button" disabled>Disabled</button>
-            </div>
+            <progress
+              :value="confidence"
+              max="100"
+              :aria-label="`Confidence ${confidence}%`"
+            />
           </article>
 
-          <article class="gallery-card" aria-labelledby="preview-heading">
+          <article class="control-card" aria-labelledby="preview-heading">
             <div class="card-heading">
-              <p class="card-kicker">Live preview</p>
               <h3 id="preview-heading">Bound state</h3>
             </div>
 
-            <div role="tablist" aria-label="Profile preview">
+            <div class="tabs" role="tablist" aria-label="Profile views">
               <button
-                id="summary-tab"
+                id="profile-summary-tab"
                 type="button"
                 role="tab"
                 data-tab="summary"
                 :aria-selected="activeTab === 'summary'"
-                aria-controls="summary-panel"
+                aria-controls="profile-summary-panel"
                 @click="activeTab = 'summary'"
                 @keydown="handleTabKeydown"
               >
                 Summary
               </button>
               <button
-                id="settings-tab"
+                id="profile-settings-tab"
                 type="button"
                 role="tab"
                 data-tab="settings"
                 :aria-selected="activeTab === 'settings'"
-                aria-controls="settings-panel"
+                aria-controls="profile-settings-panel"
                 @click="activeTab = 'settings'"
                 @keydown="handleTabKeydown"
               >
@@ -674,53 +622,80 @@ onBeforeUnmount(() => {
               </button>
             </div>
 
-            <dl
+            <div
               v-if="activeTab === 'summary'"
-              id="summary-panel"
+              id="profile-summary-panel"
+              class="tab-panel"
               role="tabpanel"
-              aria-labelledby="summary-tab"
+              aria-labelledby="profile-summary-tab"
+              tabindex="0"
             >
-              <div><dt>Name</dt><dd>{{ name || '—' }}</dd></div>
-              <div><dt>Email</dt><dd>{{ email || '—' }}</dd></div>
-              <div><dt>Seats</dt><dd>{{ seats }}</dd></div>
-              <div><dt>Start</dt><dd>{{ startDate }}</dd></div>
-              <div><dt>Role</dt><dd>{{ role }}</dd></div>
-            </dl>
-            <dl
+              <h3>{{ name || 'Unnamed profile' }}</h3>
+              <dl class="summary-list">
+                <div><dt>Role</dt><dd>{{ role }}</dd></div>
+                <div><dt>Seats</dt><dd>{{ seats }}</dd></div>
+                <div><dt>Contact</dt><dd>{{ contact }}</dd></div>
+                <div><dt>Interests</dt><dd>{{ interests.join(', ') || 'None' }}</dd></div>
+              </dl>
+            </div>
+            <div
               v-else
-              id="settings-panel"
+              id="profile-settings-panel"
+              class="tab-panel"
               role="tabpanel"
-              aria-labelledby="settings-tab"
+              aria-labelledby="profile-settings-tab"
+              tabindex="0"
             >
-              <div><dt>Interests</dt><dd>{{ interests.join(', ') || 'None' }}</dd></div>
-              <div><dt>Contact</dt><dd>{{ contact }}</dd></div>
-              <div><dt>Notifications</dt><dd>{{ notifications ? 'On' : 'Off' }}</dd></div>
-              <div><dt>Confidence</dt><dd>{{ confidence }}%</dd></div>
-            </dl>
+              <h3>Current settings</h3>
+              <p>
+                Notifications are
+                <strong>{{ notifications ? 'enabled' : 'disabled' }}</strong>.
+                The selected start date is {{ startDate }}.
+              </p>
+            </div>
 
             <details>
               <summary>Implementation note</summary>
-              <p>Every value above is derived directly from Vue reactive state.</p>
+              <p>
+                Native controls preserve keyboard behavior while framework
+                state derives this summary.
+              </p>
             </details>
           </article>
         </div>
       </div>
+
+      <div v-if="successMessage" class="notification" role="status" aria-live="polite">
+        <span>{{ successMessage }}</span>
+        <button
+          type="button"
+          aria-label="Dismiss notification"
+          @click="successMessage = ''"
+        >
+          ×
+        </button>
+      </div>
     </section>
 
     <section
-      id="northwind"
-      ref="northwindSection"
-      aria-labelledby="northwind-heading"
+      id="vue-northwind"
+      class="data-section"
+      aria-labelledby="data-heading"
     >
-      <p class="section-number">02 · API state</p>
-      <h2 id="northwind-heading" tabindex="-1">Northwind Data Binding</h2>
-      <p class="section-intro">
-        Server-filtered, sorted, and paged customer data from the portfolio API.
-      </p>
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">API-backed state</span>
+          <h2 id="data-heading">Northwind data binding</h2>
+        </div>
+        <p>
+          Server-driven filtering, sorting, paging, and selection against the
+          Northwind API.
+        </p>
+      </div>
 
       <aside class="sandbox-panel" aria-labelledby="sandbox-heading">
         <div>
-          <p class="card-kicker">Session-isolated editing</p>
+          <span class="eyebrow">Session-isolated editing</span>
           <h3 id="sandbox-heading">Editing Sandbox</h3>
           <p>
             Changes use an in-memory browser-session copy. Canonical Northwind
@@ -737,6 +712,7 @@ onBeforeUnmount(() => {
           <input
             type="checkbox"
             role="switch"
+            aria-label="Editing sandbox"
             :checked="sandboxEnabled"
             @change="setSandboxEnabled($event.target.checked, $event.target)"
           />
@@ -750,7 +726,7 @@ onBeforeUnmount(() => {
           Reset sandbox
         </button>
         <small v-if="sandboxEnabled && sandboxExpiresAt">
-          Session copy expires {{ formatDate(sandboxExpiresAt) }}.
+          Session copy expires after 30 minutes without sandbox activity.
         </small>
         <p v-if="sandboxNotice" class="notice" role="status">
           {{ sandboxNotice }}
@@ -760,11 +736,10 @@ onBeforeUnmount(() => {
         </p>
       </aside>
 
-      <article class="data-card" aria-labelledby="explorer-heading">
+      <article class="data-card grid-card" aria-labelledby="explorer-heading">
         <div class="data-heading">
           <div>
-            <p class="card-kicker">Customer Explorer</p>
-            <h3 id="explorer-heading">Northwind customers</h3>
+            <h3 id="explorer-heading">Customer explorer</h3>
           </div>
           <p>{{ totalCount }} Northwind records</p>
         </div>
@@ -775,7 +750,7 @@ onBeforeUnmount(() => {
             <input
               v-model="search"
               type="search"
-              placeholder="Company, contact, or city"
+              placeholder="Company or contact"
             />
           </label>
           <label>
@@ -828,6 +803,7 @@ onBeforeUnmount(() => {
                     <span v-if="sort === key" aria-hidden="true">
                       {{ direction === 'asc' ? '↑' : '↓' }}
                     </span>
+                    <span v-if="sort !== key" aria-hidden="true">↕</span>
                   </button>
                 </th>
               </tr>
@@ -837,22 +813,19 @@ onBeforeUnmount(() => {
                 v-for="customer in customers"
                 :key="customer.customerId"
                 :class="{ selected: selectedId === customer.customerId }"
+                :aria-selected="selectedId === customer.customerId"
+                tabindex="0"
                 @click="selectCustomer(customer.customerId)"
+                @keydown.enter="selectCustomer(customer.customerId)"
+                @keydown.space.prevent="selectCustomer(customer.customerId)"
               >
-                <td>{{ customer.customerId }}</td>
-                <td>
-                  <button
-                    type="button"
-                    class="customer-button"
-                    :aria-pressed="selectedId === customer.customerId"
-                    @click.stop="selectCustomer(customer.customerId)"
-                  >
-                    {{ customer.companyName }}
-                  </button>
+                <td data-label="Company">
+                  {{ customer.companyName }}
                 </td>
-                <td>{{ customer.contactName || '—' }}</td>
-                <td>{{ customer.city || '—' }}</td>
-                <td>{{ customer.country || '—' }}</td>
+                <td data-label="Contact">{{ customer.contactName || '—' }}</td>
+                <td data-label="City">{{ customer.city || '—' }}</td>
+                <td data-label="Country">{{ customer.country || '—' }}</td>
+                <td data-label="ID"><code>{{ customer.customerId }}</code></td>
               </tr>
             </tbody>
           </table>
@@ -882,11 +855,10 @@ onBeforeUnmount(() => {
         </p>
       </article>
 
-      <article class="data-card" aria-labelledby="customer-details-heading">
+      <article class="data-card detail-card" aria-labelledby="customer-details-heading">
         <div class="data-heading">
           <div>
-            <p class="card-kicker">Customer Details</p>
-            <h3 id="customer-details-heading">Selected customer</h3>
+            <h3 id="customer-details-heading">Customer details</h3>
           </div>
           <code v-if="selectedId">{{ selectedId }}</code>
         </div>
@@ -926,7 +898,7 @@ onBeforeUnmount(() => {
 
           <form
             v-if="sandboxEnabled"
-            class="customer-edit-form"
+            class="customer-edit-form detail-form"
             aria-label="Edit selected customer"
             @submit.prevent="saveCustomer"
           >
@@ -944,7 +916,7 @@ onBeforeUnmount(() => {
             <p class="dirty-status" aria-live="polite">
               {{ customerDraftDirty ? 'Unsaved fields' : 'No unsaved fields' }}
             </p>
-            <div class="button-row">
+            <div class="button-row detail-actions">
               <button
                 class="primary-button"
                 type="submit"
@@ -962,7 +934,7 @@ onBeforeUnmount(() => {
               </button>
             </div>
           </form>
-          <dl v-else class="detail-grid">
+          <dl v-else class="detail-grid customer-detail">
             <div><dt>Company</dt><dd>{{ customerDetail.companyName }}</dd></div>
             <div><dt>Contact</dt><dd>{{ customerDetail.contactName || '—' }}</dd></div>
             <div><dt>Title</dt><dd>{{ customerDetail.contactTitle || '—' }}</dd></div>
@@ -977,11 +949,10 @@ onBeforeUnmount(() => {
         </div>
       </article>
 
-      <article class="data-card" aria-labelledby="orders-heading">
+      <article class="data-card orders-card" aria-labelledby="orders-heading">
         <div class="data-heading">
           <div>
-            <p class="card-kicker">Orders and Line Items</p>
-            <h3 id="orders-heading">Customer order workspace</h3>
+            <h3 id="orders-heading">Orders and line items</h3>
           </div>
           <span v-if="orders.length">{{ orders.length }} orders</span>
         </div>
@@ -1007,7 +978,7 @@ onBeforeUnmount(() => {
           This customer has no orders.
         </p>
 
-        <div v-else class="order-workspace">
+        <div v-else class="order-workspace orders-layout">
           <div class="order-list" aria-label="Customer orders">
             <button
               v-for="order in orders"
@@ -1023,7 +994,9 @@ onBeforeUnmount(() => {
               </span>
               <span>
                 <strong>{{ formatCurrency(order.total) }}</strong>
-                <small>{{ order.status }}</small>
+                <small :class="['order-status', order.status.toLowerCase()]">
+                  {{ order.status }}
+                </small>
               </span>
             </button>
           </div>
@@ -1039,13 +1012,12 @@ onBeforeUnmount(() => {
               </button>
             </div>
             <div v-else-if="orderDetail">
-              <div class="order-summary">
-                <div>
-                  <p class="card-kicker">Order {{ orderDetail.orderId }}</p>
-                  <h4>{{ orderDetail.status }}</h4>
-                  <p>{{ formatDate(orderDetail.orderDate) }}</p>
-                </div>
-                <dl>
+              <div class="order-detail-heading">
+                <p class="card-kicker">Order {{ orderDetail.orderId }}</p>
+                <h4>{{ orderDetail.status }}</h4>
+                <p>{{ formatDate(orderDetail.orderDate) }}</p>
+              </div>
+              <dl class="order-summary">
                   <div><dt>Employee</dt><dd>{{ orderDetail.employeeName || 'Unassigned' }}</dd></div>
                   <div><dt>Shipper</dt><dd>{{ orderDetail.shipperName || 'Unassigned' }}</dd></div>
                   <div>
@@ -1055,21 +1027,17 @@ onBeforeUnmount(() => {
                       {{ orderDetail.shippingAddress.country || '—' }}
                     </dd>
                   </div>
-                </dl>
-              </div>
+              </dl>
 
-              <div class="table-scroll">
+              <div class="table-scroll line-items-wrap">
                 <table>
-                  <caption class="visually-hidden">
-                    Products in order {{ orderDetail.orderId }}
-                  </caption>
+                  <caption class="visually-hidden">Order line items</caption>
                   <thead>
                     <tr>
                       <th scope="col">Product</th>
-                      <th scope="col">Quantity</th>
-                      <th scope="col">Unit price</th>
-                      <th scope="col">Discount</th>
-                      <th scope="col">Extended price</th>
+                      <th scope="col">Qty.</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Total</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -1077,7 +1045,6 @@ onBeforeUnmount(() => {
                       <td>{{ item.productName }}</td>
                       <td>{{ item.quantity }}</td>
                       <td>{{ formatCurrency(item.unitPrice) }}</td>
-                      <td>{{ formatDiscount(item.discount) }}</td>
                       <td>{{ formatCurrency(item.extendedPrice) }}</td>
                     </tr>
                   </tbody>
@@ -1095,22 +1062,13 @@ onBeforeUnmount(() => {
       </article>
     </section>
 
-    <dialog
-      ref="dialog"
-      aria-labelledby="dialog-heading"
-      @keydown="handleDialogKeydown"
-    >
-      <div class="dialog-content">
-        <p class="card-kicker">Vue dialog</p>
-        <h2 id="dialog-heading">Keyboard-ready modal</h2>
-        <p>Focus stays within this dialog until it is closed.</p>
-        <div class="button-row">
-          <button ref="dialogCloseButton" class="primary-button" type="button" @click="closeDialog">
-            Close dialog
-          </button>
-          <button class="secondary-button" type="button" @click="closeDialog">Done</button>
-        </div>
-      </div>
+    <dialog ref="dialog">
+      <form method="dialog">
+        <span class="eyebrow">Native dialog</span>
+        <h2>Vue-controlled launch</h2>
+        <p>This modal uses the browser dialog element for focus management and keyboard dismissal.</p>
+        <button class="primary-button">Close dialog</button>
+      </form>
     </dialog>
   </div>
 </template>
@@ -1426,8 +1384,7 @@ tbody tr.selected {
   background: #dff6e9;
 }
 
-.sort-button,
-.customer-button {
+.sort-button {
   border: 0;
   border-radius: 0.25rem;
   padding: 0.2rem;
@@ -1438,13 +1395,6 @@ tbody tr.selected {
   align-items: center;
   display: inline-flex;
   gap: 0.35rem;
-}
-
-.customer-button {
-  color: #146247;
-  font-weight: 800;
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
 }
 
 .pagination {
@@ -1734,9 +1684,6 @@ button:focus-visible {
     background: #1e5447;
   }
 
-  .customer-button {
-    color: #75d5aa;
-  }
 
   .selection-status {
     color: #b8cec5;
@@ -1827,4 +1774,423 @@ button:focus-visible {
     border: 1px solid CanvasText;
   }
 }
+
+/* Shared Frontend Lab visual contract. Keep these tokens and structural rules
+   aligned with the React and Angular implementations. */
+:host {
+  --text: #6b6375;
+  --text-h: #08060d;
+  --bg: #fff;
+  --border: #e5e4e7;
+  --code-bg: #f4f3ec;
+  --accent: #aa3bff;
+  --accent-bg: rgb(170 59 255 / 10%);
+  --accent-border: rgb(170 59 255 / 50%);
+  --shadow: rgb(0 0 0 / 10%) 0 10px 15px -3px, rgb(0 0 0 / 5%) 0 4px 6px -2px;
+  background: var(--bg);
+  color: var(--text);
+  color-scheme: light dark;
+  border-radius: 14px;
+  font: 16px/160% Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  letter-spacing: 0.18px;
+  overflow: hidden;
+}
+
+.showcase {
+  background: transparent;
+  display: block;
+  padding: 48px;
+  text-align: left;
+}
+
+.showcase-header {
+  align-items: flex-start;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  display: flex;
+  gap: 32px;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  padding: 0;
+}
+
+.showcase-header h1 {
+  color: var(--text-h);
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -1.68px;
+  line-height: 160%;
+  margin: 6px 0 10px;
+}
+
+.showcase-header p {
+  font-size: 17px;
+  max-width: 680px;
+}
+
+.framework-badge {
+  align-items: center;
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  border-radius: 999px;
+  color: var(--text-h);
+  display: flex;
+  flex: 0 0 auto;
+  font-weight: 650;
+  gap: 10px;
+  padding: 10px 14px;
+}
+
+.framework-badge > span {
+  align-items: center;
+  background: var(--accent);
+  border-radius: 50%;
+  color: white;
+  display: inline-flex;
+  height: 24px;
+  justify-content: center;
+  width: 24px;
+}
+
+.showcase-nav {
+  display: flex;
+  gap: 10px;
+  margin: 0 0 28px;
+  overflow-x: auto;
+  padding: 0 0 4px;
+}
+
+.showcase-nav a {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-h);
+  flex: 0 0 auto;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 7px 11px;
+  text-decoration: none;
+}
+
+.showcase-nav a:hover {
+  border-color: var(--accent-border);
+  color: var(--accent);
+}
+
+.controls-section,
+.data-section {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 32px 0 16px;
+}
+
+.controls-section {
+  border-top: 1px solid var(--border);
+}
+
+.data-section {
+  border-top: 1px solid var(--border);
+  margin-top: 42px;
+}
+
+.section-heading {
+  align-items: end;
+  display: flex;
+  gap: 32px;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.section-heading h2 {
+  color: var(--text-h);
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.24px;
+  line-height: 160%;
+  margin: 4px 0 0;
+}
+
+.section-heading p {
+  font-size: 15px;
+  max-width: 560px;
+}
+
+.eyebrow,
+.card-kicker {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.control-layout {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+}
+
+.control-layout > *,
+.control-stack,
+.data-card,
+.order-workspace > * {
+  min-width: 0;
+}
+
+.control-stack {
+  display: grid;
+  gap: 18px;
+}
+
+.control-card,
+.data-card,
+.sandbox-panel {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  color: var(--text);
+  padding: 22px;
+}
+
+.control-card {
+  display: block;
+}
+
+.control-card h3,
+.data-card h3,
+.sandbox-panel h3 {
+  color: var(--text-h);
+}
+
+label {
+  font-size: 13px;
+  line-height: 160%;
+}
+
+.data-card {
+  margin-top: 18px;
+}
+
+.gallery-card,
+.gallery-stack,
+.gallery-grid {
+  min-width: 0;
+}
+
+.filter-grid {
+  grid-template-columns: minmax(220px, 1fr) minmax(180px, 0.55fr);
+}
+
+.table-scroll {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+table {
+  min-width: 720px;
+  width: 100%;
+}
+
+th {
+  background: var(--code-bg);
+}
+
+tbody tr.selected {
+  background: var(--accent-bg);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.order-workspace {
+  grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.primary-button,
+.secondary-button {
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: 700;
+  min-height: 40px;
+  padding: 8px 13px;
+}
+
+.primary-button,
+.primary-button:hover,
+.primary-button:focus-visible {
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  color: white;
+}
+
+.secondary-button,
+.secondary-button:hover,
+.secondary-button:focus-visible {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  color: var(--text-h);
+}
+
+.tabs {
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 4px;
+  padding-bottom: 12px;
+}
+
+.tabs button {
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  color: var(--text);
+  padding: 7px 10px;
+}
+
+.tabs button[aria-selected='true'],
+.tabs button[aria-selected='true']:hover,
+.tabs button[aria-selected='true']:focus-visible {
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.tab-panel {
+  min-height: 155px;
+  padding-top: 18px;
+}
+
+.summary-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.summary-list div,
+.metric-grid div {
+  background: var(--code-bg);
+  border-radius: 7px;
+  padding: 10px;
+}
+
+.metric-grid dd {
+  color: var(--accent);
+}
+
+.sandbox-panel {
+  align-items: center;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  display: grid;
+  gap: 16px;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  margin: 0 0 18px;
+  padding: 22px;
+}
+
+.sandbox-panel h3,
+.sandbox-panel p {
+  margin: 4px 0 0;
+}
+
+.sandbox-panel .notice,
+.sandbox-panel .request-error,
+.sandbox-panel > small {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+
+.order-card[aria-pressed='true'],
+.order-card[aria-pressed='true']:hover,
+.order-card[aria-pressed='true']:focus-visible {
+  background: var(--accent-bg);
+  border-color: var(--accent-border);
+  color: var(--text-h);
+}
+
+input:not([type='checkbox']):not([type='radio']):not([type='range']),
+select {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text-h);
+}
+
+input[type='checkbox'],
+input[type='radio'],
+input[type='range'],
+progress {
+  accent-color: var(--accent);
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+summary:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--accent-border);
+  outline-offset: 2px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :host {
+    --text: #9ca3af;
+    --text-h: #f3f4f6;
+    --bg: #16171d;
+    --border: #2e303a;
+    --code-bg: #1f2028;
+    --accent: #c084fc;
+    --accent-bg: rgb(192 132 252 / 15%);
+    --accent-border: rgb(192 132 252 / 50%);
+    --shadow: rgb(0 0 0 / 40%) 0 10px 15px -3px, rgb(0 0 0 / 25%) 0 4px 6px -2px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .control-layout,
+  .order-workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .sandbox-panel {
+    align-items: start;
+    grid-template-columns: 1fr;
+  }
+
+  .sandbox-panel .notice,
+  .sandbox-panel .request-error,
+  .sandbox-panel > small {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 760px) {
+  .showcase {
+    padding: 24px 16px 40px;
+  }
+
+  .showcase-header,
+  .section-heading {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .framework-badge {
+    align-self: flex-start;
+  }
+
+  .field-pair,
+  .filter-grid,
+  .customer-detail-layout,
+  .metric-grid {
+    grid-template-columns: 1fr;
+  }
+}
 </style>
+<style src="../../shared/showcase-contract.css"></style>

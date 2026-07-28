@@ -33875,21 +33875,21 @@ var _forTrack0 = ($index, $item) => $item[0];
 var _forTrack1 = ($index, $item) => $item.customerId;
 var _forTrack2 = ($index, $item) => $item.orderId;
 var _forTrack3 = ($index, $item) => $item.productId;
-function App_Conditional_42_Template(rf, ctx) {
+function App_Conditional_43_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275text(0, " Used for example notifications. ");
   }
 }
-function App_Conditional_43_Template(rf, ctx) {
+function App_Conditional_44_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275text(0, " Enter a valid email address. ");
   }
 }
-function App_For_69_Template(rf, ctx) {
+function App_For_71_Template(rf, ctx) {
   if (rf & 1) {
     const _r1 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "label", 23)(1, "input", 78);
-    \u0275\u0275listener("change", function App_For_69_Template_input_change_1_listener() {
+    \u0275\u0275elementStart(0, "label", 26)(1, "input", 79);
+    \u0275\u0275listener("change", function App_For_71_Template_input_change_1_listener() {
       const interest_r2 = \u0275\u0275restoreView(_r1).$implicit;
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.toggleInterest(interest_r2));
@@ -33908,11 +33908,11 @@ function App_For_69_Template(rf, ctx) {
     \u0275\u0275textInterpolate(interest_r2);
   }
 }
-function App_For_75_Template(rf, ctx) {
+function App_For_77_Template(rf, ctx) {
   if (rf & 1) {
     const _r4 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "label", 23)(1, "input", 79);
-    \u0275\u0275listener("change", function App_For_75_Template_input_change_1_listener() {
+    \u0275\u0275elementStart(0, "label", 26)(1, "input", 80);
+    \u0275\u0275listener("change", function App_For_77_Template_input_change_1_listener() {
       const method_r5 = \u0275\u0275restoreView(_r4).$implicit;
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.contactMethod.set(method_r5));
@@ -33931,15 +33931,15 @@ function App_For_75_Template(rf, ctx) {
     \u0275\u0275textInterpolate(method_r5);
   }
 }
-function App_For_104_Template(rf, ctx) {
+function App_For_110_Template(rf, ctx) {
   if (rf & 1) {
     const _r6 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "button", 80);
-    \u0275\u0275listener("click", function App_For_104_Template_button_click_0_listener() {
+    \u0275\u0275elementStart(0, "button", 81);
+    \u0275\u0275listener("click", function App_For_110_Template_button_click_0_listener() {
       const tab_r7 = \u0275\u0275restoreView(_r6).$implicit;
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.selectTab(tab_r7));
-    })("keydown", function App_For_104_Template_button_keydown_0_listener($event) {
+    })("keydown", function App_For_110_Template_button_keydown_0_listener($event) {
       const tab_r7 = \u0275\u0275restoreView(_r6).$implicit;
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.handleTabKey($event, tab_r7));
@@ -33956,12 +33956,12 @@ function App_For_104_Template(rf, ctx) {
     \u0275\u0275textInterpolate1(" ", tab_r7 === "summary" ? "Summary" : "Settings", " ");
   }
 }
-function App_Conditional_105_Template(rf, ctx) {
+function App_Conditional_111_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 37)(1, "h3");
+    \u0275\u0275elementStart(0, "div", 40)(1, "h3");
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "dl", 81)(4, "div")(5, "dt");
+    \u0275\u0275elementStart(3, "dl", 82)(4, "div")(5, "dt");
     \u0275\u0275text(6, "Role");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(7, "dd");
@@ -34000,9 +34000,9 @@ function App_Conditional_105_Template(rf, ctx) {
     \u0275\u0275textInterpolate(ctx_r2.interestsSummary());
   }
 }
-function App_Conditional_106_Template(rf, ctx) {
+function App_Conditional_112_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 38)(1, "h3");
+    \u0275\u0275elementStart(0, "div", 41)(1, "h3");
     \u0275\u0275text(2, "Current settings");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(3, "p");
@@ -34021,14 +34021,14 @@ function App_Conditional_106_Template(rf, ctx) {
     \u0275\u0275textInterpolate1(". The selected start date is ", ctx_r2.profile.controls.startDate.value, ". ");
   }
 }
-function App_Conditional_112_Template(rf, ctx) {
+function App_Conditional_118_Template(rf, ctx) {
   if (rf & 1) {
     const _r8 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 39)(1, "span");
+    \u0275\u0275elementStart(0, "div", 42)(1, "span");
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "button", 82);
-    \u0275\u0275listener("click", function App_Conditional_112_Template_button_click_3_listener() {
+    \u0275\u0275elementStart(3, "button", 83);
+    \u0275\u0275listener("click", function App_Conditional_118_Template_button_click_3_listener() {
       \u0275\u0275restoreView(_r8);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.notice.set(""));
@@ -34042,11 +34042,11 @@ function App_Conditional_112_Template(rf, ctx) {
     \u0275\u0275textInterpolate(ctx_r2.notice());
   }
 }
-function App_Conditional_127_Template(rf, ctx) {
+function App_Conditional_143_Template(rf, ctx) {
   if (rf & 1) {
     const _r9 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "button", 26);
-    \u0275\u0275listener("click", function App_Conditional_127_Template_button_click_0_listener() {
+    \u0275\u0275elementStart(0, "button", 29);
+    \u0275\u0275listener("click", function App_Conditional_143_Template_button_click_0_listener() {
       \u0275\u0275restoreView(_r9);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.resetSandbox());
@@ -34055,53 +34055,50 @@ function App_Conditional_127_Template(rf, ctx) {
     \u0275\u0275elementEnd();
   }
 }
-function App_Conditional_128_Conditional_9_Template(rf, ctx) {
+function App_Conditional_144_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "small");
-    \u0275\u0275text(1, "Expires after 30 minutes without sandbox activity");
+    \u0275\u0275text(1, "Session copy expires after 30 minutes without sandbox activity.");
     \u0275\u0275elementEnd();
   }
 }
-function App_Conditional_128_Template(rf, ctx) {
+function App_Conditional_145_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 46)(1, "div")(2, "strong");
-    \u0275\u0275text(3, "Temporary editing enabled.");
+    const _r10 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "div", 42)(1, "span");
+    \u0275\u0275text(2);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(4, "span");
-    \u0275\u0275text(5, "Changes are isolated to this browser session and never reach the canonical Northwind database.");
-    \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(6, "div", 83)(7, "span");
-    \u0275\u0275text(8);
-    \u0275\u0275elementEnd();
-    \u0275\u0275conditionalCreate(9, App_Conditional_128_Conditional_9_Template, 2, 0, "small");
+    \u0275\u0275elementStart(3, "button", 84);
+    \u0275\u0275listener("click", function App_Conditional_145_Template_button_click_3_listener() {
+      \u0275\u0275restoreView(_r10);
+      const ctx_r2 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r2.sandboxNotice.set(""));
+    });
+    \u0275\u0275text(4, " \xD7 ");
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
     const ctx_r2 = \u0275\u0275nextContext();
-    \u0275\u0275advance(7);
-    \u0275\u0275classProp("changed", ctx_r2.sandboxHasChanges());
-    \u0275\u0275advance();
-    \u0275\u0275textInterpolate1(" ", ctx_r2.sandboxHasChanges() ? "Changes made" : "Vanilla copy", " ");
-    \u0275\u0275advance();
-    \u0275\u0275conditional(ctx_r2.sandboxExpiresAt() ? 9 : -1);
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate(ctx_r2.sandboxNotice());
   }
 }
-function App_For_148_Template(rf, ctx) {
+function App_For_164_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "option", 54);
+    \u0275\u0275elementStart(0, "option", 56);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const item_r10 = ctx.$implicit;
-    \u0275\u0275property("value", item_r10);
+    const item_r11 = ctx.$implicit;
+    \u0275\u0275property("value", item_r11);
     \u0275\u0275advance();
-    \u0275\u0275textInterpolate(item_r10);
+    \u0275\u0275textInterpolate(item_r11);
   }
 }
-function App_Conditional_149_Template(rf, ctx) {
+function App_Conditional_165_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 55);
+    \u0275\u0275elementStart(0, "div", 57);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
@@ -34111,14 +34108,14 @@ function App_Conditional_149_Template(rf, ctx) {
     \u0275\u0275textInterpolate(ctx_r2.customerError());
   }
 }
-function App_For_155_Template(rf, ctx) {
+function App_For_171_Template(rf, ctx) {
   if (rf & 1) {
-    const _r11 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "th", 58)(1, "button", 84);
-    \u0275\u0275listener("click", function App_For_155_Template_button_click_1_listener() {
-      const column_r12 = \u0275\u0275restoreView(_r11).$implicit;
+    const _r12 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "th", 60)(1, "button", 85);
+    \u0275\u0275listener("click", function App_For_171_Template_button_click_1_listener() {
+      const column_r13 = \u0275\u0275restoreView(_r12).$implicit;
       const ctx_r2 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r2.changeSort(column_r12[0]));
+      return \u0275\u0275resetView(ctx_r2.changeSort(column_r13[0]));
     });
     \u0275\u0275text(2);
     \u0275\u0275elementStart(3, "span", 5);
@@ -34126,91 +34123,93 @@ function App_For_155_Template(rf, ctx) {
     \u0275\u0275elementEnd()()();
   }
   if (rf & 2) {
-    const column_r12 = ctx.$implicit;
+    const column_r13 = ctx.$implicit;
     const ctx_r2 = \u0275\u0275nextContext();
-    \u0275\u0275attribute("aria-sort", ctx_r2.sort() === column_r12[0] ? ctx_r2.direction() === "asc" ? "ascending" : "descending" : "none");
+    \u0275\u0275attribute("aria-sort", ctx_r2.sort() === column_r13[0] ? ctx_r2.direction() === "asc" ? "ascending" : "descending" : "none");
     \u0275\u0275advance();
-    \u0275\u0275classProp("active-sort", ctx_r2.sort() === column_r12[0]);
-    \u0275\u0275attribute("aria-label", column_r12[1] + ": " + ctx_r2.sortLabel(column_r12[0]));
+    \u0275\u0275classProp("active-sort", ctx_r2.sort() === column_r13[0]);
+    \u0275\u0275attribute("aria-label", column_r13[1] + ": " + ctx_r2.sortLabel(column_r13[0]));
     \u0275\u0275advance();
-    \u0275\u0275textInterpolate1(" ", column_r12[1], " ");
+    \u0275\u0275textInterpolate1(" ", column_r13[1], " ");
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate1(" ", ctx_r2.sort() === column_r12[0] ? ctx_r2.direction() === "asc" ? "\u2191" : "\u2193" : "\u2195", " ");
+    \u0275\u0275textInterpolate1(" ", ctx_r2.sort() === column_r13[0] ? ctx_r2.direction() === "asc" ? "\u2191" : "\u2193" : "\u2195", " ");
   }
 }
-function App_Conditional_157_For_1_Template(rf, ctx) {
+function App_Conditional_173_For_1_Template(rf, ctx) {
   if (rf & 1) {
-    const _r13 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "tr", 86);
-    \u0275\u0275listener("click", function App_Conditional_157_For_1_Template_tr_click_0_listener() {
-      const customer_r14 = \u0275\u0275restoreView(_r13).$implicit;
+    const _r14 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "tr", 87);
+    \u0275\u0275listener("click", function App_Conditional_173_For_1_Template_tr_click_0_listener() {
+      const customer_r15 = \u0275\u0275restoreView(_r14).$implicit;
       const ctx_r2 = \u0275\u0275nextContext(2);
-      return \u0275\u0275resetView(ctx_r2.selectedId.set(customer_r14.customerId));
-    });
-    \u0275\u0275elementStart(1, "td", 87)(2, "button", 88);
-    \u0275\u0275listener("click", function App_Conditional_157_For_1_Template_button_click_2_listener($event) {
-      const customer_r14 = \u0275\u0275restoreView(_r13).$implicit;
+      return \u0275\u0275resetView(ctx_r2.selectedId.set(customer_r15.customerId));
+    })("keydown.enter", function App_Conditional_173_For_1_Template_tr_keydown_enter_0_listener() {
+      const customer_r15 = \u0275\u0275restoreView(_r14).$implicit;
       const ctx_r2 = \u0275\u0275nextContext(2);
-      $event.stopPropagation();
-      return \u0275\u0275resetView(ctx_r2.selectedId.set(customer_r14.customerId));
+      return \u0275\u0275resetView(ctx_r2.selectedId.set(customer_r15.customerId));
+    })("keydown.space", function App_Conditional_173_For_1_Template_tr_keydown_space_0_listener($event) {
+      const customer_r15 = \u0275\u0275restoreView(_r14).$implicit;
+      const ctx_r2 = \u0275\u0275nextContext(2);
+      $event.preventDefault();
+      return \u0275\u0275resetView(ctx_r2.selectedId.set(customer_r15.customerId));
     });
-    \u0275\u0275text(3);
-    \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(4, "td", 89);
-    \u0275\u0275text(5);
+    \u0275\u0275elementStart(1, "td", 88);
+    \u0275\u0275text(2);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(6, "td", 90);
-    \u0275\u0275text(7);
+    \u0275\u0275elementStart(3, "td", 89);
+    \u0275\u0275text(4);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(8, "td", 91);
-    \u0275\u0275text(9);
+    \u0275\u0275elementStart(5, "td", 90);
+    \u0275\u0275text(6);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(10, "td", 92)(11, "code");
-    \u0275\u0275text(12);
+    \u0275\u0275elementStart(7, "td", 91);
+    \u0275\u0275text(8);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(9, "td", 92)(10, "code");
+    \u0275\u0275text(11);
     \u0275\u0275elementEnd()()();
   }
   if (rf & 2) {
-    const customer_r14 = ctx.$implicit;
+    const customer_r15 = ctx.$implicit;
     const ctx_r2 = \u0275\u0275nextContext(2);
-    \u0275\u0275classProp("selected", ctx_r2.selectedId() === customer_r14.customerId);
+    \u0275\u0275classProp("selected", ctx_r2.selectedId() === customer_r15.customerId);
+    \u0275\u0275attribute("aria-selected", ctx_r2.selectedId() === customer_r15.customerId);
     \u0275\u0275advance(2);
-    \u0275\u0275attribute("aria-pressed", ctx_r2.selectedId() === customer_r14.customerId);
-    \u0275\u0275advance();
-    \u0275\u0275textInterpolate1(" ", customer_r14.companyName, " ");
+    \u0275\u0275textInterpolate1(" ", customer_r15.companyName, " ");
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(customer_r14.contactName || "\u2014");
+    \u0275\u0275textInterpolate(customer_r15.contactName || "\u2014");
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(customer_r14.city || "\u2014");
+    \u0275\u0275textInterpolate(customer_r15.city || "\u2014");
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(customer_r14.country || "\u2014");
+    \u0275\u0275textInterpolate(customer_r15.country || "\u2014");
     \u0275\u0275advance(3);
-    \u0275\u0275textInterpolate(customer_r14.customerId);
+    \u0275\u0275textInterpolate(customer_r15.customerId);
   }
 }
-function App_Conditional_157_Template(rf, ctx) {
+function App_Conditional_173_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275repeaterCreate(0, App_Conditional_157_For_1_Template, 13, 8, "tr", 85, _forTrack1);
+    \u0275\u0275repeaterCreate(0, App_Conditional_173_For_1_Template, 12, 8, "tr", 86, _forTrack1);
   }
   if (rf & 2) {
     const ctx_r2 = \u0275\u0275nextContext();
     \u0275\u0275repeater(ctx_r2.customers());
   }
 }
-function App_Conditional_158_Template(rf, ctx) {
+function App_Conditional_174_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 59);
+    \u0275\u0275elementStart(0, "div", 61);
     \u0275\u0275text(1, "Loading customers\u2026");
     \u0275\u0275elementEnd();
   }
 }
-function App_Conditional_159_Template(rf, ctx) {
+function App_Conditional_175_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 60);
+    \u0275\u0275elementStart(0, "div", 62);
     \u0275\u0275text(1, "No customers match these filters.");
     \u0275\u0275elementEnd();
   }
 }
-function App_Conditional_177_Template(rf, ctx) {
+function App_Conditional_189_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "code");
     \u0275\u0275text(1);
@@ -34222,23 +34221,23 @@ function App_Conditional_177_Template(rf, ctx) {
     \u0275\u0275textInterpolate(ctx_r2.selectedId());
   }
 }
-function App_Conditional_178_Template(rf, ctx) {
+function App_Conditional_190_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 67);
-    \u0275\u0275text(1, "Select a customer row to bind the detail controls.");
+    \u0275\u0275elementStart(0, "div", 68);
+    \u0275\u0275text(1, " Select a customer to bind its complete record and sales metrics. ");
     \u0275\u0275elementEnd();
   }
 }
-function App_Conditional_179_Template(rf, ctx) {
+function App_Conditional_191_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 68);
+    \u0275\u0275elementStart(0, "div", 69);
     \u0275\u0275text(1, "Loading customer\u2026");
     \u0275\u0275elementEnd();
   }
 }
-function App_Conditional_180_Template(rf, ctx) {
+function App_Conditional_192_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 69);
+    \u0275\u0275elementStart(0, "div", 70);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
@@ -34248,87 +34247,102 @@ function App_Conditional_180_Template(rf, ctx) {
     \u0275\u0275textInterpolate(ctx_r2.detailError());
   }
 }
-function App_Conditional_181_For_2_Template(rf, ctx) {
+function App_Conditional_193_Template(rf, ctx) {
   if (rf & 1) {
-    const _r16 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "dl", 71)(1, "div")(2, "dt");
+    \u0275\u0275text(3, "Orders");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(4, "dd");
+    \u0275\u0275text(5);
+    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(6, "div")(7, "dt");
+    \u0275\u0275text(8, "Total sales");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(9, "dd");
+    \u0275\u0275text(10);
+    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(11, "div")(12, "dt");
+    \u0275\u0275text(13, "Last order");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(14, "dd");
+    \u0275\u0275text(15);
+    \u0275\u0275elementEnd()()();
+  }
+  if (rf & 2) {
+    const metrics_r16 = ctx;
+    const ctx_r2 = \u0275\u0275nextContext();
+    \u0275\u0275advance(5);
+    \u0275\u0275textInterpolate(metrics_r16.orderCount);
+    \u0275\u0275advance(5);
+    \u0275\u0275textInterpolate(ctx_r2.formatSales(metrics_r16.totalSales));
+    \u0275\u0275advance(5);
+    \u0275\u0275textInterpolate(ctx_r2.formatDate(metrics_r16.lastOrderDate));
+  }
+}
+function App_Conditional_194_For_2_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r18 = \u0275\u0275getCurrentView();
     \u0275\u0275elementStart(0, "label")(1, "span");
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "input", 98);
-    \u0275\u0275listener("input", function App_Conditional_181_For_2_Template_input_input_3_listener($event) {
-      const field_r17 = \u0275\u0275restoreView(_r16).$implicit;
+    \u0275\u0275elementStart(3, "input", 97);
+    \u0275\u0275listener("input", function App_Conditional_194_For_2_Template_input_input_3_listener($event) {
+      const field_r19 = \u0275\u0275restoreView(_r18).$implicit;
       const ctx_r2 = \u0275\u0275nextContext(2);
-      return \u0275\u0275resetView(ctx_r2.updateCustomerDraft(field_r17[0], $event.target.value));
+      return \u0275\u0275resetView(ctx_r2.updateCustomerDraft(field_r19[0], $event.target.value));
     });
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
-    const field_r17 = ctx.$implicit;
-    const draft_r18 = \u0275\u0275nextContext();
+    const field_r19 = ctx.$implicit;
+    const draft_r20 = \u0275\u0275nextContext();
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(field_r17[1]);
+    \u0275\u0275textInterpolate(field_r19[1]);
     \u0275\u0275advance();
-    \u0275\u0275property("required", field_r17[0] === "companyName")("value", draft_r18[field_r17[0]] ?? "");
+    \u0275\u0275property("required", field_r19[0] === "companyName")("value", draft_r20[field_r19[0]] ?? "");
   }
 }
-function App_Conditional_181_Conditional_8_Template(rf, ctx) {
+function App_Conditional_194_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "span", 95);
-    \u0275\u0275text(1, "Unsaved fields");
-    \u0275\u0275elementEnd();
-  }
-}
-function App_Conditional_181_Template(rf, ctx) {
-  if (rf & 1) {
-    const _r15 = \u0275\u0275getCurrentView();
+    const _r17 = \u0275\u0275getCurrentView();
     \u0275\u0275elementStart(0, "form", 93);
-    \u0275\u0275listener("submit", function App_Conditional_181_Template_form_submit_0_listener($event) {
-      \u0275\u0275restoreView(_r15);
+    \u0275\u0275listener("submit", function App_Conditional_194_Template_form_submit_0_listener($event) {
+      \u0275\u0275restoreView(_r17);
       const ctx_r2 = \u0275\u0275nextContext();
       $event.preventDefault();
       return \u0275\u0275resetView(ctx_r2.saveSandboxCustomer());
     });
-    \u0275\u0275repeaterCreate(1, App_Conditional_181_For_2_Template, 4, 3, "label", null, _forTrack0);
-    \u0275\u0275elementStart(3, "div", 94)(4, "span");
-    \u0275\u0275text(5);
+    \u0275\u0275repeaterCreate(1, App_Conditional_194_For_2_Template, 4, 3, "label", null, _forTrack0);
+    \u0275\u0275elementStart(3, "p", 94);
+    \u0275\u0275text(4);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(6, "span");
-    \u0275\u0275text(7);
+    \u0275\u0275elementStart(5, "div", 95)(6, "button", 28);
+    \u0275\u0275text(7, " Save changes ");
     \u0275\u0275elementEnd();
-    \u0275\u0275conditionalCreate(8, App_Conditional_181_Conditional_8_Template, 2, 0, "span", 95);
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(9, "div", 96)(10, "button", 25);
-    \u0275\u0275text(11, " Save temporary changes ");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(12, "button", 97);
-    \u0275\u0275listener("click", function App_Conditional_181_Template_button_click_12_listener() {
-      \u0275\u0275restoreView(_r15);
+    \u0275\u0275elementStart(8, "button", 96);
+    \u0275\u0275listener("click", function App_Conditional_194_Template_button_click_8_listener() {
+      \u0275\u0275restoreView(_r17);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.discardCustomerDraft());
     });
-    \u0275\u0275text(13, " Discard fields ");
+    \u0275\u0275text(9, " Discard ");
     \u0275\u0275elementEnd()()();
   }
   if (rf & 2) {
-    const draft_r18 = ctx;
     const ctx_r2 = \u0275\u0275nextContext();
     \u0275\u0275advance();
     \u0275\u0275repeater(ctx_r2.editableFields);
-    \u0275\u0275advance(4);
-    \u0275\u0275textInterpolate1("", draft_r18.orderCount, " orders");
+    \u0275\u0275advance(3);
+    \u0275\u0275textInterpolate1(" ", ctx_r2.draftIsDirty() ? "Unsaved fields" : "No unsaved fields", " ");
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(ctx_r2.formatSales(draft_r18.totalSales));
-    \u0275\u0275advance();
-    \u0275\u0275conditional(ctx_r2.draftIsDirty() ? 8 : -1);
-    \u0275\u0275advance(2);
-    \u0275\u0275property("disabled", !ctx_r2.draftIsDirty() || !draft_r18.companyName.trim());
+    \u0275\u0275property("disabled", !ctx_r2.draftIsDirty() || !ctx.companyName.trim());
     \u0275\u0275advance(2);
     \u0275\u0275property("disabled", !ctx_r2.draftIsDirty());
   }
 }
-function App_Conditional_182_Template(rf, ctx) {
+function App_Conditional_195_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "dl", 71)(1, "div")(2, "dt");
+    \u0275\u0275elementStart(0, "dl", 73)(1, "div")(2, "dt");
     \u0275\u0275text(3, "Company");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(4, "dd");
@@ -34353,121 +34367,107 @@ function App_Conditional_182_Template(rf, ctx) {
     \u0275\u0275text(20);
     \u0275\u0275elementEnd()();
     \u0275\u0275elementStart(21, "div")(22, "dt");
-    \u0275\u0275text(23, "Location");
+    \u0275\u0275text(23, "City");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(24, "dd");
     \u0275\u0275text(25);
     \u0275\u0275elementEnd()();
     \u0275\u0275elementStart(26, "div")(27, "dt");
-    \u0275\u0275text(28, "Phone");
+    \u0275\u0275text(28, "Region");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(29, "dd");
     \u0275\u0275text(30);
     \u0275\u0275elementEnd()();
     \u0275\u0275elementStart(31, "div")(32, "dt");
-    \u0275\u0275text(33, "Fax");
+    \u0275\u0275text(33, "Postal code");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(34, "dd");
     \u0275\u0275text(35);
     \u0275\u0275elementEnd()();
     \u0275\u0275elementStart(36, "div")(37, "dt");
-    \u0275\u0275text(38, "Orders");
+    \u0275\u0275text(38, "Country");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(39, "dd");
     \u0275\u0275text(40);
     \u0275\u0275elementEnd()();
     \u0275\u0275elementStart(41, "div")(42, "dt");
-    \u0275\u0275text(43, "Total sales");
+    \u0275\u0275text(43, "Phone");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(44, "dd");
     \u0275\u0275text(45);
+    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(46, "div")(47, "dt");
+    \u0275\u0275text(48, "Fax");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(49, "dd");
+    \u0275\u0275text(50);
     \u0275\u0275elementEnd()()();
   }
   if (rf & 2) {
-    const detail_r19 = ctx;
-    const ctx_r2 = \u0275\u0275nextContext();
+    const detail_r21 = ctx;
     \u0275\u0275advance(5);
-    \u0275\u0275textInterpolate(detail_r19.companyName || "\u2014");
+    \u0275\u0275textInterpolate(detail_r21.companyName || "\u2014");
     \u0275\u0275advance(5);
-    \u0275\u0275textInterpolate(detail_r19.contactName || "\u2014");
+    \u0275\u0275textInterpolate(detail_r21.contactName || "\u2014");
     \u0275\u0275advance(5);
-    \u0275\u0275textInterpolate(detail_r19.contactTitle || "\u2014");
+    \u0275\u0275textInterpolate(detail_r21.contactTitle || "\u2014");
     \u0275\u0275advance(5);
-    \u0275\u0275textInterpolate(detail_r19.address || "\u2014");
+    \u0275\u0275textInterpolate(detail_r21.address || "\u2014");
     \u0275\u0275advance(5);
-    \u0275\u0275textInterpolate(ctx_r2.customerLocation(detail_r19) || "\u2014");
+    \u0275\u0275textInterpolate(detail_r21.city || "\u2014");
     \u0275\u0275advance(5);
-    \u0275\u0275textInterpolate(detail_r19.phone || "\u2014");
+    \u0275\u0275textInterpolate(detail_r21.region || "\u2014");
     \u0275\u0275advance(5);
-    \u0275\u0275textInterpolate(detail_r19.fax || "\u2014");
+    \u0275\u0275textInterpolate(detail_r21.postalCode || "\u2014");
     \u0275\u0275advance(5);
-    \u0275\u0275textInterpolate(detail_r19.orderCount);
+    \u0275\u0275textInterpolate(detail_r21.country || "\u2014");
     \u0275\u0275advance(5);
-    \u0275\u0275textInterpolate(ctx_r2.formatSales(detail_r19.totalSales));
+    \u0275\u0275textInterpolate(detail_r21.phone || "\u2014");
+    \u0275\u0275advance(5);
+    \u0275\u0275textInterpolate(detail_r21.fax || "\u2014");
   }
 }
-function App_Conditional_183_Template(rf, ctx) {
+function App_Conditional_200_Template(rf, ctx) {
   if (rf & 1) {
-    const _r20 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 72)(1, "span");
-    \u0275\u0275text(2);
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "button", 99);
-    \u0275\u0275listener("click", function App_Conditional_183_Template_button_click_3_listener() {
-      \u0275\u0275restoreView(_r20);
-      const ctx_r2 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r2.sandboxNotice.set(""));
-    });
-    \u0275\u0275text(4, " \xD7 ");
-    \u0275\u0275elementEnd()();
-  }
-  if (rf & 2) {
-    const ctx_r2 = \u0275\u0275nextContext();
-    \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(ctx_r2.sandboxNotice());
-  }
-}
-function App_Conditional_191_Template(rf, ctx) {
-  if (rf & 1) {
-    \u0275\u0275elementStart(0, "code");
+    \u0275\u0275elementStart(0, "span");
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
     const ctx_r2 = \u0275\u0275nextContext();
     \u0275\u0275advance();
-    \u0275\u0275textInterpolate1("Order ", ctx_r2.selectedOrderId());
+    \u0275\u0275textInterpolate1("", ctx_r2.orders().length, " orders");
   }
 }
-function App_Conditional_192_Template(rf, ctx) {
+function App_Conditional_201_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 67);
+    \u0275\u0275elementStart(0, "div", 68);
     \u0275\u0275text(1, "Select a customer to load their orders.");
     \u0275\u0275elementEnd();
   }
 }
-function App_Conditional_193_Conditional_4_Template(rf, ctx) {
+function App_Conditional_202_Conditional_2_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 68);
+    \u0275\u0275elementStart(0, "div", 69);
     \u0275\u0275text(1, "Loading orders\u2026");
     \u0275\u0275elementEnd();
   }
 }
-function App_Conditional_193_Conditional_5_Template(rf, ctx) {
+function App_Conditional_202_Conditional_3_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 67);
+    \u0275\u0275elementStart(0, "div", 68);
     \u0275\u0275text(1, "This customer has no orders.");
     \u0275\u0275elementEnd();
   }
 }
-function App_Conditional_193_Conditional_6_For_1_Template(rf, ctx) {
+function App_Conditional_202_Conditional_4_For_1_Template(rf, ctx) {
   if (rf & 1) {
-    const _r21 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "button", 84);
-    \u0275\u0275listener("click", function App_Conditional_193_Conditional_6_For_1_Template_button_click_0_listener() {
-      const order_r22 = \u0275\u0275restoreView(_r21).$implicit;
+    const _r22 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "button", 101);
+    \u0275\u0275listener("click", function App_Conditional_202_Conditional_4_For_1_Template_button_click_0_listener() {
+      const order_r23 = \u0275\u0275restoreView(_r22).$implicit;
       const ctx_r2 = \u0275\u0275nextContext(3);
-      return \u0275\u0275resetView(ctx_r2.selectedOrderId.set(order_r22.orderId));
+      return \u0275\u0275resetView(ctx_r2.selectedOrderId.set(order_r23.orderId));
     });
     \u0275\u0275elementStart(1, "span")(2, "strong");
     \u0275\u0275text(3);
@@ -34483,39 +34483,40 @@ function App_Conditional_193_Conditional_6_For_1_Template(rf, ctx) {
     \u0275\u0275elementEnd()()();
   }
   if (rf & 2) {
-    const order_r22 = ctx.$implicit;
+    const order_r23 = ctx.$implicit;
     const ctx_r2 = \u0275\u0275nextContext(3);
-    \u0275\u0275classProp("selected", ctx_r2.selectedOrderId() === order_r22.orderId);
-    \u0275\u0275attribute("aria-pressed", ctx_r2.selectedOrderId() === order_r22.orderId);
+    \u0275\u0275attribute("aria-pressed", ctx_r2.selectedOrderId() === order_r23.orderId);
     \u0275\u0275advance(3);
-    \u0275\u0275textInterpolate1("Order ", order_r22.orderId);
+    \u0275\u0275textInterpolate1("Order ", order_r23.orderId);
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(ctx_r2.formatDate(order_r22.orderDate));
+    \u0275\u0275textInterpolate(ctx_r2.formatDate(order_r23.orderDate));
     \u0275\u0275advance(3);
-    \u0275\u0275textInterpolate(ctx_r2.formatSales(order_r22.total));
-    \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(order_r22.status);
+    \u0275\u0275textInterpolate(ctx_r2.formatSales(order_r23.total));
+    \u0275\u0275advance();
+    \u0275\u0275classMap("order-status " + order_r23.status.toLowerCase());
+    \u0275\u0275advance();
+    \u0275\u0275textInterpolate(order_r23.status);
   }
 }
-function App_Conditional_193_Conditional_6_Template(rf, ctx) {
+function App_Conditional_202_Conditional_4_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275repeaterCreate(0, App_Conditional_193_Conditional_6_For_1_Template, 11, 7, "button", 102, _forTrack2);
+    \u0275\u0275repeaterCreate(0, App_Conditional_202_Conditional_4_For_1_Template, 11, 7, "button", 100, _forTrack2);
   }
   if (rf & 2) {
     const ctx_r2 = \u0275\u0275nextContext(2);
     \u0275\u0275repeater(ctx_r2.orders());
   }
 }
-function App_Conditional_193_Conditional_10_Template(rf, ctx) {
+function App_Conditional_202_Conditional_6_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 68);
+    \u0275\u0275elementStart(0, "div", 69);
     \u0275\u0275text(1, "Loading order\u2026");
     \u0275\u0275elementEnd();
   }
 }
-function App_Conditional_193_Conditional_11_Template(rf, ctx) {
+function App_Conditional_202_Conditional_7_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 69);
+    \u0275\u0275elementStart(0, "div", 70);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
@@ -34525,7 +34526,7 @@ function App_Conditional_193_Conditional_11_Template(rf, ctx) {
     \u0275\u0275textInterpolate(ctx_r2.orderError());
   }
 }
-function App_Conditional_193_Conditional_12_For_37_Template(rf, ctx) {
+function App_Conditional_202_Conditional_8_For_39_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "tr")(1, "td");
     \u0275\u0275text(2);
@@ -34541,113 +34542,116 @@ function App_Conditional_193_Conditional_12_For_37_Template(rf, ctx) {
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
-    const item_r23 = ctx.$implicit;
+    const item_r24 = ctx.$implicit;
     const ctx_r2 = \u0275\u0275nextContext(3);
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(item_r23.productName);
+    \u0275\u0275textInterpolate(item_r24.productName);
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(item_r23.quantity);
+    \u0275\u0275textInterpolate(item_r24.quantity);
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(ctx_r2.formatSales(item_r23.unitPrice));
+    \u0275\u0275textInterpolate(ctx_r2.formatSales(item_r24.unitPrice));
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(ctx_r2.formatSales(item_r23.extendedPrice));
+    \u0275\u0275textInterpolate(ctx_r2.formatSales(item_r24.extendedPrice));
   }
 }
-function App_Conditional_193_Conditional_12_Template(rf, ctx) {
+function App_Conditional_202_Conditional_8_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "dl", 103)(1, "div")(2, "dt");
-    \u0275\u0275text(3, "Employee");
+    \u0275\u0275elementStart(0, "div", 102)(1, "p", 103);
+    \u0275\u0275text(2);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(4, "dd");
-    \u0275\u0275text(5);
+    \u0275\u0275elementStart(3, "h4");
+    \u0275\u0275text(4);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(5, "p");
+    \u0275\u0275text(6);
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(6, "div")(7, "dt");
-    \u0275\u0275text(8, "Shipper");
+    \u0275\u0275elementStart(7, "dl", 104)(8, "div")(9, "dt");
+    \u0275\u0275text(10, "Employee");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(9, "dd");
-    \u0275\u0275text(10);
+    \u0275\u0275elementStart(11, "dd");
+    \u0275\u0275text(12);
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(11, "div")(12, "dt");
-    \u0275\u0275text(13, "Status");
+    \u0275\u0275elementStart(13, "div")(14, "dt");
+    \u0275\u0275text(15, "Shipper");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(14, "dd");
-    \u0275\u0275text(15);
+    \u0275\u0275elementStart(16, "dd");
+    \u0275\u0275text(17);
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(16, "div")(17, "dt");
-    \u0275\u0275text(18, "Destination");
+    \u0275\u0275elementStart(18, "div")(19, "dt");
+    \u0275\u0275text(20, "Destination");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(19, "dd");
-    \u0275\u0275text(20);
+    \u0275\u0275elementStart(21, "dd");
+    \u0275\u0275text(22);
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(21, "div", 104)(22, "table", 105)(23, "caption");
-    \u0275\u0275text(24, " Order line items ");
+    \u0275\u0275elementStart(23, "div", 105)(24, "table", 106)(25, "caption", 107);
+    \u0275\u0275text(26, "Order line items");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(25, "thead")(26, "tr")(27, "th", 58);
-    \u0275\u0275text(28, "Product");
+    \u0275\u0275elementStart(27, "thead")(28, "tr")(29, "th", 60);
+    \u0275\u0275text(30, "Product");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(29, "th", 58);
-    \u0275\u0275text(30, "Qty.");
+    \u0275\u0275elementStart(31, "th", 60);
+    \u0275\u0275text(32, "Qty.");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(31, "th", 58);
-    \u0275\u0275text(32, "Price");
+    \u0275\u0275elementStart(33, "th", 60);
+    \u0275\u0275text(34, "Price");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(33, "th", 58);
-    \u0275\u0275text(34, "Total");
+    \u0275\u0275elementStart(35, "th", 60);
+    \u0275\u0275text(36, "Total");
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(35, "tbody");
-    \u0275\u0275repeaterCreate(36, App_Conditional_193_Conditional_12_For_37_Template, 9, 4, "tr", null, _forTrack3);
+    \u0275\u0275elementStart(37, "tbody");
+    \u0275\u0275repeaterCreate(38, App_Conditional_202_Conditional_8_For_39_Template, 9, 4, "tr", null, _forTrack3);
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(38, "dl", 106)(39, "div")(40, "dt");
-    \u0275\u0275text(41, "Subtotal");
+    \u0275\u0275elementStart(40, "dl", 108)(41, "div")(42, "dt");
+    \u0275\u0275text(43, "Subtotal");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(42, "dd");
-    \u0275\u0275text(43);
+    \u0275\u0275elementStart(44, "dd");
+    \u0275\u0275text(45);
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(44, "div")(45, "dt");
-    \u0275\u0275text(46, "Freight");
+    \u0275\u0275elementStart(46, "div")(47, "dt");
+    \u0275\u0275text(48, "Freight");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(47, "dd");
-    \u0275\u0275text(48);
+    \u0275\u0275elementStart(49, "dd");
+    \u0275\u0275text(50);
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(49, "div")(50, "dt");
-    \u0275\u0275text(51, "Total");
+    \u0275\u0275elementStart(51, "div")(52, "dt");
+    \u0275\u0275text(53, "Total");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(52, "dd");
-    \u0275\u0275text(53);
+    \u0275\u0275elementStart(54, "dd");
+    \u0275\u0275text(55);
     \u0275\u0275elementEnd()()();
   }
   if (rf & 2) {
-    const detail_r24 = ctx;
+    const detail_r25 = ctx;
     const ctx_r2 = \u0275\u0275nextContext(2);
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate1("Order ", detail_r25.orderId);
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate(detail_r25.status);
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate(ctx_r2.formatDate(detail_r25.orderDate));
+    \u0275\u0275advance(6);
+    \u0275\u0275textInterpolate(detail_r25.employeeName || "\u2014");
     \u0275\u0275advance(5);
-    \u0275\u0275textInterpolate(detail_r24.employeeName || "\u2014");
+    \u0275\u0275textInterpolate(detail_r25.shipperName || "\u2014");
     \u0275\u0275advance(5);
-    \u0275\u0275textInterpolate(detail_r24.shipperName || "\u2014");
-    \u0275\u0275advance(5);
-    \u0275\u0275textInterpolate(detail_r24.status);
-    \u0275\u0275advance(5);
-    \u0275\u0275textInterpolate(ctx_r2.destination(detail_r24));
+    \u0275\u0275textInterpolate(ctx_r2.destination(detail_r25));
     \u0275\u0275advance(16);
-    \u0275\u0275repeater(detail_r24.items);
+    \u0275\u0275repeater(detail_r25.items);
     \u0275\u0275advance(7);
-    \u0275\u0275textInterpolate(ctx_r2.formatSales(detail_r24.subtotal));
+    \u0275\u0275textInterpolate(ctx_r2.formatSales(detail_r25.subtotal));
     \u0275\u0275advance(5);
-    \u0275\u0275textInterpolate(ctx_r2.formatSales(detail_r24.freight));
+    \u0275\u0275textInterpolate(ctx_r2.formatSales(detail_r25.freight));
     \u0275\u0275advance(5);
-    \u0275\u0275textInterpolate(ctx_r2.formatSales(detail_r24.total));
+    \u0275\u0275textInterpolate(ctx_r2.formatSales(detail_r25.total));
   }
 }
-function App_Conditional_193_Template(rf, ctx) {
+function App_Conditional_202_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 75)(1, "div", 100)(2, "h4");
-    \u0275\u0275text(3, "Customer orders");
+    \u0275\u0275elementStart(0, "div", 76)(1, "div", 98);
+    \u0275\u0275conditionalCreate(2, App_Conditional_202_Conditional_2_Template, 2, 0, "div", 69)(3, App_Conditional_202_Conditional_3_Template, 2, 0, "div", 68)(4, App_Conditional_202_Conditional_4_Template, 2, 0);
     \u0275\u0275elementEnd();
-    \u0275\u0275conditionalCreate(4, App_Conditional_193_Conditional_4_Template, 2, 0, "div", 68)(5, App_Conditional_193_Conditional_5_Template, 2, 0, "div", 67)(6, App_Conditional_193_Conditional_6_Template, 2, 0);
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(7, "div", 101)(8, "h4");
-    \u0275\u0275text(9, "Order detail");
-    \u0275\u0275elementEnd();
-    \u0275\u0275conditionalCreate(10, App_Conditional_193_Conditional_10_Template, 2, 0, "div", 68)(11, App_Conditional_193_Conditional_11_Template, 2, 1, "div", 69)(12, App_Conditional_193_Conditional_12_Template, 54, 7);
+    \u0275\u0275elementStart(5, "div", 99);
+    \u0275\u0275conditionalCreate(6, App_Conditional_202_Conditional_6_Template, 2, 0, "div", 69)(7, App_Conditional_202_Conditional_7_Template, 2, 1, "div", 70)(8, App_Conditional_202_Conditional_8_Template, 56, 9);
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
@@ -34655,12 +34659,12 @@ function App_Conditional_193_Template(rf, ctx) {
     const ctx_r2 = \u0275\u0275nextContext();
     \u0275\u0275advance();
     \u0275\u0275attribute("aria-busy", ctx_r2.ordersLoading());
-    \u0275\u0275advance(3);
-    \u0275\u0275conditional(ctx_r2.ordersLoading() ? 4 : ctx_r2.orders().length === 0 ? 5 : 6);
+    \u0275\u0275advance();
+    \u0275\u0275conditional(ctx_r2.ordersLoading() ? 2 : ctx_r2.orders().length === 0 ? 3 : 4);
     \u0275\u0275advance(3);
     \u0275\u0275attribute("aria-busy", ctx_r2.orderLoading());
-    \u0275\u0275advance(3);
-    \u0275\u0275conditional(ctx_r2.orderLoading() ? 10 : ctx_r2.orderError() ? 11 : (tmp_5_0 = ctx_r2.orderDetail()) ? 12 : -1, tmp_5_0);
+    \u0275\u0275advance();
+    \u0275\u0275conditional(ctx_r2.orderLoading() ? 6 : ctx_r2.orderError() ? 7 : (tmp_5_0 = ctx_r2.orderDetail()) ? 8 : -1, tmp_5_0);
   }
 }
 var customerColumns = [
@@ -35148,7 +35152,7 @@ var App = class _App {
         return ctx.warnBeforeUnload($event);
       }, \u0275\u0275resolveWindow);
     }
-  }, decls: 205, vars: 38, consts: [["profileDialog", ""], [1, "showcase"], [1, "showcase-header"], [1, "eyebrow"], ["aria-label", "Built with Angular", 1, "framework-badge"], ["aria-hidden", "true"], ["aria-label", "Angular showcase sections", 1, "showcase-nav"], ["href", "#angular-controls"], ["href", "#angular-northwind"], ["id", "angular-controls", "aria-labelledby", "controls-heading", 1, "controls-section"], [1, "section-heading"], ["id", "controls-heading"], [1, "control-layout"], [1, "control-card", "form-card", 3, "ngSubmit", "formGroup"], [1, "field-grid"], ["formControlName", "name"], ["type", "email", "formControlName", "email", "aria-describedby", "email-help"], ["id", "email-help"], ["type", "number", "min", "1", "max", "20", "formControlName", "seats"], ["type", "date", "formControlName", "startDate"], [1, "field-span"], ["formControlName", "role"], [1, "choice-row"], [1, "choice"], [1, "form-actions"], ["type", "submit", 1, "primary-button", 3, "disabled"], ["type", "button", 1, "secondary-button", 3, "click"], ["type", "button", "disabled", "", 1, "secondary-button"], [1, "control-stack"], [1, "control-card"], [1, "switch-row"], ["type", "checkbox", "role", "switch", 1, "switch", 3, "change", "checked"], [1, "range-field"], ["type", "range", "min", "0", "max", "100", 3, "input", "value"], ["max", "100", 3, "value"], ["role", "tablist", "aria-label", "Profile views", 1, "tabs"], ["type", "button", "role", "tab", 3, "id"], ["id", "profile-summary-panel", "role", "tabpanel", "aria-labelledby", "profile-summary-tab", "tabindex", "0", 1, "tab-panel"], ["id", "profile-settings-panel", "role", "tabpanel", "aria-labelledby", "profile-settings-tab", "tabindex", "0", 1, "tab-panel"], ["role", "status", "aria-live", "polite", 1, "notification"], ["id", "angular-northwind", "aria-labelledby", "data-heading", 1, "data-section"], ["id", "data-heading"], [1, "sandbox-toolbar"], [1, "sandbox-toggle"], ["type", "checkbox", "role", "switch", 3, "change", "checked"], ["type", "button", 1, "secondary-button"], [1, "sandbox-banner"], ["aria-labelledby", "customers-heading", 1, "grid-card"], [1, "grid-heading"], ["id", "customers-heading"], [1, "filters"], ["type", "search", "placeholder", "Company or contact", 3, "input", "value"], [3, "change", "value"], ["value", ""], [3, "value"], ["role", "alert", 1, "status", "error"], [1, "table-wrap"], ["aria-label", "Northwind customers"], ["scope", "col"], ["role", "status", "aria-live", "polite", 1, "status"], [1, "status"], [1, "grid-footer"], [1, "pagination"], ["type", "button", 3, "click", "disabled"], ["aria-labelledby", "detail-heading", 1, "detail-card"], [1, "detail-heading"], ["id", "detail-heading"], [1, "detail-status"], ["role", "status", "aria-live", "polite", 1, "detail-status"], ["role", "alert", 1, "detail-status", "error"], [1, "detail-form"], [1, "customer-detail"], ["role", "status", "aria-live", "polite", 1, "notification", "detail-notice"], ["aria-labelledby", "orders-heading", 1, "orders-card"], ["id", "orders-heading"], [1, "orders-layout"], ["method", "dialog"], [1, "primary-button"], ["type", "checkbox", 3, "change", "checked"], ["type", "radio", "name", "contact-method", 3, "change", "value", "checked"], ["type", "button", "role", "tab", 3, "click", "keydown", "id"], [1, "summary-list"], ["type", "button", "aria-label", "Dismiss notification", 3, "click"], [1, "sandbox-status"], ["type", "button", 3, "click"], [3, "selected"], [3, "click"], ["data-label", "Company"], ["type", "button", 1, "row-select", 3, "click"], ["data-label", "Contact"], ["data-label", "City"], ["data-label", "Country"], ["data-label", "ID"], [1, "detail-form", 3, "submit"], [1, "detail-metrics"], [1, "unsaved-indicator"], [1, "detail-actions"], ["type", "button", 1, "secondary-button", 3, "click", "disabled"], [3, "input", "required", "value"], ["type", "button", "aria-label", "Dismiss sandbox notification", 3, "click"], [1, "order-list"], [1, "order-detail"], ["type", "button", 3, "selected"], [1, "order-summary"], [1, "line-items-wrap"], [1, "line-items"], [1, "order-totals"]], template: function App_Template(rf, ctx) {
+  }, decls: 214, vars: 40, consts: [["profileDialog", ""], [1, "showcase"], [1, "showcase-header"], [1, "eyebrow"], ["aria-label", "Built with Angular", 1, "framework-badge"], ["aria-hidden", "true"], ["aria-label", "Angular showcase sections", 1, "showcase-nav"], ["href", "#angular-controls"], ["href", "#angular-northwind"], ["id", "angular-controls", "aria-labelledby", "controls-heading", 1, "controls-section"], [1, "section-heading"], ["id", "controls-heading"], [1, "control-layout"], ["aria-labelledby", "profile-heading", 1, "control-card", "form-card", 3, "ngSubmit", "formGroup"], [1, "card-heading"], ["id", "profile-heading"], [1, "profile-fields"], [1, "field-span"], ["formControlName", "name"], ["type", "email", "formControlName", "email", "aria-describedby", "email-help"], ["id", "email-help"], [1, "field-pair", "field-span"], ["type", "number", "min", "1", "max", "20", "formControlName", "seats"], ["type", "date", "formControlName", "startDate"], ["formControlName", "role"], [1, "choice-row"], [1, "choice"], [1, "form-actions"], ["type", "submit", 1, "primary-button", 3, "disabled"], ["type", "button", 1, "secondary-button", 3, "click"], ["type", "button", "disabled", "", 1, "secondary-button"], [1, "control-stack"], [1, "control-card"], [1, "switch-row"], ["type", "checkbox", "role", "switch", 1, "switch", 3, "change", "checked"], [1, "range-field"], ["type", "range", "min", "0", "max", "100", 3, "input", "value"], ["max", "100", 3, "value"], ["role", "tablist", "aria-label", "Profile views", 1, "tabs"], ["type", "button", "role", "tab", 3, "id"], ["id", "profile-summary-panel", "role", "tabpanel", "aria-labelledby", "profile-summary-tab", "tabindex", "0", 1, "tab-panel"], ["id", "profile-settings-panel", "role", "tabpanel", "aria-labelledby", "profile-settings-tab", "tabindex", "0", 1, "tab-panel"], ["role", "status", "aria-live", "polite", 1, "notification"], ["id", "angular-northwind", "aria-labelledby", "data-heading", 1, "data-section"], ["id", "data-heading"], ["aria-labelledby", "sandbox-heading", 1, "sandbox-panel"], ["id", "sandbox-heading"], ["type", "checkbox", "role", "switch", "aria-label", "Editing sandbox", 1, "switch", 3, "change", "checked"], ["type", "button", 1, "secondary-button"], ["aria-labelledby", "customers-heading", 1, "data-card", "grid-card"], [1, "data-heading"], ["id", "customers-heading"], [1, "filter-grid", "filters"], ["type", "search", "placeholder", "Company or contact", 3, "input", "value"], [3, "change", "value"], ["value", ""], [3, "value"], ["role", "alert", 1, "status", "error"], [1, "table-wrap"], ["aria-label", "Northwind customers"], ["scope", "col"], ["role", "status", "aria-live", "polite", 1, "status"], [1, "status"], ["aria-label", "Customer pages", 1, "pagination"], ["type", "button", 3, "click", "disabled"], ["aria-live", "polite", 1, "selection-status"], ["aria-labelledby", "detail-heading", 1, "data-card", "detail-card"], ["id", "detail-heading"], [1, "detail-status"], ["role", "status", "aria-live", "polite", 1, "detail-status"], ["role", "alert", 1, "detail-status", "error"], ["aria-label", "Customer sales metrics", 1, "metric-grid"], [1, "detail-form"], [1, "detail-grid", "customer-detail"], ["aria-labelledby", "orders-heading", 1, "data-card", "orders-card"], ["id", "orders-heading"], [1, "order-workspace", "orders-layout"], ["method", "dialog"], [1, "primary-button"], ["type", "checkbox", 3, "change", "checked"], ["type", "radio", "name", "contact-method", 3, "change", "value", "checked"], ["type", "button", "role", "tab", 3, "click", "keydown", "id"], [1, "summary-list"], ["type", "button", "aria-label", "Dismiss notification", 3, "click"], ["type", "button", "aria-label", "Dismiss sandbox notification", 3, "click"], ["type", "button", 3, "click"], ["tabindex", "0", 3, "selected"], ["tabindex", "0", 3, "click", "keydown.enter", "keydown.space"], ["data-label", "Company"], ["data-label", "Contact"], ["data-label", "City"], ["data-label", "Country"], ["data-label", "ID"], [1, "detail-form", 3, "submit"], ["aria-live", "polite", 1, "dirty-status"], [1, "detail-actions"], ["type", "button", 1, "secondary-button", 3, "click", "disabled"], [3, "input", "required", "value"], ["aria-label", "Customer orders", 1, "order-list"], ["aria-live", "polite", 1, "order-detail"], ["type", "button", 1, "order-card"], ["type", "button", 1, "order-card", 3, "click"], [1, "order-detail-heading"], [1, "card-kicker"], [1, "order-summary"], [1, "line-items-wrap"], [1, "line-items"], [1, "visually-hidden"], [1, "order-totals"]], template: function App_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "div", 1)(1, "header", 2)(2, "div")(3, "span", 3);
       \u0275\u0275text(4, "Frontend Lab");
@@ -35157,7 +35161,7 @@ var App = class _App {
       \u0275\u0275text(6, "Angular showcase");
       \u0275\u0275elementEnd();
       \u0275\u0275elementStart(7, "p");
-      \u0275\u0275text(8, " Interactive UI patterns and data binding implemented with Angular reactive forms, signals, templates, and accessible native controls. ");
+      \u0275\u0275text(8, " Interactive UI patterns, form controls, and API-backed data binding built with accessible native controls. ");
       \u0275\u0275elementEnd()();
       \u0275\u0275elementStart(9, "div", 4)(10, "span", 5);
       \u0275\u0275text(11, "A");
@@ -35172,244 +35176,255 @@ var App = class _App {
       \u0275\u0275text(18, "Northwind data binding");
       \u0275\u0275elementEnd()();
       \u0275\u0275elementStart(19, "section", 9)(20, "div", 10)(21, "div")(22, "span", 3);
-      \u0275\u0275text(23, "Reactive forms and signals");
+      \u0275\u0275text(23, "Reactive UI state");
       \u0275\u0275elementEnd();
       \u0275\u0275elementStart(24, "h2", 11);
       \u0275\u0275text(25, "Control gallery");
       \u0275\u0275elementEnd()();
       \u0275\u0275elementStart(26, "p");
-      \u0275\u0275text(27, " Every value below is bound through Angular and immediately reflected in the live summary. ");
+      \u0275\u0275text(27, " Every value below is bound to framework state and immediately reflected in the live summary. ");
       \u0275\u0275elementEnd()();
       \u0275\u0275elementStart(28, "div", 12)(29, "form", 13);
       \u0275\u0275listener("ngSubmit", function App_Template_form_ngSubmit_29_listener() {
         return ctx.validateProfile();
       });
-      \u0275\u0275elementStart(30, "h3");
-      \u0275\u0275text(31, "Profile inputs");
-      \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(32, "div", 14)(33, "label")(34, "span");
-      \u0275\u0275text(35, "Name");
-      \u0275\u0275elementEnd();
-      \u0275\u0275element(36, "input", 15);
-      \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(37, "label")(38, "span");
-      \u0275\u0275text(39, "Email");
-      \u0275\u0275elementEnd();
-      \u0275\u0275element(40, "input", 16);
-      \u0275\u0275elementStart(41, "small", 17);
-      \u0275\u0275conditionalCreate(42, App_Conditional_42_Template, 1, 0)(43, App_Conditional_43_Template, 1, 0);
+      \u0275\u0275elementStart(30, "div", 14)(31, "h3", 15);
+      \u0275\u0275text(32, "Profile inputs");
       \u0275\u0275elementEnd()();
-      \u0275\u0275elementStart(44, "label")(45, "span");
-      \u0275\u0275text(46, "Seats");
+      \u0275\u0275elementStart(33, "div", 16)(34, "label", 17)(35, "span");
+      \u0275\u0275text(36, "Name");
       \u0275\u0275elementEnd();
-      \u0275\u0275element(47, "input", 18);
+      \u0275\u0275element(37, "input", 18);
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(48, "label")(49, "span");
-      \u0275\u0275text(50, "Start date");
+      \u0275\u0275elementStart(38, "label", 17)(39, "span");
+      \u0275\u0275text(40, "Email");
       \u0275\u0275elementEnd();
-      \u0275\u0275element(51, "input", 19);
+      \u0275\u0275element(41, "input", 19);
+      \u0275\u0275elementStart(42, "small", 20);
+      \u0275\u0275conditionalCreate(43, App_Conditional_43_Template, 1, 0)(44, App_Conditional_44_Template, 1, 0);
+      \u0275\u0275elementEnd()();
+      \u0275\u0275elementStart(45, "div", 21)(46, "label")(47, "span");
+      \u0275\u0275text(48, "Seats");
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(52, "label", 20)(53, "span");
-      \u0275\u0275text(54, "Role");
+      \u0275\u0275element(49, "input", 22);
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(55, "select", 21)(56, "option");
-      \u0275\u0275text(57, "Developer");
+      \u0275\u0275elementStart(50, "label")(51, "span");
+      \u0275\u0275text(52, "Start date");
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(58, "option");
-      \u0275\u0275text(59, "Designer");
+      \u0275\u0275element(53, "input", 23);
+      \u0275\u0275elementEnd()();
+      \u0275\u0275elementStart(54, "label", 17)(55, "span");
+      \u0275\u0275text(56, "Role");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(57, "select", 24)(58, "option");
+      \u0275\u0275text(59, "Developer");
       \u0275\u0275elementEnd();
       \u0275\u0275elementStart(60, "option");
-      \u0275\u0275text(61, "Analyst");
+      \u0275\u0275text(61, "Designer");
       \u0275\u0275elementEnd();
       \u0275\u0275elementStart(62, "option");
-      \u0275\u0275text(63, "Manager");
+      \u0275\u0275text(63, "Analyst");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(64, "option");
+      \u0275\u0275text(65, "Manager");
       \u0275\u0275elementEnd()()()();
-      \u0275\u0275elementStart(64, "fieldset")(65, "legend");
-      \u0275\u0275text(66, "Interests");
+      \u0275\u0275elementStart(66, "fieldset")(67, "legend");
+      \u0275\u0275text(68, "Interests");
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(67, "div", 22);
-      \u0275\u0275repeaterCreate(68, App_For_69_Template, 4, 2, "label", 23, \u0275\u0275repeaterTrackByIdentity);
+      \u0275\u0275elementStart(69, "div", 25);
+      \u0275\u0275repeaterCreate(70, App_For_71_Template, 4, 2, "label", 26, \u0275\u0275repeaterTrackByIdentity);
       \u0275\u0275elementEnd()();
-      \u0275\u0275elementStart(70, "fieldset")(71, "legend");
-      \u0275\u0275text(72, "Preferred contact");
+      \u0275\u0275elementStart(72, "fieldset")(73, "legend");
+      \u0275\u0275text(74, "Preferred contact");
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(73, "div", 22);
-      \u0275\u0275repeaterCreate(74, App_For_75_Template, 4, 3, "label", 23, \u0275\u0275repeaterTrackByIdentity);
+      \u0275\u0275elementStart(75, "div", 25);
+      \u0275\u0275repeaterCreate(76, App_For_77_Template, 4, 3, "label", 26, \u0275\u0275repeaterTrackByIdentity);
       \u0275\u0275elementEnd()();
-      \u0275\u0275elementStart(76, "div", 24)(77, "button", 25);
-      \u0275\u0275text(78, " Validate profile ");
+      \u0275\u0275elementStart(78, "div", 27)(79, "button", 28);
+      \u0275\u0275text(80, " Validate profile ");
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(79, "button", 26);
-      \u0275\u0275listener("click", function App_Template_button_click_79_listener() {
+      \u0275\u0275elementStart(81, "button", 29);
+      \u0275\u0275listener("click", function App_Template_button_click_81_listener() {
         return ctx.openDialog();
       });
-      \u0275\u0275text(80, "Open dialog");
+      \u0275\u0275text(82, "Open dialog");
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(81, "button", 27);
-      \u0275\u0275text(82, "Disabled");
+      \u0275\u0275elementStart(83, "button", 30);
+      \u0275\u0275text(84, "Disabled");
       \u0275\u0275elementEnd()()();
-      \u0275\u0275elementStart(83, "div", 28)(84, "section", 29)(85, "h3");
-      \u0275\u0275text(86, "Preferences and progress");
-      \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(87, "label", 30)(88, "span")(89, "strong");
-      \u0275\u0275text(90, "Notifications");
-      \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(91, "small");
-      \u0275\u0275text(92, "Enable status updates");
+      \u0275\u0275elementStart(85, "div", 31)(86, "article", 32)(87, "div", 14)(88, "h3");
+      \u0275\u0275text(89, "Preferences and progress");
       \u0275\u0275elementEnd()();
-      \u0275\u0275elementStart(93, "input", 31);
-      \u0275\u0275listener("change", function App_Template_input_change_93_listener($event) {
+      \u0275\u0275elementStart(90, "label", 33)(91, "span")(92, "strong");
+      \u0275\u0275text(93, "Notifications");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(94, "small");
+      \u0275\u0275text(95, "Enable status updates");
+      \u0275\u0275elementEnd()();
+      \u0275\u0275elementStart(96, "input", 34);
+      \u0275\u0275listener("change", function App_Template_input_change_96_listener($event) {
         return ctx.notificationsEnabled.set($event.target.checked);
       });
       \u0275\u0275elementEnd()();
-      \u0275\u0275elementStart(94, "label", 32)(95, "span");
-      \u0275\u0275text(96, " Confidence ");
-      \u0275\u0275elementStart(97, "strong");
-      \u0275\u0275text(98);
+      \u0275\u0275elementStart(97, "label", 35)(98, "span");
+      \u0275\u0275text(99, " Confidence ");
+      \u0275\u0275elementStart(100, "strong");
+      \u0275\u0275text(101);
       \u0275\u0275elementEnd()();
-      \u0275\u0275elementStart(99, "input", 33);
-      \u0275\u0275listener("input", function App_Template_input_input_99_listener($event) {
+      \u0275\u0275elementStart(102, "input", 36);
+      \u0275\u0275listener("input", function App_Template_input_input_102_listener($event) {
         return ctx.confidence.set(+$event.target.value);
       });
       \u0275\u0275elementEnd()();
-      \u0275\u0275element(100, "progress", 34);
+      \u0275\u0275element(103, "progress", 37);
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(101, "section", 29)(102, "div", 35);
-      \u0275\u0275repeaterCreate(103, App_For_104_Template, 2, 4, "button", 36, \u0275\u0275repeaterTrackByIdentity);
+      \u0275\u0275elementStart(104, "article", 32)(105, "div", 14)(106, "h3");
+      \u0275\u0275text(107, "Bound state");
+      \u0275\u0275elementEnd()();
+      \u0275\u0275elementStart(108, "div", 38);
+      \u0275\u0275repeaterCreate(109, App_For_110_Template, 2, 4, "button", 39, \u0275\u0275repeaterTrackByIdentity);
       \u0275\u0275elementEnd();
-      \u0275\u0275conditionalCreate(105, App_Conditional_105_Template, 24, 5, "div", 37)(106, App_Conditional_106_Template, 8, 2, "div", 38);
-      \u0275\u0275elementStart(107, "details")(108, "summary");
-      \u0275\u0275text(109, "Implementation note");
+      \u0275\u0275conditionalCreate(111, App_Conditional_111_Template, 24, 5, "div", 40)(112, App_Conditional_112_Template, 8, 2, "div", 41);
+      \u0275\u0275elementStart(113, "details")(114, "summary");
+      \u0275\u0275text(115, "Implementation note");
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(110, "p");
-      \u0275\u0275text(111, " Native controls preserve keyboard behavior while Angular binds each value and derives this summary. ");
+      \u0275\u0275elementStart(116, "p");
+      \u0275\u0275text(117, " Native controls preserve keyboard behavior while framework state derives this summary. ");
       \u0275\u0275elementEnd()()()()();
-      \u0275\u0275conditionalCreate(112, App_Conditional_112_Template, 5, 1, "div", 39);
+      \u0275\u0275conditionalCreate(118, App_Conditional_118_Template, 5, 1, "div", 42);
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(113, "section", 40)(114, "div", 10)(115, "div")(116, "span", 3);
-      \u0275\u0275text(117, "API-backed state");
+      \u0275\u0275elementStart(119, "section", 43)(120, "div", 10)(121, "div")(122, "span", 3);
+      \u0275\u0275text(123, "API-backed state");
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(118, "h2", 41);
-      \u0275\u0275text(119, "Northwind data binding");
+      \u0275\u0275elementStart(124, "h2", 44);
+      \u0275\u0275text(125, "Northwind data binding");
       \u0275\u0275elementEnd()();
-      \u0275\u0275elementStart(120, "div", 42)(121, "p");
-      \u0275\u0275text(122, "Server-driven filtering, sorting, paging, and selection against the Northwind API.");
-      \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(123, "label", 43)(124, "input", 44);
-      \u0275\u0275listener("change", function App_Template_input_change_124_listener($event) {
-        return ctx.toggleSandbox($event.target.checked);
-      });
-      \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(125, "span");
-      \u0275\u0275text(126, "Editing sandbox");
+      \u0275\u0275elementStart(126, "p");
+      \u0275\u0275text(127, "Server-driven filtering, sorting, paging, and selection against the Northwind API.");
       \u0275\u0275elementEnd()();
-      \u0275\u0275conditionalCreate(127, App_Conditional_127_Template, 2, 0, "button", 45);
-      \u0275\u0275elementEnd()();
-      \u0275\u0275conditionalCreate(128, App_Conditional_128_Template, 10, 4, "div", 46);
-      \u0275\u0275elementStart(129, "section", 47)(130, "div", 48)(131, "div")(132, "h3", 49);
-      \u0275\u0275text(133, "Customer explorer");
+      \u0275\u0275elementStart(128, "aside", 45)(129, "div")(130, "span", 3);
+      \u0275\u0275text(131, "Session-isolated editing");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(132, "h3", 46);
+      \u0275\u0275text(133, "Editing Sandbox");
       \u0275\u0275elementEnd();
       \u0275\u0275elementStart(134, "p");
-      \u0275\u0275text(135);
+      \u0275\u0275text(135, " Changes use an in-memory browser-session copy. Canonical Northwind customers and every order remain read-only. ");
       \u0275\u0275elementEnd()();
-      \u0275\u0275elementStart(136, "div", 50)(137, "label")(138, "span");
-      \u0275\u0275text(139, "Search");
+      \u0275\u0275elementStart(136, "label", 33)(137, "span")(138, "strong");
+      \u0275\u0275text(139);
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(140, "input", 51);
-      \u0275\u0275listener("input", function App_Template_input_input_140_listener($event) {
+      \u0275\u0275elementStart(140, "small");
+      \u0275\u0275text(141);
+      \u0275\u0275elementEnd()();
+      \u0275\u0275elementStart(142, "input", 47);
+      \u0275\u0275listener("change", function App_Template_input_change_142_listener($event) {
+        return ctx.toggleSandbox($event.target.checked);
+      });
+      \u0275\u0275elementEnd()();
+      \u0275\u0275conditionalCreate(143, App_Conditional_143_Template, 2, 0, "button", 48);
+      \u0275\u0275conditionalCreate(144, App_Conditional_144_Template, 2, 0, "small");
+      \u0275\u0275conditionalCreate(145, App_Conditional_145_Template, 5, 1, "div", 42);
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(146, "section", 49)(147, "div", 50)(148, "h3", 51);
+      \u0275\u0275text(149, "Customer explorer");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(150, "p");
+      \u0275\u0275text(151);
+      \u0275\u0275elementEnd()();
+      \u0275\u0275elementStart(152, "div", 52)(153, "label")(154, "span");
+      \u0275\u0275text(155, "Search customers");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(156, "input", 53);
+      \u0275\u0275listener("input", function App_Template_input_input_156_listener($event) {
         return ctx.updateSearch($event.target.value);
       });
       \u0275\u0275elementEnd()();
-      \u0275\u0275elementStart(141, "label")(142, "span");
-      \u0275\u0275text(143, "Country");
+      \u0275\u0275elementStart(157, "label")(158, "span");
+      \u0275\u0275text(159, "Country");
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(144, "select", 52);
-      \u0275\u0275listener("change", function App_Template_select_change_144_listener($event) {
+      \u0275\u0275elementStart(160, "select", 54);
+      \u0275\u0275listener("change", function App_Template_select_change_160_listener($event) {
         return ctx.updateCountry($event.target.value);
       });
-      \u0275\u0275elementStart(145, "option", 53);
-      \u0275\u0275text(146, "All countries");
+      \u0275\u0275elementStart(161, "option", 55);
+      \u0275\u0275text(162, "All countries");
       \u0275\u0275elementEnd();
-      \u0275\u0275repeaterCreate(147, App_For_148_Template, 2, 2, "option", 54, \u0275\u0275repeaterTrackByIdentity);
-      \u0275\u0275elementEnd()()()();
-      \u0275\u0275conditionalCreate(149, App_Conditional_149_Template, 2, 1, "div", 55);
-      \u0275\u0275elementStart(150, "div", 56)(151, "table", 57)(152, "thead")(153, "tr");
-      \u0275\u0275repeaterCreate(154, App_For_155_Template, 5, 6, "th", 58, _forTrack0);
+      \u0275\u0275repeaterCreate(163, App_For_164_Template, 2, 2, "option", 56, \u0275\u0275repeaterTrackByIdentity);
+      \u0275\u0275elementEnd()()();
+      \u0275\u0275conditionalCreate(165, App_Conditional_165_Template, 2, 1, "div", 57);
+      \u0275\u0275elementStart(166, "div", 58)(167, "table", 59)(168, "thead")(169, "tr");
+      \u0275\u0275repeaterCreate(170, App_For_171_Template, 5, 6, "th", 60, _forTrack0);
       \u0275\u0275elementEnd()();
-      \u0275\u0275elementStart(156, "tbody");
-      \u0275\u0275conditionalCreate(157, App_Conditional_157_Template, 2, 0);
+      \u0275\u0275elementStart(172, "tbody");
+      \u0275\u0275conditionalCreate(173, App_Conditional_173_Template, 2, 0);
       \u0275\u0275elementEnd()();
-      \u0275\u0275conditionalCreate(158, App_Conditional_158_Template, 2, 0, "div", 59)(159, App_Conditional_159_Template, 2, 0, "div", 60);
+      \u0275\u0275conditionalCreate(174, App_Conditional_174_Template, 2, 0, "div", 61)(175, App_Conditional_175_Template, 2, 0, "div", 62);
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(160, "footer", 61)(161, "span");
-      \u0275\u0275text(162);
-      \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(163, "div", 62)(164, "button", 63);
-      \u0275\u0275listener("click", function App_Template_button_click_164_listener() {
+      \u0275\u0275elementStart(176, "div", 63)(177, "button", 64);
+      \u0275\u0275listener("click", function App_Template_button_click_177_listener() {
         return ctx.page.update((current) => current - 1);
       });
-      \u0275\u0275text(165, " Previous ");
+      \u0275\u0275text(178, " Previous ");
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(166, "span");
-      \u0275\u0275text(167);
+      \u0275\u0275elementStart(179, "span");
+      \u0275\u0275text(180);
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(168, "button", 63);
-      \u0275\u0275listener("click", function App_Template_button_click_168_listener() {
+      \u0275\u0275elementStart(181, "button", 64);
+      \u0275\u0275listener("click", function App_Template_button_click_181_listener() {
         return ctx.page.update((current) => current + 1);
       });
-      \u0275\u0275text(169, " Next ");
-      \u0275\u0275elementEnd()()()();
-      \u0275\u0275elementStart(170, "section", 64)(171, "div", 65)(172, "div")(173, "span", 3);
-      \u0275\u0275text(174);
-      \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(175, "h3", 66);
-      \u0275\u0275text(176, "Customer details");
+      \u0275\u0275text(182, " Next ");
       \u0275\u0275elementEnd()();
-      \u0275\u0275conditionalCreate(177, App_Conditional_177_Template, 2, 1, "code");
-      \u0275\u0275elementEnd();
-      \u0275\u0275conditionalCreate(178, App_Conditional_178_Template, 2, 0, "div", 67)(179, App_Conditional_179_Template, 2, 0, "div", 68)(180, App_Conditional_180_Template, 2, 1, "div", 69)(181, App_Conditional_181_Template, 14, 5, "form", 70)(182, App_Conditional_182_Template, 46, 9, "dl", 71);
-      \u0275\u0275conditionalCreate(183, App_Conditional_183_Template, 5, 1, "div", 72);
-      \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(184, "section", 73)(185, "div", 65)(186, "div")(187, "span", 3);
-      \u0275\u0275text(188, "Selection chain");
-      \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(189, "h3", 74);
-      \u0275\u0275text(190, "Orders and line items");
+      \u0275\u0275elementStart(183, "p", 65);
+      \u0275\u0275text(184);
       \u0275\u0275elementEnd()();
-      \u0275\u0275conditionalCreate(191, App_Conditional_191_Template, 2, 1, "code");
+      \u0275\u0275elementStart(185, "section", 66)(186, "div", 50)(187, "h3", 67);
+      \u0275\u0275text(188, "Customer details");
       \u0275\u0275elementEnd();
-      \u0275\u0275conditionalCreate(192, App_Conditional_192_Template, 2, 0, "div", 67)(193, App_Conditional_193_Template, 13, 4, "div", 75);
+      \u0275\u0275conditionalCreate(189, App_Conditional_189_Template, 2, 1, "code");
+      \u0275\u0275elementEnd();
+      \u0275\u0275conditionalCreate(190, App_Conditional_190_Template, 2, 0, "div", 68)(191, App_Conditional_191_Template, 2, 0, "div", 69)(192, App_Conditional_192_Template, 2, 1, "div", 70)(193, App_Conditional_193_Template, 16, 3, "dl", 71);
+      \u0275\u0275conditionalCreate(194, App_Conditional_194_Template, 10, 3, "form", 72)(195, App_Conditional_195_Template, 51, 10, "dl", 73);
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(196, "section", 74)(197, "div", 50)(198, "h3", 75);
+      \u0275\u0275text(199, "Orders and line items");
+      \u0275\u0275elementEnd();
+      \u0275\u0275conditionalCreate(200, App_Conditional_200_Template, 2, 1, "span");
+      \u0275\u0275elementEnd();
+      \u0275\u0275conditionalCreate(201, App_Conditional_201_Template, 2, 0, "div", 68)(202, App_Conditional_202_Template, 9, 4, "div", 76);
       \u0275\u0275elementEnd()();
-      \u0275\u0275elementStart(194, "dialog", null, 0)(196, "form", 76)(197, "span", 3);
-      \u0275\u0275text(198, "Native dialog");
+      \u0275\u0275elementStart(203, "dialog", null, 0)(205, "form", 77)(206, "span", 3);
+      \u0275\u0275text(207, "Native dialog");
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(199, "h2");
-      \u0275\u0275text(200, "Angular-controlled launch");
+      \u0275\u0275elementStart(208, "h2");
+      \u0275\u0275text(209, "Angular-controlled launch");
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(201, "p");
-      \u0275\u0275text(202, "This modal uses the browser dialog element for focus management and keyboard dismissal.");
+      \u0275\u0275elementStart(210, "p");
+      \u0275\u0275text(211, "This modal uses the browser dialog element for focus management and keyboard dismissal.");
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(203, "button", 77);
-      \u0275\u0275text(204, "Close dialog");
+      \u0275\u0275elementStart(212, "button", 78);
+      \u0275\u0275text(213, "Close dialog");
       \u0275\u0275elementEnd()()()();
     }
     if (rf & 2) {
-      let tmp_35_0;
+      let tmp_37_0;
+      let tmp_38_0;
       \u0275\u0275advance(29);
       \u0275\u0275property("formGroup", ctx.profile);
-      \u0275\u0275advance(11);
+      \u0275\u0275advance(12);
       \u0275\u0275attribute("aria-invalid", ctx.profile.controls.email.invalid);
       \u0275\u0275advance();
       \u0275\u0275classProp("field-error", ctx.profile.controls.email.invalid)("field-help", ctx.profile.controls.email.valid);
       \u0275\u0275advance();
-      \u0275\u0275conditional(ctx.profile.controls.email.valid ? 42 : 43);
-      \u0275\u0275advance(26);
-      \u0275\u0275repeater(\u0275\u0275pureFunction0(35, _c1));
+      \u0275\u0275conditional(ctx.profile.controls.email.valid ? 43 : 44);
+      \u0275\u0275advance(27);
+      \u0275\u0275repeater(\u0275\u0275pureFunction0(37, _c1));
       \u0275\u0275advance(6);
-      \u0275\u0275repeater(\u0275\u0275pureFunction0(36, _c2));
+      \u0275\u0275repeater(\u0275\u0275pureFunction0(38, _c2));
       \u0275\u0275advance(3);
       \u0275\u0275property("disabled", ctx.profile.invalid);
-      \u0275\u0275advance(16);
+      \u0275\u0275advance(17);
       \u0275\u0275property("checked", ctx.notificationsEnabled());
       \u0275\u0275advance(5);
       \u0275\u0275textInterpolate1("", ctx.confidence(), "%");
@@ -35418,19 +35433,25 @@ var App = class _App {
       \u0275\u0275advance();
       \u0275\u0275property("value", ctx.confidence());
       \u0275\u0275attribute("aria-label", "Confidence " + ctx.confidence() + "%");
-      \u0275\u0275advance(3);
-      \u0275\u0275repeater(\u0275\u0275pureFunction0(37, _c3));
+      \u0275\u0275advance(6);
+      \u0275\u0275repeater(\u0275\u0275pureFunction0(39, _c3));
       \u0275\u0275advance(2);
-      \u0275\u0275conditional(ctx.activeTab() === "summary" ? 105 : 106);
+      \u0275\u0275conditional(ctx.activeTab() === "summary" ? 111 : 112);
       \u0275\u0275advance(7);
-      \u0275\u0275conditional(ctx.notice() ? 112 : -1);
-      \u0275\u0275advance(12);
-      \u0275\u0275property("checked", ctx.sandboxEnabled());
-      \u0275\u0275advance(3);
-      \u0275\u0275conditional(ctx.sandboxEnabled() ? 127 : -1);
+      \u0275\u0275conditional(ctx.notice() ? 118 : -1);
+      \u0275\u0275advance(21);
+      \u0275\u0275textInterpolate(ctx.sandboxEnabled() ? "Enabled" : "Disabled");
+      \u0275\u0275advance(2);
+      \u0275\u0275textInterpolate(ctx.sandboxHasChanges() ? "Changes made" : "Vanilla copy");
       \u0275\u0275advance();
-      \u0275\u0275conditional(ctx.sandboxEnabled() ? 128 : -1);
-      \u0275\u0275advance(7);
+      \u0275\u0275property("checked", ctx.sandboxEnabled());
+      \u0275\u0275advance();
+      \u0275\u0275conditional(ctx.sandboxEnabled() ? 143 : -1);
+      \u0275\u0275advance();
+      \u0275\u0275conditional(ctx.sandboxEnabled() && ctx.sandboxExpiresAt() ? 144 : -1);
+      \u0275\u0275advance();
+      \u0275\u0275conditional(ctx.sandboxNotice() ? 145 : -1);
+      \u0275\u0275advance(6);
       \u0275\u0275textInterpolate1("", ctx.totalCount(), " Northwind records");
       \u0275\u0275advance(5);
       \u0275\u0275property("value", ctx.search());
@@ -35439,542 +35460,332 @@ var App = class _App {
       \u0275\u0275advance(3);
       \u0275\u0275repeater(ctx.countries());
       \u0275\u0275advance(2);
-      \u0275\u0275conditional(ctx.customerError() ? 149 : -1);
+      \u0275\u0275conditional(ctx.customerError() ? 165 : -1);
       \u0275\u0275advance();
       \u0275\u0275attribute("aria-busy", ctx.loading());
       \u0275\u0275advance(4);
       \u0275\u0275repeater(ctx.columns);
       \u0275\u0275advance(3);
-      \u0275\u0275conditional(!ctx.loading() ? 157 : -1);
+      \u0275\u0275conditional(!ctx.loading() ? 173 : -1);
       \u0275\u0275advance();
-      \u0275\u0275conditional(ctx.loading() ? 158 : !ctx.customerError() && ctx.customers().length === 0 ? 159 : -1);
-      \u0275\u0275advance(4);
-      \u0275\u0275textInterpolate(ctx.selectedId() ? "Selected: " + ctx.selectedId() : "Select a customer row");
-      \u0275\u0275advance(2);
+      \u0275\u0275conditional(ctx.loading() ? 174 : !ctx.customerError() && ctx.customers().length === 0 ? 175 : -1);
+      \u0275\u0275advance(3);
       \u0275\u0275property("disabled", ctx.loading() || ctx.page() <= 1);
       \u0275\u0275advance(3);
       \u0275\u0275textInterpolate(ctx.pageLabel());
       \u0275\u0275advance();
       \u0275\u0275property("disabled", ctx.loading() || ctx.page() >= ctx.totalPages());
-      \u0275\u0275advance(6);
-      \u0275\u0275textInterpolate(ctx.sandboxEnabled() ? "Session database" : "Read-only binding");
       \u0275\u0275advance(3);
-      \u0275\u0275conditional(ctx.selectedId() ? 177 : -1);
-      \u0275\u0275advance();
-      \u0275\u0275conditional(!ctx.selectedId() ? 178 : ctx.detailLoading() ? 179 : ctx.detailError() ? 180 : (tmp_35_0 = ctx.sandboxEnabled() && ctx.customerDraft()) ? 181 : (tmp_35_0 = ctx.customerDetail()) ? 182 : -1, tmp_35_0);
+      \u0275\u0275textInterpolate1(" ", ctx.selectedId() ? "Selected: " + ctx.selectedId() : "Select a customer", " ");
       \u0275\u0275advance(5);
-      \u0275\u0275conditional(ctx.sandboxNotice() ? 183 : -1);
-      \u0275\u0275advance(8);
-      \u0275\u0275conditional(ctx.selectedOrderId() ? 191 : -1);
+      \u0275\u0275conditional(ctx.selectedId() ? 189 : -1);
       \u0275\u0275advance();
-      \u0275\u0275conditional(!ctx.selectedId() ? 192 : 193);
+      \u0275\u0275conditional(!ctx.selectedId() ? 190 : ctx.detailLoading() ? 191 : ctx.detailError() ? 192 : (tmp_37_0 = ctx.customerDetail()) ? 193 : -1, tmp_37_0);
+      \u0275\u0275advance(4);
+      \u0275\u0275conditional((tmp_38_0 = !ctx.detailLoading() && ctx.sandboxEnabled() && ctx.customerDraft()) ? 194 : (tmp_38_0 = !ctx.detailLoading() && !ctx.sandboxEnabled() && ctx.customerDetail()) ? 195 : -1, tmp_38_0);
+      \u0275\u0275advance(6);
+      \u0275\u0275conditional(ctx.orders().length ? 200 : -1);
+      \u0275\u0275advance();
+      \u0275\u0275conditional(!ctx.selectedId() ? 201 : 202);
     }
-  }, dependencies: [ReactiveFormsModule, \u0275NgNoValidate, NgSelectOption, \u0275NgSelectMultipleOption, DefaultValueAccessor, NumberValueAccessor, SelectControlValueAccessor, NgControlStatus, NgControlStatusGroup, MinValidator, MaxValidator, FormGroupDirective, FormControlName], styles: ["/* src/app/app.css */\n:host {\n  --text: #6b6375;\n  --text-h: #08060d;\n  --bg: #fff;\n  --border: #e5e4e7;\n  --code-bg: #f4f3ec;\n  --accent: #aa3bff;\n  --accent-bg: rgb(170 59 255 / 10%);\n  --accent-border: rgb(170 59 255 / 50%);\n  --shadow: rgb(0 0 0 / 10%) 0 10px 15px -3px, rgb(0 0 0 / 5%) 0 4px 6px -2px;\n  background: var(--bg);\n  color: var(--text);\n  color-scheme: light dark;\n  display: block;\n  font-family: inherit;\n}\n@media (prefers-color-scheme: dark) {\n  :host {\n    --text: #9ca3af;\n    --text-h: #f3f4f6;\n    --bg: #16171d;\n    --border: #2e303a;\n    --code-bg: #1f2028;\n    --accent: #c084fc;\n    --accent-bg: rgb(192 132 252 / 15%);\n    --accent-border: rgb(192 132 252 / 50%);\n    --shadow: rgb(0 0 0 / 40%) 0 10px 15px -3px, rgb(0 0 0 / 25%) 0 4px 6px -2px;\n  }\n}\n* {\n  box-sizing: border-box;\n}\n.showcase {\n  padding: 48px;\n  text-align: left;\n}\n.showcase-header {\n  align-items: flex-start;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 32px;\n}\n.showcase-header h1 {\n  margin: 6px 0 10px;\n}\n.showcase-header p {\n  max-width: 680px;\n}\n.showcase-nav {\n  display: flex;\n  gap: 8px;\n  margin: -12px 0 32px;\n}\n.showcase-nav a {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 999px;\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 700;\n  padding: 7px 11px;\n  text-decoration: none;\n}\n.showcase-nav a:hover {\n  border-color: var(--accent-border);\n  color: var(--accent);\n}\n.controls-section,\n.data-section {\n  scroll-margin-top: 90px;\n}\n.eyebrow {\n  color: var(--accent);\n  font-size: 13px;\n  font-weight: 700;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n}\n.framework-badge {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 999px;\n  color: var(--text-h);\n  display: flex;\n  font-weight: 650;\n  gap: 10px;\n  padding: 10px 14px;\n}\n.framework-badge > span {\n  align-items: center;\n  background: var(--accent);\n  border-radius: 50%;\n  color: white;\n  display: inline-flex;\n  height: 24px;\n  justify-content: center;\n  width: 24px;\n}\n.controls-section {\n  margin-bottom: 32px;\n}\n.data-section {\n  margin-top: 40px;\n}\n.section-heading {\n  align-items: end;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 18px;\n}\n.section-heading h2 {\n  margin: 4px 0 0;\n}\n.section-heading p {\n  font-size: 15px;\n  max-width: 560px;\n}\n.sandbox-toolbar {\n  align-items: end;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n  justify-content: flex-end;\n  max-width: 580px;\n}\n.sandbox-toolbar p {\n  flex-basis: 100%;\n}\n.sandbox-toggle {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: flex;\n  gap: 8px;\n  min-height: 40px;\n  padding: 7px 11px;\n}\n.sandbox-toggle input {\n  accent-color: var(--accent);\n}\n.sandbox-banner {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 8px;\n  justify-content: space-between;\n  margin-bottom: 14px;\n  padding: 12px 16px;\n}\n.sandbox-banner > div:first-child,\n.sandbox-status {\n  display: grid;\n}\n.sandbox-status {\n  flex: 0 0 auto;\n  justify-items: end;\n}\n.sandbox-status > span {\n  background: var(--code-bg);\n  border-radius: 999px;\n  font-size: 12px;\n  font-weight: 700;\n  padding: 3px 8px;\n}\n.sandbox-status > span.changed {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.sandbox-status small {\n  font-size: 11px;\n  margin-top: 3px;\n}\n.control-layout {\n  display: grid;\n  gap: 18px;\n  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);\n}\n.control-layout > *,\n.field-grid > * {\n  min-width: 0;\n}\n.control-stack {\n  display: grid;\n  gap: 18px;\n}\n.control-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  padding: 22px;\n}\n.control-card h3 {\n  color: var(--text-h);\n  font-size: 18px;\n  margin: 0 0 18px;\n}\n.field-grid {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.field-span {\n  grid-column: 1 / -1;\n}\nlabel {\n  color: var(--text-h);\n  display: grid;\n  font-size: 13px;\n  font-weight: 650;\n  gap: 5px;\n}\ninput,\nselect,\nbutton {\n  font: inherit;\n}\ninput:not([type=checkbox]):not([type=radio]):not([type=range]),\nselect {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  min-height: 42px;\n  padding: 8px 11px;\n}\n.form-card input:not([type=checkbox]):not([type=radio]),\n.form-card select {\n  width: 100%;\n}\n.field-help,\n.field-error {\n  font-size: 12px;\n  font-weight: 450;\n}\n.field-help {\n  color: var(--text);\n}\n.field-error {\n  color: #b42318;\n}\ninput[aria-invalid=true] {\n  border-color: #d92d20;\n}\nfieldset {\n  border: 0;\n  margin: 20px 0 0;\n  padding: 0;\n}\nlegend {\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 650;\n  margin-bottom: 8px;\n}\n.choice-row,\n.form-actions {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n.choice {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: flex;\n  gap: 7px;\n  padding: 7px 10px;\n}\n.choice input,\n.range-field input {\n  accent-color: var(--accent);\n}\n.form-actions {\n  margin-top: 22px;\n}\n.primary-button,\n.secondary-button {\n  border-radius: 7px;\n  cursor: pointer;\n  font-weight: 700;\n  min-height: 40px;\n  padding: 8px 13px;\n}\n.primary-button {\n  background: var(--accent);\n  border: 1px solid var(--accent);\n  color: white;\n}\n.secondary-button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  color: var(--text-h);\n}\n.primary-button:disabled,\n.secondary-button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n.switch-row {\n  align-items: center;\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n}\n.switch-row > span {\n  display: grid;\n}\n.switch-row small {\n  color: var(--text);\n  font-weight: 450;\n}\n.switch {\n  accent-color: var(--accent);\n  height: 24px;\n  width: 44px;\n}\n.range-field {\n  margin-top: 22px;\n}\n.range-field > span {\n  display: flex;\n  justify-content: space-between;\n}\n.range-field input,\nprogress {\n  width: 100%;\n}\nprogress {\n  accent-color: var(--accent);\n  height: 8px;\n  margin-top: 12px;\n}\n.tabs {\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 4px;\n  padding-bottom: 12px;\n}\n.tabs button {\n  background: transparent;\n  border: 0;\n  border-radius: 6px;\n  color: var(--text);\n  cursor: pointer;\n  font-weight: 700;\n  padding: 7px 10px;\n}\n.tabs button[aria-selected=true] {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.tab-panel {\n  min-height: 155px;\n  padding-top: 18px;\n}\n.summary-list {\n  display: grid;\n  gap: 10px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n}\n.summary-list div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.summary-list dt {\n  font-size: 12px;\n}\n.summary-list dd {\n  color: var(--text-h);\n  font-weight: 700;\n  margin: 2px 0 0;\n}\ndetails {\n  border-top: 1px solid var(--border);\n  font-size: 14px;\n  padding-top: 12px;\n}\nsummary {\n  color: var(--text-h);\n  cursor: pointer;\n  font-weight: 700;\n}\ndetails p {\n  padding-top: 10px;\n}\n.notification {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n  margin-top: 14px;\n  padding: 12px 16px;\n}\n.notification button {\n  background: transparent;\n  border: 0;\n  color: var(--text-h);\n  cursor: pointer;\n  font-size: 22px;\n}\ndialog {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n  color: var(--text);\n  max-width: 430px;\n  padding: 26px;\n}\ndialog::backdrop {\n  -webkit-backdrop-filter: blur(3px);\n  backdrop-filter: blur(3px);\n  background: rgb(8 6 13 / 68%);\n}\ndialog h2 {\n  margin: 8px 0 10px;\n}\ndialog .primary-button {\n  margin-top: 22px;\n}\ninput:focus,\nselect:focus,\nbutton:focus-visible {\n  outline: 2px solid var(--accent);\n  outline-offset: 2px;\n}\n.grid-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  box-shadow: var(--shadow);\n  overflow: hidden;\n}\n.grid-heading,\n.grid-footer {\n  align-items: end;\n  display: flex;\n  gap: 24px;\n  justify-content: space-between;\n  padding: 22px 24px;\n}\n.grid-heading {\n  border-bottom: 1px solid var(--border);\n}\n.grid-heading h3 {\n  color: var(--text-h);\n  font-size: 22px;\n  margin: 0 0 4px;\n}\n.grid-heading p,\n.grid-footer {\n  font-size: 14px;\n}\n.filters {\n  display: flex;\n  gap: 12px;\n}\n.table-wrap {\n  min-height: 486px;\n  overflow-x: auto;\n  position: relative;\n}\ntable {\n  border-collapse: collapse;\n  width: 100%;\n}\nth,\ntd {\n  border-bottom: 1px solid var(--border);\n  padding: 13px 16px;\n  text-align: left;\n  white-space: nowrap;\n}\nth {\n  background: var(--code-bg);\n  color: var(--text-h);\n  font-size: 12px;\n}\nth button {\n  align-items: center;\n  background: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-flex;\n  font-weight: 700;\n  gap: 7px;\n  padding: 0;\n}\nth button.active-sort {\n  color: var(--accent);\n}\ntbody tr {\n  cursor: pointer;\n}\ntbody tr:hover,\ntbody tr.selected {\n  background: var(--accent-bg);\n}\n.row-select {\n  background: transparent;\n  border: 0;\n  color: var(--text-h);\n  cursor: pointer;\n  font-weight: 700;\n  padding: 0;\n  text-align: left;\n}\ncode {\n  background: var(--code-bg);\n  border-radius: 4px;\n  padding: 2px 5px;\n}\n.status {\n  inset: 50% auto auto 50%;\n  position: absolute;\n  transform: translate(-50%, -50%);\n}\n.status.error {\n  background: #fef3f2;\n  border: 1px solid #fecdca;\n  border-radius: 8px;\n  color: #b42318;\n  margin: 14px 24px;\n  padding: 12px 16px;\n  position: static;\n  transform: none;\n}\n.pagination {\n  align-items: center;\n  display: flex;\n  gap: 10px;\n}\n.pagination button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  cursor: pointer;\n  min-height: 36px;\n  padding: 6px 10px;\n}\n.pagination button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n.detail-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  margin-top: 18px;\n  overflow: hidden;\n}\n.orders-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  margin-top: 18px;\n  overflow: hidden;\n}\n.orders-layout {\n  display: grid;\n  grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);\n}\n.order-list,\n.order-detail {\n  min-width: 0;\n  padding: 20px;\n}\n.order-list {\n  border-right: 1px solid var(--border);\n}\n.order-list h4,\n.order-detail h4 {\n  color: var(--text-h);\n  font-size: 15px;\n  margin: 0 0 14px;\n}\n.order-list > button {\n  align-items: center;\n  background: transparent;\n  border: 1px solid transparent;\n  border-radius: 8px;\n  color: var(--text);\n  cursor: pointer;\n  display: flex;\n  gap: 12px;\n  justify-content: space-between;\n  padding: 11px 12px;\n  text-align: left;\n  width: 100%;\n}\n.order-list > button:hover,\n.order-list > button.selected {\n  background: var(--accent-bg);\n  border-color: var(--accent-border);\n}\n.order-list > button > span {\n  display: grid;\n  gap: 2px;\n}\n.order-list > button > span:last-child {\n  justify-items: end;\n}\n.order-list strong {\n  color: var(--text-h);\n}\n.order-list small {\n  font-size: 12px;\n}\n.order-summary,\n.order-totals {\n  display: grid;\n  gap: 10px;\n  margin: 0;\n}\n.order-summary {\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.order-summary div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.order-summary dt,\n.order-totals dt {\n  font-size: 12px;\n}\n.order-summary dd,\n.order-totals dd {\n  color: var(--text-h);\n  font-weight: 650;\n  margin: 2px 0 0;\n}\n.line-items-wrap {\n  border: 1px solid var(--border);\n  border-radius: 8px;\n  margin-top: 16px;\n  overflow-x: auto;\n}\n.line-items {\n  font-size: 13px;\n}\n.line-items caption {\n  clip: rect(0 0 0 0);\n  height: 1px;\n  overflow: hidden;\n  position: absolute;\n  width: 1px;\n}\n.line-items th,\n.line-items td {\n  padding: 9px 10px;\n}\n.line-items th:not(:first-child),\n.line-items td:not(:first-child) {\n  text-align: right;\n}\n.order-totals {\n  justify-content: end;\n  margin-top: 14px;\n  text-align: right;\n}\n.order-totals div {\n  display: grid;\n  gap: 12px;\n  grid-template-columns: 80px 110px;\n}\n.order-totals div:last-child {\n  border-top: 1px solid var(--border);\n  padding-top: 7px;\n}\n.detail-heading {\n  align-items: center;\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n  padding: 20px 24px;\n}\n.detail-heading h3 {\n  color: var(--text-h);\n  font-size: 22px;\n  margin: 3px 0 0;\n}\n.detail-status {\n  padding: 24px;\n}\n.detail-status.error {\n  color: #b42318;\n}\n.customer-detail {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n  padding: 24px;\n}\n.detail-form {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  padding: 24px;\n}\n.detail-form > * {\n  min-width: 0;\n}\n.detail-form input {\n  width: 100%;\n}\n.detail-actions,\n.detail-metrics {\n  grid-column: 1 / -1;\n}\n.detail-actions,\n.detail-metrics {\n  align-items: center;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n.detail-metrics {\n  color: var(--text-h);\n  font-weight: 700;\n  gap: 18px;\n}\n.unsaved-indicator {\n  background: #fffaeb;\n  border-radius: 999px;\n  color: #dc6803;\n  font-size: 12px;\n  padding: 3px 8px;\n}\n.detail-notice {\n  margin: 0 24px 24px;\n}\n.customer-detail > * {\n  min-width: 0;\n}\n.customer-detail div {\n  background: var(--code-bg);\n  border-radius: 8px;\n  padding: 12px;\n}\n.customer-detail dt {\n  font-size: 12px;\n}\n.customer-detail dd {\n  color: var(--text-h);\n  font-weight: 650;\n  margin: 3px 0 0;\n}\n@media (prefers-reduced-motion: reduce) {\n  *,\n  *::before,\n  *::after {\n    animation-duration: 0.01ms !important;\n    animation-iteration-count: 1 !important;\n    scroll-behavior: auto !important;\n    transition-duration: 0.01ms !important;\n  }\n}\n@media (forced-colors: active) {\n  .framework-badge,\n  .control-card,\n  .grid-card,\n  .detail-card,\n  .orders-card {\n    border: 1px solid CanvasText;\n  }\n}\n@media (max-width: 1100px) {\n  .control-layout {\n    grid-template-columns: 1fr;\n  }\n  .data-section .section-heading {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .sandbox-toolbar {\n    justify-content: flex-start;\n    max-width: none;\n  }\n  .orders-layout {\n    grid-template-columns: 1fr;\n  }\n  .order-list {\n    border-bottom: 1px solid var(--border);\n    border-right: 0;\n  }\n}\n@media (max-width: 760px) {\n  .showcase {\n    padding: 24px 16px;\n  }\n  .showcase-header,\n  .section-heading,\n  .grid-heading,\n  .grid-footer {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .showcase-nav {\n    overflow-x: auto;\n  }\n  .control-layout,\n  .field-grid,\n  .summary-list,\n  .customer-detail,\n  .detail-form {\n    grid-template-columns: 1fr;\n  }\n  .field-span {\n    grid-column: auto;\n  }\n  .filters {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .detail-actions,\n  .detail-metrics {\n    grid-column: auto;\n  }\n  .sandbox-banner {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .sandbox-status {\n    justify-items: start;\n  }\n}\n"], encapsulation: 3, changeDetection: 0 });
+  }, dependencies: [ReactiveFormsModule, \u0275NgNoValidate, NgSelectOption, \u0275NgSelectMultipleOption, DefaultValueAccessor, NumberValueAccessor, SelectControlValueAccessor, NgControlStatus, NgControlStatusGroup, MinValidator, MaxValidator, FormGroupDirective, FormControlName], styles: ["/* src/app/app.css */\n:host {\n  --text: #6b6375;\n  --text-h: #08060d;\n  --bg: #fff;\n  --border: #e5e4e7;\n  --code-bg: #f4f3ec;\n  --accent: #aa3bff;\n  --accent-bg: rgb(170 59 255 / 10%);\n  --accent-border: rgb(170 59 255 / 50%);\n  --shadow: rgb(0 0 0 / 10%) 0 10px 15px -3px, rgb(0 0 0 / 5%) 0 4px 6px -2px;\n  background: var(--bg);\n  border-radius: 14px;\n  color: var(--text);\n  color-scheme: light dark;\n  display: block;\n  font: 16px/1.6 var(--lab-font);\n  overflow: hidden;\n}\n@media (prefers-color-scheme: dark) {\n  :host {\n    --text: #9ca3af;\n    --text-h: #f3f4f6;\n    --bg: #16171d;\n    --border: #2e303a;\n    --code-bg: #1f2028;\n    --accent: #c084fc;\n    --accent-bg: rgb(192 132 252 / 15%);\n    --accent-border: rgb(192 132 252 / 50%);\n    --shadow: rgb(0 0 0 / 40%) 0 10px 15px -3px, rgb(0 0 0 / 25%) 0 4px 6px -2px;\n  }\n}\n* {\n  box-sizing: border-box;\n}\n.showcase {\n  padding: 48px;\n  text-align: left;\n}\n.showcase-header {\n  align-items: flex-start;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 32px;\n}\n.showcase-header h1 {\n  margin: 6px 0 10px;\n}\n.showcase-header p {\n  max-width: 680px;\n}\n.showcase-nav {\n  display: flex;\n  gap: 8px;\n  margin: -12px 0 32px;\n}\n.showcase-nav a {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 999px;\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 700;\n  padding: 7px 11px;\n  text-decoration: none;\n}\n.showcase-nav a:hover {\n  border-color: var(--accent-border);\n  color: var(--accent);\n}\n.controls-section,\n.data-section {\n  scroll-margin-top: 90px;\n}\n.eyebrow {\n  color: var(--accent);\n  font-size: 13px;\n  font-weight: 700;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n}\n.framework-badge {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 999px;\n  color: var(--text-h);\n  display: flex;\n  font-weight: 650;\n  gap: 10px;\n  padding: 10px 14px;\n}\n.framework-badge > span {\n  align-items: center;\n  background: var(--accent);\n  border-radius: 50%;\n  color: white;\n  display: inline-flex;\n  height: 24px;\n  justify-content: center;\n  width: 24px;\n}\n.controls-section {\n  margin-bottom: 32px;\n}\n.data-section {\n  margin-top: 40px;\n}\n.section-heading {\n  align-items: end;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 18px;\n}\n.section-heading h2 {\n  margin: 4px 0 0;\n}\n.section-heading p {\n  font-size: 15px;\n  max-width: 560px;\n}\n.sandbox-toolbar {\n  align-items: end;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n  justify-content: flex-end;\n  max-width: 580px;\n}\n.sandbox-toolbar p {\n  flex-basis: 100%;\n}\n.sandbox-toggle {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: flex;\n  gap: 8px;\n  min-height: 40px;\n  padding: 7px 11px;\n}\n.sandbox-toggle input {\n  accent-color: var(--accent);\n}\n.sandbox-banner {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 8px;\n  justify-content: space-between;\n  margin-bottom: 14px;\n  padding: 12px 16px;\n}\n.sandbox-banner > div:first-child,\n.sandbox-status {\n  display: grid;\n}\n.sandbox-status {\n  flex: 0 0 auto;\n  justify-items: end;\n}\n.sandbox-status > span {\n  background: var(--code-bg);\n  border-radius: 999px;\n  font-size: 12px;\n  font-weight: 700;\n  padding: 3px 8px;\n}\n.sandbox-status > span.changed {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.sandbox-status small {\n  font-size: 11px;\n  margin-top: 3px;\n}\n.control-layout {\n  display: grid;\n  gap: 18px;\n  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);\n}\n.control-layout > *,\n.field-grid > * {\n  min-width: 0;\n}\n.control-stack {\n  display: grid;\n  gap: 18px;\n}\n.control-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  padding: 22px;\n}\n.control-card h3 {\n  color: var(--text-h);\n  font-size: 18px;\n  margin: 0 0 18px;\n}\n.field-grid {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.field-span {\n  grid-column: 1 / -1;\n}\nlabel {\n  color: var(--text-h);\n  display: grid;\n  font-size: 13px;\n  font-weight: 650;\n  gap: 5px;\n}\ninput,\nselect,\nbutton {\n  font: inherit;\n}\ninput:not([type=checkbox]):not([type=radio]):not([type=range]),\nselect {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  min-height: 42px;\n  padding: 8px 11px;\n}\n.form-card input:not([type=checkbox]):not([type=radio]),\n.form-card select {\n  width: 100%;\n}\n.field-help,\n.field-error {\n  font-size: 12px;\n  font-weight: 450;\n}\n.field-help {\n  color: var(--text);\n}\n.field-error {\n  color: #b42318;\n}\ninput[aria-invalid=true] {\n  border-color: #d92d20;\n}\nfieldset {\n  border: 0;\n  margin: 20px 0 0;\n  padding: 0;\n}\nlegend {\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 650;\n  margin-bottom: 8px;\n}\n.choice-row,\n.form-actions {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n.choice {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: flex;\n  gap: 7px;\n  padding: 7px 10px;\n}\n.choice input,\n.range-field input {\n  accent-color: var(--accent);\n}\n.form-actions {\n  margin-top: 22px;\n}\n.primary-button,\n.secondary-button {\n  border-radius: 7px;\n  cursor: pointer;\n  font-weight: 700;\n  min-height: 40px;\n  padding: 8px 13px;\n}\n.primary-button {\n  background: var(--accent);\n  border: 1px solid var(--accent);\n  color: white;\n}\n.secondary-button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  color: var(--text-h);\n}\n.primary-button:disabled,\n.secondary-button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n.switch-row {\n  align-items: center;\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n}\n.switch-row > span {\n  display: grid;\n}\n.switch-row small {\n  color: var(--text);\n  font-weight: 450;\n}\n.switch {\n  accent-color: var(--accent);\n  height: 24px;\n  width: 44px;\n}\n.range-field {\n  margin-top: 22px;\n}\n.range-field > span {\n  display: flex;\n  justify-content: space-between;\n}\n.range-field input,\nprogress {\n  width: 100%;\n}\nprogress {\n  accent-color: var(--accent);\n  height: 8px;\n  margin-top: 12px;\n}\n.tabs {\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 4px;\n  padding-bottom: 12px;\n}\n.tabs button {\n  background: transparent;\n  border: 0;\n  border-radius: 6px;\n  color: var(--text);\n  cursor: pointer;\n  font-weight: 700;\n  padding: 7px 10px;\n}\n.tabs button[aria-selected=true] {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.tab-panel {\n  min-height: 155px;\n  padding-top: 18px;\n}\n.summary-list {\n  display: grid;\n  gap: 10px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n}\n.summary-list div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.summary-list dt {\n  font-size: 12px;\n}\n.summary-list dd {\n  color: var(--text-h);\n  font-weight: 700;\n  margin: 2px 0 0;\n}\ndetails {\n  border-top: 1px solid var(--border);\n  font-size: 14px;\n  padding-top: 12px;\n}\nsummary {\n  color: var(--text-h);\n  cursor: pointer;\n  font-weight: 700;\n}\ndetails p {\n  padding-top: 10px;\n}\n.notification {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n  margin-top: 14px;\n  padding: 12px 16px;\n}\n.notification button {\n  background: transparent;\n  border: 0;\n  color: var(--text-h);\n  cursor: pointer;\n  font-size: 22px;\n}\ndialog {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n  color: var(--text);\n  max-width: 430px;\n  padding: 26px;\n}\ndialog::backdrop {\n  -webkit-backdrop-filter: blur(3px);\n  backdrop-filter: blur(3px);\n  background: rgb(8 6 13 / 68%);\n}\ndialog h2 {\n  margin: 8px 0 10px;\n}\ndialog .primary-button {\n  margin-top: 22px;\n}\ninput:focus,\nselect:focus,\nbutton:focus-visible {\n  outline: 2px solid var(--accent);\n  outline-offset: 2px;\n}\n.grid-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  box-shadow: var(--shadow);\n  overflow: hidden;\n}\n.grid-heading,\n.grid-footer {\n  align-items: end;\n  display: flex;\n  gap: 24px;\n  justify-content: space-between;\n  padding: 22px 24px;\n}\n.grid-heading {\n  border-bottom: 1px solid var(--border);\n}\n.grid-heading h3 {\n  color: var(--text-h);\n  font-size: 22px;\n  margin: 0 0 4px;\n}\n.grid-heading p,\n.grid-footer {\n  font-size: 14px;\n}\n.filters {\n  display: flex;\n  gap: 12px;\n}\n.table-wrap {\n  min-height: 486px;\n  overflow-x: auto;\n  position: relative;\n}\ntable {\n  border-collapse: collapse;\n  width: 100%;\n}\nth,\ntd {\n  border-bottom: 1px solid var(--border);\n  padding: 13px 16px;\n  text-align: left;\n  white-space: nowrap;\n}\nth {\n  background: var(--code-bg);\n  color: var(--text-h);\n  font-size: 12px;\n}\nth button {\n  align-items: center;\n  background: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-flex;\n  font-weight: 700;\n  gap: 7px;\n  padding: 0;\n}\nth button.active-sort {\n  color: var(--accent);\n}\ntbody tr {\n  cursor: pointer;\n}\ntbody tr:hover,\ntbody tr.selected {\n  background: var(--accent-bg);\n}\ncode {\n  background: var(--code-bg);\n  border-radius: 4px;\n  padding: 2px 5px;\n}\n.status {\n  inset: 50% auto auto 50%;\n  position: absolute;\n  transform: translate(-50%, -50%);\n}\n.status.error {\n  background: #fef3f2;\n  border: 1px solid #fecdca;\n  border-radius: 8px;\n  color: #b42318;\n  margin: 14px 24px;\n  padding: 12px 16px;\n  position: static;\n  transform: none;\n}\n.pagination {\n  align-items: center;\n  display: flex;\n  gap: 10px;\n}\n.pagination button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  cursor: pointer;\n  min-height: 36px;\n  padding: 6px 10px;\n}\n.pagination button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n.detail-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  margin-top: 18px;\n  overflow: hidden;\n}\n.orders-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  margin-top: 18px;\n  overflow: hidden;\n}\n.orders-layout {\n  display: grid;\n  grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);\n}\n.order-list,\n.order-detail {\n  min-width: 0;\n  padding: 20px;\n}\n.order-list {\n  border-right: 1px solid var(--border);\n}\n.order-list h4,\n.order-detail h4 {\n  color: var(--text-h);\n  font-size: 15px;\n  margin: 0 0 14px;\n}\n.order-list > button {\n  align-items: center;\n  background: transparent;\n  border: 1px solid transparent;\n  border-radius: 8px;\n  color: var(--text);\n  cursor: pointer;\n  display: flex;\n  gap: 12px;\n  justify-content: space-between;\n  padding: 11px 12px;\n  text-align: left;\n  width: 100%;\n}\n.order-list > button:hover,\n.order-list > button.selected {\n  background: var(--accent-bg);\n  border-color: var(--accent-border);\n}\n.order-list > button > span {\n  display: grid;\n  gap: 2px;\n}\n.order-list > button > span:last-child {\n  justify-items: end;\n}\n.order-list strong {\n  color: var(--text-h);\n}\n.order-list small {\n  font-size: 12px;\n}\n.order-summary,\n.order-totals {\n  display: grid;\n  gap: 10px;\n  margin: 0;\n}\n.order-summary {\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.order-summary div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.order-summary dt,\n.order-totals dt {\n  font-size: 12px;\n}\n.order-summary dd,\n.order-totals dd {\n  color: var(--text-h);\n  font-weight: 650;\n  margin: 2px 0 0;\n}\n.line-items-wrap {\n  border: 1px solid var(--border);\n  border-radius: 8px;\n  margin-top: 16px;\n  overflow-x: auto;\n}\n.line-items {\n  font-size: 13px;\n}\n.line-items caption {\n  clip: rect(0 0 0 0);\n  height: 1px;\n  overflow: hidden;\n  position: absolute;\n  width: 1px;\n}\n.line-items th,\n.line-items td {\n  padding: 9px 10px;\n}\n.line-items th:not(:first-child),\n.line-items td:not(:first-child) {\n  text-align: right;\n}\n.order-totals {\n  justify-content: end;\n  margin-top: 14px;\n  text-align: right;\n}\n.order-totals div {\n  display: grid;\n  gap: 12px;\n  grid-template-columns: 80px 110px;\n}\n.order-totals div:last-child {\n  border-top: 1px solid var(--border);\n  padding-top: 7px;\n}\n.detail-heading {\n  align-items: center;\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n  padding: 20px 24px;\n}\n.detail-heading h3 {\n  color: var(--text-h);\n  font-size: 22px;\n  margin: 3px 0 0;\n}\n.detail-status {\n  padding: 24px;\n}\n.detail-status.error {\n  color: #b42318;\n}\n.customer-detail {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n  padding: 24px;\n}\n.detail-form {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  padding: 24px;\n}\n.detail-form > * {\n  min-width: 0;\n}\n.detail-form input {\n  width: 100%;\n}\n.detail-actions,\n.detail-metrics {\n  grid-column: 1 / -1;\n}\n.detail-actions,\n.detail-metrics {\n  align-items: center;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n.detail-metrics {\n  color: var(--text-h);\n  font-weight: 700;\n  gap: 18px;\n}\n.unsaved-indicator {\n  background: #fffaeb;\n  border-radius: 999px;\n  color: #dc6803;\n  font-size: 12px;\n  padding: 3px 8px;\n}\n.detail-notice {\n  margin: 0 24px 24px;\n}\n.customer-detail > * {\n  min-width: 0;\n}\n.customer-detail div {\n  background: var(--code-bg);\n  border-radius: 8px;\n  padding: 12px;\n}\n.customer-detail dt {\n  font-size: 12px;\n}\n.customer-detail dd {\n  color: var(--text-h);\n  font-weight: 650;\n  margin: 3px 0 0;\n}\n.control-card,\n.grid-card,\n.detail-card,\n.orders-card,\n.sandbox-panel {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n}\n.sandbox-panel {\n  align-items: center;\n  display: grid;\n  gap: 16px;\n  grid-template-columns: minmax(0, 1fr) auto auto;\n  margin-bottom: 18px;\n  padding: 22px;\n}\n.sandbox-panel h3,\n.sandbox-panel p {\n  margin: 4px 0 0;\n}\n.sandbox-panel .notification,\n.sandbox-panel > small {\n  grid-column: 1 / -1;\n  margin: 0;\n}\n@media (prefers-reduced-motion: reduce) {\n  *,\n  *::before,\n  *::after {\n    animation-duration: 0.01ms !important;\n    animation-iteration-count: 1 !important;\n    scroll-behavior: auto !important;\n    transition-duration: 0.01ms !important;\n  }\n}\n@media (forced-colors: active) {\n  .framework-badge,\n  .control-card,\n  .grid-card,\n  .detail-card,\n  .orders-card {\n    border: 1px solid CanvasText;\n  }\n}\n@media (max-width: 1100px) {\n  .control-layout {\n    grid-template-columns: 1fr;\n  }\n  .data-section .section-heading {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .sandbox-toolbar {\n    justify-content: flex-start;\n    max-width: none;\n  }\n  .orders-layout {\n    grid-template-columns: 1fr;\n  }\n  .sandbox-panel {\n    align-items: start;\n    grid-template-columns: 1fr;\n  }\n  .sandbox-panel .notification,\n  .sandbox-panel > small {\n    grid-column: auto;\n  }\n  .order-list {\n    border-bottom: 1px solid var(--border);\n    border-right: 0;\n  }\n}\n@media (max-width: 760px) {\n  .showcase {\n    padding: 24px 16px;\n  }\n  .showcase-header,\n  .section-heading,\n  .grid-heading,\n  .grid-footer {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .showcase-nav {\n    overflow-x: auto;\n  }\n  .control-layout,\n  .field-grid,\n  .summary-list,\n  .customer-detail,\n  .detail-form {\n    grid-template-columns: 1fr;\n  }\n  .field-span {\n    grid-column: auto;\n  }\n  .filters {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .detail-actions,\n  .detail-metrics {\n    grid-column: auto;\n  }\n  .sandbox-banner {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .sandbox-status {\n    justify-items: start;\n  }\n}\n", '/* ../shared/showcase-contract.css */\n:host {\n  --lab-font:\n    Inter,\n    ui-sans-serif,\n    system-ui,\n    -apple-system,\n    BlinkMacSystemFont,\n    "Segoe UI",\n    sans-serif;\n  --lab-title-size: 32px;\n  --lab-section-size: 24px;\n  --lab-card-title-size: 18px;\n  color: var(--text);\n  border: 1px solid var(--border);\n  font: 16px/1.6 var(--lab-font);\n  font-synthesis: none;\n  letter-spacing: 0.18px;\n  text-rendering: optimizeLegibility;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n* {\n  box-sizing: border-box;\n}\n#root {\n  border-inline: 0;\n}\nbutton,\ninput,\nselect,\ntextarea {\n  font: inherit;\n}\n.showcase-header h1,\n.section-heading h2,\n.control-card h3,\n.grid-card h3,\n.data-card h3,\n.detail-card h3,\n.orders-card h3,\n.sandbox-panel h3,\ndialog h2 {\n  color: var(--text-h);\n  font-family: var(--lab-font);\n  font-style: normal;\n}\n.showcase-header h1 {\n  font-size: var(--lab-title-size);\n  font-weight: 500;\n  letter-spacing: -1.68px;\n  line-height: 1.6;\n  margin: 6px 0 10px;\n}\n.showcase-header .eyebrow {\n  display: block;\n  margin: 0;\n}\n.showcase-header p {\n  font-size: 17px;\n  line-height: 1.6;\n  margin: 0;\n  max-width: 680px;\n}\n.eyebrow,\n.card-kicker {\n  color: var(--accent);\n  font-size: 13px;\n  font-weight: 700;\n  letter-spacing: 0.12em;\n  line-height: 1.6;\n  text-transform: uppercase;\n}\n.section-heading .eyebrow,\n.sandbox-panel .eyebrow,\n.sandbox-panel .card-kicker {\n  margin: 0;\n}\n.framework-badge {\n  align-items: center;\n  display: flex;\n  flex: 0 0 auto;\n  gap: 10px;\n  min-height: 46px;\n  padding: 10px 14px;\n}\n.framework-badge > span,\n.framework-badge > img {\n  height: 24px;\n  width: 24px;\n}\n.section-heading {\n  align-items: end;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 18px;\n}\n.section-heading p {\n  font-size: 15px;\n  margin: 0;\n  max-width: 560px;\n}\n.showcase-nav {\n  display: flex;\n  gap: 8px;\n  margin: -12px 0 32px;\n  overflow: visible;\n  padding: 0;\n}\n.controls-section,\n.data-section {\n  background: transparent;\n  border: 0;\n  border-radius: 0;\n  padding: 0;\n}\n.controls-section {\n  margin-bottom: 32px;\n}\n.data-section {\n  margin-top: 40px;\n}\n.section-heading h2 {\n  font-size: var(--lab-section-size);\n  font-weight: 500;\n  letter-spacing: -0.24px;\n  line-height: 1.6;\n  margin: 4px 0 0;\n}\n.control-card h3,\n.grid-card h3,\n.data-card h3,\n.detail-card h3,\n.orders-card h3,\n.sandbox-panel h3 {\n  font-size: var(--lab-card-title-size);\n  font-weight: 650;\n  line-height: 1.4;\n}\n.card-heading {\n  align-items: center;\n  display: flex;\n  justify-content: space-between;\n  margin-bottom: 18px;\n}\n.card-heading h3 {\n  margin: 0;\n}\n.control-card,\n.grid-card,\n.data-card,\n.detail-card,\n.orders-card,\n.sandbox-panel {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n  color: var(--text);\n  padding: 22px;\n}\n.control-layout {\n  display: grid;\n  gap: 18px;\n  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);\n}\n.control-layout > *,\n.control-stack {\n  min-width: 0;\n}\n.control-stack,\n.form-card {\n  display: grid;\n  gap: 18px;\n}\n.profile-fields {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.profile-fields > label,\n.field-pair > label {\n  display: grid;\n  gap: 6px;\n}\n.profile-fields .field-span {\n  grid-column: 1 / -1;\n}\n.field-pair {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n:host input:not([type=checkbox]):not([type=radio]):not([type=range]),\n:host select,\n:host textarea {\n  border-radius: 7px;\n  font-weight: 650;\n  min-height: 42px;\n  padding: 8px 11px;\n}\nfieldset {\n  border: 0;\n  margin: 0;\n  min-width: 0;\n  padding: 0;\n}\nlegend,\nlabel {\n  color: var(--text-h);\n  font-size: 13px;\n  line-height: 1.6;\n}\n.choice-row {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 8px;\n}\n.choice-row .choice,\n.choice-row > label {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: inline-flex;\n  gap: 7px;\n  min-height: 40px;\n  padding: 7px 11px;\n  font-weight: 650;\n}\n.choice-row .choice:has(input:checked),\n.choice-row > label:has(input:checked) {\n  background: var(--accent-bg);\n  border-color: var(--accent-border);\n}\n.form-actions {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n  margin-top: 22px;\n}\n.form-card small {\n  font-size: 12px;\n  font-weight: 450;\n  line-height: 1.6;\n}\n.form-card .field-help {\n  color: var(--text);\n}\n.switch-row {\n  align-items: center;\n  display: flex;\n  gap: 16px;\n  justify-content: space-between;\n  font-weight: 650;\n}\n.switch-row small {\n  color: var(--text);\n  font-weight: 450;\n}\n.range-field {\n  display: grid;\n  font-weight: 650;\n  gap: 5px;\n  margin-top: 22px;\n  width: 100%;\n}\n.range-field > span {\n  display: flex;\n  justify-content: space-between;\n}\n.range-field input[type=range] {\n  background: transparent;\n  border: 0;\n  font-weight: 650;\n  height: 16px;\n  padding: 0;\n  width: 100%;\n}\n.range-field input[type=range]::-webkit-slider-runnable-track {\n  height: 4px;\n}\n.range-field input[type=range]::-moz-range-track,\n.range-field input[type=range]::-moz-range-progress {\n  height: 4px;\n}\n.control-card progress {\n  height: 8px;\n  margin-top: 12px;\n  width: 100%;\n}\n:host input[role=switch] {\n  accent-color: var(--accent);\n  appearance: auto;\n  background: transparent;\n  border: 0;\n  box-shadow: none;\n  color: white;\n  flex: 0 0 auto;\n  height: 24px;\n  margin: 0;\n  padding: 0;\n  width: 44px;\n}\n:host input[type=checkbox]:focus,\n:host input[type=checkbox]:focus-visible,\n:host input[type=radio]:focus,\n:host input[type=radio]:focus-visible {\n  outline: 2px solid var(--accent);\n  outline-offset: 2px;\n}\n.tabs {\n  margin-top: 0;\n}\n.tabs button {\n  font-weight: 700;\n}\n.tabs button[aria-selected=true] {\n  font-weight: 700;\n}\n.tab-panel {\n  min-height: 155px;\n  padding-top: 18px;\n}\n.tab-panel > h3 {\n  margin: 0 0 18px;\n}\n.summary-list {\n  display: grid;\n  gap: 10px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n}\n.summary-list > div {\n  display: block;\n  gap: normal;\n  justify-content: normal;\n}\n.summary-list dt {\n  color: var(--text);\n  font-size: 12px;\n  font-weight: 400;\n  line-height: 1.6;\n  margin: 0;\n}\n.summary-list dd {\n  color: var(--text-h);\n  font-size: 16px;\n  font-weight: 700;\n  line-height: 1.6;\n  margin: 2px 0 0;\n  text-align: left;\n}\n.control-card details {\n  border-top: 1px solid var(--border);\n  color: var(--text);\n  font-size: 14px;\n  line-height: 1.6;\n  margin-top: 16px;\n  padding-top: 12px;\n}\n.control-card summary {\n  color: var(--text-h);\n  font-size: 14px;\n  font-weight: 700;\n  line-height: 1.6;\n}\n.notification {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n  margin-top: 14px;\n  padding: 12px 16px;\n}\n.notification button {\n  background: transparent;\n  border: 0;\n  color: var(--text-h);\n  cursor: pointer;\n  font-size: 22px;\n  padding: 1px 6px;\n}\ndialog {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n  color: var(--text);\n  max-width: 430px;\n  padding: 26px;\n  width: calc(100% - 32px);\n}\ndialog::backdrop {\n  -webkit-backdrop-filter: blur(3px);\n  backdrop-filter: blur(3px);\n  background: rgb(8 6 13 / 68%);\n}\ndialog h2 {\n  font-weight: 500;\n  margin: 8px 0 10px;\n}\ndialog form,\ndialog .eyebrow,\ndialog p {\n  margin: 0;\n}\ndialog .eyebrow {\n  display: block;\n}\ndialog p {\n  line-height: 1.6;\n}\ndialog .primary-button {\n  display: block;\n  margin-top: 22px;\n}\n.data-card {\n  margin-top: 18px;\n  overflow: hidden;\n  padding: 22px;\n}\n.data-heading {\n  align-items: start;\n  display: flex;\n  gap: 24px;\n  justify-content: space-between;\n  margin-bottom: 18px;\n}\n.data-heading h3,\n.data-heading p {\n  margin: 0;\n}\n.detail-card .data-heading code {\n  background: var(--code-bg);\n  border: 0;\n  border-radius: 4px;\n  color: var(--text-h);\n  display: flex;\n  font: 400 15px/1.35 var(--mono, ui-monospace, Consolas, monospace);\n  padding: 4px 8px;\n}\n.data-card > .empty-state,\n.data-card > .status,\n.data-card > .detail-status {\n  background: transparent;\n  border: 0;\n  border-radius: 0;\n  color: var(--text);\n  inset: auto;\n  margin: 0;\n  padding: 12px 0;\n  position: static;\n  text-align: left;\n  transform: none;\n}\n.filter-grid,\n.filters {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: minmax(220px, 1fr) minmax(180px, 0.55fr);\n  margin: 0 0 18px;\n}\n.filter-grid label,\n.filters label {\n  display: grid;\n  gap: 6px;\n}\n.table-scroll,\n.table-wrap,\n.line-items-wrap {\n  border: 1px solid var(--border);\n  border-radius: 8px;\n  overflow-x: auto;\n}\n.grid-card table,\n.data-card table {\n  border-collapse: collapse;\n  border-spacing: 0;\n  color: var(--text);\n  font: 15px/1.6 var(--lab-font);\n  min-width: 720px;\n  width: 100%;\n}\n.grid-card table {\n  table-layout: fixed;\n}\n.grid-card th:nth-child(1) {\n  width: 39%;\n}\n.grid-card th:nth-child(2) {\n  width: 22%;\n}\n.grid-card th:nth-child(3),\n.grid-card th:nth-child(4) {\n  width: 14%;\n}\n.grid-card th:nth-child(5) {\n  width: 11%;\n}\n.grid-card th,\n.data-card th,\n.grid-card td,\n.data-card td {\n  border-bottom: 1px solid var(--border);\n  border-left: 0;\n  border-right: 0;\n  border-top: 0;\n  height: 53px;\n  padding: 13px 16px;\n  text-align: left;\n  vertical-align: middle;\n}\n.grid-card th,\n.data-card th {\n  background: var(--code-bg);\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 700;\n  padding: 0;\n}\n.grid-card th button,\n.data-card th button,\n.sort-button {\n  align-items: center;\n  background: transparent;\n  border: 0;\n  border-radius: 0;\n  color: var(--text-h);\n  display: flex;\n  font: 700 13px/1.6 var(--lab-font);\n  gap: 8px;\n  height: 53px;\n  justify-content: space-between;\n  padding: 13px 16px;\n  text-align: left;\n  width: 100%;\n}\n.grid-card th[aria-sort=ascending] button,\n.grid-card th[aria-sort=descending] button,\n.data-card th[aria-sort=ascending] button,\n.data-card th[aria-sort=descending] button,\n.grid-card th button.active-sort,\n.data-card th button.active-sort {\n  color: var(--accent);\n}\n.grid-card tbody td,\n.data-card tbody td {\n  background: transparent;\n  color: var(--text);\n  font: 400 15px/1.6 var(--lab-font);\n}\n.grid-card tbody td:first-child,\n.data-card tbody td:first-child {\n  color: var(--text-h);\n  font-weight: 650;\n}\n.grid-card tbody td:last-child code,\n.data-card tbody td:last-child code {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 4px;\n  color: var(--text-h);\n  display: inline-flex;\n  font: 400 12px/1.6 var(--mono, ui-monospace, Consolas, monospace);\n  min-height: 25px;\n  padding: 2px 6px;\n}\n.grid-card tbody tr:last-child td,\n.data-card tbody tr:last-child td {\n  border-bottom: 0;\n}\n.grid-card tbody tr.selected,\n.data-card tbody tr.selected {\n  background: var(--accent-bg);\n  box-shadow: inset 3px 0 0 var(--accent);\n}\n.pagination {\n  align-items: center;\n  display: flex;\n  gap: 12px;\n  justify-content: flex-end;\n  margin-top: 16px;\n}\n.pagination button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  font-size: 16px;\n  font-weight: 400;\n  line-height: 1.6;\n  min-height: 36px;\n  padding: 6px 10px;\n}\n.selection-status {\n  color: var(--text);\n  margin: 12px 0 0;\n  text-align: right;\n}\n.metric-grid {\n  display: grid;\n  gap: 12px;\n  grid-template-columns: repeat(3, minmax(0, 1fr));\n  margin: 0 0 18px;\n}\n.customer-detail-layout {\n  display: contents;\n}\n.metric-grid div,\n.detail-grid div,\n.customer-detail div {\n  background: var(--code-bg);\n  border: 0;\n  border-radius: 8px;\n  padding: 12px;\n}\n.metric-grid > div,\n.detail-grid > div,\n.customer-detail > div {\n  display: block;\n  gap: normal;\n}\n.metric-grid dt,\n.detail-grid dt,\n.customer-detail dt,\n.order-summary dt,\n.order-totals dt {\n  color: var(--text);\n  font: 400 12px/1.6 var(--lab-font);\n}\n.metric-grid dd,\n.detail-grid dd,\n.customer-detail dd,\n.order-summary dd {\n  color: var(--text-h);\n  font: 650 16px/1.6 var(--lab-font);\n  margin: 3px 0 0;\n}\n.metric-grid dd {\n  color: var(--accent);\n  font-weight: 700;\n}\n.detail-grid,\n.customer-detail {\n  display: grid;\n  gap: 12px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n  padding: 0;\n}\n.detail-grid dt,\n.detail-grid dd,\n.customer-detail dt,\n.customer-detail dd {\n  text-align: left;\n}\n.detail-form {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.detail-form label {\n  display: grid;\n  gap: 6px;\n}\n.dirty-status,\n.detail-actions {\n  grid-column: 1 / -1;\n}\n.detail-actions {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n.order-workspace,\n.orders-layout {\n  display: grid;\n  gap: 0;\n  grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);\n  margin: 0;\n}\n.order-workspace .order-list,\n.orders-layout .order-list {\n  max-height: none;\n  overflow: visible;\n  display: grid;\n  align-content: start;\n  gap: 8px;\n  padding: 20px 18px 20px 20px;\n}\n.order-card,\n.order-list > button {\n  align-items: center;\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 12px;\n  justify-content: space-between;\n  height: 69px;\n  padding: 10px 12px;\n  text-align: left;\n  width: 100%;\n}\n.order-card > span,\n.order-list > button > span {\n  display: grid;\n  gap: 0;\n}\n.order-card strong,\n.order-list > button strong {\n  font: 650 15px/1.6 var(--lab-font);\n}\n.order-card small,\n.order-list > button small {\n  color: var(--text);\n  font: 400 12px/1.6 var(--lab-font);\n}\n.order-status {\n  letter-spacing: 0.04em;\n  text-transform: uppercase;\n}\n.order-status.shipped {\n  color: #039855;\n}\n.order-status.overdue {\n  color: #d92d20;\n}\n.order-status.processing {\n  color: #dc6803;\n}\n.order-card[aria-pressed=true],\n.order-list > button[aria-pressed=true] {\n  background: var(--accent-bg);\n  border-color: var(--accent-border);\n}\n.order-workspace .order-detail,\n.orders-layout .order-detail {\n  border-left: 1px solid var(--border);\n  min-width: 0;\n  padding: 20px 20px 20px 18px;\n}\n.order-detail-heading {\n  display: grid;\n  gap: 0;\n  margin-bottom: 16px;\n}\n.order-detail-heading h4,\n.order-detail-heading p {\n  margin: 0;\n}\n.order-detail-heading h4 {\n  color: var(--text-h);\n  font: 650 18px/1.4 var(--lab-font);\n}\n.order-detail-heading .card-kicker {\n  font: 800 12px/1.6 var(--lab-font);\n  letter-spacing: 0.12em;\n}\n.order-summary {\n  display: grid;\n  gap: 10px;\n  grid-template-columns: repeat(3, minmax(0, 1fr));\n  margin: 0 0 16px;\n}\n.order-summary > div,\n.order-summary dl > div {\n  background: var(--code-bg);\n  border-radius: 8px;\n  display: block;\n  gap: normal;\n  padding: 10px;\n}\n.order-summary dt,\n.order-summary dd {\n  text-align: left;\n}\n.order-detail .line-items-wrap,\n.order-detail .table-scroll {\n  margin: 16px 0 0;\n  overflow-x: hidden;\n}\n.order-detail .line-items-wrap table,\n.order-detail .table-scroll table {\n  min-width: 0;\n  table-layout: fixed;\n  width: 100%;\n}\n.order-detail .line-items-wrap th,\n.order-detail .line-items-wrap td,\n.order-detail .table-scroll th,\n.order-detail .table-scroll td {\n  padding: 10px 12px;\n}\n.order-detail .line-items-wrap th:nth-child(1),\n.order-detail .table-scroll th:nth-child(1) {\n  width: 42%;\n}\n.order-detail .line-items-wrap th:nth-child(2),\n.order-detail .table-scroll th:nth-child(2) {\n  width: 14%;\n}\n.order-detail .line-items-wrap th:nth-child(3),\n.order-detail .line-items-wrap th:nth-child(4),\n.order-detail .table-scroll th:nth-child(3),\n.order-detail .table-scroll th:nth-child(4) {\n  width: 22%;\n}\n.order-detail .line-items-wrap th:nth-child(n+2),\n.order-detail .line-items-wrap td:nth-child(n+2),\n.order-detail .table-scroll th:nth-child(n+2),\n.order-detail .table-scroll td:nth-child(n+2) {\n  text-align: right;\n}\n.order-totals {\n  display: grid;\n  gap: 6px;\n  grid-template-columns: minmax(0, 1fr);\n  height: auto;\n  justify-content: stretch;\n  justify-items: stretch;\n  margin: 16px 0 0 auto;\n  max-width: 260px;\n  text-align: right;\n  width: 100%;\n}\n.order-detail .order-totals {\n  grid-template-columns: minmax(0, 1fr);\n  justify-content: stretch;\n  justify-items: stretch;\n}\n.order-totals > div {\n  align-items: center;\n  border: 0;\n  display: grid;\n  gap: 12px;\n  grid-template-columns: minmax(0, 1fr) 110px;\n  height: auto;\n  margin: 0;\n  padding: 0;\n  width: 100%;\n}\n.order-totals > div:last-child,\n.order-totals > div.grand-total:last-child {\n  border-top: 1px solid var(--border);\n  font-size: inherit;\n  margin: 1px 0 0;\n  padding: 7px 0 0;\n}\n.order-totals dt,\n.order-totals dd {\n  line-height: 1.6;\n  margin: 0;\n}\n.order-totals dd {\n  color: var(--text-h);\n  font-weight: 700;\n}\ninput[type=checkbox],\ninput[type=radio],\ninput[type=range],\nprogress {\n  accent-color: var(--accent);\n}\n@media (max-width: 760px) {\n  :host {\n    --lab-title-size: 32px;\n    --lab-section-size: 20px;\n  }\n  .profile-fields,\n  .field-pair {\n    grid-template-columns: 1fr;\n  }\n  .profile-fields .field-span {\n    grid-column: auto;\n  }\n  .section-heading {\n    align-items: stretch;\n    flex-direction: column;\n    gap: 14px;\n  }\n  .filter-grid,\n  .filters,\n  .metric-grid,\n  .detail-grid,\n  .customer-detail,\n  .detail-form,\n  .order-summary {\n    grid-template-columns: 1fr;\n  }\n  .dirty-status,\n  .detail-actions {\n    grid-column: auto;\n  }\n  .pagination,\n  .selection-status {\n    justify-content: flex-start;\n    text-align: left;\n  }\n}\n@media (max-width: 1100px) {\n  .control-layout {\n    grid-template-columns: 1fr;\n  }\n  .order-workspace,\n  .orders-layout {\n    grid-template-columns: 1fr;\n  }\n  .order-workspace .order-list,\n  .orders-layout .order-list {\n    border-bottom: 1px solid var(--border);\n    padding: 0 0 18px;\n  }\n  .order-workspace .order-detail,\n  .orders-layout .order-detail {\n    border-left: 0;\n    padding: 18px 0 0;\n  }\n}\n'], encapsulation: 3, changeDetection: 0 });
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(App, [{
     type: Component,
-    args: [{ selector: "app-angular-showcase", imports: [ReactiveFormsModule], encapsulation: ViewEncapsulation.ShadowDom, changeDetection: ChangeDetectionStrategy.OnPush, template: `<div class="showcase">
-  <header class="showcase-header">
-    <div>
-      <span class="eyebrow">Frontend Lab</span>
-      <h1>Angular showcase</h1>
-      <p>
-        Interactive UI patterns and data binding implemented with Angular reactive forms, signals,
-        templates, and accessible native controls.
-      </p>
-    </div>
-    <div class="framework-badge" aria-label="Built with Angular">
-      <span aria-hidden="true">A</span>
-      <strong>Angular</strong>
-    </div>
-  </header>
-
-  <nav class="showcase-nav" aria-label="Angular showcase sections">
-    <a href="#angular-controls">Control gallery</a>
-    <a href="#angular-northwind">Northwind data binding</a>
-  </nav>
-
-  <section id="angular-controls" class="controls-section" aria-labelledby="controls-heading">
-    <div class="section-heading">
-      <div>
-        <span class="eyebrow">Reactive forms and signals</span>
-        <h2 id="controls-heading">Control gallery</h2>
-      </div>
-      <p>
-        Every value below is bound through Angular and immediately reflected in the live summary.
-      </p>
-    </div>
-
-    <div class="control-layout">
-      <form class="control-card form-card" [formGroup]="profile" (ngSubmit)="validateProfile()">
-        <h3>Profile inputs</h3>
-        <div class="field-grid">
-          <label>
-            <span>Name</span>
-            <input formControlName="name" />
-          </label>
-          <label>
-            <span>Email</span>
-            <input
-              type="email"
-              formControlName="email"
-              [attr.aria-invalid]="profile.controls.email.invalid"
-              aria-describedby="email-help"
-            />
-            <small
-              id="email-help"
-              [class.field-error]="profile.controls.email.invalid"
-              [class.field-help]="profile.controls.email.valid"
-            >
-              @if (profile.controls.email.valid) {
-                Used for example notifications.
-              } @else {
-                Enter a valid email address.
-              }
-            </small>
-          </label>
-          <label>
-            <span>Seats</span>
-            <input type="number" min="1" max="20" formControlName="seats" />
-          </label>
-          <label>
-            <span>Start date</span>
-            <input type="date" formControlName="startDate" />
-          </label>
+    args: [{ selector: "app-angular-showcase", imports: [ReactiveFormsModule], encapsulation: ViewEncapsulation.ShadowDom, changeDetection: ChangeDetectionStrategy.OnPush, template: `<div class="showcase">\r
+  <header class="showcase-header">\r
+    <div>\r
+      <span class="eyebrow">Frontend Lab</span>\r
+      <h1>Angular showcase</h1>\r
+      <p>\r
+        Interactive UI patterns, form controls, and API-backed data binding built with accessible
+        native controls.
+      </p>\r
+    </div>\r
+    <div class="framework-badge" aria-label="Built with Angular">\r
+      <span aria-hidden="true">A</span>\r
+      <strong>Angular</strong>\r
+    </div>\r
+  </header>\r
+\r
+  <nav class="showcase-nav" aria-label="Angular showcase sections">\r
+    <a href="#angular-controls">Control gallery</a>\r
+    <a href="#angular-northwind">Northwind data binding</a>\r
+  </nav>\r
+\r
+  <section id="angular-controls" class="controls-section" aria-labelledby="controls-heading">\r
+    <div class="section-heading">\r
+      <div>\r
+        <span class="eyebrow">Reactive UI state</span>
+        <h2 id="controls-heading">Control gallery</h2>\r
+      </div>\r
+      <p>\r
+        Every value below is bound to framework state and immediately reflected in the live summary.
+      </p>\r
+    </div>\r
+\r
+    <div class="control-layout">\r
+      <form
+        class="control-card form-card"
+        aria-labelledby="profile-heading"
+        [formGroup]="profile"
+        (ngSubmit)="validateProfile()"
+      >
+        <div class="card-heading">
+          <h3 id="profile-heading">Profile inputs</h3>
+        </div>
+        <div class="profile-fields">
           <label class="field-span">
-            <span>Role</span>
-            <select formControlName="role">
-              <option>Developer</option>
-              <option>Designer</option>
-              <option>Analyst</option>
-              <option>Manager</option>
-            </select>
-          </label>
-        </div>
-
-        <fieldset>
-          <legend>Interests</legend>
-          <div class="choice-row">
-            @for (interest of ['Data', 'Design', 'Automation']; track interest) {
-              <label class="choice">
-                <input
-                  type="checkbox"
-                  [checked]="interests().includes(interest)"
-                  (change)="toggleInterest(interest)"
-                />
-                <span>{{ interest }}</span>
-              </label>
-            }
+            <span>Name</span>\r
+            <input formControlName="name" />\r
+          </label>\r
+          <label class="field-span">
+            <span>Email</span>\r
+            <input\r
+              type="email"\r
+              formControlName="email"\r
+              [attr.aria-invalid]="profile.controls.email.invalid"\r
+              aria-describedby="email-help"\r
+            />\r
+            <small\r
+              id="email-help"\r
+              [class.field-error]="profile.controls.email.invalid"\r
+              [class.field-help]="profile.controls.email.valid"\r
+            >\r
+              @if (profile.controls.email.valid) {\r
+                Used for example notifications.\r
+              } @else {\r
+                Enter a valid email address.\r
+              }\r
+            </small>\r
+          </label>\r
+          <div class="field-pair field-span">
+            <label>
+              <span>Seats</span>
+              <input type="number" min="1" max="20" formControlName="seats" />
+            </label>
+            <label>
+              <span>Start date</span>
+              <input type="date" formControlName="startDate" />
+            </label>
           </div>
-        </fieldset>
-
-        <fieldset>
-          <legend>Preferred contact</legend>
-          <div class="choice-row">
-            @for (method of ['Email', 'Phone', 'Chat']; track method) {
-              <label class="choice">
-                <input
-                  type="radio"
-                  name="contact-method"
-                  [value]="method"
-                  [checked]="contactMethod() === method"
-                  (change)="contactMethod.set(method)"
-                />
-                <span>{{ method }}</span>
-              </label>
-            }
+          <label class="field-span">\r
+            <span>Role</span>\r
+            <select formControlName="role">\r
+              <option>Developer</option>\r
+              <option>Designer</option>\r
+              <option>Analyst</option>\r
+              <option>Manager</option>\r
+            </select>\r
+          </label>\r
+        </div>\r
+\r
+        <fieldset>\r
+          <legend>Interests</legend>\r
+          <div class="choice-row">\r
+            @for (interest of ['Data', 'Design', 'Automation']; track interest) {\r
+              <label class="choice">\r
+                <input\r
+                  type="checkbox"\r
+                  [checked]="interests().includes(interest)"\r
+                  (change)="toggleInterest(interest)"\r
+                />\r
+                <span>{{ interest }}</span>\r
+              </label>\r
+            }\r
+          </div>\r
+        </fieldset>\r
+\r
+        <fieldset>\r
+          <legend>Preferred contact</legend>\r
+          <div class="choice-row">\r
+            @for (method of ['Email', 'Phone', 'Chat']; track method) {\r
+              <label class="choice">\r
+                <input\r
+                  type="radio"\r
+                  name="contact-method"\r
+                  [value]="method"\r
+                  [checked]="contactMethod() === method"\r
+                  (change)="contactMethod.set(method)"\r
+                />\r
+                <span>{{ method }}</span>\r
+              </label>\r
+            }\r
+          </div>\r
+        </fieldset>\r
+\r
+        <div class="form-actions">\r
+          <button type="submit" class="primary-button" [disabled]="profile.invalid">\r
+            Validate profile\r
+          </button>\r
+          <button type="button" class="secondary-button" (click)="openDialog()">Open dialog</button>\r
+          <button type="button" class="secondary-button" disabled>Disabled</button>\r
+        </div>\r
+      </form>\r
+\r
+      <div class="control-stack">\r
+        <article class="control-card">
+          <div class="card-heading">
+            <h3>Preferences and progress</h3>
           </div>
-        </fieldset>
+          <label class="switch-row">\r
+            <span>\r
+              <strong>Notifications</strong>\r
+              <small>Enable status updates</small>\r
+            </span>\r
+            <input\r
+              class="switch"\r
+              type="checkbox"\r
+              role="switch"\r
+              [checked]="notificationsEnabled()"\r
+              (change)="notificationsEnabled.set($any($event.target).checked)"\r
+            />\r
+          </label>\r
+          <label class="range-field">\r
+            <span>\r
+              Confidence <strong>{{ confidence() }}%</strong>\r
+            </span>\r
+            <input\r
+              type="range"\r
+              min="0"\r
+              max="100"\r
+              [value]="confidence()"\r
+              (input)="confidence.set(+$any($event.target).value)"\r
+            />\r
+          </label>\r
+          <progress\r
+            [value]="confidence()"\r
+            max="100"\r
+            [attr.aria-label]="'Confidence ' + confidence() + '%'"\r
+          ></progress>\r
+        </article>
 
-        <div class="form-actions">
-          <button type="submit" class="primary-button" [disabled]="profile.invalid">
-            Validate profile
-          </button>
-          <button type="button" class="secondary-button" (click)="openDialog()">Open dialog</button>
-          <button type="button" class="secondary-button" disabled>Disabled</button>
-        </div>
-      </form>
-
-      <div class="control-stack">
-        <section class="control-card">
-          <h3>Preferences and progress</h3>
-          <label class="switch-row">
-            <span>
-              <strong>Notifications</strong>
-              <small>Enable status updates</small>
-            </span>
-            <input
-              class="switch"
-              type="checkbox"
-              role="switch"
-              [checked]="notificationsEnabled()"
-              (change)="notificationsEnabled.set($any($event.target).checked)"
-            />
-          </label>
-          <label class="range-field">
-            <span>
-              Confidence <strong>{{ confidence() }}%</strong>
-            </span>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              [value]="confidence()"
-              (input)="confidence.set(+$any($event.target).value)"
-            />
-          </label>
-          <progress
-            [value]="confidence()"
-            max="100"
-            [attr.aria-label]="'Confidence ' + confidence() + '%'"
-          ></progress>
-        </section>
-
-        <section class="control-card">
-          <div class="tabs" role="tablist" aria-label="Profile views">
-            @for (tab of ['summary', 'settings']; track tab) {
-              <button
-                [id]="'profile-' + tab + '-tab'"
-                type="button"
-                role="tab"
-                [attr.aria-selected]="activeTab() === tab"
-                [attr.aria-controls]="'profile-' + tab + '-panel'"
-                (click)="selectTab($any(tab))"
-                (keydown)="handleTabKey($event, $any(tab))"
-              >
-                {{ tab === 'summary' ? 'Summary' : 'Settings' }}
-              </button>
-            }
+        <article class="control-card">
+          <div class="card-heading">
+            <h3>Bound state</h3>
           </div>
-
-          @if (activeTab() === 'summary') {
-            <div
-              id="profile-summary-panel"
-              class="tab-panel"
-              role="tabpanel"
-              aria-labelledby="profile-summary-tab"
-              tabindex="0"
-            >
-              <h3>{{ profile.controls.name.value || 'Unnamed profile' }}</h3>
-              <dl class="summary-list">
-                <div>
-                  <dt>Role</dt>
-                  <dd>{{ profile.controls.role.value }}</dd>
-                </div>
-                <div>
-                  <dt>Seats</dt>
-                  <dd>{{ profile.controls.seats.value }}</dd>
-                </div>
-                <div>
-                  <dt>Contact</dt>
-                  <dd>{{ contactMethod() }}</dd>
-                </div>
-                <div>
-                  <dt>Interests</dt>
-                  <dd>{{ interestsSummary() }}</dd>
-                </div>
-              </dl>
-            </div>
-          } @else {
-            <div
-              id="profile-settings-panel"
-              class="tab-panel"
-              role="tabpanel"
-              aria-labelledby="profile-settings-tab"
-              tabindex="0"
-            >
-              <h3>Current settings</h3>
-              <p>
-                Notifications are
-                <strong>{{ notificationsEnabled() ? 'enabled' : 'disabled' }}</strong
-                >. The selected start date is {{ profile.controls.startDate.value }}.
-              </p>
-            </div>
-          }
-
-          <details>
-            <summary>Implementation note</summary>
-            <p>
-              Native controls preserve keyboard behavior while Angular binds each value and derives
-              this summary.
-            </p>
-          </details>
-        </section>
-      </div>
-    </div>
-
-    @if (notice()) {
-      <div class="notification" role="status" aria-live="polite">
-        <span>{{ notice() }}</span>
-        <button type="button" aria-label="Dismiss notification" (click)="notice.set('')">\xD7</button>
-      </div>
-    }
-  </section>
-
-  <section id="angular-northwind" class="data-section" aria-labelledby="data-heading">
+          <div class="tabs" role="tablist" aria-label="Profile views">\r
+            @for (tab of ['summary', 'settings']; track tab) {\r
+              <button\r
+                [id]="'profile-' + tab + '-tab'"\r
+                type="button"\r
+                role="tab"\r
+                [attr.aria-selected]="activeTab() === tab"\r
+                [attr.aria-controls]="'profile-' + tab + '-panel'"\r
+                (click)="selectTab($any(tab))"\r
+                (keydown)="handleTabKey($event, $any(tab))"\r
+              >\r
+                {{ tab === 'summary' ? 'Summary' : 'Settings' }}\r
+              </button>\r
+            }\r
+          </div>\r
+\r
+          @if (activeTab() === 'summary') {\r
+            <div\r
+              id="profile-summary-panel"\r
+              class="tab-panel"\r
+              role="tabpanel"\r
+              aria-labelledby="profile-summary-tab"\r
+              tabindex="0"\r
+            >\r
+              <h3>{{ profile.controls.name.value || 'Unnamed profile' }}</h3>\r
+              <dl class="summary-list">\r
+                <div>\r
+                  <dt>Role</dt>\r
+                  <dd>{{ profile.controls.role.value }}</dd>\r
+                </div>\r
+                <div>\r
+                  <dt>Seats</dt>\r
+                  <dd>{{ profile.controls.seats.value }}</dd>\r
+                </div>\r
+                <div>\r
+                  <dt>Contact</dt>\r
+                  <dd>{{ contactMethod() }}</dd>\r
+                </div>\r
+                <div>\r
+                  <dt>Interests</dt>\r
+                  <dd>{{ interestsSummary() }}</dd>\r
+                </div>\r
+              </dl>\r
+            </div>\r
+          } @else {\r
+            <div\r
+              id="profile-settings-panel"\r
+              class="tab-panel"\r
+              role="tabpanel"\r
+              aria-labelledby="profile-settings-tab"\r
+              tabindex="0"\r
+            >\r
+              <h3>Current settings</h3>\r
+              <p>\r
+                Notifications are\r
+                <strong>{{ notificationsEnabled() ? 'enabled' : 'disabled' }}</strong\r
+                >. The selected start date is {{ profile.controls.startDate.value }}.\r
+              </p>\r
+            </div>\r
+          }\r
+\r
+          <details>\r
+            <summary>Implementation note</summary>\r
+            <p>\r
+              Native controls preserve keyboard behavior while framework state derives this summary.
+            </p>\r
+          </details>\r
+        </article>
+      </div>\r
+    </div>\r
+\r
+    @if (notice()) {\r
+      <div class="notification" role="status" aria-live="polite">\r
+        <span>{{ notice() }}</span>\r
+        <button type="button" aria-label="Dismiss notification" (click)="notice.set('')">\xD7</button>\r
+      </div>\r
+    }\r
+  </section>\r
+\r
+  <section id="angular-northwind" class="data-section" aria-labelledby="data-heading">\r
     <div class="section-heading">
       <div>
         <span class="eyebrow">API-backed state</span>
         <h2 id="data-heading">Northwind data binding</h2>
       </div>
-      <div class="sandbox-toolbar">
-        <p>Server-driven filtering, sorting, paging, and selection against the Northwind API.</p>
-        <label class="sandbox-toggle">
-          <input
-            type="checkbox"
-            role="switch"
-            [checked]="sandboxEnabled()"
-            (change)="toggleSandbox($any($event.target).checked)"
-          />
-          <span>Editing sandbox</span>
-        </label>
-        @if (sandboxEnabled()) {
-          <button type="button" class="secondary-button" (click)="resetSandbox()">
-            Reset sandbox
-          </button>
-        }
-      </div>
+      <p>Server-driven filtering, sorting, paging, and selection against the Northwind API.</p>
     </div>
 
-    @if (sandboxEnabled()) {
-      <div class="sandbox-banner">
-        <div>
-          <strong>Temporary editing enabled.</strong>
-          <span
-            >Changes are isolated to this browser session and never reach the canonical Northwind
-            database.</span
-          >
-        </div>
-        <div class="sandbox-status">
-          <span [class.changed]="sandboxHasChanges()">
-            {{ sandboxHasChanges() ? 'Changes made' : 'Vanilla copy' }}
-          </span>
-          @if (sandboxExpiresAt()) {
-            <small>Expires after 30 minutes without sandbox activity</small>
-          }
-        </div>
+    <aside class="sandbox-panel" aria-labelledby="sandbox-heading">
+      <div>
+        <span class="eyebrow">Session-isolated editing</span>
+        <h3 id="sandbox-heading">Editing Sandbox</h3>
+        <p>
+          Changes use an in-memory browser-session copy. Canonical Northwind customers and every
+          order remain read-only.
+        </p>
       </div>
-    }
-
-    <section class="grid-card" aria-labelledby="customers-heading">
-      <div class="grid-heading">
-        <div>
-          <h3 id="customers-heading">Customer explorer</h3>
-          <p>{{ totalCount() }} Northwind records</p>
-        </div>
-        <div class="filters">
-          <label>
-            <span>Search</span>
-            <input
-              type="search"
-              [value]="search()"
-              placeholder="Company or contact"
-              (input)="updateSearch($any($event.target).value)"
-            />
-          </label>
-          <label>
-            <span>Country</span>
-            <select [value]="country()" (change)="updateCountry($any($event.target).value)">
-              <option value="">All countries</option>
-              @for (item of countries(); track item) {
-                <option [value]="item">{{ item }}</option>
-              }
-            </select>
-          </label>
-        </div>
-      </div>
-
-      @if (customerError()) {
-        <div class="status error" role="alert">{{ customerError() }}</div>
+      <label class="switch-row">
+        <span>
+          <strong>{{ sandboxEnabled() ? 'Enabled' : 'Disabled' }}</strong>
+          <small>{{ sandboxHasChanges() ? 'Changes made' : 'Vanilla copy' }}</small>
+        </span>
+        <input
+          class="switch"
+          type="checkbox"
+          role="switch"
+          aria-label="Editing sandbox"
+          [checked]="sandboxEnabled()"
+          (change)="toggleSandbox($any($event.target).checked)"
+        />
+      </label>
+      @if (sandboxEnabled()) {
+        <button type="button" class="secondary-button" (click)="resetSandbox()">
+          Reset sandbox
+        </button>
       }
-
-      <div class="table-wrap" [attr.aria-busy]="loading()">
-        <table aria-label="Northwind customers">
-          <thead>
-            <tr>
-              @for (column of columns; track column[0]) {
-                <th
-                  scope="col"
-                  [attr.aria-sort]="
-                    sort() === column[0]
-                      ? direction() === 'asc'
-                        ? 'ascending'
-                        : 'descending'
-                      : 'none'
-                  "
-                >
-                  <button
-                    type="button"
-                    [class.active-sort]="sort() === column[0]"
-                    [attr.aria-label]="column[1] + ': ' + sortLabel(column[0])"
-                    (click)="changeSort(column[0])"
-                  >
-                    {{ column[1] }}
-                    <span aria-hidden="true">
-                      {{ sort() === column[0] ? (direction() === 'asc' ? '\u2191' : '\u2193') : '\u2195' }}
-                    </span>
-                  </button>
-                </th>
-              }
-            </tr>
-          </thead>
-          <tbody>
-            @if (!loading()) {
-              @for (customer of customers(); track customer.customerId) {
-                <tr
-                  [class.selected]="selectedId() === customer.customerId"
-                  (click)="selectedId.set(customer.customerId)"
-                >
-                  <td data-label="Company">
-                    <button
-                      type="button"
-                      class="row-select"
-                      [attr.aria-pressed]="selectedId() === customer.customerId"
-                      (click)="$event.stopPropagation(); selectedId.set(customer.customerId)"
-                    >
-                      {{ customer.companyName }}
-                    </button>
-                  </td>
-                  <td data-label="Contact">{{ customer.contactName || '\u2014' }}</td>
-                  <td data-label="City">{{ customer.city || '\u2014' }}</td>
-                  <td data-label="Country">{{ customer.country || '\u2014' }}</td>
-                  <td data-label="ID">
-                    <code>{{ customer.customerId }}</code>
-                  </td>
-                </tr>
-              }
-            }
-          </tbody>
-        </table>
-
-        @if (loading()) {
-          <div class="status" role="status" aria-live="polite">Loading customers\u2026</div>
-        } @else if (!customerError() && customers().length === 0) {
-          <div class="status">No customers match these filters.</div>
-        }
-      </div>
-
-      <footer class="grid-footer">
-        <span>{{ selectedId() ? 'Selected: ' + selectedId() : 'Select a customer row' }}</span>
-        <div class="pagination">
-          <button
-            type="button"
-            [disabled]="loading() || page() <= 1"
-            (click)="page.update((current) => current - 1)"
-          >
-            Previous
-          </button>
-          <span>{{ pageLabel() }}</span>
-          <button
-            type="button"
-            [disabled]="loading() || page() >= totalPages()"
-            (click)="page.update((current) => current + 1)"
-          >
-            Next
-          </button>
-        </div>
-      </footer>
-    </section>
-
-    <section class="detail-card" aria-labelledby="detail-heading">
-      <div class="detail-heading">
-        <div>
-          <span class="eyebrow">{{
-            sandboxEnabled() ? 'Session database' : 'Read-only binding'
-          }}</span>
-          <h3 id="detail-heading">Customer details</h3>
-        </div>
-        @if (selectedId()) {
-          <code>{{ selectedId() }}</code>
-        }
-      </div>
-
-      @if (!selectedId()) {
-        <div class="detail-status">Select a customer row to bind the detail controls.</div>
-      } @else if (detailLoading()) {
-        <div class="detail-status" role="status" aria-live="polite">Loading customer\u2026</div>
-      } @else if (detailError()) {
-        <div class="detail-status error" role="alert">{{ detailError() }}</div>
-      } @else if (sandboxEnabled() && customerDraft(); as draft) {
-        <form class="detail-form" (submit)="$event.preventDefault(); saveSandboxCustomer()">
-          @for (field of editableFields; track field[0]) {
-            <label>
-              <span>{{ field[1] }}</span>
-              <input
-                [required]="field[0] === 'companyName'"
-                [value]="draft[field[0]] ?? ''"
-                (input)="updateCustomerDraft(field[0], $any($event.target).value)"
-              />
-            </label>
-          }
-          <div class="detail-metrics">
-            <span>{{ draft.orderCount }} orders</span>
-            <span>{{ formatSales(draft.totalSales) }}</span>
-            @if (draftIsDirty()) {
-              <span class="unsaved-indicator">Unsaved fields</span>
-            }
-          </div>
-          <div class="detail-actions">
-            <button
-              type="submit"
-              class="primary-button"
-              [disabled]="!draftIsDirty() || !draft.companyName.trim()"
-            >
-              Save temporary changes
-            </button>
-            <button
-              type="button"
-              class="secondary-button"
-              [disabled]="!draftIsDirty()"
-              (click)="discardCustomerDraft()"
-            >
-              Discard fields
-            </button>
-          </div>
-        </form>
-      } @else if (customerDetail(); as detail) {
-        <dl class="customer-detail">
-          <div>
-            <dt>Company</dt>
-            <dd>{{ detail.companyName || '\u2014' }}</dd>
-          </div>
-          <div>
-            <dt>Contact</dt>
-            <dd>{{ detail.contactName || '\u2014' }}</dd>
-          </div>
-          <div>
-            <dt>Title</dt>
-            <dd>{{ detail.contactTitle || '\u2014' }}</dd>
-          </div>
-          <div>
-            <dt>Address</dt>
-            <dd>{{ detail.address || '\u2014' }}</dd>
-          </div>
-          <div>
-            <dt>Location</dt>
-            <dd>{{ customerLocation(detail) || '\u2014' }}</dd>
-          </div>
-          <div>
-            <dt>Phone</dt>
-            <dd>{{ detail.phone || '\u2014' }}</dd>
-          </div>
-          <div>
-            <dt>Fax</dt>
-            <dd>{{ detail.fax || '\u2014' }}</dd>
-          </div>
-          <div>
-            <dt>Orders</dt>
-            <dd>{{ detail.orderCount }}</dd>
-          </div>
-          <div>
-            <dt>Total sales</dt>
-            <dd>{{ formatSales(detail.totalSales) }}</dd>
-          </div>
-        </dl>
+      @if (sandboxEnabled() && sandboxExpiresAt()) {
+        <small>Session copy expires after 30 minutes without sandbox activity.</small>
       }
       @if (sandboxNotice()) {
-        <div class="notification detail-notice" role="status" aria-live="polite">
+        <div class="notification" role="status" aria-live="polite">
           <span>{{ sandboxNotice() }}</span>
           <button
             type="button"
@@ -35985,136 +35796,341 @@ var App = class _App {
           </button>
         </div>
       }
+    </aside>
+\r
+    <section class="data-card grid-card" aria-labelledby="customers-heading">
+      <div class="data-heading">
+        <h3 id="customers-heading">Customer explorer</h3>
+        <p>{{ totalCount() }} Northwind records</p>
+      </div>
+      <div class="filter-grid filters">
+          <label>\r
+            <span>Search customers</span>
+            <input\r
+              type="search"\r
+              [value]="search()"\r
+              placeholder="Company or contact"\r
+              (input)="updateSearch($any($event.target).value)"\r
+            />\r
+          </label>\r
+          <label>\r
+            <span>Country</span>\r
+            <select [value]="country()" (change)="updateCountry($any($event.target).value)">\r
+              <option value="">All countries</option>\r
+              @for (item of countries(); track item) {\r
+                <option [value]="item">{{ item }}</option>\r
+              }\r
+            </select>\r
+          </label>\r
+      </div>
+\r
+      @if (customerError()) {\r
+        <div class="status error" role="alert">{{ customerError() }}</div>\r
+      }\r
+\r
+      <div class="table-wrap" [attr.aria-busy]="loading()">\r
+        <table aria-label="Northwind customers">\r
+          <thead>\r
+            <tr>\r
+              @for (column of columns; track column[0]) {\r
+                <th\r
+                  scope="col"\r
+                  [attr.aria-sort]="\r
+                    sort() === column[0]\r
+                      ? direction() === 'asc'\r
+                        ? 'ascending'\r
+                        : 'descending'\r
+                      : 'none'\r
+                  "\r
+                >\r
+                  <button\r
+                    type="button"\r
+                    [class.active-sort]="sort() === column[0]"\r
+                    [attr.aria-label]="column[1] + ': ' + sortLabel(column[0])"\r
+                    (click)="changeSort(column[0])"\r
+                  >\r
+                    {{ column[1] }}\r
+                    <span aria-hidden="true">\r
+                      {{ sort() === column[0] ? (direction() === 'asc' ? '\u2191' : '\u2193') : '\u2195' }}\r
+                    </span>\r
+                  </button>\r
+                </th>\r
+              }\r
+            </tr>\r
+          </thead>\r
+          <tbody>\r
+            @if (!loading()) {\r
+              @for (customer of customers(); track customer.customerId) {\r
+                <tr
+                  [class.selected]="selectedId() === customer.customerId"
+                  [attr.aria-selected]="selectedId() === customer.customerId"
+                  tabindex="0"
+                  (click)="selectedId.set(customer.customerId)"
+                  (keydown.enter)="selectedId.set(customer.customerId)"
+                  (keydown.space)="$event.preventDefault(); selectedId.set(customer.customerId)"
+                >
+                  <td data-label="Company">
+                    {{ customer.companyName }}
+                  </td>
+                  <td data-label="Contact">{{ customer.contactName || '\u2014' }}</td>\r
+                  <td data-label="City">{{ customer.city || '\u2014' }}</td>\r
+                  <td data-label="Country">{{ customer.country || '\u2014' }}</td>\r
+                  <td data-label="ID">\r
+                    <code>{{ customer.customerId }}</code>\r
+                  </td>\r
+                </tr>\r
+              }\r
+            }\r
+          </tbody>\r
+        </table>\r
+\r
+        @if (loading()) {\r
+          <div class="status" role="status" aria-live="polite">Loading customers\u2026</div>\r
+        } @else if (!customerError() && customers().length === 0) {\r
+          <div class="status">No customers match these filters.</div>\r
+        }\r
+      </div>\r
+\r
+      <div class="pagination" aria-label="Customer pages">
+          <button\r
+            type="button"\r
+            [disabled]="loading() || page() <= 1"\r
+            (click)="page.update((current) => current - 1)"\r
+          >\r
+            Previous\r
+          </button>\r
+          <span>{{ pageLabel() }}</span>\r
+          <button\r
+            type="button"\r
+            [disabled]="loading() || page() >= totalPages()"\r
+            (click)="page.update((current) => current + 1)"\r
+          >\r
+            Next\r
+          </button>\r
+      </div>
+      <p class="selection-status" aria-live="polite">
+        {{ selectedId() ? 'Selected: ' + selectedId() : 'Select a customer' }}
+      </p>
     </section>
 
-    <section class="orders-card" aria-labelledby="orders-heading">
-      <div class="detail-heading">
-        <div>
-          <span class="eyebrow">Selection chain</span>
-          <h3 id="orders-heading">Orders and line items</h3>
+    <section class="data-card detail-card" aria-labelledby="detail-heading">
+      <div class="data-heading">
+        <h3 id="detail-heading">Customer details</h3>
+        @if (selectedId()) {\r
+          <code>{{ selectedId() }}</code>\r
+        }\r
+      </div>\r
+\r
+      @if (!selectedId()) {\r
+        <div class="detail-status">
+          Select a customer to bind its complete record and sales metrics.
         </div>
-        @if (selectedOrderId()) {
-          <code>Order {{ selectedOrderId() }}</code>
-        }
-      </div>
-      @if (!selectedId()) {
-        <div class="detail-status">Select a customer to load their orders.</div>
-      } @else {
-        <div class="orders-layout">
-          <div class="order-list" [attr.aria-busy]="ordersLoading()">
-            <h4>Customer orders</h4>
-            @if (ordersLoading()) {
-              <div class="detail-status" role="status" aria-live="polite">Loading orders\u2026</div>
-            } @else if (orders().length === 0) {
-              <div class="detail-status">This customer has no orders.</div>
-            } @else {
-              @for (order of orders(); track order.orderId) {
-                <button
-                  type="button"
-                  [class.selected]="selectedOrderId() === order.orderId"
-                  [attr.aria-pressed]="selectedOrderId() === order.orderId"
-                  (click)="selectedOrderId.set(order.orderId)"
-                >
-                  <span
-                    ><strong>Order {{ order.orderId }}</strong
-                    ><small>{{ formatDate(order.orderDate) }}</small></span
-                  >
-                  <span
-                    ><strong>{{ formatSales(order.total) }}</strong
-                    ><small>{{ order.status }}</small></span
-                  >
-                </button>
-              }
-            }
+      } @else if (detailLoading()) {\r
+        <div class="detail-status" role="status" aria-live="polite">Loading customer\u2026</div>\r
+      } @else if (detailError()) {\r
+        <div class="detail-status error" role="alert">{{ detailError() }}</div>\r
+      } @else if (customerDetail(); as metrics) {
+        <dl class="metric-grid" aria-label="Customer sales metrics">
+          <div><dt>Orders</dt><dd>{{ metrics.orderCount }}</dd></div>
+          <div><dt>Total sales</dt><dd>{{ formatSales(metrics.totalSales) }}</dd></div>
+          <div><dt>Last order</dt><dd>{{ formatDate(metrics.lastOrderDate) }}</dd></div>
+        </dl>
+      }
+
+      @if (!detailLoading() && sandboxEnabled() && customerDraft(); as draft) {
+        <form class="detail-form" (submit)="$event.preventDefault(); saveSandboxCustomer()">
+          @for (field of editableFields; track field[0]) {\r
+            <label>\r
+              <span>{{ field[1] }}</span>\r
+              <input\r
+                [required]="field[0] === 'companyName'"\r
+                [value]="draft[field[0]] ?? ''"\r
+                (input)="updateCustomerDraft(field[0], $any($event.target).value)"\r
+              />\r
+            </label>\r
+          }\r
+          <p class="dirty-status" aria-live="polite">
+            {{ draftIsDirty() ? 'Unsaved fields' : 'No unsaved fields' }}
+          </p>
+          <div class="detail-actions">\r
+            <button\r
+              type="submit"\r
+              class="primary-button"\r
+              [disabled]="!draftIsDirty() || !draft.companyName.trim()"\r
+            >\r
+              Save changes
+            </button>\r
+            <button\r
+              type="button"\r
+              class="secondary-button"\r
+              [disabled]="!draftIsDirty()"\r
+              (click)="discardCustomerDraft()"\r
+            >\r
+              Discard
+            </button>\r
+          </div>\r
+        </form>\r
+      } @else if (!detailLoading() && !sandboxEnabled() && customerDetail(); as detail) {
+        <dl class="detail-grid customer-detail">
+          <div>\r
+            <dt>Company</dt>\r
+            <dd>{{ detail.companyName || '\u2014' }}</dd>\r
+          </div>\r
+          <div>\r
+            <dt>Contact</dt>\r
+            <dd>{{ detail.contactName || '\u2014' }}</dd>\r
+          </div>\r
+          <div>\r
+            <dt>Title</dt>\r
+            <dd>{{ detail.contactTitle || '\u2014' }}</dd>\r
+          </div>\r
+          <div>\r
+            <dt>Address</dt>\r
+            <dd>{{ detail.address || '\u2014' }}</dd>\r
+          </div>\r
+          <div>\r
+            <dt>City</dt>
+            <dd>{{ detail.city || '\u2014' }}</dd>
           </div>
-          <div class="order-detail" [attr.aria-busy]="orderLoading()">
-            <h4>Order detail</h4>
-            @if (orderLoading()) {
-              <div class="detail-status" role="status" aria-live="polite">Loading order\u2026</div>
-            } @else if (orderError()) {
-              <div class="detail-status error" role="alert">{{ orderError() }}</div>
-            } @else if (orderDetail(); as detail) {
-              <dl class="order-summary">
-                <div>
-                  <dt>Employee</dt>
-                  <dd>{{ detail.employeeName || '\u2014' }}</dd>
-                </div>
-                <div>
-                  <dt>Shipper</dt>
-                  <dd>{{ detail.shipperName || '\u2014' }}</dd>
-                </div>
-                <div>
-                  <dt>Status</dt>
-                  <dd>{{ detail.status }}</dd>
-                </div>
-                <div>
-                  <dt>Destination</dt>
-                  <dd>{{ destination(detail) }}</dd>
-                </div>
-              </dl>
-              <div class="line-items-wrap">
-                <table class="line-items">
-                  <caption>
-                    Order line items
-                  </caption>
-                  <thead>
-                    <tr>
-                      <th scope="col">Product</th>
-                      <th scope="col">Qty.</th>
-                      <th scope="col">Price</th>
-                      <th scope="col">Total</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @for (item of detail.items; track item.productId) {
-                      <tr>
-                        <td>{{ item.productName }}</td>
-                        <td>{{ item.quantity }}</td>
-                        <td>{{ formatSales(item.unitPrice) }}</td>
-                        <td>{{ formatSales(item.extendedPrice) }}</td>
-                      </tr>
-                    }
-                  </tbody>
-                </table>
-              </div>
-              <dl class="order-totals">
-                <div>
-                  <dt>Subtotal</dt>
-                  <dd>{{ formatSales(detail.subtotal) }}</dd>
-                </div>
-                <div>
-                  <dt>Freight</dt>
-                  <dd>{{ formatSales(detail.freight) }}</dd>
-                </div>
-                <div>
-                  <dt>Total</dt>
-                  <dd>{{ formatSales(detail.total) }}</dd>
-                </div>
-              </dl>
-            }
-          </div>
-        </div>
+          <div><dt>Region</dt><dd>{{ detail.region || '\u2014' }}</dd></div>
+          <div><dt>Postal code</dt><dd>{{ detail.postalCode || '\u2014' }}</dd></div>
+          <div><dt>Country</dt><dd>{{ detail.country || '\u2014' }}</dd></div>
+          <div>\r
+            <dt>Phone</dt>\r
+            <dd>{{ detail.phone || '\u2014' }}</dd>\r
+          </div>\r
+          <div>\r
+            <dt>Fax</dt>\r
+            <dd>{{ detail.fax || '\u2014' }}</dd>\r
+          </div>\r
+        </dl>
       }
     </section>
-  </section>
 
-  <dialog #profileDialog>
-    <form method="dialog">
-      <span class="eyebrow">Native dialog</span>
-      <h2>Angular-controlled launch</h2>
-      <p>This modal uses the browser dialog element for focus management and keyboard dismissal.</p>
-      <button class="primary-button">Close dialog</button>
-    </form>
-  </dialog>
-</div>
-`, styles: ["/* src/app/app.css */\n:host {\n  --text: #6b6375;\n  --text-h: #08060d;\n  --bg: #fff;\n  --border: #e5e4e7;\n  --code-bg: #f4f3ec;\n  --accent: #aa3bff;\n  --accent-bg: rgb(170 59 255 / 10%);\n  --accent-border: rgb(170 59 255 / 50%);\n  --shadow: rgb(0 0 0 / 10%) 0 10px 15px -3px, rgb(0 0 0 / 5%) 0 4px 6px -2px;\n  background: var(--bg);\n  color: var(--text);\n  color-scheme: light dark;\n  display: block;\n  font-family: inherit;\n}\n@media (prefers-color-scheme: dark) {\n  :host {\n    --text: #9ca3af;\n    --text-h: #f3f4f6;\n    --bg: #16171d;\n    --border: #2e303a;\n    --code-bg: #1f2028;\n    --accent: #c084fc;\n    --accent-bg: rgb(192 132 252 / 15%);\n    --accent-border: rgb(192 132 252 / 50%);\n    --shadow: rgb(0 0 0 / 40%) 0 10px 15px -3px, rgb(0 0 0 / 25%) 0 4px 6px -2px;\n  }\n}\n* {\n  box-sizing: border-box;\n}\n.showcase {\n  padding: 48px;\n  text-align: left;\n}\n.showcase-header {\n  align-items: flex-start;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 32px;\n}\n.showcase-header h1 {\n  margin: 6px 0 10px;\n}\n.showcase-header p {\n  max-width: 680px;\n}\n.showcase-nav {\n  display: flex;\n  gap: 8px;\n  margin: -12px 0 32px;\n}\n.showcase-nav a {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 999px;\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 700;\n  padding: 7px 11px;\n  text-decoration: none;\n}\n.showcase-nav a:hover {\n  border-color: var(--accent-border);\n  color: var(--accent);\n}\n.controls-section,\n.data-section {\n  scroll-margin-top: 90px;\n}\n.eyebrow {\n  color: var(--accent);\n  font-size: 13px;\n  font-weight: 700;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n}\n.framework-badge {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 999px;\n  color: var(--text-h);\n  display: flex;\n  font-weight: 650;\n  gap: 10px;\n  padding: 10px 14px;\n}\n.framework-badge > span {\n  align-items: center;\n  background: var(--accent);\n  border-radius: 50%;\n  color: white;\n  display: inline-flex;\n  height: 24px;\n  justify-content: center;\n  width: 24px;\n}\n.controls-section {\n  margin-bottom: 32px;\n}\n.data-section {\n  margin-top: 40px;\n}\n.section-heading {\n  align-items: end;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 18px;\n}\n.section-heading h2 {\n  margin: 4px 0 0;\n}\n.section-heading p {\n  font-size: 15px;\n  max-width: 560px;\n}\n.sandbox-toolbar {\n  align-items: end;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n  justify-content: flex-end;\n  max-width: 580px;\n}\n.sandbox-toolbar p {\n  flex-basis: 100%;\n}\n.sandbox-toggle {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: flex;\n  gap: 8px;\n  min-height: 40px;\n  padding: 7px 11px;\n}\n.sandbox-toggle input {\n  accent-color: var(--accent);\n}\n.sandbox-banner {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 8px;\n  justify-content: space-between;\n  margin-bottom: 14px;\n  padding: 12px 16px;\n}\n.sandbox-banner > div:first-child,\n.sandbox-status {\n  display: grid;\n}\n.sandbox-status {\n  flex: 0 0 auto;\n  justify-items: end;\n}\n.sandbox-status > span {\n  background: var(--code-bg);\n  border-radius: 999px;\n  font-size: 12px;\n  font-weight: 700;\n  padding: 3px 8px;\n}\n.sandbox-status > span.changed {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.sandbox-status small {\n  font-size: 11px;\n  margin-top: 3px;\n}\n.control-layout {\n  display: grid;\n  gap: 18px;\n  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);\n}\n.control-layout > *,\n.field-grid > * {\n  min-width: 0;\n}\n.control-stack {\n  display: grid;\n  gap: 18px;\n}\n.control-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  padding: 22px;\n}\n.control-card h3 {\n  color: var(--text-h);\n  font-size: 18px;\n  margin: 0 0 18px;\n}\n.field-grid {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.field-span {\n  grid-column: 1 / -1;\n}\nlabel {\n  color: var(--text-h);\n  display: grid;\n  font-size: 13px;\n  font-weight: 650;\n  gap: 5px;\n}\ninput,\nselect,\nbutton {\n  font: inherit;\n}\ninput:not([type=checkbox]):not([type=radio]):not([type=range]),\nselect {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  min-height: 42px;\n  padding: 8px 11px;\n}\n.form-card input:not([type=checkbox]):not([type=radio]),\n.form-card select {\n  width: 100%;\n}\n.field-help,\n.field-error {\n  font-size: 12px;\n  font-weight: 450;\n}\n.field-help {\n  color: var(--text);\n}\n.field-error {\n  color: #b42318;\n}\ninput[aria-invalid=true] {\n  border-color: #d92d20;\n}\nfieldset {\n  border: 0;\n  margin: 20px 0 0;\n  padding: 0;\n}\nlegend {\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 650;\n  margin-bottom: 8px;\n}\n.choice-row,\n.form-actions {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n.choice {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: flex;\n  gap: 7px;\n  padding: 7px 10px;\n}\n.choice input,\n.range-field input {\n  accent-color: var(--accent);\n}\n.form-actions {\n  margin-top: 22px;\n}\n.primary-button,\n.secondary-button {\n  border-radius: 7px;\n  cursor: pointer;\n  font-weight: 700;\n  min-height: 40px;\n  padding: 8px 13px;\n}\n.primary-button {\n  background: var(--accent);\n  border: 1px solid var(--accent);\n  color: white;\n}\n.secondary-button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  color: var(--text-h);\n}\n.primary-button:disabled,\n.secondary-button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n.switch-row {\n  align-items: center;\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n}\n.switch-row > span {\n  display: grid;\n}\n.switch-row small {\n  color: var(--text);\n  font-weight: 450;\n}\n.switch {\n  accent-color: var(--accent);\n  height: 24px;\n  width: 44px;\n}\n.range-field {\n  margin-top: 22px;\n}\n.range-field > span {\n  display: flex;\n  justify-content: space-between;\n}\n.range-field input,\nprogress {\n  width: 100%;\n}\nprogress {\n  accent-color: var(--accent);\n  height: 8px;\n  margin-top: 12px;\n}\n.tabs {\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 4px;\n  padding-bottom: 12px;\n}\n.tabs button {\n  background: transparent;\n  border: 0;\n  border-radius: 6px;\n  color: var(--text);\n  cursor: pointer;\n  font-weight: 700;\n  padding: 7px 10px;\n}\n.tabs button[aria-selected=true] {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.tab-panel {\n  min-height: 155px;\n  padding-top: 18px;\n}\n.summary-list {\n  display: grid;\n  gap: 10px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n}\n.summary-list div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.summary-list dt {\n  font-size: 12px;\n}\n.summary-list dd {\n  color: var(--text-h);\n  font-weight: 700;\n  margin: 2px 0 0;\n}\ndetails {\n  border-top: 1px solid var(--border);\n  font-size: 14px;\n  padding-top: 12px;\n}\nsummary {\n  color: var(--text-h);\n  cursor: pointer;\n  font-weight: 700;\n}\ndetails p {\n  padding-top: 10px;\n}\n.notification {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n  margin-top: 14px;\n  padding: 12px 16px;\n}\n.notification button {\n  background: transparent;\n  border: 0;\n  color: var(--text-h);\n  cursor: pointer;\n  font-size: 22px;\n}\ndialog {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n  color: var(--text);\n  max-width: 430px;\n  padding: 26px;\n}\ndialog::backdrop {\n  -webkit-backdrop-filter: blur(3px);\n  backdrop-filter: blur(3px);\n  background: rgb(8 6 13 / 68%);\n}\ndialog h2 {\n  margin: 8px 0 10px;\n}\ndialog .primary-button {\n  margin-top: 22px;\n}\ninput:focus,\nselect:focus,\nbutton:focus-visible {\n  outline: 2px solid var(--accent);\n  outline-offset: 2px;\n}\n.grid-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  box-shadow: var(--shadow);\n  overflow: hidden;\n}\n.grid-heading,\n.grid-footer {\n  align-items: end;\n  display: flex;\n  gap: 24px;\n  justify-content: space-between;\n  padding: 22px 24px;\n}\n.grid-heading {\n  border-bottom: 1px solid var(--border);\n}\n.grid-heading h3 {\n  color: var(--text-h);\n  font-size: 22px;\n  margin: 0 0 4px;\n}\n.grid-heading p,\n.grid-footer {\n  font-size: 14px;\n}\n.filters {\n  display: flex;\n  gap: 12px;\n}\n.table-wrap {\n  min-height: 486px;\n  overflow-x: auto;\n  position: relative;\n}\ntable {\n  border-collapse: collapse;\n  width: 100%;\n}\nth,\ntd {\n  border-bottom: 1px solid var(--border);\n  padding: 13px 16px;\n  text-align: left;\n  white-space: nowrap;\n}\nth {\n  background: var(--code-bg);\n  color: var(--text-h);\n  font-size: 12px;\n}\nth button {\n  align-items: center;\n  background: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-flex;\n  font-weight: 700;\n  gap: 7px;\n  padding: 0;\n}\nth button.active-sort {\n  color: var(--accent);\n}\ntbody tr {\n  cursor: pointer;\n}\ntbody tr:hover,\ntbody tr.selected {\n  background: var(--accent-bg);\n}\n.row-select {\n  background: transparent;\n  border: 0;\n  color: var(--text-h);\n  cursor: pointer;\n  font-weight: 700;\n  padding: 0;\n  text-align: left;\n}\ncode {\n  background: var(--code-bg);\n  border-radius: 4px;\n  padding: 2px 5px;\n}\n.status {\n  inset: 50% auto auto 50%;\n  position: absolute;\n  transform: translate(-50%, -50%);\n}\n.status.error {\n  background: #fef3f2;\n  border: 1px solid #fecdca;\n  border-radius: 8px;\n  color: #b42318;\n  margin: 14px 24px;\n  padding: 12px 16px;\n  position: static;\n  transform: none;\n}\n.pagination {\n  align-items: center;\n  display: flex;\n  gap: 10px;\n}\n.pagination button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  cursor: pointer;\n  min-height: 36px;\n  padding: 6px 10px;\n}\n.pagination button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n.detail-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  margin-top: 18px;\n  overflow: hidden;\n}\n.orders-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  margin-top: 18px;\n  overflow: hidden;\n}\n.orders-layout {\n  display: grid;\n  grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);\n}\n.order-list,\n.order-detail {\n  min-width: 0;\n  padding: 20px;\n}\n.order-list {\n  border-right: 1px solid var(--border);\n}\n.order-list h4,\n.order-detail h4 {\n  color: var(--text-h);\n  font-size: 15px;\n  margin: 0 0 14px;\n}\n.order-list > button {\n  align-items: center;\n  background: transparent;\n  border: 1px solid transparent;\n  border-radius: 8px;\n  color: var(--text);\n  cursor: pointer;\n  display: flex;\n  gap: 12px;\n  justify-content: space-between;\n  padding: 11px 12px;\n  text-align: left;\n  width: 100%;\n}\n.order-list > button:hover,\n.order-list > button.selected {\n  background: var(--accent-bg);\n  border-color: var(--accent-border);\n}\n.order-list > button > span {\n  display: grid;\n  gap: 2px;\n}\n.order-list > button > span:last-child {\n  justify-items: end;\n}\n.order-list strong {\n  color: var(--text-h);\n}\n.order-list small {\n  font-size: 12px;\n}\n.order-summary,\n.order-totals {\n  display: grid;\n  gap: 10px;\n  margin: 0;\n}\n.order-summary {\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.order-summary div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.order-summary dt,\n.order-totals dt {\n  font-size: 12px;\n}\n.order-summary dd,\n.order-totals dd {\n  color: var(--text-h);\n  font-weight: 650;\n  margin: 2px 0 0;\n}\n.line-items-wrap {\n  border: 1px solid var(--border);\n  border-radius: 8px;\n  margin-top: 16px;\n  overflow-x: auto;\n}\n.line-items {\n  font-size: 13px;\n}\n.line-items caption {\n  clip: rect(0 0 0 0);\n  height: 1px;\n  overflow: hidden;\n  position: absolute;\n  width: 1px;\n}\n.line-items th,\n.line-items td {\n  padding: 9px 10px;\n}\n.line-items th:not(:first-child),\n.line-items td:not(:first-child) {\n  text-align: right;\n}\n.order-totals {\n  justify-content: end;\n  margin-top: 14px;\n  text-align: right;\n}\n.order-totals div {\n  display: grid;\n  gap: 12px;\n  grid-template-columns: 80px 110px;\n}\n.order-totals div:last-child {\n  border-top: 1px solid var(--border);\n  padding-top: 7px;\n}\n.detail-heading {\n  align-items: center;\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n  padding: 20px 24px;\n}\n.detail-heading h3 {\n  color: var(--text-h);\n  font-size: 22px;\n  margin: 3px 0 0;\n}\n.detail-status {\n  padding: 24px;\n}\n.detail-status.error {\n  color: #b42318;\n}\n.customer-detail {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n  padding: 24px;\n}\n.detail-form {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  padding: 24px;\n}\n.detail-form > * {\n  min-width: 0;\n}\n.detail-form input {\n  width: 100%;\n}\n.detail-actions,\n.detail-metrics {\n  grid-column: 1 / -1;\n}\n.detail-actions,\n.detail-metrics {\n  align-items: center;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n.detail-metrics {\n  color: var(--text-h);\n  font-weight: 700;\n  gap: 18px;\n}\n.unsaved-indicator {\n  background: #fffaeb;\n  border-radius: 999px;\n  color: #dc6803;\n  font-size: 12px;\n  padding: 3px 8px;\n}\n.detail-notice {\n  margin: 0 24px 24px;\n}\n.customer-detail > * {\n  min-width: 0;\n}\n.customer-detail div {\n  background: var(--code-bg);\n  border-radius: 8px;\n  padding: 12px;\n}\n.customer-detail dt {\n  font-size: 12px;\n}\n.customer-detail dd {\n  color: var(--text-h);\n  font-weight: 650;\n  margin: 3px 0 0;\n}\n@media (prefers-reduced-motion: reduce) {\n  *,\n  *::before,\n  *::after {\n    animation-duration: 0.01ms !important;\n    animation-iteration-count: 1 !important;\n    scroll-behavior: auto !important;\n    transition-duration: 0.01ms !important;\n  }\n}\n@media (forced-colors: active) {\n  .framework-badge,\n  .control-card,\n  .grid-card,\n  .detail-card,\n  .orders-card {\n    border: 1px solid CanvasText;\n  }\n}\n@media (max-width: 1100px) {\n  .control-layout {\n    grid-template-columns: 1fr;\n  }\n  .data-section .section-heading {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .sandbox-toolbar {\n    justify-content: flex-start;\n    max-width: none;\n  }\n  .orders-layout {\n    grid-template-columns: 1fr;\n  }\n  .order-list {\n    border-bottom: 1px solid var(--border);\n    border-right: 0;\n  }\n}\n@media (max-width: 760px) {\n  .showcase {\n    padding: 24px 16px;\n  }\n  .showcase-header,\n  .section-heading,\n  .grid-heading,\n  .grid-footer {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .showcase-nav {\n    overflow-x: auto;\n  }\n  .control-layout,\n  .field-grid,\n  .summary-list,\n  .customer-detail,\n  .detail-form {\n    grid-template-columns: 1fr;\n  }\n  .field-span {\n    grid-column: auto;\n  }\n  .filters {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .detail-actions,\n  .detail-metrics {\n    grid-column: auto;\n  }\n  .sandbox-banner {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .sandbox-status {\n    justify-items: start;\n  }\n}\n"] }]
+    <section class="data-card orders-card" aria-labelledby="orders-heading">
+      <div class="data-heading">
+        <h3 id="orders-heading">Orders and line items</h3>
+        @if (orders().length) {
+          <span>{{ orders().length }} orders</span>
+        }\r
+      </div>\r
+      @if (!selectedId()) {\r
+        <div class="detail-status">Select a customer to load their orders.</div>\r
+      } @else {\r
+        <div class="order-workspace orders-layout">
+          <div class="order-list" aria-label="Customer orders" [attr.aria-busy]="ordersLoading()">
+            @if (ordersLoading()) {\r
+              <div class="detail-status" role="status" aria-live="polite">Loading orders\u2026</div>\r
+            } @else if (orders().length === 0) {\r
+              <div class="detail-status">This customer has no orders.</div>\r
+            } @else {\r
+              @for (order of orders(); track order.orderId) {\r
+                <button\r
+                  type="button"
+                  class="order-card"
+                  [attr.aria-pressed]="selectedOrderId() === order.orderId"\r
+                  (click)="selectedOrderId.set(order.orderId)"\r
+                >\r
+                  <span\r
+                    ><strong>Order {{ order.orderId }}</strong\r
+                    ><small>{{ formatDate(order.orderDate) }}</small></span\r
+                  >\r
+                  <span
+                    ><strong>{{ formatSales(order.total) }}</strong
+                    ><small [class]="'order-status ' + order.status.toLowerCase()">{{
+                      order.status
+                    }}</small></span
+                  >
+                </button>\r
+              }\r
+            }\r
+          </div>\r
+          <div class="order-detail" aria-live="polite" [attr.aria-busy]="orderLoading()">
+            @if (orderLoading()) {\r
+              <div class="detail-status" role="status" aria-live="polite">Loading order\u2026</div>\r
+            } @else if (orderError()) {\r
+              <div class="detail-status error" role="alert">{{ orderError() }}</div>\r
+            } @else if (orderDetail(); as detail) {
+              <div class="order-detail-heading">
+                <p class="card-kicker">Order {{ detail.orderId }}</p>
+                <h4>{{ detail.status }}</h4>
+                <p>{{ formatDate(detail.orderDate) }}</p>
+              </div>
+              <dl class="order-summary">
+                <div>\r
+                  <dt>Employee</dt>\r
+                  <dd>{{ detail.employeeName || '\u2014' }}</dd>\r
+                </div>\r
+                <div>\r
+                  <dt>Shipper</dt>\r
+                  <dd>{{ detail.shipperName || '\u2014' }}</dd>\r
+                </div>\r
+                <div>\r
+                  <dt>Destination</dt>\r
+                  <dd>{{ destination(detail) }}</dd>\r
+                </div>\r
+              </dl>\r
+              <div class="line-items-wrap">\r
+                <table class="line-items">\r
+                  <caption class="visually-hidden">Order line items</caption>
+                  <thead>\r
+                    <tr>\r
+                      <th scope="col">Product</th>\r
+                      <th scope="col">Qty.</th>\r
+                      <th scope="col">Price</th>\r
+                      <th scope="col">Total</th>\r
+                    </tr>\r
+                  </thead>\r
+                  <tbody>\r
+                    @for (item of detail.items; track item.productId) {\r
+                      <tr>\r
+                        <td>{{ item.productName }}</td>\r
+                        <td>{{ item.quantity }}</td>\r
+                        <td>{{ formatSales(item.unitPrice) }}</td>\r
+                        <td>{{ formatSales(item.extendedPrice) }}</td>\r
+                      </tr>\r
+                    }\r
+                  </tbody>\r
+                </table>\r
+              </div>\r
+              <dl class="order-totals">\r
+                <div>\r
+                  <dt>Subtotal</dt>\r
+                  <dd>{{ formatSales(detail.subtotal) }}</dd>\r
+                </div>\r
+                <div>\r
+                  <dt>Freight</dt>\r
+                  <dd>{{ formatSales(detail.freight) }}</dd>\r
+                </div>\r
+                <div>\r
+                  <dt>Total</dt>\r
+                  <dd>{{ formatSales(detail.total) }}</dd>\r
+                </div>\r
+              </dl>\r
+            }\r
+          </div>\r
+        </div>\r
+      }\r
+    </section>\r
+  </section>\r
+\r
+  <dialog #profileDialog>\r
+    <form method="dialog">\r
+      <span class="eyebrow">Native dialog</span>\r
+      <h2>Angular-controlled launch</h2>\r
+      <p>This modal uses the browser dialog element for focus management and keyboard dismissal.</p>\r
+      <button class="primary-button">Close dialog</button>\r
+    </form>\r
+  </dialog>\r
+</div>\r
+`, styles: ["/* src/app/app.css */\n:host {\n  --text: #6b6375;\n  --text-h: #08060d;\n  --bg: #fff;\n  --border: #e5e4e7;\n  --code-bg: #f4f3ec;\n  --accent: #aa3bff;\n  --accent-bg: rgb(170 59 255 / 10%);\n  --accent-border: rgb(170 59 255 / 50%);\n  --shadow: rgb(0 0 0 / 10%) 0 10px 15px -3px, rgb(0 0 0 / 5%) 0 4px 6px -2px;\n  background: var(--bg);\n  border-radius: 14px;\n  color: var(--text);\n  color-scheme: light dark;\n  display: block;\n  font: 16px/1.6 var(--lab-font);\n  overflow: hidden;\n}\n@media (prefers-color-scheme: dark) {\n  :host {\n    --text: #9ca3af;\n    --text-h: #f3f4f6;\n    --bg: #16171d;\n    --border: #2e303a;\n    --code-bg: #1f2028;\n    --accent: #c084fc;\n    --accent-bg: rgb(192 132 252 / 15%);\n    --accent-border: rgb(192 132 252 / 50%);\n    --shadow: rgb(0 0 0 / 40%) 0 10px 15px -3px, rgb(0 0 0 / 25%) 0 4px 6px -2px;\n  }\n}\n* {\n  box-sizing: border-box;\n}\n.showcase {\n  padding: 48px;\n  text-align: left;\n}\n.showcase-header {\n  align-items: flex-start;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 32px;\n}\n.showcase-header h1 {\n  margin: 6px 0 10px;\n}\n.showcase-header p {\n  max-width: 680px;\n}\n.showcase-nav {\n  display: flex;\n  gap: 8px;\n  margin: -12px 0 32px;\n}\n.showcase-nav a {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 999px;\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 700;\n  padding: 7px 11px;\n  text-decoration: none;\n}\n.showcase-nav a:hover {\n  border-color: var(--accent-border);\n  color: var(--accent);\n}\n.controls-section,\n.data-section {\n  scroll-margin-top: 90px;\n}\n.eyebrow {\n  color: var(--accent);\n  font-size: 13px;\n  font-weight: 700;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n}\n.framework-badge {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 999px;\n  color: var(--text-h);\n  display: flex;\n  font-weight: 650;\n  gap: 10px;\n  padding: 10px 14px;\n}\n.framework-badge > span {\n  align-items: center;\n  background: var(--accent);\n  border-radius: 50%;\n  color: white;\n  display: inline-flex;\n  height: 24px;\n  justify-content: center;\n  width: 24px;\n}\n.controls-section {\n  margin-bottom: 32px;\n}\n.data-section {\n  margin-top: 40px;\n}\n.section-heading {\n  align-items: end;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 18px;\n}\n.section-heading h2 {\n  margin: 4px 0 0;\n}\n.section-heading p {\n  font-size: 15px;\n  max-width: 560px;\n}\n.sandbox-toolbar {\n  align-items: end;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n  justify-content: flex-end;\n  max-width: 580px;\n}\n.sandbox-toolbar p {\n  flex-basis: 100%;\n}\n.sandbox-toggle {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: flex;\n  gap: 8px;\n  min-height: 40px;\n  padding: 7px 11px;\n}\n.sandbox-toggle input {\n  accent-color: var(--accent);\n}\n.sandbox-banner {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 8px;\n  justify-content: space-between;\n  margin-bottom: 14px;\n  padding: 12px 16px;\n}\n.sandbox-banner > div:first-child,\n.sandbox-status {\n  display: grid;\n}\n.sandbox-status {\n  flex: 0 0 auto;\n  justify-items: end;\n}\n.sandbox-status > span {\n  background: var(--code-bg);\n  border-radius: 999px;\n  font-size: 12px;\n  font-weight: 700;\n  padding: 3px 8px;\n}\n.sandbox-status > span.changed {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.sandbox-status small {\n  font-size: 11px;\n  margin-top: 3px;\n}\n.control-layout {\n  display: grid;\n  gap: 18px;\n  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);\n}\n.control-layout > *,\n.field-grid > * {\n  min-width: 0;\n}\n.control-stack {\n  display: grid;\n  gap: 18px;\n}\n.control-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  padding: 22px;\n}\n.control-card h3 {\n  color: var(--text-h);\n  font-size: 18px;\n  margin: 0 0 18px;\n}\n.field-grid {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.field-span {\n  grid-column: 1 / -1;\n}\nlabel {\n  color: var(--text-h);\n  display: grid;\n  font-size: 13px;\n  font-weight: 650;\n  gap: 5px;\n}\ninput,\nselect,\nbutton {\n  font: inherit;\n}\ninput:not([type=checkbox]):not([type=radio]):not([type=range]),\nselect {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  min-height: 42px;\n  padding: 8px 11px;\n}\n.form-card input:not([type=checkbox]):not([type=radio]),\n.form-card select {\n  width: 100%;\n}\n.field-help,\n.field-error {\n  font-size: 12px;\n  font-weight: 450;\n}\n.field-help {\n  color: var(--text);\n}\n.field-error {\n  color: #b42318;\n}\ninput[aria-invalid=true] {\n  border-color: #d92d20;\n}\nfieldset {\n  border: 0;\n  margin: 20px 0 0;\n  padding: 0;\n}\nlegend {\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 650;\n  margin-bottom: 8px;\n}\n.choice-row,\n.form-actions {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n.choice {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: flex;\n  gap: 7px;\n  padding: 7px 10px;\n}\n.choice input,\n.range-field input {\n  accent-color: var(--accent);\n}\n.form-actions {\n  margin-top: 22px;\n}\n.primary-button,\n.secondary-button {\n  border-radius: 7px;\n  cursor: pointer;\n  font-weight: 700;\n  min-height: 40px;\n  padding: 8px 13px;\n}\n.primary-button {\n  background: var(--accent);\n  border: 1px solid var(--accent);\n  color: white;\n}\n.secondary-button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  color: var(--text-h);\n}\n.primary-button:disabled,\n.secondary-button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n.switch-row {\n  align-items: center;\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n}\n.switch-row > span {\n  display: grid;\n}\n.switch-row small {\n  color: var(--text);\n  font-weight: 450;\n}\n.switch {\n  accent-color: var(--accent);\n  height: 24px;\n  width: 44px;\n}\n.range-field {\n  margin-top: 22px;\n}\n.range-field > span {\n  display: flex;\n  justify-content: space-between;\n}\n.range-field input,\nprogress {\n  width: 100%;\n}\nprogress {\n  accent-color: var(--accent);\n  height: 8px;\n  margin-top: 12px;\n}\n.tabs {\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 4px;\n  padding-bottom: 12px;\n}\n.tabs button {\n  background: transparent;\n  border: 0;\n  border-radius: 6px;\n  color: var(--text);\n  cursor: pointer;\n  font-weight: 700;\n  padding: 7px 10px;\n}\n.tabs button[aria-selected=true] {\n  background: var(--accent-bg);\n  color: var(--accent);\n}\n.tab-panel {\n  min-height: 155px;\n  padding-top: 18px;\n}\n.summary-list {\n  display: grid;\n  gap: 10px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n}\n.summary-list div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.summary-list dt {\n  font-size: 12px;\n}\n.summary-list dd {\n  color: var(--text-h);\n  font-weight: 700;\n  margin: 2px 0 0;\n}\ndetails {\n  border-top: 1px solid var(--border);\n  font-size: 14px;\n  padding-top: 12px;\n}\nsummary {\n  color: var(--text-h);\n  cursor: pointer;\n  font-weight: 700;\n}\ndetails p {\n  padding-top: 10px;\n}\n.notification {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n  margin-top: 14px;\n  padding: 12px 16px;\n}\n.notification button {\n  background: transparent;\n  border: 0;\n  color: var(--text-h);\n  cursor: pointer;\n  font-size: 22px;\n}\ndialog {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n  color: var(--text);\n  max-width: 430px;\n  padding: 26px;\n}\ndialog::backdrop {\n  -webkit-backdrop-filter: blur(3px);\n  backdrop-filter: blur(3px);\n  background: rgb(8 6 13 / 68%);\n}\ndialog h2 {\n  margin: 8px 0 10px;\n}\ndialog .primary-button {\n  margin-top: 22px;\n}\ninput:focus,\nselect:focus,\nbutton:focus-visible {\n  outline: 2px solid var(--accent);\n  outline-offset: 2px;\n}\n.grid-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  box-shadow: var(--shadow);\n  overflow: hidden;\n}\n.grid-heading,\n.grid-footer {\n  align-items: end;\n  display: flex;\n  gap: 24px;\n  justify-content: space-between;\n  padding: 22px 24px;\n}\n.grid-heading {\n  border-bottom: 1px solid var(--border);\n}\n.grid-heading h3 {\n  color: var(--text-h);\n  font-size: 22px;\n  margin: 0 0 4px;\n}\n.grid-heading p,\n.grid-footer {\n  font-size: 14px;\n}\n.filters {\n  display: flex;\n  gap: 12px;\n}\n.table-wrap {\n  min-height: 486px;\n  overflow-x: auto;\n  position: relative;\n}\ntable {\n  border-collapse: collapse;\n  width: 100%;\n}\nth,\ntd {\n  border-bottom: 1px solid var(--border);\n  padding: 13px 16px;\n  text-align: left;\n  white-space: nowrap;\n}\nth {\n  background: var(--code-bg);\n  color: var(--text-h);\n  font-size: 12px;\n}\nth button {\n  align-items: center;\n  background: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-flex;\n  font-weight: 700;\n  gap: 7px;\n  padding: 0;\n}\nth button.active-sort {\n  color: var(--accent);\n}\ntbody tr {\n  cursor: pointer;\n}\ntbody tr:hover,\ntbody tr.selected {\n  background: var(--accent-bg);\n}\ncode {\n  background: var(--code-bg);\n  border-radius: 4px;\n  padding: 2px 5px;\n}\n.status {\n  inset: 50% auto auto 50%;\n  position: absolute;\n  transform: translate(-50%, -50%);\n}\n.status.error {\n  background: #fef3f2;\n  border: 1px solid #fecdca;\n  border-radius: 8px;\n  color: #b42318;\n  margin: 14px 24px;\n  padding: 12px 16px;\n  position: static;\n  transform: none;\n}\n.pagination {\n  align-items: center;\n  display: flex;\n  gap: 10px;\n}\n.pagination button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  cursor: pointer;\n  min-height: 36px;\n  padding: 6px 10px;\n}\n.pagination button:disabled {\n  cursor: not-allowed;\n  opacity: 0.45;\n}\n.detail-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  margin-top: 18px;\n  overflow: hidden;\n}\n.orders-card {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  margin-top: 18px;\n  overflow: hidden;\n}\n.orders-layout {\n  display: grid;\n  grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);\n}\n.order-list,\n.order-detail {\n  min-width: 0;\n  padding: 20px;\n}\n.order-list {\n  border-right: 1px solid var(--border);\n}\n.order-list h4,\n.order-detail h4 {\n  color: var(--text-h);\n  font-size: 15px;\n  margin: 0 0 14px;\n}\n.order-list > button {\n  align-items: center;\n  background: transparent;\n  border: 1px solid transparent;\n  border-radius: 8px;\n  color: var(--text);\n  cursor: pointer;\n  display: flex;\n  gap: 12px;\n  justify-content: space-between;\n  padding: 11px 12px;\n  text-align: left;\n  width: 100%;\n}\n.order-list > button:hover,\n.order-list > button.selected {\n  background: var(--accent-bg);\n  border-color: var(--accent-border);\n}\n.order-list > button > span {\n  display: grid;\n  gap: 2px;\n}\n.order-list > button > span:last-child {\n  justify-items: end;\n}\n.order-list strong {\n  color: var(--text-h);\n}\n.order-list small {\n  font-size: 12px;\n}\n.order-summary,\n.order-totals {\n  display: grid;\n  gap: 10px;\n  margin: 0;\n}\n.order-summary {\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.order-summary div {\n  background: var(--code-bg);\n  border-radius: 7px;\n  padding: 10px;\n}\n.order-summary dt,\n.order-totals dt {\n  font-size: 12px;\n}\n.order-summary dd,\n.order-totals dd {\n  color: var(--text-h);\n  font-weight: 650;\n  margin: 2px 0 0;\n}\n.line-items-wrap {\n  border: 1px solid var(--border);\n  border-radius: 8px;\n  margin-top: 16px;\n  overflow-x: auto;\n}\n.line-items {\n  font-size: 13px;\n}\n.line-items caption {\n  clip: rect(0 0 0 0);\n  height: 1px;\n  overflow: hidden;\n  position: absolute;\n  width: 1px;\n}\n.line-items th,\n.line-items td {\n  padding: 9px 10px;\n}\n.line-items th:not(:first-child),\n.line-items td:not(:first-child) {\n  text-align: right;\n}\n.order-totals {\n  justify-content: end;\n  margin-top: 14px;\n  text-align: right;\n}\n.order-totals div {\n  display: grid;\n  gap: 12px;\n  grid-template-columns: 80px 110px;\n}\n.order-totals div:last-child {\n  border-top: 1px solid var(--border);\n  padding-top: 7px;\n}\n.detail-heading {\n  align-items: center;\n  border-bottom: 1px solid var(--border);\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n  padding: 20px 24px;\n}\n.detail-heading h3 {\n  color: var(--text-h);\n  font-size: 22px;\n  margin: 3px 0 0;\n}\n.detail-status {\n  padding: 24px;\n}\n.detail-status.error {\n  color: #b42318;\n}\n.customer-detail {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n  padding: 24px;\n}\n.detail-form {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  padding: 24px;\n}\n.detail-form > * {\n  min-width: 0;\n}\n.detail-form input {\n  width: 100%;\n}\n.detail-actions,\n.detail-metrics {\n  grid-column: 1 / -1;\n}\n.detail-actions,\n.detail-metrics {\n  align-items: center;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n.detail-metrics {\n  color: var(--text-h);\n  font-weight: 700;\n  gap: 18px;\n}\n.unsaved-indicator {\n  background: #fffaeb;\n  border-radius: 999px;\n  color: #dc6803;\n  font-size: 12px;\n  padding: 3px 8px;\n}\n.detail-notice {\n  margin: 0 24px 24px;\n}\n.customer-detail > * {\n  min-width: 0;\n}\n.customer-detail div {\n  background: var(--code-bg);\n  border-radius: 8px;\n  padding: 12px;\n}\n.customer-detail dt {\n  font-size: 12px;\n}\n.customer-detail dd {\n  color: var(--text-h);\n  font-weight: 650;\n  margin: 3px 0 0;\n}\n.control-card,\n.grid-card,\n.detail-card,\n.orders-card,\n.sandbox-panel {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n}\n.sandbox-panel {\n  align-items: center;\n  display: grid;\n  gap: 16px;\n  grid-template-columns: minmax(0, 1fr) auto auto;\n  margin-bottom: 18px;\n  padding: 22px;\n}\n.sandbox-panel h3,\n.sandbox-panel p {\n  margin: 4px 0 0;\n}\n.sandbox-panel .notification,\n.sandbox-panel > small {\n  grid-column: 1 / -1;\n  margin: 0;\n}\n@media (prefers-reduced-motion: reduce) {\n  *,\n  *::before,\n  *::after {\n    animation-duration: 0.01ms !important;\n    animation-iteration-count: 1 !important;\n    scroll-behavior: auto !important;\n    transition-duration: 0.01ms !important;\n  }\n}\n@media (forced-colors: active) {\n  .framework-badge,\n  .control-card,\n  .grid-card,\n  .detail-card,\n  .orders-card {\n    border: 1px solid CanvasText;\n  }\n}\n@media (max-width: 1100px) {\n  .control-layout {\n    grid-template-columns: 1fr;\n  }\n  .data-section .section-heading {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .sandbox-toolbar {\n    justify-content: flex-start;\n    max-width: none;\n  }\n  .orders-layout {\n    grid-template-columns: 1fr;\n  }\n  .sandbox-panel {\n    align-items: start;\n    grid-template-columns: 1fr;\n  }\n  .sandbox-panel .notification,\n  .sandbox-panel > small {\n    grid-column: auto;\n  }\n  .order-list {\n    border-bottom: 1px solid var(--border);\n    border-right: 0;\n  }\n}\n@media (max-width: 760px) {\n  .showcase {\n    padding: 24px 16px;\n  }\n  .showcase-header,\n  .section-heading,\n  .grid-heading,\n  .grid-footer {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .showcase-nav {\n    overflow-x: auto;\n  }\n  .control-layout,\n  .field-grid,\n  .summary-list,\n  .customer-detail,\n  .detail-form {\n    grid-template-columns: 1fr;\n  }\n  .field-span {\n    grid-column: auto;\n  }\n  .filters {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .detail-actions,\n  .detail-metrics {\n    grid-column: auto;\n  }\n  .sandbox-banner {\n    align-items: stretch;\n    flex-direction: column;\n  }\n  .sandbox-status {\n    justify-items: start;\n  }\n}\n", '/* ../shared/showcase-contract.css */\n:host {\n  --lab-font:\n    Inter,\n    ui-sans-serif,\n    system-ui,\n    -apple-system,\n    BlinkMacSystemFont,\n    "Segoe UI",\n    sans-serif;\n  --lab-title-size: 32px;\n  --lab-section-size: 24px;\n  --lab-card-title-size: 18px;\n  color: var(--text);\n  border: 1px solid var(--border);\n  font: 16px/1.6 var(--lab-font);\n  font-synthesis: none;\n  letter-spacing: 0.18px;\n  text-rendering: optimizeLegibility;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n* {\n  box-sizing: border-box;\n}\n#root {\n  border-inline: 0;\n}\nbutton,\ninput,\nselect,\ntextarea {\n  font: inherit;\n}\n.showcase-header h1,\n.section-heading h2,\n.control-card h3,\n.grid-card h3,\n.data-card h3,\n.detail-card h3,\n.orders-card h3,\n.sandbox-panel h3,\ndialog h2 {\n  color: var(--text-h);\n  font-family: var(--lab-font);\n  font-style: normal;\n}\n.showcase-header h1 {\n  font-size: var(--lab-title-size);\n  font-weight: 500;\n  letter-spacing: -1.68px;\n  line-height: 1.6;\n  margin: 6px 0 10px;\n}\n.showcase-header .eyebrow {\n  display: block;\n  margin: 0;\n}\n.showcase-header p {\n  font-size: 17px;\n  line-height: 1.6;\n  margin: 0;\n  max-width: 680px;\n}\n.eyebrow,\n.card-kicker {\n  color: var(--accent);\n  font-size: 13px;\n  font-weight: 700;\n  letter-spacing: 0.12em;\n  line-height: 1.6;\n  text-transform: uppercase;\n}\n.section-heading .eyebrow,\n.sandbox-panel .eyebrow,\n.sandbox-panel .card-kicker {\n  margin: 0;\n}\n.framework-badge {\n  align-items: center;\n  display: flex;\n  flex: 0 0 auto;\n  gap: 10px;\n  min-height: 46px;\n  padding: 10px 14px;\n}\n.framework-badge > span,\n.framework-badge > img {\n  height: 24px;\n  width: 24px;\n}\n.section-heading {\n  align-items: end;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 18px;\n}\n.section-heading p {\n  font-size: 15px;\n  margin: 0;\n  max-width: 560px;\n}\n.showcase-nav {\n  display: flex;\n  gap: 8px;\n  margin: -12px 0 32px;\n  overflow: visible;\n  padding: 0;\n}\n.controls-section,\n.data-section {\n  background: transparent;\n  border: 0;\n  border-radius: 0;\n  padding: 0;\n}\n.controls-section {\n  margin-bottom: 32px;\n}\n.data-section {\n  margin-top: 40px;\n}\n.section-heading h2 {\n  font-size: var(--lab-section-size);\n  font-weight: 500;\n  letter-spacing: -0.24px;\n  line-height: 1.6;\n  margin: 4px 0 0;\n}\n.control-card h3,\n.grid-card h3,\n.data-card h3,\n.detail-card h3,\n.orders-card h3,\n.sandbox-panel h3 {\n  font-size: var(--lab-card-title-size);\n  font-weight: 650;\n  line-height: 1.4;\n}\n.card-heading {\n  align-items: center;\n  display: flex;\n  justify-content: space-between;\n  margin-bottom: 18px;\n}\n.card-heading h3 {\n  margin: 0;\n}\n.control-card,\n.grid-card,\n.data-card,\n.detail-card,\n.orders-card,\n.sandbox-panel {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n  color: var(--text);\n  padding: 22px;\n}\n.control-layout {\n  display: grid;\n  gap: 18px;\n  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);\n}\n.control-layout > *,\n.control-stack {\n  min-width: 0;\n}\n.control-stack,\n.form-card {\n  display: grid;\n  gap: 18px;\n}\n.profile-fields {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.profile-fields > label,\n.field-pair > label {\n  display: grid;\n  gap: 6px;\n}\n.profile-fields .field-span {\n  grid-column: 1 / -1;\n}\n.field-pair {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n:host input:not([type=checkbox]):not([type=radio]):not([type=range]),\n:host select,\n:host textarea {\n  border-radius: 7px;\n  font-weight: 650;\n  min-height: 42px;\n  padding: 8px 11px;\n}\nfieldset {\n  border: 0;\n  margin: 0;\n  min-width: 0;\n  padding: 0;\n}\nlegend,\nlabel {\n  color: var(--text-h);\n  font-size: 13px;\n  line-height: 1.6;\n}\n.choice-row {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 8px;\n}\n.choice-row .choice,\n.choice-row > label {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: inline-flex;\n  gap: 7px;\n  min-height: 40px;\n  padding: 7px 11px;\n  font-weight: 650;\n}\n.choice-row .choice:has(input:checked),\n.choice-row > label:has(input:checked) {\n  background: var(--accent-bg);\n  border-color: var(--accent-border);\n}\n.form-actions {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n  margin-top: 22px;\n}\n.form-card small {\n  font-size: 12px;\n  font-weight: 450;\n  line-height: 1.6;\n}\n.form-card .field-help {\n  color: var(--text);\n}\n.switch-row {\n  align-items: center;\n  display: flex;\n  gap: 16px;\n  justify-content: space-between;\n  font-weight: 650;\n}\n.switch-row small {\n  color: var(--text);\n  font-weight: 450;\n}\n.range-field {\n  display: grid;\n  font-weight: 650;\n  gap: 5px;\n  margin-top: 22px;\n  width: 100%;\n}\n.range-field > span {\n  display: flex;\n  justify-content: space-between;\n}\n.range-field input[type=range] {\n  background: transparent;\n  border: 0;\n  font-weight: 650;\n  height: 16px;\n  padding: 0;\n  width: 100%;\n}\n.range-field input[type=range]::-webkit-slider-runnable-track {\n  height: 4px;\n}\n.range-field input[type=range]::-moz-range-track,\n.range-field input[type=range]::-moz-range-progress {\n  height: 4px;\n}\n.control-card progress {\n  height: 8px;\n  margin-top: 12px;\n  width: 100%;\n}\n:host input[role=switch] {\n  accent-color: var(--accent);\n  appearance: auto;\n  background: transparent;\n  border: 0;\n  box-shadow: none;\n  color: white;\n  flex: 0 0 auto;\n  height: 24px;\n  margin: 0;\n  padding: 0;\n  width: 44px;\n}\n:host input[type=checkbox]:focus,\n:host input[type=checkbox]:focus-visible,\n:host input[type=radio]:focus,\n:host input[type=radio]:focus-visible {\n  outline: 2px solid var(--accent);\n  outline-offset: 2px;\n}\n.tabs {\n  margin-top: 0;\n}\n.tabs button {\n  font-weight: 700;\n}\n.tabs button[aria-selected=true] {\n  font-weight: 700;\n}\n.tab-panel {\n  min-height: 155px;\n  padding-top: 18px;\n}\n.tab-panel > h3 {\n  margin: 0 0 18px;\n}\n.summary-list {\n  display: grid;\n  gap: 10px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n}\n.summary-list > div {\n  display: block;\n  gap: normal;\n  justify-content: normal;\n}\n.summary-list dt {\n  color: var(--text);\n  font-size: 12px;\n  font-weight: 400;\n  line-height: 1.6;\n  margin: 0;\n}\n.summary-list dd {\n  color: var(--text-h);\n  font-size: 16px;\n  font-weight: 700;\n  line-height: 1.6;\n  margin: 2px 0 0;\n  text-align: left;\n}\n.control-card details {\n  border-top: 1px solid var(--border);\n  color: var(--text);\n  font-size: 14px;\n  line-height: 1.6;\n  margin-top: 16px;\n  padding-top: 12px;\n}\n.control-card summary {\n  color: var(--text-h);\n  font-size: 14px;\n  font-weight: 700;\n  line-height: 1.6;\n}\n.notification {\n  align-items: center;\n  background: var(--accent-bg);\n  border: 1px solid var(--accent-border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 20px;\n  justify-content: space-between;\n  margin-top: 14px;\n  padding: 12px 16px;\n}\n.notification button {\n  background: transparent;\n  border: 0;\n  color: var(--text-h);\n  cursor: pointer;\n  font-size: 22px;\n  padding: 1px 6px;\n}\ndialog {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n  color: var(--text);\n  max-width: 430px;\n  padding: 26px;\n  width: calc(100% - 32px);\n}\ndialog::backdrop {\n  -webkit-backdrop-filter: blur(3px);\n  backdrop-filter: blur(3px);\n  background: rgb(8 6 13 / 68%);\n}\ndialog h2 {\n  font-weight: 500;\n  margin: 8px 0 10px;\n}\ndialog form,\ndialog .eyebrow,\ndialog p {\n  margin: 0;\n}\ndialog .eyebrow {\n  display: block;\n}\ndialog p {\n  line-height: 1.6;\n}\ndialog .primary-button {\n  display: block;\n  margin-top: 22px;\n}\n.data-card {\n  margin-top: 18px;\n  overflow: hidden;\n  padding: 22px;\n}\n.data-heading {\n  align-items: start;\n  display: flex;\n  gap: 24px;\n  justify-content: space-between;\n  margin-bottom: 18px;\n}\n.data-heading h3,\n.data-heading p {\n  margin: 0;\n}\n.detail-card .data-heading code {\n  background: var(--code-bg);\n  border: 0;\n  border-radius: 4px;\n  color: var(--text-h);\n  display: flex;\n  font: 400 15px/1.35 var(--mono, ui-monospace, Consolas, monospace);\n  padding: 4px 8px;\n}\n.data-card > .empty-state,\n.data-card > .status,\n.data-card > .detail-status {\n  background: transparent;\n  border: 0;\n  border-radius: 0;\n  color: var(--text);\n  inset: auto;\n  margin: 0;\n  padding: 12px 0;\n  position: static;\n  text-align: left;\n  transform: none;\n}\n.filter-grid,\n.filters {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: minmax(220px, 1fr) minmax(180px, 0.55fr);\n  margin: 0 0 18px;\n}\n.filter-grid label,\n.filters label {\n  display: grid;\n  gap: 6px;\n}\n.table-scroll,\n.table-wrap,\n.line-items-wrap {\n  border: 1px solid var(--border);\n  border-radius: 8px;\n  overflow-x: auto;\n}\n.grid-card table,\n.data-card table {\n  border-collapse: collapse;\n  border-spacing: 0;\n  color: var(--text);\n  font: 15px/1.6 var(--lab-font);\n  min-width: 720px;\n  width: 100%;\n}\n.grid-card table {\n  table-layout: fixed;\n}\n.grid-card th:nth-child(1) {\n  width: 39%;\n}\n.grid-card th:nth-child(2) {\n  width: 22%;\n}\n.grid-card th:nth-child(3),\n.grid-card th:nth-child(4) {\n  width: 14%;\n}\n.grid-card th:nth-child(5) {\n  width: 11%;\n}\n.grid-card th,\n.data-card th,\n.grid-card td,\n.data-card td {\n  border-bottom: 1px solid var(--border);\n  border-left: 0;\n  border-right: 0;\n  border-top: 0;\n  height: 53px;\n  padding: 13px 16px;\n  text-align: left;\n  vertical-align: middle;\n}\n.grid-card th,\n.data-card th {\n  background: var(--code-bg);\n  color: var(--text-h);\n  font-size: 13px;\n  font-weight: 700;\n  padding: 0;\n}\n.grid-card th button,\n.data-card th button,\n.sort-button {\n  align-items: center;\n  background: transparent;\n  border: 0;\n  border-radius: 0;\n  color: var(--text-h);\n  display: flex;\n  font: 700 13px/1.6 var(--lab-font);\n  gap: 8px;\n  height: 53px;\n  justify-content: space-between;\n  padding: 13px 16px;\n  text-align: left;\n  width: 100%;\n}\n.grid-card th[aria-sort=ascending] button,\n.grid-card th[aria-sort=descending] button,\n.data-card th[aria-sort=ascending] button,\n.data-card th[aria-sort=descending] button,\n.grid-card th button.active-sort,\n.data-card th button.active-sort {\n  color: var(--accent);\n}\n.grid-card tbody td,\n.data-card tbody td {\n  background: transparent;\n  color: var(--text);\n  font: 400 15px/1.6 var(--lab-font);\n}\n.grid-card tbody td:first-child,\n.data-card tbody td:first-child {\n  color: var(--text-h);\n  font-weight: 650;\n}\n.grid-card tbody td:last-child code,\n.data-card tbody td:last-child code {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 4px;\n  color: var(--text-h);\n  display: inline-flex;\n  font: 400 12px/1.6 var(--mono, ui-monospace, Consolas, monospace);\n  min-height: 25px;\n  padding: 2px 6px;\n}\n.grid-card tbody tr:last-child td,\n.data-card tbody tr:last-child td {\n  border-bottom: 0;\n}\n.grid-card tbody tr.selected,\n.data-card tbody tr.selected {\n  background: var(--accent-bg);\n  box-shadow: inset 3px 0 0 var(--accent);\n}\n.pagination {\n  align-items: center;\n  display: flex;\n  gap: 12px;\n  justify-content: flex-end;\n  margin-top: 16px;\n}\n.pagination button {\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  color: var(--text-h);\n  font-size: 16px;\n  font-weight: 400;\n  line-height: 1.6;\n  min-height: 36px;\n  padding: 6px 10px;\n}\n.selection-status {\n  color: var(--text);\n  margin: 12px 0 0;\n  text-align: right;\n}\n.metric-grid {\n  display: grid;\n  gap: 12px;\n  grid-template-columns: repeat(3, minmax(0, 1fr));\n  margin: 0 0 18px;\n}\n.customer-detail-layout {\n  display: contents;\n}\n.metric-grid div,\n.detail-grid div,\n.customer-detail div {\n  background: var(--code-bg);\n  border: 0;\n  border-radius: 8px;\n  padding: 12px;\n}\n.metric-grid > div,\n.detail-grid > div,\n.customer-detail > div {\n  display: block;\n  gap: normal;\n}\n.metric-grid dt,\n.detail-grid dt,\n.customer-detail dt,\n.order-summary dt,\n.order-totals dt {\n  color: var(--text);\n  font: 400 12px/1.6 var(--lab-font);\n}\n.metric-grid dd,\n.detail-grid dd,\n.customer-detail dd,\n.order-summary dd {\n  color: var(--text-h);\n  font: 650 16px/1.6 var(--lab-font);\n  margin: 3px 0 0;\n}\n.metric-grid dd {\n  color: var(--accent);\n  font-weight: 700;\n}\n.detail-grid,\n.customer-detail {\n  display: grid;\n  gap: 12px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n  padding: 0;\n}\n.detail-grid dt,\n.detail-grid dd,\n.customer-detail dt,\n.customer-detail dd {\n  text-align: left;\n}\n.detail-form {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n.detail-form label {\n  display: grid;\n  gap: 6px;\n}\n.dirty-status,\n.detail-actions {\n  grid-column: 1 / -1;\n}\n.detail-actions {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n.order-workspace,\n.orders-layout {\n  display: grid;\n  gap: 0;\n  grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);\n  margin: 0;\n}\n.order-workspace .order-list,\n.orders-layout .order-list {\n  max-height: none;\n  overflow: visible;\n  display: grid;\n  align-content: start;\n  gap: 8px;\n  padding: 20px 18px 20px 20px;\n}\n.order-card,\n.order-list > button {\n  align-items: center;\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  gap: 12px;\n  justify-content: space-between;\n  height: 69px;\n  padding: 10px 12px;\n  text-align: left;\n  width: 100%;\n}\n.order-card > span,\n.order-list > button > span {\n  display: grid;\n  gap: 0;\n}\n.order-card strong,\n.order-list > button strong {\n  font: 650 15px/1.6 var(--lab-font);\n}\n.order-card small,\n.order-list > button small {\n  color: var(--text);\n  font: 400 12px/1.6 var(--lab-font);\n}\n.order-status {\n  letter-spacing: 0.04em;\n  text-transform: uppercase;\n}\n.order-status.shipped {\n  color: #039855;\n}\n.order-status.overdue {\n  color: #d92d20;\n}\n.order-status.processing {\n  color: #dc6803;\n}\n.order-card[aria-pressed=true],\n.order-list > button[aria-pressed=true] {\n  background: var(--accent-bg);\n  border-color: var(--accent-border);\n}\n.order-workspace .order-detail,\n.orders-layout .order-detail {\n  border-left: 1px solid var(--border);\n  min-width: 0;\n  padding: 20px 20px 20px 18px;\n}\n.order-detail-heading {\n  display: grid;\n  gap: 0;\n  margin-bottom: 16px;\n}\n.order-detail-heading h4,\n.order-detail-heading p {\n  margin: 0;\n}\n.order-detail-heading h4 {\n  color: var(--text-h);\n  font: 650 18px/1.4 var(--lab-font);\n}\n.order-detail-heading .card-kicker {\n  font: 800 12px/1.6 var(--lab-font);\n  letter-spacing: 0.12em;\n}\n.order-summary {\n  display: grid;\n  gap: 10px;\n  grid-template-columns: repeat(3, minmax(0, 1fr));\n  margin: 0 0 16px;\n}\n.order-summary > div,\n.order-summary dl > div {\n  background: var(--code-bg);\n  border-radius: 8px;\n  display: block;\n  gap: normal;\n  padding: 10px;\n}\n.order-summary dt,\n.order-summary dd {\n  text-align: left;\n}\n.order-detail .line-items-wrap,\n.order-detail .table-scroll {\n  margin: 16px 0 0;\n  overflow-x: hidden;\n}\n.order-detail .line-items-wrap table,\n.order-detail .table-scroll table {\n  min-width: 0;\n  table-layout: fixed;\n  width: 100%;\n}\n.order-detail .line-items-wrap th,\n.order-detail .line-items-wrap td,\n.order-detail .table-scroll th,\n.order-detail .table-scroll td {\n  padding: 10px 12px;\n}\n.order-detail .line-items-wrap th:nth-child(1),\n.order-detail .table-scroll th:nth-child(1) {\n  width: 42%;\n}\n.order-detail .line-items-wrap th:nth-child(2),\n.order-detail .table-scroll th:nth-child(2) {\n  width: 14%;\n}\n.order-detail .line-items-wrap th:nth-child(3),\n.order-detail .line-items-wrap th:nth-child(4),\n.order-detail .table-scroll th:nth-child(3),\n.order-detail .table-scroll th:nth-child(4) {\n  width: 22%;\n}\n.order-detail .line-items-wrap th:nth-child(n+2),\n.order-detail .line-items-wrap td:nth-child(n+2),\n.order-detail .table-scroll th:nth-child(n+2),\n.order-detail .table-scroll td:nth-child(n+2) {\n  text-align: right;\n}\n.order-totals {\n  display: grid;\n  gap: 6px;\n  grid-template-columns: minmax(0, 1fr);\n  height: auto;\n  justify-content: stretch;\n  justify-items: stretch;\n  margin: 16px 0 0 auto;\n  max-width: 260px;\n  text-align: right;\n  width: 100%;\n}\n.order-detail .order-totals {\n  grid-template-columns: minmax(0, 1fr);\n  justify-content: stretch;\n  justify-items: stretch;\n}\n.order-totals > div {\n  align-items: center;\n  border: 0;\n  display: grid;\n  gap: 12px;\n  grid-template-columns: minmax(0, 1fr) 110px;\n  height: auto;\n  margin: 0;\n  padding: 0;\n  width: 100%;\n}\n.order-totals > div:last-child,\n.order-totals > div.grand-total:last-child {\n  border-top: 1px solid var(--border);\n  font-size: inherit;\n  margin: 1px 0 0;\n  padding: 7px 0 0;\n}\n.order-totals dt,\n.order-totals dd {\n  line-height: 1.6;\n  margin: 0;\n}\n.order-totals dd {\n  color: var(--text-h);\n  font-weight: 700;\n}\ninput[type=checkbox],\ninput[type=radio],\ninput[type=range],\nprogress {\n  accent-color: var(--accent);\n}\n@media (max-width: 760px) {\n  :host {\n    --lab-title-size: 32px;\n    --lab-section-size: 20px;\n  }\n  .profile-fields,\n  .field-pair {\n    grid-template-columns: 1fr;\n  }\n  .profile-fields .field-span {\n    grid-column: auto;\n  }\n  .section-heading {\n    align-items: stretch;\n    flex-direction: column;\n    gap: 14px;\n  }\n  .filter-grid,\n  .filters,\n  .metric-grid,\n  .detail-grid,\n  .customer-detail,\n  .detail-form,\n  .order-summary {\n    grid-template-columns: 1fr;\n  }\n  .dirty-status,\n  .detail-actions {\n    grid-column: auto;\n  }\n  .pagination,\n  .selection-status {\n    justify-content: flex-start;\n    text-align: left;\n  }\n}\n@media (max-width: 1100px) {\n  .control-layout {\n    grid-template-columns: 1fr;\n  }\n  .order-workspace,\n  .orders-layout {\n    grid-template-columns: 1fr;\n  }\n  .order-workspace .order-list,\n  .orders-layout .order-list {\n    border-bottom: 1px solid var(--border);\n    padding: 0 0 18px;\n  }\n  .order-workspace .order-detail,\n  .orders-layout .order-detail {\n    border-left: 0;\n    padding: 18px 0 0;\n  }\n}\n'] }]
   }], () => [], { dialog: [{ type: ViewChild, args: ["profileDialog", { isSignal: true }] }], warnBeforeUnload: [{
     type: HostListener,
     args: ["window:beforeunload", ["$event"]]
   }] });
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(App, { className: "App", filePath: "src/app/app.ts", lineNumber: 94 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(App, { className: "App", filePath: "src/app/app.ts", lineNumber: 96 });
 })();
 
 // src/main.ts

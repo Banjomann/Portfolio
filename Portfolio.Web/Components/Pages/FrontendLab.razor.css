@@ -91,14 +91,6 @@
     color: var(--color-muted);
 }
 
-.framework-status {
-    color: var(--color-muted);
-    font-size: 0.76rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
 .framework-link {
     display: inline-flex;
     align-items: center;

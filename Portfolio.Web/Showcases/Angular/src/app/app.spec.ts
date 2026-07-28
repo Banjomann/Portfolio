@@ -169,13 +169,13 @@ describe('App', () => {
     await new Promise((resolve) => setTimeout(resolve, 300));
     fixture.detectChanges();
     const shadowRoot = fixture.nativeElement.shadowRoot as ShadowRoot;
-    const customerButton = shadowRoot.querySelector('.row-select') as HTMLButtonElement;
+    const customerRow = shadowRoot.querySelector('tbody tr') as HTMLTableRowElement;
 
-    customerButton.click();
+    customerRow.click();
     fixture.detectChanges();
 
-    expect(customerButton.getAttribute('aria-pressed')).toBe('true');
-    expect(shadowRoot.querySelector('.grid-footer')?.textContent).toContain('Selected: ALFKI');
+    expect(customerRow.getAttribute('aria-selected')).toBe('true');
+    expect(shadowRoot.querySelector('.selection-status')?.textContent).toContain('Selected: ALFKI');
   });
 
   it('should bind selected customer details and aggregate metrics', async () => {
@@ -185,17 +185,19 @@ describe('App', () => {
     fixture.detectChanges();
     const shadowRoot = fixture.nativeElement.shadowRoot as ShadowRoot;
 
-    (shadowRoot.querySelector('.row-select') as HTMLButtonElement).click();
+    (shadowRoot.querySelector('tbody tr') as HTMLTableRowElement).click();
     await fixture.whenStable();
     fixture.detectChanges();
 
-    const details = shadowRoot.querySelector('.customer-detail')?.textContent;
+    const details = shadowRoot.querySelector('.detail-card')?.textContent;
     expect(fetch).toHaveBeenCalledWith(
       '/api/northwind/customers/ALFKI',
       expect.objectContaining({ signal: expect.any(AbortSignal) }),
     );
     expect(details).toContain('Sales Representative');
-    expect(details).toContain('Berlin, 12209, Germany');
+    expect(details).toContain('Berlin');
+    expect(details).toContain('12209');
+    expect(details).toContain('Germany');
     expect(details).toContain('6');
     expect(details).toContain('$4,273.5');
   });
@@ -206,7 +208,7 @@ describe('App', () => {
     await new Promise((resolve) => setTimeout(resolve, 300));
     fixture.detectChanges();
     const root = fixture.nativeElement.shadowRoot as ShadowRoot;
-    (root.querySelector('.row-select') as HTMLButtonElement).click();
+    (root.querySelector('tbody tr') as HTMLTableRowElement).click();
     await fixture.whenStable();
     await new Promise((resolve) => setTimeout(resolve, 0));
     await fixture.whenStable();
@@ -222,10 +224,10 @@ describe('App', () => {
     await new Promise((resolve) => setTimeout(resolve, 300));
     fixture.detectChanges();
     const root = fixture.nativeElement.shadowRoot as ShadowRoot;
-    (root.querySelector('.sandbox-toggle input') as HTMLInputElement).click();
+    (root.querySelector('.sandbox-panel input[role="switch"]') as HTMLInputElement).click();
     await new Promise((resolve) => setTimeout(resolve, 300));
     fixture.detectChanges();
-    (root.querySelector('.row-select') as HTMLButtonElement).click();
+    (root.querySelector('tbody tr') as HTMLTableRowElement).click();
     await fixture.whenStable();
     fixture.detectChanges();
     const company = root.querySelector('.detail-form input') as HTMLInputElement;
@@ -238,7 +240,7 @@ describe('App', () => {
       '/api/northwind/sandbox/customers/ALFKI',
       expect.objectContaining({ method: 'PUT' }),
     );
-    (root.querySelector('.sandbox-toolbar .secondary-button') as HTMLButtonElement).click();
+    (root.querySelector('.sandbox-panel .secondary-button') as HTMLButtonElement).click();
     await fixture.whenStable();
     expect(fetch).toHaveBeenCalledWith(
       '/api/northwind/sandbox/reset',
