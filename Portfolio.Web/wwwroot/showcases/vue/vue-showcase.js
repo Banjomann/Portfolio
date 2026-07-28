@@ -5606,7 +5606,7 @@ var App_ce_default = /*#__PURE__*/ _plugin_vue_export_helper_default({
 							class: "secondary-button",
 							onClick: resetSandbox
 						}, " Reset sandbox ")) : createCommentVNode("", true),
-						sandboxEnabled.value && sandboxExpiresAt.value ? (openBlock(), createElementBlock("small", _hoisted_38, " Session copy expires " + toDisplayString(formatDate(sandboxExpiresAt.value)) + ". ", 1)) : createCommentVNode("", true),
+						sandboxEnabled.value && sandboxExpiresAt.value ? (openBlock(), createElementBlock("small", _hoisted_38, " Session copy expires after 30 minutes without sandbox activity. ")) : createCommentVNode("", true),
 						sandboxNotice.value ? (openBlock(), createElementBlock("p", _hoisted_39, toDisplayString(sandboxNotice.value), 1)) : createCommentVNode("", true),
 						sandboxError.value ? (openBlock(), createElementBlock("p", _hoisted_40, toDisplayString(sandboxError.value), 1)) : createCommentVNode("", true)
 					]),

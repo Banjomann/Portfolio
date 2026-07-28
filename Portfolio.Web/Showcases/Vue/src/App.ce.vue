@@ -726,7 +726,7 @@ onBeforeUnmount(() => {
           Reset sandbox
         </button>
         <small v-if="sandboxEnabled && sandboxExpiresAt">
-          Session copy expires {{ formatDate(sandboxExpiresAt) }}.
+          Session copy expires after 30 minutes without sandbox activity.
         </small>
         <p v-if="sandboxNotice" class="notice" role="status">
           {{ sandboxNotice }}
