@@ -290,6 +290,10 @@ label {
   font-weight: 650;
 }
 
+.switch-row small {
+  color: var(--text);
+}
+
 .range-field {
   display: grid;
   font-weight: 650;
@@ -321,6 +325,12 @@ label {
   height: 4px;
 }
 
+.control-card progress {
+  height: 8px;
+  margin-top: 12px;
+  width: 100%;
+}
+
 :host input[role="switch"] {
   background: transparent;
   border: 0;
@@ -338,6 +348,10 @@ label {
 
 .tabs {
   margin-top: 0;
+}
+
+.tabs button {
+  font-weight: 700;
 }
 
 .tabs button[aria-selected='true'] {
