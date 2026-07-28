@@ -279,17 +279,12 @@ async function loadOrderDetail() {
 }
 
 function formatCurrency(value) {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  }).format(value)
+  return `$${Number(value).toLocaleString()}`
 }
 
 function formatDate(value) {
   if (!value) return 'No orders'
-  return new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' }).format(
-    new Date(value),
-  )
+  return new Date(value).toLocaleDateString()
 }
 
 async function loadSandboxStatus() {
@@ -491,53 +486,55 @@ onBeforeUnmount(() => {
             <h3 id="profile-heading">Profile inputs</h3>
           </div>
 
-          <label>
-            <span>Name</span>
-            <input v-model="name" type="text" required aria-describedby="name-error" />
-          </label>
-          <p v-if="!isNameValid" id="name-error" class="field-error">Enter a name.</p>
-
-          <label>
-            <span>Email</span>
-            <input
-              v-model="email"
-              type="email"
-              required
-              :aria-invalid="!isEmailValid"
-              aria-describedby="email-help"
-            />
-          </label>
-          <small
-            id="email-help"
-            :class="isEmailValid ? 'field-help' : 'field-error'"
-          >
-            {{
-              isEmailValid
-                ? 'Used for example notifications.'
-                : 'Enter a valid email address.'
-            }}
-          </small>
-
-          <div class="field-pair">
-            <label>
-              <span>Seats</span>
-              <input v-model.number="seats" type="number" min="1" max="20" />
+          <div class="profile-fields">
+            <label class="field-span">
+              <span>Name</span>
+              <input v-model="name" type="text" required aria-describedby="name-error" />
+              <small v-if="!isNameValid" id="name-error" class="field-error">Enter a name.</small>
             </label>
-            <label>
-              <span>Start date</span>
-              <input v-model="startDate" type="date" />
+
+            <label class="field-span">
+              <span>Email</span>
+              <input
+                v-model="email"
+                type="email"
+                required
+                :aria-invalid="!isEmailValid"
+                aria-describedby="email-help"
+              />
+              <small
+                id="email-help"
+                :class="isEmailValid ? 'field-help' : 'field-error'"
+              >
+                {{
+                  isEmailValid
+                    ? 'Used for example notifications.'
+                    : 'Enter a valid email address.'
+                }}
+              </small>
+            </label>
+
+            <div class="field-pair field-span">
+              <label>
+                <span>Seats</span>
+                <input v-model.number="seats" type="number" min="1" max="20" />
+              </label>
+              <label>
+                <span>Start date</span>
+                <input v-model="startDate" type="date" />
+              </label>
+            </div>
+
+            <label class="field-span">
+              <span>Role</span>
+              <select v-model="role">
+                <option>Developer</option>
+                <option>Designer</option>
+                <option>Analyst</option>
+                <option>Manager</option>
+              </select>
             </label>
           </div>
-
-          <label>
-            <span>Role</span>
-            <select v-model="role">
-              <option>Developer</option>
-              <option>Designer</option>
-              <option>Analyst</option>
-              <option>Manager</option>
-            </select>
-          </label>
 
           <fieldset>
             <legend>Interests</legend>
@@ -698,7 +695,7 @@ onBeforeUnmount(() => {
 
       <aside class="sandbox-panel" aria-labelledby="sandbox-heading">
         <div>
-          <p class="card-kicker">Session-isolated editing</p>
+          <span class="eyebrow">Session-isolated editing</span>
           <h3 id="sandbox-heading">Editing Sandbox</h3>
           <p>
             Changes use an in-memory browser-session copy. Canonical Northwind
@@ -739,7 +736,7 @@ onBeforeUnmount(() => {
         </p>
       </aside>
 
-      <article class="data-card" aria-labelledby="explorer-heading">
+      <article class="data-card grid-card" aria-labelledby="explorer-heading">
         <div class="data-heading">
           <div>
             <h3 id="explorer-heading">Customer explorer</h3>

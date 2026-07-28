@@ -57,6 +57,22 @@ dialog h2 {
   max-width: 680px;
 }
 
+.eyebrow,
+.card-kicker {
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+.section-heading .eyebrow,
+.sandbox-panel .eyebrow,
+.sandbox-panel .card-kicker {
+  margin: 0;
+}
+
 .framework-badge {
   align-items: center;
   display: flex;
@@ -82,11 +98,14 @@ dialog h2 {
 
 .section-heading p {
   font-size: 15px;
+  margin: 0;
   max-width: 560px;
 }
 
 .showcase-nav {
+  gap: 8px;
   margin: -12px 0 32px;
+  overflow: visible;
   padding: 0;
 }
 
@@ -189,6 +208,15 @@ dialog h2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+:host input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+:host select,
+:host textarea {
+  border-radius: 7px;
+  font-weight: 650;
+  min-height: 42px;
+  padding: 8px 11px;
+}
+
 fieldset {
   border: 0;
   margin: 0;
@@ -220,6 +248,7 @@ label {
   gap: 7px;
   min-height: 40px;
   padding: 7px 11px;
+  font-weight: 650;
 }
 
 .choice-row .choice:has(input:checked),
@@ -232,6 +261,13 @@ label {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  margin-top: 22px;
+}
+
+.form-card small {
+  font-size: 12px;
+  font-weight: 450;
+  line-height: 1.6;
 }
 
 .switch-row {
@@ -239,6 +275,7 @@ label {
   display: flex;
   gap: 16px;
   justify-content: space-between;
+  font-weight: 650;
 }
 
 .range-field {
@@ -272,6 +309,7 @@ label {
 .summary-list > div {
   display: block;
   gap: normal;
+  justify-content: normal;
 }
 
 .summary-list dt {
@@ -353,6 +391,7 @@ dialog .primary-button {
 
 .data-card {
   margin-top: 18px;
+  overflow: hidden;
   padding: 22px;
 }
 
@@ -389,7 +428,7 @@ dialog .primary-button {
   display: grid;
   gap: 14px;
   grid-template-columns: minmax(220px, 1fr) minmax(180px, 0.55fr);
-  margin-bottom: 18px;
+  margin: 0 0 18px;
 }
 
 .filter-grid label,
@@ -414,6 +453,27 @@ dialog .primary-button {
   font: 15px/1.6 var(--lab-font);
   min-width: 720px;
   width: 100%;
+}
+
+.grid-card table {
+  table-layout: fixed;
+}
+
+.grid-card th:nth-child(1) {
+  width: 39%;
+}
+
+.grid-card th:nth-child(2) {
+  width: 22%;
+}
+
+.grid-card th:nth-child(3),
+.grid-card th:nth-child(4) {
+  width: 14%;
+}
+
+.grid-card th:nth-child(5) {
+  width: 11%;
 }
 
 .grid-card th,
@@ -524,6 +584,7 @@ dialog .primary-button {
 }
 
 .selection-status {
+  color: var(--text);
   margin: 12px 0 0;
   text-align: right;
 }
@@ -533,6 +594,10 @@ dialog .primary-button {
   gap: 12px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin: 0 0 18px;
+}
+
+.customer-detail-layout {
+  display: contents;
 }
 
 .metric-grid div,

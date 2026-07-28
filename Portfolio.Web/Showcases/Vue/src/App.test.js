@@ -291,8 +291,8 @@ describe('Customer Explorer', () => {
     expect(detail.textContent).toContain('Maria Anders')
     expect(detail.textContent).toContain('Sales Representative')
     expect(detail.textContent).toContain('6')
-    expect(detail.textContent).toContain('$4,273.00')
-    expect(detail.textContent).toContain('Apr 9, 1998')
+    expect(detail.textContent).toContain('$4,273')
+    expect(detail.textContent).toContain('4/9/1998')
   })
 
   it('selects the newest order and binds line items and totals', async () => {
@@ -319,7 +319,7 @@ describe('Customer Explorer', () => {
     expect(orderDetail.textContent).toContain('Janet Leverling')
     expect(orderDetail.textContent).toContain('Speedy Express')
     expect(orderDetail.textContent).toContain('Escargots de Bourgogne')
-    expect(orderDetail.textContent).toContain('$530.00')
+    expect(orderDetail.textContent).toContain('$530')
     expect(orderDetail.textContent).toContain('$961.21')
   })
 
