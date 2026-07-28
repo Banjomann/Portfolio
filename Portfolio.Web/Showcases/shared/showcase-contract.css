@@ -832,6 +832,11 @@ dialog .primary-button {
   padding: 10px;
 }
 
+.order-summary dt,
+.order-summary dd {
+  text-align: left;
+}
+
 .order-detail .line-items-wrap,
 .order-detail .table-scroll {
   margin: 16px 0 0;
@@ -877,23 +882,42 @@ dialog .primary-button {
 }
 
 .order-totals {
-  display: flex;
-  gap: 18px;
-  height: 34px;
-  justify-content: flex-end;
-  margin: 16px 0 0;
-  max-width: none;
+  display: grid;
+  gap: 6px;
+  grid-template-columns: minmax(0, 1fr);
+  height: auto;
+  justify-content: stretch;
+  justify-items: stretch;
+  margin: 16px 0 0 auto;
+  max-width: 260px;
   text-align: right;
-  width: auto;
+  width: 100%;
+}
+
+.order-detail .order-totals {
+  grid-template-columns: minmax(0, 1fr);
+  justify-content: stretch;
+  justify-items: stretch;
 }
 
 .order-totals > div {
   align-items: center;
+  border: 0;
   display: grid;
   gap: 12px;
-  grid-template-columns: 80px 110px;
-  height: 34px;
-  width: auto;
+  grid-template-columns: minmax(0, 1fr) 110px;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.order-totals > div:last-child,
+.order-totals > div.grand-total:last-child {
+  border-top: 1px solid var(--border);
+  font-size: inherit;
+  margin: 1px 0 0;
+  padding: 7px 0 0;
 }
 
 .order-totals dt,
