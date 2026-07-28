@@ -347,15 +347,11 @@ label {
 }
 
 :host input[type="checkbox"]:focus,
-:host input[type="checkbox"]:focus-visible {
+:host input[type="checkbox"]:focus-visible,
+:host input[type="radio"]:focus,
+:host input[type="radio"]:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
-}
-
-:host input[aria-label="Editing sandbox"]:focus,
-:host input[aria-label="Editing sandbox"]:focus-visible {
-  box-shadow: none;
-  outline: none;
 }
 
 .tabs {
