@@ -303,15 +303,14 @@
       }
     </aside>
 
-    <section class="grid-card" aria-labelledby="customers-heading">
-      <div class="grid-heading">
-        <div>
-          <h3 id="customers-heading">Customer explorer</h3>
-          <p>{{ totalCount() }} Northwind records</p>
-        </div>
-        <div class="filters">
+    <section class="data-card grid-card" aria-labelledby="customers-heading">
+      <div class="data-heading">
+        <h3 id="customers-heading">Customer explorer</h3>
+        <p>{{ totalCount() }} Northwind records</p>
+      </div>
+      <div class="filter-grid filters">
           <label>
-            <span>Search</span>
+            <span>Search customers</span>
             <input
               type="search"
               [value]="search()"
@@ -328,7 +327,6 @@
               }
             </select>
           </label>
-        </div>
       </div>
 
       @if (customerError()) {
@@ -398,9 +396,7 @@
         }
       </div>
 
-      <footer class="grid-footer">
-        <span>{{ selectedId() ? 'Selected: ' + selectedId() : 'Select a customer row' }}</span>
-        <div class="pagination">
+      <div class="pagination" aria-label="Customer pages">
           <button
             type="button"
             [disabled]="loading() || page() <= 1"
@@ -416,30 +412,37 @@
           >
             Next
           </button>
-        </div>
-      </footer>
+      </div>
+      <p class="selection-status" aria-live="polite">
+        {{ selectedId() ? 'Selected: ' + selectedId() : 'Select a customer' }}
+      </p>
     </section>
 
-    <section class="detail-card" aria-labelledby="detail-heading">
-      <div class="detail-heading">
-        <div>
-          <span class="eyebrow">{{
-            sandboxEnabled() ? 'Session database' : 'Read-only binding'
-          }}</span>
-          <h3 id="detail-heading">Customer details</h3>
-        </div>
+    <section class="data-card detail-card" aria-labelledby="detail-heading">
+      <div class="data-heading">
+        <h3 id="detail-heading">Customer details</h3>
         @if (selectedId()) {
           <code>{{ selectedId() }}</code>
         }
       </div>
 
       @if (!selectedId()) {
-        <div class="detail-status">Select a customer row to bind the detail controls.</div>
+        <div class="detail-status">
+          Select a customer to bind its complete record and sales metrics.
+        </div>
       } @else if (detailLoading()) {
         <div class="detail-status" role="status" aria-live="polite">Loading customer…</div>
       } @else if (detailError()) {
         <div class="detail-status error" role="alert">{{ detailError() }}</div>
-      } @else if (sandboxEnabled() && customerDraft(); as draft) {
+      } @else if (customerDetail(); as metrics) {
+        <dl class="metric-grid" aria-label="Customer sales metrics">
+          <div><dt>Orders</dt><dd>{{ metrics.orderCount }}</dd></div>
+          <div><dt>Total sales</dt><dd>{{ formatSales(metrics.totalSales) }}</dd></div>
+          <div><dt>Last order</dt><dd>{{ formatDate(metrics.lastOrderDate) }}</dd></div>
+        </dl>
+      }
+
+      @if (!detailLoading() && sandboxEnabled() && customerDraft(); as draft) {
         <form class="detail-form" (submit)="$event.preventDefault(); saveSandboxCustomer()">
           @for (field of editableFields; track field[0]) {
             <label>
@@ -451,20 +454,16 @@
               />
             </label>
           }
-          <div class="detail-metrics">
-            <span>{{ draft.orderCount }} orders</span>
-            <span>{{ formatSales(draft.totalSales) }}</span>
-            @if (draftIsDirty()) {
-              <span class="unsaved-indicator">Unsaved fields</span>
-            }
-          </div>
+          <p class="dirty-status" aria-live="polite">
+            {{ draftIsDirty() ? 'Unsaved fields' : 'No unsaved fields' }}
+          </p>
           <div class="detail-actions">
             <button
               type="submit"
               class="primary-button"
               [disabled]="!draftIsDirty() || !draft.companyName.trim()"
             >
-              Save temporary changes
+              Save changes
             </button>
             <button
               type="button"
@@ -472,12 +471,12 @@
               [disabled]="!draftIsDirty()"
               (click)="discardCustomerDraft()"
             >
-              Discard fields
+              Discard
             </button>
           </div>
         </form>
-      } @else if (customerDetail(); as detail) {
-        <dl class="customer-detail">
+      } @else if (!detailLoading() && !sandboxEnabled() && customerDetail(); as detail) {
+        <dl class="detail-grid customer-detail">
           <div>
             <dt>Company</dt>
             <dd>{{ detail.companyName || '—' }}</dd>
@@ -495,9 +494,12 @@
             <dd>{{ detail.address || '—' }}</dd>
           </div>
           <div>
-            <dt>Location</dt>
-            <dd>{{ customerLocation(detail) || '—' }}</dd>
+            <dt>City</dt>
+            <dd>{{ detail.city || '—' }}</dd>
           </div>
+          <div><dt>Region</dt><dd>{{ detail.region || '—' }}</dd></div>
+          <div><dt>Postal code</dt><dd>{{ detail.postalCode || '—' }}</dd></div>
+          <div><dt>Country</dt><dd>{{ detail.country || '—' }}</dd></div>
           <div>
             <dt>Phone</dt>
             <dd>{{ detail.phone || '—' }}</dd>
@@ -506,34 +508,22 @@
             <dt>Fax</dt>
             <dd>{{ detail.fax || '—' }}</dd>
           </div>
-          <div>
-            <dt>Orders</dt>
-            <dd>{{ detail.orderCount }}</dd>
-          </div>
-          <div>
-            <dt>Total sales</dt>
-            <dd>{{ formatSales(detail.totalSales) }}</dd>
-          </div>
         </dl>
       }
     </section>
 
-    <section class="orders-card" aria-labelledby="orders-heading">
-      <div class="detail-heading">
-        <div>
-          <span class="eyebrow">Selection chain</span>
-          <h3 id="orders-heading">Orders and line items</h3>
-        </div>
-        @if (selectedOrderId()) {
-          <code>Order {{ selectedOrderId() }}</code>
+    <section class="data-card orders-card" aria-labelledby="orders-heading">
+      <div class="data-heading">
+        <h3 id="orders-heading">Orders and line items</h3>
+        @if (orders().length) {
+          <span>{{ orders().length }} orders</span>
         }
       </div>
       @if (!selectedId()) {
         <div class="detail-status">Select a customer to load their orders.</div>
       } @else {
-        <div class="orders-layout">
-          <div class="order-list" [attr.aria-busy]="ordersLoading()">
-            <h4>Customer orders</h4>
+        <div class="order-workspace orders-layout">
+          <div class="order-list" aria-label="Customer orders" [attr.aria-busy]="ordersLoading()">
             @if (ordersLoading()) {
               <div class="detail-status" role="status" aria-live="polite">Loading orders…</div>
             } @else if (orders().length === 0) {
@@ -542,7 +532,7 @@
               @for (order of orders(); track order.orderId) {
                 <button
                   type="button"
-                  [class.selected]="selectedOrderId() === order.orderId"
+                  class="order-card"
                   [attr.aria-pressed]="selectedOrderId() === order.orderId"
                   (click)="selectedOrderId.set(order.orderId)"
                 >
@@ -558,13 +548,17 @@
               }
             }
           </div>
-          <div class="order-detail" [attr.aria-busy]="orderLoading()">
-            <h4>Order detail</h4>
+          <div class="order-detail" aria-live="polite" [attr.aria-busy]="orderLoading()">
             @if (orderLoading()) {
               <div class="detail-status" role="status" aria-live="polite">Loading order…</div>
             } @else if (orderError()) {
               <div class="detail-status error" role="alert">{{ orderError() }}</div>
             } @else if (orderDetail(); as detail) {
+              <div class="order-detail-heading">
+                <p class="card-kicker">Order {{ detail.orderId }}</p>
+                <h4>{{ detail.status }}</h4>
+                <p>{{ formatDate(detail.orderDate) }}</p>
+              </div>
               <dl class="order-summary">
                 <div>
                   <dt>Employee</dt>
@@ -575,19 +569,13 @@
                   <dd>{{ detail.shipperName || '—' }}</dd>
                 </div>
                 <div>
-                  <dt>Status</dt>
-                  <dd>{{ detail.status }}</dd>
-                </div>
-                <div>
                   <dt>Destination</dt>
                   <dd>{{ destination(detail) }}</dd>
                 </div>
               </dl>
               <div class="line-items-wrap">
                 <table class="line-items">
-                  <caption>
-                    Order line items
-                  </caption>
+                  <caption class="visually-hidden">Order line items</caption>
                   <thead>
                     <tr>
                       <th scope="col">Product</th>

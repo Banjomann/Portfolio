@@ -742,15 +742,14 @@ function App() {
           )}
         </aside>
 
-        <section className="grid-card" aria-labelledby="customers-heading">
-          <div className="grid-heading">
-            <div>
-              <h3 id="customers-heading">Customer explorer</h3>
-              <p>{totalCount} Northwind records</p>
-            </div>
-            <div className="filters">
+        <section className="data-card grid-card" aria-labelledby="customers-heading">
+          <div className="data-heading">
+            <h3 id="customers-heading">Customer explorer</h3>
+            <p>{totalCount} Northwind records</p>
+          </div>
+          <div className="filter-grid filters">
               <label>
-                <span>Search</span>
+                <span>Search customers</span>
                 <input
                   type="search"
                   value={search}
@@ -778,7 +777,6 @@ function App() {
                   ))}
                 </select>
               </label>
-            </div>
           </div>
 
           {error && (
@@ -860,11 +858,7 @@ function App() {
             )}
           </div>
 
-          <footer className="grid-footer">
-            <span>
-              {selectedId ? `Selected: ${selectedId}` : 'Select a customer row'}
-            </span>
-            <div className="pagination">
+          <div className="pagination" aria-label="Customer pages">
               <button
                 type="button"
                 disabled={loading || page <= 1}
@@ -882,30 +876,45 @@ function App() {
               >
                 Next
               </button>
-            </div>
-          </footer>
+          </div>
+          <p className="selection-status" aria-live="polite">
+            {selectedId ? `Selected: ${selectedId}` : 'Select a customer'}
+          </p>
         </section>
 
-        <section className="detail-card" aria-labelledby="detail-heading">
-          <div className="detail-heading">
-            <div>
-              <span className="eyebrow">
-                {sandboxEnabled ? 'Session database' : 'Read-only binding'}
-              </span>
-              <h3 id="detail-heading">Customer details</h3>
-            </div>
+        <section className="data-card detail-card" aria-labelledby="detail-heading">
+          <div className="data-heading">
+            <h3 id="detail-heading">Customer details</h3>
             {selectedId && <code>{selectedId}</code>}
           </div>
 
           {!selectedId && (
             <div className="status">
-              Select a customer row to bind the detail controls.
+              Select a customer to bind its complete record and sales metrics.
             </div>
           )}
           {detailLoading && (
             <div className="status" role="status" aria-live="polite">
               Loading customer…
             </div>
+          )}
+
+          {!detailLoading && customerDetail && (
+            <dl className="metric-grid" aria-label="Customer sales metrics">
+              <div><dt>Orders</dt><dd>{customerDetail.orderCount}</dd></div>
+              <div>
+                <dt>Total sales</dt>
+                <dd>${Number(customerDetail.totalSales).toLocaleString()}</dd>
+              </div>
+              <div>
+                <dt>Last order</dt>
+                <dd>
+                  {customerDetail.lastOrderDate
+                    ? new Date(customerDetail.lastOrderDate).toLocaleDateString()
+                    : '—'}
+                </dd>
+              </div>
+            </dl>
           )}
 
           {!detailLoading && customerDraft && sandboxEnabled && (
@@ -922,22 +931,16 @@ function App() {
                   />
                 </label>
               ))}
-              <div className="detail-metrics">
-                <span>{customerDraft.orderCount} orders</span>
-                <span>
-                  ${Number(customerDraft.totalSales).toLocaleString()}
-                </span>
-                {draftIsDirty && (
-                  <span className="unsaved-indicator">Unsaved fields</span>
-                )}
-              </div>
+              <p className="dirty-status" aria-live="polite">
+                {draftIsDirty ? 'Unsaved fields' : 'No unsaved fields'}
+              </p>
               <div className="detail-actions">
                 <button
                   type="submit"
                   className="primary-button"
                   disabled={!draftIsDirty}
                 >
-                  Save temporary changes
+                  Save changes
                 </button>
                 <button
                   type="button"
@@ -948,37 +951,25 @@ function App() {
                     setSandboxNotice('Unsaved field changes discarded.')
                   }}
                 >
-                  Discard fields
+                  Discard
                 </button>
               </div>
             </form>
           )}
 
           {!detailLoading && customerDetail && !sandboxEnabled && (
-            <dl className="customer-detail">
+            <dl className="detail-grid customer-detail">
               {[
                 ['Company', customerDetail.companyName],
                 ['Contact', customerDetail.contactName],
                 ['Title', customerDetail.contactTitle],
                 ['Address', customerDetail.address],
-                [
-                  'Location',
-                  [
-                    customerDetail.city,
-                    customerDetail.region,
-                    customerDetail.postalCode,
-                    customerDetail.country,
-                  ]
-                    .filter(Boolean)
-                    .join(', '),
-                ],
+                ['City', customerDetail.city],
+                ['Region', customerDetail.region],
+                ['Postal code', customerDetail.postalCode],
+                ['Country', customerDetail.country],
                 ['Phone', customerDetail.phone],
                 ['Fax', customerDetail.fax],
-                ['Orders', customerDetail.orderCount],
-                [
-                  'Total sales',
-                  `$${Number(customerDetail.totalSales).toLocaleString()}`,
-                ],
               ].map(([label, value]) => (
                 <div key={label}>
                   <dt>{label}</dt>
@@ -990,13 +981,10 @@ function App() {
 
         </section>
 
-        <section className="orders-card" aria-labelledby="orders-heading">
-          <div className="detail-heading">
-            <div>
-              <span className="eyebrow">Selection chain</span>
-              <h3 id="orders-heading">Orders and line items</h3>
-            </div>
-            {selectedOrderId && <code>Order {selectedOrderId}</code>}
+        <section className="data-card orders-card" aria-labelledby="orders-heading">
+          <div className="data-heading">
+            <h3 id="orders-heading">Orders and line items</h3>
+            {orders.length > 0 && <span>{orders.length} orders</span>}
           </div>
 
           {!selectedId && (
@@ -1006,9 +994,8 @@ function App() {
           )}
 
           {selectedId && (
-            <div className="orders-layout">
-              <div className="order-list" aria-busy={ordersLoading}>
-                <h4>Customer orders</h4>
+            <div className="order-workspace orders-layout">
+              <div className="order-list" aria-label="Customer orders" aria-busy={ordersLoading}>
                 {ordersLoading && (
                   <div className="status" role="status" aria-live="polite">
                     Loading orders…
@@ -1022,9 +1009,7 @@ function App() {
                     <button
                       type="button"
                       key={order.orderId}
-                      className={
-                        selectedOrderId === order.orderId ? 'selected' : ''
-                      }
+                      className="order-card"
                       aria-pressed={selectedOrderId === order.orderId}
                       onClick={() => setSelectedOrderId(order.orderId)}
                     >
@@ -1048,8 +1033,7 @@ function App() {
                   ))}
               </div>
 
-              <div className="order-detail" aria-busy={orderLoading}>
-                <h4>Order detail</h4>
+              <div className="order-detail" aria-live="polite" aria-busy={orderLoading}>
                 {orderLoading && (
                   <div className="status" role="status" aria-live="polite">
                     Loading order…
@@ -1057,6 +1041,15 @@ function App() {
                 )}
                 {!orderLoading && orderDetail && (
                   <>
+                    <div className="order-detail-heading">
+                      <p className="card-kicker">Order {orderDetail.orderId}</p>
+                      <h4>{orderDetail.status}</h4>
+                      <p>
+                        {orderDetail.orderDate
+                          ? new Date(orderDetail.orderDate).toLocaleDateString()
+                          : 'No order date'}
+                      </p>
+                    </div>
                     <dl className="order-summary">
                       <div>
                         <dt>Employee</dt>
@@ -1065,10 +1058,6 @@ function App() {
                       <div>
                         <dt>Shipper</dt>
                         <dd>{orderDetail.shipperName || '—'}</dd>
-                      </div>
-                      <div>
-                        <dt>Status</dt>
-                        <dd>{orderDetail.status}</dd>
                       </div>
                       <div>
                         <dt>Destination</dt>
@@ -1084,7 +1073,7 @@ function App() {
                     </dl>
                     <div className="line-items-wrap">
                       <table className="line-items">
-                        <caption>Order line items</caption>
+                        <caption className="visually-hidden">Order line items</caption>
                         <thead>
                           <tr>
                             <th scope="col">Product</th>

@@ -88,7 +88,7 @@ describe('React showcase', () => {
     const user = userEvent.setup()
     render(<App />)
 
-    await user.type(screen.getByRole('searchbox', { name: 'Search' }), 'alfreds')
+    await user.type(screen.getByRole('searchbox', { name: 'Search customers' }), 'alfreds')
 
     await waitFor(() =>
       expect(fetch).toHaveBeenCalledWith(
@@ -111,7 +111,7 @@ describe('React showcase', () => {
     const company = await screen.findByRole('textbox', { name: 'Company' })
     await user.clear(company)
     await user.type(company, 'Session Company')
-    await user.click(screen.getByRole('button', { name: 'Save temporary changes' }))
+    await user.click(screen.getByRole('button', { name: 'Save changes' }))
 
     await waitFor(() =>
       expect(fetch).toHaveBeenCalledWith(

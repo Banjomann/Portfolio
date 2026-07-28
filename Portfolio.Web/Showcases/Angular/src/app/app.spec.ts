@@ -175,7 +175,7 @@ describe('App', () => {
     fixture.detectChanges();
 
     expect(customerRow.getAttribute('aria-selected')).toBe('true');
-    expect(shadowRoot.querySelector('.grid-footer')?.textContent).toContain('Selected: ALFKI');
+    expect(shadowRoot.querySelector('.selection-status')?.textContent).toContain('Selected: ALFKI');
   });
 
   it('should bind selected customer details and aggregate metrics', async () => {
@@ -189,13 +189,15 @@ describe('App', () => {
     await fixture.whenStable();
     fixture.detectChanges();
 
-    const details = shadowRoot.querySelector('.customer-detail')?.textContent;
+    const details = shadowRoot.querySelector('.detail-card')?.textContent;
     expect(fetch).toHaveBeenCalledWith(
       '/api/northwind/customers/ALFKI',
       expect.objectContaining({ signal: expect.any(AbortSignal) }),
     );
     expect(details).toContain('Sales Representative');
-    expect(details).toContain('Berlin, 12209, Germany');
+    expect(details).toContain('Berlin');
+    expect(details).toContain('12209');
+    expect(details).toContain('Germany');
     expect(details).toContain('6');
     expect(details).toContain('$4,273.5');
   });

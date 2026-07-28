@@ -10753,39 +10753,40 @@ function App() {
 						]
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
-						className: "grid-card",
+						className: "data-card grid-card",
 						"aria-labelledby": "customers-heading",
 						children: [
 							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "grid-heading",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+								className: "data-heading",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
 									id: "customers-heading",
 									children: "Customer explorer"
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [totalCount, " Northwind records"] })] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "filters",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Search" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
-										type: "search",
-										value: search,
-										placeholder: "Company or contact",
-										onChange: (event) => {
-											setSearch(event.target.value);
-											setPage(1);
-										}
-									})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Country" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("select", {
-										value: country,
-										onChange: (event) => {
-											setCountry(event.target.value);
-											setPage(1);
-										},
-										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
-											value: "",
-											children: "All countries"
-										}), countries.map((item) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
-											value: item,
-											children: item
-										}, item))]
-									})] })]
-								})]
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [totalCount, " Northwind records"] })]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "filter-grid filters",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Search customers" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
+									type: "search",
+									value: search,
+									placeholder: "Company or contact",
+									onChange: (event) => {
+										setSearch(event.target.value);
+										setPage(1);
+									}
+								})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Country" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("select", {
+									value: country,
+									onChange: (event) => {
+										setCountry(event.target.value);
+										setPage(1);
+									},
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
+										value: "",
+										children: "All countries"
+									}), countries.map((item) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
+										value: item,
+										children: item
+									}, item))]
+								})] })]
 							}),
 							error && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 								className: "status error",
@@ -10858,57 +10859,66 @@ function App() {
 									})
 								]
 							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("footer", {
-								className: "grid-footer",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: selectedId ? `Selected: ${selectedId}` : "Select a customer row" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "pagination",
-									children: [
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-											type: "button",
-											disabled: loading || page <= 1,
-											onClick: () => setPage((current) => current - 1),
-											children: "Previous"
-										}),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
-											"Page ",
-											page,
-											" of ",
-											Math.max(totalPages, 1)
-										] }),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-											type: "button",
-											disabled: loading || page >= totalPages,
-											onClick: () => setPage((current) => current + 1),
-											children: "Next"
-										})
-									]
-								})]
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "pagination",
+								"aria-label": "Customer pages",
+								children: [
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+										type: "button",
+										disabled: loading || page <= 1,
+										onClick: () => setPage((current) => current - 1),
+										children: "Previous"
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+										"Page ",
+										page,
+										" of ",
+										Math.max(totalPages, 1)
+									] }),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+										type: "button",
+										disabled: loading || page >= totalPages,
+										onClick: () => setPage((current) => current + 1),
+										children: "Next"
+									})
+								]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+								className: "selection-status",
+								"aria-live": "polite",
+								children: selectedId ? `Selected: ${selectedId}` : "Select a customer"
 							})
 						]
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
-						className: "detail-card",
+						className: "data-card detail-card",
 						"aria-labelledby": "detail-heading",
 						children: [
 							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "detail-heading",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "eyebrow",
-									children: sandboxEnabled ? "Session database" : "Read-only binding"
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+								className: "data-heading",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
 									id: "detail-heading",
 									children: "Customer details"
-								})] }), selectedId && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("code", { children: selectedId })]
+								}), selectedId && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("code", { children: selectedId })]
 							}),
 							!selectedId && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 								className: "status",
-								children: "Select a customer row to bind the detail controls."
+								children: "Select a customer to bind its complete record and sales metrics."
 							}),
 							detailLoading && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 								className: "status",
 								role: "status",
 								"aria-live": "polite",
 								children: "Loading customer…"
+							}),
+							!detailLoading && customerDetail && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("dl", {
+								className: "metric-grid",
+								"aria-label": "Customer sales metrics",
+								children: [
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: "Orders" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dd", { children: customerDetail.orderCount })] }),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: "Total sales" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("dd", { children: ["$", Number(customerDetail.totalSales).toLocaleString()] })] }),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: "Last order" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dd", { children: customerDetail.lastOrderDate ? new Date(customerDetail.lastOrderDate).toLocaleDateString() : "—" })] })
+								]
 							}),
 							!detailLoading && customerDraft && sandboxEnabled && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
 								className: "detail-form",
@@ -10919,16 +10929,10 @@ function App() {
 										value: customerDraft[field] ?? "",
 										onChange: (event) => updateCustomerDraft(field, event.target.value)
 									})] }, field)),
-									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-										className: "detail-metrics",
-										children: [
-											/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [customerDraft.orderCount, " orders"] }),
-											/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: ["$", Number(customerDraft.totalSales).toLocaleString()] }),
-											draftIsDirty && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-												className: "unsaved-indicator",
-												children: "Unsaved fields"
-											})
-										]
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+										className: "dirty-status",
+										"aria-live": "polite",
+										children: draftIsDirty ? "Unsaved fields" : "No unsaved fields"
 									}),
 									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 										className: "detail-actions",
@@ -10936,7 +10940,7 @@ function App() {
 											type: "submit",
 											className: "primary-button",
 											disabled: !draftIsDirty,
-											children: "Save temporary changes"
+											children: "Save changes"
 										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 											type: "button",
 											className: "secondary-button",
@@ -10945,57 +10949,50 @@ function App() {
 												setCustomerDraft(customerDetail);
 												setSandboxNotice("Unsaved field changes discarded.");
 											},
-											children: "Discard fields"
+											children: "Discard"
 										})]
 									})
 								]
 							}),
 							!detailLoading && customerDetail && !sandboxEnabled && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dl", {
-								className: "customer-detail",
+								className: "detail-grid customer-detail",
 								children: [
 									["Company", customerDetail.companyName],
 									["Contact", customerDetail.contactName],
 									["Title", customerDetail.contactTitle],
 									["Address", customerDetail.address],
-									["Location", [
-										customerDetail.city,
-										customerDetail.region,
-										customerDetail.postalCode,
-										customerDetail.country
-									].filter(Boolean).join(", ")],
+									["City", customerDetail.city],
+									["Region", customerDetail.region],
+									["Postal code", customerDetail.postalCode],
+									["Country", customerDetail.country],
 									["Phone", customerDetail.phone],
-									["Fax", customerDetail.fax],
-									["Orders", customerDetail.orderCount],
-									["Total sales", `$${Number(customerDetail.totalSales).toLocaleString()}`]
+									["Fax", customerDetail.fax]
 								].map(([label, value]) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: label }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dd", { children: value || "—" })] }, label))
 							})
 						]
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
-						className: "orders-card",
+						className: "data-card orders-card",
 						"aria-labelledby": "orders-heading",
 						children: [
 							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "detail-heading",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "eyebrow",
-									children: "Selection chain"
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+								className: "data-heading",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
 									id: "orders-heading",
 									children: "Orders and line items"
-								})] }), selectedOrderId && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("code", { children: ["Order ", selectedOrderId] })]
+								}), orders.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [orders.length, " orders"] })]
 							}),
 							!selectedId && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 								className: "status",
 								children: "Select a customer to load their orders."
 							}),
 							selectedId && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "orders-layout",
+								className: "order-workspace orders-layout",
 								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 									className: "order-list",
+									"aria-label": "Customer orders",
 									"aria-busy": ordersLoading,
 									children: [
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", { children: "Customer orders" }),
 										ordersLoading && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 											className: "status",
 											role: "status",
@@ -11008,7 +11005,7 @@ function App() {
 										}),
 										!ordersLoading && orders.map((order) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
 											type: "button",
-											className: selectedOrderId === order.orderId ? "selected" : "",
+											className: "order-card",
 											"aria-pressed": selectedOrderId === order.orderId,
 											onClick: () => setSelectedOrderId(order.orderId),
 											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("strong", { children: ["Order ", order.orderId] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("small", { children: order.orderDate ? new Date(order.orderDate).toLocaleDateString() : "No order date" })] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("strong", { children: ["$", Number(order.total).toLocaleString()] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("small", {
@@ -11019,68 +11016,78 @@ function App() {
 									]
 								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 									className: "order-detail",
+									"aria-live": "polite",
 									"aria-busy": orderLoading,
-									children: [
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", { children: "Order detail" }),
-										orderLoading && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-											className: "status",
-											role: "status",
-											"aria-live": "polite",
-											children: "Loading order…"
+									children: [orderLoading && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+										className: "status",
+										role: "status",
+										"aria-live": "polite",
+										children: "Loading order…"
+									}), !orderLoading && orderDetail && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
+										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+											className: "order-detail-heading",
+											children: [
+												/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+													className: "card-kicker",
+													children: ["Order ", orderDetail.orderId]
+												}),
+												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", { children: orderDetail.status }),
+												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: orderDetail.orderDate ? new Date(orderDetail.orderDate).toLocaleDateString() : "No order date" })
+											]
 										}),
-										!orderLoading && orderDetail && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-											/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("dl", {
-												className: "order-summary",
+										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("dl", {
+											className: "order-summary",
+											children: [
+												/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: "Employee" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dd", { children: orderDetail.employeeName || "—" })] }),
+												/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: "Shipper" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dd", { children: orderDetail.shipperName || "—" })] }),
+												/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: "Destination" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dd", { children: [orderDetail.shippingAddress.city, orderDetail.shippingAddress.country].filter(Boolean).join(", ") || "—" })] })
+											]
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+											className: "line-items-wrap",
+											children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("table", {
+												className: "line-items",
 												children: [
-													/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: "Employee" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dd", { children: orderDetail.employeeName || "—" })] }),
-													/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: "Shipper" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dd", { children: orderDetail.shipperName || "—" })] }),
-													/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: "Status" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dd", { children: orderDetail.status })] }),
-													/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: "Destination" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dd", { children: [orderDetail.shippingAddress.city, orderDetail.shippingAddress.country].filter(Boolean).join(", ") || "—" })] })
-												]
-											}),
-											/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-												className: "line-items-wrap",
-												children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("table", {
-													className: "line-items",
-													children: [
-														/* @__PURE__ */ (0, import_jsx_runtime.jsx)("caption", { children: "Order line items" }),
-														/* @__PURE__ */ (0, import_jsx_runtime.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("tr", { children: [
-															/* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", {
-																scope: "col",
-																children: "Product"
-															}),
-															/* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", {
-																scope: "col",
-																children: "Qty."
-															}),
-															/* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", {
-																scope: "col",
-																children: "Price"
-															}),
-															/* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", {
-																scope: "col",
-																children: "Total"
-															})
-														] }) }),
-														/* @__PURE__ */ (0, import_jsx_runtime.jsx)("tbody", { children: orderDetail.items.map((item) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("tr", { children: [
-															/* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: item.productName }),
-															/* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: item.quantity }),
-															/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("td", { children: ["$", Number(item.unitPrice).toLocaleString()] }),
-															/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("td", { children: ["$", Number(item.extendedPrice).toLocaleString()] })
-														] }, item.productId)) })
-													]
-												})
-											}),
-											/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("dl", {
-												className: "order-totals",
-												children: [
-													/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: "Subtotal" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("dd", { children: ["$", Number(orderDetail.subtotal).toLocaleString()] })] }),
-													/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: "Freight" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("dd", { children: ["$", Number(orderDetail.freight).toLocaleString()] })] }),
-													/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: "Total" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("dd", { children: ["$", Number(orderDetail.total).toLocaleString()] })] })
+													/* @__PURE__ */ (0, import_jsx_runtime.jsx)("caption", {
+														className: "visually-hidden",
+														children: "Order line items"
+													}),
+													/* @__PURE__ */ (0, import_jsx_runtime.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("tr", { children: [
+														/* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", {
+															scope: "col",
+															children: "Product"
+														}),
+														/* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", {
+															scope: "col",
+															children: "Qty."
+														}),
+														/* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", {
+															scope: "col",
+															children: "Price"
+														}),
+														/* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", {
+															scope: "col",
+															children: "Total"
+														})
+													] }) }),
+													/* @__PURE__ */ (0, import_jsx_runtime.jsx)("tbody", { children: orderDetail.items.map((item) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("tr", { children: [
+														/* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: item.productName }),
+														/* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: item.quantity }),
+														/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("td", { children: ["$", Number(item.unitPrice).toLocaleString()] }),
+														/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("td", { children: ["$", Number(item.extendedPrice).toLocaleString()] })
+													] }, item.productId)) })
 												]
 											})
-										] })
-									]
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("dl", {
+											className: "order-totals",
+											children: [
+												/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: "Subtotal" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("dd", { children: ["$", Number(orderDetail.subtotal).toLocaleString()] })] }),
+												/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: "Freight" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("dd", { children: ["$", Number(orderDetail.freight).toLocaleString()] })] }),
+												/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: "Total" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("dd", { children: ["$", Number(orderDetail.total).toLocaleString()] })] })
+											]
+										})
+									] })]
 								})]
 							})
 						]
@@ -11116,7 +11123,7 @@ var App_default = ".showcase {\r\n  padding: 48px;\r\n  text-align: left;\r\n}\r
 var src_default = ":host {\n  --text: #6b6375;\r\n  --text-h: #08060d;\r\n  --bg: #fff;\r\n  --border: #e5e4e7;\r\n  --code-bg: #f4f3ec;\r\n  --accent: #aa3bff;\r\n  --accent-bg: rgba(170, 59, 255, 0.1);\r\n  --accent-border: rgba(170, 59, 255, 0.5);\r\n  --social-bg: rgba(244, 243, 236, 0.5);\r\n  --shadow:\r\n    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;\r\n\r\n  --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;\n  --heading: var(--sans);\n  --mono: ui-monospace, Consolas, monospace;\r\n\r\n  font: 16px/160% var(--sans);\n  letter-spacing: 0.18px;\r\n  color-scheme: light dark;\r\n  color: var(--text);\n  background: var(--bg);\n  border-radius: 14px;\n  display: block;\n  overflow: hidden;\n  font-synthesis: none;\n  text-rendering: optimizeLegibility;\r\n  -webkit-font-smoothing: antialiased;\r\n  -moz-osx-font-smoothing: grayscale;\r\n\r\n  @media (max-width: 1024px) {\r\n    font-size: 16px;\r\n  }\r\n}\r\n\r\n@media (prefers-color-scheme: dark) {\r\n  :host {\r\n    --text: #9ca3af;\r\n    --text-h: #f3f4f6;\r\n    --bg: #16171d;\r\n    --border: #2e303a;\r\n    --code-bg: #1f2028;\r\n    --accent: #c084fc;\r\n    --accent-bg: rgba(192, 132, 252, 0.15);\r\n    --accent-border: rgba(192, 132, 252, 0.5);\r\n    --social-bg: rgba(47, 48, 58, 0.5);\r\n    --shadow:\r\n      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;\r\n  }\r\n\r\n  #social .button-icon {\r\n    filter: invert(1) brightness(2);\r\n  }\r\n}\r\n\r\n:host {\r\n  margin: 0;\r\n}\r\n\r\n#root {\r\n  width: 1126px;\r\n  max-width: 100%;\r\n  margin: 0 auto;\r\n  border-inline: 1px solid var(--border);\r\n  min-height: 100svh;\r\n  display: flex;\r\n  flex-direction: column;\r\n  box-sizing: border-box;\r\n}\r\n\r\nh1,\r\nh2 {\r\n  font-family: var(--heading);\r\n  font-weight: 500;\r\n  color: var(--text-h);\r\n}\r\n\r\nh1 {\n  font-size: 32px;\n  line-height: 160%;\n  letter-spacing: -1.68px;\n  margin: 32px 0;\n  @media (max-width: 1024px) {\n    font-size: 32px;\n    margin: 20px 0;\n  }\n}\r\nh2 {\n  font-size: 24px;\n  line-height: 160%;\n  letter-spacing: -0.24px;\r\n  margin: 0 0 8px;\r\n  @media (max-width: 1024px) {\r\n    font-size: 20px;\r\n  }\r\n}\r\np {\r\n  margin: 0;\r\n}\r\n\r\ncode,\r\n.counter {\r\n  font-family: var(--mono);\r\n  display: inline-flex;\r\n  border-radius: 4px;\r\n  color: var(--text-h);\r\n}\r\n\r\ncode {\r\n  font-size: 15px;\r\n  line-height: 135%;\r\n  padding: 4px 8px;\r\n  background: var(--code-bg);\r\n}\r\n";
 //#endregion
 //#region ../shared/showcase-contract.css?inline
-var showcase_contract_default = "/* Shared visual contract bundled into each framework's Shadow DOM. */\n:host {\n  --lab-font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;\n  --lab-title-size: 32px;\n  --lab-section-size: 24px;\n  --lab-card-title-size: 18px;\n\n  color: var(--text);\n  font: 16px/1.6 var(--lab-font);\n  font-synthesis: none;\n  letter-spacing: 0.18px;\n  text-rendering: optimizeLegibility;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n* {\n  box-sizing: border-box;\n}\n\nbutton,\ninput,\nselect,\ntextarea {\n  font: inherit;\n}\n\n.showcase-header h1,\n.section-heading h2,\n.control-card h3,\n.grid-card h3,\n.data-card h3,\n.detail-card h3,\n.orders-card h3,\n.sandbox-panel h3,\ndialog h2 {\n  color: var(--text-h);\n  font-family: var(--lab-font);\n  font-style: normal;\n}\n\n.showcase-header h1 {\n  font-size: var(--lab-title-size);\n  font-weight: 500;\n  letter-spacing: -1.68px;\n  line-height: 1.6;\n  margin: 6px 0 10px;\n}\n\n.showcase-header p {\n  font-size: 17px;\n  max-width: 680px;\n}\n\n.framework-badge {\n  align-items: center;\n  display: flex;\n  flex: 0 0 auto;\n  gap: 10px;\n  min-height: 46px;\n  padding: 10px 14px;\n}\n\n.framework-badge > span,\n.framework-badge > img {\n  height: 24px;\n  width: 24px;\n}\n\n.section-heading {\n  align-items: end;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 18px;\n}\n\n.section-heading p {\n  font-size: 15px;\n  max-width: 560px;\n}\n\n.section-heading h2 {\n  font-size: var(--lab-section-size);\n  font-weight: 500;\n  letter-spacing: -0.24px;\n  line-height: 1.6;\n  margin: 4px 0 0;\n}\n\n.control-card h3,\n.grid-card h3,\n.data-card h3,\n.detail-card h3,\n.orders-card h3,\n.sandbox-panel h3 {\n  font-size: var(--lab-card-title-size);\n  font-weight: 650;\n  line-height: 1.4;\n}\n\n.card-heading {\n  align-items: center;\n  display: flex;\n  justify-content: space-between;\n  margin-bottom: 18px;\n}\n\n.card-heading h3 {\n  margin: 0;\n}\n\n.control-card,\n.grid-card,\n.data-card,\n.detail-card,\n.orders-card,\n.sandbox-panel {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n  color: var(--text);\n  padding: 22px;\n}\n\n.control-layout {\n  display: grid;\n  gap: 18px;\n  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);\n}\n\n.control-layout > *,\n.control-stack {\n  min-width: 0;\n}\n\n.control-stack,\n.form-card {\n  display: grid;\n  gap: 18px;\n}\n\n.profile-fields {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n\n.profile-fields > label,\n.field-pair > label {\n  display: grid;\n  gap: 6px;\n}\n\n.profile-fields .field-span {\n  grid-column: 1 / -1;\n}\n\n.field-pair {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n\nfieldset {\n  border: 0;\n  margin: 0;\n  min-width: 0;\n  padding: 0;\n}\n\nlegend,\nlabel {\n  color: var(--text-h);\n  font-size: 13px;\n  line-height: 1.6;\n}\n\n.choice-row {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 8px;\n}\n\n.choice-row .choice,\n.choice-row > label {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: inline-flex;\n  gap: 7px;\n  min-height: 40px;\n  padding: 7px 11px;\n}\n\n.choice-row .choice:has(input:checked),\n.choice-row > label:has(input:checked) {\n  background: var(--accent-bg);\n  border-color: var(--accent-border);\n}\n\n.form-actions {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n\n.switch-row {\n  align-items: center;\n  display: flex;\n  gap: 16px;\n  justify-content: space-between;\n}\n\n.range-field {\n  width: 100%;\n}\n\n.tabs {\n  margin-top: 0;\n}\n\n.tab-panel {\n  min-height: 155px;\n  padding-top: 18px;\n}\n\ninput[type=\"checkbox\"],\ninput[type=\"radio\"],\ninput[type=\"range\"],\nprogress {\n  accent-color: var(--accent);\n}\n\n@media (max-width: 760px) {\n  :host {\n    --lab-title-size: 32px;\n    --lab-section-size: 20px;\n  }\n\n  .profile-fields,\n  .field-pair {\n    grid-template-columns: 1fr;\n  }\n\n  .profile-fields .field-span {\n    grid-column: auto;\n  }\n\n  .section-heading {\n    align-items: stretch;\n    flex-direction: column;\n    gap: 14px;\n  }\n}\n\n@media (max-width: 1100px) {\n  .control-layout {\n    grid-template-columns: 1fr;\n  }\n}\n";
+var showcase_contract_default = "/* Shared visual contract bundled into each framework's Shadow DOM. */\n:host {\n  --lab-font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;\n  --lab-title-size: 32px;\n  --lab-section-size: 24px;\n  --lab-card-title-size: 18px;\n\n  color: var(--text);\n  font: 16px/1.6 var(--lab-font);\n  font-synthesis: none;\n  letter-spacing: 0.18px;\n  text-rendering: optimizeLegibility;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n* {\n  box-sizing: border-box;\n}\n\nbutton,\ninput,\nselect,\ntextarea {\n  font: inherit;\n}\n\n.showcase-header h1,\n.section-heading h2,\n.control-card h3,\n.grid-card h3,\n.data-card h3,\n.detail-card h3,\n.orders-card h3,\n.sandbox-panel h3,\ndialog h2 {\n  color: var(--text-h);\n  font-family: var(--lab-font);\n  font-style: normal;\n}\n\n.showcase-header h1 {\n  font-size: var(--lab-title-size);\n  font-weight: 500;\n  letter-spacing: -1.68px;\n  line-height: 1.6;\n  margin: 6px 0 10px;\n}\n\n.showcase-header p {\n  font-size: 17px;\n  max-width: 680px;\n}\n\n.framework-badge {\n  align-items: center;\n  display: flex;\n  flex: 0 0 auto;\n  gap: 10px;\n  min-height: 46px;\n  padding: 10px 14px;\n}\n\n.framework-badge > span,\n.framework-badge > img {\n  height: 24px;\n  width: 24px;\n}\n\n.section-heading {\n  align-items: end;\n  display: flex;\n  gap: 32px;\n  justify-content: space-between;\n  margin-bottom: 18px;\n}\n\n.section-heading p {\n  font-size: 15px;\n  max-width: 560px;\n}\n\n.section-heading h2 {\n  font-size: var(--lab-section-size);\n  font-weight: 500;\n  letter-spacing: -0.24px;\n  line-height: 1.6;\n  margin: 4px 0 0;\n}\n\n.control-card h3,\n.grid-card h3,\n.data-card h3,\n.detail-card h3,\n.orders-card h3,\n.sandbox-panel h3 {\n  font-size: var(--lab-card-title-size);\n  font-weight: 650;\n  line-height: 1.4;\n}\n\n.card-heading {\n  align-items: center;\n  display: flex;\n  justify-content: space-between;\n  margin-bottom: 18px;\n}\n\n.card-heading h3 {\n  margin: 0;\n}\n\n.control-card,\n.grid-card,\n.data-card,\n.detail-card,\n.orders-card,\n.sandbox-panel {\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  box-shadow: var(--shadow);\n  color: var(--text);\n  padding: 22px;\n}\n\n.control-layout {\n  display: grid;\n  gap: 18px;\n  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);\n}\n\n.control-layout > *,\n.control-stack {\n  min-width: 0;\n}\n\n.control-stack,\n.form-card {\n  display: grid;\n  gap: 18px;\n}\n\n.profile-fields {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n\n.profile-fields > label,\n.field-pair > label {\n  display: grid;\n  gap: 6px;\n}\n\n.profile-fields .field-span {\n  grid-column: 1 / -1;\n}\n\n.field-pair {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n\nfieldset {\n  border: 0;\n  margin: 0;\n  min-width: 0;\n  padding: 0;\n}\n\nlegend,\nlabel {\n  color: var(--text-h);\n  font-size: 13px;\n  line-height: 1.6;\n}\n\n.choice-row {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 8px;\n}\n\n.choice-row .choice,\n.choice-row > label {\n  align-items: center;\n  background: var(--code-bg);\n  border: 1px solid var(--border);\n  border-radius: 7px;\n  cursor: pointer;\n  display: inline-flex;\n  gap: 7px;\n  min-height: 40px;\n  padding: 7px 11px;\n}\n\n.choice-row .choice:has(input:checked),\n.choice-row > label:has(input:checked) {\n  background: var(--accent-bg);\n  border-color: var(--accent-border);\n}\n\n.form-actions {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n\n.switch-row {\n  align-items: center;\n  display: flex;\n  gap: 16px;\n  justify-content: space-between;\n}\n\n.range-field {\n  width: 100%;\n}\n\n.tabs {\n  margin-top: 0;\n}\n\n.tab-panel {\n  min-height: 155px;\n  padding-top: 18px;\n}\n\n.data-card {\n  margin-top: 18px;\n  padding: 22px;\n}\n\n.data-heading {\n  align-items: start;\n  display: flex;\n  gap: 24px;\n  justify-content: space-between;\n  margin-bottom: 18px;\n}\n\n.data-heading h3,\n.data-heading p {\n  margin: 0;\n}\n\n.filter-grid,\n.filters {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: minmax(220px, 1fr) minmax(180px, 0.55fr);\n  margin-bottom: 18px;\n}\n\n.filter-grid label,\n.filters label {\n  display: grid;\n  gap: 6px;\n}\n\n.table-scroll,\n.table-wrap,\n.line-items-wrap {\n  border: 1px solid var(--border);\n  border-radius: 8px;\n  overflow-x: auto;\n}\n\n.pagination {\n  align-items: center;\n  display: flex;\n  gap: 12px;\n  justify-content: flex-end;\n  margin-top: 16px;\n}\n\n.selection-status {\n  margin: 12px 0 0;\n  text-align: right;\n}\n\n.metric-grid {\n  display: grid;\n  gap: 12px;\n  grid-template-columns: repeat(3, minmax(0, 1fr));\n  margin: 0 0 18px;\n}\n\n.metric-grid div,\n.detail-grid div,\n.customer-detail div {\n  background: var(--code-bg);\n  border-radius: 8px;\n  padding: 12px;\n}\n\n.metric-grid dd {\n  color: var(--accent);\n  font-weight: 700;\n}\n\n.detail-grid,\n.customer-detail {\n  display: grid;\n  gap: 12px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin: 0;\n}\n\n.detail-form {\n  display: grid;\n  gap: 14px;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n\n.detail-form label {\n  display: grid;\n  gap: 6px;\n}\n\n.dirty-status,\n.detail-actions {\n  grid-column: 1 / -1;\n}\n\n.detail-actions {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}\n\n.order-workspace,\n.orders-layout {\n  display: grid;\n  grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);\n}\n\n.order-list {\n  display: grid;\n  align-content: start;\n  gap: 8px;\n  padding-right: 18px;\n}\n\n.order-card,\n.order-list > button {\n  align-items: center;\n  background: var(--bg);\n  border: 1px solid var(--border);\n  border-radius: 8px;\n  color: var(--text-h);\n  display: flex;\n  justify-content: space-between;\n  min-height: 64px;\n  padding: 10px 12px;\n  text-align: left;\n  width: 100%;\n}\n\n.order-card[aria-pressed=\"true\"],\n.order-list > button[aria-pressed=\"true\"] {\n  background: var(--accent-bg);\n  border-color: var(--accent-border);\n}\n\n.order-detail {\n  border-left: 1px solid var(--border);\n  min-width: 0;\n  padding-left: 18px;\n}\n\n.order-detail-heading {\n  margin-bottom: 16px;\n}\n\n.order-detail-heading h4,\n.order-detail-heading p {\n  margin: 0;\n}\n\n.order-summary {\n  display: grid;\n  gap: 10px;\n  grid-template-columns: repeat(3, minmax(0, 1fr));\n  margin: 0 0 16px;\n}\n\n.order-summary > div,\n.order-summary dl > div {\n  background: var(--code-bg);\n  border-radius: 8px;\n  padding: 10px;\n}\n\n.order-totals {\n  display: flex;\n  gap: 18px;\n  justify-content: flex-end;\n  margin: 16px 0 0;\n}\n\ninput[type=\"checkbox\"],\ninput[type=\"radio\"],\ninput[type=\"range\"],\nprogress {\n  accent-color: var(--accent);\n}\n\n@media (max-width: 760px) {\n  :host {\n    --lab-title-size: 32px;\n    --lab-section-size: 20px;\n  }\n\n  .profile-fields,\n  .field-pair {\n    grid-template-columns: 1fr;\n  }\n\n  .profile-fields .field-span {\n    grid-column: auto;\n  }\n\n  .section-heading {\n    align-items: stretch;\n    flex-direction: column;\n    gap: 14px;\n  }\n\n  .filter-grid,\n  .filters,\n  .metric-grid,\n  .detail-grid,\n  .customer-detail,\n  .detail-form,\n  .order-summary {\n    grid-template-columns: 1fr;\n  }\n\n  .dirty-status,\n  .detail-actions {\n    grid-column: auto;\n  }\n\n  .pagination,\n  .selection-status {\n    justify-content: flex-start;\n    text-align: left;\n  }\n}\n\n@media (max-width: 1100px) {\n  .control-layout {\n    grid-template-columns: 1fr;\n  }\n\n  .order-workspace,\n  .orders-layout {\n    grid-template-columns: 1fr;\n  }\n\n  .order-list {\n    border-bottom: 1px solid var(--border);\n    padding: 0 0 18px;\n  }\n\n  .order-detail {\n    border-left: 0;\n    padding: 18px 0 0;\n  }\n}\n";
 //#endregion
 //#region src/main.jsx
 var ReactShowcaseElement = class extends HTMLElement {

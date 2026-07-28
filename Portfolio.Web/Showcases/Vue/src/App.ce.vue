@@ -1042,13 +1042,12 @@ onBeforeUnmount(() => {
               </button>
             </div>
             <div v-else-if="orderDetail">
-              <div class="order-summary">
-                <div>
-                  <p class="card-kicker">Order {{ orderDetail.orderId }}</p>
-                  <h4>{{ orderDetail.status }}</h4>
-                  <p>{{ formatDate(orderDetail.orderDate) }}</p>
-                </div>
-                <dl>
+              <div class="order-detail-heading">
+                <p class="card-kicker">Order {{ orderDetail.orderId }}</p>
+                <h4>{{ orderDetail.status }}</h4>
+                <p>{{ formatDate(orderDetail.orderDate) }}</p>
+              </div>
+              <dl class="order-summary">
                   <div><dt>Employee</dt><dd>{{ orderDetail.employeeName || 'Unassigned' }}</dd></div>
                   <div><dt>Shipper</dt><dd>{{ orderDetail.shipperName || 'Unassigned' }}</dd></div>
                   <div>
@@ -1058,14 +1057,11 @@ onBeforeUnmount(() => {
                       {{ orderDetail.shippingAddress.country || '—' }}
                     </dd>
                   </div>
-                </dl>
-              </div>
+              </dl>
 
               <div class="table-scroll">
                 <table>
-                  <caption class="visually-hidden">
-                    Products in order {{ orderDetail.orderId }}
-                  </caption>
+                  <caption class="visually-hidden">Order line items</caption>
                   <thead>
                     <tr>
                       <th scope="col">Product</th>
