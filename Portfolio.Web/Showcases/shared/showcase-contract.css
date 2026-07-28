@@ -6,6 +6,7 @@
   --lab-card-title-size: 18px;
 
   color: var(--text);
+  border: 1px solid var(--border);
   font: 16px/1.6 var(--lab-font);
   font-synthesis: none;
   letter-spacing: 0.18px;
@@ -266,6 +267,90 @@ label {
   border: 1px solid var(--border);
   border-radius: 8px;
   overflow-x: auto;
+}
+
+.grid-card table,
+.data-card table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: var(--text);
+  font: 15px/1.6 var(--lab-font);
+  min-width: 720px;
+  width: 100%;
+}
+
+.grid-card th,
+.data-card th,
+.grid-card td,
+.data-card td {
+  border-bottom: 1px solid var(--border);
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  height: 53px;
+  padding: 13px 16px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.grid-card th,
+.data-card th {
+  background: var(--code-bg);
+  color: var(--text-h);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 0;
+}
+
+.grid-card th button,
+.data-card th button,
+.sort-button {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  color: var(--text-h);
+  display: flex;
+  font: 700 13px/1.6 var(--lab-font);
+  gap: 8px;
+  height: 53px;
+  justify-content: space-between;
+  padding: 13px 16px;
+  text-align: left;
+  width: 100%;
+}
+
+.grid-card th[aria-sort="ascending"] button,
+.grid-card th[aria-sort="descending"] button,
+.data-card th[aria-sort="ascending"] button,
+.data-card th[aria-sort="descending"] button,
+.grid-card th button.active-sort,
+.data-card th button.active-sort {
+  color: var(--accent);
+}
+
+.grid-card tbody td,
+.data-card tbody td {
+  background: transparent;
+  color: var(--text);
+  font: 400 15px/1.6 var(--lab-font);
+}
+
+.grid-card tbody td:first-child,
+.data-card tbody td:first-child {
+  color: var(--text-h);
+  font-weight: 650;
+}
+
+.grid-card tbody tr:last-child td,
+.data-card tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.grid-card tbody tr.selected,
+.data-card tbody tr.selected {
+  background: var(--accent-bg);
+  box-shadow: inset 3px 0 0 var(--accent);
 }
 
 .pagination {
