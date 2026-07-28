@@ -278,6 +278,10 @@ label {
   line-height: 1.6;
 }
 
+.form-card .field-help {
+  color: var(--text);
+}
+
 .switch-row {
   align-items: center;
   display: flex;
@@ -306,6 +310,15 @@ label {
   height: 16px;
   padding: 0;
   width: 100%;
+}
+
+.range-field input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+}
+
+.range-field input[type="range"]::-moz-range-track,
+.range-field input[type="range"]::-moz-range-progress {
+  height: 4px;
 }
 
 :host input[role="switch"] {
