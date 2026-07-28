@@ -52,8 +52,15 @@ dialog h2 {
   margin: 6px 0 10px;
 }
 
+.showcase-header .eyebrow {
+  display: block;
+  margin: 0;
+}
+
 .showcase-header p {
   font-size: 17px;
+  line-height: 1.6;
+  margin: 0;
   max-width: 680px;
 }
 
@@ -103,6 +110,7 @@ dialog h2 {
 }
 
 .showcase-nav {
+  display: flex;
   gap: 8px;
   margin: -12px 0 32px;
   overflow: visible;
