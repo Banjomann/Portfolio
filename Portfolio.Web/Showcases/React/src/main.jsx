@@ -1,8 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
-import appStyles from './App.css?inline'
-import baseStyles from './index.css?inline'
 import contractStyles from '../../shared/showcase-contract.css?inline'
 
 class ReactShowcaseElement extends HTMLElement {
@@ -16,7 +14,7 @@ class ReactShowcaseElement extends HTMLElement {
 
     if (!mountPoint) {
       const styleElement = document.createElement('style')
-      styleElement.textContent = `${baseStyles}\n${appStyles}\n${contractStyles}`
+      styleElement.textContent = contractStyles
 
       mountPoint = document.createElement('div')
       mountPoint.id = 'root'
