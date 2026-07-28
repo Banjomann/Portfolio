@@ -685,6 +685,13 @@ dialog .primary-button {
   padding: 0;
 }
 
+.detail-grid dt,
+.detail-grid dd,
+.customer-detail dt,
+.customer-detail dd {
+  text-align: left;
+}
+
 .detail-form {
   display: grid;
   gap: 14px;
@@ -717,6 +724,8 @@ dialog .primary-button {
 
 .order-workspace .order-list,
 .orders-layout .order-list {
+  max-height: none;
+  overflow: visible;
   display: grid;
   align-content: start;
   gap: 8px;
@@ -826,6 +835,45 @@ dialog .primary-button {
 .order-detail .line-items-wrap,
 .order-detail .table-scroll {
   margin: 16px 0 0;
+  overflow-x: hidden;
+}
+
+.order-detail .line-items-wrap table,
+.order-detail .table-scroll table {
+  min-width: 0;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.order-detail .line-items-wrap th,
+.order-detail .line-items-wrap td,
+.order-detail .table-scroll th,
+.order-detail .table-scroll td {
+  padding: 10px 12px;
+}
+
+.order-detail .line-items-wrap th:nth-child(1),
+.order-detail .table-scroll th:nth-child(1) {
+  width: 42%;
+}
+
+.order-detail .line-items-wrap th:nth-child(2),
+.order-detail .table-scroll th:nth-child(2) {
+  width: 14%;
+}
+
+.order-detail .line-items-wrap th:nth-child(3),
+.order-detail .line-items-wrap th:nth-child(4),
+.order-detail .table-scroll th:nth-child(3),
+.order-detail .table-scroll th:nth-child(4) {
+  width: 22%;
+}
+
+.order-detail .line-items-wrap th:nth-child(n + 2),
+.order-detail .line-items-wrap td:nth-child(n + 2),
+.order-detail .table-scroll th:nth-child(n + 2),
+.order-detail .table-scroll td:nth-child(n + 2) {
+  text-align: right;
 }
 
 .order-totals {
