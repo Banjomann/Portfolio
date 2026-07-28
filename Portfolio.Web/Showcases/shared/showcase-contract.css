@@ -343,6 +343,7 @@ dialog::backdrop {
 }
 
 dialog h2 {
+  font-weight: 500;
   margin: 8px 0 10px;
 }
 
