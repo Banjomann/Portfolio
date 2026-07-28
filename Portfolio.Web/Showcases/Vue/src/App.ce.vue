@@ -579,9 +579,9 @@ onBeforeUnmount(() => {
               <input v-model="notifications" type="checkbox" role="switch" />
             </label>
 
-            <label>
+            <label class="range-field">
               <span>Confidence <strong>{{ confidence }}%</strong></span>
-              <input class="range-field" v-model.number="confidence" type="range" min="0" max="100" />
+              <input v-model.number="confidence" type="range" min="0" max="100" />
             </label>
             <progress
               :value="confidence"
@@ -803,6 +803,7 @@ onBeforeUnmount(() => {
                     <span v-if="sort === key" aria-hidden="true">
                       {{ direction === 'asc' ? '↑' : '↓' }}
                     </span>
+                    <span v-if="sort !== key" aria-hidden="true">↕</span>
                   </button>
                 </th>
               </tr>
@@ -854,7 +855,7 @@ onBeforeUnmount(() => {
         </p>
       </article>
 
-      <article class="data-card" aria-labelledby="customer-details-heading">
+      <article class="data-card detail-card" aria-labelledby="customer-details-heading">
         <div class="data-heading">
           <div>
             <h3 id="customer-details-heading">Customer details</h3>
@@ -897,7 +898,7 @@ onBeforeUnmount(() => {
 
           <form
             v-if="sandboxEnabled"
-            class="customer-edit-form"
+            class="customer-edit-form detail-form"
             aria-label="Edit selected customer"
             @submit.prevent="saveCustomer"
           >
@@ -915,7 +916,7 @@ onBeforeUnmount(() => {
             <p class="dirty-status" aria-live="polite">
               {{ customerDraftDirty ? 'Unsaved fields' : 'No unsaved fields' }}
             </p>
-            <div class="button-row">
+            <div class="button-row detail-actions">
               <button
                 class="primary-button"
                 type="submit"
@@ -933,7 +934,7 @@ onBeforeUnmount(() => {
               </button>
             </div>
           </form>
-          <dl v-else class="detail-grid">
+          <dl v-else class="detail-grid customer-detail">
             <div><dt>Company</dt><dd>{{ customerDetail.companyName }}</dd></div>
             <div><dt>Contact</dt><dd>{{ customerDetail.contactName || '—' }}</dd></div>
             <div><dt>Title</dt><dd>{{ customerDetail.contactTitle || '—' }}</dd></div>
@@ -948,7 +949,7 @@ onBeforeUnmount(() => {
         </div>
       </article>
 
-      <article class="data-card" aria-labelledby="orders-heading">
+      <article class="data-card orders-card" aria-labelledby="orders-heading">
         <div class="data-heading">
           <div>
             <h3 id="orders-heading">Orders and line items</h3>
@@ -977,7 +978,7 @@ onBeforeUnmount(() => {
           This customer has no orders.
         </p>
 
-        <div v-else class="order-workspace">
+        <div v-else class="order-workspace orders-layout">
           <div class="order-list" aria-label="Customer orders">
             <button
               v-for="order in orders"
@@ -993,7 +994,9 @@ onBeforeUnmount(() => {
               </span>
               <span>
                 <strong>{{ formatCurrency(order.total) }}</strong>
-                <small>{{ order.status }}</small>
+                <small :class="['order-status', order.status.toLowerCase()]">
+                  {{ order.status }}
+                </small>
               </span>
             </button>
           </div>
@@ -1026,7 +1029,7 @@ onBeforeUnmount(() => {
                   </div>
               </dl>
 
-              <div class="table-scroll">
+              <div class="table-scroll line-items-wrap">
                 <table>
                   <caption class="visually-hidden">Order line items</caption>
                   <thead>

@@ -279,7 +279,34 @@ label {
 }
 
 .range-field {
+  display: grid;
+  font-weight: 650;
+  gap: 5px;
+  margin-top: 22px;
   width: 100%;
+}
+
+.range-field > span {
+  display: flex;
+  justify-content: space-between;
+}
+
+.range-field input[type="range"] {
+  background: transparent;
+  border: 0;
+  font-weight: 650;
+  height: 16px;
+  padding: 0;
+  width: 100%;
+}
+
+:host input[role="switch"] {
+  background: transparent;
+  border: 0;
+  color: white;
+  height: 24px;
+  padding: 0;
+  width: 44px;
 }
 
 .tabs {
@@ -406,6 +433,16 @@ dialog .primary-button {
 .data-heading h3,
 .data-heading p {
   margin: 0;
+}
+
+.detail-card .data-heading code {
+  background: var(--code-bg);
+  border: 0;
+  border-radius: 4px;
+  color: var(--text-h);
+  display: flex;
+  font: 400 15px/1.35 var(--mono, ui-monospace, Consolas, monospace);
+  padding: 4px 8px;
 }
 
 .data-card > .empty-state,
@@ -719,6 +756,23 @@ dialog .primary-button {
   font: 400 12px/1.6 var(--lab-font);
 }
 
+.order-status {
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.order-status.shipped {
+  color: #039855;
+}
+
+.order-status.overdue {
+  color: #d92d20;
+}
+
+.order-status.processing {
+  color: #dc6803;
+}
+
 .order-card[aria-pressed="true"],
 .order-list > button[aria-pressed="true"] {
   background: var(--accent-bg);
@@ -781,6 +835,7 @@ dialog .primary-button {
   justify-content: flex-end;
   margin: 16px 0 0;
   max-width: none;
+  text-align: right;
   width: auto;
 }
 

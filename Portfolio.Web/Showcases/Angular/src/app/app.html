@@ -542,7 +542,9 @@
                   >
                   <span
                     ><strong>{{ formatSales(order.total) }}</strong
-                    ><small>{{ order.status }}</small></span
+                    ><small [class]="'order-status ' + order.status.toLowerCase()">{{
+                      order.status
+                    }}</small></span
                   >
                 </button>
               }
