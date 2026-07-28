@@ -247,6 +247,21 @@ label {
   margin: 0;
 }
 
+.data-card > .empty-state,
+.data-card > .status,
+.data-card > .detail-status {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  color: var(--text);
+  inset: auto;
+  margin: 0;
+  padding: 12px 0;
+  position: static;
+  text-align: left;
+  transform: none;
+}
+
 .filter-grid,
 .filters {
   display: grid;
