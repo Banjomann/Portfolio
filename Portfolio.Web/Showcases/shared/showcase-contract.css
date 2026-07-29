@@ -1288,15 +1288,6 @@ label {
   width: 100%;
 }
 
-.range-field input[type="range"]::-webkit-slider-runnable-track {
-  height: 4px;
-}
-
-.range-field input[type="range"]::-moz-range-track,
-.range-field input[type="range"]::-moz-range-progress {
-  height: 4px;
-}
-
 .control-card progress {
   height: 8px;
   margin-top: 12px;
